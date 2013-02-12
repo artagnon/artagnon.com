@@ -1,0 +1,14 @@
+Options +FollowSymLinks -MultiViews
+DirectorySlash Off
+
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME}/ -d
+RewriteCond %{SCRIPT_FILENAME}.html !-f
+RewriteRule [^/]$ %{REQUEST_URI}/ [R=301,L]
+
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+RewriteCond %{SCRIPT_FILENAME}.html -f
+RewriteRule [^/]$ %{REQUEST_URI}.html [QSA,L]
