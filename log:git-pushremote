@@ -3,17 +3,18 @@ git: branch.<name>.pushremote
 This is stitched together from emails I originally sent to the Git
 list (slightly modified for coherency).  The original thread can be
 found here [1].
+--
 
 This has been annoying me for a really long time, but I never really
 got around to scratching this particular itch. I have a very common
 scenario where I fork a project on GitHub. I have two configured
 remotes: origin which points to "git://upstream" and mine which points
 to "ssh://mine". By default, I always want to pull master from origin
-and push to mine. Unfortunately, there's only a branch..remote which
-specifies which remote to use for both pulling and pushing. There's
-also a remote..pushurl, but I get the feeling that this exists for an
-entirely different reason: when I have a server with a
-highly-available read-only mirror of the repository at
+and push to mine. Unfortunately, there's only a branch.<name>.remote
+which specifies which remote to use for both pulling and
+pushing. There's also a remote.<name>.pushurl, but I get the feeling
+that this exists for an entirely different reason: when I have a
+server with a highly-available read-only mirror of the repository at
 git://anongit.*, and a less-available committer-only mirror at
 ssh://*.
 
