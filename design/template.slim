@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title artagnon.com: #{permalink}
+    link rel="stylesheet" type="text/css" href="design/style.css"
+  body
+    div id="wrapper"
+      div id="main"
+        h1 #{title}
+        pre #{body}
+      dif id="sidebar"
+        ul
+          - topics.each do |topic|
+            | <li><a href=#{topic}>#{topic}/</a></li>
