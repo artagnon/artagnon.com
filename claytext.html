@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>artagnon.com: claytext</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra's site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="programming, linux, philosophy, git" />
+    <link rel="stylesheet" href="design/screen.css" media="screen" />
+    <link rel="stylesheet" href="design/mobile.css" media="only screen and (max-device-width:480px)" />
+    <link rel="stylesheet" href="design/claytext.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>claytext: An implicit markup language</h1>
+<pre>(This page is constructed to exercise all claytext features)
+
+<span class="emailquote">&gt; Donec tincidunt lobortis orci, a cursus dui ullamcorper vel. Praesent
+&gt; vel enim et lectus aliquet laoreet. In tempus sodales metus, eget
+&gt; bibendum quam condimentum ut. Nulla tincidunt enim eu turpis porttitor
+&gt; ut faucibus tortor porttitor.</span>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit
+amet leo vitae mauris faucibus tempus nec non arcu. Vivamus erat
+tellus [1], tincidunt ut mattis sed, laoreet a odio. Ut nec tellus
+nisl. Curabitur in magna eget lacus laoreet sagittis [2]. In quam
+erat, vehicula quis blandit in, vulputate sed purus.
+
+<span class="codeblock">    static int ce_compare_data(struct cache_entry *ce)
+    {
+    	int match = -1;
+    	int fd = open(&quot;.git/cache&quot;, O_RDONLY);
+    
+    	if (fd &gt;= 0) {
+    		unsigned char sha1[20];
+    		if (!index_fd(sha1, fd, OBJ_BLOB))
+    			match = hashcmp(sha1, ce-&gt;sha1);
+    		/* index_fd() closed file descriptor */
+    	}
+    	return match;
+    }</span>
+
+[1]: <a href="http://google.com">google.com</a>
+[2]: <a href="https://github.com">github.com</a>
+</pre>
+
+      </div>
+      <div id="sidebar">
+        <ul><li><a href="index">index/</a></li><li><a href="log">log/</a></li><li><a href="colophon">colophon/</a></li></ul>
+      </div>
+    </div>
+  </body>
+</html>

@@ -8,13 +8,15 @@
     <meta name="keywords" content="programming, linux, philosophy, git" />
     <link rel="stylesheet" href="design/screen.css" media="screen" />
     <link rel="stylesheet" href="design/mobile.css" media="only screen and (max-device-width:480px)" />
+    <link rel="stylesheet" href="design/claytext.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata" />
   </head>
   <body>
     <div id="wrapper">
       <div id="main">
         <h1>git: branch.&lt;name&gt;.pushremote</h1>
-        <pre>The original thread can be found here [1].
+<pre>The original thread can be found here [1].
 --
 
 This has been annoying me for a really long time, but I never really
@@ -22,29 +24,30 @@ got around to scratching this particular itch. I have a very common
 scenario where I fork a project on GitHub. I have two configured
 remotes: origin which points to &quot;git://upstream&quot; and mine which points
 to &quot;ssh://mine&quot;. By default, I always want to pull master from origin
-and push to mine. Unfortunately, there's only a branch.&lt;name&gt;.remote
+and push to mine. Unfortunately, there&apos;s only a branch.&lt;name&gt;.remote
 which specifies which remote to use for both pulling and
-pushing. There's also a remote.&lt;name&gt;.pushurl, but I get the feeling
+pushing. There&apos;s also a remote.&lt;name&gt;.pushurl, but I get the feeling
 that this exists for an entirely different reason: when I have a
 server with a highly-available read-only mirror of the repository at
 git://anongit.*, and a less-available committer-only mirror at
 ssh://*.
 
-There's a reason why remote.&lt;name&gt;.pushurl feels wrong. If one remote
+There&apos;s a reason why remote.&lt;name&gt;.pushurl feels wrong. If one remote
 has a different push from pull, there should be something
 corresponding to refs/remotes/* for push (and the equivalent of fetch
-for updating it). Second, I can't even diff between a branch on my
+for updating it). Second, I can&apos;t even diff between a branch on my
 push URL and a local branch: the [ahead 1, behind 1] in status output
-really doesn't make sense if the repository you're pushing to is
-different from the one you're pulling from. In contrast, if you take
+really doesn&apos;t make sense if the repository you&apos;re pushing to is
+different from the one you&apos;re pulling from. In contrast, if you take
 what I proposed, refs/remotes/{upstream, mine}/* already exist, and
-it's easy to diff them with the corresponding local branch.
+it&apos;s easy to diff them with the corresponding local branch.
 
 How about a branch.&lt;name&gt;.pushremote that specifies a special remote
 for pushing, falling back to branch.&lt;name&gt;.remote?
 
-[1]: <a href="http://thread.gmane.org/gmane.comp.version-control.git/215702">http://thread.gmane.org/gmane.comp.version-control.git/215702</a>
+[1]: <a href="http://thread.gmane.org/gmane.comp.version-control.git/215702">thread.gmane.org/gmane.comp.version-control.git/215702</a>
 </pre>
+
       </div>
       <div id="sidebar">
         <ul><li><a href="index">index/</a></li><li><a href="log">log/</a></li><li><a href="colophon">colophon/</a></li></ul>
