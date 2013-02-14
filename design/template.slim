@@ -8,13 +8,15 @@ html
     meta name="keywords" content="programming, linux, philosophy, git"
     link rel="stylesheet" href="design/screen.css" media="screen"
     link rel="stylesheet" href="design/mobile.css" media="only screen and (max-device-width:480px)"
+    link rel="stylesheet" href="design/claytext.css" media="screen"
     link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans"
+    link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata"
   body
     div id="wrapper"
       div id="main"
         h1 #{title}
-        pre #{body}
         - if indexfill
+        == body
           ul id="indexfill"
             - indexfill.each do |page|
               <li><a href="#{page.permalink}">#{page.title}</a></li>
