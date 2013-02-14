@@ -1,0 +1,31 @@
+claytext: An implicit markup language
+
+(This page is constructed to exercise all claytext features)
+
+> Donec tincidunt lobortis orci, a cursus dui ullamcorper vel. Praesent
+> vel enim et lectus aliquet laoreet. In tempus sodales metus, eget
+> bibendum quam condimentum ut. Nulla tincidunt enim eu turpis porttitor
+> ut faucibus tortor porttitor.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sit
+amet leo vitae mauris faucibus tempus nec non arcu. Vivamus erat
+tellus [1], tincidunt ut mattis sed, laoreet a odio. Ut nec tellus
+nisl. Curabitur in magna eget lacus laoreet sagittis [2]. In quam
+erat, vehicula quis blandit in, vulputate sed purus.
+
+    static int ce_compare_data(struct cache_entry *ce)
+    {
+    	int match = -1;
+    	int fd = open(".git/cache", O_RDONLY);
+    
+    	if (fd >= 0) {
+    		unsigned char sha1[20];
+    		if (!index_fd(sha1, fd, OBJ_BLOB))
+    			match = hashcmp(sha1, ce->sha1);
+    		/* index_fd() closed file descriptor */
+    	}
+    	return match;
+    }
+
+[1]: http://google.com
+[2]: https://github.com
