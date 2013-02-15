@@ -15,7 +15,21 @@ html
     div id="wrapper"
       div id="main"
         h1 #{title}
-        == body
+        pre
+          - paragraphs.each do |paragraph|
+            - if not paragraph.is_first?
+              == "\n\n"
+            - if paragraph.is_plain?
+              == paragraph.content
+            - elsif paragraph.is_emailquote?
+              span class="emailquote"
+                == paragraph.content
+            - elsif paragraph.is_codeblock?
+              span class="codeblock"
+                == paragraph.content
+            - elsif paragraph.is_footer?
+              span class="footer"
+                == paragraph.content
         - if indexfill and not indexfill.empty?
           ul id="indexfill"
             - indexfill.each do |page|
