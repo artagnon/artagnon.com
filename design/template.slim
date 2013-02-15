@@ -19,6 +19,9 @@ html
           - paragraphs.each do |paragraph|
             - if not paragraph.is_first?
               == "\n\n"
+            - if paragraph.is_header?
+              span class="header"
+                == paragraph.content
             - if paragraph.is_plain?
               == paragraph.content
             - elsif paragraph.is_emailquote?
