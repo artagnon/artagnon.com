@@ -6,12 +6,12 @@ html
     meta name="description" content="Ramkumar Ramachandra's site"
     meta name="author" content="Ramkumar Ramachandra"
     meta name="keywords" content="programming, linux, philosophy, git"
-    link rel="stylesheet" href="design/screen.css" media="screen"
-    link rel="stylesheet" href="design/mobile.css" media="only screen and (max-device-width:480px)"
-    link rel="stylesheet" href="design/claytext.css" media="screen"
+    link rel="stylesheet" href="/design/screen.css" media="screen"
+    link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-device-width:480px)"
+    link rel="stylesheet" href="/design/claytext.css" media="screen"
     link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans"
     link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono"
-    link rel="shortcut icon" href="design/favicon.ico"
+    link rel="shortcut icon" href="/design/favicon.ico"
   body
     div id="wrapper"
       div id="main"
@@ -37,8 +37,8 @@ html
         - if indexfill and not indexfill.empty?
           ul id="indexfill"
             - indexfill.each do |page|
-              <li><a href="#{page.permalink}">#{page.title}</a></li>
+              <li><a href="/#{page.permalink}">#{page.title}</a></li>
       div id="sidebar"
         ul
           - topics.each do |topic|
-            | <li><a href="#{topic}">#{topic}/</a></li>
+            | <li><a href="/#{topic}">#{topic}/</a></li>
