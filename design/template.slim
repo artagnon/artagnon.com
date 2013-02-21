@@ -31,6 +31,9 @@ html
             - elsif paragraph.is_codeblock?
               span class="codeblock"
                 == paragraph.content
+            - elsif paragraph.is_subheading?
+              span class="subheading level-#{paragraph.level}"
+                == paragraph.content
             - elsif paragraph.is_footer?
               span class="footer"
                 == paragraph.content
