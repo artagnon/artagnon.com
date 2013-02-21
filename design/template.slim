@@ -26,7 +26,7 @@ html
             - if paragraph.is_plain?
               == paragraph.content
             - elsif paragraph.is_emailquote?
-              span class="emailquote"
+              span class="emailquote level-#{paragraph.level}"
                 == paragraph.content
             - elsif paragraph.is_codeblock?
               span class="codeblock"
