@@ -42,8 +42,12 @@ html
         - if indexfill and not indexfill.empty?
           ul id="indexfill"
             - indexfill.each do |page|
-              <li><a href="/#{page.permalink}">#{page.title}</a></li>
+              li
+                a href="/#{page.permalink}"
+                  == page.title
       div id="sidebar"
         ul
           - topics.each do |topic|
-            | <li><a href="/#{topic}">#{topic}/</a></li>
+            li
+              a href="/#{topic}"
+                == topic
