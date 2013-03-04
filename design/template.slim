@@ -18,27 +18,23 @@ html
         h1 #{title}
         - paragraphs.each do |paragraph|
           - if paragraph.is_header?
-            p
-              span class="header"
-                == paragraph.content
+            p class="header"
+              == paragraph.content
           - if paragraph.is_plain?
             p
               == paragraph.content
           - elsif paragraph.is_emailquote?
-            pre
-              span class="emailquote level-#{paragraph.level}"
-                == paragraph.content
+            p class="emailquote level-#{paragraph.level}"
+              == paragraph.content
           - elsif paragraph.is_codeblock?
-            pre
-              span class="codeblock"
-                == paragraph.content
+            pre class="codeblock"
+              == paragraph.content
           - elsif paragraph.is_subheading?
             h2
               == paragraph.content
           - elsif paragraph.is_footer?
-            pre
-              span class="footer"
-                == paragraph.content
+            p class="footer"
+              == paragraph.content
         - if indexfill and not indexfill.empty?
           ul id="indexfill"
             - indexfill.each do |page|
