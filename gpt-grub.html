@@ -33,7 +33,8 @@
           anywhere within the first 2 TiB), without a filesystem.  GRUB2 is
           GPT-aware, which means that `grub-install /dev/sdx` will look for a
           BIOS Boot partition on /dev/sdx to write core.img to.  As an example,
-          my boot disk looks like this:</p><pre><span class="codeblock">GPT fdisk (gdisk) version 0.8.6
+          my boot disk looks like this:</p>
+        <pre class="codeblock">GPT fdisk (gdisk) version 0.8.6
 
 Partition table scan:
   MBR: protective
@@ -52,7 +53,7 @@ Total free space is 2048 sectors (1024.0 KiB)
 
 Number  Start (sector)    End (sector)  Size       Code  Name
    1            2048            4061   1007.0 KiB  EF02  BIOS boot partition
-   2            4096       488395021   232.9 GiB   8E00  Linux LVM</span></pre>
+   2            4096       488395021   232.9 GiB   8E00  Linux LVM</pre>
         <p>FOOTNOTE: gfdisk is a drop-in replacement for fdisk with the same
           command syntax, with added GPT support.  The best part is you can
           convert an MBR disk to GPT by just issuing a `w` (write) after opening
