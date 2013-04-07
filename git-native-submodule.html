@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>artagnon.com: git-native-submodule</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra's site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="programming, linux, philosophy, git" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/claytext.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-device-width:480px)" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>The new git native submodules I'm writing</h1>
+        <p>This is from an end-user&#39;s perspective.  For the full thread, see [1].</p>
+        <p>0. Great UI/UX.  No more cd-to-toplevel, and a beautiful set of native
+          commands that are consistent with the overall design of git-core.
+          Which means: clone (to put something in an unstaged place), add (to
+          stage), and commit (to commit the change).  There&#39;s now exactly one
+          place in your worktree (which is represented as one file in git; think
+          of it a sort of symlink)  to look in for all the information.  git
+          cat-link &lt;link&gt; to figure out its parameters, git edit-link to edit
+          its parameters: no more &quot;find the matching pwd in .gitmodules in
+          toplevel&quot;.  To remove a submodule, just git rm.  And git mv works!</p>
+        <p>1. True floating submodules.  You can have a submodule checked out at
+          `master` or `v3.1`: no more detached HEADs in submodules unless you
+          want fixed submodules.  No additional cruft required to do the
+          floating: the information is native, in a link object.</p>
+        <p>2. Initializing a nested submodule without having to initialize the
+          outer one: no more repo XML nonsense.  And it&#39;s composable: you don&#39;t
+          need to put the information about all submodules in one central place.</p>
+        <p>3. Ability to have very many large submodule repositories without the
+          performance hit.  It makes sense to block stat() from going through
+          when you have floating submodules.  This means that many levels of
+          nesting are very easily possible.</p>
+        <p>4. It&#39;s suddenly much easier to add new features to this
+          implementation.  You don&#39;t need to do the kind of gymnastics you&#39;d
+          have to do if you were hacking on submodule.c/ git-submodule.sh.</p>
+        <p class="footer">[1]: <a href="http://thread.gmane.org/gmane.comp.version-control.git/220047">thread.gmane.org/gmane.comp.version-control.git/220047</a>
+          </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/log">log</a>
+          </li>
+          <li>
+            <a href="/colophon">colophon</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
