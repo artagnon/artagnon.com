@@ -1,0 +1,51 @@
+git: pull.autostash
+
+(The original series can be found here [1])
+
+Currently, executing a 'git pull' on a dirty worktree gives the
+following annoying message:
+
+    # User doesn't notice dirty worktree
+    $ git pull
+
+    ... # fetch operation
+
+    error: Your local changes to the following files would be ....
+        quux
+    Please, commit your changes or stash them before you can merge.
+    Aborting
+
+At which point the user will stash her changes, re-execute git pull,
+and pop the stash.  This process can easily be automated out for a
+smooth:
+
+    $ git pull
+
+    ... # fetch operation
+
+    Saved working directory and index state WIP on master: 8ea73ed baz
+    HEAD is now at 8ea73ed baz
+
+    ... # The merge/rebase process
+
+    Dropped refs/stash@{0} (83f47fbfb07a741817633f9191dc4a1530f79249)
+
+If there is a conflict during the merge/rebase process, the user has
+to pop the stash by hand after committing the conflict resolution:
+
+    $ git pull
+
+    ... # fetch operation
+
+    Saved working directory and index state WIP on master: 8ea73ed baz
+    HEAD is now at 8ea73ed baz
+
+    ... # The merge/rebase process
+
+    Automatic merge failed; fix conflicts and then commit the result.
+    Please run 'git stash pop' after commiting the conflict resolution.
+
+Introduce a new configuration variable pull.autostash that does
+exactly this.
+
+[1]: http://thread.gmane.org/gmane.comp.version-control.git/221069

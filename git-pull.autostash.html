@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>artagnon.com: git-pull.autostash</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra's site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="programming, linux, philosophy, git" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/claytext.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-device-width:480px)" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>git: pull.autostash</h1>
+        <p class="header">(The original series can be found here [1])</p>
+        <p>Currently, executing a &#39;git pull&#39; on a dirty worktree gives the
+          following annoying message:</p><pre class="codeblock"># User doesn&#39;t notice dirty worktree
+$ git pull</pre><pre class="codeblock">... # fetch operation</pre><pre class="codeblock">error: Your local changes to the following files would be ....
+    quux
+Please, commit your changes or stash them before you can merge.
+Aborting</pre>
+        <p>At which point the user will stash her changes, re-execute git pull,
+          and pop the stash.  This process can easily be automated out for a
+          smooth:</p><pre class="codeblock">$ git pull</pre><pre class="codeblock">... # fetch operation</pre><pre class="codeblock">Saved working directory and index state WIP on master: 8ea73ed baz
+HEAD is now at 8ea73ed baz</pre><pre class="codeblock">... # The merge/rebase process</pre><pre class="codeblock">Dropped refs/stash@{0} (83f47fbfb07a741817633f9191dc4a1530f79249)</pre>
+        <p>If there is a conflict during the merge/rebase process, the user has
+          to pop the stash by hand after committing the conflict resolution:</p><pre class="codeblock">$ git pull</pre><pre class="codeblock">... # fetch operation</pre><pre class="codeblock">Saved working directory and index state WIP on master: 8ea73ed baz
+HEAD is now at 8ea73ed baz</pre><pre class="codeblock">... # The merge/rebase process</pre><pre class="codeblock">Automatic merge failed; fix conflicts and then commit the result.
+Please run &#39;git stash pop&#39; after commiting the conflict resolution.</pre>
+        <p>Introduce a new configuration variable pull.autostash that does
+          exactly this.</p>
+        <p class="footer">[1]: <a href="http://thread.gmane.org/gmane.comp.version-control.git/221069">thread.gmane.org/gmane.comp.version-control.git/221069</a>
+          </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/log">log</a>
+          </li>
+          <li>
+            <a href="/colophon">colophon</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
