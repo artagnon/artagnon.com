@@ -1,0 +1,20 @@
+git: rebase.autostash
+
+(The original thread can be found here [1])
+
+This new feature allows a rebase to be executed on a dirty worktree.
+It works by creating a temporary stash and storing it in
+$state_dir/autostash before the operation, and applying it after a
+successful operation.  It will be removed along with the $state_dir if
+the operation is aborted.
+
+The feature creates a special stash that does not affect the normal
+stash's reflogs, and will therefore be invisible to the end user.
+This special stash is essentially a dangling merge commit which has
+reasonable lifetime specified by gc.pruneexpire (default 2 weeks).
+
+Most significantly, this feature means that a caller like pull (with
+pull.rebase set to true) can easily be patched to remove the
+require_clean_work_tree restriction.
+
+[1]: http://thread.gmane.org/gmane.comp.version-control.git/222157

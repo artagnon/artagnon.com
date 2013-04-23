@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>artagnon.com: log</title>
+    <title>artagnon.com: git-rebase.autostash</title>
     <meta charset="UTF-8" />
     <meta name="description" content="Ramkumar Ramachandra's site" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -17,31 +17,22 @@
   <body>
     <div id="wrapper">
       <div id="main">
-        <h1>Log</h1>
-        <p>This is not a blog.  Think of it as a recent snapshot of me: it
-          comprises of recent pieces of text that I wrote in various contexts.
-          I remove old content periodically.</p>
-        <p>If you&#39;re interested in discussing something with me (commenting), you
-          should email me.  If you&#39;re interested in more content like this,
-          consider following me on Twitter/ Plus.
+        <h1>git: rebase.autostash</h1>
+        <p class="header">(The original thread can be found here [1])</p>
+        <p>This new feature allows a rebase to be executed on a dirty worktree.
+          It works by creating a temporary stash and storing it in
+          $state_dir/autostash before the operation, and applying it after a
+          successful operation.  It will be removed along with the $state_dir if
+          the operation is aborted.</p>
+        <p>The feature creates a special stash that does not affect the normal
+          stash&#39;s reflogs, and will therefore be invisible to the end user.
+          This special stash is essentially a dangling merge commit which has
+          reasonable lifetime specified by gc.pruneexpire (default 2 weeks).</p>
+        <p>Most significantly, this feature means that a caller like pull (with
+          pull.rebase set to true) can easily be patched to remove the
+          require_clean_work_tree restriction.</p>
+        <p class="footer">[1]: <a href="http://thread.gmane.org/gmane.comp.version-control.git/222157">thread.gmane.org/gmane.comp.version-control.git/222157</a>
           </p>
-        <ul id="indexfill">
-          <li>
-            <a href="/git-rebase.autostash">git: rebase.autostash</a>
-          </li>
-          <li>
-            <a href="/gpt-grub">A note on GPT and GRUB2</a>
-          </li>
-          <li>
-            <a href="/gpl-enforcement">On GPL enforcement</a>
-          </li>
-          <li>
-            <a href="/fairness-justice">Fairness in justice</a>
-          </li>
-          <li>
-            <a href="/git-pushremote">git: branch.&lt;name&gt;.pushremote</a>
-          </li>
-        </ul>
       </div>
       <div id="sidebar">
         <ul>
