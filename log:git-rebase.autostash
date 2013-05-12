@@ -1,20 +1,25 @@
 git: rebase.autostash
 
-(The original thread can be found here [1])
+This new feature allows a rebase to be executed on a dirty worktree or
+index.  It works by creating a temporary "dangling merge commit" out
+of the worktree and index changes (via 'git stash create'), and
+automatically applying it after a successful rebase or abort.
 
-This new feature allows a rebase to be executed on a dirty worktree.
-It works by creating a temporary stash and storing it in
-$state_dir/autostash before the operation, and applying it after a
-successful operation.  It will be removed along with the $state_dir if
-the operation is aborted.
+rebase stores the SHA-1 hex of the temporary merge commit, along with
+the rest of the rebase state, in either
+.git/{rebase-merge,rebase-apply}/autostash depending on the kind of
+rebase.  Since $state_dir is automatically removed at the end of a
+successful rebase or abort, so is the autostash.
 
-The feature creates a special stash that does not affect the normal
-stash's reflogs, and will therefore be invisible to the end user.
-This special stash is essentially a dangling merge commit which has
-reasonable lifetime specified by gc.pruneexpire (default 2 weeks).
+The advantage of this approach is that we do not affect the normal
+stash's reflogs, making the autostash invisible to the end-user.  This
+means that you can use 'git stash' during a rebase as usual.
+
+When the autostash application results in a conflict, we push
+$state_dir/autostash onto the normal stash and remove $state_dir
+ending the rebase.  The user can inspect the stash, and pop or drop at
+any time.
 
 Most significantly, this feature means that a caller like pull (with
 pull.rebase set to true) can easily be patched to remove the
 require_clean_work_tree restriction.
-
-[1]: http://thread.gmane.org/gmane.comp.version-control.git/222157
