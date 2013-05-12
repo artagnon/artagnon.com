@@ -18,8 +18,9 @@
     <div id="wrapper">
       <div id="main">
         <h1>git: branch.&lt;name&gt;.pushremote</h1>
-        <p class="header">(The original thread can be found here [1], and the patch series that
-          fixes the annoyance can be found here [2])</p>
+        <p>With the latest git, simply do git config remote.pushdefault
+          &lt;your-remote&gt; to ensure that all pushes from involving all branches
+          always go to the remote &lt;your-remote&gt;.</p>
         <p>This has been annoying me for a really long time, but I never really
           got around to scratching this particular itch. I have a very common
           scenario where I fork a project on GitHub. I have two configured
@@ -42,9 +43,7 @@
           what I proposed, refs/remotes/{upstream, mine}/* already exist, and
           it&#39;s easy to diff them with the corresponding local branch.</p>
         <p>How about a branch.&lt;name&gt;.pushremote that specifies a special remote
-          for pushing, falling back to branch.&lt;name&gt;.remote?</p>
-        <p class="footer">[1]: <a href="http://thread.gmane.org/gmane.comp.version-control.git/215702">thread.gmane.org/gmane.comp.version-control.git/215702</a>
-          [2]: <a href="http://thread.gmane.org/gmane.comp.version-control.git/219743">thread.gmane.org/gmane.comp.version-control.git/219743</a>
+          for pushing, falling back to branch.&lt;name&gt;.remote?
           </p>
       </div>
       <div id="sidebar">
