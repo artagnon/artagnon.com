@@ -30,8 +30,8 @@ html
           - elsif paragraph.is_codeblock?
             pre class="codeblock"
               == paragraph.content
-          - elsif paragraph.is_listitem?
-            p class="listitem"
+          - elsif paragraph.is_ulitem?
+            p class="ulitem"
               == paragraph.content
           - elsif paragraph.is_subheading?
             h2
