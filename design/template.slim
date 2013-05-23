@@ -33,6 +33,10 @@ html
           - elsif paragraph.is_ulitem?
             p class="ulitem"
               == paragraph.content
+          - elsif paragraph.is_olitem?
+            ol class="olitem"
+              li value="#{paragraph.level}"
+                == paragraph.content
           - elsif paragraph.is_subheading?
             h2
               == paragraph.content
