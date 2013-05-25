@@ -1,36 +1,32 @@
-The clayoven problem
+Minimalism and responsive design
 
-> Why yet another static site generator?
-
-When I started building the static site generator for this site, my
-philosophy was:
+So, I started out with three goals in mind:
 
 1. I want to write like I write emails to the git list.  Markdown is a
    complete overkill, because I don't want so much formatting: I want
    the output HTML to faithfully represent the textual input.  Then
-   again, I don't want to show it verbatim: I can manage to do a
-   little line wrapping, to make sure that they're viewable on all
-   screen sizes (this involves some CSS).
+   again, <pre> is barbaric.
 
-2. I want it to be an absolute pleasure to work with.  Among other
-   things, this means being as terse as possible.
+2. I'm a programmer who's interested in minimalism and corectness, not
+   unnecessary prettification.  Therefore, simple hand-written CSS
+   that should render uniformly on all browsers and devices.  I hate
+   frameworks and obfuscation (minification?).
 
-3. I want it to be an absolute pleasure to write.  This means that a
-   well-documented, minimally maintained, beautiful codebase.
+3. I want to be as terse as possible, and the software should be an
+   absolute pleasure to work with.
 
-I'm happy to report that I met all three goals:
+Look at the input that went into creating this page [1], view this
+site on various browser/devices, and check out clayoven [2].
 
-1. Look at the input corresponding to this page [1].  View the site on
-   your phone to see how the CSS adapts.
+In the spirit of minimalism, I used precisely two things for fronend
+development:
 
-2. Look at [2] for the git repository that backs this site: notice how
-   titles, sort-order, and nesting (subpages) are automatically
-   inferred.  There's even an gitignore-like .clayoven/ignore to
-   specify which files to ignore; example: README.md.
+1. A CSS reset to make your CSS browser independent.  Use this [3].
 
-3. Ruby, obviously.  It's not an "active" project, but I do patch it
-   every once in a while.  The sources are well-documented too [3].
+2. A meta viewport tag to make your CSS scale to different device
+   widths.  Use meta name="viewport" content="width=device-width,
+   initial-scale=1.0" for responsive sites.
 
 [1]: http://artagnon.com/log:clayoven
-[2]: https://github.com/artagnon/artagnon.com
-[3]: https://github.com/artagnon/clayoven
+[2]: https://github.com/artagnon/clayoven
+[3]: http://git.io/normalize
