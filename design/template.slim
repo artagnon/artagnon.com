@@ -26,7 +26,7 @@ html
             p
               == paragraph.content
           - elsif paragraph.is_emailquote?
-            pre class="emailquote level-#{paragraph.level}"
+            blockquote class="emailquote"
               == paragraph.content
           - elsif paragraph.is_codeblock?
             pre class="codeblock"
