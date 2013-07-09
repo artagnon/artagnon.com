@@ -1,5 +1,9 @@
 git: rebase.autostash
 
+With the latest git, simply do `git config rebase.autostash true` to
+make `rebase [-i]` work in a dirty worktree. 
+--
+
 This new feature allows a rebase to be executed on a dirty worktree or
 index.  It works by creating a temporary "dangling merge commit" out
 of the worktree and index changes (via 'git stash create'), and
