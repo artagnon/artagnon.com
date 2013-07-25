@@ -1,0 +1,112 @@
+Tales from a git hacker
+
+I've been contributing to the git project for over three years now.
+It's time share a few things I learnt. Many of these features are
+very new, so make sure you're running the latest git.
+
+First things first: get a good prompt and completion system. Nothing
+beats a good shell.
+
+    artagnon|hot-branch:~/src/git$
+             ^
+             branch name
+
+    artagnon|hot-branch<>:~/src/git$
+                       ^
+                       diverged from upstream
+
+    artagnon|hot-branch<>*:~/src/git$
+                         ^
+                         dirty worktree
+
+    artagnon|hot-branch<>*:~/src/git$ g co --<TAB>
+                                        ^
+                                        it completes aliases fine
+
+Don't use the one packaged with zsh, because it's no good.  Instead,
+use the one that comes with git.git [1]. The instructions are near the
+beginning of the files.
+
+Let's quickly run through some hacking sessions now.
+
+I'm working on linux.git, and I need to send out patches against the
+latest master:
+
+    # on branch master of linux.git
+    $ git co um-build
+    # checkout; use aliases [2]
+    # ... hack hack hack ...
+    # wait, master is ahead
+    *$ git rebase master
+    # dirty worktree is fine, if you have rebase.autostash turned on;
+    # use magit [3] to stage/unstage changes
+    <>$ git commit
+    # oh, my prompt indicates that my branch has diverged from upstream
+    <>$ git push -f
+    # I have push.default set to current, so it will only ever push the
+    # current branch; the default "matching" is retarded
+
+I made a mistake in one of my feature branches and need to re-roll the
+series:
+
+    # on branch rebase-autostash of git.git
+    $ git show @~
+    # @~ means HEAD~, the penultimate commit: see gitrevisions(7).
+    # oops, need to fix that up; ... hack hack hack ...
+    *$ git commit -a -m "fixup! @~2"
+    # read the --autosquash paragraph in git-rebase(1) about the
+    # "fixup!" subject prefix, and turn on rebase.autosquash.
+    $ git rebase -i master
+    # fixed penultimate commit
+    <>$ git diff @{u}..
+    # how exactly is the upstream different? See gitrevisions(7).
+
+Starting off on a new project that I just forked on github:
+
+    $ git clone gh:torvalds/linux
+    # use url.<url>.insteadOf to get short urls.
+    $ cd linux
+    # on branch master of linux.git
+    # ... hack hack hack ...
+    >$ git status
+    # ahead of upstream; set status.short and status.branch.
+    # but a push will go to origin, which is gh:torvalds/linux
+    $ git remote add ram gh:artagnon/linux
+    # my fork on github
+    $ git push
+    # set remote.pushdefault to ram to automatically send pushes to your
+    # fork; works well with push.default = current.
+
+Using diffcore-pickaxe to dissect history in a typical hacking
+session:
+
+    # on branch master of linux.git
+    # where did this function come from?
+    $ git log -Sspin_lock_irqsave -- arch/um
+    # see -S and -G in git-log(1) and gitgiffcore(7).
+
+More magic revisions from gitrevisions(7) to avoid going through the
+reflog by hand:
+
+    # on branch master of linux.git
+    $ git checkout perf-build
+    # ... hack hack hack ...
+    # ... commit, push ...
+    $ git checkout -
+    # on branch master
+    # switch to previous branch; - means @{-1} in checkout and merge.
+    $ git pull
+    # I use the rebasing pull; set pull.rebase.
+    $ git checkout -
+    # on branch perf-build
+    $ git rebase master
+    # ... oops, some mess; need hammer ...
+    $ git reset --hard @{1}
+    # revert to the previous state of the branch
+
+I don't like long monologues, so it's your turn to tell us what your
+itches are, preferably in patch-form. Let's discuss them.
+
+[1]: https://github.com/git/git/tree/master/contrib/completion
+[2]: https://github.com/artagnon/dotfiles/blob/master/.gitconfig
+[3]: https://github.com/magit/magit

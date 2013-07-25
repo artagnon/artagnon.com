@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>artagnon.com: git-tales</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra's site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="programming, linux, philosophy, git" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/claytext.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (min-device-width: 320px) and (max-device-width: 600px)" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>Tales from a git hacker</h1>
+        <p>I&#39;ve been contributing to the git project for over three years now.
+          It&#39;s time share a few things I learnt. Many of these features are
+          very new, so make sure you&#39;re running the latest git.</p>
+        <p>First things first: get a good prompt and completion system. Nothing
+          beats a good shell.</p><pre class="codeblock">artagnon|hot-branch:~/src/git$
+         ^
+         branch name</pre><pre class="codeblock">artagnon|hot-branch&lt;&gt;:~/src/git$
+                   ^
+                   diverged from upstream</pre><pre class="codeblock">artagnon|hot-branch&lt;&gt;*:~/src/git$
+                     ^
+                     dirty worktree</pre><pre class="codeblock">artagnon|hot-branch&lt;&gt;*:~/src/git$ g co --&lt;TAB&gt;
+                                    ^
+                                    it completes aliases fine</pre>
+        <p>Don&#39;t use the one packaged with zsh, because it&#39;s no good.  Instead,
+          use the one that comes with git.git [1]. The instructions are near the
+          beginning of the files.</p>
+        <p>Let&#39;s quickly run through some hacking sessions now.</p>
+        <p>I&#39;m working on linux.git, and I need to send out patches against the
+          latest master:</p><pre class="codeblock"># on branch master of linux.git
+$ git co um-build
+# checkout; use aliases [2]
+# ... hack hack hack ...
+# wait, master is ahead
+*$ git rebase master
+# dirty worktree is fine, if you have rebase.autostash turned on;
+# use magit [3] to stage/unstage changes
+&lt;&gt;$ git commit
+# oh, my prompt indicates that my branch has diverged from upstream
+&lt;&gt;$ git push -f
+# I have push.default set to current, so it will only ever push the
+# current branch; the default &quot;matching&quot; is retarded</pre>
+        <p>I made a mistake in one of my feature branches and need to re-roll the
+          series:</p><pre class="codeblock"># on branch rebase-autostash of git.git
+$ git show @~
+# @~ means HEAD~, the penultimate commit: see gitrevisions(7).
+# oops, need to fix that up; ... hack hack hack ...
+*$ git commit -a -m &quot;fixup! @~2&quot;
+# read the --autosquash paragraph in git-rebase(1) about the
+# &quot;fixup!&quot; subject prefix, and turn on rebase.autosquash.
+$ git rebase -i master
+# fixed penultimate commit
+&lt;&gt;$ git diff @{u}..
+# how exactly is the upstream different? See gitrevisions(7).</pre>
+        <p>Starting off on a new project that I just forked on github:</p><pre class="codeblock">$ git clone gh:torvalds/linux
+# use url.&lt;url&gt;.insteadOf to get short urls.
+$ cd linux
+# on branch master of linux.git
+# ... hack hack hack ...
+&gt;$ git status
+# ahead of upstream; set status.short and status.branch.
+# but a push will go to origin, which is gh:torvalds/linux
+$ git remote add ram gh:artagnon/linux
+# my fork on github
+$ git push
+# set remote.pushdefault to ram to automatically send pushes to your
+# fork; works well with push.default = current.</pre>
+        <p>Using diffcore-pickaxe to dissect history in a typical hacking
+          session:</p><pre class="codeblock"># on branch master of linux.git
+# where did this function come from?
+$ git log -Sspin_lock_irqsave -- arch/um
+# see -S and -G in git-log(1) and gitgiffcore(7).</pre>
+        <p>More magic revisions from gitrevisions(7) to avoid going through the
+          reflog by hand:</p><pre class="codeblock"># on branch master of linux.git
+$ git checkout perf-build
+# ... hack hack hack ...
+# ... commit, push ...
+$ git checkout -
+# on branch master
+# switch to previous branch; - means @{-1} in checkout and merge.
+$ git pull
+# I use the rebasing pull; set pull.rebase.
+$ git checkout -
+# on branch perf-build
+$ git rebase master
+# ... oops, some mess; need hammer ...
+$ git reset --hard @{1}
+# revert to the previous state of the branch</pre>
+        <p>I don&#39;t like long monologues, so it&#39;s your turn to tell us what your
+          itches are, preferably in patch-form. Let&#39;s discuss them.</p>
+        <p class="footer">[1]: <a href="https://github.com/git/git/tree/master/contrib/completion">gh:git/git/tree/master/contrib/co...</a>
+          [2]: <a href="https://github.com/artagnon/dotfiles/blob/master/.gitconfig">gh:artagnon/dotfiles/blob/master/...</a>
+          [3]: <a href="https://github.com/magit/magit">gh:magit/magit</a>
+          </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/log">log</a>
+          </li>
+          <li>
+            <a href="/colophon">colophon</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
