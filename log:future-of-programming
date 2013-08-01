@@ -1,0 +1,81 @@
+On the future of programming
+
+The art of programming is evolving steadily; more powerful hardware
+becomes available, and compiler technology evolves.  Ofcourse there
+will be resistance to change, and new compilers don't mature
+overnight. At the end of the day, it boils down to what can be parsed
+unambiguously, written down easily by human beings, and executed
+quickly. If you get off on reading research papers on dependent types
+and writing Agda programs to store in your attic, that's your choice;
+the rest of us will be happily writing Linux in C99 and powering the
+world.
+
+Programming has not fundamentally changed in any way. x86 is the clear
+winner as far as commodity hardware is concerned, and serious
+infrastructure is all written in C. There is a significant risk to
+adopting any new language; the syntax might look pretty, but you
+figure out that the compiler team consists of incompetent monkeys
+writing leaking garbage collectors. We are pushing the boundaries
+everyday:
+
+- Linux has never been better: it continues improve steadily (oh, and
+  at what pace!). New filesystems optimized for SSDs, real
+  virtualization using KVM, an amazing scheduler, and a new system
+  calls. All software is limited by how well the kernel can run it.
+
+- We're in the golden age of concurrency. Various runtimes are trying
+  various techniques: erlang uses a message-passing actor hammer,
+  async is a bit of an afterthought in C#, Node.js tries to get V8 to
+  do it leveraging callbacks, Haskell pushes forward with a
+  theoretically-sound STM, and new languages like Go implement it deep
+  at the scheduler-level.
+
+- For a vast majority of applications, it's very clear that automatic
+  memory management is a good trade-off. We're look down upon hideous
+  nonsense like the reference-counter in cpython, and strive to write
+  concurrent moving GCs. While JRuby has the advantage of
+  piggy-banking on a mature runtime, the MRI community is taking GC
+  very seriously. V8 apparently has a very sophisticated GC as well,
+  otherwise Javascript wouldn't be performant.
+
+- As far as typing is concerned, Ruby has definitely pushed the
+  boundaries of dynamic programming. Javascript is another language
+  with very loosely defined semantics, that many people are fond
+  of. As far as typed languages go, there are only hideous languages
+  like Java and C#. Go seems to have a nice flavor of type inference
+  to it, but only time will tell if it'll be a successful model. Types
+  make for faster code, because your compiler has to spend that much
+  less time inspecting your object: V8 does a lot of type inference
+  behind the scenes too.
+
+- As far as extensibility is concerned, it's obvious that nothing can
+  beat a syntax-less language (aka. Lisp). However, Lisps have
+  historically suffered from a lack of typesystem and object system:
+  CLOS is a disaster, and Typed Racket seems to be going
+  nowhere. Clojure tries to bring some modern flavors into this
+  paradigm (core.async et al), while piggy-banking on the JVM. Not
+  sure where it's going though.
+
+- As far as object systems go, nothing beats Java's factories. It's a
+  great way to fit together many shoddily-written components safely,
+  and Dalvik does exactly that. You don't need a package-manager, and
+  applications have very little scope for misbehaving because of the
+  suffocating typesystem. Sure, it might not be be pleasant to write
+  Java code, but we really have no other way of fitting so many tiny
+  pieces together. It's used in enterprise for much the same reasons:
+  it's too expensive to discipline programmers to write good code, so
+  just constrain them with a really tight object system/typesystem.
+
+- As far as functional programming goes, it's fair to say that all
+  languages have incorporated some amount of it: Ruby differentiates
+  between gsub and gsub! for instance. Being purely functional is a
+  cute theoretical exercise, as the scarab beetle on the Real World
+  Haskell book so aptly indicates.
+
+- As far as manual memory management goes (when you need kernels and
+  web browsers), there's C and there's C++. Rust introduces some
+  interesting pointer semantics, but it doesn't look like the project
+  will last very long.
+
+Well, that ends my rant: I've hopefully provided some food for
+thought.
