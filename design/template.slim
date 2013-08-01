@@ -38,6 +38,10 @@ html
             ol class="olitem"
               li value="#{paragraph.level}"
                 == paragraph.content
+          - elsif paragraph.is_ulitem?
+            ul class="ulitem"
+              li
+                == paragraph.content
           - elsif paragraph.is_subheading?
             h2
               == paragraph.content
