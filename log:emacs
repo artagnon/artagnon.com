@@ -1,0 +1,35 @@
+On Emacs
+
+If you don't know Emacs Lisp, there's no point of using Emacs. You'd
+probably be more productive in Vim or [insert favorite proprietary
+editor here].
+
+Emacs Lisp is probably the most featureless language you can think of;
+it doesn't even do basic threading and the async stuff is a joke. All
+the major programming language modes are implemented as ad-hoc Elisp
+regexp parsers making bugs impossible to fix. Virtually _everything_
+is implemented in Elisp, because the C code is a gigantic
+unmaintainable mess. This means that all the pretty high-level stuff
+like Magit is shit slow. Good features take ages to propagate to
+upstream, whose reasons are often more political than technical.
+However, it is the only programmable editor in the world, and people
+continue to churn out more and more Elisp. Recent developments like
+MELPA and Marmalade have made packaging and distributing easier than
+ever, and users just need to `M-x package-install` to get their
+favorite packages set up.
+
+The reason Emacs has been so successful is very simple: there is one
+global environment where all symbols are bound; any package can
+overshadow any existing symbol (variable/function) from anywhere.
+There are no "core" functions versus "library" functions; any package
+can modify very "core" behavior (for instance, find-file) very
+easily*. Ofcourse, this has severe downsides: you can eval bad code
+and screw up your Emacs environment pretty badly (it might even refuse
+to quit); often the only way to recover is to restart Emacs, flushing
+the environment.
+
+To conclude: learn as much as you can about editors from this monster;
+enjoy tinkering with it. Hopefully, a fresh community will come
+together to build another programmable editor soon.
+
+* The exception is the few C builtins.
