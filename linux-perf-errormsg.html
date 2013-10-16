@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>artagnon.com: log</title>
+    <title>artagnon.com: linux-perf-errormsg</title>
     <meta charset="UTF-8" />
     <meta name="description" content="Ramkumar Ramachandra's site" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -18,39 +18,21 @@
   <body>
     <div id="wrapper">
       <div id="main">
-        <h1>Log</h1>
-        <p>This is an ephemeral snapshot of me: it comprises of recent pieces of
-          text that I wrote in various contexts.  Anything and everything is
-          subject to change.</p>
-        <p>If you&#39;re interested in discussing something with me, you should email
-          me or leave me a message on Freenode IRC (artagnon).
-          </p>
-        <ul id="indexfill">
-          <li>
-            <a href="/linux-perf-errormsg">linux: improve perf error messages</a>
-          </li>
-          <li>
-            <a href="/emacs">On Emacs</a>
-          </li>
-          <li>
-            <a href="/git-tales">Tales from a git hacker</a>
-          </li>
-          <li>
-            <a href="/clayoven">Rationale for clayoven</a>
-          </li>
-          <li>
-            <a href="/git-rebase.autostash">git: rebase.autostash</a>
-          </li>
-          <li>
-            <a href="/gpt-grub">A note on GPT and GRUB2</a>
-          </li>
-          <li>
-            <a href="/gpl-enforcement">On GPL enforcement</a>
-          </li>
-          <li>
-            <a href="/git-pushremote">git: branch.&lt;name&gt;.pushremote</a>
-          </li>
-        </ul>
+        <h1>linux: improve perf error messages</h1>
+        <p>Currently, execution of &#39;perf trace&#39; reports the following cryptic
+          message to the user:</p><pre class="codeblock">$ perf trace
+Couldn&#39;t read the raw_syscalls tracepoints information!</pre>
+        <p>Typically this happens because the user does not have permissions to
+          read the debugfs filesystem. Also handle the case when the kernel was
+          not compiled with debugfs support or when it isn&#39;t mounted.</p>
+        <p>Now, the tool prints detailed error messages:</p><pre class="codeblock">$ perf trace
+Error:  Unable to find debugfs
+Hint:   Was your kernel was compiled with debugfs support?
+Hint:   Is the debugfs filesystem mounted?
+Hint:   Try &#39;sudo mount -t debugfs nodev /sys/kernel/debug&#39;</pre><pre class="codeblock">$ perf trace
+Error:  No permissions to read $debugfs/tracing/events/raw_syscalls
+Hint:   Try &#39;sudo mount -o remount,mode=755 /sys/kernel/debug/&#39;
+</pre>
       </div>
       <div id="sidebar">
         <ul>

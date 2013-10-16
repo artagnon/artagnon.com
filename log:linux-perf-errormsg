@@ -1,0 +1,23 @@
+linux: improve perf error messages
+
+Currently, execution of 'perf trace' reports the following cryptic
+message to the user:
+
+    $ perf trace
+    Couldn't read the raw_syscalls tracepoints information!
+
+Typically this happens because the user does not have permissions to
+read the debugfs filesystem. Also handle the case when the kernel was
+not compiled with debugfs support or when it isn't mounted.
+
+Now, the tool prints detailed error messages:
+
+    $ perf trace
+    Error:  Unable to find debugfs
+    Hint:   Was your kernel was compiled with debugfs support?
+    Hint:   Is the debugfs filesystem mounted?
+    Hint:   Try 'sudo mount -t debugfs nodev /sys/kernel/debug'
+
+    $ perf trace
+    Error:  No permissions to read $debugfs/tracing/events/raw_syscalls
+    Hint:   Try 'sudo mount -o remount,mode=755 /sys/kernel/debug/'
