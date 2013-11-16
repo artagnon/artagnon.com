@@ -18,6 +18,8 @@ html
     div id="wrapper"
       div id="main"
         h1 #{title}
+        - if pubdate and not pubdate.empty?
+          span id="pubdate" #{pubdate}
         - paragraphs.each do |paragraph|
           - if paragraph.is_header?
             p class="header"
