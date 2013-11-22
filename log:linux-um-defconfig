@@ -1,0 +1,28 @@
+linux: user-mode linux defconfig
+
+arch/um/defconfig only lists one default configuration, and that applies
+only to the i386 architecture.  Replace it with two minimal
+configuration files generated using `make savedefconfig`:
+
+  i386_defconfig and x86_64_defconfig
+
+The build scripts now require two updates:
+
+1. um's Kconfig (arch/x86/um/Kconfig) should specify an ARCH_DEFCONFIG
+   section explicitly pointing to these scripts if the required
+   variables are set.  Take care to remove the DEFCONFIG_LIST section
+   defined in the included file arch/um/Kconfig.common.
+
+2. um's Makefile (arch/um/Makefile) should set KBUILD_DEFCONFIG properly
+   for the top-level Makefile to pick up.  Copy the logic in
+   arch/x86/Makefile to properly pick the defconfig file depending on
+   the actual architecture; except we're working with $SUBARCH here,
+   instead of $ARCH.
+
+Now, you can do:
+
+    $ ARCH=um make defconfig
+    $ ARCH=um make
+
+and successfully build User-Mode Linux on an x86_64 box in default
+configuration.
