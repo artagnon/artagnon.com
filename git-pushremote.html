@@ -3,7 +3,7 @@
   <head>
     <title>artagnon.com: git-pushremote</title>
     <meta charset="UTF-8" />
-    <meta name="description" content="Ramkumar Ramachandra's site" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
     <meta name="author" content="Ramkumar Ramachandra" />
     <meta name="keywords" content="programming, linux, philosophy, git" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,13 +18,18 @@
   <body>
     <div id="wrapper">
       <div id="main">
-        <h1>git: branch.&lt;name&gt;.pushremote</h1>
+        <h1>
+          git: branch.&lt;name&gt;.pushremote
+        </h1>
         <span id="pubdate">Tue, 12 Feb 2013</span>
-        <p>With the latest git, simply do `git config remote.pushdefault &lt;fork&gt;`
+        <p>
+          With the latest git, simply do `git config remote.pushdefault &lt;fork&gt;`
           and `git config push.default current` to ensure that a `git push` from
           all branches sends pushes to your fork.<br>
-          --</p>
-        <p>This has been annoying me for a really long time, but I never really
+          --
+        </p>
+        <p>
+          This has been annoying me for a really long time, but I never really
           got around to scratching this particular itch. I have a very common
           scenario where I fork a project on GitHub. I have two configured
           remotes: origin which points to &quot;git://upstream&quot; and mine which points
@@ -35,8 +40,10 @@
           that this exists for an entirely different reason: when I have a
           server with a highly-available read-only mirror of the repository at
           git://anongit.*, and a less-available committer-only mirror at
-          ssh://*.</p>
-        <p>There&#39;s a reason why remote.&lt;name&gt;.pushurl feels wrong. If one remote
+          ssh://*.
+        </p>
+        <p>
+          There&#39;s a reason why remote.&lt;name&gt;.pushurl feels wrong. If one remote
           has a different push from pull, there should be something
           corresponding to refs/remotes/* for push (and the equivalent of fetch
           for updating it). Second, I can&#39;t even diff between a branch on my
@@ -44,10 +51,13 @@
           really doesn&#39;t make sense if the repository you&#39;re pushing to is
           different from the one you&#39;re pulling from. In contrast, if you take
           what I proposed, refs/remotes/{upstream, mine}/* already exist, and
-          it&#39;s easy to diff them with the corresponding local branch.</p>
-        <p>How about a branch.&lt;name&gt;.pushremote that specifies a special remote
+          it&#39;s easy to diff them with the corresponding local branch.
+        </p>
+        <p>
+          How about a branch.&lt;name&gt;.pushremote that specifies a special remote
           for pushing, falling back to branch.&lt;name&gt;.remote?
-          </p>
+          
+        </p>
       </div>
       <div id="sidebar">
         <ul>
