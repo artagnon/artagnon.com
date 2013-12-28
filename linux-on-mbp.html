@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>artagnon.com: linux-on-mbp</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="programming, linux, philosophy, git" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/claytext.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (min-device-width: 320px) and (max-device-width: 600px)" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" />
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>
+          Linux on a 2013 Macbook Pro
+        </h1>
+        <span id="pubdate">Sat, 28 Dec 2013</span>
+        <p>
+          I faced some inital hiccups in the Arch Linux installation, because
+          the installation image doesn&#39;t contain the wireless driver. Linux
+          lists the card as:
+        </p><pre class="codeblock">03:00.0 Ethernet controller: Broadcom Corporation Device 16a3 (rev 10)</pre>
+        <p>
+          The proprietary driver, broadcom-wl-dkms [1], requires atleast kernel
+          headers and base-devel, which aren&#39;t present in the installation
+          image. After trying to copy all the necessary packages onto a
+          different USB stick a few times, I gave up; I found out that the free
+          driver, b43 (included in the installation image kernel), works
+          somewhat provided it&#39;s given the proprietary firmware files [2]. By
+          somewhat, I mean that the connection is unstable and keeps dropping
+          randomly. Using the partition scheme described here [3] (I decided to
+          keep OS X on a small 30G paritition for firmware updates), and after a
+          painful wait for pacstrap, I finally had an Arch install.
+        </p>
+        <p>
+          Getting it to boot was relatively straightforward. As described in
+          [4], I installed rEFInd from OS X using `install.sh --nodrivers` with
+          &quot;scan_all_linux_kernels&quot; and &quot;also_scan_dirs&quot; enabled. Reboot and
+          rEFInd automagically detects the Linux kernel present on the /boot of
+          the Linux installation. To get it to boot, you have to communicate the
+          root partition to the kernel by creating a `refind_linux.conf` on the
+          /boot of the Linux installation:
+        </p><pre class="codeblock">&quot;Default&quot; &quot;root=UUID=b7fcbb0e-8f10-43c2-a3fb-dc07ba6b6ba4 rw rootfstype=ext4 add_efi_memmap&quot;</pre>
+        <p>
+          Once it booted up, I installed broadcom-wl-dkms; it automatically
+          blacklists the b43 driver and steps in.
+        </p>
+        <p>
+          After bootup, the two main annoyances are small fonts on the retina
+          display and trackpad functionality. All GNOME applications respect an
+        </p><pre class="codeblock">Xft.dpi 160</pre>
+        <p>
+          in ~/.Xdefaults. For Emacs and the terminal, set font sizes by
+          hand. Unfortunately, there&#39;s little you can do about Chrome other than
+          increasing the page zoom from settings; even then, the tabs still
+          display tiny text. This is an unresolved bug from 2006~2008 [5][6].
+        </p>
+        <p>
+          For the trackpad, stick to the synaptics driver because the mtrack
+          driver [7] is immature and rotting. I found that the ideal
+          /etc/X11/xorg.conf.d/50-synaptics.conf includes:
+        </p><pre class="codeblock">Section &quot;InputClass&quot;
+  Identifier &quot;touchpad catchall&quot;
+  Driver &quot;synaptics&quot;
+  MatchIsTouchpad &quot;on&quot;
+  Option &quot;TapButton1&quot; &quot;1&quot;
+  Option &quot;TapButton2&quot; &quot;2&quot;
+  Option &quot;TapButton3&quot; &quot;3&quot;
+  Option &quot;ClickFinger1&quot; &quot;1&quot;
+  Option &quot;ClickFinger2&quot; &quot;2&quot;
+  Option &quot;ClickFinger3&quot; &quot;3&quot;
+  Option &quot;PalmDetect&quot; &quot;1&quot;
+  Option &quot;HorizTwoFingerScroll&quot; &quot;1&quot;
+  Option &quot;VertScrollDelta&quot; &quot;-100&quot;
+  Option &quot;HorizScrollDelta&quot; &quot;-100&quot;
+  MatchDevicePath &quot;/dev/input/event*&quot;
+EndSection</pre>
+        <p>
+          I decided that the minor things like the keyboard backlight, light
+          sensor, multimedia keys, and multi-touch gestures were too much
+          trouble to set up.
+        </p>
+        <p>
+          On a final note, the battery life is a definite a pain point. Linux
+          lasts 4 hours consuming 21W, while OS X lasts 8 hours consuming 9W;
+          essentially, Linux halves the battery life, but I haven&#39;t been able to
+          pinpoint the root cause. Perhaps a custom kernel stripped of
+          unnecessary modules will perform better.
+        </p>
+        <p class="footer">
+          [1]: <a href="https://aur.archlinux.org/packages/broadcom-wl-dkms">aur.archlinux.org/packages/bro...</a>
+          [2]: <a href="https://aur.archlinux.org/packages/b43-firmware">aur.archlinux.org/packages/b43...</a>
+          [3]: <a href="https://wiki.archlinux.org/index.php/MacBook#EFI_2">wiki.archlinux.org/index.php/M...</a>
+          [4]: <a href="https://wiki.archlinux.org/index.php/MacBookPro11,x#Direct_EFI_booting_.28rEFInd.29">wiki.archlinux.org/index.php/M...</a>
+          [5]: <a href="https://code.google.com/p/chromium/issues/detail?id=679">code.google.com/p/chromium/iss...</a>
+          [6]: <a href="https://bugs.webkit.org/show_bug.cgi?id=11644">bugs.webkit.org/show_bug.cgi?i...</a>
+          [7]: <a href="https://github.com/BlueDragonX/xf86-input-mtrack">gh:BlueDragonX/xf86-input-mtrack</a>
+          
+        </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/log">log</a>
+          </li>
+          <li>
+            <a href="/colophon">colophon</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
