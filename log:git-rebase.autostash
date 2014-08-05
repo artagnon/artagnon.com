@@ -12,7 +12,7 @@ automatically applying it after a successful rebase or abort.
 rebase stores the SHA-1 hex of the temporary merge commit, along with
 the rest of the rebase state, in either
 .git/{rebase-merge,rebase-apply}/autostash depending on the kind of
-rebase.  Since $state_dir is automatically removed at the end of a
+rebase.  Since $state\_dir is automatically removed at the end of a
 successful rebase or abort, so is the autostash.
 
 The advantage of this approach is that we do not affect the normal
@@ -20,10 +20,10 @@ stash's reflogs, making the autostash invisible to the end-user.  This
 means that you can use 'git stash' during a rebase as usual.
 
 When the autostash application results in a conflict, we push
-$state_dir/autostash onto the normal stash and remove $state_dir
+$state\_dir/autostash onto the normal stash and remove $state\_dir
 ending the rebase.  The user can inspect the stash, and pop or drop at
 any time.
 
 Most significantly, this feature means that a caller like pull (with
 pull.rebase set to true) can easily be patched to remove the
-require_clean_work_tree restriction.
+require\_clean\_work\_tree restriction.

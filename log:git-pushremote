@@ -15,17 +15,17 @@ which specifies which remote to use for both pulling and
 pushing. There's also a remote.<name>.pushurl, but I get the feeling
 that this exists for an entirely different reason: when I have a
 server with a highly-available read-only mirror of the repository at
-git://anongit.*, and a less-available committer-only mirror at
-ssh://*.
+git://anongit.\*, and a less-available committer-only mirror at
+ssh://\*.
 
 There's a reason why remote.<name>.pushurl feels wrong. If one remote
 has a different push from pull, there should be something
-corresponding to refs/remotes/* for push (and the equivalent of fetch
+corresponding to refs/remotes/\* for push (and the equivalent of fetch
 for updating it). Second, I can't even diff between a branch on my
 push URL and a local branch: the [ahead 1, behind 1] in status output
 really doesn't make sense if the repository you're pushing to is
 different from the one you're pulling from. In contrast, if you take
-what I proposed, refs/remotes/{upstream, mine}/* already exist, and
+what I proposed, refs/remotes/{upstream, mine}/\* already exist, and
 it's easy to diff them with the corresponding local branch.
 
 How about a branch.<name>.pushremote that specifies a special remote
