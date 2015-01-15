@@ -59,7 +59,8 @@ html
                   = page.title
       div id="sidebar"
         ul
-          - topics.each do |topic|
-            li
-              a href="/#{topic}"
-                = topic
+          - if topics
+            - topics.each do |topic|
+              li
+                a href="/#{topic}"
+                  = topic
