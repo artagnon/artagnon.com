@@ -1,0 +1,117 @@
+---
+layout: post
+title:  "The caller-dependent bug"
+date:   2015-08-23 14:47
+categories: clang llvm lldb bug
+---
+
+Our custom max function returns the maximum of two positive integers,
+and returns the negative integer, given a positive and negative
+integer. Classic signed wrapping, you'd think. It's not so simple, as
+the problem reproduces only under the following circumstances:
+
+1. LLVM code is calling the max function.
+
+2. The library containing the max function is compiled without
+debugging information.
+
+3. The entire world has been built with XCode 6+.
+
+More information: The LLVM IR is exactly the same between an XCode 5
+sandbox, an XCode 6 sandbox, and a GNU/Linux sandbox. The
+corresponding assembly diff is also clean.
+
+The corresponding C++ code (is actually specialized with short) is:
+
+{% highlight c++ %}
+template <typename T>
+FORCEINLINE T operator()(T a, T b) const
+{
+   return (a >= b ? a : b);
+}
+{% endhighlight %}
+
+While in lldb, the assembly instructions look like:
+
+--------------- [XCode 5]
+{% highlight gas %}
+-> 0x108af1930:  pushq  %rbp
+   0x108af1931:  movq   %rsp, %rbp
+   0x108af1934:  cmpw   %si, %di
+   0x108af1937:  cmovgew %di, %si
+   0x108af193b:  movswl %si, %eax
+   0x108af193e:  popq   %rbp
+   0x108af193f:  retq
+{% endhighlight %}
+
+--------------- [XCode 6]
+{% highlight gas %}
+-> 0x108d1ac10:  pushq  %rbp
+   0x108d1ac11:  movq   %rsp, %rbp
+   0x108d1ac14:  cmpl   %esi, %edi
+   0x108d1ac16:  cmovgew %di, %si
+   0x108d1ac1a:  movswl %si, %eax
+   0x108d1ac1d:  popq   %rbp
+   0x108d1ac1e:  retq
+{% endhighlight %}
+
+---------------
+So, it's comparing the extended registers, but cmpl/cmpw difference is
+messing up somehow.
+
+After execution of the cmpl/cmpw:
+
+--------------- [XCode 5]
+{% highlight text %}
+(lldb) register read --format int16_t[] di
+      di = {-48}
+(lldb) register read --format int16_t[] si
+      si = {34}
+(lldb) register read --format int16_t[] edi
+     edi = {-48 7103}
+(lldb) register read --format int16_t[] esi
+     esi = {34 7103}
+(lldb) register read --format b rflags
+  rflags = 0b0000000000000000000000000000000000000000000000000000001010010010
+{% endhighlight %}
+
+--------------- [XCode 6]
+{% highlight text %}
+(lldb) register read --format int16_t[] di
+      di = {-48}
+(lldb) register read --format int16_t[] si
+      si = {34}
+(lldb) register read --format int16_t[] edi
+     edi = {-48 0}
+(lldb) register read --format int16_t[] esi
+     esi = {34 0}
+(lldb) register read --format b rflags
+  rflags = 0b0000000000000000000000000000000000000000000000000000001000010010
+                                                                     ^
+                                                             Sign flag different
+{% endhighlight %}
+
+--------------- [XCode 6, with C code calling max]
+{% highlight text %}
+(lldb) register read --format int16_t[] di
+      di = {-48}
+(lldb) register read --format int16_t[] si
+      si = {34}
+(lldb) register read --format int16_t[] edi
+     edi = {-48 -1}
+                 ^
+         In the LLVM call, this is zero
+
+(lldb) register read --format int16_t[] esi
+     esi = {34 0}
+{% endhighlight %}
+
+In conclusion, this is a Clang/LLVM version mismatch. It's compiling
+muIntScalarMax_sint16 to emit a compl instead of a compw. The fact
+that the bug only reproduces with LLVM is because: LLVM doesn't set up
+the extended form of the register correctly for negative numbers, when
+calling a function with a word-sized register.
+
+The SysV ABI does not guarantee that the i16 will be sext'ed to i32.
+Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5
+doesn't know about this.
