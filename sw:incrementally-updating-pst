@@ -1,0 +1,83 @@
+---
+layout: post
+title:  "Incrementally updating the PST"
+date:   2016-07-16 21:48
+categories: compilers pst program-structure-tree dfs depth-first-search
+---
+In this flavor of Program Structure Tree, we have seven types of Regions:
+
+1. BasicBlockRegion
+
+2. ChainRegion
+
+3. IfRegion
+
+4. SwitchRegion
+
+5. ForLoopRegion
+
+6. WhileLoopRegion
+
+7. UnstructuredRegion
+
+Most cases, we want to edit the program using the PST (and keeping the CFG
+up-to-date as a side-effect). However, let's consider the interesting case of
+moving Sese (single-entry single-exit) statements out of a BasicBlockRegion to
+arbitrary edge inside a loop in the CFG. How do we avoid recomputing the PST
+now?
+
+{% highlight c++ %}
+/// Some cases:
+///
+/// for (i = 1:1:4) {
+///      A = 2;               /// >> BasicBlockRegion >>
+///      B = 3;   ///<< inserted                      >> ChainRegion
+///      for (j = 1:1:6) {    /// >> ForLoopRegion    >>
+///      }                    /// >>
+/// }
+///
+/// for (i = 1:1:4) {
+///      B = 3;    ///<< inserted
+///      for (j = 1:1:6) {     /// >> ForLoopRegion      >>
+///      }                     /// >>                    >> ChainRegion
+///      A = 2;                /// >> BasicBlockRegion   >>
+/// }
+///
+/// for (i = 1:1:4) {
+///      B = 3;    ///<< inserted
+///      for (j = 1:1:6) {      /// >> ForLoopRegion
+///      }                      /// >>
+/// }
+///
+/// In general, there are 7 types of regions that can precede and 7 other
+/// types of regions that can succeed, making a total of 49 cases.
+///
+{% endhighlight %}
+
+It turns out that there are just five cases to handle:
+
+1. Either the predecessor or the successor says that they're part of a
+BasicBlockRegion. Solution: absorb into the that Region.
+
+2. Both the predecessor and successor say that they're part of an
+UnstructuredRegion. This means that our Sese is floating in the middle of some
+unstructured control flow. Solution: create a new BasicBlockRegion with just
+this Sese. We can't just `insertAfterChild`, because "before" and "after" in an
+UnstructuredRegion isn't as simple as walking the CFG back/forward. Let's say
+they're DFS-ordered. So, do a depth-first-search of all the statements, and ask
+them what Regions they belong to. We now have a DFS listing of all the Regions
+within the UnstructuredRegion. We simply nuke the children, and replace it with
+this DFS listing (which now contains the new BasicBlockRegion we created).
+
+3. Parent of the predecessor or parent of the successor is a ChainRegion.
+Solution: create a new BasicBlockRegion, and insert it into the ChainRegion at
+the correct position (using an `insertAfterChild` API).
+
+4. Now we get to the case where there's only one predecessor or one successor.
+Other cases would have already been trapped by checking if the
+predParent/succParent is a ChainRegion. Solution: create a new BasicBlockRegion,
+a new ChainRegion, and chain the existing predecessor/successor along with the
+new BasicBlockRegion.
+
+5. Finally, if the predecessor/successor both point to the parent loop, simply
+create a new BasicBlockRegion, and insert it into the empty loop.
