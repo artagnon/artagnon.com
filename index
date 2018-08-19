@@ -2,7 +2,7 @@ Ramkumar Ramachandra
 
 Existence in space-time and a strong sleeve.  Uniquification through stronger cryptography.  Founding principles: Precision, elegance, and beauty.
 
-For instances of non-commutative rings, there's no need to look further than matrices over $$R$$, the field of real numbers.
+For instances of non-commutative rings, there's no need to look further than matrices over \(R\), the field of real numbers.
 
 Another instance of non-commutative algebra can be found in Quarternions, that have different properties when cycling
 clockwise and counter-clockwise.
@@ -18,3 +18,34 @@ Disease and disorder is correlated with mental health. In fact, all forms of phy
 I'm writing this on panelo (an iPad Pro) using an external keyboard, a cute accessory. My information is hosted remotely by NFSN, and I'm currrently ssh'ed into it. The fish shell is awesome for remote work.
 
 \[\phi: A \rightarrow A/a\]
+
+\[
+$\setlength{\arraycolsep}{0.1in}
+\begin{array}{cccccc}
+& \Rnode{SL}{\Sigma^L} & & & & \Rnode{SR}{\Sigma^R} \\
+\Rnode{L}{L} & & \Rnode{Lr}{L_r} & & \Rnode{R}{R} & \\
+\Rnode{Lm}{L_m} & & \Rnode{Krm}{K_{r,m}} & & \Rnode{Rm}{R_{m^*}} & \\ [0.15in] & \Rnode{SG}{\Sigma^G} & & & & \Rnode{SH}{\Sigma^H} \\ [0.15in]
+\Rnode{G}{G} & & \Rnode{Gr}{G_{r^*}}
+\end{array}
+\psset{nodesep=5pt,arrows=->}
+\everypsbox{\scriptstyle}
+\ncLine{Lr}{R} \Aput{r}
+\ncLine{Krm}{Rm} \Aput{r}
+\ncLine{Gr}{H} \Bput{r^*}
+\ncLine{Lr}{L} \bput{0}(0.3){i_1}
+\ncLine{Krm}{Lm} \bput{0}(0.3){i_3}
+\ncLine{Gr}{G} \Aput{i_5}
+\ncLine{SL}{SR} \Aput{\varphi^r}
+\ncLine{SG}{SH} \Bput{\varphi^{r^*}}
+\ncLine{SR}{SH} \Aput{\varphi^{m^*}}
+\ncLine{SL}{SG} \Bput{\varphi^m}
+\ncLine{Lm}{G} \Bput{m}
+\ncLine{Krm}{Gr} \aput{0}(0.3){m}
+\ncLine{Rm}{H} \aput{0}(0.3){m^*}
+\ncLine{Lm}{L} \Aput{i_2}
+\ncLine{Krm}{Lr} \Bput{i_4}
+\ncLine{Rm}{R} \Bput{i_6}
+\ncLine{L}{SL} \Aput[1pt]{\lambda^L}
+\ncLine{R}{SR} \Bput[1pt]{\lambda^R}
+\ncLine{G}{SG} \Aput[1pt]{\lambda^G} \ncLine[linestyle=dashed]{H}{SH} \Bput[1pt]{\lambda}
+\]
