@@ -5,17 +5,15 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
     meta charset="UTF-8"
     meta name="description" content="Ramkumar Ramachandra's site"
     meta name="author" content="Ramkumar Ramachandra"
-    meta name="keywords" content="programming, linux, philosophy, git"
+    meta name="keywords" content="mathematics, algebraic geometry, commutative algebra"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     link rel="stylesheet" href="/design/screen.css" media="screen"
     link rel="stylesheet" href="/design/claytext.css" media="screen"
     link rel="stylesheet" href="/design/mobile.css" media="only screen and (min-device-width: 320px) and (max-device-width: 600px)"
-    link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono"
+    link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin+Sans"
     link rel="shortcut icon" href="/design/favicon.ico"
     script type="text/javascript" src="/design/analyticstracking.js"
     script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML'
-    script type="text/javascript" src="http://use.typekit.net/ttq3jla.js"
-    script type="text/javascript" try{Typekit.load();}catch(e){}
   body
     div id="wrapper"
       div id="main"
@@ -30,12 +28,12 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
             p
               == paragraph.contents[0]
           - elsif paragraph.is_olitems?
-            ol class="olitem"
+            ol class="olitems" type="#{paragraph.prop}"
               - for item in paragraph.contents
                 li
                   == item
           - elsif paragraph.is_ulitems?
-            ul class="ulitem"
+            ul class="ulitems"
               - for item in paragraph.contents
                 li
                   == item
