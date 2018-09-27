@@ -25,33 +25,27 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
         - paragraphs.each do |paragraph|
           - if paragraph.is_header?
             p class="header"
-              == paragraph.content
+              == paragraph.contents[0]
           - if paragraph.is_plain?
             p
-              == paragraph.content
-          - elsif paragraph.is_emailquote?
-            blockquote class="emailquote"
-              == paragraph.content
-          - elsif paragraph.is_codeblock?
-            pre class="codeblock"
-              == paragraph.content
-          - elsif paragraph.is_indentp?
-            p class="indentp"
-              == paragraph.content
+              == paragraph.contents[0]
           - elsif paragraph.is_olitem?
             ol class="olitem"
-              li value="#{paragraph.level}"
-                == paragraph.content
+              - for item in paragraph.contents
+                li
+                  == item
           - elsif paragraph.is_ulitem?
             ul class="ulitem"
-              li
-                == paragraph.content
+              - for item in paragraph.contents
+                li
+                  == item
           - elsif paragraph.is_subheading?
             h2
-              == paragraph.content
+              == paragraph.contents[0]
           - elsif paragraph.is_footer?
             p class="footer"
-              == paragraph.content
+              - for item in paragraph.contents
+                == item
         - if indexfill and not indexfill.empty?
           ul id="indexfill"
             - indexfill.each do |page|
