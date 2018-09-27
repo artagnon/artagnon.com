@@ -23,10 +23,12 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
         - paragraphs.each do |paragraph|
           - if paragraph.is_header?
             p class="header"
-              == paragraph.contents[0]
+              - for item in paragraph.contents
+                == item
           - if paragraph.is_plain?
             p
-              == paragraph.contents[0]
+              - for item in paragraph.contents
+                == item
           - elsif paragraph.is_olitems?
             ol class="olitems" type="#{paragraph.prop}"
               - for item in paragraph.contents
@@ -39,7 +41,8 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
                   == item
           - elsif paragraph.is_subheading?
             h2
-              == paragraph.contents[0]
+              - for item in paragraph.contents
+                == item
           - elsif paragraph.is_footer?
             p class="footer"
               - for item in paragraph.contents
