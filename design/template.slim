@@ -29,12 +29,12 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
           - if paragraph.is_plain?
             p
               == paragraph.contents[0]
-          - elsif paragraph.is_olitem?
+          - elsif paragraph.is_olitems?
             ol class="olitem"
               - for item in paragraph.contents
                 li
                   == item
-          - elsif paragraph.is_ulitem?
+          - elsif paragraph.is_ulitems?
             ul class="ulitem"
               - for item in paragraph.contents
                 li
