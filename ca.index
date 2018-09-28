@@ -9,6 +9,8 @@ Principal Ideal Domain \(\subset\) Unique Factorization Domain \(\subset\) Commu
 Spec A = {P | P \(\subset\) A is a prime ideal},
 m-Spec A = {P | P \(\subset\) A is a maximal ideal}
 
+rad \(I\) = \(\bigcap\limits_{P \subset \text{Spec} A} P\)
+
 Maximal ideal \(\Rightarrow\) Prime ideal
 
 A-modules over a field \(k\) \(\leftrightarrow\) \(k\)-vector space, exactly.
@@ -19,15 +21,20 @@ Submodule \(I \subset A\) \(\leftrightarrow\) ideal \(I\) in \(A\).
 
 \(A\) is an integral domain \(\leftrightarrow\) 0 is a prime ideal in \(A\) \(\leftrightarrow\) \(A\) has no divisors of 0.
 
-Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there's no need to look further than matrices over \(\mathbb{R}\), the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise.
+\(x \subset A_1\) and \(1 - x \subset A_2\) are complementary orthogonal idempotents if \(x\) is nilpotent; that is, \(A\) is the direct sum \(A = A_1 \oplus A_2\). Also, \(x\) is idempotent implies that \(1 - x\) is invertible:
+\[1/1 - x = \sum_{i = 0}^{\infty} x^i\]
 
+Multiplication of ideals is defined as:
 \[IJ = \sum f_i g_i\; \colon f_i \subset I, g_i \subset J\]
+
 \(I\) and \(J\) are strongly coprime if \(I + J = A\), implying:
 \[\begin{cases} I + J = I \cap J \\ A/IJ \cong A/I \times A/J \end{cases}\]
 
 For instance, \(\sin\) and \(\cos\).
 
 # Modules
+
+Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there's no need to look further than matrices over \(\mathbb{R}\), the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise.
 
 Theory of modules \(\leftrightarrow\) Theory of linear algebra over \(A\):
 
