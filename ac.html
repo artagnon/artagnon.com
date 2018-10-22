@@ -36,7 +36,10 @@
           m-Spec A = {P | P \(\subset\) A is a maximal ideal}
         </p>
         <p>
-          rad \(I\) = \(\bigcap\limits_{P \subset \text{Spec} A} P\), and this could be interpreted as a weak Nullstellansatz.
+          Definition of radical: \(\text{rad } I = \{f \in A \mid f^{n} = 0 \text{ for some } n\}\).
+        </p>
+        <p>
+          \(\text {rad } I = \bigcap\limits_{P \subset \text{Spec} A} P\), and this could be interpreted as a weak Nullstellansatz.
         </p>
         <p>
           Maximal ideal \(\Rightarrow\) Prime ideal
@@ -228,10 +231,13 @@
           </li>
         </ul>
         <h2>
-          Primary decomposition
+          Support and annihilator
         </h2>
         <p>
-          Support of M is defined as \(\text{Supp } M = \{ P \subset \text{Spec } A \mid M_p \neq 0\} \subset \text{Spec } A\). Here \(M_p = S^{-1} M\), the module of fractions.
+          Support of M is defined as \(\text{Supp } M = \{ P \subset \text{Spec } A \mid M_p \neq 0\} \subset \text{Spec } A\). Here \(M_p = S^{-1} M\), the module of fractions. Assassin \(\text{Ass } M \subset \text{Supp } M\). Annihilator of M over A is defined as \(\text{Ann } M = \{f \subset A \mid fM = 0\}\).
+        </p>
+        <p>
+          Example: If \(n = p^{\alpha} q^{\beta}\), then \(\text{Ass }(\mathbb{Z}/n) = \{(p), (q)\}\). If \(m = p^{\alpha - 1} q^{\beta} \text{ mod } n \in \mathbb{Z}/(n)\), then annihilator \(\text{Ann } m = p\).
         </p>
         <ul class="ulitems">
           <li>
@@ -240,9 +246,41 @@
           <li>
             If \(L \subset M\) and \(N = L/M\), then \(\text{Supp } L = \text{Supp } M \cup \text{Supp } N\).
           </li>
+          <li>
+            If \(L \subset M\) and \(N = L/M\), then \(\text{Ass } L = \text{Ass } M \cup \text{Ass } N\).
+          </li>
+          <li>
+            If \(P \subset \text{Supp } M\), then \(\mathcal{V}(P) \subset \text{Supp } M\).
+          </li>
         </ul>
         <p>
-          Annihilator of M over A is defined as \(\text{Ann } M = \{f \subset A \mid fM = 0\}\)
+          In the disjoint union \(\mathcal{M} = \sqcup M_{P}\), \(M_{P}\) is termed as the stalk of \(\mathcal{M}\) over \(P\).
+        </p>
+        <h2>
+          Primary decomposition
+        </h2>
+        <p>
+          Ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
+        </p>
+        <p>
+          \[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n &gt; 0\]
+        </p>
+        <h2>
+          Discrete valuation rings
+        </h2>
+        <p>
+          \(v : K \backslash \{0\} \to \mathbb{Z}\) is a discrete valuation of \(K\), a surjective map so that:
+        </p>
+        <ul class="ulitems">
+          <li>
+            \(v(xy) = v(x) + v(y)\)
+          </li>
+          <li>
+            \(v(x \pm y) = \text{min}\{v(x), v(y)\} \forall x, y \in K \backslash \{0\}\)
+          </li>
+        </ul>
+        <p>
+          By convention, \(v(0) = \infty\).
         </p>
       </div>
       <div id="sidebar">
