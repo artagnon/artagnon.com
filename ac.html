@@ -21,9 +21,12 @@
         <h1>
           Commutative Algebra
         </h1>
-        <span id="pubdate">Last updated: Fri, 19 Oct 2018</span>
+        <span id="pubdate">Last updated: Mon, 29 Oct 2018</span>
         <p>
           Convention: \(A\) is used to denote a ring, \(A[T]\) is a polynomial ring. \((f) \subset A[T]\) is a polynomial. \(M\) is an A-module. \(I\) and \(J\) are ideals, \(V\) is a variety, \(\mathcal{V}\) is a Zariski topology. \(L\), \(M\), \(N\) are modules. \(\varphi\) is a homomorphism.
+        </p>
+        <p>
+          Direct sum \(A = A_{1} \oplus A_{2}\) is defined if \(A_{1} = Ax\) and \(A_{2} = Ax&#39;\); \(x\) and \(x&#39;\) are complementary orthogonal idempotents, and \(x&#39; = 1 - x\), \(xx&#39; = 0\).
         </p>
         <p>
           In Miles Reid, the bridge between algebra and geometry is established as follows: the maximal ideal \(A = k[x_1, ..., x_N]\) corresponds to points in \(X\).
@@ -32,17 +35,28 @@
           Principal Ideal Domain \(\subset\) Unique Factorization Domain \(\subset\) Commutative Rings.
         </p>
         <p>
-          Spec A = {P | P \(\subset\) A is a prime ideal},
-          m-Spec A = {P | P \(\subset\) A is a maximal ideal}
+          \[\text{Spec } A = \{P \mid P \subset A \text{ is a prime ideal}\}\]
+          \[\text{m-Spec } A = \{P \mid P \subset A \text{ is a maximal ideal}\}\].
         </p>
+        <p>
+          These are obvious:
+        </p>
+        <ul class="ulitems">
+          <li>
+            \(m \text{ is maximal} \Leftrightarrow A/m \text{ is a field}\)
+          </li>
+          <li>
+            \(p \text{ is prime} \Leftrightarrow A/P \text{ is an integral domain}\)
+          </li>
+          <li>
+            \(\text{Maximal ideal} \Rightarrow \text{Prime ideal}\)
+          </li>
+        </ul>
         <p>
           Definition of radical: \(\text{rad } I = \{f \in A \mid f^{n} = 0 \text{ for some } n\}\).
         </p>
         <p>
           \(\text {rad } I = \bigcap\limits_{P \subset \text{Spec} A} P\), and this could be interpreted as a weak Nullstellansatz.
-        </p>
-        <p>
-          Maximal ideal \(\Rightarrow\) Prime ideal
         </p>
         <p>
           \(A\) is an integral domain \(\leftrightarrow\) 0 is a prime ideal in \(A\) \(\leftrightarrow\) \(A\) has no divisors of 0.
@@ -88,6 +102,18 @@
         <p>
           \[A^{\text{card} \lambda} = \sum_{\lambda \subset \Lambda} a_{\lambda} \text {| only finitely many } a_\lambda \neq 0\]
         </p>
+        <p>
+          Viewing \(A^{n}\) as a \(A&#39;[\varphi]\text{-module}\), we get:
+        </p>
+        <p>
+          \[\varphi e_{k} = \sum_{i = 1}^{n} a_{ki} e_{i} \Rightarrow \sum_{i = 1}^{n} \varphi \delta_{ik} - a_{ki} e_{i} = 0\]
+        </p>
+        <p>
+          Nakayama&#39;s lemma, corollary: If \(M = IM\), then \(\exists x \in A \text{ such that } x \equiv 1 \text{ mod } I\) and \(xM = 0\).
+        </p>
+        <p>
+          Nakayama&#39;s lemma: Let \((A, m)\) be a local ring, \(M\) a finite A-module; if \(M = IM\), with \(1 + I \subset A^{\times}\), then \(M = 0\).
+        </p>
         <h2>
           Homomorphism theorems of modules
         </h2>
@@ -95,16 +121,16 @@
           Proofs for these correspond exactly to those in vector spaces.
         </p>
         <p>
-          (i) ker \(\varphi \subset M\), and im \(\varphi \subset N\) are submodules.
+          (i) \(\text{ker } \varphi \subset M\), and \(\text{im } \varphi \subset N\) are submodules.
         </p>
         <p>
           (ii) Let \(N \subset M\) be a submodule; then \(\ni\) a surjective quotient homomorphism \(\varphi : M \rightarrow M/N\), ker \(\varphi = N\). Elements of \(M/N\) can be constructed either as equivalence classes \(m \in M \bmod N\), or as cosets \(m + N\) in \(M\).
         </p>
         <p>
-          (iii) \(M/\) ker \(\varphi \cong\) im \(\varphi\).
+          (iii) \(M/\text{ker } \varphi \cong \text{im } \varphi\).
         </p>
         <h2>
-          Split exact sequence (s.e.s)
+          Short exact sequence (s.e.s)
         </h2>
         <p>
           \(L\), \(M\), \(N\) are A-Modules, and \(\alpha\), \(\beta\) are homomorphisms:
@@ -113,7 +139,7 @@
           \[0 \rightarrow L \xrightarrow[]{\alpha} M \xrightarrow[]{\beta} N \rightarrow 0\]
         </p>
         <p>
-          \(M \cong L \oplus N\), \(L \subset M\) and \(N = M/L\).
+          is a split exact sequence if \(M \cong L \oplus N\), \(L \subset M\) and \(N = M/L\), such that \(\alpha\) maps \(m \mapsto (m, 0)\) and \(\beta\) maps \((m, n) \mapsto m\).
         </p>
         <p>
           Koszul complex of pair (\(x\), \(y\)) is defined as the exact sequence:
@@ -210,8 +236,8 @@
           \(S^{-1}\) is an exact functor in that, if \(L \subset M\) and \(N = M/L\), then \(S^{-1} L \subset S^{-1} M\) and \(S^{-1} N = S^{-1} M / S^{-1} L\).
         </p>
         <p>
-          \[e : \{\text{ideals of A} \to \{\text{ideals of B}\}\]
-          \[r : \{\text{ideals of B} \to \{\text{ideals of A}\}\]
+          \[e : \{\text{ideals of A}\} \to \{\text{ideals of B}\}\]
+          \[r : \{\text{ideals of B}\} \to \{\text{ideals of A}\}\]
         </p>
         <p>
           Then, for ideal \(J\) in \(S^{-1} A\), \(e(r(J)) = J\), and for any ideal \(I\) of A, \(r(e(I)) = \{a \in A \mid as \in I, \text{ for some } s \in S\}\).
@@ -265,6 +291,15 @@
         <p>
           \[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n &gt; 0\]
         </p>
+        <p>
+          A counter-example: \(I = (X^{2}, XY)\); \(\text{rad}(I) = X\); \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
+        </p>
+        <p>
+          Definition of P-primary:
+        </p>
+        <p>
+          \[Q \text{ is P-primary} \leftrightarrow \text{Ass}(A/Q) = \{P\}\]
+        </p>
         <h2>
           Discrete valuation rings
         </h2>
@@ -281,6 +316,15 @@
         </ul>
         <p>
           By convention, \(v(0) = \infty\).
+        </p>
+        <p>
+          Valuation ring of a discrete valuation \(v\) is given by \(A = \{x \in K \mid v(x) \geq 0\}\).
+        </p>
+        <p>
+          For valuation ring \(A\):
+        </p>
+        <p>
+          \[A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}\]
         </p>
       </div>
       <div id="sidebar">
