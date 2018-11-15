@@ -1,0 +1,9 @@
+digraph {
+  merge; /* root node */
+  merge -> bodyA;
+  bodyA -> split;
+  split -> outsideRegion;
+  split -> bodyB;
+  edge [label=backedge, color=red];
+  bodyB -> merge;
+}
