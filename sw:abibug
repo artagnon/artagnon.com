@@ -1,14 +1,6 @@
----
-layout: post
-title:  "The caller-dependent bug"
-date:   2015-08-23 14:47
-categories: clang llvm lldb bug
----
+An ABI-mismatch bug
 
-Our custom max function returns the maximum of two positive integers,
-and returns the negative integer, given a positive and negative
-integer. Classic signed wrapping, you'd think. It's not so simple, as
-the problem reproduces only under the following circumstances:
+Our custom max function returns the maximum of two positive integers, and returns the negative integer, given a positive and negative integer. Classic signed wrapping, you'd think. It's not so simple, as the problem reproduces only under the following circumstances:
 
 1. LLVM code is calling the max function.
 
@@ -17,9 +9,7 @@ debugging information.
 
 3. The entire world has been built with XCode 6+.
 
-More information: The LLVM IR is exactly the same between an XCode 5
-sandbox, an XCode 6 sandbox, and a GNU/Linux sandbox. The
-corresponding assembly diff is also clean.
+More information: The LLVM IR is exactly the same between an XCode 5 sandbox, an XCode 6 sandbox, and a GNU/Linux sandbox. The corresponding assembly diff is also clean.
 
 The corresponding C++ code (is actually specialized with short) is:
 
@@ -106,12 +96,7 @@ After execution of the cmpl/cmpw:
      esi = {34 0}
 {% endhighlight %}
 
-In conclusion, this is a Clang/LLVM version mismatch. It's compiling
-muIntScalarMax_sint16 to emit a compl instead of a compw. The fact
-that the bug only reproduces with LLVM is because: LLVM doesn't set up
-the extended form of the register correctly for negative numbers, when
+In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when
 calling a function with a word-sized register.
 
-The SysV ABI does not guarantee that the i16 will be sext'ed to i32.
-Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5
-doesn't know about this.
+The SysV ABI does not guarantee that the i16 will be sext'ed to i32. Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5 doesn't know about this.

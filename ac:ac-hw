@@ -1,7 +1,17 @@
 Commutative Algebra: homework
 
-(i) Prove the Nullstellansatz
+(i) Prove the Nullstellansatz: \(J \subsetneq k[x_1 ... x_n] \implies V(J) \neq \phi\) and \(I(V(J)) = \text{ rad } J\) in an algebraically closed field \(k[x_1 ... x_n]\).
 
-Statement: \(I(V(J)) = \text{ rad } J\) in an algebraically closed field \(k[x_1 ... x_n]\).
+To gain some intuition about this statement, consider the ideal \((x^2) \subset R[x, y]\); operating on it with V, we get y-axis as the variety; operating on the variety with I, we get the ideal \((x)\), which is the radical of \((x^2)\).
 
-Proof:
+Proof: Let
+\[f \in J \subset k[x_1 ... x_n]\]
+\[(a_1 ... a_n) \in V(J)\]
+Introduce a new variable \(y\), so that
+\[J' = (J, fy - 1) \subset k[x_1 ... x_n, y]\]
+\[(a_1 ... a_n, b) \in V(J')\]
+such that \(bf(a_1 ... a_n) = 1\). Then,
+\[V(J') = \phi \implies 1 = \sum g_i h_i + g_0 (fy - 1) \mid g_i \in k[x_1 ... x_n, y], h_i \in J\]
+Multiply both sides by \(f^m\) to obtain:
+\[f^m = \sum g_i(x_1 ... x_n, fy) h_i + g_0(x_1 ... x_n, fy) (fy - 1)\]
+This identity holds if \(fy = 1\), and hence \(f^m \in J\), as required \(\Box\)
