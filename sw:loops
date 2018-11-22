@@ -1,16 +1,6 @@
----
-layout: post
-title:  "Detecting loops"
-date:   2016-07-16 17:35
-categories: compilers dfs depth-first-search dominators scc
----
-Detecting loops in a directed graph can be tricky, depending on how you define
-your loop. If you only want to admit "natural loops", where the header of the
-loop dominates every node in the body, as well as the footer, we have a simple
-algorithm. If you want to go to the other extreme, and define the most general
-"strongly connected components", without regard for loops, you have Tarjan's SCC
-algorithm. However, I'm going to discuss a definition of loop that admits
-strange loops, but only things we'd intuitively call "loops".
+Detecting loops
+
+Detecting loops in a directed graph can be tricky, depending on how you define your loop. If you only want to admit "natural loops", where the header of the loop dominates every node in the body, as well as the footer, we have a simple algorithm. If you want to go to the other extreme, and define the most general "strongly connected components", without regard for loops, you have Tarjan's SCC algorithm. However, I'm going to discuss a definition of loop that admits strange loops, but only things we'd intuitively call "loops".
 
 There are five [^1] reduced cases we must consider:
 
@@ -51,37 +41,21 @@ We get the following start times and end times:
 
 *Shared header*
 
-Let's call the first number "DFS number", and the second number "topo number",
-to indicate that this is the order that topological sort would have produced, in
-the absence of backedges (topological sort is meaningless when there are loops).
+Let's call the first number "DFS number", and the second number "topo number", to indicate that this is the order that topological sort would have produced, in the absence of backedges (topological sort is meaningless when there are loops).
 
 **First pass**: do the dfs, and number everything.
 
-**Second pass**: find the backedge. When
-`start_time[destination] < start_time[source]` and
-`end_time[destination] > end_time[source]`, we have a
-backedge from source to destination.
+**Second pass**: find the backedge. When `start_time[destination] < start_time[source]` and `end_time[destination] > end_time[source]`, we have a backedge from source to destination.
 
-**Third pass**: find all the nodes in the loop. Here, we walk backwards from the
-source of the backedge until the loop header, and take everything that's "nested
-within" the loop header start and end times to be within the loop.
+**Third pass**: find all the nodes in the loop. Here, we walk backwards from the source of the backedge until the loop header, and take everything that's "nested within" the loop header start and end times to be within the loop.
 
-In the no loop case, there's nothing to do since no backedges were detected.
-Note that in the `6/7`-`2/5` and `6/7`-`3/4` combinations, both start times and
-end times are greater in one pair; this is how we identify crossedges.
+In the no loop case, there's nothing to do since no backedges were detected. Note that in the `6/7`-`2/5` and `6/7`-`3/4` combinations, both start times and end times are greater in one pair; this is how we identify crossedges.
 
-In the early exit case, `2/7` and `4/5` are nested within `1/8`, and we never
-reach `exit target` by walking backward from the source of the backedge.
+In the early exit case, `2/7` and `4/5` are nested within `1/8`, and we never reach `exit target` by walking backward from the source of the backedge.
 
-In the multi-entry case, we correctly detect that `1/8` is not nested within
-`2/7`, while `3/6` and `4/5` are: when a node reached via a backward walk
-doesn't nest within the header, the loop is classified as *irreducible*.
+In the multi-entry case, we correctly detect that `1/8` is not nested within `2/7`, while `3/6` and `4/5` are: when a node reached via a backward walk doesn't nest within the header, the loop is classified as *irreducible*.
 
-In the cuddled loops case, everything nests within `1/8`, and the inner loop
-consists of `4/5`, `3/6`, and `2/7`, all of which nest within `2/7`. Finally,
-the shared header case is detected as two nested loops as well: a loop is
-identified by a unique backedge, not a unique header [^2]. The analysis is weak
-in that these cases are indistinguishable from normal nested loops.
+In the cuddled loops case, everything nests within `1/8`, and the inner loop consists of `4/5`, `3/6`, and `2/7`, all of which nest within `2/7`. Finally, the shared header case is detected as two nested loops as well: a loop is identified by a unique backedge, not a unique header [^2]. The analysis is weak in that these cases are indistinguishable from normal nested loops.
 
 [^1]: Hat tip to Sanjoy for pointing out the fifth case.
 [^2]: You might want to merge loops that share a header in a post-pass.
