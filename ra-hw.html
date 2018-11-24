@@ -21,7 +21,7 @@
         <h1>
           Rings and Algebras: homework
         </h1>
-        <span id="pubdate">Last updated: Mon, 19 Nov 2018</span>
+        <span id="pubdate">Last updated: Sat, 24 Nov 2018</span>
         <p>
           (i) Prove that \((x)\) is a maximal ideal in \(R[x]\). i.e. \((x) \subset I \subset R[x] \implies (x) = I \vee I = R[x]\).
         </p>
@@ -89,6 +89,103 @@
         </p>
         <p>
           \((x), (y), (x + y)\) are prime ideals, but only the last one is maximal; the first two are irreducible.
+        </p>
+        <p class="footer">
+        </p>
+        <p>
+          (v) Prove that every maximal ideal is a prime ideal in ring \(A\).
+        </p>
+        <p>
+          Proof: The definition of a prime ideal \(P\) is:
+          \[fg \in P \implies f \in P \vee g \in P\]
+        </p>
+        <p>
+          The definition of a maximal ideal is:
+          \[M \subsetneq I \subsetneq A\]
+        </p>
+        <p>
+          From this definition, it should be clear that maximal ideals can never be the product of two different ideals \(J\) and \(K\), for if it were, then
+          \[M = JK \subsetneq J \subsetneq A \text{ or } M = JK \subsetneq K \subsetneq A\]
+        </p>
+        <p>
+          contradicting the definition of a maximal ideal. i.e. for \(j \in J, k \in K\)
+          \[jk \in M \implies j \in M \vee k \in M\]
+        </p>
+        <p>
+          This is precisely the definition of a prime ideal \(\Box\)
+        </p>
+        <p class="footer">
+        </p>
+        <p>
+          (vi) Give an example of an algebraically closed field, and an example of one that is not.
+        </p>
+        <p>
+          \(\mathbb{C}[x]\) is algebraically closed, because all polynomials in one variable in the ring have solutions in the ring. \(\mathbb{R}[x]\) is not algebraically closed, because the solution of, for instance, \(x^2 + 1 = 0\) does not lie in the ring \(\Box\)
+        </p>
+        <p class="footer">
+        </p>
+        <p>
+          (vii) List all the maximal ideals of \(\mathbb{C}[x]\) and \(\mathbb{R}[x]\).
+        </p>
+        <p>
+          The maximal ideals of \(\mathbb{C}[x]\) are \((x - \alpha)\), while those of \(\mathbb{R}[x]\) are \((x - a) \text{ and } ((x - \alpha)(x - \bar{\alpha}))\), where \(a\) is a real number, and \(\alpha\) is a complex number. Notice that all maximal ideals of \(\mathbb{C}\) can be factorized into monic factors, while in the case of \(\mathbb{R}\), quadratic factors are required \(\Box\)
+        </p>
+        <p class="footer">
+        </p>
+        <p>
+          (viii) Prove that \(P\) is a prime ideal in ring \(A\) iff \(A/P\) is an integral domain.
+        </p>
+        <p>
+          An integral domain is defined by \(pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/P\).
+        </p>
+        <p>
+          Proof: Given that \(A/P\) is an integral domain, show that \(P\) is prime. Consider elements \(a, b \in A\). Elements of \(A/P\) are then of the form \(a + P, b + P\). Now, use the definition of an integral domain to write:
+          \[(a + P)(b + P) = 0 + P \implies a + P = 0 + P \vee b + P = 0 + P\]
+          \[ab + P = 0 + P \implies a - 0 \in P \vee b - 0 \in P\]
+          \[ab \in P \implies a \in P \vee b \in P\]
+        </p>
+        <p>
+          This is exactly the definition of a prime ideal, as required.
+        </p>
+        <p>
+          Proof, the other way: To show \(A/P\) is an integral domain, given that \(P\) is a prime ideal. First, consider the surjective homomorphism
+          \[A \xrightarrow[]{\varphi} A/P\]
+        </p>
+        <p>
+          From isomorphism theorem, \(\text{ker}(\varphi) = P = \{a \mid \varphi(a) = 0\}\). We know that:
+          \[pq \in P \implies p \in P \vee q \in P\]
+          \[\varphi(p)\varphi(q) \in (0) \implies \varphi(p) \in (0) \vee \varphi(q) \in (0)\]
+        </p>
+        <p>
+          This gives us the required condition for integral domain \(\Box\)
+        </p>
+        <p class="footer">
+        </p>
+        <p>
+          (ix) Prove that \(M\) is a maximal ideal in ring \(A\) iff \(A/M\) is a field.
+        </p>
+        <p>
+          A field is defined by \(pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/M\) and \(\exists v^{-1}: v^{-1}v = vv^{-1} = 1 \mid v \in A/M\).
+        </p>
+        <p>
+          Proof:  To show that \(M\) is maximal given that \(A/M\) is a field. For the zerodivisor proof, follow (viii) exactly. For the next part, assume \(w \in A\):
+          \[(v + M)(w + M) = 1 + M\]
+          \[vw - 1 \in M\]
+        </p>
+        <p>
+          but by definition of maximal ideal, \((0) \subsetneq M \subsetneq A\), with no ideals in between either; hence, the only choice for \(vw\) is \(1\), which implies that \(w = v^{-1}\) as required.
+        </p>
+        <p>
+          Proof, the other way: To show that \(A/M\) is a field, given \(M\) is maximal. Consider the surjective homomorphism:
+          \[A \xrightarrow[]{\varphi} A/M\]
+        </p>
+        <p>
+          Now, since \(A/M\) is a field, the only ideals are \((0)\) and \((1)\); by isomorphism theorem, there is a bijective correspondence between ideals of \(A\) containing \(M\) and those of \(A/M\).
+          \[\varphi^{-1}(0) = ker(\varphi) = (0)\]
+          \[\varphi^{-1}(1) = A \backslash (0) = M\]
+        </p>
+        <p>
+          Since \((0) \subsetneq M \subsetneq A\), we have shown that \(M\) is maximal, as required \(\Box\)
         </p>
       </div>
       <div id="sidebar">
