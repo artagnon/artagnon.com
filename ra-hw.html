@@ -13,7 +13,10 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
     <link rel="shortcut icon" href="/design/favicon.ico" />
     <script type="text/javascript" src="/design/analyticstracking.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} }, tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
   </head>
   <body>
     <div id="wrapper">
@@ -21,7 +24,7 @@
         <h1>
           Rings and Algebras: homework
         </h1>
-        <span id="pubdate">Last updated: Sat, 24 Nov 2018</span>
+        <span id="pubdate">Last updated: Sun, 25 Nov 2018</span>
         <p>
           (i) Prove that \((x)\) is a maximal ideal in \(R[x]\). i.e. \((x) \subset I \subset R[x] \implies (x) = I \vee I = R[x]\).
         </p>
@@ -187,6 +190,19 @@
         <p>
           Since \((0) \subsetneq M \subsetneq A\), we have shown that \(M\) is maximal, as required \(\Box\)
         </p>
+        <p class="footer">
+        </p>
+        <p>
+          (x) For ideals \(P\) and \(Q\), show that \(PQ\) is contained within \(P \cap Q\).
+        </p>
+        <p>
+          Proof: From isomorphism theorem,
+          \[(P + Q)/Q \cong P/(P \cap Q)\]
+          \[PQ/(P + Q) = P \cap Q\]
+        </p>
+        <p>
+          Since \(P + Q = \text{gcd}(P, Q)\), we see that unless the gcd is \(1\), \(PQ\) is strictly smaller than \(P \cap Q\) \(\Box\)
+        </p>
       </div>
       <div id="sidebar">
         <ul>
@@ -200,6 +216,9 @@
             <a href="/la">la</a>
           </li>
           <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
             <a href="/ac">ac</a>
           </li>
           <li>
@@ -207,6 +226,9 @@
           </li>
           <li>
             <a href="/cv">cv</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
           </li>
         </ul>
       </div>
