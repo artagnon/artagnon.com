@@ -24,13 +24,36 @@
         <h1>
           Category Theory
         </h1>
-        <span id="pubdate">Last updated: Sun, 25 Nov 2018</span>
+        <span id="pubdate">Last updated: Mon, 10 Dec 2018</span>
+        <p>
+          Universal property: \(P_1\) along with \(X\) and \(Y\) defines a product. There exists a unique morphism between \(P_1\) and \(P_2\) preserving the product structure.
+        </p>
         <p>
           \[
           \begin{xy}
           \xymatrix{
-          U \ar@/_/[ddr]_y \ar@{.>}[dr]|{\langle x,y \rangle} \ar@/^/[drr]^x \\
-          & X \times_Z Y \ar[d]^q \ar[r]_p & X \ar[d]_f \\
+          P_2 \ar@/_/[ddr]_y \ar@{.>}[dr]|{\exists!} \ar@/^/[drr]^x \\
+          & P_1 \ar[d]^q \ar[r]_p & X \\
+          & Y &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          A functor \(F\) from category \(\mathcal{A}\) to category \(\mathcal{B}\), \(F : \mathcal{A} \rightarrow \mathcal{B}\) is defined to be covariant if \(F(m \circ n) = F(m) \circ F(n)\), and contravariant if \(F(m \circ n) = F(n) \circ F(m)\).
+        </p>
+        <h2>
+          Fibered product
+        </h2>
+        <p>
+          The object \(X \times_Z Y\) along with the morphisms \(pr_X\) and \(pr_Y\) is called the fibered product.
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          U \ar@/_/[ddr] \ar@{.>}[dr]|{\exists!} \ar@/^/[drr] \\
+          & X \times_Z Y \ar[d]^{pr_Y} \ar[r]_{pr_X} & X \ar[d]_f \\
           & Y \ar[r]^g & Z
           }
           \end{xy}
