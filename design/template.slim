@@ -30,7 +30,7 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
               - for item in paragraph.contents
                 == item
           - elsif paragraph.is_olitems?
-            ol class="olitems" type="#{paragraph.prop}"
+            ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.start}"
               - for item in paragraph.contents
                 li
                   == item

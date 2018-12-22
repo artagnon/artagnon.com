@@ -33,9 +33,20 @@ Paths that have the same starting and endpoint are called loops, and the point i
 
 A space \(X\) is said to be simply-connected iff there is a unique homotopy class of paths connecting any two points in \(X\).
 
+# Induced homomorphisms
+
+\(\varphi : (X, x_0) \rightarrow (Y, y_0)\) induces the homomorphism \(\varphi_* : \pi_1(X, x_0) \rightarrow \pi_1(Y, y_0)\) taking loops based at \(x_0\) to loops based at \(y_0\), such that \(\varphi_*[f] = [\varphi f]\).
+
+Two basic properties of induced homomorphisms that make the fundamental group a functor:
+
+(i) \((\varphi \psi)_* = \varphi_* \psi_*\) for the composition \((X, x_0) \xrightarrow[]{\varphi} (Y, y_0) \xrightarrow[]{\psi} (Z, z_0)\)
+(ii) \(\mathbb{1} = \mathbb{1}_*\)
+
 # Fundamental group of a circle
 
 The map sending \(\phi : \mathbb{Z} \rightarrow \pi_1(S^1)\) sending integer \(n\) to the homotopy class of loop \(\omega_n(s) = (\cos 2 \pi ns, \sin 2 \pi ns)\) based at \((1, 0)\) is an isomorphism.
+
+\(p(s) = (\cos 2 \pi s, \sin 2 \pi s)\), \(\tilde{\omega_n}(s) = ns\), \(\omega_n(s) = p \tilde{\omega_n}(s)\), and \(\tilde{\omega_n}(s)\) is called the lift of \(\omega_n(s)\).
 
 Brower's fixed-point theorem in two dimensions: Every continuous map \(h : D^2 \rightarrow D^2\) has a fixed point \(x\) with \(h(x) = x\).
 
@@ -43,7 +54,7 @@ Borsuk-Ulam theorem in two dimensions: for every continuous map \(f : S^2 \right
 
 \(\pi_1(X \times Y) \approx \pi_1(X) \times \pi_1(Y)\) if \(X\) and \(Y\) are path-connected.
 
-# van Kampen Theorem
+# van Kampen theorem
 
 The van Kampen theorem gives us a way of computing the fundamental group of spaces which can be decomposed into smaller spaces with known fundamental groups.
 
