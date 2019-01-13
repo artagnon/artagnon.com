@@ -87,3 +87,50 @@ The \(T_1\) axiom: every point set is closed; this is weaker than the Hausdorff 
 A sequence of points of a Hausdorff space \(X\) converges to atmost one point.
 
 # Continuous functions
+
+A function \(f : X \rightarrow Y\) is continuous with respect to topologies \(X\) and \(Y\) if, for each open set \(V \subset X\), \(f^{-1}(V)\) is an open set on \(X\). For example \(f : \mathbb{R} \rightarrow \mathbb{R}_l\) is not continuous, but \(f : \mathbb{R}_l \rightarrow \mathbb{R}\) is (since \(f^{-1}\) produces an open set in \(\mathbb{R}_l\)).
+
+The following statements are equivalent:
+
+(i) \(f : X \rightarrow Y\) is continuous
+(ii) For every subset \(A\), \(f(\bar{A}) \subset \bar{f(A)}\)
+(iii) For every closed set \(B\) of \(Y\), the set \(f^{-1}(B)\) is closed in \(X\)
+(iv) For each \(x \in X\), and each neighborhood \(V\) of \(f(x)\), there is a neighborhood \(U\) of \(x\) such that \(f(U) \subset Y\).
+
+The pasting lemma: Let \(X = A \cup B\), where \(A\) and \(B\) are closed sets. Further, let \(f : X \rightarrow Z\) and \(g : Y \rightarrow Z\) be continuous. If \(f(x) = g(x) \mid x \in A \cap B\), then \(f\) and \(g\) combine to give \(h : X \rightarrow Y\) defined by \(h(x) = f(x) \mid x \in A\), \(h(x) = g(x) \mid x \in B\).
+
+A useful theorem about continuous functions whose range is a product space: A function \(f : A \rightarrow X \times Y\) given by \(f(a) = (f_1(a), f_2(a))\) is continuous iff \(f_1 : A \rightarrow X\) and \(f_2 : A \rightarrow Y\) are continuous.
+
+# Box topology and product topology
+
+Box topology on \(\prod X_\alpha\) has as basis \(\prod U_\alpha\) where \(U_\alpha\) is open in \(X_\alpha\) for each \(\alpha\). Product topology adds the extra condition that \(U_\alpha\) equals \(X_\alpha\) for each \(\alpha\) except for finitely many values of \(\alpha\).
+
+# Metric topology
+
+A metric on a set \(X\) is given by a distance function \(d : X \times X \rightarrow R\) such that:
+
+(i) \(d(x, y) \geq 0 \mid x, y \in X\)
+(ii) \(d(x, y) = d(y, x) \mid x, y \in X\)
+(iii) (Triangle inequality) \(d(x, y) + d(y, z) \geq d(x, z) \mid x, y, z \in X\)
+
+An \(\epsilon\)-ball centered at \(x\) is defined as:
+\[B_d(x, \epsilon) = \{y \mid d(x, y) \lt \epsilon\}\]
+
+A set \(U\) is open in the metric topology induced by \(d\) iff for each \(y \subset U\), \(\exists \delta > 0 : B_d(y, \delta) \subset U\)
+
+An example of a metric space is:
+\[f(x, y) = \begin{cases} 1 & \quad \text{ if } x \neq y \\
+0 & \quad \text { if } x = y
+\end{cases}\]
+
+The standard metric space on \(\mathbb{R}\) defined as \(d(x, y) = |x - y|\). The Eucledian metric is defined as:
+
+\[d(x, y) = ((x_1 - y_1)^2 + ... (x_n - y_n)^2)^{1/2}\]
+
+The square metric \(\rho\) is defined as:
+
+\[\rho(x, y) = max\{(x_1 - y_1), ... (x_n - y_n)\}\]
+
+Let \(d\) and \(d'\) be two metrics on set \(X\), and \(\tau\), \(\tau'\) be the topologies induced by them. \(\tau'\) is finer than \(\tau\) iff for each \(x \in X\) and \(\epsilon \gt 0\), \(\exists \delta \gt 0\) such that:
+
+\[B_{d'}(x, \delta) \subset B_d(x, \epsilon)\]

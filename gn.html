@@ -24,7 +24,7 @@
         <h1>
           General topology
         </h1>
-        <span id="pubdate">Last updated: Sat, 12 Jan 2019</span>
+        <span id="pubdate">Last updated: Sun, 13 Jan 2019</span>
         <p>
           A topology \((X, \tau)\) is defined as a collection \(\tau\) of subsets of \(X\) with the following properties:
         </p>
@@ -176,6 +176,86 @@
         <h2>
           Continuous functions
         </h2>
+        <p>
+          A function \(f : X \rightarrow Y\) is continuous with respect to topologies \(X\) and \(Y\) if, for each open set \(V \subset X\), \(f^{-1}(V)\) is an open set on \(X\). For example \(f : \mathbb{R} \rightarrow \mathbb{R}_l\) is not continuous, but \(f : \mathbb{R}_l \rightarrow \mathbb{R}\) is (since \(f^{-1}\) produces an open set in \(\mathbb{R}_l\)).
+        </p>
+        <p>
+          The following statements are equivalent:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(f : X \rightarrow Y\) is continuous
+          </li>
+          <li>
+            For every subset \(A\), \(f(\bar{A}) \subset \bar{f(A)}\)
+          </li>
+          <li>
+            For every closed set \(B\) of \(Y\), the set \(f^{-1}(B)\) is closed in \(X\)
+          </li>
+          <li>
+            For each \(x \in X\), and each neighborhood \(V\) of \(f(x)\), there is a neighborhood \(U\) of \(x\) such that \(f(U) \subset Y\).
+          </li>
+        </ol>
+        <p>
+          The pasting lemma: Let \(X = A \cup B\), where \(A\) and \(B\) are closed sets. Further, let \(f : X \rightarrow Z\) and \(g : Y \rightarrow Z\) be continuous. If \(f(x) = g(x) \mid x \in A \cap B\), then \(f\) and \(g\) combine to give \(h : X \rightarrow Y\) defined by \(h(x) = f(x) \mid x \in A\), \(h(x) = g(x) \mid x \in B\).
+        </p>
+        <p>
+          A useful theorem about continuous functions whose range is a product space: A function \(f : A \rightarrow X \times Y\) given by \(f(a) = (f_1(a), f_2(a))\) is continuous iff \(f_1 : A \rightarrow X\) and \(f_2 : A \rightarrow Y\) are continuous.
+        </p>
+        <h2>
+          Box topology and product topology
+        </h2>
+        <p>
+          Box topology on \(\prod X_\alpha\) has as basis \(\prod U_\alpha\) where \(U_\alpha\) is open in \(X_\alpha\) for each \(\alpha\). Product topology adds the extra condition that \(U_\alpha\) equals \(X_\alpha\) for each \(\alpha\) except for finitely many values of \(\alpha\).
+        </p>
+        <h2>
+          Metric topology
+        </h2>
+        <p>
+          A metric on a set \(X\) is given by a distance function \(d : X \times X \rightarrow R\) such that:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(d(x, y) \geq 0 \mid x, y \in X\)
+          </li>
+          <li>
+            \(d(x, y) = d(y, x) \mid x, y \in X\)
+          </li>
+          <li>
+            (Triangle inequality) \(d(x, y) + d(y, z) \geq d(x, z) \mid x, y, z \in X\)
+          </li>
+        </ol>
+        <p>
+          An \(\epsilon\)-ball centered at \(x\) is defined as:
+          \[B_d(x, \epsilon) = \{y \mid d(x, y) \lt \epsilon\}\]
+        </p>
+        <p>
+          A set \(U\) is open in the metric topology induced by \(d\) iff for each \(y \subset U\), \(\exists \delta &gt; 0 : B_d(y, \delta) \subset U\)
+        </p>
+        <p>
+          An example of a metric space is:
+          \[f(x, y) = \begin{cases} 1 &amp; \quad \text{ if } x \neq y \\
+          0 &amp; \quad \text { if } x = y
+          \end{cases}\]
+        </p>
+        <p>
+          The standard metric space on \(\mathbb{R}\) defined as \(d(x, y) = |x - y|\). The Eucledian metric is defined as:
+        </p>
+        <p>
+          \[d(x, y) = ((x_1 - y_1)^2 + ... (x_n - y_n)^2)^{1/2}\]
+        </p>
+        <p>
+          The square metric \(\rho\) is defined as:
+        </p>
+        <p>
+          \[\rho(x, y) = max\{(x_1 - y_1), ... (x_n - y_n)\}\]
+        </p>
+        <p>
+          Let \(d\) and \(d&#39;\) be two metrics on set \(X\), and \(\tau\), \(\tau&#39;\) be the topologies induced by them. \(\tau&#39;\) is finer than \(\tau\) iff for each \(x \in X\) and \(\epsilon \gt 0\), \(\exists \delta \gt 0\) such that:
+        </p>
+        <p>
+          \[B_{d'}(x, \delta) \subset B_d(x, \epsilon)\]
+        </p>
         <ul id="indexfill">
         </ul>
       </div>
