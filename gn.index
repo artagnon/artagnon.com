@@ -118,12 +118,15 @@ An \(\epsilon\)-ball centered at \(x\) is defined as:
 
 A set \(U\) is open in the metric topology induced by \(d\) iff for each \(y \subset U\), \(\exists \delta > 0 : B_d(y, \delta) \subset U\)
 
+Let \(d\) and \(d'\) be two metrics on set \(X\), and \(\tau\), \(\tau'\) be the topologies induced by them. \(\tau'\) is finer than \(\tau\) iff for each \(x \in X\) and \(\epsilon \gt 0\), \(\exists \delta \gt 0\) such that:
+
+\[B_{d'}(x, \delta) \subset B_d(x, \epsilon)\]
 An example of a metric space is:
 \[f(x, y) = \begin{cases} 1 & \quad \text{ if } x \neq y \\
 0 & \quad \text { if } x = y
 \end{cases}\]
 
-The standard metric space on \(\mathbb{R}\) defined as \(d(x, y) = |x - y|\). The Eucledian metric is defined as:
+The standard metric space on \(\mathbb{R}\) defined as \(d(x, y) = |x - y|\). The standard bounded metric is defined as \(\bar{f}(x, y) = min\{f(x, y), 1\}\). The Eucledian metric is defined as:
 
 \[d(x, y) = ((x_1 - y_1)^2 + ... (x_n - y_n)^2)^{1/2}\]
 
@@ -131,6 +134,24 @@ The square metric \(\rho\) is defined as:
 
 \[\rho(x, y) = max\{(x_1 - y_1), ... (x_n - y_n)\}\]
 
-Let \(d\) and \(d'\) be two metrics on set \(X\), and \(\tau\), \(\tau'\) be the topologies induced by them. \(\tau'\) is finer than \(\tau\) iff for each \(x \in X\) and \(\epsilon \gt 0\), \(\exists \delta \gt 0\) such that:
+Given an index set J, the uniform metric \(\bar{\rho}\) on \(\mathbb{R}^J\) is defined as:
 
-\[B_{d'}(x, \delta) \subset B_d(x, \epsilon)\]
+\[\bar{\rho}(x, y) = \text{sup}\{\bar{d}(x_\alpha, y_\alpha) \mid \alpha \in J\}\]
+
+The uniform topology on \(\mathbb{R}^J\) is finer than the product topology and coarser than the box topology; all these topologies are different if \(J\) is infinite.
+
+Every metric space satisfies the Hausdorff axiom. Let \(x, y \in (X, d)\) and \(\epsilon = \frac{1}{2} d(x, y)\). Then the triangle inequality implies that \(B_d(x, \epsilon), B_d(y, \epsilon)\) are disjoint.
+
+Let \(X\) and \(Y\) be two metric spaces with metrics \(d_X\) and \(d_Y\), and let \(f : X \rightarrow Y\). Further, let \(x \in X\), \(y \in Y\), and \(\epsilon \gt 0\). Then, the requirement for continuity of \(f\) is equivalent to: \(\exists \delta \gt 0\) such that:
+
+\[f_X(x, y) \lt \delta \implies f_Y(f(x), f(y)) \lt \epsilon\]
+
+The sequence lemma: Let \(X\) be a topology, and \(A \subset X\). If a sequence of points of \(A\) converge to \(x\), then \(x \in \bar{A}\). The converse holds if \(X\) is metrizable.
+
+Let \(f : X \rightarrow Y\) be continuous. For every convergent sequence, \(x_n \rightarrow x\) in \(X\), \(f(x_n) \rightarrow f(x)\). The converse holds if \(X\) is metrizable. Here, we don't use the full strength of metrizability: all we need is countable collection of balls \(B_d(x, \frac{1}{n})\) about \(x\).
+
+Let \(f_n : X \rightarrow Y\), from set \(X\) to metric space \(Y\), be a sequence of functions. Then \((f_n)\) converges uniformly to \(f\) if given \(\epsilon\), \(\exists N \gt 0\) such that:
+
+\[d(f_n(x), f(x)) < \epsilon\]
+
+for all \(x \in X\) and \(n \gt N\). The uniform limit theorem additionally states that \(f\) is continuous.
