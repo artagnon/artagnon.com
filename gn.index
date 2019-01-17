@@ -183,8 +183,33 @@ Generalization of IVT of calculus: Let \(f : X \rightarrow Y\) be a continuous m
 
 A continuous map \(f : [a, b] \rightarrow X\) in a space \(X\) is a path in \(X\) from a closed interval \([a, b] \in \mathbb{R}\), such that \(f(a) = x, f(b) = y\), \(x, y \in X\). \(X\) is said to be path connected if every pair of points in \(X\) can be joined by a path in \(X\).
 
+The unit ball given by \(\mathbb{B}^n \in \mathbb{R}^n\) where:
+\[\mathbb{B}^n = ||x|| = (x_1^2 + ... + x_n^2)^{1/2}\]
+
+is path connected since we can always take a path from \([0, 1] \rightarrow \mathbb{R}^n\) given by:
+\[f(n) = (1 - t)x + ty\]
+
+Another example: The punctured Eucledian space given by \(\mathbb{R}^n - \{0\}\) is path connected for \(n > 1\) since we can always take a path connecting two points that doesn't go through the origin.
+
 # Compactness
 
 A collection of subsets \(\mathcal{A}\) of space \(X\) is said to be the cover or covering of \(X\) if the union of the subsets equals \(X\). It is said to be an open covering if the subsets are open.
 
 A space \(X\) is compact if every finite subcollection of \(\mathcal{A}\) also contains an open covering of \(X\).
+
+All closed subsets of \(\mathbb{R}\) are compact, so \([0, 1]\) is an example of a compact space. However, neither \((0, 1)\) nor \((0, 1]\) are compact. The latter is because we can choose an open covering
+\[\mathcal{A} = \{(1/n, 1] \mid n \in \mathbb{Z}^+\}\]
+
+which doesn't cover \((0, 1]\).
+
+Some properties of compact spaces:
+
+(i) Every closed subspace of a compact space is compact
+(ii) Every compact subspace of a Hausdorff space is closed
+(iii) The image of a compact space under a continuous map is compact
+
+The bijective continuous map \(f : X \rightarrow Y\) is a homeomorphism if \(X\) is compact and \(Y\) is Hausdorff.
+
+The tube lemma: Consider the product space \(X \times Y\) where \(Y\) is compact. If the open set \(N\) contains slice \(x_0 \times Y\) of \(X \times Y\), then it contains some tube \(W \times Y\) about \(x_0 \times Y\) where \(W\) is a neighborhood of \(x_0 \in X\).
+
+The Tychonoff theorem: The product of infinitely many compact spaces is compact.
