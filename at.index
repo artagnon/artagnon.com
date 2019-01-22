@@ -77,3 +77,21 @@ Universal cover: Smallest subgroup \(\pi(B) \leftrightarrow\) biggest covering s
 \(\pi_i(S^n)\) is \(0\) for \(i \lt n\) and \(\mathbb{Z}\) for \(i = n\). However, higher homotopy groups are difficult to compute, and we use homology groups \(H_n(X)\) instead. For the fundamental group of a circle, \(H_n(S^i) = 0\) for \(i \gt n\).
 
 Mayer-Vietoris sequences are the van-Kampen theorem equivalent in homology.
+
+# \(\Delta\)-Complexes
+
+The union of all faces of simplices in \(\Delta^n\) is the boundary of \(\Delta^n\), written as \(\partial \Delta^n\). The open simplex \(\mathring{\Delta}^n = \Delta^n - \partial \Delta^n\) is the interior of \(\Delta^n\).
+
+A \(\Delta\)-complex on space \(X\) is a collection of maps \(\sigma_\alpha : \Delta^n \rightarrow X\) with each \(n\) dependent on \(\alpha\) such that:
+
+(i) The restriction \(\sigma_\alpha \mid \mathring{\Delta}^n\) is injective, and each point in \(X\) the the image of exactly one such restriction.
+(ii) Each restriction of \(\sigma_\alpha\) to a face of \(\Delta^n\) is one of the maps \(\sigma_\beta : \Delta^{n - 1} \rightarrow X\).
+(iii) \(A \subset X\) is open iff \(\sigma_\alpha^{-1}(A)\) is open in \(\Delta^{n}\) for each \(\sigma_\alpha\).
+
+# Simplicial homology
+
+The task is to define simplicial homology groups of \(\Delta\)-complexes of \(X\). Let \(\Delta_n(X)\) be the free abelian group with basis open n-simplicies \(e_\alpha^n\) of \(X\).
+
+# Singular homology
+
+For the chain sequence \(C_n \xrightarrow[]{\partial_n} C_{n - 1} \xrightarrow[]{\partial_{n - 1}} ...\), the homology group \(H_n(X) = \text{ker } \partial_n \text { / } \text{im } \partial_{n + 1}\).
