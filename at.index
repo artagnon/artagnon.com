@@ -102,4 +102,18 @@ A singular n-chain can always be written as \(\mathcal{E} = \sum \epsilon_i \sig
 
 Choose a maximal collection of canceling pairs to construct an n-dimensional simplex \(K_\mathcal{E}\) from a disjoint union of n-simplices \(\Delta_i^n\), one for each \(\sigma_i\), by identifying (n - 1)-dimensional faces corresponding to the cancelation pairs. Then, \(\sigma_i\)s induce a map \(K_\mathcal{E} \rightarrow X\). \(K_\mathcal{E}\) is a manifold locally homeomorphic to \(\mathbb{R}^n\) except at subcomplexes of dimension \(\leq (n - 2)\).
 
-Corresponding to the decomposition of a space to its path-connected components \(X_\alpha\), we have the isomorphism \(H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)\). Also, \(H_0(X) \approx \mathbb{Z}\), for path-connected space \(X\).
+Corresponding to the decomposition of a space to its path-connected components \(X_\alpha\), we have the isomorphism \(H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)\). Also, \(H_0(X) \approx \mathbb{Z}\), for path-connected space \(X\). If \(X\) is a point,
+\[H_n(X) \approx \begin{cases} 0 \quad n \gt 0 \\ \mathbb{Z} \quad n = 0 \end{cases}\]
+
+# Homotopy invariance
+
+Two spaces that are homotopically equivalent have isomorphic homology groups. For map \(f : X \rightarrow Y\), the induced homomorphism \(f_\# : C_n(X) \rightarrow C_n(Y)\) is defined by \(f_\# \partial = \partial f_\#\):
+
+\[
+\begin{xy}
+\xymatrix{
+... \ar[r]^\partial & C_{n + 1}(X) \ar[r]^\partial\ar[d]^{f_\#} & C_n(X) \ar[r]^\partial\ar[d]^{f_\#} & C_{n - 1}(X) \ar[r]^\partial\ar[d]^{f_\#} & ...  \\
+... \ar[r]^\partial & C_{n + 1}(Y) \ar[r]^\partial & C_n(Y) \ar[r]^\partial & C_{n - 1}(Y) \ar[r]^\partial & ...
+}
+\end{xy}
+\]
