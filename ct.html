@@ -24,9 +24,71 @@
         <h1>
           Category Theory
         </h1>
-        <span id="pubdate">Last updated: Mon, 10 Dec 2018</span>
+        <span id="pubdate">Last updated: Wed, 23 Jan 2019</span>
         <p>
-          Universal property: \(P_1\) along with \(X\) and \(Y\) defines a product. There exists a unique morphism between \(P_1\) and \(P_2\) preserving the product structure.
+          For the product object \(X \times Y\), given \(W, f, g\), and projections \(p : X \times Y \mapsto X\), \(q : X \times Y \mapsto Y\), the following diagram commutes:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          & W \ar@{.>}[d]|{\exists! h} \ar[dl]_f \ar[dr]^g  & \\
+          X & X \times Y \ar[l]_p \ar[r]^q                  & Y
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          The unique morphism \(h\) is given by \(hw = \langle fw, gw \rangle\) for every \(w \in W\).
+        </p>
+        <p>
+          The correspondence \(h \mapsto \langle ph, qh \rangle  = \langle f, g \rangle\) is given by the bijection:
+          \[\text{hom}(W, X \times Y) \cong \text{hom}(\langle W, W \rangle, \langle X, Y \rangle)\]
+        </p>
+        <p>
+          We write \(\text{hom}(\langle U, V \rangle, \langle X, Y \rangle)\) for the pair of arrows \(U \rightarrow X\) and \(V \rightarrow Y\). The construction involves two additional constructions: \(\Delta W = \langle W, W \rangle\) and \(\langle X, Y \rangle \rightarrow X \times Y\). \(\Delta\) is said to be left adjoint to the product \(X \times Y\).
+        </p>
+        <p>
+          The one-point object \(1 = \{0\}\) serves as identity for the &quot;cartesian product&quot; operation:
+          \[1 \times X \xrightarrow[]{\lambda} X \xleftarrow[]{\rho} X \times 1\]
+        </p>
+        <p>
+          given by \(\lambda : \langle 0, x \rangle \rightarrow x\), \(\rho : \langle x, 0 \rangle \rightarrow x\).
+        </p>
+        <h2>
+          Monoid
+        </h2>
+        <p>
+          A monoid is an object \(M\) equipped with \(\mu : M \times M \rightarrow M\) and \(\eta : 1 \rightarrow M\) such that the following diagrams commute:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          M \times M \times M \ar[r]^{1 \times \mu}\ar[d]^{\mu \times 1} & M \times M \ar[d]^{\mu} \\
+          M \times M \ar[r]^{\mu}                                        & M
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          1 \times M \ar[r]^{\eta \times 1}\ar[d]^\lambda & M \ar[d]^\mu & M \times 1 \ar[l]_{1 \times \eta}\ar[d]^\rho \\
+          M & M & M
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          This means that \(\mu \circ (\eta \times 1) = \lambda\) and \(\mu \circ (1 \times \eta) = \rho\).
+        </p>
+        <h2>
+          Product structure
+        </h2>
+        <p>
+          \(P_1\) along with \(X\) and \(Y\) defines a product. There exists a unique morphism between \(P_1\) and \(P_2\) preserving the product structure.
         </p>
         <p>
           \[
@@ -39,6 +101,9 @@
           \end{xy}
           \]
         </p>
+        <h2>
+          Covariance and contravariance
+        </h2>
         <p>
           A functor \(F\) from category \(\mathcal{A}\) to category \(\mathcal{B}\), \(F : \mathcal{A} \rightarrow \mathcal{B}\) is defined to be covariant if \(F(m \circ n) = F(m) \circ F(n)\), and contravariant if \(F(m \circ n) = F(n) \circ F(m)\).
         </p>
