@@ -94,4 +94,12 @@ The task is to define simplicial homology groups of \(\Delta\)-complexes of \(X\
 
 # Singular homology
 
-For the chain sequence \(C_n \xrightarrow[]{\partial_n} C_{n - 1} \xrightarrow[]{\partial_{n - 1}} ...\), the homology group \(H_n(X) = \text{ker } \partial_n \text { / } \text{im } \partial_{n + 1}\).
+Singular homology may be thought of a special case of simplicial homology: Let \(S(X)\) be the \(\Delta\)-complex with one n-simplex \(\Delta_\alpha^n\) for each singular n-simplex \(\sigma : \Delta^n \rightarrow X\) with \(\Delta_\sigma^n\) attached in the obvious way to (n - 1)-simplices of \(S(X)\) that are restrictions of \(\sigma\) to various (n - 1)-simplices of \(\partial \Delta^n\). Hence, the simplicial group \(H_\Delta^n(S(X))\) is identical to the singular group \(H_n(X)\).
+
+For the chain sequence \(C_n \xrightarrow[]{\partial_n} C_{n - 1} \xrightarrow[]{\partial_{n - 1}} ...\), the homology group is the quotient group \(H_n(X) = \text{ker } \partial_n \text { / } \text{im } \partial_{n + 1}\), with singular n-cycles in the numerator and \((-1)-(n + 1)\) boundaries in the denominator.
+
+A singular n-chain can always be written as \(\mathcal{E} = \sum \epsilon_i \sigma_i\) with \(\epsilon_i = \pm 1\); when we compute \(\partial \mathcal{E}\) as a sum of \((n - 1)\) simplices with signs \(\pm 1\), there may be some canceling pairs consisting of identical \((n - 1)\) simplices with opposite sign.
+
+Choose a maximal collection of canceling pairs to construct an n-dimensional simplex \(K_\mathcal{E}\) from a disjoint union of n-simplices \(\Delta_i^n\), one for each \(\sigma_i\), by identifying (n - 1)-dimensional faces corresponding to the cancelation pairs. Then, \(\sigma_i\)s induce a map \(K_\mathcal{E} \rightarrow X\). \(K_\mathcal{E}\) is a manifold locally homeomorphic to \(\mathbb{R}^n\) except at subcomplexes of dimension \(\leq (n - 2)\).
+
+Corresponding to the decomposition of a space to its path-connected components \(X_\alpha\), we have the isomorphism \(H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)\). Also, \(H_0(X) \approx \mathbb{Z}\), for path-connected space \(X\).
