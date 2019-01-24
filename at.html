@@ -24,9 +24,12 @@
         <h1>
           Algebraic Toplogy
         </h1>
-        <span id="pubdate">Last updated: Wed, 23 Jan 2019</span>
+        <span id="pubdate">Last updated: Thu, 24 Jan 2019</span>
         <p>
           Algebraic Topology is about turning questions about the existence of topological objects to the corresponding algebraic objects. If an algebraic object does not exist, neither does the toplogical one, but since this process leads to information loss, existence of an algebraic object does not imply existence of the corresponding topological object.
+        </p>
+        <p>
+          Notation: we use \(\cong\) to indicate homomorphism, \(\approx\) to indicate isomorphism, and \(\simeq\) to indicate homotopy equivalence.
         </p>
         <h2>
           Homotopy
@@ -156,7 +159,7 @@
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            The restriction \(\sigma_\alpha \mid \mathring{\Delta}^n\) is injective, and each point in \(X\) the the image of exactly one such restriction.
+            The restriction \(\sigma_\alpha|\mathring{\Delta}^n\) is injective, and each point in \(X\) the the image of exactly one such restriction.
           </li>
           <li>
             Each restriction of \(\sigma_\alpha\) to a face of \(\Delta^n\) is one of the maps \(\sigma_\beta : \Delta^{n - 1} \rightarrow X\).
@@ -171,20 +174,35 @@
         <p>
           The task is to define simplicial homology groups of \(\Delta\)-complexes of \(X\). Let \(\Delta_n(X)\) be the free abelian group with basis open n-simplicies \(e_\alpha^n\) of \(X\).
         </p>
+        <p>
+          To construct an \(n\)-simplex, a cell is attached to the \((n - 1)\)-simplex. The boundary homomorphism \(\partial_n : \Delta_n(X) \rightarrow \Delta_{n - 1}(X)\), is given by:
+        </p>
+        <p>
+          \[\partial_n(\sigma_\alpha) = \sum_i (-1)^i \sigma_\alpha|[v_0, v_1, ... \hat{v_i}, ... v_n]\]
+        </p>
+        <p>
+          The composition
+        </p>
+        <p>
+          \[\Delta_n(X) \xrightarrow[]{\partial_n} \Delta_{n - 1}(X) \xrightarrow[]{\partial_{n - 1}} \Delta_{n -2}(X)\]
+        </p>
+        <p>
+          is zero, and this is more concisely written as \(\partial^2 = 0\). The defect in exactness of this sequence is expressed as the \(n^{th}\) simplicial homology group \(H_n^\Delta = \text{ker } \partial_{n - 1} \text{ / } \text{im } \partial_n\). It follows that \(\text{im } \partial_n \subset \text{ker } \partial_{n - 1}\).
+        </p>
         <h2>
           Singular homology
         </h2>
         <p>
-          Singular homology may be thought of a special case of simplicial homology: Let \(S(X)\) be the \(\Delta\)-complex with one n-simplex \(\Delta_\alpha^n\) for each singular n-simplex \(\sigma : \Delta^n \rightarrow X\) with \(\Delta_\sigma^n\) attached in the obvious way to (n - 1)-simplices of \(S(X)\) that are restrictions of \(\sigma\) to various (n - 1)-simplices of \(\partial \Delta^n\). Hence, the simplicial group \(H_\Delta^n(S(X))\) is identical to the singular group \(H_n(X)\).
+          Singular homology may be thought of a special case of simplicial homology: Let \(S(X)\) be the \(\Delta\)-complex with one n-simplex \(\Delta_\alpha^n\) for each singular n-simplex \(\sigma : \Delta^n \rightarrow X\) with \(\Delta_\sigma^n\) attached in the obvious way to \((n - 1)\)-simplices of \(S(X)\) that are restrictions of \(\sigma\) to various \((n - 1)\)-simplices of \(\partial \Delta^n\). Hence, the simplicial group \(H^\Delta_n(S(X))\) is identical to the singular group \(H_n(X)\).
         </p>
         <p>
-          For the chain sequence \(C_n \xrightarrow[]{\partial_n} C_{n - 1} \xrightarrow[]{\partial_{n - 1}} ...\), the homology group is the quotient group \(H_n(X) = \text{ker } \partial_n \text { / } \text{im } \partial_{n + 1}\), with singular n-cycles in the numerator and \((-1)-(n + 1)\) boundaries in the denominator.
+          For the chain sequence \(C_n \xrightarrow[]{\partial_n} C_{n - 1} \xrightarrow[]{\partial_{n - 1}} ... \xrightarrow[]{\partial_0} C_0\), the homology group is the quotient group \(H_n(X) = \text{ker } \partial_n \text { / } \text{im } \partial_{n + 1}\), with singular n-cycles in the numerator and boundaries in the denominator. In homological algebra, this quotient is termed as defect, as an exact sequence would yield a vacuous quotient group.
         </p>
         <p>
           A singular n-chain can always be written as \(\mathcal{E} = \sum \epsilon_i \sigma_i\) with \(\epsilon_i = \pm 1\); when we compute \(\partial \mathcal{E}\) as a sum of \((n - 1)\) simplices with signs \(\pm 1\), there may be some canceling pairs consisting of identical \((n - 1)\) simplices with opposite sign.
         </p>
         <p>
-          Choose a maximal collection of canceling pairs to construct an n-dimensional simplex \(K_\mathcal{E}\) from a disjoint union of n-simplices \(\Delta_i^n\), one for each \(\sigma_i\), by identifying (n - 1)-dimensional faces corresponding to the cancelation pairs. Then, \(\sigma_i\)s induce a map \(K_\mathcal{E} \rightarrow X\). \(K_\mathcal{E}\) is a manifold locally homeomorphic to \(\mathbb{R}^n\) except at subcomplexes of dimension \(\leq (n - 2)\).
+          Choose a maximal collection of canceling pairs to construct an n-dimensional simplex \(K_\mathcal{E}\) from a disjoint union of n-simplices \(\Delta_i^n\), one for each \(\sigma_i\), by identifying \((n - 1)\)-dimensional faces corresponding to the cancelation pairs. Then, \(\sigma_i\)s induce a map \(K_\mathcal{E} \rightarrow X\). \(K_\mathcal{E}\) is a manifold locally homeomorphic to \(\mathbb{R}^n\) except at subcomplexes of dimension \(\leq (n - 2)\).
         </p>
         <p>
           Corresponding to the decomposition of a space to its path-connected components \(X_\alpha\), we have the isomorphism \(H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)\). Also, \(H_0(X) \approx \mathbb{Z}\), for path-connected space \(X\). If \(X\) is a point,
