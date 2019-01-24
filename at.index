@@ -102,7 +102,7 @@ The composition
 
 \[\Delta_n(X) \xrightarrow[]{\partial_n} \Delta_{n - 1}(X) \xrightarrow[]{\partial_{n - 1}} \Delta_{n -2}(X)\]
 
-is zero, and this is more concisely written as \(\partial^2 = 0\). The defect in exactness of this sequence is expressed as the \(n^{th}\) simplicial homology group \(H_n^\Delta = \text{ker } \partial_{n - 1} \text{ / } \text{im } \partial_n\). It follows that \(\text{im } \partial_n \subset \text{ker } \partial_{n - 1}\).
+is zero, and this is more concisely written as \(\partial^2 = 0\). The defect in exactness of this sequence is expressed as the \(n^{th}\) simplicial homology group \(H_n^\Delta = \text{ker } \partial_{n - 1} \text{ / } \text{im } \partial_n\). It follows that \(\text{im } \partial_n \subset \text{ker } \partial_{n - 1}\). Elements of \(H_n\) are cosets of \(\text{im } \partial_n\), and are called homology classes.
 
 # Singular homology
 
@@ -116,6 +116,10 @@ Choose a maximal collection of canceling pairs to construct an n-dimensional sim
 
 Corresponding to the decomposition of a space to its path-connected components \(X_\alpha\), we have the isomorphism \(H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)\). Also, \(H_0(X) \approx \mathbb{Z}\), for path-connected space \(X\). If \(X\) is a point,
 \[H_n(X) \approx \begin{cases} 0 \quad n \gt 0 \\ \mathbb{Z} \quad n = 0 \end{cases}\]
+
+It is convenient to define an augmented chain complex in which a point has a trivial map, and this is termed as the reduced homology group \(\tilde{H}_n(X)\):
+
+\[... \rightarrow C_2 \xrightarrow[]{\partial_2} C_1 \xrightarrow[]{\partial_1} C_0 \xrightarrow[]{\epsilon} \mathbb{Z} \rightarrow 0\]
 
 # Homotopy invariance
 
@@ -131,3 +135,11 @@ Two spaces that are homotopically equivalent have isomorphic homology groups. Fo
 \]
 
 A chain map between chain complexes induces a homomorphism between the homology groups of the complexes: \(f_\#\) induces \(f_* : H_n(X) \rightarrow H_n(Y)\).
+
+# Excision
+
+Our goal is to find a relationship between spaces \(X\), subspace \(A\), and quotient space \(X/A\). Given a nonempty closed subspace \(A\) which is a deformation retraction of the neighborhood of \(X\), the following exact sequence is what we need:
+
+\[\tilde{H}_n(A) \xrightarrow[]{i_*} \tilde{H}_n(X) \xrightarrow[]{j_*} \tilde{H}_n(X/A) \xrightarrow[]{\partial} \tilde{H}_{n - 1}(A) \xrightarrow[]{i_*} ... \xrightarrow[]{\partial} 0\]
+
+where \(i\) is the inclusion \(A \hookrightarrow X\), and \(j\) is the quotient map \(X \rightarrow X/A\). Pairs of spaces \((X, A)\) satisfying this are called good pairs.
