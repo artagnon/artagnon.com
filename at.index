@@ -145,8 +145,49 @@ P is a chain homotopy between \(f_\#\) and \(g_\#\) since \(\partial P + P \part
 
 # Excision
 
-Our goal is to find a relationship between spaces \(X\), subspace \(A\), and quotient space \(X/A\). Given a nonempty closed subspace \(A\) which is a deformation retraction of the neighborhood of \(X\), the following exact sequence is what we need:
+Our goal is to find a relationship between spaces \(X\), subspace \(A\), and quotient space \(X/A\). Given a nonempty closed subspace \(A\) which is a deformation retraction of the neighborhood of \(X\), the following long exact sequence is what we need:
 
-\[\tilde{H}_n(A) \xrightarrow[]{i_*} \tilde{H}_n(X) \xrightarrow[]{j_*} \tilde{H}_n(X/A) \xrightarrow[]{\partial} \tilde{H}_{n - 1}(A) \xrightarrow[]{i_*} ... \xrightarrow[]{\partial} 0\]
+\[... \rightarrow \tilde{H}_n(A) \xrightarrow[]{i_*} \tilde{H}_n(X) \xrightarrow[]{j_*} \tilde{H}_n(X/A) \xrightarrow[]{\partial} \tilde{H}_{n - 1}(A) \xrightarrow[]{i_*} ... \rightarrow 0\]
 
 where \(i\) is the inclusion \(A \hookrightarrow X\), and \(j\) is the quotient map \(X \rightarrow X/A\). Pairs of spaces \((X, A)\) satisfying this are called good pairs.
+
+Analogous to what we had earlier:
+
+(i) \(H_i(S^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}\)
+(ii) Every map \(f : D^n \rightarrow D^n\) has a fixed point; Brower's fixed point theorem.
+
+# Relative homology groups
+
+Let \(A \subset X\) be spaces, and \(C_n(X, A)\) be defined as the quotient group \(C_n(X) \text{ / } C_n(A)\). Then, we have a chain of boundary homomorphisms:
+\[... \rightarrow C_n(X, A) \xrightarrow[]{\partial} C_{n - 1}(X, A) \rightarrow ...\]
+
+The relation \(\partial^2 = 0\) holds for this chain. The homology groups of this chain \(\text{ker } \partial \text{ / } \text{im } \partial\) is termed as relative homology groups \(H_n(X, A)\).
+
+- Elements of \(H_n(X, A)\) are represented by relative cycles: n-chains \(\alpha \in C_n(X)\) such that \(\partial \alpha \in C_{n - 1}(A)\).
+- Relative cycle is trivial in \(H_n(X, A)\) iff there is a relative boundary \(\alpha = \partial \beta + \gamma\) for some \(\beta \in C_{n + 1}(X), \gamma \in C_n(A)\).
+
+For chain complexes \(A, B, C\), inclusion map \(i\), and quotient map \(j\), we have a chain complex of short exact sequences:
+
+\[
+\begin{xy}
+\xymatrix{
+& 0 \ar[d] & 0 \ar[d] & 0 \ar[d] & \\
+... \ar[r] & A_{n + 1} \ar[r]^{\partial}\ar[d]^i & A_n \ar[r]^{\partial}\ar[d]^i & A_{n - 1} \ar[r]\ar[d]^i & ... \\
+... \ar[r] & B_{n + 1} \ar[r]^{\partial}\ar[d]^j & B_n \ar[r]^{\partial}\ar[d]^j & B_{n - 1} \ar[r]\ar[d]^j & ... \\
+... \ar[r] & C_{n + 1} \ar[r]^{\partial}\ar[d] & C_n \ar[r]^{\partial}\ar[d] & C_{n - 1} \ar[r]\ar[d] & ... \\
+& 0 & 0 & 0 &
+}
+\end{xy}
+\]
+
+When we pass homology groups, this stretches out into the long exact sequence:
+
+\[... \rightarrow H_n(A) \xrightarrow[]{i_*} H_n(B) \xrightarrow[]{j_*} H_n(X, A) \xrightarrow[]{\partial} H_{n - 1}(A) \rightarrow ...\]
+
+where \(H_n(A)\) denotes the homology group \(\text{ker } \partial \text { / } \text{im } \partial\) at \(A_n\), with \(H_n(B), H_n(X, A)\) defined similarly.
+
+The description of the boundary map \(\partial : H_n(X, A) \rightarrow H_{n - 1}(A)\) is: if class \([\alpha] \in H_n(X, A)\) is represented by a relative cycle \(\alpha\), then \(\partial [\alpha]\) is the class of \(\partial \alpha\ \in H_{n - 1}(A)\).
+
+In the l.e.s of homology pairs \((D^n, \partial D^n)\), \(H_i(D^n, \partial D^n) \xrightarrow[]{\partial} \tilde{H}_i(S^{n - 1})\) are isomorphisms for all \(i \gt 0\). Thus,
+
+\[H_i(D^n, \partial D^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}\]
