@@ -91,7 +91,7 @@
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \((\varphi \psi)_* = \varphi_* \psi_*\) for the composition \((X, x_0) \xrightarrow[]{\varphi} (Y, y_0) \xrightarrow[]{\psi} (Z, z_0)\)
+            \((\varphi \psi)_* = \varphi_* \psi_*\) for the composition \((X, x_0) \xrightarrow{\varphi} (Y, y_0) \xrightarrow{\psi} (Z, z_0)\)
           </li>
           <li>
             \(\mathbb{1} = \mathbb{1}_*\)
@@ -184,7 +184,7 @@
           The composition
         </p>
         <p>
-          \[\Delta_n(X) \xrightarrow[]{\partial_n} \Delta_{n - 1}(X) \xrightarrow[]{\partial_{n - 1}} \Delta_{n -2}(X)\]
+          \[\Delta_n(X) \xrightarrow{\partial_n} \Delta_{n - 1}(X) \xrightarrow{\partial_{n - 1}} \Delta_{n -2}(X)\]
         </p>
         <p>
           is zero, and this is more concisely written as \(\partial^2 = 0\). The defect in exactness of this sequence is expressed as the \(n^{th}\) simplicial homology group \(H_n^\Delta = \text{ker } \partial_{n - 1} \text{ / } \text{im } \partial_n\). It follows that \(\text{im } \partial_n \subset \text{ker } \partial_{n - 1}\). Elements of \(H_n\) are cosets of \(\text{im } \partial_n\), and are called homology classes.
@@ -196,7 +196,7 @@
           Singular homology may be thought of a special case of simplicial homology: Let \(S(X)\) be the \(\Delta\)-complex with one n-simplex \(\Delta_\alpha^n\) for each singular n-simplex \(\sigma : \Delta^n \rightarrow X\) with \(\Delta_\sigma^n\) attached in the obvious way to \((n - 1)\)-simplices of \(S(X)\) that are restrictions of \(\sigma\) to various \((n - 1)\)-simplices of \(\partial \Delta^n\). Hence, the simplicial group \(H^\Delta_n(S(X))\) is identical to the singular group \(H_n(X)\).
         </p>
         <p>
-          For the chain sequence \(C_n \xrightarrow[]{\partial_n} C_{n - 1} \xrightarrow[]{\partial_{n - 1}} ... \xrightarrow[]{\partial_0} C_0\), the homology group is the quotient group \(H_n(X) = \text{ker } \partial_n \text { / } \text{im } \partial_{n + 1}\), with singular n-cycles in the numerator and boundaries in the denominator. In homological algebra, this quotient is termed as defect, as an exact sequence would yield a vacuous quotient group.
+          For the chain sequence \(C_n \xrightarrow{\partial_n} C_{n - 1} \xrightarrow{\partial_{n - 1}} ... \xrightarrow{\partial_0} C_0\), the homology group is the quotient group \(H_n(X) = \text{ker } \partial_n \text { / } \text{im } \partial_{n + 1}\), with singular n-cycles in the numerator and boundaries in the denominator. In homological algebra, this quotient is termed as defect, as an exact sequence would yield a vacuous quotient group.
         </p>
         <p>
           A singular n-chain can always be written as \(\mathcal{E} = \sum \epsilon_i \sigma_i\) with \(\epsilon_i = \pm 1\); when we compute \(\partial \mathcal{E}\) as a sum of \((n - 1)\) simplices with signs \(\pm 1\), there may be some canceling pairs consisting of identical \((n - 1)\) simplices with opposite sign.
@@ -212,7 +212,7 @@
           It is convenient to define an augmented chain complex in which a point has a trivial map, and this is termed as the reduced homology group \(\tilde{H}_n(X)\):
         </p>
         <p>
-          \[... \rightarrow C_2 \xrightarrow[]{\partial_2} C_1 \xrightarrow[]{\partial_1} C_0 \xrightarrow[]{\epsilon} \mathbb{Z} \rightarrow 0\]
+          \[... \rightarrow C_2 \xrightarrow{\partial_2} C_1 \xrightarrow{\partial_1} C_0 \xrightarrow{\epsilon} \mathbb{Z} \rightarrow 0\]
         </p>
         <h2>
           Homotopy invariance
@@ -250,7 +250,7 @@
           Our goal is to find a relationship between spaces \(X\), subspace \(A\), and quotient space \(X/A\). Given a nonempty closed subspace \(A\) which is a deformation retraction of the neighborhood of \(X\), the following long exact sequence is what we need:
         </p>
         <p>
-          \[... \rightarrow \tilde{H}_n(A) \xrightarrow[]{i_*} \tilde{H}_n(X) \xrightarrow[]{j_*} \tilde{H}_n(X/A) \xrightarrow[]{\partial} \tilde{H}_{n - 1}(A) \xrightarrow[]{i_*} ... \rightarrow 0\]
+          \[... \rightarrow \tilde{H}_n(A) \xrightarrow{i_*} \tilde{H}_n(X) \xrightarrow{j_*} \tilde{H}_n(X/A) \xrightarrow{\partial} \tilde{H}_{n - 1}(A) \xrightarrow{i_*} ... \rightarrow 0\]
         </p>
         <p>
           where \(i\) is the inclusion \(A \hookrightarrow X\), and \(j\) is the quotient map \(X \rightarrow X/A\). Pairs of spaces \((X, A)\) satisfying this are called good pairs.
@@ -271,7 +271,7 @@
         </h2>
         <p>
           Let \(A \subset X\) be spaces, and \(C_n(X, A)\) be defined as the quotient group \(C_n(X) \text{ / } C_n(A)\). Then, we have a chain of boundary homomorphisms:
-          \[... \rightarrow C_n(X, A) \xrightarrow[]{\partial} C_{n - 1}(X, A) \rightarrow ...\]
+          \[... \rightarrow C_n(X, A) \xrightarrow{\partial} C_{n - 1}(X, A) \rightarrow ...\]
         </p>
         <p>
           The relation \(\partial^2 = 0\) holds for this chain. The homology groups of this chain \(\text{ker } \partial \text{ / } \text{im } \partial\) is termed as relative homology groups \(H_n(X, A)\).
@@ -304,7 +304,7 @@
           When we pass homology groups, this stretches out into the long exact sequence:
         </p>
         <p>
-          \[... \rightarrow H_n(A) \xrightarrow[]{i_*} H_n(B) \xrightarrow[]{j_*} H_n(X, A) \xrightarrow[]{\partial} H_{n - 1}(A) \rightarrow ...\]
+          \[... \rightarrow H_n(A) \xrightarrow{i_*} H_n(B) \xrightarrow{j_*} H_n(X, A) \xrightarrow{\partial} H_{n - 1}(A) \rightarrow ...\]
         </p>
         <p>
           where \(H_n(A)\) denotes the homology group \(\text{ker } \partial \text { / } \text{im } \partial\) at \(A_n\), with \(H_n(B), H_n(X, A)\) defined similarly.
@@ -313,7 +313,7 @@
           The description of the boundary map \(\partial : H_n(X, A) \rightarrow H_{n - 1}(A)\) is: if class \([\alpha] \in H_n(X, A)\) is represented by a relative cycle \(\alpha\), then \(\partial [\alpha]\) is the class of \(\partial \alpha\ \in H_{n - 1}(A)\).
         </p>
         <p>
-          In the l.e.s of homology pairs \((D^n, \partial D^n)\), \(H_i(D^n, \partial D^n) \xrightarrow[]{\partial} \tilde{H}_i(S^{n - 1})\) are isomorphisms for all \(i \gt 0\). Thus,
+          In the l.e.s of homology pairs \((D^n, \partial D^n)\), \(H_i(D^n, \partial D^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})\) are isomorphisms for all \(i \gt 0\). Thus,
         </p>
         <p>
           \[H_i(D^n, \partial D^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}\]
