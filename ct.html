@@ -85,7 +85,7 @@
           This means that \(\mu \circ (\eta \times 1) = \lambda\) and \(\mu \circ (1 \times \eta) = \rho\).
         </p>
         <p>
-          Writing it out in terms of the elements, we get the familiar associativity axioms
+          Writing it out in terms of the elements, we get the familiar associativity axioms:
         </p>
         <p>
           \[
@@ -98,7 +98,7 @@
           \]
         </p>
         <p>
-          and the identity axioms
+          and the identity axioms:
         </p>
         <p>
           \[
@@ -117,7 +117,11 @@
           \]
         </p>
         <p>
-          We describe a group as a monoid with the additional operation \(\eta : M \rightarrow M\) corresponding to \(x \rightarrow x^{-1}\)
+          Then a category can be defined as a monoid with &quot;product over O&quot;:
+          \[A \times_0 A = \{\langle f, g \rangle \mid f, g \in A; \text{dom } f = \text{cod } g\]
+        </p>
+        <p>
+          We describe a group as a monoid with the additional operation \(\eta : M \rightarrow M\) corresponding to \(x \rightarrow x^{-1}\):
         </p>
         <p>
           \[
@@ -138,6 +142,53 @@
         <p>
           Equivalently, a group is a category with one object, and in which every arrow has a two-sided inverse under composition.
         </p>
+        <p>
+          \(\Delta\) is a category with objects all finite ordinals, and arrows all order-preserving functions. From algebraic topology, it is called the simplicial category.
+        </p>
+        <h2>
+          Functor
+        </h2>
+        <p>
+          A functor is a morphism of categories. Let \(\mathcal{T} : \mathcal{B} \rightarrow \mathcal{C}\) be a functor of two categories. Then, the object function assigns to each object \(b \in \mathcal{B}\), an object \(\mathcal{T}b \in C\); the arrow function assigns each arrow \(b \rightarrow b&#39; \in B\) to the arrow \(\mathcal{T}b \rightarrow \mathcal{T}b&#39; \in C\).
+        </p>
+        <p>
+          They arise naturally in algebraic topology, where we have a topological space \(X\) lifted to a homology group \(H_n(X)\); topological spaces map to abelian groups as \(\mathcal{A} : \text{Top} \rightarrow \text{Ab}\). In algebra, a forgetful functor would erase the group structure yielding \(\mathcal{B} : \text{Grp} \rightarrow \text{Set}\).
+        </p>
+        <p>
+          A functor is full when it is surjective, faithful when it is injective, fully faithful when it is bijective, in set-theoretic terms.
+        </p>
+        <p>
+          Functors also satisfy the law of associativity of compositions, just like the category does.
+        </p>
+        <h2>
+          Subcategory
+        </h2>
+        <p>
+          A subcategory \(S\) of category \(C\) includes some of the arrows in \(C\), and:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            For each arrow \(f\), the objects \(\text{dom } f, \text{codom } f\).
+          </li>
+          <li>
+            For each object \(s\), the identity arrow.
+          </li>
+          <li>
+            For each pair of arrows \(s \rightarrow s&#39; \rightarrow s&#39;&#39;\), the composition of arrows.
+          </li>
+        </ol>
+        <h2>
+          Natural transformation
+        </h2>
+        <p>
+          A natural transformation is a morphism of functors.
+        </p>
+        <h2>
+          Duality
+        </h2>
+        <p>
+          A functor \(F\) from category \(\mathcal{A}\) to category \(\mathcal{B}\), \(F : \mathcal{A} \rightarrow \mathcal{B}\) is defined to be covariant if \(F(m \circ n) = F(m) \circ F(n)\), and contravariant if \(F(m \circ n) = F(n) \circ F(m)\).
+        </p>
         <h2>
           Product structure
         </h2>
@@ -154,12 +205,6 @@
           }
           \end{xy}
           \]
-        </p>
-        <h2>
-          Covariance and contravariance
-        </h2>
-        <p>
-          A functor \(F\) from category \(\mathcal{A}\) to category \(\mathcal{B}\), \(F : \mathcal{A} \rightarrow \mathcal{B}\) is defined to be covariant if \(F(m \circ n) = F(m) \circ F(n)\), and contravariant if \(F(m \circ n) = F(n) \circ F(m)\).
         </p>
         <h2>
           Fibered product

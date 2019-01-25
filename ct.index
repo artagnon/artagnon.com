@@ -47,7 +47,7 @@ M & M & M
 
 This means that \(\mu \circ (\eta \times 1) = \lambda\) and \(\mu \circ (1 \times \eta) = \rho\).
 
-Writing it out in terms of the elements, we get the familiar associativity axioms
+Writing it out in terms of the elements, we get the familiar associativity axioms:
 
 \[
 \begin{xy}
@@ -58,7 +58,7 @@ Writing it out in terms of the elements, we get the familiar associativity axiom
 \end{xy}
 \]
 
-and the identity axioms
+and the identity axioms:
 
 \[
 \begin{xy}
@@ -75,7 +75,10 @@ xu \ar@{}[r]|{=} & x
 \end{xy}
 \]
 
-We describe a group as a monoid with the additional operation \(\eta : M \rightarrow M\) corresponding to \(x \rightarrow x^{-1}\)
+Then a category can be defined as a monoid with "product over O":
+\[A \times_0 A = \{\langle f, g \rangle \mid f, g \in A; \text{dom } f = \text{cod } g\]
+
+We describe a group as a monoid with the additional operation \(\eta : M \rightarrow M\) corresponding to \(x \rightarrow x^{-1}\):
 
 \[
 \begin{xy}
@@ -94,6 +97,34 @@ x \ar@{|->}[d]\ar@{|->}[r] & \langle x, x \rangle \ar@{|->}[r] & \langle x, x^{-
 
 Equivalently, a group is a category with one object, and in which every arrow has a two-sided inverse under composition.
 
+\(\Delta\) is a category with objects all finite ordinals, and arrows all order-preserving functions. From algebraic topology, it is called the simplicial category.
+
+# Functor
+
+A functor is a morphism of categories. Let \(\mathcal{T} : \mathcal{B} \rightarrow \mathcal{C}\) be a functor of two categories. Then, the object function assigns to each object \(b \in \mathcal{B}\), an object \(\mathcal{T}b \in C\); the arrow function assigns each arrow \(b \rightarrow b' \in B\) to the arrow \(\mathcal{T}b \rightarrow \mathcal{T}b' \in C\).
+
+They arise naturally in algebraic topology, where we have a topological space \(X\) lifted to a homology group \(H_n(X)\); topological spaces map to abelian groups as \(\mathcal{A} : \text{Top} \rightarrow \text{Ab}\). In algebra, a forgetful functor would erase the group structure yielding \(\mathcal{B} : \text{Grp} \rightarrow \text{Set}\).
+
+A functor is full when it is surjective, faithful when it is injective, fully faithful when it is bijective, in set-theoretic terms.
+
+Functors also satisfy the law of associativity of compositions, just like the category does.
+
+# Subcategory
+
+A subcategory \(S\) of category \(C\) includes some of the arrows in \(C\), and:
+
+(i) For each arrow \(f\), the objects \(\text{dom } f, \text{codom } f\).
+(ii) For each object \(s\), the identity arrow.
+(iii) For each pair of arrows \(s \rightarrow s' \rightarrow s''\), the composition of arrows.
+
+# Natural transformation
+
+A natural transformation is a morphism of functors.
+
+# Duality
+
+A functor \(F\) from category \(\mathcal{A}\) to category \(\mathcal{B}\), \(F : \mathcal{A} \rightarrow \mathcal{B}\) is defined to be covariant if \(F(m \circ n) = F(m) \circ F(n)\), and contravariant if \(F(m \circ n) = F(n) \circ F(m)\).
+
 # Product structure
 
 \(P_1\) along with \(X\) and \(Y\) defines a product. There exists a unique morphism between \(P_1\) and \(P_2\) preserving the product structure.
@@ -107,10 +138,6 @@ P_2 \ar@/_/[ddr]_y \ar@{.>}[dr]|{\exists!} \ar@/^/[drr]^x \\
 }
 \end{xy}
 \]
-
-# Covariance and contravariance
-
-A functor \(F\) from category \(\mathcal{A}\) to category \(\mathcal{B}\), \(F : \mathcal{A} \rightarrow \mathcal{B}\) is defined to be covariant if \(F(m \circ n) = F(m) \circ F(n)\), and contravariant if \(F(m \circ n) = F(n) \circ F(m)\).
 
 # Fibered product
 
