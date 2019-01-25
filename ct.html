@@ -24,7 +24,7 @@
         <h1>
           Category Theory
         </h1>
-        <span id="pubdate">Last updated: Wed, 23 Jan 2019</span>
+        <span id="pubdate">Last updated: Fri, 25 Jan 2019</span>
         <p>
           For the product object \(X \times Y\), given \(W, f, g\), and projections \(p : X \times Y \mapsto X\), \(q : X \times Y \mapsto Y\), the following diagram commutes:
         </p>
@@ -83,6 +83,38 @@
         </p>
         <p>
           This means that \(\mu \circ (\eta \times 1) = \lambda\) and \(\mu \circ (1 \times \eta) = \rho\).
+        </p>
+        <p>
+          Writing it out in terms of the elements, we get the familiar associativity axioms
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \langle x, y, z \rangle \ar@{|->}[r]\ar@{|->}[d] & \langle xy, z \rangle \ar@{|->}[d] \\
+          \langle x, yz \rangle \ar@{|->}[r] & x(yz) = xy(z)
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          and the identity axioms
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \langle 0, x \rangle \ar@{|->}[r]\ar@{|->}[d] & \langle u, x \rangle \ar@{|->}[d] \\
+          x \ar@{}[r]|{=} & ux
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          \langle u, x \rangle \ar@{|->}[d] & \langle 0, x \rangle \ar@{|->}[l]\ar@{|->}[d] \\
+          xu \ar@{}[r]|{=} & x
+          }
+          \end{xy}
+          \]
         </p>
         <h2>
           Product structure
