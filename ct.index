@@ -170,6 +170,22 @@ For arrow \(m : a \rightarrow b\), \(m \circ a = m \circ b \implies a = b\) is t
 
 For arrow \(h : a \rightarrow b\), arrow \(r : b \rightarrow a\) is right inverse if \(hr = 1_b\); \(r\) is termed as the section of \(h\). Similarly, for \(l : b \rightarrow a\), \(lh = 1_a\), \(l\) is termed as the retraction of \(h\).
 
+If, for each object \(a \in C\), there exists exactly one arrow \(a \rightarrow t\), \(t\) is termed as the terminal object. On the other hand, for each object \(a \in C\), there exists exactly one arrow \(i \rightarrow a\), \(i\) is termed as the initial object. In \(\mathbf{Set}\), the empty set is initial, and any one-point set is terminal. An object which is both initial and final is called the null object \(z \in \mathcal{C}\); then there exists a unique arrow \(a \rightarrow z \rightarrow b\), for any two objects \(a, b \in \mathcal{C}\) called the zero arrow.
+
+A groupoid is a category in which all morphisms are invertible. An example would be the fundamental groupoid \(\pi(X)\), from algebraic topology. A groupoid is said to be connected if there is an arrow between any two objects in the groupoid.
+
+# Examples
+
+(i) \(\textbf{Rng}\) is the category of all small rings
+(ii) \(\textbf{Top}\) is the category of topological spaces, where objects are the set of small topological spaces, and morphisms are continuous maps between spaces
+(iii) \(\textbf{Toph}\) is the category of topological spaces, where objects are the set of small topological spaces, and morphisms are homotopies
+(iv) \(\textbf{Set}_*\) is the small category of pointed sets
+(v) \(\textbf{Top}_*, \textbf{Toph}_*\) are the categories of small pointed topological spaces; in the latter, morphisms are homotopies with a fixed basepoint \(*\)
+(vi) \(\mathbf{R-Mod}\) is the category of small left R-modules
+(vii) \(\mathbf{Vec}_F\) is the category of vector spaces
+(viii) \(\mathbf{Rel}\) is the category of small sets, where morphisms are binary relations
+(ix) A concrete category is the pair \(\langle \mathcal{C}, \mathcal{U} \rangle\), where \(\mathcal{C}\) is a category, and \(\mathcal{U}\) is a faithful functor \(\mathcal{U} : \mathcal{C} \rightarrow \textbf{Set}\)
+
 # Duality
 
 A functor \(F\) from category \(\mathcal{A}\) to category \(\mathcal{B}\), \(F : \mathcal{A} \rightarrow \mathcal{B}\) is defined to be covariant if \(F(m \circ n) = F(m) \circ F(n)\), and contravariant if \(F(m \circ n) = F(n) \circ F(m)\).
