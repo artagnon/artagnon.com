@@ -281,10 +281,52 @@
           </li>
         </ol>
         <h2>
+          Hom-Sets
+        </h2>
+        <p>
+          \(\text{hom}(a, b)\) is used to denote the set of all morphisms from \(a\) to \(b\). A small category can be defined in terms of hom-sets, with the following data:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            Objects \(a, b, c, ...\)
+          </li>
+          <li>
+            For every pair of objects \(\langle a, b \rangle\), a function associating \(\text{hom}(a, b)\) to the pair
+          </li>
+          <li>
+            For every triple \(\langle a, b, c \rangle\), the composition axiom:
+          </li>
+        </ol>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \text{hom}(c, d) \times \text{hom}(b, c) \times \text{hom}(a, b) \ar[r]\ar[d] & \text{hom}(b, d) \times \text{hom}(a, b) \ar[d] \\
+          \text{hom}(c, d) \times \text{hom}(a, c) \ar[r] & \text{hom}(a, d)
+          }
+          \end{xy}
+          \]
+        </p>
+        <ol class="olitems" type="i" start="4">
+          <li>
+            For every object \(b\), \(1_b \in \text{hom}(b, b)\); the identity axiom
+          </li>
+        </ol>
+        <p>
+          An Ab-category or preaddive category is a category in which hom-sets are additive abelian groups, and composition is bilinear: given \(f, f&#39; : a \rightarrow b\), \(g, g&#39; : b \rightarrow c\),
+          \[(f + f&#39;) \circ (g + g&#39;) = f \circ g + f \circ g&#39; + f&#39; \circ g + f&#39; \circ g&#39;\]
+        </p>
+        <p>
+          \(\textbf{Ab}, \textbf{R-Mod}, \textbf{Mod-R}\) are all Ab-categories. \(\textbf{Ab-cat}\) is used the denote the category of all small Ab-categories.
+        </p>
+        <h2>
           Duality
         </h2>
         <p>
-          A functor \(F\) from category \(\mathcal{A}\) to category \(\mathcal{B}\), \(F : \mathcal{A} \rightarrow \mathcal{B}\) is defined to be covariant if \(F(m \circ n) = F(m) \circ F(n)\), and contravariant if \(F(m \circ n) = F(n) \circ F(m)\).
+          We define \(\mathcal{C}^{op}\) to be the opposite category, with the same objects as \(\mathcal{C}\), and directions of arrows reversed. For each \(f : a \rightarrow b \in \mathcal{C}\), is an \(f^{op} : b \rightarrow a \in \mathcal{C}^{op}\). Also \(f^{op} g^{op} = (gf)^{op}\).  The assignments \(\mathcal{A} \mapsto \mathcal{A}^{op}\) and \(\mathcal{F} \mapsto \mathcal{F}^{op}\) define a covariant functor \(\textbf{Cat} \rightarrow \textbf{Cat}\).
+        </p>
+        <p>
+          The opposite functor \(\mathcal{F}^{op} : \mathcal{B}^{op} \rightarrow \mathcal{A}^{op}\) is defined in the usual way. A functor \(\mathcal{S} : \mathcal{A}^{op} \rightarrow \mathcal{B}\) can be defined in terms of \(\mathcal{A}\) as \(\bar{\mathcal{S}}\), a contravariant functor. Then, \(\bar{\mathcal{S}}(m \circ n) = \bar{\mathcal{S}}(n) \circ \bar{\mathcal{S}}(m)\).
         </p>
         <h2>
           Product structure

@@ -186,9 +186,35 @@ A groupoid is a category in which all morphisms are invertible. An example would
 (viii) \(\mathbf{Rel}\) is the category of small sets, where morphisms are binary relations
 (ix) A concrete category is the pair \(\langle \mathcal{C}, \mathcal{U} \rangle\), where \(\mathcal{C}\) is a category, and \(\mathcal{U}\) is a faithful functor \(\mathcal{U} : \mathcal{C} \rightarrow \textbf{Set}\)
 
+# Hom-Sets
+
+\(\text{hom}(a, b)\) is used to denote the set of all morphisms from \(a\) to \(b\). A small category can be defined in terms of hom-sets, with the following data:
+
+(i) Objects \(a, b, c, ...\)
+(ii) For every pair of objects \(\langle a, b \rangle\), a function associating \(\text{hom}(a, b)\) to the pair
+(iii) For every triple \(\langle a, b, c \rangle\), the composition axiom:
+
+\[
+\begin{xy}
+\xymatrix{
+\text{hom}(c, d) \times \text{hom}(b, c) \times \text{hom}(a, b) \ar[r]\ar[d] & \text{hom}(b, d) \times \text{hom}(a, b) \ar[d] \\
+\text{hom}(c, d) \times \text{hom}(a, c) \ar[r] & \text{hom}(a, d)
+}
+\end{xy}
+\]
+
+(iv) For every object \(b\), \(1_b \in \text{hom}(b, b)\); the identity axiom
+
+An Ab-category or preaddive category is a category in which hom-sets are additive abelian groups, and composition is bilinear: given \(f, f' : a \rightarrow b\), \(g, g' : b \rightarrow c\),
+\[(f + f') \circ (g + g') = f \circ g + f \circ g' + f' \circ g + f' \circ g'\]
+
+\(\textbf{Ab}, \textbf{R-Mod}, \textbf{Mod-R}\) are all Ab-categories. \(\textbf{Ab-cat}\) is used the denote the category of all small Ab-categories.
+
 # Duality
 
-A functor \(F\) from category \(\mathcal{A}\) to category \(\mathcal{B}\), \(F : \mathcal{A} \rightarrow \mathcal{B}\) is defined to be covariant if \(F(m \circ n) = F(m) \circ F(n)\), and contravariant if \(F(m \circ n) = F(n) \circ F(m)\).
+We define \(\mathcal{C}^{op}\) to be the opposite category, with the same objects as \(\mathcal{C}\), and directions of arrows reversed. For each \(f : a \rightarrow b \in \mathcal{C}\), is an \(f^{op} : b \rightarrow a \in \mathcal{C}^{op}\). Also \(f^{op} g^{op} = (gf)^{op}\).  The assignments \(\mathcal{A} \mapsto \mathcal{A}^{op}\) and \(\mathcal{F} \mapsto \mathcal{F}^{op}\) define a covariant functor \(\textbf{Cat} \rightarrow \textbf{Cat}\).
+
+The opposite functor \(\mathcal{F}^{op} : \mathcal{B}^{op} \rightarrow \mathcal{A}^{op}\) is defined in the usual way. A functor \(\mathcal{S} : \mathcal{A}^{op} \rightarrow \mathcal{B}\) can be defined in terms of \(\mathcal{A}\) as \(\bar{\mathcal{S}}\), a contravariant functor. Then, \(\bar{\mathcal{S}}(m \circ n) = \bar{\mathcal{S}}(n) \circ \bar{\mathcal{S}}(m)\).
 
 # Product structure
 
