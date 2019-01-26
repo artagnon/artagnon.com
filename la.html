@@ -24,7 +24,13 @@
         <h1>
           Linear Algebra
         </h1>
-        <span id="pubdate">Last updated: Sat, 17 Nov 2018</span>
+        <span id="pubdate">Last updated: Sat, 26 Jan 2019</span>
+        <p>
+          Vector spaces are defined over a field \(\mathcal{F}\), while matrix entries can be chosen from elements of commutative ring \(\mathcal{K}\).
+        </p>
+        <h2>
+          Cayley-Hamilton theorem
+        </h2>
         <p>
           \[A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\]
         </p>
@@ -37,8 +43,29 @@
         <p>
           Eigenvector \(\mathbb{v}\) can be obtained by solving \(A \mathbb{v} = \lambda \mathbb{v}\).
         </p>
+        <h2>
+          Determinant
+        </h2>
         <p>
-          Vector spaces are defined over a field \(\mathbb{F}\).
+          The determinant function \(D\) assigns to each \(n \times n\) matrix, a scalar. It is n-linear, alternating, and \(D(I) = 1\).
+        </p>
+        <p>
+          n-linear means: that for each \(i\), \(D\) is linear over the \(i^{th}\) row, keeping all other rows fixed
+          \[D(\alpha_i + c\alpha_{i&#39;}) = D(\alpha_i) + cD(\alpha_{i&#39;})\]
+        </p>
+        <p>
+          Alternating means:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            If two rows in \(A\) are equal, \(D(A) = 0\)
+          </li>
+          <li>
+            If \(A&#39;\) is the matrix we get by interchanging two rows of \(A\), then \(D(A&#39;) = -D(A)\)
+          </li>
+        </ol>
+        <p>
+          In category-theoretic terms, the determinant is a natural transformation \(\tau : \textbf{CRng} \rightarrow \textbf{Grp}\).
         </p>
         <ul id="indexfill">
         </ul>

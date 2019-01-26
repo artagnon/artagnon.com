@@ -24,7 +24,7 @@
         <h1>
           Category Theory
         </h1>
-        <span id="pubdate">Last updated: Fri, 25 Jan 2019</span>
+        <span id="pubdate">Last updated: Sat, 26 Jan 2019</span>
         <p>
           For the product set \(X \times Y\), given \(W, f, g\), and projections \(p : X \times Y \mapsto X\), \(q : X \times Y \mapsto Y\), the following diagram commutes:
         </p>
@@ -152,7 +152,7 @@
           A functor is a morphism of categories. Let \(\mathcal{T} : \mathcal{B} \rightarrow \mathcal{C}\) be a functor of two categories. Then, the object function assigns to each object \(b \in \mathcal{B}\), an object \(\mathcal{T}b \in C\); the arrow function assigns each arrow \(b \rightarrow b&#39; \in B\) to the arrow \(\mathcal{T}b \rightarrow \mathcal{T}b&#39; \in C\).
         </p>
         <p>
-          They arise naturally in algebraic topology, where we have a topological space \(X\) lifted to a homology group \(H_n(X)\); topological spaces map to abelian groups as \(\mathcal{A} : \text{Top} \rightarrow \text{Ab}\). In algebra, a forgetful functor would erase the group structure yielding \(\mathcal{B} : \text{Grp} \rightarrow \text{Set}\).
+          They arise naturally in algebraic topology, where we have a topological space \(X\) lifted to a homology group \(H_n(X)\); topological spaces map to abelian groups as \(\mathcal{A} : \textbf{Top} \rightarrow \textbf{Ab}\). In algebra, a forgetful functor would erase the group structure yielding \(\mathcal{B} : \textbf{Grp} \rightarrow \textbf{Set}\).
         </p>
         <p>
           A functor is full when it is surjective, faithful when it is injective, fully faithful when it is bijective, in set-theoretic terms.
@@ -168,20 +168,79 @@
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            For each arrow \(f\), the objects \(\text{dom } f, \text{codom } f\).
+            For each arrow \(f\), the objects \(\text{dom } f, \text{codom } f\)
           </li>
           <li>
-            For each object \(s\), the identity arrow.
+            For each object \(s\), the identity arrow
           </li>
           <li>
-            For each pair of arrows \(s \rightarrow s&#39; \rightarrow s&#39;&#39;\), the composition of arrows.
+            For each pair of arrows \(s \rightarrow s&#39; \rightarrow s&#39;&#39;\), the composition of arrows
           </li>
         </ol>
         <h2>
           Natural transformation
         </h2>
         <p>
-          A natural transformation is a morphism of functors.
+          A natural transformation is a morphism of functors. Given two functors \(\mathcal{S}, \mathcal{T} : \mathcal{B} \rightarrow \mathcal{C}\), let \(\tau : \mathcal{S} \rightarrow \mathcal{T}\) be an NT. Then, every arrow \(f : b \rightarrow b&#39; \in S\) is mapped to \(\tau_b = \tau b : \mathcal{S}b \rightarrow \mathcal{S}b&#39; \in \mathcal{C}\), so the following diagram commutes:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          Sb \ar[r]^{\tau_b}\ar[d]^{\mathcal{S}b} & Tb \ar[d]^{\mathcal{T}f} \\
+          Sb' \ar[r]^{\tau_{b'}} & Tb'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          If we think of \(\mathcal{S}\) as giving a picture in \(\mathcal{B}\) of all objects and arrows in \(\mathcal{C}\), we get the following commutative diagrams:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          a \ar[dd]^h\ar[dr]^f & \\
+          & b \ar[dl]^g \\
+          c &
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          \mathcal{S}a \ar[rr]^{\tau_a}\ar[dr]^{\mathcal{S}f}\ar[dd]^{\mathcal{S}h} & & \mathcal{T}a \ar[dr]^{\mathcal{T}f}\ar[dd]|{\hole} & \\
+          & \mathcal{S}b \ar[rr]^<<<<<{\tau_b}\ar[dl]^{\mathcal{S}g} & & \mathcal{T}b \ar[dl]^{\mathcal{T}g} \\
+          \mathcal{S}c \ar[rr]^{\tau_c} & & \mathcal{T}c &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \(\tau_a, \tau_b, \tau_c\) are called the components of the NT.
+        </p>
+        <p>
+          The determinant is an NT \(\tau : \textbf{CRng} \rightarrow \textbf{Grp}\). Let \(\text{det}_K M\) be the determinant of matrix \(M\) with entries in commutative ring \(\mathcal{K}\). \(det_K\) is a morphism \(\text{GL}_n K \rightarrow K^*\) of groups.
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \text{GL}_n K \ar[r]^{\text{det}_K}\ar[d]^{\text{GL}_n f} & K^* \ar[d]^{f^*} \\
+          \text{GL}_n K' \ar[r]^{\text{det}_{K'}} & K'^{*}
+          }
+          \end{xy}
+          \]
+        </p>
+        <h2>
+          Monics, epis, and zeros
+        </h2>
+        <p>
+          Arrow \(e : a \rightarrow b \in \mathcal{C}\) is invertible if there exists \(e&#39; : b \rightarrow a \in mathcal{C}\) with \(e&#39;e = 1_a, ee&#39; = 1_b\). If \(e&#39;\) is unique, \(e&#39; = e^{-1}\), and the isomorphism \(a \approx b\) holds.
+        </p>
+        <p>
+          For arrow \(m : a \rightarrow b\), \(m \circ a = m \circ b \implies a = b\) is the left cancelation property, and \(m\) is termed monic. \(a \circ m = b \circ m \implies a = b\) is the right cancelation property, and \(m\) is termed epi. In \(mathbf{Set}\), monic arrows are injections and epi arrows are surjections.
+        </p>
+        <p>
+          For arrow \(h : a \rightarrow b\), arrow \(r : b \rightarrow a\) is right inverse if \(hr = 1_b\); \(r\) is termed as the section of \(h\). Similarly, for \(l : b \rightarrow a\), \(lh = 1_a\), \(l\) is termed as the retraction of \(h\).
         </p>
         <h2>
           Duality
