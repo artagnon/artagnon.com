@@ -101,9 +101,9 @@ Equivalently, a group is a category with one object, and in which every arrow ha
 
 # Functor
 
-A functor is a morphism of categories. Let \(\mathcal{T} : \mathcal{B} \rightarrow \mathcal{C}\) be a functor of two categories. Then, the object function assigns to each object \(b \in \mathcal{B}\), an object \(\mathcal{T}b \in C\); the arrow function assigns each arrow \(b \rightarrow b' \in B\) to the arrow \(\mathcal{T}b \rightarrow \mathcal{T}b' \in C\).
+A functor is a morphism of categories. Let \(T : B \rightarrow C\) be a functor of two categories. Then, the object function assigns to each object \(b \in B\), an object \(Tb \in C\); the arrow function assigns each arrow \(b \rightarrow b' \in B\) to the arrow \(Tb \rightarrow Tb' \in C\).
 
-They arise naturally in algebraic topology, where we have a topological space \(X\) lifted to a homology group \(H_n(X)\); topological spaces map to abelian groups as \(\mathcal{A} : \textbf{Top} \rightarrow \textbf{Ab}\). In algebra, a forgetful functor would erase the group structure yielding \(\mathcal{B} : \textbf{Grp} \rightarrow \textbf{Set}\).
+They arise naturally in algebraic topology, where we have a topological space \(X\) lifted to a homology group \(H_n(X)\); topological spaces map to abelian groups as \(A : \textbf{Top} \rightarrow \textbf{Ab}\). In algebra, a forgetful functor would erase the group structure yielding \(B : \textbf{Grp} \rightarrow \textbf{Set}\).
 
 A functor is full when it is surjective, faithful when it is injective, fully faithful when it is bijective, in set-theoretic terms.
 
@@ -119,18 +119,18 @@ A subcategory \(S\) of category \(C\) includes some of the arrows in \(C\), and:
 
 # Natural transformation
 
-A natural transformation is a morphism of functors. Given two functors \(\mathcal{S}, \mathcal{T} : \mathcal{B} \rightarrow \mathcal{C}\), let \(\tau : \mathcal{S} \rightarrow \mathcal{T}\) be an NT. Then, every arrow \(f : b \rightarrow b' \in S\) is mapped to \(\tau_b = \tau b : \mathcal{S}b \rightarrow \mathcal{S}b' \in \mathcal{C}\), so the following diagram commutes:
+A natural transformation is a morphism of functors. Given two functors \(S, T : B \rightarrow C\), let \(\tau : S \rightarrow T\) be an NT. Then, every arrow \(f : b \rightarrow b' \in S\) is mapped to \(\tau_b = \tau b : Sb \rightarrow Sb' \in C\), so the following diagram commutes:
 
 \[
 \begin{xy}
 \xymatrix{
-Sb \ar[r]^{\tau_b}\ar[d]^{\mathcal{S}b} & Tb \ar[d]^{\mathcal{T}f} \\
+Sb \ar[r]^{\tau_b}\ar[d]^{Sb} & Tb \ar[d]^{Tf} \\
 Sb' \ar[r]^{\tau_{b'}} & Tb'
 }
 \end{xy}
 \]
 
-If we think of \(\mathcal{S}\) as giving a picture in \(\mathcal{B}\) of all objects and arrows in \(\mathcal{C}\), we get the following commutative diagrams:
+If we think of \(S\) as giving a picture in \(B\) of all objects and arrows in \(C\), we get the following commutative diagrams:
 
 \[
 \begin{xy}
@@ -142,16 +142,16 @@ c &
 \end{xy}
 \begin{xy}
 \xymatrix{
-\mathcal{S}a \ar[rr]^{\tau_a}\ar[dr]^{\mathcal{S}f}\ar[dd]^{\mathcal{S}h} & & \mathcal{T}a \ar[dr]^{\mathcal{T}f}\ar[dd]|{\hole} & \\
-& \mathcal{S}b \ar[rr]^<<<<<{\tau_b}\ar[dl]^{\mathcal{S}g} & & \mathcal{T}b \ar[dl]^{\mathcal{T}g} \\
-\mathcal{S}c \ar[rr]^{\tau_c} & & \mathcal{T}c &
+Sa \ar[rr]^{\tau_a}\ar[dr]^{Sf}\ar[dd]^{Sh} & & Ta \ar[dr]^{Tf}\ar[dd]|{\hole} & \\
+& Sb \ar[rr]^<<<<<{\tau_b}\ar[dl]^{Sg} & & Tb \ar[dl]^{Tg} \\
+Sc \ar[rr]^{\tau_c} & & Tc &
 }
 \end{xy}
 \]
 
 \(\tau_a, \tau_b, \tau_c\) are called the components of the NT.
 
-The determinant is an NT \(\tau : \textbf{CRng} \rightarrow \textbf{Grp}\). Let \(\text{det}_K M\) be the determinant of matrix \(M\) with entries in commutative ring \(\mathcal{K}\). \(det_K\) is a morphism \(\text{GL}_n K \rightarrow K^*\) of groups.
+The determinant is an NT \(\tau : \textbf{CRng} \rightarrow \textbf{Grp}\). Let \(\text{det}_K M\) be the determinant of matrix \(M\) with entries in commutative ring \(K\). \(det_K\) is a morphism \(\text{GL}_n K \rightarrow K^*\) of groups.
 
 \[
 \begin{xy}
@@ -164,13 +164,13 @@ The determinant is an NT \(\tau : \textbf{CRng} \rightarrow \textbf{Grp}\). Let 
 
 # Monics, epis, and zeros
 
-Arrow \(e : a \rightarrow b \in \mathcal{C}\) is invertible if there exists \(e' : b \rightarrow a \in mathcal{C}\) with \(e'e = 1_a, ee' = 1_b\). If \(e'\) is unique, \(e' = e^{-1}\), and the isomorphism \(a \approx b\) holds.
+Arrow \(e : a \rightarrow b \in C\) is invertible if there exists \(e' : b \rightarrow a \in C\) with \(e'e = 1_a, ee' = 1_b\). If \(e'\) is unique, \(e' = e^{-1}\), and the isomorphism \(a \approx b\) holds.
 
 For arrow \(m : a \rightarrow b\), \(m \circ a = m \circ b \implies a = b\) is the left cancelation property, and \(m\) is termed monic. \(a \circ m = b \circ m \implies a = b\) is the right cancelation property, and \(m\) is termed epi. In \(mathbf{Set}\), monic arrows are injections and epi arrows are surjections.
 
 For arrow \(h : a \rightarrow b\), arrow \(r : b \rightarrow a\) is right inverse if \(hr = 1_b\); \(r\) is termed as the section of \(h\). Similarly, for \(l : b \rightarrow a\), \(lh = 1_a\), \(l\) is termed as the retraction of \(h\).
 
-If, for each object \(a \in C\), there exists exactly one arrow \(a \rightarrow t\), \(t\) is termed as the terminal object. On the other hand, for each object \(a \in C\), there exists exactly one arrow \(i \rightarrow a\), \(i\) is termed as the initial object. In \(\mathbf{Set}\), the empty set is initial, and any one-point set is terminal. An object which is both initial and final is called the null object \(z \in \mathcal{C}\); then there exists a unique arrow \(a \rightarrow z \rightarrow b\), for any two objects \(a, b \in \mathcal{C}\) called the zero arrow.
+If, for each object \(a \in C\), there exists exactly one arrow \(a \rightarrow t\), \(t\) is termed as the terminal object. On the other hand, for each object \(a \in C\), there exists exactly one arrow \(i \rightarrow a\), \(i\) is termed as the initial object. In \(\mathbf{Set}\), the empty set is initial, and any one-point set is terminal. An object which is both initial and final is called the null object \(z \in C\); then there exists a unique arrow \(a \rightarrow z \rightarrow b\), for any two objects \(a, b \in C\) called the zero arrow.
 
 A groupoid is a category in which all morphisms are invertible. An example would be the fundamental groupoid \(\pi(X)\), from algebraic topology. A groupoid is said to be connected if there is an arrow between any two objects in the groupoid.
 
@@ -184,7 +184,7 @@ A groupoid is a category in which all morphisms are invertible. An example would
 (vi) \(\mathbf{R-Mod}\) is the category of small left R-modules
 (vii) \(\mathbf{Vec}_F\) is the category of vector spaces
 (viii) \(\mathbf{Rel}\) is the category of small sets, where morphisms are binary relations
-(ix) A concrete category is the pair \(\langle \mathcal{C}, \mathcal{U} \rangle\), where \(\mathcal{C}\) is a category, and \(\mathcal{U}\) is a faithful functor \(\mathcal{U} : \mathcal{C} \rightarrow \textbf{Set}\)
+(ix) A concrete category is the pair \(\langle C, U \rangle\), where \(C\) is a category, and \(U\) is a faithful functor \(U : C \rightarrow \textbf{Set}\)
 
 # Hom-Sets
 
@@ -212,9 +212,35 @@ An Ab-category or preaddive category is a category in which hom-sets are additiv
 
 # Duality
 
-We define \(\mathcal{C}^{op}\) to be the opposite category, with the same objects as \(\mathcal{C}\), and directions of arrows reversed. For each \(f : a \rightarrow b \in \mathcal{C}\), is an \(f^{op} : b \rightarrow a \in \mathcal{C}^{op}\). Also \(f^{op} g^{op} = (gf)^{op}\).  The assignments \(\mathcal{A} \mapsto \mathcal{A}^{op}\) and \(\mathcal{F} \mapsto \mathcal{F}^{op}\) define a covariant functor \(\textbf{Cat} \rightarrow \textbf{Cat}\).
+We define \(C^{op}\) to be the opposite category, with the same objects as \(C\), and directions of arrows reversed. For each \(f : a \rightarrow b \in C\), is an \(f^{op} : b \rightarrow a \in C^{op}\). Also \(f^{op} g^{op} = (gf)^{op}\).  The assignments \(A \mapsto A^{op}\) and \(F \mapsto F^{op}\) define a covariant functor \(\textbf{Cat} \rightarrow \textbf{Cat}\).
 
-The opposite functor \(\mathcal{F}^{op} : \mathcal{B}^{op} \rightarrow \mathcal{A}^{op}\) is defined in the usual way. A functor \(\mathcal{S} : \mathcal{A}^{op} \rightarrow \mathcal{B}\) can be defined in terms of \(\mathcal{A}\) as \(\bar{\mathcal{S}}\), a contravariant functor. Then, \(\bar{\mathcal{S}}(m \circ n) = \bar{\mathcal{S}}(n) \circ \bar{\mathcal{S}}(m)\).
+The opposite functor \(F^{op} : B^{op} \rightarrow A^{op}\) is defined in the usual way. A functor \(S : A^{op} \rightarrow B\) can be defined in terms of \(A\) as \(\bar{S}\), a contravariant functor. Then, \(\bar{S}(m \circ n) = \bar{S}(n) \circ \bar{S}(m)\).
+
+Hom-sets provide an example of covariant and contravariant functors. For each object \(a \in C\), the object function of the covariant hom-functor sends:
+\[C(a, -) = \text{hom}(a, -) : C \rightarrow \mathbf{Set}\]
+
+and the arrow function sends each arrow \(k : b \rightarrow b'\) to:
+\[\text{hom}(a, k) : \text{hom}(a, b) \rightarrow \text{hom}(a, b')\]
+
+For each object \(b \in C\), the object function of the contravariant hom-functor sends:
+\[C(-, b) = \text{hom}(-, b) : C^{op} \rightarrow \mathbf{Set}\]
+
+and the arrow function sends each arrow \(g : a \rightarrow a'\) to:
+\[\text{hom}(g, b) : \text{hom}(a', b) \rightarrow \text{hom}(a, b)\]
+
+To simplify the noation, introduce \(k_*\) for "composition with k on the left" or "composition induced by k", and \(g^*\) for "composition with g" on the right:
+\[k_* f = k \circ f \quad g^* f = f \circ g\]
+
+For \(k : a \rightarrow a'\) and \(g : b \rightarrow b'\), we have:
+
+\[
+\begin{xy}
+\xymatrix{
+\text{hom}(a', b) \ar[r]^{k^*}\ar[d]^{g_*} & \text{hom}(a, b) \ar[d]^{g_*} \\
+\text{hom}(a', b') \ar[r]^{k^*} & \text{hom}(a, b')
+}
+\end{xy}
+\]
 
 # Product structure
 
@@ -223,12 +249,28 @@ The opposite functor \(\mathcal{F}^{op} : \mathcal{B}^{op} \rightarrow \mathcal{
 \[
 \begin{xy}
 \xymatrix{
-P_2 \ar@/_/[ddr]_y \ar@{.>}[dr]|{\exists!} \ar@/^/[drr]^x \\
-& P_1 \ar[d]^q \ar[r]_p & X \\
+P_2 \ar@/_/[ddr]_N \ar@{.>}[dr]|{\exists!} \ar@/^/[drr]^M \\
+& P_1 \ar[d]^Q \ar[r]_P & X \\
 & Y &
 }
 \end{xy}
 \]
+
+\(P, Q\) are functors called projections of \(P_1\) onto \(X\) and \(Y\). Elements of \(P_1\) are pairs \(\langle x, y \rangle\).
+
+Let \(U : X \rightarrow Y, V : X' \rightarrow Y'\) be two functors; then \(U \times V : X \times Y \rightarrow X' \times Y'\) is the product of two functors, and we yield the following commutative diagram:
+
+\[
+\begin{xy}
+\xymatrix{
+X \ar[d]^{U} & X \times Y \ar[l]_P\ar[r]^Q\ar@{.>}[d]|{U \times V} & Y \ar[d]^{V} \\
+X' & X' \times Y' \ar[l]_{P'}\ar[r]^{Q'} & Y'
+}
+\end{xy}
+\]
+
+Moreover, when \(U \circ U'\) and \(V \circ V'\) are defined, we have \((U \times U') \circ (V \times V') = UU' \times VV'\), making \(\times\) into a functor:
+\[\times : \textbf{Cat} \times \textbf{Cat} \rightarrow \textbf{Cat}\]
 
 # Fibered product
 
