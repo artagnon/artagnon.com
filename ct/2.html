@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>artagnon.com: ct</title>
+    <title>artagnon.com: ct/2</title>
     <meta charset="UTF-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -22,18 +22,28 @@
     <div id="wrapper">
       <div id="main">
         <h1>
-          Category Theory
-          
+          Category Theory II
         </h1>
         <span id="pubdate">Last updated: Mon, 28 Jan 2019</span>
-        <ul id="indexfill">
-          <li>
-            <a href="/ct/1">Category Theory I</a>
-          </li>
-          <li>
-            <a href="/ct/2">Category Theory II</a>
-          </li>
-        </ul>
+        <h2>
+          Universal arrow
+        </h2>
+        <p>
+          Let \(S : A \rightarrow B\) be a functor. For the objects \(a \in A, b \in B\), the universal arrow from \(b\) to \(S\) is defined as the pair \(\langle r, u \rangle\) with object \(r \in A\) and morphism \(u : b \rightarrow Sr\):
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          b \ar[r]^u \ar@{}[d]|{=} & Sr \ar@{.>}[d]|{\exists!} \\
+          b \ar[r]^f & Sa
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Said differently, every arrow \(f\) factors uniquely through \(u\).
+        </p>
       </div>
       <div id="sidebar">
         <ul>

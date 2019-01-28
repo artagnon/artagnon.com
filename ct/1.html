@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>artagnon.com: ct/1</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="mathematics, mathematical notes, study notes, james munkres, miles reid, dummit and foote, ravi vakil, rising sea, allen hatcher, saunders mac lane, categories for the working mathematician" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/claytext.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (min-device-width: 320px) and (max-device-width: 600px)" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} }, tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>
+          Category Theory I
+        </h1>
+        <span id="pubdate">Last updated: Mon, 28 Jan 2019</span>
+        <p>
+          For the product set \(X \times Y\), given \(W, f, g\), and projections \(p : X \times Y \mapsto X\), \(q : X \times Y \mapsto Y\), the following diagram commutes:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          & W \ar@{.>}[d]|{\exists! h} \ar[dl]_f \ar[dr]^g & \\
+          X & X \times Y \ar[l]_p \ar[r]^q & Y
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          The unique function \(h\) is given by \(hw = \langle fw, gw \rangle\) for every \(w \in W\).
+        </p>
+        <p>
+          The correspondence \(h \mapsto \langle ph, qh \rangle  = \langle f, g \rangle\) is given by the bijection:
+          \[\text{hom}(W, X \times Y) \cong \text{hom}(\langle W, W \rangle, \langle X, Y \rangle)\]
+        </p>
+        <p>
+          We write \(\text{hom}(\langle U, V \rangle, \langle X, Y \rangle)\) for the pair of arrows \(U \rightarrow X\) and \(V \rightarrow Y\). The construction involves two additional constructions: \(\Delta W = \langle W, W \rangle\) and \(\langle X, Y \rangle \rightarrow X \times Y\). \(\Delta\) is said to be left adjoint to the product \(X \times Y\).
+        </p>
+        <p>
+          The one-point object \(1 = \{0\}\) serves as identity for the &quot;cartesian product&quot; operation:
+          \[1 \times X \xrightarrow{\lambda} X \xleftarrow[]{\rho} X \times 1\]
+        </p>
+        <p>
+          given by \(\lambda : \langle 0, x \rangle \rightarrow x\), \(\rho : \langle x, 0 \rangle \rightarrow x\).
+        </p>
+        <h2>
+          Monoid and group
+        </h2>
+        <p>
+          A monoid is a set \(M\) equipped with \(\mu : M \times M \rightarrow M\) and \(\eta : 1 \rightarrow M\) such that the following diagrams commute:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          M \times M \times M \ar[r]^{1 \times \mu}\ar[d]^{\mu \times 1} & M \times M \ar[d]^{\mu} \\
+          M \times M \ar[r]^{\mu} & M
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          1 \times M \ar[r]^{\eta \times 1}\ar[d]^\lambda & M \times M \ar[d]^\mu & M \times 1 \ar[l]_{1 \times \eta}\ar[d]^\rho \\
+          M & M & M
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          This means that \(\mu \circ (\eta \times 1) = \lambda\) and \(\mu \circ (1 \times \eta) = \rho\).
+        </p>
+        <p>
+          Writing it out in terms of the elements, we get the familiar associativity axioms:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \langle x, y, z \rangle \ar@{|->}[r]\ar@{|->}[d] & \langle xy, z \rangle \ar@{|->}[d] \\
+          \langle x, yz \rangle \ar@{|->}[r] & x(yz) = xy(z)
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          and the identity axioms:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \langle 0, x \rangle \ar@{|->}[r]\ar@{|->}[d] & \langle u, x \rangle \ar@{|->}[d] \\
+          x \ar@{}[r]|{=} & ux
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          \langle x, u \rangle \ar@{|->}[d] & \langle x, 0 \rangle \ar@{|->}[l]\ar@{|->}[d] \\
+          xu \ar@{}[r]|{=} & x
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Then a category can be defined as a monoid with &quot;product over O&quot;:
+          \[A \times_0 A = \{\langle f, g \rangle \mid f, g \in A; \text{dom } f = \text{cod } g\]
+        </p>
+        <p>
+          We describe a group as a monoid with the additional operation \(\eta : M \rightarrow M\) corresponding to \(x \rightarrow x^{-1}\):
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          M \ar[d]\ar[r]^\delta & M \times M \ar[r]^{1 \times \eta} & M \times M \ar[d]^\lambda \\
+          1 \ar[rr] & & M
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          x \ar@{|->}[d]\ar@{|->}[r] & \langle x, x \rangle \ar@{|->}[r] & \langle x, x^{-1} \rangle \ar@{|->}[d] \\
+          0 \ar@{|->}[rr] & & xx^{-1} = u
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Equivalently, a group is a category with one object, and in which every arrow has a two-sided inverse under composition.
+        </p>
+        <p>
+          \(\Delta\) is a category with objects all finite ordinals, and arrows all order-preserving functions. From algebraic topology, it is called the simplicial category.
+        </p>
+        <h2>
+          Functor
+        </h2>
+        <p>
+          A functor is a morphism of categories. Let \(T : B \rightarrow C\) be a functor of two categories. Then, the object function assigns to each object \(b \in B\), an object \(Tb \in C\); the arrow function assigns each arrow \(b \rightarrow b&#39; \in B\) to the arrow \(Tb \rightarrow Tb&#39; \in C\).
+        </p>
+        <p>
+          They arise naturally in algebraic topology, where we have a topological space \(X\) lifted to a homology group \(H_n(X)\); topological spaces map to abelian groups as \(A : \textbf{Top} \rightarrow \textbf{Ab}\). In algebra, a forgetful functor would erase the group structure yielding \(B : \textbf{Grp} \rightarrow \textbf{Set}\).
+        </p>
+        <p>
+          A functor is full when it is surjective, faithful when it is injective, fully faithful when it is bijective, in set-theoretic terms.
+        </p>
+        <p>
+          Functors also satisfy the law of associativity of compositions, just like the category does.
+        </p>
+        <h2>
+          Subcategory
+        </h2>
+        <p>
+          A subcategory \(S\) of category \(C\) includes some of the arrows in \(C\), and:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            For each arrow \(f\), the objects \(\text{dom } f, \text{codom } f\)
+          </li>
+          <li>
+            For each object \(s\), the identity arrow
+          </li>
+          <li>
+            For each pair of arrows \(s \rightarrow s&#39; \rightarrow s&#39;&#39;\), the composition of arrows
+          </li>
+        </ol>
+        <h2>
+          Natural transformation
+        </h2>
+        <p>
+          A natural transformation is a morphism of functors. Given two functors \(S, T : B \rightarrow C\), let \(\tau : S \overset{\bullet}{\rightarrow} T\) be an NT. Then, every arrow \(f : b \rightarrow b&#39; \in S\) is mapped to \(\tau_b = \tau b : Sb \rightarrow Sb&#39; \in C\), so the following diagram commutes:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          Sb \ar[r]^{\tau_b}\ar[d]^{Sb} & Tb \ar[d]^{Tf} \\
+          Sb' \ar[r]^{\tau_{b'}} & Tb'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          If we think of \(S\) as giving a picture in \(B\) of all objects and arrows in \(C\), we get the following commutative diagrams:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          a \ar[dd]^h\ar[dr]^f & \\
+          & b \ar[dl]^g \\
+          c &
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          Sa \ar[rr]^{\tau_a}\ar[dr]^{Sf}\ar[dd]^{Sh} & & Ta \ar[dr]^{Tf}\ar[dd]|{\hole} & \\
+          & Sb \ar[rr]^<<<<<{\tau_b}\ar[dl]^{Sg} & & Tb \ar[dl]^{Tg} \\
+          Sc \ar[rr]^{\tau_c} & & Tc &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \(\tau_a, \tau_b, \tau_c\) are called the components of the NT.
+        </p>
+        <p>
+          The determinant is an NT \(\tau : \textbf{CRng} \overset{\bullet}{\rightarrow} \textbf{Grp}\). Let \(\text{det}_K M\) be the determinant of matrix \(M\) with entries in commutative ring \(K\). \(det_K\) is a morphism \(\text{GL}_n K \overset{\bullet}{\rightarrow} K^*\) of groups.
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \text{GL}_n K \ar[r]^{\text{det}_K}\ar[d]^{\text{GL}_n f} & K^* \ar[d]^{f^*} \\
+          \text{GL}_n K' \ar[r]^{\text{det}_{K'}} & K'^{*}
+          }
+          \end{xy}
+          \]
+        </p>
+        <h2>
+          Monics, epis, and zeros
+        </h2>
+        <p>
+          Arrow \(e : a \rightarrow b \in C\) is invertible if there exists \(e&#39; : b \rightarrow a \in C\) with \(e&#39;e = 1_a, ee&#39; = 1_b\). If \(e&#39;\) is unique, \(e&#39; = e^{-1}\), and the isomorphism \(a \cong b\) holds.
+        </p>
+        <p>
+          For arrow \(m : a \rightarrow b\), \(m \circ a = m \circ b \implies a = b\) is the left cancelation property, and \(m\) is termed monic. \(a \circ m = b \circ m \implies a = b\) is the right cancelation property, and \(m\) is termed epi. In \(mathbf{Set}\), monic arrows are injections and epi arrows are surjections.
+        </p>
+        <p>
+          For arrow \(h : a \rightarrow b\), arrow \(r : b \rightarrow a\) is right inverse if \(hr = 1_b\); \(r\) is termed as the section of \(h\). Similarly, for \(l : b \rightarrow a\), \(lh = 1_a\), \(l\) is termed as the retraction of \(h\).
+        </p>
+        <p>
+          If, for each object \(a \in C\), there exists exactly one arrow \(a \rightarrow t\), \(t\) is termed as the terminal object. On the other hand, for each object \(a \in C\), there exists exactly one arrow \(i \rightarrow a\), \(i\) is termed as the initial object. In \(\mathbf{Set}\), the empty set is initial, and any one-point set is terminal. An object which is both initial and final is called the null object \(z \in C\); then there exists a unique arrow \(a \rightarrow z \rightarrow b\), for any two objects \(a, b \in C\) called the zero arrow.
+        </p>
+        <p>
+          A groupoid is a category in which all morphisms are invertible. An example would be the fundamental groupoid \(\pi(X)\), from algebraic topology. A groupoid is said to be connected if there is an arrow between any two objects in the groupoid.
+        </p>
+        <h2>
+          Examples
+        </h2>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(\textbf{Rng}\) is the category of all small rings
+          </li>
+          <li>
+            \(\textbf{Top}\) is the category of topological spaces, where objects are the set of small topological spaces, and morphisms are continuous maps between spaces
+          </li>
+          <li>
+            \(\textbf{Toph}\) is the category of topological spaces, where objects are the set of small topological spaces, and morphisms are homotopies
+          </li>
+          <li>
+            \(\textbf{Set}_*\) is the small category of pointed sets
+          </li>
+          <li>
+            \(\textbf{Top}_*, \textbf{Toph}_*\) are the categories of small pointed topological spaces; in the latter, morphisms are homotopies with a fixed basepoint \(*\)
+          </li>
+          <li>
+            \(\mathbf{R-Mod}\) is the category of small left R-modules
+          </li>
+          <li>
+            \(\mathbf{Vec}_F\) is the category of vector spaces
+          </li>
+          <li>
+            \(\mathbf{Rel}\) is the category of small sets, where morphisms are binary relations
+          </li>
+          <li>
+            A concrete category is the pair \(\langle C, U \rangle\), where \(C\) is a category, and \(U\) is a faithful functor \(U : C \rightarrow \textbf{Set}\)
+          </li>
+        </ol>
+        <h2>
+          Hom-Sets
+        </h2>
+        <p>
+          \(\text{hom}(a, b)\) is used to denote the set of all morphisms from \(a\) to \(b\). A small category can be defined in terms of hom-sets, with the following data:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            Objects \(a, b, c, ...\)
+          </li>
+          <li>
+            For every pair of objects \(\langle a, b \rangle\), a function associating \(\text{hom}(a, b)\) to the pair
+          </li>
+          <li>
+            For every triple \(\langle a, b, c \rangle\), the composition axiom:
+          </li>
+        </ol>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \text{hom}(c, d) \times \text{hom}(b, c) \times \text{hom}(a, b) \ar[r]\ar[d] & \text{hom}(b, d) \times \text{hom}(a, b) \ar[d] \\
+          \text{hom}(c, d) \times \text{hom}(a, c) \ar[r] & \text{hom}(a, d)
+          }
+          \end{xy}
+          \]
+        </p>
+        <ol class="olitems" type="i" start="4">
+          <li>
+            For every object \(b\), \(1_b \in \text{hom}(b, b)\); the identity axiom
+          </li>
+        </ol>
+        <p>
+          An Ab-category or preaddive category is a category in which hom-sets are additive abelian groups, and composition is bilinear: given \(f, f&#39; : a \rightarrow b\), \(g, g&#39; : b \rightarrow c\),
+          \[(f + f&#39;) \circ (g + g&#39;) = f \circ g + f \circ g&#39; + f&#39; \circ g + f&#39; \circ g&#39;\]
+        </p>
+        <p>
+          \(\textbf{Ab}, \textbf{R-Mod}, \textbf{Mod-R}\) are all Ab-categories. \(\textbf{Ab-cat}\) is used the denote the category of all small Ab-categories.
+        </p>
+        <h2>
+          Duality
+        </h2>
+        <p>
+          We define \(C^{op}\) to be the opposite category, with the same objects as \(C\), and directions of arrows reversed. For each \(f : a \rightarrow b \in C\), is an \(f^{op} : b \rightarrow a \in C^{op}\). Also \(f^{op} g^{op} = (gf)^{op}\).  The assignments \(A \mapsto A^{op}\) and \(F \mapsto F^{op}\) define a covariant functor \(\textbf{Cat} \rightarrow \textbf{Cat}\).
+        </p>
+        <p>
+          The opposite functor \(F^{op} : B^{op} \rightarrow A^{op}\) is defined in the usual way. A functor \(S : A^{op} \rightarrow B\) can be defined in terms of \(A\) as \(\bar{S}\), a contravariant functor. Then, \(\bar{S}(m \circ n) = \bar{S}(n) \circ \bar{S}(m)\).
+        </p>
+        <p>
+          Hom-sets provide an example of covariant and contravariant functors. For each object \(a \in C\), the object function of the covariant hom-functor sends:
+          \[C(a, -) = \text{hom}(a, -) : C \rightarrow \mathbf{Set}\]
+        </p>
+        <p>
+          and the arrow function sends each arrow \(k : b \rightarrow b&#39;\) to:
+          \[\text{hom}(a, k) : \text{hom}(a, b) \rightarrow \text{hom}(a, b&#39;)\]
+        </p>
+        <p>
+          For each object \(b \in C\), the object function of the contravariant hom-functor sends:
+          \[C(-, b) = \text{hom}(-, b) : C^{op} \rightarrow \mathbf{Set}\]
+        </p>
+        <p>
+          and the arrow function sends each arrow \(g : a \rightarrow a&#39;\) to:
+          \[\text{hom}(g, b) : \text{hom}(a&#39;, b) \rightarrow \text{hom}(a, b)\]
+        </p>
+        <p>
+          To simplify the noation, introduce \(k_*\) for &quot;composition with k on the left&quot; or &quot;composition induced by k&quot;, and \(g^*\) for &quot;composition with g&quot; on the right:
+          \[k_* f = k \circ f \quad g^* f = f \circ g\]
+        </p>
+        <p>
+          For \(k : a \rightarrow a&#39;\) and \(g : b \rightarrow b&#39;\), we have:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \text{hom}(a', b) \ar[r]^{k^*}\ar[d]^{g_*} & \text{hom}(a, b) \ar[d]^{g_*} \\
+          \text{hom}(a', b') \ar[r]^{k^*} & \text{hom}(a, b')
+          }
+          \end{xy}
+          \]
+        </p>
+        <h2>
+          Product structure
+        </h2>
+        <p>
+          \(P_1\) along with \(X\) and \(Y\) defines a product. There exists a unique morphism between \(P_1\) and \(P_2\) preserving the product structure.
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          P_2 \ar@/_/[ddr]_N \ar@{.>}[dr]|{\exists!} \ar@/^/[drr]^M \\
+          & P_1 \ar[d]^Q \ar[r]_P & X \\
+          & Y &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \(P, Q\) are functors called projections of \(P_1\) onto \(X\) and \(Y\). Elements of \(P_1\) are pairs \(\langle x, y \rangle\).
+        </p>
+        <p>
+          Let \(U : X \rightarrow Y, V : X&#39; \rightarrow Y&#39;\) be two functors; then \(U \times V : X \times Y \rightarrow X&#39; \times Y&#39;\) is the product of two functors, and we yield the following commutative diagram:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          X \ar[d]^{U} & X \times Y \ar[l]_P\ar[r]^Q\ar@{.>}[d]|{U \times V} & Y \ar[d]^{V} \\
+          X' & X' \times Y' \ar[l]_{P'}\ar[r]^{Q'} & Y'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Moreover, when \(U \circ U&#39;\) and \(V \circ V&#39;\) are defined, we have \((U \times U&#39;) \circ (V \times V&#39;) = UU&#39; \times VV&#39;\), making \(\times\) into a functor:
+          \[\times : \textbf{Cat} \times \textbf{Cat} \rightarrow \textbf{Cat}\]
+        </p>
+        <p>
+          Functor \(S : B \times C \rightarrow D\) is defined to be a bifunctor or a functor in two variable objects. Hom-sets may be described as bifunctors \(\text{hom} : C^{op} \times C \rightarrow \textbf{Set}\).
+        </p>
+        <p>
+          Consider NT \(\alpha\) between bifunctors \(S, S&#39; : B \times C \rightarrow D\): \(\alpha(b, c) : S(b, c) \rightarrow S&#39;(b, c)\) is called natural in \(b\) if:
+          \[\alpha(-, c) : S(-, c) \overset{\bullet}{\rightarrow} S&#39;(-, c)\]
+        </p>
+        <p>
+          Consider the product category \(C \times \textbf{2}\), where \(\textbf{2}\) is the category of the two-point set \(\{0, 1\}\):
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & \bullet \ar[dr] & \\
+          C \times 1 & \bullet \ar[rr]\ar[ur] & & \bullet \\
+          & & \bullet \ar[dr]\ar@{.>}[uu] & \\
+          C \times 0 & \bullet \ar[rr]\ar[ur]\ar[uu] & & \bullet \ar[uu]
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Here \(T_0, T_1 : C \rightarrow C \times \mathbf{2}\) are functors from &quot;bottom&quot; to &quot;top&quot;. \(T_0 f = \langle f, 0 \rangle\), \(T_1 f = \langle f, 1 \rangle\). If \(\uparrow : 0 \rightarrow 1\) denotes the unique non-identity arrow in \(\mathbf{2}\), then \(T_0, T_1\) are defined by:
+          \[\mu : T_0 \overset{\bullet}{\rightarrow} T_1 \quad \mu c = \langle c, \uparrow \rangle\]
+        </p>
+        <p>
+          for any object \(c\). It maps &quot;bottom&quot; to &quot;top&quot;, and is natural. We call \(\mu\) the universal natural transform from \(C\).
+        </p>
+        <h2>
+          Fibered product
+        </h2>
+        <p>
+          The object \(X \times_Z Y\) along with the morphisms \(pr_X\) and \(pr_Y\) is called fibered product.
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          U \ar@/_/[ddr] \ar@{.>}[dr]|{\exists!} \ar@/^/[drr] \\
+          & X \times_Z Y \ar[d]^{pr_Y} \ar[r]_{pr_X} & X \ar[d]_f \\
+          & Y \ar[r]^g & Z
+          }
+          \end{xy}
+          \]
+        </p>
+        <h2>
+          Functor category
+        </h2>
+        <p>
+          Consider functors \(R, S, T : C \rightarrow B\) and NTs \(\sigma : R \overset{\bullet}{\rightarrow} S, \tau : S \overset{\bullet}{\rightarrow} T\). Then, \((\tau \bullet \sigma) c = \tau c \circ \sigma c\), and \(\tau \bullet \sigma : R \overset{\bullet}{\rightarrow} T\), and we get the following commutative diagram:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          Rc \ar[r]^{Rf}\ar[d]^{\sigma_c}\ar@/_2pc/[dd]_{(\tau \bullet \sigma) c} & Rc' \ar[d]^{\sigma_{c'}}\ar@/^2pc/[dd]^{(\tau \bullet \sigma) c'} \\
+          Sc \ar[r]^{Sf}\ar[d]^{\tau_c} & Sc' \ar[d]^{\tau_{c'}} \\
+          Tc \ar[r]^{Tf} & Tc'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          The category of functors may be written as \(B^C = \text{Funct}(C, B)\), with objects the functors \(T : C \rightarrow B\), and morphisms the NTs between two such functors. The hom-set for this category is:
+          \[\text{Nat}(S, T) = B^C(S, T) = \{\tau \mid \tau : S \overset{\bullet}{\rightarrow} T\}\]
+        </p>
+        <p>
+          If \(B = \{0, 1\}\), then \(B^1\) is isomorphic to \(B\), and \(B^2\) is the category whose objects are arrows \(f : a \rightarrow b\) of \(B\), and whose arrows \(f \rightarrow f&#39;\) are those that, along with pair \(\langle h, k \rangle\), make the following diagram commute:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          a \ar[r]^h\ar[d]^f & a' \ar[d]^{f'} \\
+          b \ar[r]^k & b'
+          }
+          \end{xy}
+          \]
+        </p>
+        <h2>
+          Category of all categories
+        </h2>
+        <p>
+          Natural transforms satisfy the interchange law with respect to horizontal and vertical products:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          A \ar@<-2ex>[r] \ar[r]_{\downarrow \tau} \ar@<2ex>[r]_{\downarrow \sigma} & B \ar@<-2ex>[r]\ar[r]_{\downarrow \tau'} \ar@<2ex>[r]_{\downarrow \sigma'} & C
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \[(\tau' \bullet \sigma') \circ (\tau \bullet \sigma) = (\tau' \circ \tau) \bullet (\sigma' \circ \sigma)\]
+        </p>
+        <h2>
+          Comma category
+        </h2>
+        <p>
+          If \(b\) is an object of category \(C\), \((b \downarrow C)\) is a category in which objects are objects of \(\langle f, c \rangle\), where \(f : b \rightarrow c\), and arrows \(h : \langle f, c \rangle \rightarrow \langle f&#39;, c&#39; \rangle\), such that \(h \circ f = f&#39;\):
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          & b \ar[ld]_f \ar[rd]^{f'} & \\
+          c \ar[rr]^h & & c'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Example: If \(\mathbf{*}\) denotes a one-point set, \((\mathbf{*} \downarrow \mathbf{Set})\) denotes the category of pointed sets.
+        </p>
+        <p>
+          If \(b\) is an object of category \(C\), and \(S : D \rightarrow C\) a functor, the category \((b \downarrow S)\) of objects under \(b\) has as objects pairs \(\langle f, d \rangle\), where \(d \in \text{Obj } D\) and \(f : b \rightarrow Sd\), and arrows \(h : \langle f, d \rangle \rightarrow \langle f&#39;, d&#39; \rangle\) all those arrows \(h : f \rightarrow f&#39;\) such that \(Sh \circ f = f&#39;\):
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          & b \ar[ld]_f \ar[rd]^{f'} & \\
+          Sd \ar[rr]^{Sh} & & Sd'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Consider \(C \xleftarrow{T} A \xrightarrow{S} B\) where \(S\) and \(T\) are NTs. Then the category \((T \downarrow S)\), also written as \((T, S)\) is called the comma category. It has as objects triples \(\langle c, b, f \rangle\), and as arrows \(\langle c, b, f \rangle \rightarrow \langle c&#39;, b&#39;, f&#39; \rangle\) all pairs \(\langle k, h \rangle\) of arrows \(k : c \rightarrow c&#39;\), \(h : b \rightarrow b&#39;\) such that \(f&#39; \circ Tk = Sh \circ f\):
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          Tc \ar[r]^{Tk}\ar[d]_f & Tc' \ar[d]^{f'} \\
+          Sb \ar[r]^{Sh} & Sb'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          We get the following diagram when we consider projections of the comma category:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & \langle c, b, f : Tc \rightarrow Sb \rangle \ar@{|->}[d]\ar@{|->}[lld]\ar@{|->}[rrd] & & \\
+          b \ar@{|->}[r] & Sb & (f : Tc \rightarrow Sb) \ar@{|->}[l]\ar@{|->}[r] & Tc & c \ar@{|->}[l]
+          }
+          \end{xy}
+          \]
+        </p>
+        <h2>
+          Graphs and free categories
+        </h2>
+        <p>
+          A graph may be pictured, like a category, with objects as vertices and arrows as edges, except that there are no identity or composite arrows; for this reason, it may be called a precategory.
+        </p>
+        <p>
+          A directed graph is a set of objects \(O\) and a set \(A\) of arrows \(f\) such that there exists a pair of arrows:
+          \[
+          \begin{xy}
+          \xymatrix{
+          A \ar@&lt;-1ex&gt;[r]_{\partial_1} \ar@&lt;1ex&gt;[r]^{\partial_0} &amp; O &amp; \partial_0 f = \text{dom } f &amp; \partial_1 f = \text{codom } f
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          A morphism between graphs \(D : G \rightarrow G&#39;\) is a pair of functions \(D_O : O \rightarrow O&#39;\) and \(D_A : A \rightarrow A&#39;\) such that:
+          \[D_O \partial_0 f = \partial_0 D_A f \quad D_O \partial_1 f = \partial_1 D_A f\]
+        </p>
+        <p>
+          A forgetful functor \(U : \textbf{Cat} \rightarrow \textbf{Grph}\) is defined as follows: for every \(F : C \rightarrow C&#39;\), there exists \(UF : UC \rightarrow UC&#39;\).
+        </p>
+        <p>
+          Let O be a fixed set. An O-graph has O as its objects; a morhpism \(D\) of O-graphs will be one with \(D_O : O \rightarrow O\) as identity. If \(A\) and \(B\) are two O-graphs, then product over O is defined as:
+          \[A \times_O B = \{\langle f, g \rangle \mid \partial_0 f = \partial_1 g, f \in A, g \in B\}\]
+        </p>
+        <p>
+          The definitions \(\partial_0 \langle f, g \rangle = f, \partial_1 \langle f, g \rangle = g\) make this a graph.
+        </p>
+        <p>
+          A category with objects \(O\) may be described as an O-graph equipped with the two morphisms \(c : A \times_O A \rightarrow A\) and \(i : O \rightarrow A\), composition and identity, such that the following commute:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          A \times_O A \times_O A \ar[r]^{c \times 1}\ar[d]^{1 \times c} & A \times_O A \ar[d]^c \\
+          A \times_O A \ar[r]^c & A
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          O \times_O A \ar[r]^{i \times 1}\ar[d]^\cong & A \times_O A \ar[d]^c & A \times_O O \ar[l]_{1 \times i}\ar[d]^\cong \\
+          A & A & A
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          A free category may be &quot;generated by a graph&quot; \(G\) having the same set of objects \(O\), and morphisms composition on edges of the graph, and this is written as \(C_G\). Given \(D : B \rightarrow C\), we get the following diagram in terms of underlying graphs:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          G \ar[r]\ar[dr] & UB \ar@{.>}[d]|{\exists! UD} \\
+          & UC
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          We conclude this section by stating the bijective correspondence between categories and their underlying graphs:
+          \[\textbf{Cat}(C_G, B) \cong \textbf{Grph}(C, UB)\]
+        </p>
+        <h2>
+          Quotient category
+        </h2>
+        <p>
+          Let \(C\) be a category and \(R_{a, b}\) be a relation defined on the hom-set. Then, quotient category \(C/R\) is defined in terms of a universal functor \(Q\):
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          C \ar[r]^Q \ar[d]_H & C/R \ar@{.>}[dl]|{\exists! P} \\
+          D &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          If \(C = \textbf{Top}\), and \(fRf&#39;\) is homotopy equivalence, \(C/R = \textbf{Toph}\) with objects as spaces and arrows homotopies between them. \(C/R\), as generated by a free category \(C\), is said to have generators \(G\) and relations \(R\).
+        </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/ac">ac</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/cv">cv</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
