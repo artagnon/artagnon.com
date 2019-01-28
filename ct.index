@@ -119,7 +119,7 @@ A subcategory \(S\) of category \(C\) includes some of the arrows in \(C\), and:
 
 # Natural transformation
 
-A natural transformation is a morphism of functors. Given two functors \(S, T : B \rightarrow C\), let \(\tau : S \rightarrow T\) be an NT. Then, every arrow \(f : b \rightarrow b' \in S\) is mapped to \(\tau_b = \tau b : Sb \rightarrow Sb' \in C\), so the following diagram commutes:
+A natural transformation is a morphism of functors. Given two functors \(S, T : B \rightarrow C\), let \(\tau : S \overset{\bullet}{\rightarrow} T\) be an NT. Then, every arrow \(f : b \rightarrow b' \in S\) is mapped to \(\tau_b = \tau b : Sb \rightarrow Sb' \in C\), so the following diagram commutes:
 
 \[
 \begin{xy}
@@ -151,7 +151,7 @@ Sc \ar[rr]^{\tau_c} & & Tc &
 
 \(\tau_a, \tau_b, \tau_c\) are called the components of the NT.
 
-The determinant is an NT \(\tau : \textbf{CRng} \rightarrow \textbf{Grp}\). Let \(\text{det}_K M\) be the determinant of matrix \(M\) with entries in commutative ring \(K\). \(det_K\) is a morphism \(\text{GL}_n K \rightarrow K^*\) of groups.
+The determinant is an NT \(\tau : \textbf{CRng} \overset{\bullet}{\rightarrow} \textbf{Grp}\). Let \(\text{det}_K M\) be the determinant of matrix \(M\) with entries in commutative ring \(K\). \(det_K\) is a morphism \(\text{GL}_n K \overset{\bullet}{\rightarrow} K^*\) of groups.
 
 \[
 \begin{xy}
@@ -272,7 +272,28 @@ X' & X' \times Y' \ar[l]_{P'}\ar[r]^{Q'} & Y'
 Moreover, when \(U \circ U'\) and \(V \circ V'\) are defined, we have \((U \times U') \circ (V \times V') = UU' \times VV'\), making \(\times\) into a functor:
 \[\times : \textbf{Cat} \times \textbf{Cat} \rightarrow \textbf{Cat}\]
 
-Functor \(S : B \times C \rightarrow D\) is defined to be a bifunctor or a functor in two variable objects.
+Functor \(S : B \times C \rightarrow D\) is defined to be a bifunctor or a functor in two variable objects. Hom-sets may be described as bifunctors \(\text{hom} : C^{op} \times C \rightarrow \textbf{Set}\).
+
+Consider NT \(\alpha\) between bifunctors \(S, S' : B \times C \rightarrow D\): \(\alpha(b, c) : S(b, c) \rightarrow S'(b, c)\) is called natural in \(b\) if:
+\[\alpha(-, c) : S(-, c) \overset{\bullet}{\rightarrow} S'(-, c)\]
+
+Consider the product category \(C \times \textbf{2}\), where \(\textbf{2}\) is the category of the two-point set \(\{0, 1\}\):
+
+\[
+\begin{xy}
+\xymatrix{
+& & \bullet \ar[dr] & \\
+C \times 1 & \bullet \ar[rr]\ar[ur] & & \bullet \\
+& & \bullet \ar[dr]\ar@{.>}[uu] & \\
+C \times 0 & \bullet \ar[rr]\ar[ur]\ar[uu] & & \bullet \ar[uu]
+}
+\end{xy}
+\]
+
+Here \(T_0, T_1 : C \rightarrow C \times \mathbf{2}\) are functors from "bottom" to "top". \(T_0 f = \langle f, 0 \rangle\), \(T_1 f = \langle f, 1 \rangle\). If \(\uparrow : 0 \rightarrow 1\) denotes the unique non-identity arrow in \(\mathbf{2}\), then \(T_0, T_1\) are defined by:
+\[\mu : T_0 \overset{\bullet}{\rightarrow} T_1 \quad \mu c = \langle c, \uparrow \rangle\]
+
+for any object \(c\). It maps "bottom" to "top", and is natural. We call \(\mu\) the universal natural transform from \(C\).
 
 # Fibered product
 
@@ -284,6 +305,96 @@ The object \(X \times_Z Y\) along with the morphisms \(pr_X\) and \(pr_Y\) is ca
 U \ar@/_/[ddr] \ar@{.>}[dr]|{\exists!} \ar@/^/[drr] \\
 & X \times_Z Y \ar[d]^{pr_Y} \ar[r]_{pr_X} & X \ar[d]_f \\
 & Y \ar[r]^g & Z
+}
+\end{xy}
+\]
+
+# Functor categories
+
+Consider functors \(R, S, T : C \rightarrow B\) and NTs \(\sigma : R \overset{\bullet}{\rightarrow} S, \tau : S \overset{\bullet}{\rightarrow} T\). Then, \((\tau \bullet \sigma) c = \tau c \circ \sigma c\), and \(\tau \bullet \sigma : R \overset{\bullet}{\rightarrow} T\), and we get the following commutative diagram:
+
+\[
+\begin{xy}
+\xymatrix{
+Rc \ar[r]^{Rf}\ar[d]^{\sigma_c}\ar@/_2pc/[dd]_{(\tau \bullet \sigma) c} & Rc' \ar[d]^{\sigma_{c'}}\ar@/^2pc/[dd]^{(\tau \bullet \sigma) c'} \\
+Sc \ar[r]^{Sf}\ar[d]^{\tau_c} & Sc' \ar[d]^{\tau_{c'}} \\
+Tc \ar[r]^{Tf} & Tc'
+}
+\end{xy}
+\]
+
+The category of functors may be written as \(B^C = \text{Funct}(C, B)\), with objects the functors \(T : C \rightarrow B\), and morphisms the NTs between two such functors. The hom-set for this category is:
+\[\text{Nat}(S, T) = B^C(S, T) = \{\tau \mid \tau : S \overset{\bullet}{\rightarrow} T\}\]
+
+If \(B = \{0, 1\}\), then \(B^1\) is isomorphic to \(B\), and \(B^2\) is the category whose objects are arrows \(f : a \rightarrow b\) of \(B\), and whose arrows \(f \rightarrow f'\) are those that, along with pair \(\langle h, k \rangle\), make the following diagram commute:
+
+\[
+\begin{xy}
+\xymatrix{
+a \ar[r]^h\ar[d]^f & a' \ar[d]^{f'} \\
+b \ar[r]^k & b'
+}
+\end{xy}
+\]
+
+# Category of all categories
+
+Natural transforms satisfy the interchange law with respect to horizontal and vertical products:
+
+\[
+\begin{xy}
+\xymatrix{
+A \ar@<-2ex>[r] \ar[r]_{\downarrow \tau} \ar@<2ex>[r]_{\downarrow \sigma} & B \ar@<-2ex>[r]\ar[r]_{\downarrow \tau'} \ar@<2ex>[r]_{\downarrow \sigma'} & C
+}
+\end{xy}
+\]
+
+\[(\tau' \bullet \sigma') \circ (\tau \bullet \sigma) = (\tau' \circ \tau) \bullet (\sigma' \circ \sigma)\]
+
+# Comma category
+
+If \(b\) is an object of category \(C\), \((b \downarrow C)\) is a category in which objects are objects of \(\langle f, c \rangle\), where \(f : b \rightarrow c\), and arrows \(h : \langle f, c \rangle \rightarrow \langle f', c' \rangle\), such that \(h \circ f = f'\):
+
+\[
+\begin{xy}
+\xymatrix{
+& b \ar[ld]_f \ar[rd]^{f'} & \\
+c \ar[rr]^h & & c'
+}
+\end{xy}
+\]
+
+Example: If \(\mathbf{*}\) denotes a one-point set, \((\mathbf{*} \downarrow \mathbf{Set})\) denotes the category of pointed sets.
+
+If \(b\) is an object of category \(C\), and \(S : D \rightarrow C\) a functor, the category \((b \downarrow S)\) of objects under \(b\) has as objects pairs \(\langle f, d \rangle\), where \(d \in \text{Obj } D\) and \(f : b \rightarrow Sd\), and arrows \(h : \langle f, d \rangle \rightarrow \langle f', d' \rangle\) all those arrows \(h : f \rightarrow f'\) such that \(Sh \circ f = f'\):
+
+\[
+\begin{xy}
+\xymatrix{
+& b \ar[ld]_f \ar[rd]^{f'} & \\
+Sd \ar[rr]^{Sh} & & Sd'
+}
+\end{xy}
+\]
+
+Consider \(C \xleftarrow{T} A \xrightarrow{S} B\) where \(S\) and \(T\) are NTs. Then the category \((T \downarrow S)\), also written as \((T, S)\) is called the comma category. It has as objects triples \(\langle c, b, f \rangle\), and as arrows \(\langle c, b, f \rangle \rightarrow \langle c', b', f' \rangle\) all pairs \(\langle k, h \rangle\) of arrows \(k : c \rightarrow c'\), \(h : b \rightarrow b'\) such that \(f' \circ Tk = Sh \circ f\):
+
+\[
+\begin{xy}
+\xymatrix{
+Tc \ar[r]^{Tk}\ar[d]_f & Tc' \ar[d]^{f'} \\
+Sb \ar[r]^{Sh} & Sb'
+}
+\end{xy}
+\]
+
+We get the following diagram when we consider projections of the comma category:
+
+\[
+\begin{xy}
+\xymatrix{
+& & \langle c, b, f : Tc \rightarrow Sb \rangle \ar@{|->}[d]\ar@{|->}[lld]\ar@{|->}[rrd] & & \\
+b \ar@{|->}[r] & Sb & (f : Tc \rightarrow Sb) \ar@{|->}[l]\ar@{|->}[r] & Tc & c \ar@{|->}[l]
 }
 \end{xy}
 \]
