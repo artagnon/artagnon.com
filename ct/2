@@ -22,3 +22,16 @@ Example:
 (iii) For integral domain \(D\) and field of quotients \(Q(D)\), there exists a monomorphism \(j : D \rightarrow Q(D)\). The universal (forgetful) functor \(\langle Q(D), j \rangle\) maps \(\textbf{Fld} \rightarrow \textbf{Dom}_m\), from the category of fields to the category of domains, provided we take the arrows of \(\textbf{Dom}_m\) to be monomorphisms of integral domains.
 
 A universal element of functor \(H : D \rightarrow \textbf{Set}\) is defined to be the pair \(\langle r, e \rangle\) consisting of \(r \in D\), \(e \in Hr\), such that \(\langle d, x \rangle\) consisting of \(Hr \in D\) and arrow \(f : r \rightarrow d\) implies that \((Hf)e = x\).
+
+Consider the equivalence relation \(E\) on set \(S\), and the projection \(p : S \rightarrow S/E\) sending every element in the set to its E-equivalence class:
+
+\[
+\begin{xy}
+\xymatrix{
+S \ar@{}[d]|{=}\ar[r]^p & S/E \ar[d]^g \\
+S \ar[r]^f & X
+}
+\end{xy}
+\]
+
+This states that \(\langle S/E, p \rangle\) is a universal element under the functor \(H : \textbf{Set} \rightarrow \textbf{Set}\). As an example, consider group \(G\) and its normal subgroup \(N\); the universal element is \(\langle G/N, p \rangle\) where \(p : G \rightarrow G/N\).
