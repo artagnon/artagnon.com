@@ -22,6 +22,8 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
     div id="wrapper"
       div id="main"
         h1 #{title}
+        span id="pubdate" Created: #{authdate}
+        br
         span id="pubdate" Last updated: #{pubdate}
         - paragraphs.each do |paragraph|
           - if paragraph.is_header?
