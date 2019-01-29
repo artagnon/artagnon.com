@@ -4,19 +4,57 @@ Detecting loops in a directed graph can be tricky, depending on how you define y
 
 There are five [^1] reduced cases we must consider:
 
-![No loops](/assets/no-loops.png) | ![Early Exit](/assets/early-exit.png)
-:--------------------------------:|:-------------------------------------
-*No loops*                        | *Early exit*
+\[
+\begin{xy}
+\xymatrix{
+& & 1 \ar[dl]\ar[dr] & \\
+\text{No loops} & 2 \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & 3 \ar[dl] \\
+& & 4 &
+}
+\end{xy}
+\]
 
-![Multi-entry loop](/assets/multi-entry.png) | ![Cuddled loops](/assets/cuddled-loops.png)
-:-------------------------------------------:|:-------------------------------------------
-*Multi-entry*                                | *Cuddled loops*
+\[
+\begin{xy}
+\xymatrix{
+& & \text{header}\ar[dl] & \\
+\text{Early exit} & \text{body}\ar[dr] & & \text{footer}\ar[dl]\ar[ul]^{\text{backedge}} \\
+& & \text{exit target} &
+}
+\end{xy}
+\]
 
-![Shared header loops](/assets/shared-header.png)
+\[
+\begin{xy}
+\xymatrix{
+& & \text{entry source}\ar[dl]\ar[dr] & \\
+\text{Multi-entry} & \text{header}\ar[dr] & & \text{footer}\ar[ul]\ar[ll]^{\text{backedge}} \\
+& & \text{body}\ar[ur] &
+}
+\end{xy}
+\]
 
-*Shared header*
+\[
+\begin{xy}
+\xymatrix{
+& & \text{header A}\ar[dl] & \\
+\text{Cuddled loops} & \text{body A or header B}\ar[rr] & & \text{footer A or body B}\ar[ul]_{\text{backedge A}}\ar[dl] \\
+& & \text{footer B}\ar[ul]^{\text{backedge B}} &
+}
+\end{xy}
+\]
+
+\[
+\begin{xy}
+\xymatrix{
+\text{Shared header} & & \text{shared header}\ar[dl] & \\
+& \text{body}\ar[r] & \text{footer A}\ar[u]^{\text{backedge A}}\ar[r] & \text{footer B}\ar[ul]^{\text{backedge B}}
+}
+\end{xy}
+\]
 
 Now, let's employ a simple DFS:
+
 [[
 void DFS(Node *v) {
   assign_start_time(v); // increment a clock as you assign
@@ -29,25 +67,62 @@ void DFS(Node *v) {
 
 We get the following start times and end times:
 
-![No loops](/assets/no-loops-dfs.png) | ![Early Exit](/assets/early-exit-dfs.png)
-:------------------------------------:|:-----------------------------------------
-*No loops*                            | *Early exit*
+\[
+\begin{xy}
+\xymatrix{
+& & \text{1/8} \ar[dl]\ar[dr] & \\
+\text{No loops} & \text{6/7} \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & \text{2/5} \ar[dl] \\
+& & \text{3/4} &
+}
+\end{xy}
+\]
 
-![Multi-entry loop](/assets/multi-entry-dfs.png) | ![Cuddled loops](/assets/cuddled-loops-dfs.png)
-:-----------------------------------------------:|:-----------------------------------------------
-*Multi-entry*                                    | *Cuddled loops*
+\[
+\begin{xy}
+\xymatrix{
+& & \text{1/8}\ar[dl] & \\
+\text{Early exit} & \text{2/7}\ar[dr] & & \text{4/5}\ar[dl]\ar[ul]^{\text{backedge}} \\
+& & \text{3/6} &
+}
+\end{xy}
+\]
 
-![Shared header loops](/assets/shared-header-dfs.png)
+\[
+\begin{xy}
+\xymatrix{
+& & \text{1/8}\ar[dl]\ar[dr] & \\
+\text{Multi-entry} & \text{4/5}\ar[dr] & & \text{2/7}\ar[ul]\ar[ll]^{\text{backedge}} \\
+& & \text{3/6}\ar[ur] &
+}
+\end{xy}
+\]
 
-*Shared header*
+\[
+\begin{xy}
+\xymatrix{
+& & \text{1/8}\ar[dl] & \\
+\text{Cuddled loops} & \text{2/7}\ar[rr] & & \text{3/6}\ar[ul]_{\text{backedge A}}\ar[dl] \\
+& & \text{4/5}\ar[ul]^{\text{backedge B}} &
+}
+\end{xy}
+\]
+
+\[
+\begin{xy}
+\xymatrix{
+\text{Shared header} & & & \text{1/8}\ar[dll] & & \\
+& \text{2/7}\ar[rr] & & \text{3/6}\ar[u]^{\text{backedge A}}\ar[rr] & & \text{4/5}\ar[ull]^{\text{backedge B}}
+}
+\end{xy}
+\]
 
 Let's call the first number "DFS number", and the second number "topo number", to indicate that this is the order that topological sort would have produced, in the absence of backedges (topological sort is meaningless when there are loops).
 
-**First pass**: do the dfs, and number everything.
+First pass: do the dfs, and number everything.
 
-**Second pass**: find the backedge. When `start_time[destination] < start_time[source]` and `end_time[destination] > end_time[source]`, we have a backedge from source to destination.
+Second pass: find the backedge. When `start_time[destination] < start_time[source]` and `end_time[destination] > end_time[source]`, we have a backedge from source to destination.
 
-**Third pass**: find all the nodes in the loop. Here, we walk backwards from the source of the backedge until the loop header, and take everything that's "nested within" the loop header start and end times to be within the loop.
+Third pass: find all the nodes in the loop. Here, we walk backwards from the source of the backedge until the loop header, and take everything that's "nested within" the loop header start and end times to be within the loop.
 
 In the no loop case, there's nothing to do since no backedges were detected. Note that in the `6/7`-`2/5` and `6/7`-`3/4` combinations, both start times and end times are greater in one pair; this is how we identify crossedges.
 

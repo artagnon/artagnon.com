@@ -37,63 +37,137 @@
           There are five [^1] reduced cases we must consider:
         </p>
         <p>
-          ![No loops](/assets/no-loops.png) | ![Early Exit](/assets/early-exit.png)
-          :--------------------------------:|:-------------------------------------
-          *No loops*                        | *Early exit*
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & 1 \ar[dl]\ar[dr] & \\
+          \text{No loops} & 2 \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & 3 \ar[dl] \\
+          & & 4 &
+          }
+          \end{xy}
+          \]
         </p>
         <p>
-          ![Multi-entry loop](/assets/multi-entry.png) | ![Cuddled loops](/assets/cuddled-loops.png)
-          :-------------------------------------------:|:-------------------------------------------
-          *Multi-entry*                                | *Cuddled loops*
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & \text{header}\ar[dl] & \\
+          \text{Early exit} & \text{body}\ar[dr] & & \text{footer}\ar[dl]\ar[ul]^{\text{backedge}} \\
+          & & \text{exit target} &
+          }
+          \end{xy}
+          \]
         </p>
         <p>
-          ![Shared header loops](/assets/shared-header.png)
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & \text{entry source}\ar[dl]\ar[dr] & \\
+          \text{Multi-entry} & \text{header}\ar[dr] & & \text{footer}\ar[ul]\ar[ll]^{\text{backedge}} \\
+          & & \text{body}\ar[ur] &
+          }
+          \end{xy}
+          \]
         </p>
         <p>
-          *Shared header*
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & \text{header A}\ar[dl] & \\
+          \text{Cuddled loops} & \text{body A or header B}\ar[rr] & & \text{footer A or body B}\ar[ul]_{\text{backedge A}}\ar[dl] \\
+          & & \text{footer B}\ar[ul]^{\text{backedge B}} &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \text{Shared header} & & \text{shared header}\ar[dl] & \\
+          & \text{body}\ar[r] & \text{footer A}\ar[u]^{\text{backedge A}}\ar[r] & \text{footer B}\ar[ul]^{\text{backedge B}}
+          }
+          \end{xy}
+          \]
         </p>
         <p>
           Now, let&#39;s employ a simple DFS:
-          [[
-          void DFS(Node *v) {
-            assign_start_time(v); // increment a clock as you assign
-            for (auto u : v-&gt;outEdges()) {
-              if (start_time_not_assigned(v)) DFS(v);
-            }
-            assign_end_time(v); // increment a clock as you assign
-          }
-          ]]
         </p>
+        <pre><code>void DFS(Node *v) {
+  assign_start_time(v); // increment a clock as you assign
+  for (auto u : v->outEdges()) {
+    if (start_time_not_assigned(v)) DFS(v);
+  }
+  assign_end_time(v); // increment a clock as you assign
+}</code></pre>
         <p>
           We get the following start times and end times:
         </p>
         <p>
-          ![No loops](/assets/no-loops-dfs.png) | ![Early Exit](/assets/early-exit-dfs.png)
-          :------------------------------------:|:-----------------------------------------
-          *No loops*                            | *Early exit*
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & \text{1/8} \ar[dl]\ar[dr] & \\
+          \text{No loops} & \text{6/7} \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & \text{2/5} \ar[dl] \\
+          & & \text{3/4} &
+          }
+          \end{xy}
+          \]
         </p>
         <p>
-          ![Multi-entry loop](/assets/multi-entry-dfs.png) | ![Cuddled loops](/assets/cuddled-loops-dfs.png)
-          :-----------------------------------------------:|:-----------------------------------------------
-          *Multi-entry*                                    | *Cuddled loops*
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & \text{1/8}\ar[dl] & \\
+          \text{Early exit} & \text{2/7}\ar[dr] & & \text{4/5}\ar[dl]\ar[ul]^{\text{backedge}} \\
+          & & \text{3/6} &
+          }
+          \end{xy}
+          \]
         </p>
         <p>
-          ![Shared header loops](/assets/shared-header-dfs.png)
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & \text{1/8}\ar[dl]\ar[dr] & \\
+          \text{Multi-entry} & \text{4/5}\ar[dr] & & \text{2/7}\ar[ul]\ar[ll]^{\text{backedge}} \\
+          & & \text{3/6}\ar[ur] &
+          }
+          \end{xy}
+          \]
         </p>
         <p>
-          *Shared header*
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & \text{1/8}\ar[dl] & \\
+          \text{Cuddled loops} & \text{2/7}\ar[rr] & & \text{3/6}\ar[ul]_{\text{backedge A}}\ar[dl] \\
+          & & \text{4/5}\ar[ul]^{\text{backedge B}} &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \text{Shared header} & & & \text{1/8}\ar[dll] & & \\
+          & \text{2/7}\ar[rr] & & \text{3/6}\ar[u]^{\text{backedge A}}\ar[rr] & & \text{4/5}\ar[ull]^{\text{backedge B}}
+          }
+          \end{xy}
+          \]
         </p>
         <p>
           Let&#39;s call the first number &quot;DFS number&quot;, and the second number &quot;topo number&quot;, to indicate that this is the order that topological sort would have produced, in the absence of backedges (topological sort is meaningless when there are loops).
         </p>
         <p>
-          **First pass**: do the dfs, and number everything.
+          First pass: do the dfs, and number everything.
         </p>
         <p>
-          **Second pass**: find the backedge. When `start_time[destination] &lt; start_time[source]` and `end_time[destination] &gt; end_time[source]`, we have a backedge from source to destination.
+          Second pass: find the backedge. When `start_time[destination] &lt; start_time[source]` and `end_time[destination] &gt; end_time[source]`, we have a backedge from source to destination.
         </p>
         <p>
-          **Third pass**: find all the nodes in the loop. Here, we walk backwards from the source of the backedge until the loop header, and take everything that&#39;s &quot;nested within&quot; the loop header start and end times to be within the loop.
+          Third pass: find all the nodes in the loop. Here, we walk backwards from the source of the backedge until the loop header, and take everything that&#39;s &quot;nested within&quot; the loop header start and end times to be within the loop.
         </p>
         <p>
           In the no loop case, there&#39;s nothing to do since no backedges were detected. Note that in the `6/7`-`2/5` and `6/7`-`3/4` combinations, both start times and end times are greater in one pair; this is how we identify crossedges.
