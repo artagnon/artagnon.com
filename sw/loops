@@ -17,7 +17,7 @@ There are five [^1] reduced cases we must consider:
 *Shared header*
 
 Now, let's employ a simple DFS:
-{% highlight c++ %}
+[[
 void DFS(Node *v) {
   assign_start_time(v); // increment a clock as you assign
   for (auto u : v->outEdges()) {
@@ -25,7 +25,7 @@ void DFS(Node *v) {
   }
   assign_end_time(v); // increment a clock as you assign
 }
-{% endhighlight %}
+]]
 
 We get the following start times and end times:
 

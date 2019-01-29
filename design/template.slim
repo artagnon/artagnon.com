@@ -52,7 +52,7 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
           - elsif paragraph.is_codeblock?
             pre
               code
-                == paragraph.content
+                == paragraph.contents.join "\n"
         - if indexfill
           ul id="indexfill"
             - indexfill.each do |page|
