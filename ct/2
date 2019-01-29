@@ -16,4 +16,9 @@ b \ar[r]^f & Sa
 Said differently, every arrow \(f\) factors uniquely through \(u\).
 
 Example:
-(i) \(Vec_K\) is defined as the vector space over field \(K\).
+
+(i) \(\textbf{Vec}_K\) is defined as the vector space over field \(K\). The forgetful functor \(U : \textbf{Vec}_K \rightarrow \textbf{Set}\) is a function sending a vector space to its underlying elements. For any set \(X\), there exists a \(\textbf{Vec}_X\) with \(X\) as the basis. This fact is illustrated by the function \(j : X \rightarrow U(V_X)\), and there also exists \(k : X \rightarrow U(W)\) obtained by linear transformation. This makes \(j\) a universal functor.
+(ii) Free category \(C\) over graph \(G\) is given by the universal functor \(k : C \rightarrow UG\). Similarly, we have universal functors for a free group or free R-module on a given set of generators.
+(iii) For integral domain \(D\) and field of quotients \(Q(D)\), there exists a monomorphism \(j : D \rightarrow Q(D)\). The universal (forgetful) functor \(\langle Q(D), j \rangle\) maps \(\textbf{Fld} \rightarrow \textbf{Dom}_m\), from the category of fields to the category of domains, provided we take the arrows of \(\textbf{Dom}_m\) to be monomorphisms of integral domains.
+
+A universal element of functor \(H : D \rightarrow \textbf{Set}\) is defined to be the pair \(\langle r, e \rangle\) consisting of \(r \in D\), \(e \in Hr\), such that \(\langle d, x \rangle\) consisting of \(Hr \in D\) and arrow \(f : r \rightarrow d\) implies that \((Hf)e = x\).
