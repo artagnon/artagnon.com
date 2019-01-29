@@ -17,26 +17,27 @@ Most cases, we want to edit the program using the PST (and keeping the CFG up-to
 ///
 /// for (i = 1:1:4) {
 ///      A = 2;               /// >> BasicBlockRegion >>
-///      B = 3;   ///<< inserted                      >> ChainRegion
+///      B = 3;               /// << inserted         >> ChainRegion
 ///      for (j = 1:1:6) {    /// >> ForLoopRegion    >>
 ///      }                    /// >>
 /// }
 ///
 /// for (i = 1:1:4) {
-///      B = 3;    ///<< inserted
+///      B = 3;                /// << inserted
 ///      for (j = 1:1:6) {     /// >> ForLoopRegion      >>
 ///      }                     /// >>                    >> ChainRegion
 ///      A = 2;                /// >> BasicBlockRegion   >>
 /// }
 ///
 /// for (i = 1:1:4) {
-///      B = 3;    ///<< inserted
+///      B = 3;                 /// << inserted
 ///      for (j = 1:1:6) {      /// >> ForLoopRegion
 ///      }                      /// >>
 /// }
 ///
-/// In general, there are 7 types of regions that can precede and 7 other
-/// types of regions that can succeed, making a total of 49 cases.
+/// In general, there are 7 types of regions that can precede and 7
+/// other types of regions that can succeed, making a total of 49
+/// cases.
 ///
 ]]
 

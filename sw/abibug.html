@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>artagnon.com: sw/abibug</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="mathematics, mathematical notes, study notes, james munkres, miles reid, dummit and foote, ravi vakil, rising sea, allen hatcher, saunders mac lane, categories for the working mathematician" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/claytext.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (min-device-width: 320px) and (max-device-width: 600px)" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} }, tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>
+          An ABI-mismatch bug
+        </h1>
+        <span id="pubdate">Last updated: Tue, 29 Jan 2019</span>
+        <p>
+          Our custom max function returns the maximum of two positive integers, and returns the negative integer, given a positive and negative integer. Classic signed wrapping, you&#39;d think. It&#39;s not so simple, as the problem reproduces only under the following circumstances:
+        </p>
+        <ol class="olitems" type="none" start="1">
+          <li>
+            LLVM code is calling the max function.
+          </li>
+          <li>
+            The library containing the max function is compiled without debugging information.
+          </li>
+          <li>
+            The entire world has been built with XCode 6+.
+          </li>
+        </ol>
+        <p>
+          More information: The LLVM IR is exactly the same between an XCode 5 sandbox, an XCode 6 sandbox, and a GNU/Linux sandbox. The corresponding assembly diff is also clean.
+        </p>
+        <p>
+          The corresponding C++ code (is actually specialized with short) is:
+        </p>
+        <pre><code>template <typename T>
+FORCEINLINE T operator()(T a, T b) const
+{
+   return (a >= b ? a : b);
+}</code></pre>
+        <p>
+          While in lldb, the assembly instructions look like:
+        </p>
+        <pre><code>--------------- [XCode 5]
+-> 0x108af1930:  pushq  %rbp
+   0x108af1931:  movq   %rsp, %rbp
+   0x108af1934:  cmpw   %si, %di
+   0x108af1937:  cmovgew %di, %si
+   0x108af193b:  movswl %si, %eax
+   0x108af193e:  popq   %rbp
+   0x108af193f:  retq</code></pre>
+        <pre><code>--------------- [XCode 6]
+-> 0x108d1ac10:  pushq  %rbp
+   0x108d1ac11:  movq   %rsp, %rbp
+   0x108d1ac14:  cmpl   %esi, %edi
+   0x108d1ac16:  cmovgew %di, %si
+   0x108d1ac1a:  movswl %si, %eax
+   0x108d1ac1d:  popq   %rbp
+   0x108d1ac1e:  retq</code></pre>
+        <p>
+          So, it&#39;s comparing the extended registers, but cmpl/cmpw difference is
+          messing up somehow.
+        </p>
+        <p>
+          After execution of the cmpl/cmpw:
+        </p>
+        <pre><code>--------------- [XCode 5]
+(lldb) register read --format int16_t[] di
+      di = {-48}
+(lldb) register read --format int16_t[] si
+      si = {34}
+(lldb) register read --format int16_t[] edi
+     edi = {-48 7103}
+(lldb) register read --format int16_t[] esi
+     esi = {34 7103}
+(lldb) register read --format b rflags
+  rflags = 0b0000000000000000000000000000000000000000000000000000001010010010</code></pre>
+        <pre><code>--------------- [XCode 6]
+(lldb) register read --format int16_t[] di
+      di = {-48}
+(lldb) register read --format int16_t[] si
+      si = {34}
+(lldb) register read --format int16_t[] edi
+     edi = {-48 0}
+(lldb) register read --format int16_t[] esi
+     esi = {34 0}
+(lldb) register read --format b rflags
+  rflags = 0b0000000000000000000000000000000000000000000000000000001000010010
+                                                                     ^
+                                                             Sign flag different</code></pre>
+        <pre><code>--------------- [XCode 6, with C code calling max]
+(lldb) register read --format int16_t[] di
+      di = {-48}
+(lldb) register read --format int16_t[] si
+      si = {34}
+(lldb) register read --format int16_t[] edi
+     edi = {-48 -1}
+                 ^
+         In the LLVM call, this is zero
+(lldb) register read --format int16_t[] esi
+     esi = {34 0}</code></pre>
+        <p>
+          In conclusion, this is a Clang/LLVM version mismatch. It&#39;s compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn&#39;t set up the extended form of the register correctly for negative numbers, when
+          calling a function with a word-sized register.
+        </p>
+        <p>
+          The SysV ABI does not guarantee that the i16 will be sext&#39;ed to i32. Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5 doesn&#39;t know about this.
+        </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/ac">ac</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/cv">cv</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/sw">sw</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
