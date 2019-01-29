@@ -15,6 +15,8 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
     script type="text/javascript" src="/design/analyticstracking.js"
     script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js'
     script type="text/x-mathjax-config" MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} }, tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
+    link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css"
+    script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"
   body
     div id="wrapper"
       div id="main"
@@ -47,6 +49,10 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
             p class="footer"
               - for item in paragraph.contents
                 == item
+          - elsif paragraph.is_codeblock?
+            pre
+              code
+                == paragraph.content
         - if indexfill
           ul id="indexfill"
             - indexfill.each do |page|
