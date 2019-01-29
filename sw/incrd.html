@@ -37,13 +37,31 @@
           An input program function is represented using a Control Flow Graph (CFG). It&#39;s composed of different Statements, which decompose into Expressions, but we will not concern ourselves with Expressions. The main control flow constructs are SplitStatement and MergeStatement. The SplitStatement has outgoing edges to N (N = 2 in the case of IfStatement) other Statements, and the MergeStatement has incoming edges from M other Statements.
         </p>
         <p>
-          ![A switch](/assets/switch.png)
+          \[
+          \begin{xy}
+          \xymatrix{
+          & & & \text{Split}\ar[dl]\ar[dll]\ar[dlll]\ar[d]\ar[dr] & & & \\
+          \text{Branch A}\ar[dr] & \text{Branch B}\ar[d] & \text{Branch C}\ar[dl] & \text{Branch D}\ar[d] & \text{Branch E}\ar[dl] \\
+          & \text{Merge A} & & \text{Merge B} &
+          }
+          \end{xy}
+          \]
         </p>
         <p>
           The Dominator is a data structure that holds &quot;domination relationship&quot; between any two Statements in the CFG. &quot;A dominates B&quot; means: all paths starting from the start of the CFG to end of the CFG, that flow through A, must necessarily flow through B. It&#39;s represented using a tree of things that progressively dominate their children. We want to incrementally update this structure.
         </p>
         <p>
-          ![If dominance](/assets/if-dominance.png) | ![If dominator](/assets/dominator-if.png)
+          \[
+          \begin{xy}
+          \xymatrix{
+          & \text{start}\ar[d] & \\
+          & \text{A (dominates B, C, D)}\ar[dl]\ar[dr] & \\
+          \text{B (dominated by A)}\ar[dr] & & \text{C (dominated by A)}\ar[dl] \\
+          & \text{D (dominated by A)}\ar[d] & \\
+          & \text{end} &
+          }
+          \end{xy}
+          \]
         </p>
         <h2>
           Motivation
@@ -58,7 +76,15 @@
           The main supporting data structure we will use for this feat is the Program Structure Tree, which is incrementally updated. The PST is a tree representation of structured control flow: all Control Flow Graph nodes belong to a Region in a nesting of single-entry single-exit Regions. Any control-flow that cannot be classified is boxed in an UnstructuredRegion, which we will not handle.
         </p>
         <p>
-          ![Program Structure Tree](/assets/pst.png)
+          \[
+          \begin{xy}
+          \xymatrix{
+          & \text{ChainRegion}\ar[d]\ar[dr] & \\
+          & \text{IfRegion}\ar[dl]\ar[d] & \text{ForLoopRegion}\ar[d] \\
+          \text{BBRegion (true branch)} & \text{BBRegion (false branch)} & \text{BBRegion(body of for)}
+          }
+          \end{xy}
+          \]
         </p>
         <p>
           This is a Region:
@@ -86,7 +112,14 @@ if (A < 17)
           other node.
         </p>
         <p>
-          ![Dominator: Split Entry](/assets/dominator-split-entry.png)
+          \[
+          \begin{xy}
+          \xymatrix{
+          & \text{IfStmt(1/8)}\ar[dl]\ar[d]\ar[dr] & \\
+          \text{TrueStmt(2/3)} & \text{MergeStmt(4/5)} & \text{FalseStmt(6/7)}
+          }
+          \end{xy}
+          \]
         </p>
         <p>
           Supporting arbitarary IR edits is both very hard and not a useful goal: we can reduce all our edits to two items, namely inserting a SESE Statement, and inserting a SESE PST Region. Removing a Statment or Region is not interesting, because it just leaves gaps in the numbering, and doesn&#39;t affect any existing Dominance relationships if we make no changes after removal. Modifying a Region can be easily expressed as the removal of the old Region/insertion of the new Region.
@@ -133,10 +166,39 @@ if (A < 17)
           The intervals of the each of the outEdges (&quot;branches&quot;) must stagger with each other so there&#39;s no false dominance relationship between them. Two intervals &quot;staggering&quot; means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
         </p>
         <p>
-          ![Split Dominates Merge](/assets/split-merge-dominance.png) | ![Merge Dominates Split](/assets/merge-split-dominance.png)
+          \[
+          \begin{xy}
+          \xymatrix{
+          & \text{split}\ar[dl]\ar[dr] & \\
+          \text{branch A}\ar[dr] & & \text{branch B}\ar[dl] \\
+          & \text{merge} &
+          }
+          \end{xy}
+          \]
         </p>
         <p>
-          ![Dominator: Split Entry](/assets/dominator-split-entry.png) | ![Dominator: Merge Entry](/assets/dominator-merge-entry.png)
+          \[
+          \begin{xy}
+          \xymatrix{
+          & \text{merge}\ar[d] & \\
+          & \text{body A}\ar[d] & \\
+          & \text{split}\ar[dl]\ar[dr] & \\
+          \text{outsideRegion} & & \text{body B}\ar[uuul]_{\text{backedge}}
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          & \text{MergeStmt(1/12)}\ar[d] & \\
+          & \text{StmtA(2/11)}\ar[d] & \\
+          & \text{SplitStmt(3/10)}\ar[dl]\ar[dr] & \\
+          \text{StmtB(4/7)} & & \text{outsideRegion(8/9)}
+          }
+          \end{xy}
+          \]
         </p>
         <p>
           Our API looks like:
