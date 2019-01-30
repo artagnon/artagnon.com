@@ -128,6 +128,112 @@
         <p>
           define a fully faithful functor \(Y : D^{op} \rightarrow \textbf{Set}^{D}\), and this is called the `Yoneda functor`.
         </p>
+        <h2>
+          Coproducts and colimits
+        </h2>
+        <p>
+          For any category \(C\), the diagonal functor \(\Delta : C \rightarrow C \times C\) is given by the object mapping \(\Delta : c \rightarrow \langle c, c \rangle\) and morphism mapping \(\Delta : f \rightarrow \langle f, f \rangle\). A universal arrow from object \(\langle a, b \rangle\) to \(\Delta\), given by \(\langle a, b \rangle \rightarrow \langle c, c \rangle\) is called the `coproduct diagram`. When such a diagram exists, object \(c\) is written as \(a \sqcup b\):
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          a\ar[r]^i\ar[dr]_f & a \sqcup b \ar@{.>}[d]|{\exists! h} & b\ar[l]_j\ar[dl]^g \\
+          & d &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          The assignment \(\langle f, g \rangle \mapsto h\) is a bijection that is natural in \(d\):
+          \[C(a, d) \times C(b, d) \cong C(a \sqcup b, d)\]
+        </p>
+        <p>
+          Examples include the disjoint union in \(\textbf{Set}\), wedge product in \(\textbf{Top}_*\), and the tensor product in \(\textbf{CRng}\).
+        </p>
+        <p>
+          For `infinite coproducts`, replace \(C^2\) with \(C^X\), for any set \(X\):
+          \[C(\sqcup_x a_x, c) \cong \prod_x C(a_x, c)\]
+        </p>
+        <p>
+          If \(a_x = b\) for all x, `copower` \(\sqcup_X b\) is written as \(X \bullet b\):
+          \[C(X \bullet b, c) \cong C(b, c)^X\]
+        </p>
+        <p>
+          If \(C\) has a null object such that \(0: b \rightarrow z \rightarrow c\) is the zero arrow, `cokernel` of \(f : a \rightarrow b\) is given by \(u : b \rightarrow c\):
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          a\ar[r]^f & b \ar[r]^u\ar[dr]_h & c\ar@{.>}[d]|{\exists! h'} & uf = 0 \\
+          & & d & hf = 0
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Given a pair of arrows \(f, g : a \rightarrow b\), `coequalizer` \(u\) can be defined as:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          a\ar[r]_f \ar@<1ex>[r]^g & b \ar[r]^u\ar[dr]_h & c\ar@{.>}[d]|{\exists! h'} & uf = ug \\
+          & & d & hf = hg
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Let \(\downarrow \downarrow\) represent a category \(C\) with two objects and two non-identity arrows between them. Then, functor category \(C^{\downarrow \downarrow}\) can be formed:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          a\ar[r]_f\ar@<1ex>[r]^g\ar[d]_h & b\ar[d]^k \\
+          a'\ar[r]_{f'}\ar@<1ex>[r]^{g'} & b'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Having defined the diagonal functor \(\Delta : C \rightarrow C^{\downarrow \downarrow}\), and object \(c \in C\), consider:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          a\ar[r]_f\ar@<1ex>[r]^g\ar[d]_{kf} & b\ar[d]^k \\
+          c\ar[r]_1\ar@<1ex>[r]^1 & c
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          In other words, \(k\) coequalizes \(f, g\). A coequalizer of pair \(\langle f, g \rangle\) is simply a universal arrow \(\langle f, g \rangle \rightarrow \Delta\).
+        </p>
+        <p>
+          As an example, coequalizer in \(\textbf{Set}\) for the set of functions \(f, g : X \rightarrow Y\) is simply the projection \(Y \rightarrow Y/E\) where \(E\) is the least equivalence relation \(E \subset Y \times Y\).
+        </p>
+        <p>
+          Given \(f : a \rightarrow b, g : a \rightarrow c\), `pushout` is defined as the pair \(\langle f, g \rangle\) such that:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          \langle f, g \rangle \ar[d] & c\ar[d]^h & a\ar[d]^{hf = kg}\ar[l]_f\ar[r]^g & b\ar[d]^k \\
+          \Delta(s)& s & s\ar[l]_1\ar[r]^1 & s
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          The `coproduct over \(a\)`, also called `cocartesian square` or `fibered sum` is written as:
+          \[r = b \sqcup_a c = b \sqcup_{\langle f, g \rangle} c\]
+        </p>
       </div>
       <div id="sidebar">
         <ul>
