@@ -35,3 +35,36 @@ S \ar[r]^f & X
 \]
 
 This states that \(\langle S/E, p \rangle\) is a universal element under the functor \(H : \textbf{Set} \rightarrow \textbf{Set}\). As an example, consider group \(G\) and its normal subgroup \(N\); the universal element is \(\langle G/N, p \rangle\) where \(p : G \rightarrow G/N\).
+
+Relationship between universal arrow and universal element: An element \(e\) can be considered universal arrow \(H : \textbf{*} \rightarrow Hr \in \textbf{Ens}\) from the one-point set \(*\); then \(\langle r, e \rangle\) from \(\textbf\{*\}\) to \(H\) is a universal element. If \(G : A \rightarrow B\) is a functor, then the pair \(\langle r, u : b \rightarrow Sr \rangle\) is a universal arrow if \(\langle r, u \in C(b, Sr) \rangle\) is a universal element of the functor \(H = C(b, S-)\).
+
+Projections \(p : a \times b \rightarrow a\) and \(q : a \times b \rightarrow b\) give us another example of universal arrows. Given any other pair of arrows \(f : c \rightarrow a\), \(g : \rightarrow b\), and \(h : c \rightarrow a \times b\), we get \(ph = f\) making \(\langle p, q \rangle\) a `universal pair`. To make it a universal arrow, consider the diagonal functor \(\Delta C = C \times C\) so that the pair \(\langle f, g \rangle : \Delta c \rightarrow \langle a, b \rangle\); then \(\langle p, q \rangle\) is a universal arrow from \(\Delta\) to \(a \times b\).
+
+# Yoneda lemma
+
+The concept of universality can be formulated in terms of hom-sets as follows. Given functor \(S: A \rightarrow B\), the pair \(\langle r, u : b \rightarrow Sr \rangle\) for \(r \in A\) is universal if and only if the function \(g : r \rightarrow a\) and the composition \(Sg \circ u : b \rightarrow Sa\) satisfies the bijection of hom-sets \(A(r, b) \cong B(b, Sa)\). This is natural in \(A\). If \(A, B\) have small hom-sets, then the functor \(B(b, S-)\) to \(\textbf{Set}\) is isomorphic to the covariant hom-functor \(A(r, -)\). Such isomorphisms are called `representations`.
+
+Let \(D\) be a category with small hom-sets. Then, `representation` of functor \(K : D \rightarrow \textbf{Set}\), given \(r \in D\), is the pair \(\langle r, \psi \rangle\) such that:
+\[\psi : D(r, -) \cong K\]
+
+Let \(D\) be a category with small hom-sets, \(r \in D\), and \(\textbf{*}\) denote the one-point set. If \(\langle r, u : \textbf{*} \rightarrow Kr\) is a universal arrow from \(\textbf{*}\) to \(K : D \rightarrow \textbf{Set}\), then function \(\psi\) which, for every object of \(D\), sends the arrow \(g : r \rightarrow d\) to \(K(g)(u\textbf{*}) \in Kd\) is a representation of \(K\).
+
+A universal arrow from \(b\) to \(S : A \rightarrow B\) can be written as the natural isomorphism \(A(r, b) \cong B(b, Sa)\), or equivalently as representation of the functor \(B, S-) : A \rightarrow \textbf{Set}\), or equally well as the universal element of the same functor.
+
+Yoneda's lemma: Given category \(D\) with small hom-sets, \(r \in D\), functor \(K : D \rightarrow \textbf{Set}\), there is a bijection:
+\[\text{Nat}(D(r, -), K) \cong Kr\]
+
+which sends each NT \(D(r, -) \overset{\bullet}{\rightarrow} K\) to \(\alpha_r 1_r\), the identity \(r \rightarrow r\). The proof is indicated as:
+\[
+\begin{xy}
+\xymatrix{
+D(r, r)\ar[r]^{\alpha_r}\ar[d]_{K(d, f)} & K(r)\ar[d]^{K(f)} & r \ar[d]^f\\
+D(r, d)\ar[r]^{\alpha_d} & K(d) & d
+}
+\end{xy}
+\]
+
+The bijection \(y : \text{Nat}(D(r, -), K) \cong Kr\) is the natural isomorphism \(N \overset{\bullet}{\rightarrow} E : \textbf{Set}^D \times D \rightarrow \textbf{Set}\). The object function \(r \mapsto D(r, -)\) and the arrow function:
+\[(f : s \rightarrow r) \mapsto D(f, -) : D(r, -) \mapsto D(s, -)\]
+
+define a fully faithful functor \(Y : D^{op} \rightarrow \textbf{Set}^{D}\), and this is called the `Yoneda functor`.
