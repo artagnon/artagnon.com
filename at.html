@@ -31,7 +31,7 @@
         <h1>
           Algebraic Toplogy
         </h1>
-        <span id="pubdate">Created: Sat, 8 Dec 2018</span><br /><span id="pubdate">Last updated: Fri, 25 Jan 2019</span>
+        <span id="pubdate">Created: Sat, 8 Dec 2018</span><br /><span id="pubdate">Last updated: Thu, 31 Jan 2019</span>
         <p>
           Algebraic Topology is about turning questions about the existence of topological objects to the corresponding algebraic objects. If an algebraic object does not exist, neither does the toplogical one, but since this process leads to information loss, existence of an algebraic object does not imply existence of the corresponding topological object.
         </p>
@@ -69,7 +69,7 @@
           Homotopy of paths leading from \(x_0\) to \(x_1\) can be written as \(f_t\), where \(f_t(0) = x_0\) and \(f_t(1) = x_1\). Now, \(f_t(s) = f_0(s) + t[f_1(s) - f_0(s)]\).
         </p>
         <p>
-          Equivalence class of \(f\) under equivalence relation of homotopy is called homotopy equivalence, and denoted by \([f]\).
+          Equivalence class of \(f\) under equivalence relation of homotopy is called `homotopy equivalence`, and denoted by \([f]\).
         </p>
         <p>
           Composition or product path:
@@ -79,7 +79,7 @@
           g(2s - 1) & \quad \frac{1}{2} \leq s \leq 1 \end{cases}\]
         </p>
         <p>
-          Paths that have the same starting and endpoint are called loops, and the point is called the basepoint. The set of all homotopy classes \([f]\), \(f : I \rightarrow X\) with a common basepoint \(x_0\) is called the fundamental group \(\pi_1(X, x_0)\). This is the first in the sequence \(\pi_n(X, x_0)\), where \(I\) is replaced by n-dimensional unit cubes \(I^n\). \(\pi_n(X, x_0)\) is a group with respect to product \([f][g] = [f . g]\).
+          Paths that have the same starting and endpoint are called loops, and the point is called the basepoint. The set of all homotopy classes \([f]\), \(f : I \rightarrow X\) with a common basepoint \(x_0\) is called the `fundamental group` \(\pi_1(X, x_0)\). This is the first in the sequence \(\pi_n(X, x_0)\), where \(I\) is replaced by n-dimensional unit cubes \(I^n\). \(\pi_n(X, x_0)\) is a group with respect to product \([f][g] = [f . g]\).
         </p>
         <p>
           A space \(X\) is said to be simply-connected iff there is a unique homotopy class of paths connecting any two points in \(X\).
@@ -111,7 +111,7 @@
           The map sending \(\phi : \mathbb{Z} \rightarrow \pi_1(S^1)\) sending integer \(n\) to the homotopy class of loop \(\omega_n(s) = (\cos 2 \pi ns, \sin 2 \pi ns)\) based at \((1, 0)\) is an isomorphism.
         </p>
         <p>
-          \(p(s) = (\cos 2 \pi s, \sin 2 \pi s)\), \(\tilde{\omega_n}(s) = ns\), \(\omega_n(s) = p \tilde{\omega_n}(s)\), and \(\tilde{\omega_n}(s)\) is called the lift of \(\omega_n(s)\).
+          \(p(s) = (\cos 2 \pi s, \sin 2 \pi s)\), \(\tilde{\omega_n}(s) = ns\), \(\omega_n(s) = p \tilde{\omega_n}(s)\), and \(\tilde{\omega_n}(s)\) is called the `lift` of \(\omega_n(s)\).
         </p>
         <p>
           Brower&#39;s fixed-point theorem in two dimensions: Every continuous map \(h : D^2 \rightarrow D^2\) has a fixed point \(x\) with \(h(x) = x\).
@@ -159,7 +159,7 @@
           \(\Delta\)-Complexes
         </h2>
         <p>
-          The union of all faces of simplices in \(\Delta^n\) is the boundary of \(\Delta^n\), written as \(\partial \Delta^n\). The open simplex \(\mathring{\Delta}^n = \Delta^n - \partial \Delta^n\) is the interior of \(\Delta^n\).
+          The union of all faces of simplices in \(\Delta^n\) is the `boundary` of \(\Delta^n\), written as \(\partial \Delta^n\). The `open simplex` \(\mathring{\Delta}^n = \Delta^n - \partial \Delta^n\) is the interior of \(\Delta^n\).
         </p>
         <p>
           A \(\Delta\)-complex on space \(X\) is a collection of maps \(\sigma_\alpha : \Delta^n \rightarrow X\) with each \(n\) dependent on \(\alpha\) such that:
@@ -179,22 +179,22 @@
           Simplicial homology
         </h2>
         <p>
-          The task is to define simplicial homology groups of \(\Delta\)-complexes of \(X\). Let \(\Delta_n(X)\) be the free abelian group with basis open n-simplicies \(e_\alpha^n\) of \(X\).
+          The task is to define simplicial homology groups of \(\Delta\)-complexes of \(X\). Let \(\Delta_n(X)\) be the free abelian group with basis open n-simplicies \(e_\alpha^n\) of \(X\). The elements of \(\Delta)_n(X)\) are called `n-chains`, and can be written as \(\sum_\alpha n_\alpha \sigma_\alpha\), where \(\sigma_\alpha : \Delta^n \rightarrow X\).
         </p>
         <p>
-          To construct an \(n\)-simplex, a cell is attached to the \((n - 1)\)-simplex. The boundary homomorphism \(\partial_n : \Delta_n(X) \rightarrow \Delta_{n - 1}(X)\), is given by:
+          To construct an \(n\)-simplex, a cell is attached to the \((n - 1)\)-simplex. The \(n\)-simplex is given by \([v_0, ... v_n]\), and the boundary is obtained by taking the faces of the \((n - 1)\)-simplex: \([v_0, v_1, ... \hat{v_i}, ... v_n]\), where the \(\hat{}\) over \(v_i\) indicates that the vertex is deleted from the sequence. The `boundary homomorphism` \(\partial_n : \Delta_n(X) \rightarrow \Delta_{n - 1}(X)\) is then given by:
         </p>
         <p>
           \[\partial_n(\sigma_\alpha) = \sum_i (-1)^i \sigma_\alpha|[v_0, v_1, ... \hat{v_i}, ... v_n]\]
         </p>
         <p>
-          The composition
+          Using \(C_n(X) = \Delta_n(X)\), the composition
         </p>
         <p>
-          \[\Delta_n(X) \xrightarrow{\partial_n} \Delta_{n - 1}(X) \xrightarrow{\partial_{n - 1}} \Delta_{n -2}(X)\]
+          \[C_{n + 1}(X) \xrightarrow{\partial_{n + 1}} C_n(X) \xrightarrow{\partial_n} C_{n - 1}(X)\]
         </p>
         <p>
-          is zero, and this is more concisely written as \(\partial^2 = 0\). The defect in exactness of this sequence is expressed as the \(n^{th}\) simplicial homology group \(H_n^\Delta = \text{ker } \partial_{n - 1} \text{ / } \text{im } \partial_n\). It follows that \(\text{im } \partial_n \subset \text{ker } \partial_{n - 1}\). Elements of \(H_n\) are cosets of \(\text{im } \partial_n\), and are called homology classes.
+          is zero, and this is more concisely written as \(\partial^2 = 0\). The defect in exactness of this sequence is expressed as the \(n^{th}\) simplicial homology group \(H_n^\Delta = \text{ker } \partial_n \text{ / } \text{im } \partial_{n + 1}\). It follows that \(\text{im } \partial_{n + 1} \subset \text{ker } \partial_n\). Elements of \(\text{ker } \partial_n\) are called `cycles`, and those of \(\text{im } \partial_{n + 1}\) are called `boundaries`. Elements of \(H_n\) are cosets of \(\text{im } \partial_n\), and are called `homology classes`.
         </p>
         <h2>
           Singular homology
@@ -260,7 +260,7 @@
           \[... \rightarrow \tilde{H}_n(A) \xrightarrow{i_*} \tilde{H}_n(X) \xrightarrow{j_*} \tilde{H}_n(X/A) \xrightarrow{\partial} \tilde{H}_{n - 1}(A) \xrightarrow{i_*} ... \rightarrow 0\]
         </p>
         <p>
-          where \(i\) is the inclusion \(A \hookrightarrow X\), and \(j\) is the quotient map \(X \rightarrow X/A\). Pairs of spaces \((X, A)\) satisfying this are called good pairs.
+          where \(i\) is the inclusion \(A \hookrightarrow X\), and \(j\) is the quotient map \(X \rightarrow X/A\). Pairs of spaces \((X, A)\) satisfying this are called `good pairs`.
         </p>
         <p>
           Analogous to what we had earlier:
@@ -332,7 +332,16 @@
           The excision theorem: For spaces \(Z \subset A \subset X\) such that closure of \(Z\) is contained within the interior of \(A\), the inclusion map \((X - Z, A - Z) \hookrightarrow (A, X)\) induces the homomorphism \(H_n(X - Z, A - Z) \rightarrow H_n(A, X)\) for all \(n\).
         </p>
         <p>
+          Let \(\mathcal{U} = \{U_i\}\) be the set of subspaces of \(X\) that form an open cover of \(X\), and \(C_n^{\mathcal{U}}\) be a subset of \(C_n\) consisting of chains \(\sum_i n_i \sigma_i\) such that each \(\sigma_i\) has image in a subset of \(\mathcal{U}\). The boundary map \(C_n(X) \rightarrow C_{n - 1}(X)\) takes \(C_n^{\mathcal{U}}(X)\) to \(C_{n - 1}^{\mathcal{U}}(X)\) so that \(C_n^{\mathcal{U}}\) forms a chain complex; this homology is written as \(H_n^{\mathcal{U}}\).
+        </p>
+        <p>
+          The inclusion map \(\iota : C_n^{\mathcal{U}}(X) \hookrightarrow C_n(X)\) is chain homotopic; that is, there exists \(\rho : C_n(X) \rightarrow C_n^{\mathcal{U}}\) such that \(\iota \rho, \rho \iota\) are chain homotopic to identity. \(\iota\) induces the isomorhpism \(H_n^{\mathcal{U}}(X) \approx H_n(X)\).
+        </p>
+        <p>
           For good pairs \((X, A)\), the map \((X, A) \rightarrow (X/A, A/A)\) induces homomorphism \(q_* : H_n(X, A) \rightarrow H_n(X/A, A/A)\).
+        </p>
+        <p>
+          To find explicit cycles representing the generating group of the infinite cyclic groups \(H_n(D^n, \partial D^n)\), and  \(H_n(S^n)\), replace \((D^n, \partial D^n)\) with the equivalent \((\Delta^n, \partial \Delta^n)\); viewing as a singular n-simplex, the identity map \(i : \Delta^n \rightarrow \Delta^n\) is the generator of the cyclic \(H_n(\Delta, \Delta^n)\).
         </p>
         <ul id="indexfill">
         </ul>

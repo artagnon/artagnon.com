@@ -154,3 +154,16 @@ Given \(f : a \rightarrow b, g : a \rightarrow c\), `pushout` is defined as the 
 
 The `coproduct over \(a\)`, also called `cocartesian square` or `fibered sum` is written as:
 \[r = b \sqcup_a c = b \sqcup_{\langle f, g \rangle} c\]
+
+The pushout of \(\langle f, g \rangle\) always exists in \(\textbf{Set}\); it is the disjoint union \(a \sqcup b\) with elements identified with \(fx\) and \(gx\), for \(x \in a\).
+
+For \(f: a \rightarrow b \in C\), the `cokernel pair` is defined as the pair of pushout of \(f\) along with \(f\). Indeed, there is some \(r\) so that \(u, v : b \rightarrow r\) are parallel arrows:
+
+\[
+\begin{xy}
+\xymatrix{
+a\ar[r] & b\ar[r]_u\ar@<1ex>[r]^v\ar[dr]_f\ar@<1ex>[dr]^g & r\ar@{.>}[d]|{\exists! t} \\
+& & s
+}
+\end{xy}
+\]

@@ -31,7 +31,7 @@
         <h1>
           Category Theory II
         </h1>
-        <span id="pubdate">Created: Mon, 28 Jan 2019</span><br /><span id="pubdate">Last updated: Wed, 30 Jan 2019</span>
+        <span id="pubdate">Created: Mon, 28 Jan 2019</span><br /><span id="pubdate">Last updated: Thu, 31 Jan 2019</span>
         <h2>
           Universal arrow
         </h2>
@@ -233,6 +233,22 @@
         <p>
           The `coproduct over \(a\)`, also called `cocartesian square` or `fibered sum` is written as:
           \[r = b \sqcup_a c = b \sqcup_{\langle f, g \rangle} c\]
+        </p>
+        <p>
+          The pushout of \(\langle f, g \rangle\) always exists in \(\textbf{Set}\); it is the disjoint union \(a \sqcup b\) with elements identified with \(fx\) and \(gx\), for \(x \in a\).
+        </p>
+        <p>
+          For \(f: a \rightarrow b \in C\), the `cokernel pair` is defined as the pair of pushout of \(f\) along with \(f\). Indeed, there is some \(r\) so that \(u, v : b \rightarrow r\) are parallel arrows:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          a\ar[r] & b\ar[r]_u\ar@<1ex>[r]^v\ar[dr]_f\ar@<1ex>[dr]^g & r\ar@{.>}[d]|{\exists! t} \\
+          & & s
+          }
+          \end{xy}
+          \]
         </p>
       </div>
       <div id="sidebar">
