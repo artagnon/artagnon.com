@@ -55,6 +55,9 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
             pre
               code
                 == paragraph.contents.join "\n"
+          - elsif paragraph.is_mathjax?
+            p class="mathjax"
+              == paragraph.contents.join "\n"
         - if indexfill
           ul id="indexfill"
             - indexfill.each do |page|

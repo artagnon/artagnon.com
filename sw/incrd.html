@@ -39,7 +39,7 @@
         <p>
           An input program function is represented using a Control Flow Graph (CFG). It&#39;s composed of different Statements, which decompose into Expressions, but we will not concern ourselves with Expressions. The main control flow constructs are SplitStatement and MergeStatement. The SplitStatement has outgoing edges to N (N = 2 in the case of IfStatement) other Statements, and the MergeStatement has incoming edges from M other Statements.
         </p>
-        <p>
+        <p class="mathjax">
           \[
           \begin{xy}
           \xymatrix{
@@ -53,7 +53,7 @@
         <p>
           The Dominator is a data structure that holds &quot;domination relationship&quot; between any two Statements in the CFG. &quot;A dominates B&quot; means: all paths starting from the start of the CFG to end of the CFG, that flow through A, must necessarily flow through B. It&#39;s represented using a tree of things that progressively dominate their children. We want to incrementally update this structure.
         </p>
-        <p>
+        <p class="mathjax">
           \[
           \begin{xy}
           \xymatrix{
@@ -78,7 +78,7 @@
         <p>
           The main supporting data structure we will use for this feat is the Program Structure Tree, which is incrementally updated. The PST is a tree representation of structured control flow: all Control Flow Graph nodes belong to a Region in a nesting of single-entry single-exit Regions. Any control-flow that cannot be classified is boxed in an UnstructuredRegion, which we will not handle.
         </p>
-        <p>
+        <p class="mathjax">
           \[
           \begin{xy}
           \xymatrix{
@@ -114,7 +114,7 @@ if (A < 17)
           Updating a vanilla Dominator tree is relatively easy: simply add a child to the correct node. The problem at hand is that we have an O(1)-query Dominator object that we want to keep up to date as we make edits to the IR. How is it O(1)-query? Every node in the tree is assigned DFS start and end times: so if one interval nests within another, the corresponding node is dominated by the
           other node.
         </p>
-        <p>
+        <p class="mathjax">
           \[
           \begin{xy}
           \xymatrix{
@@ -168,7 +168,7 @@ if (A < 17)
         <p>
           The intervals of the each of the outEdges (&quot;branches&quot;) must stagger with each other so there&#39;s no false dominance relationship between them. Two intervals &quot;staggering&quot; means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
         </p>
-        <p>
+        <p class="mathjax">
           \[
           \begin{xy}
           \xymatrix{
@@ -179,7 +179,7 @@ if (A < 17)
           \end{xy}
           \]
         </p>
-        <p>
+        <p class="mathjax">
           \[
           \begin{xy}
           \xymatrix{
@@ -191,7 +191,7 @@ if (A < 17)
           \end{xy}
           \]
         </p>
-        <p>
+        <p class="mathjax">
           \[
           \begin{xy}
           \xymatrix{
