@@ -36,6 +36,22 @@ span.tick {
 }
 
 pre code {
-	font-family: 'Droid Sans Mono', monospace;
+	font-family: 'Roboto Mono', monospace;
 	font-size: 80%
+}
+
+a[href^="https://github.com"] {
+	background-image: url("/design/icon.github.png");
+}
+
+a[href*=".pdf"] {
+	background-image: url("/design/icon.pdf.png");
+}
+
+a[href^="https://github.com"], a[href*=".pdf"] {
+	background-repeat: no-repeat;
+	background-position: center right;
+	padding-right: calc(18rem / 14);
+	min-height: calc(16rem / 14);
+	background-size: calc(16rem / 14);
 }

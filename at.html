@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="/design/screen.css" media="screen" />
     <link rel="stylesheet" href="/design/claytext.css" media="screen" />
     <link rel="stylesheet" href="/design/mobile.css" media="only screen and (min-device-width: 320px) and (max-device-width: 600px)" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans|Roboto+Mono" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
     <script type="text/javascript" src="/design/claytext.js"></script>
     <link rel="shortcut icon" href="/design/favicon.ico" />
     <script type="text/javascript" src="/design/analyticstracking.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} }, tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
     </script>
@@ -372,6 +372,31 @@
         </p>
         <p>
           `Local homology groups` can be used to tell when spaces are not locally homeomorhpic at certain points. They are defined as, for space \(X\) and \(x \in X\), the homology groups \(H_n(X, X - \{x\})\). Indeed, for an open neighborhood \(U\) of \(x\), excision gives the isomorphism \(H_n(X, X - \{x\}) \approx H_n(U, U - \{x\}\), so these groups depend only on the local homology of \(X\), near \(x\).
+        </p>
+        <h2>
+          Naturality
+        </h2>
+        <p>
+          For an l.e.s to be natural means that, for the map \(f_* : (X, A) \rightarrow (Y, B)\), the following diagram commutes:
+        </p>
+        <p>
+          \[
+          \begin{xy}
+          \xymatrix{
+          ...\ar[r] & H_n(A)\ar[r]^{i_*}\ar[d]^{f_*} & H_n(X)\ar[r]^{j_*}\ar[d]^{f_*} & H_n(X, A)\ar[r]^{\partial}\ar[d]^{f_*} & H_{n - 1}(A)\ar[r]\ar[d]^{f_*} & ... \\
+          ...\ar[r] & H_n(B)\ar[r]^{i_*} & H_n(Y)\ar[r]^{j_*} & H_n(Y, B)\ar[r]^{\partial} & H_{n - 1}(B) \ar[r] & ...
+          }
+          \end{xy}
+          \]
+        </p>
+        <h2>
+          Equivalence of simplicial and singular homology
+        </h2>
+        <p>
+          For a \(\Delta\)-complex, singular and simplicial homology groups are always isomorphic. Let \(X\) be a \(\Delta\)-complex with the subcomplex \(A \subset X\); \(A\) is the \(\Delta\)-complex formed by the union of simplices of \(X\). Relative groups \(H_n^\Delta(X, A)\) can be formed in the same way as for singular homology, via relative chains \(\Delta_n(X, A) = \Delta_n(X)/\Delta_n(A)\), and this yields a l.e.s of simplicial homology groups for the pair \((X, A)\). There is a canonical homomorphism \(H_n^\Delta(X, A) \rightarrow H_n(X, A)\) induced by \(\Delta_n(X, A) \rightarrow C_n(X, A)\), sending each \(n\)-simplex of \(X\) to its characteristic map \(\sigma : \Delta^n \rightarrow X\).
+        </p>
+        <p>
+          The homomorphisms \(H_n^\Delta(X, A) \rightarrow H_n(X, A)\) are isomorphisms for all \(n\) and pair \((X, A)\). To show this, consider.
         </p>
         <ul id="indexfill">
         </ul>

@@ -223,3 +223,22 @@ Since CW pairs are good pairs: let \(A, B\) be subcomplexes of CW complex \(X\);
 Invariance of dimension: nonempty open sets \(U \subset \mathbb{R}^m, V \subset \mathbb{R}^n\) are homeomorhpic iff \(m = n\). For \(x \in U\), we have \(H_k(U, U - \{x\}) \approx H_k(\mathbb{R}^m, \mathbb{R}^m - {x}\) by excision. From the l.e.s of the pair \((\mathbb{R}^m, \mathbb{R}^m - \{x\})\), \(H_k(\mathbb{R}^m, \mathbb{R}^m - \{x\}) \approx \tilde{H}_{k - 1}(\mathbb{R}^m - \{x\})\). Since \(\mathbb{R}^m - \{x\}\) deformation retracts onto \(S^{m - 1}\), we conclude that \(H_k(U, U - \{x\})\) is \(\mathbb{Z}\) for \(k = m\) and zero otherwise. By the same reasoning, \(H_k(V, V - \{y\}\) is \(Z\) for \(k = n\) and zero otherwise. Since the homeomorphism \(h : U \rightarrow V\) induces the isomorphism \(H_k(U, U - \{x\}) \rightarrow H_k(V, V - \{h(x\})\) for all \(k\), we get \(m = n\).
 
 `Local homology groups` can be used to tell when spaces are not locally homeomorhpic at certain points. They are defined as, for space \(X\) and \(x \in X\), the homology groups \(H_n(X, X - \{x\})\). Indeed, for an open neighborhood \(U\) of \(x\), excision gives the isomorphism \(H_n(X, X - \{x\}) \approx H_n(U, U - \{x\}\), so these groups depend only on the local homology of \(X\), near \(x\).
+
+# Naturality
+
+For an l.e.s to be natural means that, for the map \(f_* : (X, A) \rightarrow (Y, B)\), the following diagram commutes:
+
+\[
+\begin{xy}
+\xymatrix{
+...\ar[r] & H_n(A)\ar[r]^{i_*}\ar[d]^{f_*} & H_n(X)\ar[r]^{j_*}\ar[d]^{f_*} & H_n(X, A)\ar[r]^{\partial}\ar[d]^{f_*} & H_{n - 1}(A)\ar[r]\ar[d]^{f_*} & ... \\
+...\ar[r] & H_n(B)\ar[r]^{i_*} & H_n(Y)\ar[r]^{j_*} & H_n(Y, B)\ar[r]^{\partial} & H_{n - 1}(B) \ar[r] & ...
+}
+\end{xy}
+\]
+
+# Equivalence of simplicial and singular homology
+
+For a \(\Delta\)-complex, singular and simplicial homology groups are always isomorphic. Let \(X\) be a \(\Delta\)-complex with the subcomplex \(A \subset X\); \(A\) is the \(\Delta\)-complex formed by the union of simplices of \(X\). Relative groups \(H_n^\Delta(X, A)\) can be formed in the same way as for singular homology, via relative chains \(\Delta_n(X, A) = \Delta_n(X)/\Delta_n(A)\), and this yields a l.e.s of simplicial homology groups for the pair \((X, A)\). There is a canonical homomorphism \(H_n^\Delta(X, A) \rightarrow H_n(X, A)\) induced by \(\Delta_n(X, A) \rightarrow C_n(X, A)\), sending each \(n\)-simplex of \(X\) to its characteristic map \(\sigma : \Delta^n \rightarrow X\).
+
+The homomorphisms \(H_n^\Delta(X, A) \rightarrow H_n(X, A)\) are isomorphisms for all \(n\) and pair \((X, A)\). To show this, consider.
