@@ -206,7 +206,7 @@ The excision theorem: For spaces \(Z \subset A \subset X\) such that closure of 
 
 Let \(\mathcal{U} = \{U_i\}\) be the set of subspaces of \(X\) that form an open cover of \(X\), and \(C_n^{\mathcal{U}}\) be a subset of \(C_n\) consisting of chains \(\sum_i n_i \sigma_i\) such that each \(\sigma_i\) has image in a subset of \(\mathcal{U}\). The boundary map \(C_n(X) \rightarrow C_{n - 1}(X)\) takes \(C_n^{\mathcal{U}}(X)\) to \(C_{n - 1}^{\mathcal{U}}(X)\) so that \(C_n^{\mathcal{U}}\) forms a chain complex; this homology is written as \(H_n^{\mathcal{U}}\).
 
-The inclusion map \(\iota : C_n^{\mathcal{U}}(X) \hookrightarrow C_n(X)\) is chain homotopic; that is, there exists \(\rho : C_n(X) \rightarrow C_n^{\mathcal{U}}\) such that \(\iota \rho, \rho \iota\) are chain homotopic to identity. \(\iota\) induces the isomorhpism \(H_n^{\mathcal{U}}(X) \approx H_n(X)\).
+The inclusion map \(\iota : C_n^{\mathcal{U}}(X) \hookrightarrow C_n(X)\) is chain homotopic; that is, there exists \(\rho : C_n(X) \rightarrow C_n^{\mathcal{U}}\) such that \(\iota \rho, \rho \iota\) are chain homotopic to identity. \(\iota\) induces the isomorphism \(H_n^{\mathcal{U}}(X) \approx H_n(X)\).
 
 For good pairs \((X, A)\), the map \((X, A) \rightarrow (X/A, A/A)\) induces homomorphism \(q_* : H_n(X, A) \rightarrow H_n(X/A, A/A)\).
 
@@ -220,3 +220,6 @@ To find a cycle representing \(\tilde{H}_n(S^n)\), consider \(S^n\) to be two \(
 
 Since CW pairs are good pairs: let \(A, B\) be subcomplexes of CW complex \(X\); then, the inclusion \((B, A \cap B) \hookrightarrow (X, X/A)\) induces the homomorphism \(H_n(B, A \cap B) \rightarrow H_n(X, A)\) for all \(n\).
 
+Invariance of dimension: nonempty open sets \(U \subset \mathbb{R}^m, V \subset \mathbb{R}^n\) are homeomorhpic iff \(m = n\). For \(x \in U\), we have \(H_k(U, U - \{x\}) \approx H_k(\mathbb{R}^m, \mathbb{R}^m - {x}\) by excision. From the l.e.s of the pair \((\mathbb{R}^m, \mathbb{R}^m - \{x\})\), \(H_k(\mathbb{R}^m, \mathbb{R}^m - \{x\}) \approx \tilde{H}_{k - 1}(\mathbb{R}^m - \{x\})\). Since \(\mathbb{R}^m - \{x\}\) deformation retracts onto \(S^{m - 1}\), we conclude that \(H_k(U, U - \{x\})\) is \(\mathbb{Z}\) for \(k = m\) and zero otherwise. By the same reasoning, \(H_k(V, V - \{y\}\) is \(Z\) for \(k = n\) and zero otherwise. Since the homeomorphism \(h : U \rightarrow V\) induces the isomorphism \(H_k(U, U - \{x\}) \rightarrow H_k(V, V - \{h(x\})\) for all \(k\), we get \(m = n\).
+
+`Local homology groups` can be used to tell when spaces are not locally homeomorhpic at certain points. They are defined as, for space \(X\) and \(x \in X\), the homology groups \(H_n(X, X - \{x\})\). Indeed, for an open neighborhood \(U\) of \(x\), excision gives the isomorphism \(H_n(X, X - \{x\}) \approx H_n(U, U - \{x\}\), so these groups depend only on the local homology of \(X\), near \(x\).
