@@ -31,7 +31,7 @@
         <h1>
           Algebraic Toplogy
         </h1>
-        <span id="pubdate">Created: Sat, 8 Dec 2018</span><br /><span id="pubdate">Last updated: Thu, 31 Jan 2019</span>
+        <span id="pubdate">Created: Sat, 8 Dec 2018</span><br /><span id="pubdate">Last updated: Fri, 1 Feb 2019</span>
         <p>
           Algebraic Topology is about turning questions about the existence of topological objects to the corresponding algebraic objects. If an algebraic object does not exist, neither does the toplogical one, but since this process leads to information loss, existence of an algebraic object does not imply existence of the corresponding topological object.
         </p>
@@ -219,7 +219,10 @@
           \[H_n(X) \approx \begin{cases} 0 \quad n \gt 0 \\ \mathbb{Z} \quad n = 0 \end{cases}\]
         </p>
         <p>
-          It is convenient to define an augmented chain complex in which a point has a trivial map, and this is termed as the reduced homology group \(\tilde{H}_n(X)\):
+          For any space \(X\), \(H_0(X)\) is the direct sum of \(\mathbb{Z}\)s, one for each path component of \(X\). By definition \(H_0(X) = C_0(X)/\text{im } \partial_1\) since \(\partial_0 = 0\). Define a homomorphism \(\epsilon : C_0(X) \rightarrow \mathbb{Z}\) by \(\epsilon(\sum_i n_i \sigma_i) = \sum_i n_i\). Then, \(\text{ker } \epsilon = \text{im } \partial_1\) if \(X\) is path-connected; hence \(\epsilon\) induces the isomorphism \(H_0(X) \approx \mathbb{Z}\).
+        </p>
+        <p>
+          It is convenient to define an augmented chain complex in which a point has a homology groups in all dimensions including zero, and this is termed as the `reduced homology group` \(\tilde{H}_n(X)\):
         </p>
         <p>
           \[... \rightarrow C_2 \xrightarrow{\partial_2} C_1 \xrightarrow{\partial_1} C_0 \xrightarrow{\epsilon} \mathbb{Z} \rightarrow 0\]
@@ -228,7 +231,7 @@
           Homotopy invariance
         </h2>
         <p>
-          Two spaces that are homotopically equivalent have isomorphic homology groups. For map \(f : X \rightarrow Y\), the induced homomorphism \(f_\# : C_n(X) \rightarrow C_n(Y)\) is defined by \(f_\# \partial = \partial f_\#\):
+          Two spaces that are homotopically equivalent have isomorphic homology groups. For map \(f : X \rightarrow Y\), the induced homomorphism \(f_\# : C_n(X) \rightarrow C_n(Y)\) is defined by composing each singular \(n\)-simplex \(\sigma : \Delta^n \rightarrow X\) with \(f\) to obtain \(f_\#(\sigma) = f_\# \sigma : \Delta^n \rightarrow Y\).
         </p>
         <p>
           \[
@@ -241,6 +244,9 @@
           \]
         </p>
         <p>
+          The fact that the maps \(f_\# : C_n(X) \rightarrow C_n(Y)\) satisfy \(f_\# \partial = \partial f_\#\) is expressed by saying that \(f_\#\)s define a `chain map` between the singular chain complex of \(X\) to that of \(Y\).
+        </p>
+        <p>
           A chain map between chain complexes induces a homomorphism between the homology groups of the complexes: \(f_\#\) takes cycles to cycles and boundaries to boundaries, and hence induces \(f_* : H_n(X) \rightarrow H_n(Y)\).
         </p>
         <p>
@@ -251,7 +257,10 @@
           \[P(\sigma) = \sum_i (-1)^i F \circ (\sigma \times \mathbb{1})|[v_0 ... v_n, w_0 ... w_n]\]
         </p>
         <p>
-          P is a chain homotopy between \(f_\#\) and \(g_\#\) since \(\partial P + P \partial = g_\# - f_\#\).
+          \(P\) is a chain homotopy between \(f_\#\) and \(g_\#\) since \(\partial P + P \partial = g_\# - f_\#\).
+        </p>
+        <p>
+          There are also induced homomorphisms \(f_* : \tilde{H}_n(X) \rightarrow \tilde{H}_n(Y)\) for reduced homology groups, since \(f_\# \epsilon = \epsilon f_\#\).
         </p>
         <h2>
           Excision
@@ -270,7 +279,7 @@
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(H_i(S^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}\)
+            \(H_i(S^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}\); take \((X, A) = (D^n, S^{n - 1})\) so that \(X/A = S^n\): \(\tilde{H}_i(D^n)\) in the l.e.s of this pair are zero since \(D^n\) is contractable. Exactness of this sequence then implies that maps \(\tilde{H}_i(S^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})\) are isomorphisms for \(i \gt 0\), and that \(\tilde{H}_0(S^n) = 0\).
           </li>
           <li>
             Every map \(f : D^n \rightarrow D^n\) has a fixed point; Brower&#39;s fixed point theorem.
@@ -323,7 +332,7 @@
           The description of the boundary map \(\partial : H_n(X, A) \rightarrow H_{n - 1}(A)\) is: if `class` \([\alpha] \in H_n(X, A)\) is represented by a relative cycle \(\alpha\), then \(\partial [\alpha]\) is the class of \(\partial \alpha\ \in H_{n - 1}(A)\).
         </p>
         <p>
-          In the l.e.s of homology pairs \((D^n, \partial D^n)\), \(H_i(D^n, \partial D^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})\) are isomorphisms for all \(i \gt 0\). Thus,
+          In the l.e.s of homology pairs \((D^n, \partial D^n)\), \(H_i(D^n, \partial D^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})\) are isomorphisms for all \(i \gt 0\).
         </p>
         <p>
           \[H_i(D^n, \partial D^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}\]
@@ -344,7 +353,19 @@
           For good pairs \((X, A)\), the map \((X, A) \rightarrow (X/A, A/A)\) induces homomorphism \(q_* : H_n(X, A) \rightarrow H_n(X/A, A/A)\).
         </p>
         <p>
-          To find explicit cycles representing the `generating group` of the infinite cyclic groups \(H_n(D^n, \partial D^n)\), and  \(H_n(S^n)\), replace \((D^n, \partial D^n)\) with the equivalent \((\Delta^n, \partial \Delta^n)\); viewing as a singular n-simplex, the identity map \(i : \Delta^n \rightarrow \Delta^n\) is the generator of the cyclic group \(H_n(\Delta, \Delta^n)\).
+          To find explicit cycles representing `generators` of the infinite cyclic groups \(H_n(D^n, \partial D^n)\), and  \(\tilde{H}_n(S^n)\), replace \((D^n, \partial D^n)\) with the equivalent \((\Delta^n, \partial \Delta^n)\); viewing as a singular n-simplex, the identity map \(i_n : \Delta^n \rightarrow \Delta^n\) is a cycle generating \(H_n(\Delta^n, \partial \Delta^n)\). Let \(\Lambda \subset \Delta^n\) be the union of all but \((n - 1)\)-dimensional faces of \(\Delta^n\). Then,
+        </p>
+        <p>
+          \[H_n(\Delta^n, \partial \Delta^n) \xrightarrow{\approx} H_{n - 1}(\partial \Delta^n, \Lambda) \xleftarrow{\approx} H_{n - 1}(\Delta^{n - 1}, \partial \Delta^{n - 1})\]
+        </p>
+        <p>
+          To find a cycle representing \(\tilde{H}_n(S^n)\), consider \(S^n\) to be two \(n\)-simplices \(\Delta^n_1\) and \(\Delta^n_2\). Then, \(\Delta^n_1 - \Delta^n_2\), viewed as a singular \(n\)-chain, is the cycle representing \(\tilde{H}_n(S^n)\) since:
+        </p>
+        <p>
+          \[\tilde{H}_n(S^n) \xrightarrow{\approx} H_n(S^n, \Delta^n_2) \xleftarrow{\approx} H_n(\Delta^n_1, \partial \Delta^n_1)\]
+        </p>
+        <p>
+          Since CW pairs are good pairs: let \(A, B\) be subcomplexes of CW complex \(X\); then, the inclusion \((B, A \cap B) \hookrightarrow (X, X/A)\) induces the homomorphism \(H_n(B, A \cap B) \rightarrow H_n(X, A)\) for all \(n\).
         </p>
         <ul id="indexfill">
         </ul>

@@ -119,13 +119,15 @@ Choose a maximal collection of canceling pairs to construct an n-dimensional sim
 Corresponding to the decomposition of a space to its path-connected components \(X_\alpha\), we have the isomorphism \(H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)\). Also, \(H_0(X) \approx \mathbb{Z}\), for path-connected space \(X\). If \(X\) is a point,
 \[H_n(X) \approx \begin{cases} 0 \quad n \gt 0 \\ \mathbb{Z} \quad n = 0 \end{cases}\]
 
-It is convenient to define an augmented chain complex in which a point has a trivial map, and this is termed as the reduced homology group \(\tilde{H}_n(X)\):
+For any space \(X\), \(H_0(X)\) is the direct sum of \(\mathbb{Z}\)s, one for each path component of \(X\). By definition \(H_0(X) = C_0(X)/\text{im } \partial_1\) since \(\partial_0 = 0\). Define a homomorphism \(\epsilon : C_0(X) \rightarrow \mathbb{Z}\) by \(\epsilon(\sum_i n_i \sigma_i) = \sum_i n_i\). Then, \(\text{ker } \epsilon = \text{im } \partial_1\) if \(X\) is path-connected; hence \(\epsilon\) induces the isomorphism \(H_0(X) \approx \mathbb{Z}\).
+
+It is convenient to define an augmented chain complex in which a point has a homology groups in all dimensions including zero, and this is termed as the `reduced homology group` \(\tilde{H}_n(X)\):
 
 \[... \rightarrow C_2 \xrightarrow{\partial_2} C_1 \xrightarrow{\partial_1} C_0 \xrightarrow{\epsilon} \mathbb{Z} \rightarrow 0\]
 
 # Homotopy invariance
 
-Two spaces that are homotopically equivalent have isomorphic homology groups. For map \(f : X \rightarrow Y\), the induced homomorphism \(f_\# : C_n(X) \rightarrow C_n(Y)\) is defined by \(f_\# \partial = \partial f_\#\):
+Two spaces that are homotopically equivalent have isomorphic homology groups. For map \(f : X \rightarrow Y\), the induced homomorphism \(f_\# : C_n(X) \rightarrow C_n(Y)\) is defined by composing each singular \(n\)-simplex \(\sigma : \Delta^n \rightarrow X\) with \(f\) to obtain \(f_\#(\sigma) = f_\# \sigma : \Delta^n \rightarrow Y\).
 
 \[
 \begin{xy}
@@ -136,6 +138,8 @@ Two spaces that are homotopically equivalent have isomorphic homology groups. Fo
 \end{xy}
 \]
 
+The fact that the maps \(f_\# : C_n(X) \rightarrow C_n(Y)\) satisfy \(f_\# \partial = \partial f_\#\) is expressed by saying that \(f_\#\)s define a `chain map` between the singular chain complex of \(X\) to that of \(Y\).
+
 A chain map between chain complexes induces a homomorphism between the homology groups of the complexes: \(f_\#\) takes cycles to cycles and boundaries to boundaries, and hence induces \(f_* : H_n(X) \rightarrow H_n(Y)\).
 
 If two maps \(f, g : X \rightarrow Y\) are homotopic, they induce the same homomorphism \(f_* = g_* : H_n(X) \rightarrow H_n(Y)\).
@@ -143,7 +147,9 @@ If two maps \(f, g : X \rightarrow Y\) are homotopic, they induce the same homom
 Given a homotopy \(F : X \times I \rightarrow Y\) from \(f\) to \(g\), we can define the prism operator \(C_n(X) \rightarrow C_{n + 1}(Y)\) as:
 \[P(\sigma) = \sum_i (-1)^i F \circ (\sigma \times \mathbb{1})|[v_0 ... v_n, w_0 ... w_n]\]
 
-P is a chain homotopy between \(f_\#\) and \(g_\#\) since \(\partial P + P \partial = g_\# - f_\#\).
+\(P\) is a chain homotopy between \(f_\#\) and \(g_\#\) since \(\partial P + P \partial = g_\# - f_\#\).
+
+There are also induced homomorphisms \(f_* : \tilde{H}_n(X) \rightarrow \tilde{H}_n(Y)\) for reduced homology groups, since \(f_\# \epsilon = \epsilon f_\#\).
 
 # Excision
 
@@ -155,7 +161,7 @@ where \(i\) is the inclusion \(A \hookrightarrow X\), and \(j\) is the quotient 
 
 Analogous to what we had earlier:
 
-(i) \(H_i(S^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}\)
+(i) \(H_i(S^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}\); take \((X, A) = (D^n, S^{n - 1})\) so that \(X/A = S^n\): \(\tilde{H}_i(D^n)\) in the l.e.s of this pair are zero since \(D^n\) is contractable. Exactness of this sequence then implies that maps \(\tilde{H}_i(S^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})\) are isomorphisms for \(i \gt 0\), and that \(\tilde{H}_0(S^n) = 0\).
 (ii) Every map \(f : D^n \rightarrow D^n\) has a fixed point; Brower's fixed point theorem.
 
 # Relative homology groups
@@ -190,7 +196,7 @@ where \(H_n(A)\) denotes the homology group \(\text{ker } \partial \text { / } \
 
 The description of the boundary map \(\partial : H_n(X, A) \rightarrow H_{n - 1}(A)\) is: if `class` \([\alpha] \in H_n(X, A)\) is represented by a relative cycle \(\alpha\), then \(\partial [\alpha]\) is the class of \(\partial \alpha\ \in H_{n - 1}(A)\).
 
-In the l.e.s of homology pairs \((D^n, \partial D^n)\), \(H_i(D^n, \partial D^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})\) are isomorphisms for all \(i \gt 0\). Thus,
+In the l.e.s of homology pairs \((D^n, \partial D^n)\), \(H_i(D^n, \partial D^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})\) are isomorphisms for all \(i \gt 0\).
 
 \[H_i(D^n, \partial D^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}\]
 
@@ -204,4 +210,13 @@ The inclusion map \(\iota : C_n^{\mathcal{U}}(X) \hookrightarrow C_n(X)\) is cha
 
 For good pairs \((X, A)\), the map \((X, A) \rightarrow (X/A, A/A)\) induces homomorphism \(q_* : H_n(X, A) \rightarrow H_n(X/A, A/A)\).
 
-To find explicit cycles representing the `generating group` of the infinite cyclic groups \(H_n(D^n, \partial D^n)\), and  \(H_n(S^n)\), replace \((D^n, \partial D^n)\) with the equivalent \((\Delta^n, \partial \Delta^n)\); viewing as a singular n-simplex, the identity map \(i : \Delta^n \rightarrow \Delta^n\) is the generator of the cyclic group \(H_n(\Delta, \Delta^n)\).
+To find explicit cycles representing `generators` of the infinite cyclic groups \(H_n(D^n, \partial D^n)\), and  \(\tilde{H}_n(S^n)\), replace \((D^n, \partial D^n)\) with the equivalent \((\Delta^n, \partial \Delta^n)\); viewing as a singular n-simplex, the identity map \(i_n : \Delta^n \rightarrow \Delta^n\) is a cycle generating \(H_n(\Delta^n, \partial \Delta^n)\). Let \(\Lambda \subset \Delta^n\) be the union of all but \((n - 1)\)-dimensional faces of \(\Delta^n\). Then,
+
+\[H_n(\Delta^n, \partial \Delta^n) \xrightarrow{\approx} H_{n - 1}(\partial \Delta^n, \Lambda) \xleftarrow{\approx} H_{n - 1}(\Delta^{n - 1}, \partial \Delta^{n - 1})\]
+
+To find a cycle representing \(\tilde{H}_n(S^n)\), consider \(S^n\) to be two \(n\)-simplices \(\Delta^n_1\) and \(\Delta^n_2\). Then, \(\Delta^n_1 - \Delta^n_2\), viewed as a singular \(n\)-chain, is the cycle representing \(\tilde{H}_n(S^n)\) since:
+
+\[\tilde{H}_n(S^n) \xrightarrow{\approx} H_n(S^n, \Delta^n_2) \xleftarrow{\approx} H_n(\Delta^n_1, \partial \Delta^n_1)\]
+
+Since CW pairs are good pairs: let \(A, B\) be subcomplexes of CW complex \(X\); then, the inclusion \((B, A \cap B) \hookrightarrow (X, X/A)\) induces the homomorphism \(H_n(B, A \cap B) \rightarrow H_n(X, A)\) for all \(n\).
+
