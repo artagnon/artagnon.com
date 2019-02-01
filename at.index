@@ -241,4 +241,29 @@ For an l.e.s to be natural means that, for the map \(f_* : (X, A) \rightarrow (Y
 
 For a \(\Delta\)-complex, singular and simplicial homology groups are always isomorphic. Let \(X\) be a \(\Delta\)-complex with the subcomplex \(A \subset X\); \(A\) is the \(\Delta\)-complex formed by the union of simplices of \(X\). Relative groups \(H_n^\Delta(X, A)\) can be formed in the same way as for singular homology, via relative chains \(\Delta_n(X, A) = \Delta_n(X)/\Delta_n(A)\), and this yields a l.e.s of simplicial homology groups for the pair \((X, A)\). There is a canonical homomorphism \(H_n^\Delta(X, A) \rightarrow H_n(X, A)\) induced by \(\Delta_n(X, A) \rightarrow C_n(X, A)\), sending each \(n\)-simplex of \(X\) to its characteristic map \(\sigma : \Delta^n \rightarrow X\).
 
-The homomorphisms \(H_n^\Delta(X, A) \rightarrow H_n(X, A)\) are isomorphisms for all \(n\) and pair \((X, A)\). To show this, consider.
+The homomorphisms \(H_n^\Delta(X, A) \rightarrow H_n(X, A)\) are isomorphisms for all \(n\) and pair \((X, A)\). The simplicial chain group \(\Delta_n(X^k, X^{k - 1})\) is zero for \(n \neq k\), and is a free abelian group with basis the \(k\)-simplicies of \(X\) when \(n = k\). The corresponding singular homology groups \(H_n(X^k, X^{k - 1})\) can be computed by considering the map \(\phi : \bigsqcup_\alpha (\Delta_\alpha^k, \partial \Delta_\alpha^k) \rightarrow (X^k, X^{k - 1})\). Since the quotient group induces a homeomorphism of spaces \(\bigsqcup_\alpha \Delta_\alpha^k/\bigsqcup_\alpha \partial \Delta_\alpha^k \approx X^k/X^{k - 1}\), it induces isomorphisms on all singular homolgy groups. Thus, \(H_n(X^k, X^{k - 1})\) is zero for \(n \neq k\), and for \(n = k\), it is a free abelian group with basis relative cycles of the \(k\)-simplicies of \(X\).
+
+The five lemma: In the following diagram, if \(\alpha, \beta, \delta, \epsilon\) are isomorphisms, so is \(\gamma\):
+
+\[
+\begin{xy}
+\xymatrix{
+A\ar[r]^i\ar[d]^\alpha & B\ar[r]^j\ar[d]^\beta & C\ar[r]^k\ar[d]^\gamma & D\ar[r]^l\ar[d]^\delta & E\ar[d]^\epsilon \\
+A'\ar[r]^{i'} & B'\ar[r]^{j'} & C'\ar[r]^{k'} & D'\ar[r]^{l'} & E'
+}
+\end{xy}
+\]
+
+\(H_n(X)\) is finitely generated when \(X\) is a \(\Delta\)-complex with finitely many n-simplicies since, in this case, the simplicial chain of the group \(\Delta_n(X)\) is finitely generated, hence also is the subgroup of cycles and the quotient group \(H_n^\Delta(X)\). If we write \(H_n(X)\) as a direct sum of cyclic groups, then the number of \(\mathbb{Z}\) summands are called the \(n^{th}\) `Betti numbers`, and the integer specifying the order of finite cyclic summands are called `torsion coefficients`.
+
+# Degree
+
+For the map \(f : S^n \rightarrow S^n\), the induced homomorphism \(H_n(S^n) \rightarrow H_n(S^n)\) is a homomorphism of an infinite cyclic to itself, and must be of the form \(f_*(\alpha) = d \alpha\), where \(d\) depends only on \(f\). \(d\) is then called degree of \(f\), and denoted by \(\text{deg } f\). Some properties:
+
+(a) \(\text{deg } \mathbb{1} = 1\) since \(\mathbb{1}_* = \mathbb{1}\).
+(b) \(\text{deg } f = 0\) if \(f\) is not surjective.
+(c) If \(f \simeq g\), then \(\text{deg } f = \text{deg } g\).
+(d) \(\text{deg } fg = \text{deg } f . \text{deg } g\) since \((fg)_* = f_* g_*\).
+(e) \(\text{deg } f = -1\) if \(f\) is a reflection of \(S^n\).
+(f) The antipodal map \(\mathbb{-1} : S^n \rightarrow S^n\) has degree \((-1)^{n + 1}\).
+(g) If \(f : S^n \rightarrow S^n\) has no fixed points, then \(\text{deg } f = (-1)^{n + 1}\).
