@@ -32,7 +32,7 @@
         <h1>
           Algebraic Toplogy
         </h1>
-        <span id="pubdate">Created: Sat, 8 Dec 2018</span><br /><span id="pubdate">Last updated: Fri, 1 Feb 2019</span>
+        <span id="pubdate">Created: Sat, 8 Dec 2018</span><br /><span id="pubdate">Last updated: Sat, 2 Feb 2019</span>
         <p>
           Algebraic Topology is about turning questions about the existence of topological objects to the corresponding algebraic objects. If an algebraic object does not exist, neither does the toplogical one, but since this process leads to information loss, existence of an algebraic object does not imply existence of the corresponding topological object.
         </p>
@@ -444,6 +444,29 @@
             If \(f : S^n \rightarrow S^n\) has no fixed points, then \(\text{deg } f = (-1)^{n + 1}\).
           </li>
         </ol>
+        <p>
+          \(S^n\) has a continuous field of nonzero tangent vectors iff \(n\) is odd. Let \(x \mapsto v(x)\) be a mapping, assigning to each vector \(x \in S^n\) the vector \(v(x)\), the tangent to \(S^n\) at \(x\). Regarding \(v(x)\) as a vector at origin instead of \(x\), tangency just means that \(x\) and \(v(x)\) are orthogonal at \(\mathbb{R}^{n + 1}\). Assume that \(v(x) \neq 0\) at all \(x\); then, replace \(v(x)\) by \(v(x)/|v(x)|\) so that \(|v(x)| = 1\). Then, \(x \cos(t) + v(x) \sin(t)\) lie in the unit circle in the plane spanned by \(x\) and \(v(x)\). Letting \(t\) go from \(0\) to \(\pi\), we obtain the homotopy \(f_t = x \cos(t) + v(x) \sin(t)\) from the identity map of \(S^n\) to the antipodal map \(\mathbb{-1}\). Then, \(\text{deg}(\mathbb{-1}) = \text{deg}(\mathbb{1})\), and hence \(n\) must be odd.
+        </p>
+        <p>
+          \(\mathbb{Z}_2\) is the only non-trivial group that can act freely on \(S^n\) if \(n\) is even. The action of a group \(G\) on a space \(X\) is defined as the group \(\text{Homeo}(X)\), the group of homeomorphisms \(X \rightarrow X\), and the action is free if the homeomorphisms corresponding to each nontrivial element of \(G\) has no fixed points. In the case of \(S^n\), the antipodal map \(x \mapsto -x\) generates a free action of \(\mathbb{Z}_2\). The degree of a homeomorphism must be \(\pm 1\), so the action of group \(G\) on \(S^n\) determines the degree function \(d : G \rightarrow \pm 1\). This is a homomorphism since \(\text{deg } fg = \text{deg } f . \text{deg } g\), and the action is free so it sends each element of \(G\) to \((-1)^{n + 1}\). Hence, for an even \(n\), \(d\) has a trivial kernel.
+        </p>
+        <p>
+          Let \(f : S^n \rightarrow S^n\), \(n \gt 0\), \(f^{-1}(y)\) be the function with preimage finitely many points \(x_1 ... x_n\). Then, let \(U_1 ... U_n\) be the disjoint open neighborhoods of these points, and \(V\) be the neighborhood of \(y\), the points mapped by \(f\). Then, \(f(U_i - x_i) \subset V - y\), and we get the following commutative diagram:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          & H_n(U_i, U_i - x_i)\ar[dl]_\approx\ar[d]_{k_i}\ar[r]^{f_*} & H_n(V, V - y)\ar[d]^\approx \\
+          H_n(S^n, S^n - x_i) & H_n(S^n, S^n - f^{-1}(y))\ar[l]^{p_i}\ar[r]^{f_*} & H_n(S^n, S^n - y) \\
+          & H_n(S^n)\ar[ul]^\approx\ar[r]^{f_*}\ar[u]^j & H_n(S^n)\ar[u]_\approx
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          so \(f_*\) becomes multiplication by an integer \(f\) called `local degree` at \(x_i\), written \(\text{deg }f|x_i\). \(\text{deg } f = \sum_i \text{deg } f|x_i\).
+        </p>
         <ul id="indexfill">
         </ul>
       </div>
