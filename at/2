@@ -2,3 +2,27 @@ Algebraic Topology II
 
 # Cellular homology
 
+Cellular homology provide an efficient way to compute homology groups of CW complexes, based on degree calculations.
+
+Let \(X\) be a CW complex; then:
+
+(a) \(H_k(X^n, X^{n - 1})\) is zero for \(k \neq n\), and free abelian otherwise, with basis in one-to-one correspondence with the n-cells of \(X\). This follows from the observation that \((X^n, X^{n - 1})\) is a good pair, and \(X^n/X^{n - 1}\) is the wedge sum of \(n\)-spheres, one for each \(n\)-cell of \(X^n\).
+(b) \(H_k(X^n) = 0\) for \(k \gt n\). To see this, consider the l.e.s of the pair \((X^n, X^{n - 1})\): \(H_{k + 1}(X^n, X^{n - 1}) \rightarrow H_k(X^{n - 1}) \rightarrow H_k(X^n) \rightarrow H_k(X^n, X^{n - 1})\). If \(k \neq n, n - 1\), then the outer two groups are zero, and we get \(H_k(X^{n - 1}) \approx H_k(X^n)\). If \(k > n\), \(H_k(X^n) \approx H_k(X^{n - 1}) \approx ... \approx H_k(X^0)\).
+(c) The inclusion \(i : X^n \hookrightarrow X\) induces the isomorphism \(i_* : H_k(X^n) \rightarrow H_k(X)\) if \(k \lt n\), since \(H_k(X^n) \approx H_k(X^{n + 1}) \approx ... H_k(X^{n + m})\) for all \(m \geq 0\), as in (b).
+
+Pairs \((X^{n + 1}, X^n), (X^n, X^{n - 1}), (X^{n - 1}, X^{n - 2})\) fit into the l.e.s:
+
+\[
+\begin{xy}
+\xymatrix{
+& & & 0 & \\
+0\ar[dr] & & H_n(X^{n + 1})\ar[ur] & & \\
+& H_n(X^n)\ar[dr]\ar[ur] & & & \\
+H_{n + 1}(X^{n + 1}, X^n)\ar[ur]\ar[rr] & & H_n(X^n, X^{n - 1})\ar[dr]\ar[rr] & & H_n(X^{n - 1}, X^{n - 2}) \\
+& & & H_{n - 1}(X^{n - 1})\ar[ur] & \\
+& & 0\ar[ur] & &
+}
+\end{xy}
+\]
+
+\(H_n^\text{CW}(X) \approx H_n(X)\).
