@@ -17,12 +17,14 @@ Pairs \((X^{n + 1}, X^n), (X^n, X^{n - 1}), (X^{n - 1}, X^{n - 2})\) fit into th
 \xymatrix{
 & & & 0 & \\
 0\ar[dr] & & H_n(X^{n + 1})\ar[ur] & & \\
-& H_n(X^n)\ar[dr]\ar[ur] & & & \\
-H_{n + 1}(X^{n + 1}, X^n)\ar[ur]\ar[rr] & & H_n(X^n, X^{n - 1})\ar[dr]\ar[rr] & & H_n(X^{n - 1}, X^{n - 2}) \\
-& & & H_{n - 1}(X^{n - 1})\ar[ur] & \\
+& H_n(X^n)\ar[dr]^{j_n}\ar[ur] & & & \\
+H_{n + 1}(X^{n + 1}, X^n)\ar[ur]^{\partial_{n + 1}}\ar[rr]^{d_{n + 1}} & & H_n(X^n, X^{n - 1})\ar[dr]^{\partial_n}\ar[rr]^{d_n} & & H_n(X^{n - 1}, X^{n - 2}) \\
+& & & H_{n - 1}(X^{n - 1})\ar[ur]^{j_{n - 1}} & \\
 & & 0\ar[ur] & &
 }
 \end{xy}
 \]
 
-\(H_n^\text{CW}(X) \approx H_n(X)\).
+\(d_{n + 1}, d_n\) are relativizations of the boundary map \(\partial_{n + 1}, \partial_n\), and the composition \(d_n d_{n + 1}\) is zero. The horizontal row in the diagram is termed `cellular chain complex` in \(X\). Since \(H_n(X^n, X^{n - 1})\) is free with basis in one-to-one correspondence with the \(n\)-cells, it can be thought of as linear combinations of \(n\)-cells of \(X\). The homology groups of this cellular chain complex are called `cellular homology groups`.
+
+\(H_n^\text{CW}(X) \approx H_n(X)\). From the diagram, \(H_n(X)\) can be identified with \(H_n(X^n)/\text{im } \partial_{n + 1}\). Further, since \(j_n\) is injective, it maps \(\text{im } \partial_{n + 1}\) isomorphically onto \(\text{im }(j_n \partial_{n + 1}) = \text{im } d_{n + 1}\), and \(H_n(X^n)\) onto \(\text{im } j_n = \text{ker } \partial_n\). Since \(j_{n - 1}\) is injective, \(\text{ker } d_n = \text{ker } \partial_n\). Thus, \(j_n\) induces a isomorphism of the quotient \(H_n(X^n)/\text{im } \partial_{n + 1}\) onto \(\text{ker } d_n/\text{im } d_{n + 1}\).
