@@ -167,3 +167,28 @@ a\ar[r] & b\ar[r]_u\ar@<1ex>[r]^v\ar[dr]_f\ar@<1ex>[dr]^g & r\ar@{.>}[d]|{\exist
 }
 \end{xy}
 \]
+
+Let \(C\) be a category, and \(J\) be an index category. The diagonal functor
+\[\Delta : C \rightarrow C^J\]
+
+sends each object \(c\) to the constant functor \(\Delta c\) - the functor which has the same value \(c\) for each object \(i \in J\), and the value \(1_c\) at each arrow of \(J\). Given \(f : c \rightarrow c'\), \(\Delta f : \Delta c \overset{\bullet}{\rightarrow} \Delta c'\) is a NT. Arrows \(F : J \rightarrow C\) correspond to objects of \(C^J\). The universal arrow \(\langle r, u \rangle\) from \(F\) to \(\Delta\) is called a `colimit` (or `direct limit`, `inductive limit`) diagram for \(F\); it consits of an object \(r \in C\), usually written \(r = \underset{\longrightarrow}{\text{Lim}} F\), or \(r = \text{Colim} F\), along with a NT \(u : F \overset{\bullet}{\rightarrow} \Delta r\) which is universal among NTs \(\tau : F \overset{\bullet}{\rightarrow} \Delta c\). Pictorially, the following diagram commutes:
+
+\[
+\begin{xy}
+\xymatrix{
+F_1\ar[d]^{\tau_1}\ar[r] & F_2\ar[d]^{\tau_2}\ar[r] & F_3\ar[d]^{\tau_3}\ar[r]\ar@<1ex>[r] & F_4\ar[d]^{\tau_4} & F_5\ar[d]^{\tau_5}\ar[l] \\
+c\ar@{}[r]|{=} & c\ar@{}[r]|{=} & c\ar@{}[r]|{=} & c\ar@{}[r]|{=} & c
+}
+\end{xy}
+\]
+
+\(\tau : F \overset{\bullet}{\rightarrow} \Delta c\) is often written as \(\tau : F \overset{\bullet}{\rightarrow} c\), and is called the `cone` of \(F\) to the base \(c\):
+
+\[
+\begin{xy}
+\xymatrix{
+F_i\ar[r]^{F_u}\ar[dr]_{\tau_i} & F_j\ar[d]^{\tau_j}\ar[r]^{F_v} & F_k\ar[dl]^{\tau_k} \\
+& c &
+}
+\end{xy}
+\]
