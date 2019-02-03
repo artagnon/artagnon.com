@@ -171,7 +171,7 @@ a\ar[r] & b\ar[r]_u\ar@<1ex>[r]^v\ar[dr]_f\ar@<1ex>[dr]^g & r\ar@{.>}[d]|{\exist
 Let \(C\) be a category, and \(J\) be an index category. The diagonal functor
 \[\Delta : C \rightarrow C^J\]
 
-sends each object \(c\) to the constant functor \(\Delta c\) - the functor which has the same value \(c\) for each object \(i \in J\), and the value \(1_c\) at each arrow of \(J\). Given \(f : c \rightarrow c'\), \(\Delta f : \Delta c \overset{\bullet}{\rightarrow} \Delta c'\) is a NT. Arrows \(F : J \rightarrow C\) correspond to objects of \(C^J\). The universal arrow \(\langle r, u \rangle\) from \(F\) to \(\Delta\) is called a `colimit` (or `direct limit`, `inductive limit`) diagram for \(F\); it consits of an object \(r \in C\), usually written \(r = \underset{\longrightarrow}{\text{Lim}} F\), or \(r = \text{Colim} F\), along with a NT \(u : F \overset{\bullet}{\rightarrow} \Delta r\) which is universal among NTs \(\tau : F \overset{\bullet}{\rightarrow} \Delta c\). Pictorially, the following diagram commutes:
+sends each object \(c\) to the constant functor \(\Delta c\) - the functor which has the same value \(c\) for each object \(i \in J\), and the value \(1_c\) at each arrow of \(J\). Given \(f : c \rightarrow c'\), \(\Delta f : \Delta c \overset{\bullet}{\rightarrow} \Delta c'\) is a NT. Arrows \(F : J \rightarrow C\) correspond to objects of \(C^J\). The universal arrow \(\langle r, u \rangle\) from \(F\) to \(\Delta\) is called a `colimit` (or `direct limit`, `inductive limit`) diagram for \(F\); it consits of an object \(r \in C\), usually written \(r = \underset{\longrightarrow}{\text{Lim }} F\), or \(r = \text{Colim } F\), along with a NT \(u : F \overset{\bullet}{\rightarrow} \Delta r\) which is universal among NTs \(\tau : F \overset{\bullet}{\rightarrow} \Delta c\). Pictorially, the following diagram commutes:
 
 \[
 \begin{xy}
@@ -192,3 +192,48 @@ F_i\ar[r]^{F_u}\ar[dr]_{\tau_i} & F_j\ar[d]^{\tau_j}\ar[r]^{F_v} & F_k\ar[dl]^{\
 }
 \end{xy}
 \]
+
+Alternatively, colimit of \(F : J \rightarrow C\) consists of object \(\underset{\longrightarrow}{\text{Lim }} F \in C\) along with the cone \(\mu : F \overset{\bullet}{\rightarrow} \Delta (\underset{\longrightarrow}{\text{Lim }} F)\), from base \(F\) to the vertex \(\underset{\longrightarrow}{\text{Lim }} F\), which is a `universal cone` (or `limiting cone`).
+
+As an example, consider \(J = \omega = \{0 \rightarrow 1 \rightarrow 2 \rightarrow ...\}\), and functor \(F : \omega \rightarrow \textbf{Set}\) which maps every arrow in \(\omega\) to an inclusion map (subset in set). This functor is simply the inclusion \(F_0 \subset F_1 \subset F_2 \subset ...\). The union \(U\) of all sets, with cone given by inclusion map \(F_n \rightarrow U\), is \(\underset{\longrightarrow}{\text{Lim} } F\). For \(J\) small, any \(J \rightarrow \textbf{Set}\) has a colimit.
+
+# Limits and products
+
+The notion of a limit is dual to that of a colimit. Let \(C\) be a category, \(J\) be an index set, and \(\Delta : C \rightarrow C^J\) be a diagonal functor. Limit of functor \(F : J \rightarrow C\) is defined as the universal arrow \(\langle r, \nu \rangle\) from \(\Delta\) to \(F\); it consists of object \(r \in C\), \(r = \underset{\longleftarrow}{\text{Lim }} F = \text{Lim } F\), called the `limit object` (or `projective limit`, `inverse limit`) of \(F\), and the NT \(\nu : \Delta r \overset{\bullet}{\rightarrow} F\), which is universal among \(\tau : \Delta c \overset{\bullet}{\rightarrow} F\) for \(c \in C\). \(\tau : c \overset{\bullet}{\rightarrow} F\) is then called cone to base \(F\) from vertex \(c\), pictued as:
+
+\[
+\begin{xy}
+\xymatrix{
+c\ar[d]_{\tau_i}\ar[dr]|{\hole}_{\tau_j}\ar[r]^t & \underset{\longleftarrow}{\text{Lim}} F = \text{Lim } F\ar[d]^{\nu_j}\ar[dl]_{\nu_i} \\
+F_i\ar[r]_{Fu} & F_j
+}
+\end{xy}
+\]
+
+The properties of limits and colimits may be pictured as:
+
+\[
+\begin{xy}
+\xymatrix{
+\underset{\longleftarrow}{\text{Lim }} F\ar[r]^\nu & F\ar@{}[d]|{=}\ar[r]^\mu & \underset{\longrightarrow}{\text{Lim }} F\ar@{.>}[d] \\
+c\ar[r]^\tau\ar@{.>}[u] & F\ar[r]^\sigma & c
+}
+\end{xy}
+\]
+
+For a discrete category \(J = \{1, 2\}\) and category \(C\), limit of functor \(F : \{1, 2\} \rightarrow C\) consisting of pairs \(\langle a, b \rangle\), is called `product` of \(a, b\) and written as \(a \times b\). Then, we have projections \(p, q\) defined as:
+\[a \xleftarrow{p} a \times b \xrightarrow{q} b\]
+
+They form a cone with vertex \(a \times b\), and we have the bijection of sets natural in \(c\):
+\[C(c, a \times b) \cong C(c, a) \times C(c, b)\]
+
+We then define \(h = (f, g) : c \rightarrow a \times b\), and \(f, g\) are called the `components` of \(h\). In \(textbf{Cat}, \textbf{Grp}, \textbf{Top}\), this corresponds to direct product.
+
+`Infinite products`. When \(J\) is a set (= discrete category, category with all arrows identities), \(F : J \rightarrow C\) is simply a \(J\)-indexed family of objects \(a_i \in C\), while cone with vertex \(c\) and base \(a_j\) is a \(J\)-indexed family of arrows \(f_j : c \rightarrow a_j\). We have \(f : c \rightarrow \prod_j a_j\) and the following bijection of sets natural in \(c\):
+\[\prod_j C(c, a_j) \cong C(c, \prod_j a_j)\]
+
+Products over any small set exist in \(\textbf{Set}\), \(\textbf{Grp}\), and \(\textbf{Top}\); they are simply cartesian products.
+
+If factors in a product are all equal, \(a_j = b\) for all \(j\), then \(\prod_j a_j = \prod_j b\) is called `power`, and is written as \(\prod_j b = b^J\). The following bijection of sets is natural in \(c\):
+\[C(c, b)^J \cong C(c, b^J)\]
+
