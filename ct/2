@@ -274,3 +274,25 @@ If \(C\) has a terminal object \(t\) and products \(a \leftarrow a \times b \rig
 
 For any object \(a\), there are isomorphisms natural in \(c\):
 \[\rho_a = \rho : t \times a \cong a \quad \lambda_a = \lambda : a \times t \cong a\]
+
+The proof can be expressed as a commutative diagram:
+
+\[
+\begin{xy}
+\xymatrix{
+& & b \\
+a & a \times (b \times c)\ar[l]\ar[r]\ar[ur]\ar[dr] & b \times c\ar[u]\ar[d] \\
+& & c
+}
+\end{xy}
+\]
+
+The dual result holds for a coproduct. A coproduct diagram consists of \(m\) injections \(i_j : a_j \rightarrow a_1 \sqcup a_2 \sqcup \ldots \sqcup a_m\) and a map \(f: a_1 \sqcup a_2 \sqcup \ldots \sqcup a_n \rightarrow c\) determined by its \(m\) cocomponents \(f \circ i_j : f_j = a_j \rightarrow c\) for \(j = 1, 2, \ldots m\). If \(C\) has both finite products and finite coproducts, the arrows
+\[a_1 \sqcup \ldots \sqcup a_m \rightarrow b_1 \times \ldots \times b_n\]
+
+from coproducts to products is determined uniquely by an \(m \times n\) matrix of arrows \(f_{jk} = p_k f i_j : a_j \rightarrow b_k\). In any category with a null object \(z\) and the zero arrow \(a \rightarrow b\) through \(z\), finite coproducts, and finite products, there is a canonical arrow of the coproduct to the product:
+\[a_1 \sqcup \ldots \sqcup a_n \rightarrow a_1 \times \ldots \times a_n\]
+
+This arrow is precisely the identity matrix of order \(n\). It may be an isomorphism (in \(\textbf{Ab}, \textbf{R-Mod}\)), a proper monic (in \(\textbf{Top}, \textbf{Set}\)), or a proper epi (in \(\textbf{Grp}\)).
+
+# Groups in categories
