@@ -296,3 +296,44 @@ from coproducts to products is determined uniquely by an \(m \times n\) matrix o
 This arrow is precisely the identity matrix of order \(n\). It may be an isomorphism (in \(\textbf{Ab}, \textbf{R-Mod}\)), a proper monic (in \(\textbf{Top}, \textbf{Set}\)), or a proper epi (in \(\textbf{Grp}\)).
 
 # Groups in categories
+
+Let \(C\) be a category with finite products and terminal object \(c\). Then, a monoid is defined by the triple \(\langle c, \mu : c \times c \rightarrow c, \eta : t \rightarrow c \rangle\) such that the following diagrams commute:
+
+\[
+\begin{xy}
+\xymatrix{
+c \times (c \times c)\ar[r]^\alpha\ar[d]^{1 \times \mu} & (c \times c) \times c\ar[r]^{\mu \times 1} & c \times c\ar[d]^\mu \\
+c \times c\ar[rr]^{\mu} & & c
+}
+\end{xy}
+\]
+
+\[
+\begin{xy}
+\xymatrix{
+t \times c\ar[r]^{\eta \times 1}\ar[d]^\lambda & c \times c\ar[d]^\mu & c \times t\ar[l]_{1 \times \eta}\ar[d]^\rho \\
+c\ar@{}[r]|{=} & c\ar@{}[r]|{=} & c
+}
+\end{xy}
+\]
+
+where \(\alpha\) is the associativity morphism. A group is then defined by the triple \(\langle c, \mu, \eta \rangle\) together with the operation \(\zeta : c \rightarrow c\) such that the following diagram commutes (with \(\delta_c\) the diagonal):
+
+\[
+\begin{xy}
+\xymatrix{
+c\ar[r]^{\delta_c}\ar[d] & c \times c\ar[r]^{1 \times \zeta} & c \times c\ar[d]^\mu \\
+t\ar[rr]^\eta & & c
+}
+\end{xy}
+\]
+
+This suggests that \(\zeta\) sends each element \(c\) to its right inverse. One can draw similar diagrams for any algebraic system.
+
+If \(C\) is a category with finite products, then object \(c\) is a group iff the hom-functor \(C(-, c)\) is a group in the functor category \(\textbf{Set}^{C^{op}}\). Each multiplication \(\mu\) of \(C\) determins a corresponding multiplication \(\bar{\mu}\) in the hom-set \(C(-, c) : C^{op} \rightarrow \textbf{Set}\) as the composite
+
+\[C(-, c) \times C(-, c) \xrightarrow{\theta} C(-, c \times c) \xrightarrow{\nu} C(-, c)\]
+
+where \(\nu = \mu_* = C(-, \mu)\), while the first natural isomorphism is given by the definition of the product object \(c \times c\). Conversely, given any natural \(\nu\), the Yoneda lemma proves that there is a unique \(\mu : c \times c \rightarrow c\) such that \(\nu = \mu_*\). A diagram chase shows that \(\mu\) is associative only if \(\bar{\mu}\) is.
+
+# Colimits of representatable functors
