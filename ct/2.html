@@ -256,7 +256,7 @@
           \[\Delta : C \rightarrow C^J\]
         </p>
         <p>
-          sends each object \(c\) to the constant functor \(\Delta c\) - the functor which has the same value \(c\) for each object \(i \in J\), and the value \(1_c\) at each arrow of \(J\). Given \(f : c \rightarrow c&#39;\), \(\Delta f : \Delta c \overset{\bullet}{\rightarrow} \Delta c&#39;\) is a NT. Arrows \(F : J \rightarrow C\) correspond to objects of \(C^J\). The universal arrow \(\langle r, u \rangle\) from \(F\) to \(\Delta\) is called a `colimit` (or `direct limit`, `inductive limit`) diagram for \(F\); it consits of an object \(r \in C\), usually written \(r = \underset{\longrightarrow}{\text{Lim }} F\), or \(r = \text{Colim } F\), along with a NT \(u : F \overset{\bullet}{\rightarrow} \Delta r\) which is universal among NTs \(\tau : F \overset{\bullet}{\rightarrow} \Delta c\). Pictorially, the following diagram commutes:
+          sends each object \(c\) to the constant functor \(\Delta c\) - the functor which has the same value \(c\) for each object \(i \in J\), and the value \(1_c\) at each arrow of \(J\). Given \(f : c \rightarrow c&#39;\), \(\Delta f : \Delta c \overset{\bullet}{\rightarrow} \Delta c&#39;\) is an NT. Arrows \(F : J \rightarrow C\) correspond to objects of \(C^J\). The universal arrow \(\langle r, u \rangle\) from \(F\) to \(\Delta\) is called a `colimit` (or `direct limit`, `inductive limit`) diagram for \(F\); it consits of an object \(r \in C\), usually written \(r = \underset{\longrightarrow}{\text{Lim }} F\), or \(r = \text{Colim } F\), along with an NT \(u : F \overset{\bullet}{\rightarrow} \Delta r\) which is universal among NTs \(\tau : F \overset{\bullet}{\rightarrow} \Delta c\). Pictorially, the following diagram commutes:
         </p>
         <p class="mathjax">
           \[
@@ -466,6 +466,34 @@
         <h2>
           Colimits of representatable functors
         </h2>
+        <p>
+          Any functor \(K : D \rightarrow \textbf{Sets}\), from a small category \(D\) to the category of Sets, can be represented, in a canoical way, by the colimit of a diagram of representable functors \(\text{hom}(d, -)\), where \(d \in D\). First, given \(K\), we construct a diagram category for the colimit \(J\), the &quot;category of elements&quot; of \(K\); that is the comma category \(1 \downarrow K\) of object pairs \((d, x)\), with \(d \in D, x \in K(d)\) as objects, and arrows \(f : (d, x) \rightarrow (d&#39;, x&#39;)\), those arrows \(f: d \rightarrow d&#39;\) for which \(K(f)x = x&#39;\). Then, \(K\) is the colimit of the diagram on \(1 \downarrow K\) given by the functor
+          \[M : J^D \rightarrow \textbf{Sets}^D\]
+        </p>
+        <p>
+          which sends each object \((d, x)\) to the hom-functor \(D(d, -)\), and each arrow \(f\) to the induced NT \(f_* : D(d&#39;, -) \rightarrow D(d, -)\). Then, the Yoneda isomorphism on \(\textbf{Sets}^D\) yields a cone over base \(M\) to \(K\):
+          \[y^{-1} : K(D) \rightarrow \text{Nat}(D(d, -), K)\]
+        </p>
+        <p>
+          and we get the following diagram:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          J\ar[d]^M & (d, x)\ar[d] & (d', x')\ar[d]\ar[l]_{f_*} \\
+          \textbf{Sets}^D & D(d, -)\ar[d]_{y^{-1}x}\ar[dr]_{y^{-1}x'}|{\hole} & D(d', -)\ar[d]^{y^{-1}z'}\ar[dl]_{y^{-1}z}\ar[l]_{f_*} \\
+          & K\ar@{.>}[r]_\theta & L
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          This cone to \(K\) is colimiting over \(D(d, -)\). Consider any other cone from \(D(d, -)\) to the vertex \(L\); by the Yoneda lemma, this is an NT \(D \rightarrow \textbf{Sets}\), given by \(y^{-1}z : D(d, -) \rightarrow L\), as well as by \(y^{-1}z&#39; : D(d&#39;, -) \rightarrow L\), for some \(z \in L(D), fz = z&#39;\). To show that the cone to \(K\) is universal, construct an NT \(\theta : K \rightarrow L\) and set \(\theta_d x = z\). Since \(f(y^{-1}z) = y^{-1}(fz) = y^{-1}z&#39;\), \(\theta\) is natural.
+        </p>
+        <p>
+          For small category \(C\), the contravariant functor \(F : C^{op} \rightarrow \textbf{Sets}\) is called a `presheaf`, and the category of these functors is written as \(\hat{C}\). This terminology comes from the case when \(C\) is a category of open subsets \(U\) of a topological space, and \(F\) smooth functions; then, for the inclusion \(V \subset U\), we have the map \(F(U) \rightarrow F(V)\).
+        </p>
       </div>
       <div id="sidebar">
         <ul>
