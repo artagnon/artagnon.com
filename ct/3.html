@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>artagnon.com: ct/3</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="mathematics, mathematical notes, study notes, james munkres, miles reid, dummit and foote, ravi vakil, rising sea, allen hatcher, saunders mac lane, categories for the working mathematician" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/design/all.css" media="all" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (min-device-width: 320px) and (max-device-width: 600px)" />
+    <link rel="stylesheet" href="/design/print.css" media="only print" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans|Roboto+Mono" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/design/claytext.js"></script>
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} }, tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>
+          Category Theory III
+        </h1>
+        <span id="pubdate">Created: Tue, 5 Feb 2019</span><br /><span id="pubdate">Last updated: Tue, 5 Feb 2019</span>
+        <h2>
+          Adjunction
+        </h2>
+        <p>
+          For a fixed field \(K\), consider the functors
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \textbf{Set}\ar@<1ex>[r]^U & \textbf{Vct}_K\ar[l]^V
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          \(U\) is the forgetful functor which takes the vector field to the corresponding set of vectors, while \(V\) takes \(\textbf{Set}\) to a basis. For set \(X\), \(V(X)\) is the finite formal set of linear combinations \(\sum r_i x_i\), with scalar coefficents \(r_i\), and \(x_i \in X\). For vector space \(W\), \(g : X \rightarrow U(W)\) extends to \(f : V(X) \rightarrow W\), and hence there is a bijection
+          \[\varphi : \textbf{Set}(X, U(W)) \cong \textbf{Vec}_K(V(X), W)\]
+        </p>
+        <p>
+          Setting \(h : X&#39; \rightarrow X, h^* g = g \circ h\), naturality in \(X, W\) are obtained from the following diagram:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \textbf{Set}(X, U(W))\ar[r]^\varphi\ar[d]^{Vh^*} & \textbf{Vec}_K(V(X), W)\ar[d]^{h^*} \\
+          \textbf{Set}(X', U(W))\ar[r]^\varphi & \textbf{Vec}_K(V(X'), W)
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          As an example, consider the free category over a small graph \(G\), \(C = FG\), and \(D : \textbf{Grph} \rightarrow \textbf{Cat}\) given by; it is related to the forgetful functor \(U : textbf{Cat} \rightarrow \textbf{Grph}\) since \(D : G \rightarrow UB\)extends to \(D&#39; : FG \rightarrow B\). Moreover \(D \mapsto D&#39;\) is a natural isomorphism:
+          \[\textbf{Cat}(FG, B) \cong \textbf{Set}(G, UB)\]
+        </p>
+        <p>
+          In the category of small sets, the function \(g : T \times R \rightarrow S\), a function of two variables, can be considered as \(\varphi g : T \rightarrow \text{Hom}(R, S)\), a function of one variable, so that the following bijection holds:
+          \[\varphi : \text{Hom}(T \times R, S) \cong \text{Hom}(T, \text{Hom}(R, S))\]
+        </p>
+        <p>
+          For modules \(A, B, C\) in a commutative ring \(K\), a similar bijection holds:
+          \[\text{Hom}(A \otimes_K B, C) \cong \text{Hom}(A, \text{Hom}_K(B, C))\]
+        </p>
+        <p>
+          The `adjuction` of categories \(X, A\), where \(F, G\) are functors is given by the triple \(\langle F, G, \varphi \rangle\) that satisfies the diagrams:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          X(Fx, a)\ar[r]^\varphi\ar[d]^{k_*} & X(x, Ga)\ar[d]^{(Gk)_*} \\
+          X(Fx, a')\ar[r]^\varphi & X(x, Ga')
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          X(Fx, a)\ar[r]^\varphi\ar[d]^{h^*} & X(x, Ga)\ar[d]^{(Fh)^*} \\
+          X(Fx', a)\ar[r]^\varphi & X(x', Ga)
+          }
+          \end{xy}
+          \]
+        </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/ac">ac</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/cv">cv</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/sw">sw</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

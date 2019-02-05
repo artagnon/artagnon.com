@@ -1,0 +1,53 @@
+Category Theory III
+
+# Adjunction
+
+For a fixed field \(K\), consider the functors
+
+\[
+\begin{xy}
+\xymatrix{
+\textbf{Set}\ar@<1ex>[r]^U & \textbf{Vct}_K\ar[l]^V
+}
+\end{xy}
+\]
+
+\(U\) is the forgetful functor which takes the vector field to the corresponding set of vectors, while \(V\) takes \(\textbf{Set}\) to a basis. For set \(X\), \(V(X)\) is the finite formal set of linear combinations \(\sum r_i x_i\), with scalar coefficents \(r_i\), and \(x_i \in X\). For vector space \(W\), \(g : X \rightarrow U(W)\) extends to \(f : V(X) \rightarrow W\), and hence there is a bijection
+\[\varphi : \textbf{Set}(X, U(W)) \cong \textbf{Vec}_K(V(X), W)\]
+
+Setting \(h : X' \rightarrow X, h^* g = g \circ h\), naturality in \(X, W\) are obtained from the following diagram:
+
+\[
+\begin{xy}
+\xymatrix{
+\textbf{Set}(X, U(W))\ar[r]^\varphi\ar[d]^{Vh^*} & \textbf{Vec}_K(V(X), W)\ar[d]^{h^*} \\
+\textbf{Set}(X', U(W))\ar[r]^\varphi & \textbf{Vec}_K(V(X'), W)
+}
+\end{xy}
+\]
+
+As an example, consider the free category over a small graph \(G\), \(C = FG\), and \(D : \textbf{Grph} \rightarrow \textbf{Cat}\) given by; it is related to the forgetful functor \(U : textbf{Cat} \rightarrow \textbf{Grph}\) since \(D : G \rightarrow UB\)extends to \(D' : FG \rightarrow B\). Moreover \(D \mapsto D'\) is a natural isomorphism:
+\[\textbf{Cat}(FG, B) \cong \textbf{Set}(G, UB)\]
+
+In the category of small sets, the function \(g : T \times R \rightarrow S\), a function of two variables, can be considered as \(\varphi g : T \rightarrow \text{Hom}(R, S)\), a function of one variable, so that the following bijection holds:
+\[\varphi : \text{Hom}(T \times R, S) \cong \text{Hom}(T, \text{Hom}(R, S))\]
+
+For modules \(A, B, C\) in a commutative ring \(K\), a similar bijection holds:
+\[\text{Hom}(A \otimes_K B, C) \cong \text{Hom}(A, \text{Hom}_K(B, C))\]
+
+The `adjuction` of categories \(X, A\), where \(F, G\) are functors is given by the triple \(\langle F, G, \varphi \rangle\) that satisfies the diagrams:
+
+\[
+\begin{xy}
+\xymatrix{
+X(Fx, a)\ar[r]^\varphi\ar[d]^{k_*} & X(x, Ga)\ar[d]^{(Gk)_*} \\
+X(Fx, a')\ar[r]^\varphi & X(x, Ga')
+}
+\end{xy}
+\begin{xy}
+\xymatrix{
+X(Fx, a)\ar[r]^\varphi\ar[d]^{h^*} & X(x, Ga)\ar[d]^{(Fh)^*} \\
+X(Fx', a)\ar[r]^\varphi & X(x', Ga)
+}
+\end{xy}
+\]
