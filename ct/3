@@ -35,7 +35,20 @@ In the category of small sets, the function \(g : T \times R \rightarrow S\), a 
 For modules \(A, B, C\) in a commutative ring \(K\), a similar bijection holds:
 \[\text{Hom}(A \otimes_K B, C) \cong \text{Hom}(A, \text{Hom}_K(B, C))\]
 
-The `adjuction` of categories \(X, A\), where \(F, G\) are functors is given by the triple \(\langle F, G, \varphi \rangle\) that satisfies the diagrams:
+The `adjuction` of categories \(X, A\), where \(F, G\) are functors, is given by the triple \(\langle F, G, \varphi \rangle : X \rightharpoonup A\)
+
+\[
+\begin{xy}
+\xymatrix{
+X\ar@<1ex>[r]^F & A\ar[l]^G
+}
+\end{xy}
+\]
+
+while \(\varphi\) is a function such that:
+\[\varphi = \varphi_{x, y} : A(Fx, a) \cong X(x, Ga)\]
+
+It satisfies the diagrams:
 
 \[
 \begin{xy}
@@ -48,6 +61,27 @@ X(Fx, a')\ar[r]^\varphi & X(x, Ga')
 \xymatrix{
 X(Fx, a)\ar[r]^\varphi\ar[d]^{h^*} & X(x, Ga)\ar[d]^{(Fh)^*} \\
 X(Fx', a)\ar[r]^\varphi & X(x', Ga)
+}
+\end{xy}
+\]
+
+Here, \(h^* = X(h, Ga), k_* = A(Fx, k)\).
+
+An adjuncion can also be described without talking about hom-sets, directly in terms of arrows. There is a bijection which assigns to each of the arrows \(f : Fx \rightarrow a\) arrows \(g = \text{rad } f : x \rightarrow Ga\), the right adjunct of \(f\), in such a way that the natural compositions hold:
+\[\varphi(k \circ f) = Gk \circ \varphi f \quad \varphi(f \circ Fh) = \varphi f \circ h\]
+
+\(F\) is said to be `right adjoint` for \(G\), and \(G\) is the `left adjoint` for \(F\).
+
+Every adjunction yields a universal arrow. Call the hom-set that contains the identity \(1 : Fx \rightarrow Fx\) the \(\varphi\)-image of \(\eta_x\).
+\[\eta_x : x \rightarrow GFx \quad \eta_x = \varphi(1_{Fx})\]
+
+The adjunction gives such a universal arrow \(\eta_x\) for every object \(x\). The function \(x \mapsto \eta_x\) is an NT \(I_x \rightarrow GF\).
+
+\[
+\begin{xy}
+\xymatrix{
+x'\ar[r]^{\eta_{x'}}\ar[d]_h & GFx'\ar[d]^{GFh} \\
+x\ar[r]^{\eta_x} & GFx
 }
 \end{xy}
 \]
