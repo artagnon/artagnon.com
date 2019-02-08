@@ -32,7 +32,7 @@
         <h1>
           Category Theory III
         </h1>
-        <span id="pubdate">Created: Tue, 5 Feb 2019</span><br /><span id="pubdate">Last updated: Thu, 7 Feb 2019</span>
+        <span id="pubdate">Created: Tue, 5 Feb 2019</span><br /><span id="pubdate">Last updated: Fri, 8 Feb 2019</span>
         <h2>
           Adjunction
         </h2>
@@ -133,7 +133,7 @@
           \[\eta_x : x \rightarrow GFx \quad \eta_x = \varphi(1_{Fx})\]
         </p>
         <p>
-          The adjunction gives such a universal arrow \(\eta_x\) for every object \(x\). The function \(x \mapsto \eta_x\) is an NT \(I_x \rightarrow GF\).
+          The adjunction gives such a universal arrow \(\eta_x\) for every object \(x\). The function \(x \mapsto \eta_x\) is an NT \(I_x \rightarrow GF\). We obtain the following diagrams:
         </p>
         <p class="mathjax">
           \[
@@ -145,6 +145,80 @@
           \end{xy}
           \]
         </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          A(x', Fx')\ar[r]^{(Fh)_*}\ar[d]^\varphi & A(x', Fx)\ar[d]^\varphi & A(x, Fx)\ar[l]_{(Fh)^*}\ar[d]^\varphi \\
+          X(x', GFx')\ar[r]^{(GFh)_*} & X(x', GFx) & X(x, GFx)\ar[l]_{h^*}
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          where \(h_* = X(1, h)\) and \(h^* = X(h, 1)\).
+        </p>
+        <p>
+          The bijection \(\varphi\) can be expressed as:
+          \[\varphi(f) = G(f)\eta_x \quad f = Fx \rightarrow a\]
+        </p>
+        <p>
+          and we obtain:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          A(Fx, Fx)\ar[r]^\varphi\ar[d]^{f_*} & X(x, GFx)\ar[d]^{(Gf)_*} \\
+          A(Fx, a)\ar[r]^\varphi & X(x, Ga)
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          1\ar@{|->}[r]\ar@{|->}[d] & \eta_x\ar@{|->}[d] \\
+          f \circ 1 \mapsto \varphi f\ar@{}[r]|{=} & Gf \circ \eta_x
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          To summarize, every adjunction \(\langle F, G, \varphi \rangle : X \rightharpoonup A\) determines:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            A natural transform \(\eta : I_x \overset{\bullet}{\rightarrow} GF\) such that for each object \(x\), the arrow \(\eta_x\) is universal from \(x\) to \(G\), and right adjunct \(f : Fx \rightarrow a\) is detemined by \(\varphi f = Gf \circ \eta_x : x \rightarrow Ga\)
+          </li>
+          <li>
+            Dually, another natural transform \(\epsilon : FG \overset{\bullet}{\rightarrow} I_x\) such that every arrow \(\epsilon_a\) is universal from \(G\) to \(a\), and left adjunct \(g : x \rightarrow Ga\) is determined by \(\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a\)
+          </li>
+        </ol>
+        <p>
+          Moreover, the following composites are identities:
+          \[G \xrightarrow{\eta G} GFG \xrightarrow{G \epsilon} G \quad F \xrightarrow{F \eta} FGF \xrightarrow{\epsilon F} F\]
+        </p>
+        <p>
+          \(\eta\) is termed `unit` and \(\epsilon\) is termed `counit` of the adjunction.
+        </p>
+        <p>
+          The adjunct is completely determined by one of the following items:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            Functors \(F, G\) and NT \(\eta : 1_x \overset{\bullet}{\rightarrow} GF\) such that every \(\eta_x : x \rightarrow GFx\) is universal. Then, \(\varphi f = Gf \circ \eta_x : x \rightarrow Ga\).
+          </li>
+          <li>
+            Functor \(G : A \rightarrow X\), object \(F_0 x \in A\), and universal arrow \(\eta_x : x \rightarrow GF_0 x\), from \(x\) to \(G\). Then, functor \(F\) has object function \(F_0\) and, on arrow \(h : x \rightarrow x&#39;\), by \(GFh \circ \eta_x \rightarrow \eta_{x&#39;}\).
+          </li>
+          <li>
+            Functors \(F, G\), and NT \(\epsilon : FG \overset{\bullet}{\rightarrow} I_A\) such that every \(\epsilon_a : FGa \rightarrow a\) is universal. Then, \(\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a\).
+          </li>
+          <li>
+            Functor \(F : X \rightarrow A\), object \(G_0 \in X\), and universal arrow \(\epsilon_a : FG_0 a \rightarrow a\), from \(F\) to \(a\).
+          </li>
+          <li>
+            Functors \(F, G\) and NTs \(\eta : I_X \overset{\bullet}{\rightarrow} GF\) and \(\epsilon : FG \overset{\bullet}{\rightarrow} I_A\).
+          </li>
+        </ol>
       </div>
       <div id="sidebar">
         <ul>
