@@ -138,3 +138,42 @@ The adjunct is completely determined by one of the following items:
 (iii) Functors \(F, G\), and NT \(\epsilon : FG \overset{\bullet}{\rightarrow} I_A\) such that every \(\epsilon_a : FGa \rightarrow a\) is universal. Then, \(\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a\).
 (iv) Functor \(F : X \rightarrow A\), object \(G_0 \in X\), and universal arrow \(\epsilon_a : FG_0 a \rightarrow a\), from \(F\) to \(a\).
 (v) Functors \(F, G\) and NTs \(\eta : I_X \overset{\bullet}{\rightarrow} GF\) and \(\epsilon : FG \overset{\bullet}{\rightarrow} I_A\).
+
+Due to (v), we can also write the adjunct \(\langle F, G, \varphi \rangle\) as \(\langle F, G, \eta, \epsilon \rangle : A \rightharpoonup X\).
+
+To prove (i), or its dual (iii), notice:
+
+\[
+\begin{xy}
+\xymatrix{
+Fx\ar@{.>}[d]_g & x\ar[r]^{\eta_x}\ar[dr]_f & GFx\ar@{.>}[d]^{Gg} \\
+a & & Ga
+}
+\end{xy}
+\]
+
+To prove (ii), or its dual (iv), notice:
+
+\[
+\begin{xy}
+\xymatrix{
+F_0 x\ar@{.>}[d] & x\ar[r]^{\eta_x}\ar[d]^h & GF_0 x\ar@{.>}[d] \\
+F_0 x' & x'\ar[r]^{\eta_{x'}} & GF_0 x'
+}
+\end{xy}
+\]
+
+To prove (v), given \(\eta, \epsilon\), define:
+
+\[
+\begin{xy}
+\xymatrix{
+A(Fx, a)\ar@<1ex>[r]^\varphi & X(x, Ga)\ar[l]^\theta
+}
+\end{xy}
+\]
+
+by \(\varphi f = Gf \circ \eta_x\) for all \(f : Fx \rightarrow a\), and \(\theta g = \epsilon_a \circ Fg\) for all \(g : x \rightarrow Ga\). Since \(G\) is a functor and \(\varphi\) an NT, we have:
+\[\varphi \theta g = G \eta_a \circ GFg \circ \eta_x = G \eta_a \circ \eta_{Ga} \circ g\]
+
+Now, since \(G \eta_a \circ \eta_{Ga} = 1\), \(\varphi \theta\) is identity.
