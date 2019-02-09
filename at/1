@@ -102,7 +102,7 @@ Using \(C_n(X) = \Delta_n(X)\), the composition
 
 \[C_{n + 1}(X) \xrightarrow{\partial_{n + 1}} C_n(X) \xrightarrow{\partial_n} C_{n - 1}(X)\]
 
-is zero, and this is more concisely written as \(\partial^2 = 0\). The defect in exactness of this sequence is expressed as the \(n^{th}\) simplicial homology group \(H_n^\Delta = \text{ker } \partial_n \text{ / } \text{im } \partial_{n + 1}\). It follows that \(\text{im } \partial_{n + 1} \subset \text{ker } \partial_n\). Elements of \(\text{ker } \partial_n\) are called `cycles`, and those of \(\text{im } \partial_{n + 1}\) are called `boundaries`. Elements of \(H_n\) are cosets of \(\text{im } \partial_n\), and are called `homology classes`.
+is zero, and this is more concisely written as \(\partial^2 = 0\). The defect in exactness of this sequence is expressed as the \(n^{th}\) simplicial homology group \(H_n^\Delta = \text{ker } \partial_n \mathbin{/} \text{im } \partial_{n + 1}\). It follows that \(\text{im } \partial_{n + 1} \subset \text{ker } \partial_n\). Elements of \(\text{ker } \partial_n\) are called `cycles`, and those of \(\text{im } \partial_{n + 1}\) are called `boundaries`. Elements of \(H_n\) are cosets of \(\text{im } \partial_n\), and are called `homology classes`.
 
 # Singular homology
 
@@ -166,10 +166,10 @@ Analogous to what we had earlier:
 
 # Relative homology groups
 
-In relative homology, we ignore all singular chains of a subspace of a given space. Let \(A \subset X\) be spaces, and \(C_n(X, A)\) be defined as the quotient group \(C_n(X) \text{ / } C_n(A)\). Then, we have a chain of boundary homomorphisms:
+In relative homology, we ignore all singular chains of a subspace of a given space. Let \(A \subset X\) be spaces, and \(C_n(X, A)\) be defined as the quotient group \(C_n(X) \mathbin{/} C_n(A)\). Then, we have a chain of boundary homomorphisms:
 \[\ldots \rightarrow C_n(X, A) \xrightarrow{\partial} C_{n - 1}(X, A) \rightarrow \ldots\]
 
-The relation \(\partial^2 = 0\) holds for this chain. The homology groups of this chain \(\text{ker } \partial \text{ / } \text{im } \partial\) is termed as `relative homology groups` \(H_n(X, A)\).
+The relation \(\partial^2 = 0\) holds for this chain. The homology groups of this chain \(\text{ker } \partial \mathbin{/} \text{im } \partial\) is termed as `relative homology groups` \(H_n(X, A)\).
 
 - Elements of \(H_n(X, A)\) are represented by relative cycles: n-chains \(\alpha \in C_n(X)\) such that \(\partial \alpha \in C_{n - 1}(A)\).
 - Relative cycle is trivial in \(H_n(X, A)\) iff there is a relative boundary \(\alpha = \partial \beta + \gamma\) for some \(\beta \in C_{n + 1}(X), \gamma \in C_n(A)\).

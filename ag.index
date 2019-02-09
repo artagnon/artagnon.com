@@ -1,0 +1,60 @@
+Algebraic Geometry
+
+Modern algebraic gemoetry is built on the theory of schemes and cohomology. The subject is intricately linked with commutative algebra and homological algebra.
+
+# Affine varieties
+
+Let \(k\) be an algebraic closed field. Then `affine variety` over an \(n\)-space, \(A_k^n\), is defined as the set of \(n\)-tuples over the set \(k\). \(P = (a_1, \ldots, a_n)\) is called a point in \(A^n\), and \(a_i\)s are called coordinates.
+
+Let \(A = k[x_1, \ldots, x_n]\) be a polynomial ring in \(n\)-space over \(k\). Elements of \(A\) are then functions from affine \(n\)-space to \(k\), defined by \(f(P) = f(x_1, \ldots, x_a)\), where \(f \in A, P \in A^n\). The `zero-set` of \(T \in A\) is defined as the set of simultneous zeros of \(f\):
+\[Z(T) = \{P \in A^n \mid f(P) = 0 \quad \forall f \in T\}\]
+
+Note that if \(a\) is an ideal, then \(Z(a) = Z(T)\).
+
+The set \(Y \in A^n\) is called an algebraic set if there exists \(T \subseteq A\) such that \(Y = Z(T)\). The union and intersection of any two algebraic sets is an algebraic set, as is the empty set, and the whole space.
+
+Define the `Zariski topology` in \(A^n\) by taking, as open subsets, the complement of algebraic sets. Considering the Zariski topology on the affine line \(A^1\), we note that every ideal \(A = k[x]\) is principal, so every algebraic set is the set of zeros of a single polynomial. Thus algebraic sets in \(A^1\) are just the finite subsets and the whole space; in particular, this is not Hausdorff.
+
+The nonempty subset \(Y\) of a topological space \(X\) is `irreducible` if it cannot be expressed as the union, \(Y = Y_1 \cup Y_2\), of two proper closed sets. The empty set is not irreducible, but \(A^1\) is.
+
+An affine variety can then be expressed as an irreducible subset of \(A^n\). An open subset of an affine variety is called `quasi-affine`.
+
+An `ideal` \(I(Y)\) for \(Y \subseteq A^n\) is defined as:
+\[I(Y) = {f \in A \mid f(P) = 0 \quad \forall P \in Y}\]
+
+So, we have the functions \(Z\) and \(I\), \(Z\) mapping subsets of \(A\) to an algebraic set, and \(I\) mapping the subsets of \(A^n\) to ideals. Their properties can be summarized as follows:
+
+(i) If \(T_1 \subseteq T_2\), then \(Z(T_2) \subseteq Z(T_1)\).
+(ii) If \(Y_1 \subseteq Y_2\), then \(I(Y_2) \subseteq I(Y_1)\).
+(iii) \(I(Y_1 \cup Y_2) = I(Y_1) \cap I(Y_2)\).
+(iv) \(I(Z(a)) = \sqrt{a}\), a direct consequence of the Nullstellansatz.
+(v) \(Z(I(Y)) = \bar{Y}\), the closure of \(Y\).
+
+There is a one-to-one correspondence between the algebraic sets in \(A^n\) and the radical ideals in \(A\), given by \(Y \mapsto Z(Y)\), and \(a \mapsto I(a)\). Furthermore, the set is irreducible iff its ideal is a prime ideal. For example, \(A^n\) is irreducible, since it corresponds to the zero ideal in \(A\).
+
+If \(f\) is an irreducible polynomial in \(k = A[x_1, \ldots, x_n]\), then the affine variety is defined as \(Y = Z(f)\), an \(n\)-dimensional hypersurface.
+
+Let \(Y \subseteq A^n\) be an affine algebraic set. Then, the `affine coordinate ring` is defined by \(A/I(Y)\). Furthermore, if \(Y\) is an affine variety, then \(A(Y)\) is an integral domain, and \(A(Y)\) is also a finitely generated \(k\)-algebra.
+
+A topological space is termed `noetherian` if it satisfies the descending chain condition. For instance, \(A^n\) is noetherian. In this space, every subspace \(Y\) can be expressed as a union of irreducible subspaces, \(Y = Y_1 \cup \ldots \cup Y_n\). If we also require that \(Y_i \not\subseteq Y_j\) for \(i \neq j\), then \(Y_i\) is uniquely determined; they are termed the `irreducible components` of \(Y\).
+
+Every algebraic set of \(A^n\) can be expressed uniquely as a union of varieties, with no single variety containing the other.
+
+The `dimension` of an affine or quasi-affine variety is equal to the dimension of the topological space, and this is exactly the supremum integer \(n\) in \(Z_0 \subset \ldots \subset Z_n\), the irreducible closed subsets of the topological space. As an example, dimension of \(A^n\) is \(n\).
+
+The `Krull dimension` of \(A\) is the supremum of heights of the prime ideals in \(A\).
+
+The dimension of an affine algebraic set, \(\text{dim } Y\), is equal to the dimension of its affine coordinate ring \(A(Y)\).
+
+Let \(k\) be a field, and \(B\) be an integral domain which is a finitely-generated \(k\)-algebra. Then:
+
+(a) Dimension of \(B\) is equal to the `transcendence degree` of the quotient field \(K(B)\) of \(B\) over \(k\).
+(b) For any prime ideal \(p \in B\), we have \(\text{height } p + \text{dim}(B \mathbin{/} p) = \text{dim}(B)\).
+
+If \(Y\) is a quasi-affine variety, then \(\text{dim}(Y) = \text{dim}(\bar{Y})\). Let \(Z_0 \subset \ldots \subset Z_n\) be a sequence of distinct closed irreducible sets in \(Y\), \(\bar{Z_0} \subset \ldots \subset \bar{Z_n}\) be that of \(\bar{Y}\). \(Y\) is finite, so we can choose a maximal \(n = \text{dim}(Y)\). In that case, \(Z_0\) must be a point \(P\), and the chain will also be maximal. Now, \(P_0\) corresponds to the maximal ideal in affine coordinate ring \(A(\bar{Y})\) of \(\bar{Y}\). \(Z_i\)s correspond to prime ideals contained in \(m\), so \(\text{height}(m) = n\). Since \(P\) is a point in affine space, \(A(\bar{Y}) \mathbin{/} m \cong k\). Hence, \(\text{dim}(A(\bar{Y})) = \text{dim}(\bar{Y}) = n\), and \(\text{dim}(Y) = \text{dim}(\bar{Y}) = n\).
+
+What follows is a bunch of results:
+
+(a) `Krull's Haputidealsatz`: Let \(A\) be a noetherian ring, and \(f \in A\) be an element which is neither a zero-divisor nor unit. Then, every minimal prime ideal containing \(f\) has height \(1\).
+(b) Every noetherian integral domain \(A\) is a UFD iff every prime ideal of height \(1\) is principal.
+(c) A variety \(Y \in A^n\) has dimension \(n - 1\) iff it is the zero set of a single nonconstant irreducible polynomial in \(A\).
