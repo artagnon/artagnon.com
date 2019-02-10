@@ -104,3 +104,16 @@ By restricting functions, we obtain the natual map \(\mathcal{O}(Y) \rightarrow 
 Let \(A(Y)\) be the affine coordinate ring, and \(S(Y)\) be the homogenous coordinate ring (as in projective spaces). Then, \(A(Y) = \mathcal{O}(Y)\), but \(S(Y)\) is not invariant; it depends on the embedding of \(Y\) in the projective space.
 
 Let \(Y \subseteq A^n\) be an affine variety, and \(A(Y)\) the affine coordinate ring. Then:
+
+(a) \(\mathcal{O}(Y) \cong A(Y)\).
+(b) For each point \(P \in Y\), let \(m_P \subseteq A(Y)\) be the set of functions vanishing at \(P\). Then, there is a one-to-one correspondence between the points of \(Y\) and the maximal ideals of \(A(Y)\), given by \(P \mapsto m_P\).
+(c) For each \(P\), \(\mathcal{O}_P \cong A(Y)_{m_P}\), and \(\text{dim } \mathcal{O}_P = \text{dim } Y\).
+(d) \(K(Y)\) is isomorphic to the quotient field of \(A(Y)\), and hence \(K(Y)\) is a finitely generated extension field of \(k\), with transcendence degree equals \(\text{dim } Y\).
+
+To prove (a), notice that every polynomial \(f\) is regular on \(A^n\), and hence \(Y\); thus, the kernel of the injective homomorphism \(A \rightarrow \mathcal{O}\) is just \(I(Y)\).
+
+To prove (b), notice that there is a one-to-one correspondence between points of \(Y\) and maximal ideals of \(A(Y)\), passing to the quotient \(I(Y)\). Identifying \(A(Y)\) with regular functions on \(Y\), the maximal ideal corresponding to \(P\) is \(m_P = \{f \in A(Y) \mid f(P) = 0\}\).
+
+To prove (c), notice that, for every point \(P\), there is a natural map \(A(Y)_{m_P} \rightarrow \mathcal{O}_P\) which is injective; it is also surjective by definition of a regular function. Hence, \(\mathcal{O}_P \cong A(Y)_{m_P}\). Now, \(\text{dim } \mathcal{O}_P = \text{height } m_P\). Since \(A(Y) \mathbin{/} m_P \cong k\), \(\text{dim } \mathcal{O}_P = \text{dim } Y\).
+
+From (c), it follows that the quotient field of \(A(Y)\) is isomorphic to the quotient field of \(\mathcal{O}_P\), and this is equal to \(K(Y)\), because any rational function is in some \(\mathcal{O}_P\). Since \(A(Y)\) is a finitely generated \(k\)-algebra, \(K(Y)\) is a finitely generated field extension of \(k\). Furthermore, its transcendence degree equals \(\text{dim } Y\). This proves (d).
