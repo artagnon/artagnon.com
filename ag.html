@@ -32,7 +32,7 @@
         <h1>
           Algebraic Geometry
         </h1>
-        <span id="pubdate">Created: Sat, 9 Feb 2019</span><br /><span id="pubdate">Last updated: Sat, 9 Feb 2019</span>
+        <span id="pubdate">Created: Sat, 9 Feb 2019</span><br /><span id="pubdate">Last updated: Sun, 10 Feb 2019</span>
         <p>
           Modern algebraic gemoetry is built on the theory of schemes and cohomology. The subject is intricately linked with commutative algebra and homological algebra.
         </p>
@@ -152,6 +152,22 @@
         </p>
         <p>
           Since \(S\) is noetherian, any set of homogenous elements \(T\) has a finite subset \(f_1, \ldots, f_r\) such that \(Z(T) = Z(f_1, \ldots, f_r)\).
+        </p>
+        <p>
+          Subset \(Y \subset P^n\) is an `algebraic set` if there exists a set of homogenous elements \(T\) such that \(Y = Z(T)\). The union of any two algebraic sets is an algebraic set, as is the intersection. The Zariski topology on \(P^n\) is defined in the usual way.
+        </p>
+        <p>
+          A `projective variety` is the irreducible algebraic sets of \(P^n\) along with the induced topology. An open subset of a projective variety is a `quasi-projective variety`. If \(Y \subset P^n\) is a subset, we define the `projective ideal`, \(I(Y)\) to be the ideal \(\{f | f \text{ is homogenous}, f(P) = 0 \, \forall P \in Y\}\). If \(Y\) is an algebraic set, we define the `homogeous coordinate ring` to be \(S(Y) = S/I(Y)\).
+        </p>
+        <p>
+          We want to show that every projective \(n\)-space has a covering by the affine \(n\)-space, and hence, every projective (or quasi-projective) variety has a covering by an affine (or quasi-affine) variety. If \(f \in S\) is a linear homogenous polynomial, then the zero set of \(f\) is called a `hyperplane`; we denote the zero-set of \(x_i\) to be \(H_i\). Let \(U_i = P^n - H_i\) be open subsets. Then, \(P^n\) is covered by \(U_i\), since if \(P = (a_0, \ldots, a_n)\) is a point, then atleast one \(a_i\) is nonzero, and hence \(P \in U_i\). We define mapping \(\varphi_i : U_i \rightarrow A^n\), such that if \(P \in U_i\) and \(\varphi_i(P) = Q\), where \(Q\) is the point defined by:
+          \[Q = (\frac{a_0}{a_i}, \ldots, \frac{a_n}{a_i})\]
+        </p>
+        <p>
+          with \(a_i/a_i\) omitted. Note that \(\varphi_i\) is well-defined since \(a_j/a_i\) is independent of the choice of homogenous coordinates.
+        </p>
+        <p>
+          \(\varphi_i\) is a homeomorphism of \(U_i\) with its induced topology to \(A^n\) its Zariski topology. \(\varphi_i\) is clearly bijective, so it will be sufficient to show that closed sets of \(U_i\) are identified with the closed sets of \(A^n\) by \(\varphi_i\). We can assume that \(i = 0\) and write \(U\) for \(U_0\), \(\varphi\) for \(\varphi_0\); then we have \(\varphi : U \rightarrow A^n\). Let \(A = k[y_1, \ldots, y_n]\), \(\alpha\) be a map \(S^h\), the set of homogenous elements of \(S\) to \(A\), \(\beta\) be a map from \(A\) to \(S^h\). Set \(\alpha(f) = [1, y_1, \ldots, y_n]\) and \(\beta(g) = x_0^e g(x_1/x_0, \ldots, x_n/x_0)\). Let \(Y \subseteq U\), and let \(\bar{Y}\) be its closure in \(P^n\). This is an algebraic set so \(\bar{Y} = Z(T)\), for some subset \(T \subseteq S^h\). Let \(T&#39; = \alpha(T)\), so \(\varphi(Y) = Z(T&#39;)\). Checking the converse as well yields the result that both \(\varphi\) and \(\varphi^{-1}\) are closed maps, so \(\varphi\) is a homeomorphism.
         </p>
         <ul id="indexfill">
         </ul>
