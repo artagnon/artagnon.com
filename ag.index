@@ -90,3 +90,13 @@ A regular function is continuous when \(k\) is identified with \(A_k^1\) in its 
 If \(f, g\) are regular functions in variety \(X\), and \(f = g\) in some subset \(U \subseteq X\), then \(f = g\) everywhere.
 
 If \(X, Y\) are two `varieties` (affine, projective, quasi-affine, or quasi-projective), and \(\varphi : X \rightarrow Y\) a morphism, such that for each open subset \(V \subseteq Y\), and every regular function \(f : V \rightarrow k\), the function \(f \circ \varphi : \varphi^{-1}(V) \rightarrow k\) is regular. This defines the isomorphism \(\varphi : X \rightarrow Y\) and its inverse \(\psi : Y \rightarrow X\) in the `category of varieties`. Isomorphisms are necessarily bijective and bicontinuous.
+
+Let \(Y\) be a variety, \(\mathcal{O}(Y)\) the ring of regular functions on \(Y\). If \(P\) is a point of \(Y\), we define local ring of \(P\) on \(Y\), \(\mathcal{O}_P\), as the `ring of germs` of regular functions of \(Y\) near \(P\). An element of \(\mathcal{O}_P\) is the pair \(\langle U, f \rangle\) such that \(U\) is an open subset of \(Y\) near \(P\), and \(f\) is a regular function on \(U\). We identify two such pairs \(\langle U, f \rangle\) and \(\langle V, g \rangle\) if \(f = g\) in \(U \cap V\).
+
+\(\mathcal{O}_P\) is indeed a local ring; its maximal ideal \(m\) is the set of germs of regular functions that vanish at \(P\). If \(f(P) \neq 0\), then \(1 \mathbin{/} f\) is regular on some neighborhood of \(P\). \(\mathcal{O}_P \mathbin{/} m \cong k\).
+
+Elements of `function field` \(K(Y)\) of variety \(Y\) are the equivalence classes of the pair \(\langle U, f \rangle\), where \(U\) is an open neighborhood of \(Y\), and \(f\) is a regular function on \(U\).
+
+\(K(Y)\) is a field that can be made into a ring by defining addition and multiplication. Set \(V = U - (U \cap Z(f))\) so that \(1/f\) is a regular function on \(V\). Then, \(\langle V, 1/f \rangle\) is the inverse of \(\langle U, f \rangle\).
+
+By restricting functions, we obtain the natual map \(\mathcal{O}(Y) \rightarrow \mathcal{O}_P \rightarrow K(Y)\) which is injective. We normally treat \(\mathcal{O}(Y), \mathcal{O}_P\) as subrings of \(K(Y)\). If we replace \(Y\) by an isomorphic variety, we obtain isomorphic rings, and say that \(\mathcal{O}(Y), \mathcal{O}_P, K(Y)\) are invariants of the variety \(Y\).
