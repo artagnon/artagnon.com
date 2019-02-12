@@ -42,7 +42,7 @@ Every algebraic set of \(A^n\) can be expressed uniquely as a union of varieties
 
 The `dimension` of an affine or quasi-affine variety is equal to the dimension of the topological space, and this is exactly the supremum integer \(n\) in \(Z_0 \subset \ldots \subset Z_n\), the irreducible closed subsets of the topological space. As an example, dimension of \(A^n\) is \(n\).
 
-The `Krull dimension` of \(A\) is the supremum of heights of the prime ideals in \(A\).
+The `height` of a prime ideal \(p\) is defined as the supermum of \(n\) in the chain of distinct prime ideals \(p_0 \subset p_1 \subset \ldots \subset p_n = p\). The `Krull dimension` of \(A\) is the supremum of heights of the prime ideals in \(A\).
 
 The dimension of an affine algebraic set, \(\text{dim } Y\), is equal to the dimension of its affine coordinate ring \(A(Y)\).
 
@@ -108,7 +108,7 @@ Let \(Y \subseteq A^n\) be an affine variety, and \(A(Y)\) the affine coordinate
 (a) \(\mathcal{O}(Y) \cong A(Y)\).
 (b) For each point \(P \in Y\), let \(m_P \subseteq A(Y)\) be the set of functions vanishing at \(P\). Then, there is a one-to-one correspondence between the points of \(Y\) and the maximal ideals of \(A(Y)\), given by \(P \mapsto m_P\).
 (c) For each \(P\), \(\mathcal{O}_P \cong A(Y)_{m_P}\), and \(\text{dim } \mathcal{O}_P = \text{dim } Y\).
-(d) \(K(Y)\) is isomorphic to the quotient field of \(A(Y)\), and hence \(K(Y)\) is a finitely generated extension field of \(k\), with transcendence degree equals \(\text{dim } Y\).
+(d) \(K(Y)\) is isomorphic to the quotient field of \(A(Y)\), and hence \(K(Y)\) is a finitely generated extension field of \(k\), with transcendence degree = \(\text{dim } Y\).
 
 To prove (a), notice that every polynomial \(f\) is regular on \(A^n\), and hence \(Y\); thus, the kernel of the injective homomorphism \(A \rightarrow \mathcal{O}\) is just \(I(Y)\).
 
@@ -120,7 +120,7 @@ From (c), it follows that the quotient field of \(A(Y)\) is isomorphic to the qu
 
 Let \(U_i \subseteq P^n\) be an open set defined by the equations \(x_i \neq 0\). Then, \(\varphi : U_i \rightarrow A^n\) is an isomorphism of varieties.
 
-If \(S\) is a graded ring, and \(p\) is a homogenous prime ideal in \(S\), then \(S_{(p)}\) denotes the subring of elements of degree \(0\) in the localization of \(S\) with respect to multiplicative subset \(T\) consisting of homogenous elements of \(S \backslash p\). Notice that \(T\) has a natural grading given by \(\text{deg }(f/g) = \text{deg }(f) - \text{deg }g\), where \(f\) is homogenous in \(S\), and \(g \in T\). \(S_{(p)}\) is a local ring given by \((p . T^{-1} S) \cap S_{(p)}\). Similarly, if \(f \in S\) is homogenous, \(S_{(f)}\) denotes a subring with elements of degree \(0\)in the localized ring \(S_{(f)}\).
+If \(S\) is a graded ring, and \(p\) is a homogenous prime ideal in \(S\), then \(S_{(p)}\) denotes the subring of elements of degree \(0\) in the localization of \(S\) with respect to multiplicative subset \(T\) consisting of homogenous elements of \(S \backslash (p)\). Notice that \(T\) has a natural grading given by \(\text{deg }(f/g) = \text{deg }(f) - \text{deg }g\), where \(f\) is homogenous in \(S\), and \(g \in T\). \(S_{(p)}\) is a local ring given by \((p . T^{-1} S) \cap S_{(p)}\). Similarly, if \(f \in S\) is homogenous, \(S_{(f)}\) denotes a subring with elements of degree \(0\) in the localized ring \(S_{(f)}\).
 
 Let \(Y \subseteq P^n\) be a projective variety with homogenous coordinate ring \(S(Y)\). Then:
 
