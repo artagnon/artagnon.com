@@ -188,7 +188,7 @@
           Let \(Y\) be a variety, \(\mathcal{O}(Y)\) the ring of regular functions on \(Y\). If \(P\) is a point of \(Y\), we define local ring of \(P\) on \(Y\), \(\mathcal{O}_P\), as the `ring of germs` of regular functions of \(Y\) near \(P\). An element of \(\mathcal{O}_P\) is the pair \(\langle U, f \rangle\) such that \(U\) is an open subset of \(Y\) near \(P\), and \(f\) is a regular function on \(U\). We identify two such pairs \(\langle U, f \rangle\) and \(\langle V, g \rangle\) if \(f = g\) in \(U \cap V\).
         </p>
         <p>
-          \(\mathcal{O}_P\) is indeed a local ring; its maximal ideal \(m\) is the set of germs of regular functions that vanish at \(P\). If \(f(P) \neq 0\), then \(1/f\) is regular on some neighborhood of \(P\). \(\mathcal{O}_P \mathbin{/} m \cong k\).
+          \(\mathcal{O}_P\) is indeed a local ring; its maximal ideal \(m\) is the set of germs of regular functions that vanish at \(P\). If \(f(P) \neq 0\), then \(1/f\) is regular on some neighborhood of \(P\). The residue field \(\mathcal{O}_P \mathbin{/} m \cong k\).
         </p>
         <p>
           Elements of `function field` \(K(Y)\) of variety \(Y\) are the equivalence classes of the pair \(\langle U, f \rangle\), where \(U\) is an open neighborhood of \(Y\), and \(f\) is a regular function on \(U\).
@@ -220,7 +220,7 @@
           </li>
         </ol>
         <p>
-          To prove (a), notice that every polynomial \(f\) is regular on \(A^n\), and hence \(Y\); thus, the kernel of the injective homomorphism \(A \rightarrow \mathcal{O}\) is just \(I(Y)\).
+          To prove (a), notice that every polynomial \(f\) is regular on \(A^n\), and hence \(Y\); thus, the kernel of the injective homomorphism \(A \rightarrow \mathcal{O}(Y)\) is just \(I(Y)\).
         </p>
         <p>
           To prove (b), notice that there is a one-to-one correspondence between points of \(Y\) and maximal ideals of \(A(Y)\), passing to the quotient \(I(Y)\). Identifying \(A(Y)\) with regular functions on \(Y\), the maximal ideal corresponding to \(P\) is \(m_P = \{f \in A(Y) \mid f(P) = 0\}\).
@@ -252,10 +252,20 @@
           </li>
         </ol>
         <p>
-          Let \(U_i \subseteq P^n\) be the open set \(x_i \neq 0\), and let \(Y_i = Y \cap U_i\). \(U_i\) is isomorphic to \(A^n\), and \(Y_i\) is an affine variety. There is a natural isomorphism \(\varphi^*\) of the affine coordinate ring \(A(Y_i)\) with the localization \(S(Y)_{(x_i)}\) of the homogenous coordinate ring of \(Y\). First, make an isomorphism from \(f[y_1, \ldots, y_n]\) to \(f[x_1/x_0, \ldots, x_n/x_0]\) leaving out \(x_i/x_i\); this isomorphism sends \(I(Y)\) to \(I(Y)S_{(x_i)}\), so passing quotient, we obtain \(A(Y) \cong S(Y)_{x_i}\).
+          Let \(U_i \subseteq P^n\) be the open set \(x_i \neq 0\), and let \(Y_i = Y \cap U_i\). \(U_i\) is isomorphic to \(A^n\), and \(Y_i\) is an affine variety. There is a natural isomorphism \(\varphi^*\) of the affine coordinate ring \(A(Y_i)\) with the localization \(S(Y)_{(x_i)}\) of the homogenous coordinate ring of \(Y\). First, make an isomorphism from \(f[y_1, \ldots, y_n]\) to \(f[x_1/x_0, \ldots, x_n/x_0]\) leaving out \(x_i/x_i\); this isomorphism sends \(I(Y)\) to \(I(Y)S_{(x_i)}\), so passing to the quotient, we obtain \(A(Y) \cong S(Y)_{x_i}\).
         </p>
         <p>
-          To prove (b), let \(P\) be any point, and choose \(i\) so that \(P \in Y_i\). Then, \(\mathcal{O}_P \cong A(Y_i)_{m&#39;_P}\). where \(m&#39;_P\) is the maximal ideal of \(Y_i\) corresponding to \(P\). Since \(\varphi_i(m&#39;_P) = m_P . S(Y)_{(m_P)}\), we obtain \(\mathcal{O}_P = S(Y)_{(m_P)}\).
+          To prove (b), let \(P\) be any point, and choose \(i\) so that \(P \in Y_i\). Then, \(\mathcal{O}_P \cong A(Y_i)_{m&#39;_P}\). where \(m&#39;_P\) is the maximal ideal of \(Y_i\) corresponding to \(P\). Since \(\varphi_i(m&#39;_P) = m_P . S(Y)_{x_i}\), \(x_i \notin m_P\), and localization is transitive, we obtain \(\mathcal{O}_P = S(Y)_{(m_P)}\).
+        </p>
+        <p>
+          To prove (c), notice that \(K(Y)\), which is equal to \(K(Y_i)\), which is the quotient field of \(A(Y)\). But by \(\varphi_i^*\), this is isomorphic to \(S(Y)_{((0))}\).
+        </p>
+        <p>
+          To prove (a), let \(f \in \mathcal{O}(Y)\) be a global regualar function. For each \(i\), \(f\) is regular on \(Y_i\), so \(f \in A(Y_i)\). But we know that \(A_(Y_i) \cong S(Y)_{(x_i)}\), so \(f\) can be written as \(g_i/x_i^{N_i}\), where \(g_i \in S(Y)\) is homogenous of degree \(N_i\). Thinking of \(\mathcal{O}(Y), K(Y), S(Y)\) as subrings of the quotient field \(L\) of \(S(Y)\), we get \(x_i^{N_i} f = S(Y)_{N_i}\). Now, choose \(N \geq \sum N_i\). Then, \(S(Y)_N\) is spanned as a \(k\)-vector space as monomials of degree \(N\) in \(x_0, \ldots, x_n\), and in any such mononomial atleast one \(x_i\) occurs as with power \(\geq N_i\). Thus, \(S(Y)_N . f^q \subseteq S(Y)_N \, \forall q \gt 0\) and \(x_0^N . f^q \subseteq S(Y) \, \forall q \gt 0\). This shows that a subring \(S(Y)[f]\) of \(L\) is contained in \(x_0^{-N} S(Y)\), which is a finitely-generated \(S(Y)\)-module. Since \(S(Y)\) is noetherian, \(S(Y)[f]\) is a finitely-generated \(S(Y)\)-module, and therefore, \(f\) is integral over \(S(Y)\). This means that there are elements \(a_0, \ldots, a_n \in S(Y)\) such that:
+          \[a_n x^n + \ldots a_0 = 0\]
+        </p>
+        <p>
+          Now, \(S(Y)_0 = k\), so \(a_i \in k\) and \(f\) is algebraic over \(k\). But \(f\) is algebraically closed, so \(f \in k\).
         </p>
         <ul id="indexfill">
         </ul>
