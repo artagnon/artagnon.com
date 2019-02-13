@@ -108,9 +108,31 @@
             A `principal ideal domain` is an integral domain where all ideals are principal. In such a ring, every nonzero prime ideal is a maximal ideal.
           </li>
           <li>
-            Principal ideal domain \(\subset\) unique factorization domain \(\subset\) commutative rings
+            Principal ideal domain \(\subset\) unique factorization domain \(\subset\) commutative rings.
           </li>
         </ol>
+        <h2>
+          Nilradicals
+        </h2>
+        <p>
+          The set of all nilpotent elements \(\mathcal{N}\) of \(A\) is an ideal, and \(A/\mathcal{N}\) does not have any nilpotent elements. To prove this, let \(x, y \in \mathcal{N}\) be nilpotent elements of order \(m, n\). By the binomial theorem, \((x + y)^{m + n - 1}\) has terms of the form \(x^r y^s\); but we cannot have both \(r &lt; m\) and \(s &lt; n\), so each of these terms vanish, and \((x + y)^{m + n - 1} = 0, x + y \in \mathcal{N}\). Let \(\bar{x^n} \in A/\mathcal{N}\) be a representation of \(x^n\). Then \((x^n)^p = 0\), and \(x \in \mathcal{N} \implies \bar{x} = 0\). Ideal \(\mathcal{N}\) is called the `nilradical` of \(A\).
+        </p>
+        <p>
+          The nilradical \(\mathcal{N}\) of \(A\) is the intersection of all prime ideals of \(A\). To prove this, let \(\mathcal{N}&#39;\) be the intersection of prime ideals. If \(f \in A\) is nilpotent, and \(P\) is a prime ideal, \(f^n = 0 \in P\) for some \(n\), and hence \(f \in P\) (because \(P\) is prime) and \(f \in \mathcal{N}&#39;\). Conversely, suppose that \(f\) is not nilpotent. Let \(\Sigma\) be the set of ideals \(I\) such that \(n \gt 0 \implies f^n \notin I\). \(\Sigma\) is not zero, and by Zorn&#39;s lemma, there is some maximal element in \(\Sigma\). Let \(P\) be this maximal element: it remains to be shown that \(P\) is a prime ideal. Let \(x, y \notin P\), so \(P + (x), P + (y)\) contain \(P\), and therefore do not belong to \(\Sigma\). If:
+          \[f^m = P + (x) \quad f^n = P + (y)\]
+        </p>
+        <p>
+          then, \(f^{m + n} \in P + (xy)\), hence the ideal \(P + (xy) \notin \Sigma\), and \(xy \notin P\). Hence, we have a prime ideal \(P\), and \(f \notin P, f \notin \mathcal{N}&#39;\).
+        </p>
+        <p>
+          The `Jacobson radical` \(\mathcal{R}\) of \(A\) is defined to be the intersection of all maximal ideals of \(A\).
+        </p>
+        <p>
+          \(x \in \mathcal{R} \iff 1 - xy\) is a unit in \(A\) for all \(y \in A\). To prove this, let is first assume that \(1 - xy\) is not a unit. But \(1 - xy\) belongs to some maximal ideal \(M\); and \(x \in \mathcal{R} \subseteq M\), so \(xy \in M\), and hence \(1 \in M\), which is absurd. To prove the converse, let \(x \notin M\), for some maximal ideal \(M\). Then, \(M\) and \(x\) generate \((1)\), and \(u + xy \in M\), for some \(u \in M, y \in A\). Hence, \(1 - xy \in M\) is not unit.
+        </p>
+        <h2>
+          Operations on ideals
+        </h2>
         <p class="mathjax">
           \[\text{Spec } A = \{P \mid P \subset A \text{ is a prime ideal}\}\]
           \[\text{m-Spec } A = \{P \mid P \subset A \text{ is a maximal ideal}\}\]
