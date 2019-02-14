@@ -99,6 +99,34 @@ Certainly, this is true for \(n = 1\). It holds for \(n \gt 1\), if it holds for
 
 To prove (ii), let \(I_q \not\subseteq P \, \forall q\), and \(\exists x_q : x_q \in I_q, x_i \notin P\). Then, \(x_q \subseteq \bigcap I_q\). But \(\prod_q x_q \notin P\), since \(P\) is prime. Hence, \(I_q \subseteq P\). Finally, if \(P = \bigcap_q I_q\), then \(P \subseteq I_q\), and hence \(P = I_q\), for some \(q\).
 
+If \(I, J\) are ideals on ring \(A\), the `ideal quotient` is defined as:
+\[(I : J) = \{x \in A : xJ \subseteq I\}\]
+
+which is an ideal in itself. In particular \(0 : J\) is called the `annihilator` of \(J\), also written as \(Ann(J)\).
+
+As an example, in \(\mathbb{Z}\), if \(I = (m), J = (n)\), then \((I : J) = (Q)\), where \(Q = m/(m, n)\), with \((m, n)\) denoting the h.c.f of \(m, n\).
+
+What follows is a bunch of elementary results about quotient ideals:
+
+(i) \((I : J)J \subseteq I\).
+(ii) \((I : (J : K)) = ((I : J) : K)\).
+(iii) \((\bigcap_q I_q : J) = \bigcap_q (I_q : J)\).
+(iv) \((I : \sum_q J_q) = \bigcap_q (I : J_q)\).
+
+If \(I\) is any ideal of \(A\), then the radical of \(I\) is defined as:
+\[\sqrt{I} = \{x \in A \mid \exists n \gt 0 : x^n = I\}\]
+
+If \(\varphi : A \rightarrow A/I\) is a ring homomorphism, then \(\sqrt{I} = \varphi^{-1}(\mathcal{N}_{A/I})\), hence the radical of an ideal is an ideal.
+
+What follows is a set of results about radicals:
+
+(i) \(I \subseteq \sqrt{I}\).
+(ii) \(\sqrt{\sqrt{I}} = \sqrt{I}\).
+(iii) \(\sqrt{IJ} = \sqrt{I \cap J} = \sqrt{I} \cap \sqrt{J}\).
+(iv) \(\sqrt{I} = (1) \iff I = (1)\).
+(v) \(\sqrt{I + J} = \sqrt{(\sqrt{I} + \sqrt{J})}\).
+(vi) For prime ideal \(P\), \(\sqrt{P^n} = P \, \forall n\).
+
 # Modules
 
 Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there's no need to look further than matrices over \(\mathbb{R}\), the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise.
