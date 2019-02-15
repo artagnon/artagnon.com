@@ -154,7 +154,7 @@ Let us prove (iii), since (i) and (ii) are trivial. If \(I \in C\), then \(I = J
 
 # Modules
 
-Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there's no need to look further than matrices over \(\mathbb{R}\), the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise.
+Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there's no need to look further than matrices over \(\mathbb{R}\), the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise. The ideal \(I\) and quotient ring \(A/I\) are both examples of modules.
 
 A module \(M\) over ring \(A\) is formally defined as the multiplication map \(A \times M \rightarrow AM\), or \((f, m) \mapsto fm\) satisfying the following axioms:
 
@@ -163,7 +163,31 @@ A module \(M\) over ring \(A\) is formally defined as the multiplication map \(A
 (iii) \((fg) m = f (gm)\)
 (iv) \(1_A m = m\)
 
-Theory of modules \(\leftrightarrow\) Theory of linear algebra over \(A\). A-modules over a field \(k\) \(\leftrightarrow\) \(k\)-vector space, exactly.
+Theory of modules \(\leftrightarrow\) Theory of linear algebra over \(A\).
+
+Examples:
+
+(i) If \(A\) is a field in \(k\), then \(A\)-module \(= k\)-vector space.
+(ii) If \(A = \mathbb{Z}\), then \(\mathbb{Z}\)-module \(=\) abelian group.
+(iii) If \(A = k[x]\) where \(k\) is a field, then the \(A\)-module is a \(k\)-vector space with linear transformation.
+(iv) If \(A = k[G]\), where \(G\) is a group, then \(A\)-module \(= k\)-representation of \(G\).
+
+Let \(M, N\) be \(A\)-modules, and \(f : M \rightarrow N\) be an \(A\)-module homomorphism, or \(A\)-linear. Then, \(f(x + y) = f(x) + f(y)\), and \(f(ax) = a . f(x)\), for all \(a \in A; x, y \in M\). If \(A\) is a field, then an \(A\)-module homomorphism is the same thing as linear transformation over vector spaces.
+
+The composition of any two \(A\)-module homomorphisms is again an \(A\)-module homomorphism. The set of all \(A\)-module homomorphisms from \(M\) to \(N\) can be turned into an \(A\)-module with the axioms:
+\[(f + g)(x) = f(x) + g(x) \quad (af)(x) = a . f(x)\]
+
+This \(A\)-module is denoted by \(\text{Hom}(M, N)\). Homomorphisms \(u : M' \rightarrow M\) and \(v : N \rightarrow N''\) induce the homomorphisms:
+
+\[\bar{u} : \text{Hom}(M, N) \rightarrow \text{Hom}(M', N)\]
+\[\bar{v} : \text{Hom}(M, N) \rightarrow \text{Hom}(M, N'')\]
+
+where:
+\[\bar{u}(f) = u \circ f \quad \bar{v}(f) = f \circ v\]
+
+For any module \(M\), there is the natural isomorphism \(\text{Hom}(A, M) \approx M\): any \(A\)-module homomorphism \(f : A \rightarrow M\) is determined uniquely determined by \(f(1)\), which can be any element of \(M\).
+
+# Submodules
 
 Submodule \(I \subset A\) \(\leftrightarrow\) ideal \(I\) in \(A\).
 

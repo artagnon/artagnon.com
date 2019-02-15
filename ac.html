@@ -32,7 +32,7 @@
         <h1>
           Commutative Algebra
         </h1>
-        <span id="pubdate">Created: Sun, 23 Sep 2018</span><br /><span id="pubdate">Last updated: Thu, 14 Feb 2019</span>
+        <span id="pubdate">Created: Sun, 23 Sep 2018</span><br /><span id="pubdate">Last updated: Fri, 15 Feb 2019</span>
         <p>
           Convention: \(A\) is used to denote a ring, \(A[T]\) is a polynomial ring. \((f) \subset A[T]\) is a polynomial. \(M\) is an A-module. \(I\) and \(J\) are ideals, \(V\) is a variety, \(\mathcal{V}\) is a Zariski topology. \(L\), \(M\), \(N\) are modules. \(\varphi\) is a homomorphism.
         </p>
@@ -311,7 +311,7 @@
           Modules
         </h2>
         <p>
-          Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there&#39;s no need to look further than matrices over \(\mathbb{R}\), the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise.
+          Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there&#39;s no need to look further than matrices over \(\mathbb{R}\), the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise. The ideal \(I\) and quotient ring \(A/I\) are both examples of modules.
         </p>
         <p>
           A module \(M\) over ring \(A\) is formally defined as the multiplication map \(A \times M \rightarrow AM\), or \((f, m) \mapsto fm\) satisfying the following axioms:
@@ -331,8 +331,49 @@
           </li>
         </ol>
         <p>
-          Theory of modules \(\leftrightarrow\) Theory of linear algebra over \(A\). A-modules over a field \(k\) \(\leftrightarrow\) \(k\)-vector space, exactly.
+          Theory of modules \(\leftrightarrow\) Theory of linear algebra over \(A\).
         </p>
+        <p>
+          Examples:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            If \(A\) is a field in \(k\), then \(A\)-module \(= k\)-vector space.
+          </li>
+          <li>
+            If \(A = \mathbb{Z}\), then \(\mathbb{Z}\)-module \(=\) abelian group.
+          </li>
+          <li>
+            If \(A = k[x]\) where \(k\) is a field, then the \(A\)-module is a \(k\)-vector space with linear transformation.
+          </li>
+          <li>
+            If \(A = k[G]\), where \(G\) is a group, then \(A\)-module \(= k\)-representation of \(G\).
+          </li>
+        </ol>
+        <p>
+          Let \(M, N\) be \(A\)-modules, and \(f : M \rightarrow N\) be an \(A\)-module homomorphism, or \(A\)-linear. Then, \(f(x + y) = f(x) + f(y)\), and \(f(ax) = a . f(x)\), for all \(a \in A; x, y \in M\). If \(A\) is a field, then an \(A\)-module homomorphism is the same thing as linear transformation over vector spaces.
+        </p>
+        <p>
+          The composition of any two \(A\)-module homomorphisms is again an \(A\)-module homomorphism. The set of all \(A\)-module homomorphisms from \(M\) to \(N\) can be turned into an \(A\)-module with the axioms:
+          \[(f + g)(x) = f(x) + g(x) \quad (af)(x) = a . f(x)\]
+        </p>
+        <p>
+          This \(A\)-module is denoted by \(\text{Hom}(M, N)\). Homomorphisms \(u : M&#39; \rightarrow M\) and \(v : N \rightarrow N&#39;&#39;\) induce the homomorphisms:
+        </p>
+        <p class="mathjax">
+          \[\bar{u} : \text{Hom}(M, N) \rightarrow \text{Hom}(M', N)\]
+          \[\bar{v} : \text{Hom}(M, N) \rightarrow \text{Hom}(M, N'')\]
+        </p>
+        <p>
+          where:
+          \[\bar{u}(f) = u \circ f \quad \bar{v}(f) = f \circ v\]
+        </p>
+        <p>
+          For any module \(M\), there is the natural isomorphism \(\text{Hom}(A, M) \approx M\): any \(A\)-module homomorphism \(f : A \rightarrow M\) is determined uniquely determined by \(f(1)\), which can be any element of \(M\).
+        </p>
+        <h2>
+          Submodules
+        </h2>
         <p>
           Submodule \(I \subset A\) \(\leftrightarrow\) ideal \(I\) in \(A\).
         </p>
