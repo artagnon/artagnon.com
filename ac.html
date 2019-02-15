@@ -56,7 +56,7 @@
           Ideals
         </h2>
         <p>
-          An ideal \(I\) of \(A\) is defined to be a additive subgroup of \(A\) such that \(Ia \in I \, \forall a \in A\). The `quotient ring` \(A/I\) inherits a uniquely defined multiplication from \(A\), making it into a subring, the quotient ring or the `residue-class ring`. \(\varphi : A \rightarrow A/I\) is a `ring homomorphism`, and it maps every \(x \in A\) to the `coset` \(x + I\).
+          An ideal \(I\) of \(A\) is defined to be a additive subgroup of \(A\) that is closed under multiplication with elements of \(A\); that is, \(Ia \in I \, \forall a \in A\). The `quotient ring` \(A/I\) inherits a uniquely defined multiplication from \(A\), making it into a subring, the quotient ring or the `residue-class ring`. \(\varphi : A \rightarrow A/I\) is a `ring homomorphism`, and it maps every \(x \in A\) to the `coset` \(x + I\).
         </p>
         <p>
           There is a one-to-one order-preserving correspondence between ideals \(J\) of \(A\) which contain \(I\), and ideals \(\bar{J}\) of \(A/I\), given by \(J = \varphi^{-1}(\bar{J})\). Notice that the kernel of the homomorphism \(f : A \rightarrow B\) is \(I\), image \(f(A)\) is a subring \(C \subseteq B\), and \(f\) induces the homomorphism \(A/I \cong C\).
@@ -65,17 +65,17 @@
           A `zero-divisor` of an element \(x \in A\) is, if it exists, an element \(y \neq 0 \implies xy = 0\). A ring with no zero-divisors is called an `integral domain`. A `unit` of an element \(x \in A\) is an element \(y : xy = 1\); then \(y = x^{-1}\). The units in \(A\) form a multiplicative abelian group, and a ring in which every element has an inverse is called a `field`; obviously every field is an integral domain. The multiples \(Ix, x \in A\) form the `principal ideal`, and is denoted by \((I)\).
         </p>
         <p>
-          \(P\) is a `prime ideal` of \(A\) if \(P \neq (1)\) and \(xy \in P \implies x \in P \vee y \in P\) for \(x, y \in A\). \(M\) is a `maximal ideal` of \(A\) if \(M \neq (1)\), and there exists no ideal \(I\) strictly between \(M\) and \(A\), that is no \(I : M \subset I \subset A\).
+          \(P\) is a `prime ideal` of \(A\) if \(P \neq (1)\) and \(xy \in P \implies x \in P \vee y \in P\) for \(x, y \in A\). \(M\) is a `maximal ideal` of \(A\) if \(M \neq (1)\), and there exists no ideal \(I\) strictly between \(M\) and \(A\), that is no \(I : M \subset I \subset A\). In \(A[x]\), prime ideals consist of \((0)\), maximals, and irreducibles.
         </p>
         <p>
-          What follows is a bunch of elementary results:
+          Three elementary results (proved in [ra/hw](/ra/hw)):
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(m\) is maximal \(\iff A/m\) is a field.
+            \(M\) is maximal \(\iff A/M\) is a field.
           </li>
           <li>
-            \(p\) is prime \(\iff A/P\) is an integral domain.
+            \(P\) is prime \(\iff A/P\) is an integral domain.
           </li>
           <li>
             Maximal ideal \(\implies\) prime ideal.
