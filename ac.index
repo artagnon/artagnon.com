@@ -292,9 +292,26 @@ Then, there exists an exact sequence:
 
 where \(\bar{u}, \bar{v}\) are restrictions of \(u, v\), and \(\bar{u}', \bar{v}'\) are induced by \(u', v'\).
 
-Koszul complex of pair (\(x\), \(y\)) is defined as the exact sequence:
+The boundary homomorphism \(d\) is defined as follows: if \(x'' = \text{Ker}(f'')\), then \(x'' = v(x)\) for some \(x \in M\), and \(v'(f(x)) = f'(v(x))\), hence \(f(x) \in \text{Ker}(v') = \text{Im}(u')\) so that \(f(x) = u'(y')\) for some \(y' in N'\). Then \(d(x'')\) is defined to be the image of \(y'\) in \(\text{Coker}(f')\).
+
+Let \(C\) be a class of \(A\)-modules, and \(\lambda\) a function with values in abelian group \(G\). \(\lambda\) is `additive` if, for each s.e.s with terms in \(C\), we have \(\lambda(L) - \lambda(M) + \lambda(N) = 0\). As an example, let \(A\) be a vector space \(k\), and \(C\) be the class of all vector spaces \(V\). Then \(V \mapsto \text{dim}(V)\) is additive.
+
+Let \(0 \rightarrow M_1 \rightarrow \ldots \rightarrow M_n\) be an exact sequence with modules and kernels of all homomorphisms in class \(C\). Then, for any additive function \(\lambda\), we have:
+\[\sum_i (-1)^i \lambda(M_i) = 0\]
+
+This is proved by splitting up the long exact sequence into short exact sequences.
+
+The Koszul complex of pair \((x, y)\) is an example of an s.e.s:
 
 \[0 \rightarrow A \xrightarrow{(-y, x)} A^2 \xrightarrow{\begin{pmatrix} x \\ y \end{pmatrix}} I \rightarrow 0\]
+
+# Tensor product
+
+Let \(M, N, P\) be three \(A\)-modules. The mapping \(f : M \times N \rightarrow P\) is said to be \(A\)-bilinear if, for each \(x \in M, y \in N\), the mapping \(y \rightarrow (x, y)\) of \(N\) onto \(P\), and the mapping \(x \rightarrow (x, y)\) of \(M\) onto \(P\), are both \(A\)-linear.
+
+We construct an \(A\)-module \(T\), called the `tensor product`, if the \(A\)-bilinear mapping \(M \times N \rightarrow P\) is in one-to-one correspondence with \(A\)-linear mappings \(T \rightarrow P\), for all \(A\)-modules \(P\). More precisely, there exists a pair \((T, g)\) consisting of \(A\)-module \(T\) and \(A\)-bilinear mapping \(g : M \times N \rightarrow T\), such that \(f = f' \circ g\), where \(f' : T \rightarrow P\) is a unique \(A\)-linear mapping. In other words, every mapping \(M \times N\) factors uniquely through \(T\).
+
+# [TBD]
 
 \(S^{-1}\) preserves exactness over the s.e.s:
 
