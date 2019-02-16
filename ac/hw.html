@@ -32,7 +32,7 @@
         <h1>
           Commutative Algebra: homework
         </h1>
-        <span id="pubdate">Created: Sat, 17 Nov 2018</span><br /><span id="pubdate">Last updated: Fri, 15 Feb 2019</span>
+        <span id="pubdate">Created: Sat, 17 Nov 2018</span><br /><span id="pubdate">Last updated: Sat, 16 Feb 2019</span>
         <p>
           Prove the Nullstellansatz: \(J \subsetneq k[x_1 ... x_n] \implies V(J) \neq \phi\) and \(I(V(J)) = \text{ rad } J\) in an algebraically closed field \(k[x_1 ... x_n]\).
         </p>
@@ -43,13 +43,25 @@
           Proof: Let
           \[f \in J \subset k[x_1 ... x_n]\]
           \[(a_1 ... a_n) \in V(J)\]
+        </p>
+        <p>
           Introduce a new variable \(y\), so that
           \[J&#39; = (J, fy - 1) \subset k[x_1 ... x_n, y]\]
           \[(a_1 ... a_n, b) \in V(J&#39;)\]
+        </p>
+        <p>
           such that \(bf(a_1 ... a_n) = 1\). Then,
-          \[V(J&#39;) = \phi \implies 1 = \sum g_i h_i + g_0 (fy - 1) \mid g_i \in k[x_1 ... x_n, y], h_i \in J\]
+        </p>
+        <p class="mathjax">
+          \[V(J') = \phi \implies 1 = \sum g_i h_i + g_0 (fy - 1) \mid g_i \in k[x_1 ... x_n, y], h_i \in J\]
+        </p>
+        <p>
           Multiply both sides by \(f^m\) to obtain:
+        </p>
+        <p class="mathjax">
           \[f^m = \sum g_i(x_1 ... x_n, fy) h_i + g_0(x_1 ... x_n, fy) (fy - 1)\]
+        </p>
+        <p>
           This identity holds if \(fy = 1\), and hence \(f^m \in J\), as required \(\Box\)
         </p>
         <hr />
@@ -100,6 +112,23 @@
           Let \((p)\) be a prime ideal, and \(m\) be a maximal ideal, and let \((p) \subset (m)\). Then, \(p = mz\), but since \(m \notin (p), z \in (p)\), say \(z = tp\). Then, \(p = mz = mtp \implies mt = 1\), or \((m) = 1\). Hence, \((p)\) must be maximal \(\Box\)
         </p>
         <hr />
+        <p>
+          Let \(A\) be a field, and \(\mathcal{N}\) be its nilradical. Then, show that the following are equivalent:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(A\) has exactly one prime ideal.
+          </li>
+          <li>
+            Every element of \(A\) is either unit or nilpotent.
+          </li>
+          <li>
+            \(A/\mathcal{N}\) is a field.
+          </li>
+        </ol>
+        <p>
+          Proof: (i) implies that there is exactly one maximal ideal, since every ideal must be contained within some maximal ideal: then, let \(P = M\) be this prime/maximal ideal. (iii) follows immediately, since, \(A/M\) is a field (see [ra/hw](/ra/hw)).
+        </p>
       </div>
       <div id="sidebar">
         <ul>
