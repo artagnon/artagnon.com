@@ -32,7 +32,7 @@
         <h1>
           Commutative Algebra
         </h1>
-        <span id="pubdate">Created: Sun, 23 Sep 2018</span><br /><span id="pubdate">Last updated: Sat, 16 Feb 2019</span>
+        <span id="pubdate">Created: Sun, 23 Sep 2018</span><br /><span id="pubdate">Last updated: Sun, 17 Feb 2019</span>
         <p>
           Convention: \(A\) is used to denote a ring, \(A[T]\) is a polynomial ring. \((f) \subset A[T]\) is a polynomial. \(M\) is an A-module. \(I\) and \(J\) are ideals, \(V\) is a variety, \(\mathcal{V}\) is a Zariski topology. \(L\), \(M\), \(N\) are modules. \(\varphi\) is a homomorphism.
         </p>
@@ -112,20 +112,20 @@
           Nilradicals
         </h2>
         <p>
-          The set of all nilpotent elements \(\mathcal{N}\) of \(A\) is an ideal, and \(A/\mathcal{N}\) does not have any nilpotent elements. To prove this, let \(x, y \in \mathcal{N}\) be nilpotent elements of order \(m, n\). By the binomial theorem, \((x + y)^{m + n - 1}\) has terms of the form \(x^r y^s\); but we cannot have both \(r &lt; m\) and \(s &lt; n\), so each of these terms vanish, and \((x + y)^{m + n - 1} = 0, x + y \in \mathcal{N}\). Let \(\bar{x^n} \in A/\mathcal{N}\) be a representation of \(x^n\). Then \((x^n)^p = 0\), and \(x \in \mathcal{N} \implies \bar{x} = 0\). Ideal \(\mathcal{N}\) is called the `nilradical` of \(A\).
+          The set of all nilpotent elements \(\mathfrak{N}\) of \(A\) is an ideal, and \(A/\mathfrak{N}\) does not have any nilpotent elements. To prove this, let \(x, y \in \mathfrak{N}\) be nilpotent elements of order \(m, n\). By the binomial theorem, \((x + y)^{m + n - 1}\) has terms of the form \(x^r y^s\); but we cannot have both \(r &lt; m\) and \(s &lt; n\), so each of these terms vanish, and \((x + y)^{m + n - 1} = 0, x + y \in \mathfrak{N}\). Let \(\bar{x^n} \in A/\mathfrak{N}\) be a representation of \(x^n\). Then \((x^n)^p = 0\), and \(x \in \mathfrak{N} \implies \bar{x} = 0\). Ideal \(\mathfrak{N}\) is called the `nilradical` of \(A\).
         </p>
         <p>
-          The nilradical \(\mathcal{N}\) of \(A\) is the intersection of all prime ideals of \(A\). To prove this, let \(\mathcal{N}&#39;\) be the intersection of prime ideals. If \(f \in A\) is nilpotent, and \(P\) is a prime ideal, \(f^n = 0 \in P\) for some \(n\), and hence \(f \in P\) (because \(P\) is prime) and \(f \in \mathcal{N}&#39;\). Conversely, suppose that \(f\) is not nilpotent. Let \(\Sigma\) be the set of ideals \(I\) such that \(n \gt 0 \implies f^n \notin I\). \(\Sigma\) is not zero, and by Zorn&#39;s lemma, there is some maximal element in \(\Sigma\). Let \(P\) be this maximal element: it remains to be shown that \(P\) is a prime ideal. Let \(x, y \notin P\), so \(P + (x), P + (y)\) contain \(P\), and therefore do not belong to \(\Sigma\). If:
+          The nilradical \(\mathfrak{N}\) of \(A\) is the intersection of all prime ideals of \(A\). To prove this, let \(\mathfrak{N}&#39;\) be the intersection of prime ideals. If \(f \in A\) is nilpotent, and \(P\) is a prime ideal, \(f^n = 0 \in P\) for some \(n\), and hence \(f \in P\) (because \(P\) is prime) and \(f \in \mathfrak{N}&#39;\). Conversely, suppose that \(f\) is not nilpotent. Let \(\Sigma\) be the set of ideals \(I\) such that \(n \gt 0 \implies f^n \notin I\). \(\Sigma\) is not zero, and by Zorn&#39;s lemma, there is some maximal element in \(\Sigma\). Let \(P\) be this maximal element: it remains to be shown that \(P\) is a prime ideal. Let \(x, y \notin P\), so \(P + (x), P + (y)\) contain \(P\), and therefore do not belong to \(\Sigma\). If:
           \[f^m = P + (x) \quad f^n = P + (y)\]
         </p>
         <p>
-          then, \(f^{m + n} \in P + (xy)\), hence the ideal \(P + (xy) \notin \Sigma\), and \(xy \notin P\). Hence, we have a prime ideal \(P\), and \(f \notin P, f \notin \mathcal{N}&#39;\).
+          then, \(f^{m + n} \in P + (xy)\), hence the ideal \(P + (xy) \notin \Sigma\), and \(xy \notin P\). Hence, we have a prime ideal \(P\), and \(f \notin P, f \notin \mathfrak{N}&#39;\).
         </p>
         <p>
-          The `Jacobson radical` \(\mathcal{R}\) of \(A\) is defined to be the intersection of all maximal ideals of \(A\).
+          The `Jacobson radical` \(\mathfrak{R}\) of \(A\) is defined to be the intersection of all maximal ideals of \(A\).
         </p>
         <p>
-          \(x \in \mathcal{R} \iff 1 - xy\) is a unit in \(A\) for all \(y \in A\). To prove this, let is first assume that \(1 - xy\) is not a unit. But \(1 - xy\) belongs to some maximal ideal \(M\); and \(x \in \mathcal{R} \subseteq M\), so \(xy \in M\), and hence \(1 \in M\), which is absurd. To prove the converse, let \(x \notin M\), for some maximal ideal \(M\). Then, \(M\) and \(x\) generate \((1)\), and \(u + xy \in M\), for some \(u \in M, y \in A\). Hence, \(1 - xy \in M\) is not unit.
+          \(x \in \mathfrak{R} \iff 1 - xy\) is a unit in \(A\) for all \(y \in A\). To prove this, let is first assume that \(1 - xy\) is not a unit. But \(1 - xy\) belongs to some maximal ideal \(M\); and \(x \in \mathfrak{R} \subseteq M\), so \(xy \in M\), and hence \(1 \in M\), which is absurd. To prove the converse, let \(x \notin M\), for some maximal ideal \(M\). Then, \(M\) and \(x\) generate \((1)\), and \(u + xy \in M\), for some \(u \in M, y \in A\). Hence, \(1 - xy \in M\) is not unit.
         </p>
         <h2>
           Operations on ideals
@@ -216,7 +216,7 @@
           \[\sqrt{I} = \{x \in A \mid \exists n \gt 0 : x^n = I\}\]
         </p>
         <p>
-          If \(\varphi : A \rightarrow A/I\) is a ring homomorphism, then \(\sqrt{I} = \varphi^{-1}(\mathcal{N}_{A/I})\), hence the radical of an ideal is an ideal.
+          If \(\varphi : A \rightarrow A/I\) is a ring homomorphism, then \(\sqrt{I} = \varphi^{-1}(\mathfrak{N}_{A/I})\), hence the radical of an ideal is an ideal.
         </p>
         <p>
           What follows is a set of results about radicals:
@@ -462,10 +462,10 @@
           Nakayama&#39;s lemma, corollary: Let \(M\) be a finitely generated \(A\)-module, and \(I\) be an ideal in \(A\). If \(M = IM\), then \(\exists x \in A \text{ such that } x \equiv 1 \text{ mod } I\) and \(xM = 0\). This can be proved by taking \(\varphi =\) identity and \(x = 1 + a_1 + \ldots + a_n\) in the previous result.
         </p>
         <p>
-          `Nakayama&#39;s lemma`: Let \(M\) be a finitely generated \(A\)-module, and \(I\) be an ideal contained in the Jacobson radical \(\mathcal{R}\) of \(A\). Then \(M = IM \implies M = 0\). To prove this, notice that we have \(xM = 0\) for some \(x \equiv 1 \text{ mod } \mathcal{R}\), by the corollary. But \(x\) is a unit in \(A\), and hence \(M = x^{-1}xM = 0\).
+          `Nakayama&#39;s lemma`: Let \(M\) be a finitely generated \(A\)-module, and \(I\) be an ideal contained in the Jacobson radical \(\mathfrak{R}\) of \(A\). Then \(M = IM \implies M = 0\). To prove this, notice that we have \(xM = 0\) for some \(x \equiv 1 \text{ mod } \mathfrak{R}\), by the corollary. But \(x\) is a unit in \(A\), and hence \(M = x^{-1}xM = 0\).
         </p>
         <p>
-          Let \(M\) be a finitely generated \(A\)-module, \(N\) a submodule of \(M\), and \(I\) an ideal \(I \subseteq \mathcal{R}\). Then, \(M = IM + N \implies M = N\). This can be proved by observing that \(I(M + N) = (IM + N)/N\).
+          Let \(M\) be a finitely generated \(A\)-module, \(N\) a submodule of \(M\), and \(I\) an ideal \(I \subseteq \mathfrak{R}\). Then, \(M = IM + N \implies M = N\). This can be proved by observing that \(I(M + N) = (IM + N)/N\).
         </p>
         <p>
           Let \(A\) be a local ring, \(M\) its maximal ideal, \(k = A/M\) its residue field, and \(N\) a finitely generated module. Then, \(N/MN\) is annihilated by \(M\), hence is an \(A/M\)-module i.e. a \(k\)-vector space that is finite-dimensional. Let \(x_i\)s be the elements of \(N\) whose image is in \(N/MN\). Then, \(x_i\)s generate \(N\). To prove this, let \(S\) be the submodule of \(N\) generated by \(x_i\), so it remains to be shown that \(S = N\). The composite \(S \rightarrow N \rightarrow N/MN\) maps \(S\) onto \(N/MN\), and hence \(S + MN = 1\), and \(N = S\).
