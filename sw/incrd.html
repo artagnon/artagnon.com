@@ -37,7 +37,7 @@
           Preface
         </h2>
         <p>
-          An input program function is represented using a Control Flow Graph (CFG). It&#39;s composed of different Statements, which decompose into Expressions, but we will not concern ourselves with Expressions. The main control flow constructs are SplitStatement and MergeStatement. The SplitStatement has outgoing edges to N (N = 2 in the case of IfStatement) other Statements, and the MergeStatement has incoming edges from M other Statements.
+          An input program function is represented using a Control Flow Graph (CFG). It's composed of different Statements, which decompose into Expressions, but we will not concern ourselves with Expressions. The main control flow constructs are SplitStatement and MergeStatement. The SplitStatement has outgoing edges to N (N = 2 in the case of IfStatement) other Statements, and the MergeStatement has incoming edges from M other Statements.
         </p>
         <p class="mathjax">
           \[
@@ -51,7 +51,7 @@
           \]
         </p>
         <p>
-          The Dominator is a data structure that holds &quot;domination relationship&quot; between any two Statements in the CFG. &quot;A dominates B&quot; means: all paths starting from the start of the CFG to end of the CFG, that flow through A, must necessarily flow through B. It&#39;s represented using a tree of things that progressively dominate their children. We want to incrementally update this structure.
+          The Dominator is a data structure that holds "domination relationship" between any two Statements in the CFG. "A dominates B" means: all paths starting from the start of the CFG to end of the CFG, that flow through A, must necessarily flow through B. It's represented using a tree of things that progressively dominate their children. We want to incrementally update this structure.
         </p>
         <p class="mathjax">
           \[
@@ -125,19 +125,19 @@ if (A < 17)
           \]
         </p>
         <p>
-          Supporting arbitarary IR edits is both very hard and not a useful goal: we can reduce all our edits to two items, namely inserting a SESE Statement, and inserting a SESE PST Region. Removing a Statment or Region is not interesting, because it just leaves gaps in the numbering, and doesn&#39;t affect any existing Dominance relationships if we make no changes after removal. Modifying a Region can be easily expressed as the removal of the old Region/insertion of the new Region.
+          Supporting arbitarary IR edits is both very hard and not a useful goal: we can reduce all our edits to two items, namely inserting a SESE Statement, and inserting a SESE PST Region. Removing a Statment or Region is not interesting, because it just leaves gaps in the numbering, and doesn't affect any existing Dominance relationships if we make no changes after removal. Modifying a Region can be easily expressed as the removal of the old Region/insertion of the new Region.
         </p>
         <p>
-          The PST gives us an excellent mechanism to classify the blob we&#39;re injecting into the CFG. The interesting Regions begin with a SplitStatement, and end with a MergeStatement, or begin with a MergeStatement and end with a SpiltStatement: IfRegions, SwitchRegions, and LoopRegions. This is the key property we will use to do the inremental update.
+          The PST gives us an excellent mechanism to classify the blob we're injecting into the CFG. The interesting Regions begin with a SplitStatement, and end with a MergeStatement, or begin with a MergeStatement and end with a SpiltStatement: IfRegions, SwitchRegions, and LoopRegions. This is the key property we will use to do the inremental update.
         </p>
         <h2>
           Possible approaches
         </h2>
         <p>
-          First, it must be noted that by using tight consecutive DFS start and end timers, we will have no choice but to renumber the descendant tree when something is inserted. So, we leave gaps of 64 between the numbering, to stuff our new SESE Statement or Region into. It may be argued that using fractions is profitable, but we found that space to fit intervals wasn&#39;t the bottlneck: the hard problem is determining dominance. When attempting to stuff a new Region into an existing gap, we can imagine centering around the midpoint of the gap, and leaving space for more Regions above and below. Bisecting each gap will exhaust the gaps quickly, and we decided to optimize for insertion only from top to bottom.
+          First, it must be noted that by using tight consecutive DFS start and end timers, we will have no choice but to renumber the descendant tree when something is inserted. So, we leave gaps of 64 between the numbering, to stuff our new SESE Statement or Region into. It may be argued that using fractions is profitable, but we found that space to fit intervals wasn't the bottlneck: the hard problem is determining dominance. When attempting to stuff a new Region into an existing gap, we can imagine centering around the midpoint of the gap, and leaving space for more Regions above and below. Bisecting each gap will exhaust the gaps quickly, and we decided to optimize for insertion only from top to bottom.
         </p>
         <p>
-          One approach we could take is to assume that the Region-to-be-inserted has been removed from a different part of the tree, and has some numbers already that we simply need to adjust them (those numbers will be spaced with gaps of 64, and we need to compress them). This approach wouldn&#39;t be able to handle newly created Regions.
+          One approach we could take is to assume that the Region-to-be-inserted has been removed from a different part of the tree, and has some numbers already that we simply need to adjust them (those numbers will be spaced with gaps of 64, and we need to compress them). This approach wouldn't be able to handle newly created Regions.
         </p>
         <h2>
           Our algorithm
@@ -166,7 +166,7 @@ if (A < 17)
           </li>
         </ol>
         <p>
-          The intervals of the each of the outEdges (&quot;branches&quot;) must stagger with each other so there&#39;s no false dominance relationship between them. Two intervals &quot;staggering&quot; means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
+          The intervals of the each of the outEdges ("branches") must stagger with each other so there's no false dominance relationship between them. Two intervals "staggering" means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
         </p>
         <p class="mathjax">
           \[
@@ -210,7 +210,7 @@ if (A < 17)
                  std::vector<Statement*> headsToStaggerWith,
                  Statement* nestWithin, Statement* toEnclose);</code></pre>
         <p>
-          First, we assign intervals to the split and merge Statements in the Region, by looking at their predecessor and succeesor. The predecessor is something we need to nest within. Since we decided that we&#39;ll only optimize for the case of top-to-bottom insertion, we can simply add one to the start time, and subtract one from the end time to get the necessary start and end times for the Region entry. For the Region exit, it&#39;s a little more tricky: we need to leave gaps on either side, because there may be nodes along the inEdge(s) as well as nodes along the outEdge(s). For simplicity, let&#39;s simply assign an interval halfway between the Region entry and successor intervals.
+          First, we assign intervals to the split and merge Statements in the Region, by looking at their predecessor and succeesor. The predecessor is something we need to nest within. Since we decided that we'll only optimize for the case of top-to-bottom insertion, we can simply add one to the start time, and subtract one from the end time to get the necessary start and end times for the Region entry. For the Region exit, it's a little more tricky: we need to leave gaps on either side, because there may be nodes along the inEdge(s) as well as nodes along the outEdge(s). For simplicity, let's simply assign an interval halfway between the Region entry and successor intervals.
         </p>
         <p>
           Then, we assign intervals to be `branchHeads` (ie. successors of the SplitStatement whose intervals we need to assign), by staggering with the `headsToStaggerWith` (ie. successors of the SplitStmt whose intervals we must trust + the MergeStatement if Split-dominates-Merge). `nestWithin` is the SplitStatement, and `toEnclose` is `nullptr`.
@@ -219,10 +219,10 @@ if (A < 17)
           Finally, we trivially assign intervals to the rest of the Stmts in the Region, following the Split, by nesting them within the branch heads.
         </p>
         <p>
-          Now, this API generalizes to SESE Statements as well. `branchHeads` is the singular SESE Statement, `headsToStaggerWith` may or may not include the containing Region&#39;s MergeStatement. `headsToStaggerWith` will contain all the other successors of the `SplitStatement`, if the SESE Statement is one of the successors, and may contain the MergeStatement. If the successor has one inEdge, it&#39;s used as `toEnclose`.
+          Now, this API generalizes to SESE Statements as well. `branchHeads` is the singular SESE Statement, `headsToStaggerWith` may or may not include the containing Region's MergeStatement. `headsToStaggerWith` will contain all the other successors of the `SplitStatement`, if the SESE Statement is one of the successors, and may contain the MergeStatement. If the successor has one inEdge, it's used as `toEnclose`.
         </p>
         <p>
-          The actual interval calculation is quite simple. Subtract the `staggerUnion` interval (union of all the stagger intervals) from the `nestWithin` interval: this produces two &quot;gaps&quot; which we need to &quot;dice up&quot; into N intervals (where N is the number of `branchHeads`). The number of intervals in the left gap versus the right gap is dependent on the ratio of the sizes of the gaps. `toEnclose` simply tells us whether to pick the left gap or right gap in the case of a single `branchHead`. It&#39;s also useful to check interval exhaustion cases.
+          The actual interval calculation is quite simple. Subtract the `staggerUnion` interval (union of all the stagger intervals) from the `nestWithin` interval: this produces two "gaps" which we need to "dice up" into N intervals (where N is the number of `branchHeads`). The number of intervals in the left gap versus the right gap is dependent on the ratio of the sizes of the gaps. `toEnclose` simply tells us whether to pick the left gap or right gap in the case of a single `branchHead`. It's also useful to check interval exhaustion cases.
         </p>
         <p>
           There is an elegant way to catch all the cases when the interval has been exhausted. Just `throw` an exception from the interval-construction class. Catch this exception and abort the incremental update: recompute the Dominator.

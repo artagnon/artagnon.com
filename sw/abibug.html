@@ -34,7 +34,7 @@
         </h1>
         <span id="pubdate">Created: Sun, 23 Aug 2015</span><br /><span id="pubdate">Last updated: Tue, 29 Jan 2019</span>
         <p>
-          Our custom max function returns the maximum of two positive integers, and returns the negative integer, given a positive and negative integer. Classic signed wrapping, you&#39;d think. It&#39;s not so simple, as the problem reproduces only under the following circumstances:
+          Our custom max function returns the maximum of two positive integers, and returns the negative integer, given a positive and negative integer. Classic signed wrapping, you'd think. It's not so simple, as the problem reproduces only under the following circumstances:
         </p>
         <ol class="olitems" type="none" start="1">
           <li>
@@ -78,7 +78,7 @@ FORCEINLINE T operator()(T a, T b) const
    0x108d1ac1d:  popq   %rbp
    0x108d1ac1e:  retq</code></pre>
         <p>
-          So, it&#39;s comparing the extended registers, but cmpl/cmpw difference is
+          So, it's comparing the extended registers, but cmpl/cmpw difference is
           messing up somehow.
         </p>
         <p>
@@ -120,11 +120,11 @@ FORCEINLINE T operator()(T a, T b) const
 (lldb) register read --format int16_t[] esi
      esi = {34 0}</code></pre>
         <p>
-          In conclusion, this is a Clang/LLVM version mismatch. It&#39;s compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn&#39;t set up the extended form of the register correctly for negative numbers, when
+          In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when
           calling a function with a word-sized register.
         </p>
         <p>
-          The SysV ABI does not guarantee that the i16 will be sext&#39;ed to i32. Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5 doesn&#39;t know about this.
+          The SysV ABI does not guarantee that the i16 will be sext'ed to i32. Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5 doesn't know about this.
         </p>
       </div>
       <div id="sidebar">

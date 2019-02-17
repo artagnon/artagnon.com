@@ -72,7 +72,7 @@
           If \(f : A \rightarrow B\) is a ring homomorphism, and \(Q\) is a prime ideal of \(B\), then \(f^{-1}(Q)\) is a prime ideal of \(A\), for \(A/f^{-1}(Q)\) is isomorphic to a subring of \(B/Q\), and hence has no zero-divisors. But if \(N\) is a maximal ideal in \(B\), \(A/f^{-1}(N)\) need not be a maximal ideal in \(A\); all we can say is that it is prime.
         </p>
         <p>
-          Every ring \(A \neq 0\) has a maximal ideal, and this can be proved using `Zorn&#39;s lemma`. If \(A \neq (1)\) is an ideal of \(A\), then there is some maximal ideal containing \(A\). It follows that every non-unit of \(A\) is contained in some maximal ideal. A ring \(A\) with exactly one maximal ideal \(M\) is called a `local ring`, and the field \(A/M\) is called the `residue field`.
+          Every ring \(A \neq 0\) has a maximal ideal, and this can be proved using `Zorn's lemma`. If \(A \neq (1)\) is an ideal of \(A\), then there is some maximal ideal containing \(A\). It follows that every non-unit of \(A\) is contained in some maximal ideal. A ring \(A\) with exactly one maximal ideal \(M\) is called a `local ring`, and the field \(A/M\) is called the `residue field`.
         </p>
         <p>
           Let \(A\) be a ring, then:
@@ -115,11 +115,11 @@
           The set of all nilpotent elements \(\mathfrak{N}\) of \(A\) is an ideal, and \(A/\mathfrak{N}\) does not have any nilpotent elements. To prove this, let \(x, y \in \mathfrak{N}\) be nilpotent elements of order \(m, n\). By the binomial theorem, \((x + y)^{m + n - 1}\) has terms of the form \(x^r y^s\); but we cannot have both \(r &lt; m\) and \(s &lt; n\), so each of these terms vanish, and \((x + y)^{m + n - 1} = 0, x + y \in \mathfrak{N}\). Let \(\bar{x^n} \in A/\mathfrak{N}\) be a representation of \(x^n\). Then \((x^n)^p = 0\), and \(x \in \mathfrak{N} \implies \bar{x} = 0\). Ideal \(\mathfrak{N}\) is called the `nilradical` of \(A\).
         </p>
         <p>
-          The nilradical \(\mathfrak{N}\) of \(A\) is the intersection of all prime ideals of \(A\). To prove this, let \(\mathfrak{N}&#39;\) be the intersection of prime ideals. If \(f \in A\) is nilpotent, and \(P\) is a prime ideal, \(f^n = 0 \in P\) for some \(n\), and hence \(f \in P\) (because \(P\) is prime) and \(f \in \mathfrak{N}&#39;\). Conversely, suppose that \(f\) is not nilpotent. Let \(\Sigma\) be the set of ideals \(I\) such that \(n \gt 0 \implies f^n \notin I\). \(\Sigma\) is not zero, and by Zorn&#39;s lemma, there is some maximal element in \(\Sigma\). Let \(P\) be this maximal element: it remains to be shown that \(P\) is a prime ideal. Let \(x, y \notin P\), so \(P + (x), P + (y)\) contain \(P\), and therefore do not belong to \(\Sigma\). If:
+          The nilradical \(\mathfrak{N}\) of \(A\) is the intersection of all prime ideals of \(A\). To prove this, let \(\mathfrak{N}'\) be the intersection of prime ideals. If \(f \in A\) is nilpotent, and \(P\) is a prime ideal, \(f^n = 0 \in P\) for some \(n\), and hence \(f \in P\) (because \(P\) is prime) and \(f \in \mathfrak{N}'\). Conversely, suppose that \(f\) is not nilpotent. Let \(\Sigma\) be the set of ideals \(I\) such that \(n \gt 0 \implies f^n \notin I\). \(\Sigma\) is not zero, and by Zorn's lemma, there is some maximal element in \(\Sigma\). Let \(P\) be this maximal element: it remains to be shown that \(P\) is a prime ideal. Let \(x, y \notin P\), so \(P + (x), P + (y)\) contain \(P\), and therefore do not belong to \(\Sigma\). If:
           \[f^m = P + (x) \quad f^n = P + (y)\]
         </p>
         <p>
-          then, \(f^{m + n} \in P + (xy)\), hence the ideal \(P + (xy) \notin \Sigma\), and \(xy \notin P\). Hence, we have a prime ideal \(P\), and \(f \notin P, f \notin \mathfrak{N}&#39;\).
+          then, \(f^{m + n} \in P + (xy)\), hence the ideal \(P + (xy) \notin \Sigma\), and \(xy \notin P\). Hence, we have a prime ideal \(P\), and \(f \notin P, f \notin \mathfrak{N}'\).
         </p>
         <p>
           The `Jacobson radical` \(\mathfrak{R}\) of \(A\) is defined to be the intersection of all maximal ideals of \(A\).
@@ -295,7 +295,7 @@
           Modules
         </h2>
         <p>
-          Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there&#39;s no need to look further than matrices over \(\mathbb{R}\), the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise. The ideal \(I\) and quotient ring \(A/I\) are both examples of modules.
+          Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there's no need to look further than matrices over \(\mathbb{R}\), the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise. The ideal \(I\) and quotient ring \(A/I\) are both examples of modules.
         </p>
         <p>
           A module \(M\) over ring \(A\) is formally defined as the multiplication map \(A \times M \rightarrow AM\), or \((f, m) \mapsto fm\) satisfying the following axioms:
@@ -342,7 +342,7 @@
           \[(f + g)(x) = f(x) + g(x) \quad (af)(x) = a . f(x)\]
         </p>
         <p>
-          This \(A\)-module is denoted by \(\text{Hom}(M, N)\). Homomorphisms \(u : M&#39; \rightarrow M\) and \(v : N \rightarrow N&#39;&#39;\) induce the homomorphisms:
+          This \(A\)-module is denoted by \(\text{Hom}(M, N)\). Homomorphisms \(u : M' \rightarrow M\) and \(v : N \rightarrow N''\) induce the homomorphisms:
         </p>
         <p class="mathjax">
           \[\bar{u} : \text{Hom}(M, N) \rightarrow \text{Hom}(M', N)\]
@@ -359,7 +359,7 @@
           Submodules
         </h2>
         <p>
-          Submodule \(M&#39;\) of \(M\) is a subgroup of \(M\) closed under multiplication by elements of \(A\). The abelian group \(M/M&#39;\) inherits the \(A\)-module structure from \(M\), given by \(a(x + M&#39;) = ax + M&#39;\). The \(A\)-module \(M/M&#39;\) is termed `quotient` of \(M\) by \(M&#39;\). There is a natural homomorphism between \(M\) and \(M/M&#39;\), and this is an \(A\)-module homomorphism. There is a one-to-one order-preserving bijection from submodules of \(M\) containing \(M&#39;\) and submodules of \(M&#39;&#39;\), as in the case of ideals.
+          Submodule \(M'\) of \(M\) is a subgroup of \(M\) closed under multiplication by elements of \(A\). The abelian group \(M/M'\) inherits the \(A\)-module structure from \(M\), given by \(a(x + M') = ax + M'\). The \(A\)-module \(M/M'\) is termed `quotient` of \(M\) by \(M'\). There is a natural homomorphism between \(M\) and \(M/M'\), and this is an \(A\)-module homomorphism. There is a one-to-one order-preserving bijection from submodules of \(M\) containing \(M'\) and submodules of \(M''\), as in the case of ideals.
         </p>
         <p>
           If \(f : M \rightarrow N\) is an \(A\)-module homomorphism, then its kernel and image are also submodules defined by:
@@ -373,7 +373,7 @@
           \[\text{Coker}(f) = N/Im(f)\]
         </p>
         <p>
-          If \(M&#39; \subseteq \text{Ker}(f)\), then \(f\) gives rise to the homomorphism \(\bar{f} : M/M&#39; \rightarrow N\), where \(\text{Ker}(\bar{f}) = \text{Ker}(f)/M&#39;\). Taking \(M&#39; = \text{Ker}(f)\), we then have the following isomorphism of \(A\)-modules:
+          If \(M' \subseteq \text{Ker}(f)\), then \(f\) gives rise to the homomorphism \(\bar{f} : M/M' \rightarrow N\), where \(\text{Ker}(\bar{f}) = \text{Ker}(f)/M'\). Taking \(M' = \text{Ker}(f)\), we then have the following isomorphism of \(A\)-modules:
           \[M/Ker(f) \cong Im(f)\]
         </p>
         <h2>
@@ -459,10 +459,10 @@
           where \(\delta_{qr}\) is the Kronecker delta. Multiplying on the left by the adjoint of the matrix \((\delta_{qr} \varphi - a_{qr})\), we see that \(\text{det}(\delta_{qr} \varphi - a_{qr})\) annihilates each \(x_i\); expanding out this determinant gives us the required result.
         </p>
         <p>
-          Nakayama&#39;s lemma, corollary: Let \(M\) be a finitely generated \(A\)-module, and \(I\) be an ideal in \(A\). If \(M = IM\), then \(\exists x \in A \text{ such that } x \equiv 1 \text{ mod } I\) and \(xM = 0\). This can be proved by taking \(\varphi =\) identity and \(x = 1 + a_1 + \ldots + a_n\) in the previous result.
+          Nakayama's lemma, corollary: Let \(M\) be a finitely generated \(A\)-module, and \(I\) be an ideal in \(A\). If \(M = IM\), then \(\exists x \in A \text{ such that } x \equiv 1 \text{ mod } I\) and \(xM = 0\). This can be proved by taking \(\varphi =\) identity and \(x = 1 + a_1 + \ldots + a_n\) in the previous result.
         </p>
         <p>
-          `Nakayama&#39;s lemma`: Let \(M\) be a finitely generated \(A\)-module, and \(I\) be an ideal contained in the Jacobson radical \(\mathfrak{R}\) of \(A\). Then \(M = IM \implies M = 0\). To prove this, notice that we have \(xM = 0\) for some \(x \equiv 1 \text{ mod } \mathfrak{R}\), by the corollary. But \(x\) is a unit in \(A\), and hence \(M = x^{-1}xM = 0\).
+          `Nakayama's lemma`: Let \(M\) be a finitely generated \(A\)-module, and \(I\) be an ideal contained in the Jacobson radical \(\mathfrak{R}\) of \(A\). Then \(M = IM \implies M = 0\). To prove this, notice that we have \(xM = 0\) for some \(x \equiv 1 \text{ mod } \mathfrak{R}\), by the corollary. But \(x\) is a unit in \(A\), and hence \(M = x^{-1}xM = 0\).
         </p>
         <p>
           Let \(M\) be a finitely generated \(A\)-module, \(N\) a submodule of \(M\), and \(I\) an ideal \(I \subseteq \mathfrak{R}\). Then, \(M = IM + N \implies M = N\). This can be proved by observing that \(I(M + N) = (IM + N)/N\).
@@ -534,10 +534,10 @@
           \quad\quad\quad \text{Coker}(f') \xrightarrow{\bar{u}'} \text{Coker}(f) \xrightarrow{\bar{v}'} \text{Coker}(f'') \rightarrow 0\]
         </p>
         <p>
-          where \(\bar{u}, \bar{v}\) are restrictions of \(u, v\), and \(\bar{u}&#39;, \bar{v}&#39;\) are induced by \(u&#39;, v&#39;\).
+          where \(\bar{u}, \bar{v}\) are restrictions of \(u, v\), and \(\bar{u}', \bar{v}'\) are induced by \(u', v'\).
         </p>
         <p>
-          The boundary homomorphism \(d\) is defined as follows: if \(x&#39;&#39; = \text{Ker}(f&#39;&#39;)\), then \(x&#39;&#39; = v(x)\) for some \(x \in M\), and \(v&#39;(f(x)) = f&#39;(v(x))\), hence \(f(x) \in \text{Ker}(v&#39;) = \text{Im}(u&#39;)\) so that \(f(x) = u&#39;(y&#39;)\) for some \(y&#39; in N&#39;\). Then \(d(x&#39;&#39;)\) is defined to be the image of \(y&#39;\) in \(\text{Coker}(f&#39;)\).
+          The boundary homomorphism \(d\) is defined as follows: if \(x'' = \text{Ker}(f'')\), then \(x'' = v(x)\) for some \(x \in M\), and \(v'(f(x)) = f'(v(x))\), hence \(f(x) \in \text{Ker}(v') = \text{Im}(u')\) so that \(f(x) = u'(y')\) for some \(y' in N'\). Then \(d(x'')\) is defined to be the image of \(y'\) in \(\text{Coker}(f')\).
         </p>
         <p>
           Let \(C\) be a class of \(A\)-modules, and \(\lambda\) a function with values in abelian group \(G\). \(\lambda\) is `additive` if, for each s.e.s with terms in \(C\), we have \(\lambda(L) - \lambda(M) + \lambda(N) = 0\). As an example, let \(A\) be a vector space \(k\), and \(C\) be the class of all vector spaces \(V\). Then \(V \mapsto \text{dim}(V)\) is additive.
@@ -562,10 +562,10 @@
           Let \(M, N, P\) be three \(A\)-modules. The mapping \(f : M \times N \rightarrow P\) is said to be \(A\)-bilinear if, for each \(x \in M, y \in N\), the mapping \(y \rightarrow (x, y)\) of \(N\) onto \(P\), and the mapping \(x \rightarrow (x, y)\) of \(M\) onto \(P\), are both \(A\)-linear.
         </p>
         <p>
-          We construct an \(A\)-module \(T\), called the `tensor product`, if the \(A\)-bilinear mapping \(M \times N \rightarrow P\) is in one-to-one correspondence with \(A\)-linear mappings \(T \rightarrow P\), for all \(A\)-modules \(P\). More precisely, there exists a pair \((T, g)\) consisting of \(A\)-module \(T\) and \(A\)-bilinear mapping \(g : M \times N \rightarrow T\), such that \(f = f&#39; \circ g\), where \(f&#39; : T \rightarrow P\) is a unique \(A\)-linear mapping. In other words, every mapping \(M \times N\) factors uniquely through \(T\).
+          We construct an \(A\)-module \(T\), called the `tensor product`, if the \(A\)-bilinear mapping \(M \times N \rightarrow P\) is in one-to-one correspondence with \(A\)-linear mappings \(T \rightarrow P\), for all \(A\)-modules \(P\). More precisely, there exists a pair \((T, g)\) consisting of \(A\)-module \(T\) and \(A\)-bilinear mapping \(g : M \times N \rightarrow T\), such that \(f = f' \circ g\), where \(f' : T \rightarrow P\) is a unique \(A\)-linear mapping. In other words, every mapping \(M \times N\) factors uniquely through \(T\).
         </p>
         <p>
-          Note that tensor product notation \(x \otimes y\) is ambiguous; it may be zero in \(M&#39; \times N&#39;\), submodules of \(M, N\), while being zero in modules \(M, N\). For example, consider \(M = \mathbb{Z}, N = \mathbb{Z}/2\mathbb{Z}, M&#39; =\) submodule \(2 \mathbb{Z}\) of \(\mathbb{Z}\) while \(N&#39; = N\). Then, \(2 \otimes x = 1 \otimes 2x = 1 \otimes 0 = 0\), but is nonzero as an element of \(M&#39; \otimes N&#39;\).
+          Note that tensor product notation \(x \otimes y\) is ambiguous; it may be zero in \(M' \times N'\), submodules of \(M, N\), while being zero in modules \(M, N\). For example, consider \(M = \mathbb{Z}, N = \mathbb{Z}/2\mathbb{Z}, M' =\) submodule \(2 \mathbb{Z}\) of \(\mathbb{Z}\) while \(N' = N\). Then, \(2 \otimes x = 1 \otimes 2x = 1 \otimes 0 = 0\), but is nonzero as an element of \(M' \otimes N'\).
         </p>
         <p>
           Let \(x_i \in M, y_i \in N\), and \(\sum x_i \otimes y_i = 0\) in \(M \times N\). Then, there exist finitely generated submodules \(M_0, N_0\) of \(M, N\) such that \(\sum x_i \otimes y_i = 0\) in \(M_0 \otimes N_0\). To prove this, consider \(\sum (x_i, y_i) = D\); then \(\sum (x_i, y_i)\) is a finite sum of generators of \(D\). Let \(M_0\) be the submodule of \(M\) generated by the \(x_i\) and all the elements of \(M\) that occur as the first coordinates in these generators of \(D\). Define \(N_0\) similarly. Then, \(\sum x_i \otimes y_i = 0\) in \(M \times N\), as required.
@@ -592,16 +592,16 @@
           \[(M \otimes_A N) \otimes_B P \cong M \otimes_A (N \otimes_B P)\]
         </p>
         <p>
-          Let \(f : M \rightarrow M&#39;, g : N \rightarrow N&#39;\) be two \(A\)-module homomorphisms. Define \(h : M \times N \rightarrow M&#39; \otimes N&#39;\) by \(h(x, y) = f(x) \otimes g(y)\). Then, \(h\) is bilinear and induces the homomorphism:
-          \[f \otimes g : M \times N \rightarrow M&#39; \otimes N&#39;\]
+          Let \(f : M \rightarrow M', g : N \rightarrow N'\) be two \(A\)-module homomorphisms. Define \(h : M \times N \rightarrow M' \otimes N'\) by \(h(x, y) = f(x) \otimes g(y)\). Then, \(h\) is bilinear and induces the homomorphism:
+          \[f \otimes g : M \times N \rightarrow M' \otimes N'\]
         </p>
         <p>
           such that:
           \[(f \otimes g)(x \otimes y) = f(x) \otimes g(y) \quad x \in M, y \in N\]
         </p>
         <p>
-          Let \(f&#39; : M&#39; \rightarrow M&#39;&#39;, g&#39; : N&#39; \rightarrow N&#39;&#39;\) be two \(A\)-module homomorphisms. Then, \((f&#39; \circ f) \otimes (g&#39; \circ g)\) and \((f&#39; \otimes g&#39;) \circ (f \otimes g)\) agree on all elements of the form \(x \otimes y\) in \(M \otimes N\). Since the elements generate \(M \otimes N\), it follows that:
-          \[(f&#39; \circ f) \otimes (g&#39; \circ g) = (f&#39; \otimes g&#39;) \circ (f \otimes g)\]
+          Let \(f' : M' \rightarrow M'', g' : N' \rightarrow N''\) be two \(A\)-module homomorphisms. Then, \((f' \circ f) \otimes (g' \circ g)\) and \((f' \otimes g') \circ (f \otimes g)\) agree on all elements of the form \(x \otimes y\) in \(M \otimes N\). Since the elements generate \(M \otimes N\), it follows that:
+          \[(f' \circ f) \otimes (g' \circ g) = (f' \otimes g') \circ (f \otimes g)\]
         </p>
         <h2>
           [TBD]
@@ -635,7 +635,7 @@
           C is termed nonsingular if \((\partial f/\partial x, \partial f/\partial y) \neq 0\) for \(P \in C\), so that \(C\) has a well-defined tangent at every point \(P\).
         </p>
         <p>
-          \(XY = 1\) is an example of something that is algebraically closed, but not integrally closed. It can be perturbed as \((X + \epsilon Y) Y = 1\) to avoid the unlucky accident of a &quot;missing zero&quot; over \(X = 0\).
+          \(XY = 1\) is an example of something that is algebraically closed, but not integrally closed. It can be perturbed as \((X + \epsilon Y) Y = 1\) to avoid the unlucky accident of a "missing zero" over \(X = 0\).
         </p>
         <h2>
           The Nullstellansatz

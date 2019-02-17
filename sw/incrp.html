@@ -60,7 +60,7 @@
           </li>
         </ol>
         <p>
-          Most cases, we want to edit the program using the PST (and keeping the CFG up-to-date as a side-effect). However, let&#39;s consider the interesting case of moving Sese (single-entry single-exit) statements out of a BasicBlockRegion to arbitrary edge inside a loop in the CFG. How do we avoid recomputing the PST now?
+          Most cases, we want to edit the program using the PST (and keeping the CFG up-to-date as a side-effect). However, let's consider the interesting case of moving Sese (single-entry single-exit) statements out of a BasicBlockRegion to arbitrary edge inside a loop in the CFG. How do we avoid recomputing the PST now?
         </p>
         <pre><code>/// Some cases:
 ///
@@ -93,16 +93,16 @@
         </p>
         <ol class="olitems" type="none" start="1">
           <li>
-            Either the predecessor or the successor says that they&#39;re part of a BasicBlockRegion. Solution: absorb into the that Region.
+            Either the predecessor or the successor says that they're part of a BasicBlockRegion. Solution: absorb into the that Region.
           </li>
           <li>
-            Both the predecessor and successor say that they&#39;re part of an UnstructuredRegion. This means that our Sese is floating in the middle of some unstructured control flow. Solution: create a new BasicBlockRegion with just this Sese. We can&#39;t just `insertAfterChild`, because &quot;before&quot; and &quot;after&quot; in an UnstructuredRegion isn&#39;t as simple as walking the CFG back/forward. Let&#39;s say they&#39;re DFS-ordered. So, do a depth-first-search of all the statements, and ask them what Regions they belong to. We now have a DFS listing of all the Regions within the UnstructuredRegion. We simply nuke the children, and replace it with this DFS listing (which now contains the new BasicBlockRegion we created).
+            Both the predecessor and successor say that they're part of an UnstructuredRegion. This means that our Sese is floating in the middle of some unstructured control flow. Solution: create a new BasicBlockRegion with just this Sese. We can't just `insertAfterChild`, because "before" and "after" in an UnstructuredRegion isn't as simple as walking the CFG back/forward. Let's say they're DFS-ordered. So, do a depth-first-search of all the statements, and ask them what Regions they belong to. We now have a DFS listing of all the Regions within the UnstructuredRegion. We simply nuke the children, and replace it with this DFS listing (which now contains the new BasicBlockRegion we created).
           </li>
           <li>
             Parent of the predecessor or parent of the successor is a ChainRegion. Solution: create a new BasicBlockRegion, and insert it into the ChainRegion at the correct position (using an `insertAfterChild` API).
           </li>
           <li>
-            Now we get to the case where there&#39;s only one predecessor or one successor. Other cases would have already been trapped by checking if the predParent/succParent is a ChainRegion. Solution: create a new BasicBlockRegion, a new ChainRegion, and chain the existing predecessor/successor along with the new BasicBlockRegion.
+            Now we get to the case where there's only one predecessor or one successor. Other cases would have already been trapped by checking if the predParent/succParent is a ChainRegion. Solution: create a new BasicBlockRegion, a new ChainRegion, and chain the existing predecessor/successor along with the new BasicBlockRegion.
           </li>
           <li>
             Finally, if the predecessor/successor both point to the parent loop, simply create a new BasicBlockRegion, and insert it into the empty loop.
