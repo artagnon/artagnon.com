@@ -32,7 +32,7 @@
         <h1>
           Commutative Algebra
         </h1>
-        <span id="pubdate">Created: Sun, 23 Sep 2018</span><br /><span id="pubdate">Last updated: Sun, 17 Feb 2019</span>
+        <span id="pubdate">Created: Sun, 23 Sep 2018</span><br /><span id="pubdate">Last updated: Mon, 18 Feb 2019</span>
         <p>
           Convention: \(A\) is used to denote a ring, \(A[T]\) is a polynomial ring. \((f) \subset A[T]\) is a polynomial. \(M\) is an A-module. \(I\) and \(J\) are ideals, \(V\) is a variety, \(\mathcal{V}\) is a Zariski topology. \(L\), \(M\), \(N\) are modules. \(\varphi\) is a homomorphism.
         </p>
@@ -693,6 +693,47 @@
         </p>
         <p>
           Ring \(A\) is said to be finitely generated, if it is finitely generated as a \(\mathbb{Z}\)-algebra. This means that there is a finite set \(x_1, \ldots, x_n\) of elements in \(A\), such that every element in \(A\) can be written as a polynomial in \(x_i\)s with rational coefficients.
+        </p>
+        <h2>
+          Tensor product of algebras
+        </h2>
+        <p>
+          Let \(B, C\) be two \(A\)-algebras, and \(f : A \rightarrow B, g : A \rightarrow C\) be two homomorphisms. Since \(B, C\) are two \(A\)-modules, we may form the tensor product \(D = B \otimes_A C\), which is an \(A\)-module. Now, consider \(B \times C \times B \times C \rightarrow D\) defined by:
+          \[(b, c, b', c') \rightarrow bb' \otimes cc'\]
+        </p>
+        <p>
+          This is \(A\)-linear, and therefore induces the \(A\)-homomorphism:
+          \[B \otimes C \otimes B \otimes C \rightarrow D\]
+        </p>
+        <p>
+          And hence by \(A\)-module homomorphism,
+          \[D \otimes D \rightarrow D\]
+        </p>
+        <p>
+          This corresponds to the bilinear mapping:
+          \[\mu : D \times D \rightarrow D\]
+        </p>
+        <p>
+          which is such that:
+          \[\mu(b \otimes c, b' \otimes c') = bb' \otimes cc'\]
+        </p>
+        <p>
+          We have therefore defined multiplication on the tensor product \(D = B \otimes_A C\); for elements of the form \(b \otimes c\), this is given by:
+          \[(b \otimes c) (b' \otimes c') \rightarrow bb' \otimes cc'\]
+        </p>
+        <p>
+          Furthermore \(D\) is an \(A\)-algebra, and the mapping \(a \mapsto f(a) \otimes g(a)\) is a ring homomorphism \(A \rightarrow D\). We hence end up with the following commutative diagram:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          & B\ar[dr]^u & \\
+          A\ar[ur]^f\ar[dr]_g & & D \\
+          & C\ar[ur]_v &
+          }
+          \end{xy}
+          \]
         </p>
         <h2>
           [TBD]

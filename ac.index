@@ -389,6 +389,38 @@ A ring homomorphism \(f : A \rightarrow B\) is of `finite`, and \(B\) is a finit
 
 Ring \(A\) is said to be finitely generated, if it is finitely generated as a \(\mathbb{Z}\)-algebra. This means that there is a finite set \(x_1, \ldots, x_n\) of elements in \(A\), such that every element in \(A\) can be written as a polynomial in \(x_i\)s with rational coefficients.
 
+# Tensor product of algebras
+
+Let \(B, C\) be two \(A\)-algebras, and \(f : A \rightarrow B, g : A \rightarrow C\) be two homomorphisms. Since \(B, C\) are two \(A\)-modules, we may form the tensor product \(D = B \otimes_A C\), which is an \(A\)-module. Now, consider \(B \times C \times B \times C \rightarrow D\) defined by:
+\[(b, c, b', c') \rightarrow bb' \otimes cc'\]
+
+This is \(A\)-linear, and therefore induces the \(A\)-homomorphism:
+\[B \otimes C \otimes B \otimes C \rightarrow D\]
+
+And hence by \(A\)-module homomorphism,
+\[D \otimes D \rightarrow D\]
+
+This corresponds to the bilinear mapping:
+\[\mu : D \times D \rightarrow D\]
+
+which is such that:
+\[\mu(b \otimes c, b' \otimes c') = bb' \otimes cc'\]
+
+We have therefore defined multiplication on the tensor product \(D = B \otimes_A C\); for elements of the form \(b \otimes c\), this is given by:
+\[(b \otimes c) (b' \otimes c') \rightarrow bb' \otimes cc'\]
+
+Furthermore \(D\) is an \(A\)-algebra, and the mapping \(a \mapsto f(a) \otimes g(a)\) is a ring homomorphism \(A \rightarrow D\). We hence end up with the following commutative diagram:
+
+\[
+\begin{xy}
+\xymatrix{
+& B\ar[dr]^u & \\
+A\ar[ur]^f\ar[dr]_g & & D \\
+& C\ar[ur]_v &
+}
+\end{xy}
+\]
+
 # [TBD]
 
 \(S^{-1}\) preserves exactness over the s.e.s:
