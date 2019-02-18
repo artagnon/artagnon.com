@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>artagnon.com: ac/2</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="mathematics, mathematical notes, study notes, james munkres, miles reid, dummit and foote, ravi vakil, rising sea, allen hatcher, saunders mac lane, categories for the working mathematician" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/design/all.css" media="all" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 600px)" />
+    <link rel="stylesheet" href="/design/print.css" media="only print" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans|Roboto+Mono" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/design/claytext.js"></script>
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} }, tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>
+          [ac/2] Modules of fractions
+        </h1>
+        <span id="pubdate">Created: Mon, 18 Feb 2019</span><br /><span id="pubdate">Last updated: Mon, 18 Feb 2019</span>
+        <h2>
+          [TBD]
+        </h2>
+        <p>
+          \(S^{-1}\) preserves exactness over the s.e.s:
+        </p>
+        <p class="mathjax">
+          \[L \xrightarrow{\alpha} M \xrightarrow{\beta} N\]
+          \[S^{-1} L \xrightarrow{\alpha'} S^{-1} M \xrightarrow{\beta'} S^{-1} N\]
+        </p>
+        <h2>
+          Algebraic dependence and integral dependence
+        </h2>
+        <p>
+          \(y\) is algebraic over \(k\) if it satisfies the algebraic dependence relation:
+        </p>
+        <p class="mathjax">
+          \[f(y) = a_m y^m + a_{m - 1} y^{m - 1} + \ldots + a_0\]
+        </p>
+        <p>
+          Over a field, it costs nothing to divide over \(a_m\), giving us the monic polynomial:
+        </p>
+        <p class="mathjax">
+          \[f(y) = y^m + a_{m - 1} y^{m - 1} + \ldots + a_0 \]
+        </p>
+        <p>
+          This is termed as integral dependence. \(\varphi : A \rightarrow B\) is finite, if \(A\) is integral.
+        </p>
+        <p>
+          C is termed nonsingular if \((\partial f/\partial x, \partial f/\partial y) \neq 0\) for \(P \in C\), so that \(C\) has a well-defined tangent at every point \(P\).
+        </p>
+        <p>
+          \(XY = 1\) is an example of something that is algebraically closed, but not integrally closed. It can be perturbed as \((X + \epsilon Y) Y = 1\) to avoid the unlucky accident of a "missing zero" over \(X = 0\).
+        </p>
+        <h2>
+          The Nullstellansatz
+        </h2>
+        <p>
+          Variety \(V(J) = \{P = (a_1, \ldots, a_n)\; | f(P) = 0\; \forall f \subset J\}\)
+        </p>
+        <p>
+          Tautologically, \(X \subset V(I(X))\); \(X = V(I(X)) \iff X\) is a variety.
+        </p>
+        <p>
+          The Nullstellansatz states that:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            If \(J \subsetneq k[X_1 \ldots X_n]\) then \(V(J) \neq 0\)
+          </li>
+          <li>
+            \(I(V(J)) = \text{rad } J\), the radical of the ideal
+          </li>
+        </ol>
+        <p>
+          A variety is irreducible if it cannot be expressed as the union of two proper subvarieties:
+        </p>
+        <p>
+          \(J(X) = J(X_1) \cup J(X_2) \Rightarrow X = X_1 \text{ or } X_2\); \(X\) is a prime ideal.
+        </p>
+        <p>
+          The following reverse-inclusions are obvious:
+          \[X \subset Y \Rightarrow I(X) \supset I(Y)\]
+          \[I \subset J \Rightarrow V(I) \supset V(J)\]
+        </p>
+        <h2>
+          Zariski topology
+        </h2>
+        <p>
+          Zariski topology is a topology where the only closed sets are the algebraic ones, the zeros of polynomials. The Zariski topology on a variety is Noetherian.
+        </p>
+        <p class="mathjax">
+          \[V(I) \cup V(J) = V(I \cap J) = V(IJ)\]
+        </p>
+        <p>
+          corresponds exactly to the Zariski topology on \(\text{Spec } A\), \(\mathcal{V}(I)\):
+        </p>
+        <p class="mathjax">
+          \[\mathcal{V}(I) \cup \mathcal{V}(J) = \mathcal{V}(I \cap J) = \mathcal{V}(IJ)\]
+        </p>
+        <p>
+          where \(\mathcal{V}(I) = {P \in \text{Spec A} \mid P \subset I}\).
+        </p>
+        <h2>
+          Localization
+        </h2>
+        <p>
+          \(A_{p}\) is a local ring \(\leftrightarrow\) \(A_{p}\) has a unique maximal ideal at \(p\).
+        </p>
+        <p>
+          \(\mathbb{Z}_{(p)}\), a localization of \(\mathbb{Z}\) at p = \(\{a/b \text{ with } a, b \in \mathbb{Z}, b \nmid p\}\).
+        </p>
+        <p>
+          For a general construction, let \(S\) be a multiplicative set in \(A\), \(P\) a prime ideal so that \(S = A \backslash P\). Then \(A_P = S^{-1} A = A \times S / \sim\), where \(\sim\) is an equivalence relation.
+        </p>
+        <p>
+          \(S^{-1}\) is an exact functor in that, if \(L \subset M\) and \(N = M/L\), then \(S^{-1} L \subset S^{-1} M\) and \(S^{-1} N = S^{-1} M / S^{-1} L\).
+        </p>
+        <p class="mathjax">
+          \[e : \{\text{ideals of A}\} \to \{\text{ideals of B}\}\]
+          \[r : \{\text{ideals of B}\} \to \{\text{ideals of A}\}\]
+        </p>
+        <p>
+          Then, for ideal \(J\) in \(S^{-1} A\), \(e(r(J)) = J\), and for any ideal \(I\) of A, \(r(e(I)) = \{a \in A \mid as \in I, \text{ for some } s \in S\}\).
+        </p>
+        <p>
+          These three statements are equivalent:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(A\) is local if it has a unique maximal ideal \(m\).
+          </li>
+          <li>
+            \(m = \{\text{nonunits of A}\}\) is the unique maximal ideal.
+          </li>
+          <li>
+            If \(m \subset A\) is a maximal ideal and \(x \in A\), then \(1 + x\) is unit.
+          </li>
+        </ol>
+        <h2>
+          Support and annihilator
+        </h2>
+        <p>
+          Support of M is defined as \(\text{Supp } M = \{ P \subset \text{Spec } A \mid M_p \neq 0\} \subset \text{Spec } A\). Here \(M_p = S^{-1} M\), the module of fractions. Assassin \(\text{Ass } M \subset \text{Supp } M\). Annihilator of M over A is defined as \(\text{Ann } M = \{f \subset A \mid fM = 0\}\).
+        </p>
+        <p>
+          Example: If \(n = p^{\alpha} q^{\beta}\), then \(\text{Ass }(\mathbb{Z}/n) = \{(p), (q)\}\). If \(m = p^{\alpha - 1} q^{\beta} \text{ mod } n \in \mathbb{Z}/(n)\), then annihilator \(\text{Ann } m = p\).
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            If \(M\) is generated by a single element \(x\), such that \(x = \text{Ann } I\), then \(\text{Supp } M = \mathcal{V}(I)\).
+          </li>
+          <li>
+            If \(L \subset M\) and \(N = L/M\), then \(\text{Supp } L = \text{Supp } M \cup \text{Supp } N\).
+          </li>
+          <li>
+            If \(L \subset M\) and \(N = L/M\), then \(\text{Ass } L = \text{Ass } M \cup \text{Ass } N\).
+          </li>
+          <li>
+            If \(P \subset \text{Supp } M\), then \(\mathcal{V}(P) \subset \text{Supp } M\).
+          </li>
+        </ol>
+        <p>
+          In the disjoint union \(\mathcal{M} = \sqcup M_{P}\), \(M_{P}\) is termed as the stalk of \(\mathcal{M}\) over \(P\).
+        </p>
+        <h2>
+          Primary decomposition
+        </h2>
+        <p>
+          Ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
+        </p>
+        <p class="mathjax">
+          \[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0\]
+        </p>
+        <p>
+          A counter-example: \(I = (X^{2}, XY)\); \(\text{rad}(I) = X\); \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
+        </p>
+        <p class="mathjax">
+          \[Q \text{ is P-primary if } Q \text{ is primary and } P = rad(Q)\]
+          \[Q \text{ is P-primary} \leftrightarrow \text{Ass}(A/Q) = \{P\}\]
+        </p>
+        <p>
+          In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
+        </p>
+        <h2>
+          Discrete valuation rings
+        </h2>
+        <p>
+          \(v : K \backslash \{0\} \to \mathbb{Z}\) is a discrete valuation of \(K\), a surjective map so that:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(v(xy) = v(x) + v(y)\)
+          </li>
+          <li>
+            \(v(x \pm y) = \text{min}\{v(x), v(y)\} \forall x, y \in K \backslash \{0\}\)
+          </li>
+        </ol>
+        <p>
+          By convention, \(v(0) = \infty\).
+        </p>
+        <p>
+          Valuation ring of a discrete valuation \(v\) is given by \(A = \{x \in K \mid v(x) \geq 0\}\).
+        </p>
+        <p>
+          For valuation ring \(A\):
+        </p>
+        <p class="mathjax">
+          \[A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}\]
+        </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/ac">ac</a>
+          </li>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/cv">cv</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/sw">sw</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
