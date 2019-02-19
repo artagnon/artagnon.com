@@ -32,7 +32,57 @@
         <h1>
           [ac/2] Modules of fractions
         </h1>
-        <span id="pubdate">Created: Mon, 18 Feb 2019</span><br /><span id="pubdate">Last updated: Mon, 18 Feb 2019</span>
+        <span id="pubdate">Created: Mon, 18 Feb 2019</span><br /><span id="pubdate">Last updated: Tue, 19 Feb 2019</span>
+        <p>
+          Rings of fractions, and the associated localization process, correspond to the algebro-geometric picture of studying behavior of an open set or near a point. Using the way we construct \(\mathbb{Q}\) from \(\mathbb{Z}\), we can construct equivalence classes of \(a, s\), where \((a, s) \in A, s \neq 0\), defined as follows:
+          \[(a, s) \equiv (b, t) \iff at - bs = 0\]
+        </p>
+        <p>
+          but this definition only works if \(A\) is an integral domain. A more general definition of equivalence involves using a `multiplicative subset` \(S\) of \(A\) and defining \(\equiv\) over \(A \times S\):
+          \[(a, s) \equiv (b, t) \iff \exists u \in S : u(at - bs) = 0\]
+        </p>
+        <p>
+          Let \(a/s\) denote the equivalence class of \((a, s)\) and \(S^{-1} A\) the set of all equivalence classes. We can endow \(S^{-1} A\) with a ring structure by defining addition and multiplication as operations on fractions, as in elementry algebra:
+          \[a/s + b/t = (at + bs)/st\]
+          \[(a/s)(b/t) = ab/st\]
+        </p>
+        <p>
+          We also have the ring homomorphism \(A \rightarrow S^{-1} A\) defined by \(x \mapsto x/1\). It is not injective in general. \(S^{-1} A\) is termed the `ring of fractions` of \(A\) with respect to \(S\).
+        </p>
+        <p>
+          Let \(g : A \rightarrow B\) be a ring homomorphism where \(g(s)\) is unit in \(B\) for all \(s \in S\). Then there exists a unique ring homomorphism \(h : S^{-1} A \rightarrow B\) such that \(g = h \circ f\).
+        </p>
+        <p>
+          The ring \(S^{-1} A\) and the homomorphism \(f : A \rightarrow S^{-1} A\) have the following properties:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(s \in S \implies f(s)\) is unit in \(S^{-1} A\).
+          </li>
+          <li>
+            \(f(a) = 0 \implies as = 0\) for some \(s \in S\).
+          </li>
+          <li>
+            Every element of \(S^{-1} A\) has the form \(f(a)f(s)^{-1}\) for some \(a \in A, s \in S\).
+          </li>
+        </ol>
+        <p>
+          Conversely, these properties determine \(S^{-1} A\) uniquely upto isomorphism.
+        </p>
+        <p>
+          Some examples follow:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            Let \(P\) be a prime ideal in \(A\). Then \(A - P\) is multiplicatively closed and is written as \(S^{-1} A = A_P\), the localization of \(A\) at \(P\). \(a/s\) with \(a \in P\) form an ideal \(M\) in \(A_P\). If \(b/t \neq M\), and \(b \notin P\), then \(b/t\) is unit. \(M\) is the only maximal ideal in \(P\), and \(A_P\) is a local ring.
+          </li>
+          <li>
+            \(S^{-1} A\) is the zero ring \(\iff 0 \in S\).
+          </li>
+          <li>
+            Let \(f \in A\) \(S^{-1} = (1/f, 1/f^2, \ldots, 1/f^n)\). Then we write \(A_f\) for \(S^{-1} A\) in this case.
+          </li>
+        </ol>
         <h2>
           [TBD]
         </h2>
