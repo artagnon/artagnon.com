@@ -80,6 +80,16 @@ Starting from (iii), we know that the only ideals of \(A/\mathfrak{N}\) are \((0
 
 Let ring \(A\) be such that every ideal not contained in the nilradical contains a nonzero idempotent (i.e. \(e^2 = e \neq 0\)). Prove that \(\mathfrak{N} = \mathfrak{R}\).
 
+Proof: \(\mathfrak{N}\) is the set of nilpotent elements; every element not contained in this is of the form \(\{x \in A \mid \forall n, x^n neq 0\}\).
+
 --
 
 Let \(I\) be an ideal in ring \(A\) that is \(neq (1)\). Then, show that \(I = \sqrt{I} \iff I\) is an intersection of prime ideals.
+
+Proof: \(\sqrt{I} = \{x \in A \mid \exists n \gt 0 : x^n \in I\}\), by definition. Now, since \(I = \sqrt{I}\), \(\exists n \gt 0 : \forall x \in I, x^n \in I\). Suppose, for \(p \in A\), \(x^n = p \neq 0\). Then, \(px \in I\), by definition of an ideal, and the chain would not terminate at \(n\). Hence, \(\forall x \in I, x^n = 0\), and this is exactly the definition of the set of nilpotent elements.
+
+Proof, the other way: \(I\) is the set of nilpotent elements. Let \(x \in I\) be any element; then, \(\exists n : x^n = 0 \in I\). Since every element of \(I\) is of this form, \(I = \sqrt{I}\) \(\Box\)
+
+--
+
+Prove that a local ring contains no idempotent \(\neq 0, 1\).
