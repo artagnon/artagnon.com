@@ -31,10 +31,10 @@ Some examples follow:
 
 The same construction involving \(S^{-1}\) can be carried out in modules instead of rings. Let \(u : M \rightarrow N\) be an \(A\)-module homomorphism. This gives rise to an \(S^{-1} A\)-module homomorphism \(S^{-1} M \rightarrow S^{-1} N\), such that \(S^{-1} u\) maps \(m/s\) to \(u(m)/s\). We have \(S^{-1} (v \circ u) = S^{-1}v \circ S^{-1}u\).
 
-\(S^{-1}\) preserves exactness, in that if the following sequence is exact:
+\(S^{-1}\) preserves exactness, in that if the following sequence is exact at \(M\):
 \[L \xrightarrow{f} M \xrightarrow{g} N\]
 
-then, so is:
+then, this sequence is exact at \(S^{-1} M\):
 \[S^{-1} L \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} N\]
 
 This can proved by noticing that if \(g \circ f = 0\), then so is \(S^{-1} g \circ S^{-1} f = S^{-1} (0)\). Hence, \(\text{Im}(S^{-1} f) \subseteq \text{Ker}(S^{-1} g)\). To prove inclusion in the other direction, let \(m/s \in S^{-1} g\), then \(g(m)/s \in S^{-1} N\), hence \(\exists t : t g(m) = 0\) in \(N\). But \(t g(m) = g(tm)\), since \(g\) is an \(A\)-module homomorphism, hence \(t(m) \in \text{Ker}(g) = \text{Im}(f)\). Therefore, \(\exists m' \in M : t(m) = f(m')\). Hence, in \(S^{-1} M\), we have \(m/s = f(m')/st = S^{-1} f(m'/st) \in \text{Im}(S^{-1} f)\). Hence, \(\text{Ker}(S^{-1} g) \subseteq \text{Im}(S^{-1} f)\).
@@ -50,6 +50,19 @@ We have the following properties of fractions of modules, given that \(M, N\) ar
 The first is obvious. To prove (ii), consider \(y/s = z/t, y \in N, z \in P, s, t \in S\). Then, \(\exists u \in S : u(ty - zt) = 0\). Hence, \(w = uty = usz \in N \cap P\), and therefore, \(y/s = w/stu \in S^{-1} N \cap P\). Consequently, \(S^{-1} N \cap S^{-1} P \subseteq S^{-1}(N \cap P)\). The reverse inclusion is obvious.
 
 To prove (iii), apply \(S^{-1}\) to the exact sequence \(0 \rightarrow M \rightarrow N \rightarrow M/N \rightarrow 0\).
+
+Let \(M\) be an \(A\)-module. Then, there exists a unique isomorphism \(f : S^{-1} A \otimes_A M \rightarrow S^{-1} M\) such that:
+\[f((a/s) \otimes m) = am/s \quad \forall a \in A, m \in M, s \in S\]
+
+To prove this, notice that the mapping \(S^{-1} A \rightarrow S^{-1} M\) given by \((a/s, m) \mapsto am/s\) is \(A\)-bilinear, and by universal property of the tensor product, induces the \(A\)-homomorphism:
+\[f : S^{-1} A \otimes_A M \rightarrow S^{-1} M\]
+
+\(f\) is clearly surjective, and it remains to be proved that it is injective as well. Notice that every element of \(S^{-1} A \otimes M\) is of the form \((1/s) \otimes m\). Suppose that \((1/s) \otimes m = 0\), then \(m/s = 0\) and hence \(\exists t : tm = 0\). Therefore:
+\[\frac{1}{s} \otimes m = \frac{t}{ts} \otimes m = \frac{1}{s} \otimes tm = 0\]
+
+Hence, \(f\) is injective, and therefore an isomorphism.
+
+\(S^{-1} A\) is a flat \(A\)-module, and this is immediately obvious.
 
 # Algebraic dependence and integral dependence
 

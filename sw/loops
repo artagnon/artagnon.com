@@ -2,7 +2,7 @@ Detecting loops
 
 Detecting loops in a directed graph can be tricky, depending on how you define your loop. If you only want to admit "natural loops", where the header of the loop dominates every node in the body, as well as the footer, we have a simple algorithm. If you want to go to the other extreme, and define the most general "strongly connected components", without regard for loops, you have Tarjan's SCC algorithm. However, I'm going to discuss a definition of loop that admits strange loops, but only things we'd intuitively call "loops".
 
-There are five [^1] reduced cases we must consider:
+There are five [^1] reduced cases we must consider, where backedges are marked by dotted arrows:
 
 \[
 \begin{xy}
@@ -18,7 +18,7 @@ There are five [^1] reduced cases we must consider:
 \begin{xy}
 \xymatrix{
 & & \text{header}\ar[dl] & \\
-\text{Early exit} & \text{body}\ar[dr] & & \text{footer}\ar[dl]\ar[ul]^{\text{backedge}} \\
+\text{Early exit} & \text{body}\ar[dr] & & \text{footer}\ar[dl]\ar@{.>}[ul] \\
 & & \text{exit target} &
 }
 \end{xy}
@@ -28,7 +28,7 @@ There are five [^1] reduced cases we must consider:
 \begin{xy}
 \xymatrix{
 & & \text{entry source}\ar[dl]\ar[dr] & \\
-\text{Multi-entry} & \text{header}\ar[dr] & & \text{footer}\ar[ul]\ar[ll]^{\text{backedge}} \\
+\text{Multi-entry} & \text{header}\ar[dr] & & \text{footer}\ar[ul]\ar@{.>}[ll] \\
 & & \text{body}\ar[ur] &
 }
 \end{xy}
@@ -38,8 +38,8 @@ There are five [^1] reduced cases we must consider:
 \begin{xy}
 \xymatrix{
 & & \text{header A}\ar[dl] & \\
-\text{Cuddled loops} & \text{body A or header B}\ar[rr] & & \text{footer A or body B}\ar[ul]_{\text{backedge A}}\ar[dl] \\
-& & \text{footer B}\ar[ul]^{\text{backedge B}} &
+\text{Cuddled loops} & \text{body A or header B}\ar[rr] & & \text{footer A or body B}\ar@{.>}[ul]\ar[dl] \\
+& & \text{footer B}\ar@{.>}[ul] &
 }
 \end{xy}
 \]
@@ -48,7 +48,7 @@ There are five [^1] reduced cases we must consider:
 \begin{xy}
 \xymatrix{
 \text{Shared header} & & \text{shared header}\ar[dl] & \\
-& \text{body}\ar[r] & \text{footer A}\ar[u]^{\text{backedge A}}\ar[r] & \text{footer B}\ar[ul]^{\text{backedge B}}
+& \text{body}\ar[r] & \text{footer A}\ar@{.>}[u]\ar[r] & \text{footer B}\ar@{.>}[ul]
 }
 \end{xy}
 \]
@@ -81,7 +81,7 @@ We get the following start times and end times:
 \begin{xy}
 \xymatrix{
 & & \text{1/8}\ar[dl] & \\
-\text{Early exit} & \text{2/7}\ar[dr] & & \text{4/5}\ar[dl]\ar[ul]^{\text{backedge}} \\
+\text{Early exit} & \text{2/7}\ar[dr] & & \text{4/5}\ar[dl]\ar@{.>}[ul] \\
 & & \text{3/6} &
 }
 \end{xy}
@@ -91,7 +91,7 @@ We get the following start times and end times:
 \begin{xy}
 \xymatrix{
 & & \text{1/8}\ar[dl]\ar[dr] & \\
-\text{Multi-entry} & \text{4/5}\ar[dr] & & \text{2/7}\ar[ul]\ar[ll]^{\text{backedge}} \\
+\text{Multi-entry} & \text{4/5}\ar[dr] & & \text{2/7}\ar[ul]\ar@{.>}[ll] \\
 & & \text{3/6}\ar[ur] &
 }
 \end{xy}
@@ -101,8 +101,8 @@ We get the following start times and end times:
 \begin{xy}
 \xymatrix{
 & & \text{1/8}\ar[dl] & \\
-\text{Cuddled loops} & \text{2/7}\ar[rr] & & \text{3/6}\ar[ul]_{\text{backedge A}}\ar[dl] \\
-& & \text{4/5}\ar[ul]^{\text{backedge B}} &
+\text{Cuddled loops} & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[ul]\ar[dl] \\
+& & \text{4/5}\ar@{.>}[ul] &
 }
 \end{xy}
 \]
@@ -111,7 +111,7 @@ We get the following start times and end times:
 \begin{xy}
 \xymatrix{
 \text{Shared header} & & & \text{1/8}\ar[dll] & & \\
-& \text{2/7}\ar[rr] & & \text{3/6}\ar[u]^{\text{backedge A}}\ar[rr] & & \text{4/5}\ar[ull]^{\text{backedge B}}
+& \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[u]\ar[rr] & & \text{4/5}\ar@{.>}[ull]
 }
 \end{xy}
 \]
