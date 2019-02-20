@@ -46,7 +46,7 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
                 li
                   == item
           - elsif paragraph.is_subheading?
-            h2
+            h2 id="#{paragraph.bookmark}"
               == paragraph.contents.join "\n"
           - elsif paragraph.is_footer?
             p class="footer"

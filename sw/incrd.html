@@ -33,7 +33,7 @@
           Incrementally updating the Dominator
         </h1>
         <span id="pubdate">Created: Sun, 9 Oct 2016</span><br /><span id="pubdate">Last updated: Tue, 29 Jan 2019</span>
-        <h2>
+        <h2 id="preface">
           Preface
         </h2>
         <p>
@@ -66,13 +66,13 @@
           \end{xy}
           \]
         </p>
-        <h2>
+        <h2 id="motivation">
           Motivation
         </h2>
         <p>
           Any code motion transform will invalidate the Dominator at each step, and running Cooper or Lengauer-Tarjan on each invalidation is expensive even if the algorithm is near-linear. The number of queries is several times the number of reconstructions; we cannot trade off query-efficiency for ease-of-update.[^1]
         </p>
-        <h2>
+        <h2 id="background">
           Background
         </h2>
         <p>
@@ -130,7 +130,7 @@ if (A < 17)
         <p>
           The PST gives us an excellent mechanism to classify the blob we're injecting into the CFG. The interesting Regions begin with a SplitStatement, and end with a MergeStatement, or begin with a MergeStatement and end with a SpiltStatement: IfRegions, SwitchRegions, and LoopRegions. This is the key property we will use to do the inremental update.
         </p>
-        <h2>
+        <h2 id="possible-approaches">
           Possible approaches
         </h2>
         <p>
@@ -139,7 +139,7 @@ if (A < 17)
         <p>
           One approach we could take is to assume that the Region-to-be-inserted has been removed from a different part of the tree, and has some numbers already that we simply need to adjust them (those numbers will be spaced with gaps of 64, and we need to compress them). This approach wouldn't be able to handle newly created Regions.
         </p>
-        <h2>
+        <h2 id="our-algorithm">
           Our algorithm
         </h2>
         <p>
@@ -159,8 +159,6 @@ if (A < 17)
           <li>
             The Merge dominates the Split, in which case, the Merge dominates everything lying on the outEdges of the Split leading to the Merge
           </li>
-        </ol>
-        <ol class="olitems" type="none" start="2">
           <li>
             The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
           </li>
@@ -227,7 +225,7 @@ if (A < 17)
         <p>
           There is an elegant way to catch all the cases when the interval has been exhausted. Just `throw` an exception from the interval-construction class. Catch this exception and abort the incremental update: recompute the Dominator.
         </p>
-        <h2>
+        <h2 id="closing-notes">
           Closing notes
         </h2>
         <p>

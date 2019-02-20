@@ -112,7 +112,6 @@ void DFS(Node *v) {
 The reason we need to match a Split to a Merge is that there are two cases:
 
 1. The Merge dominates the Split, in which case, the Merge dominates everything lying on the outEdges of the Split leading to the Merge
-
 2. The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
 
 The intervals of the each of the outEdges ("branches") must stagger with each other so there's no false dominance relationship between them. Two intervals "staggering" means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
