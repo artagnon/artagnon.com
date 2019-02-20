@@ -1,6 +1,6 @@
 [ac/2] Modules of fractions
 
-Rings of fractions, and the associated localization process, correspond to the algebro-geometric picture of studying behavior of an open set or near a point. Using the way we construct \(\mathbb{Q}\) from \(\mathbb{Z}\), we can construct equivalence classes of \(a, s\), where \((a, s) \in A, s \neq 0\), defined as follows:
+Rings of fractions, and the associated localization process, correspond to the [algebro-geometric picture](/ag) of studying behavior of an open set or near a point. Using the way we construct \(\mathbb{Q}\) from \(\mathbb{Z}\), we can construct equivalence classes of \(a, s\), where \((a, s) \in A, s \neq 0\), defined as follows:
 \[(a, s) \equiv (b, t) \iff at - bs = 0\]
 
 but this definition only works if \(A\) is an integral domain. A more general definition of equivalence involves using a `multiplicative subset` \(S\) of \(A\) and defining \(\equiv\) over \(A \times S\):
@@ -24,16 +24,32 @@ Conversely, these properties determine \(S^{-1} A\) uniquely upto isomorphism.
 
 Some examples follow:
 
-(i) Let \(P\) be a prime ideal in \(A\). Then \(A - P\) is multiplicatively closed and is written as \(S^{-1} A = A_P\), the localization of \(A\) at \(P\). \(a/s\) with \(a \in P\) form an ideal \(M\) in \(A_P\). If \(b/t \neq M\), and \(b \notin P\), then \(b/t\) is unit. \(M\) is the only maximal ideal in \(P\), and \(A_P\) is a local ring.
+(i) Let \(P\) be a prime ideal in \(A\). Then \(A - P\) is multiplicatively closed and is written as \(S^{-1} A = A_P\), the localization of \(A\) at \(P\). \(a/s\) with \(a \in P\) form an ideal \(M\) in \(A_P\). If \(b/t \neq M\), and \(b \notin P\), then \(b/t\) is unit. \(M\) is the only maximal ideal in \(P\), and \(A_P\) is a local ring. If \(A = \mathbb{Z}, P\) is the set of prime numbers, and \(A_P\) is the set of all rationals with denominators as powers of \(f\).
 (ii) \(S^{-1} A\) is the zero ring \(\iff 0 \in S\).
-(iv) Let \(f \in A\) \(S^{-1} = (1/f, 1/f^2, \ldots, 1/f^n)\). Then we write \(A_f\) for \(S^{-1} A\) in this case.
+(iii) Let \(f \in A\) \(S^{-1} = (1/f, 1/f^2, \ldots, 1/f^n)\). Then we write \(A_f\) for \(S^{-1} A\) in this case. Let \(A = k[t_1, \ldots, t_n]\) be a polynomial ring where \(k\) is a field, and \(P\) a prime ideal in \(A\). Then, \(A_P\) is the ring of all rational functions \(g/h, g \notin P\). Let \(V\) be a variety defined by \(P\), that is to say the set \((x_1, \ldots, x_n) \in k^n\) such that \(f(x) = 0\) whenever \(f \in P\). Then, \(A_P\) can be identified with the ring of all rational functions in \(k^n\) which are defined at almost all points of \(V\); it is the local ring of \(k^n\) defined along variety \(V\). This is the prototype of local rings, as they arise in [algebraic geometry](/ag).
+(iv) Let \(I\) be an ideal in \(A\), such that \(S = 1 + I\). Then, \(S\) is multiplicatively closed.
 
-# [TBD]
+The same construction involving \(S^{-1}\) can be carried out in modules instead of rings. Let \(u : M \rightarrow N\) be an \(A\)-module homomorphism. This gives rise to an \(S^{-1} A\)-module homomorphism \(S^{-1} M \rightarrow S^{-1} N\), such that \(S^{-1} u\) maps \(m/s\) to \(u(m)/s\). We have \(S^{-1} (v \circ u) = S^{-1}v \circ S^{-1}u\).
 
-\(S^{-1}\) preserves exactness over the s.e.s:
+\(S^{-1}\) preserves exactness, in that if the following sequence is exact:
+\[L \xrightarrow{f} M \xrightarrow{g} N\]
 
-\[L \xrightarrow{\alpha} M \xrightarrow{\beta} N\]
-\[S^{-1} L \xrightarrow{\alpha'} S^{-1} M \xrightarrow{\beta'} S^{-1} N\]
+then, so is:
+\[S^{-1} L \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} N\]
+
+This can proved by noticing that if \(g \circ f = 0\), then so is \(S^{-1} g \circ S^{-1} f = S^{-1} (0)\). Hence, \(\text{Im}(S^{-1} f) \subseteq \text{Ker}(S^{-1} g)\). To prove inclusion in the other direction, let \(m/s \in S^{-1} g\), then \(g(m)/s \in S^{-1} N\), hence \(\exists t : t g(m) = 0\) in \(N\). But \(t g(m) = g(tm)\), since \(g\) is an \(A\)-module homomorphism, hence \(t(m) \in \text{Ker}(g) = \text{Im}(f)\). Therefore, \(\exists m' \in M : t(m) = f(m')\). Hence, in \(S^{-1} M\), we have \(m/s = f(m')/st = S^{-1} f(m'/st) \in \text{Im}(S^{-1} f)\). Hence, \(\text{Ker}(S^{-1} g) \subseteq \text{Im}(S^{-1} f)\).
+
+If \(N\) is a submodule of \(M\), then the mapping \(S^{-1} M \rightarrow S^{-1} N\) is injective, and \(S^{-1} N\) is a submodule of \(S^{-1} M\).
+
+We have the following properties of fractions of modules, given that \(M, N\) are submodules of \(A\)-module \(M\):
+
+(i) \(S^{-1}(N + P) = S^{-1} N + S^{-1} P\).
+(ii) \(S^{-1}(N \cap N) = S^{-1} N \cap S^{-1} P\).
+(iii) \(S^{-1}(M/N) \cong (S^{-1} M)/(S^{-1} N)\).
+
+The first is obvious. To prove (ii), consider \(y/s = z/t, y \in N, z \in P, s, t \in S\). Then, \(\exists u \in S : u(ty - zt) = 0\). Hence, \(w = uty = usz \in N \cap P\), and therefore, \(y/s = w/stu \in S^{-1} N \cap P\). Consequently, \(S^{-1} N \cap S^{-1} P \subseteq S^{-1}(N \cap P)\). The reverse inclusion is obvious.
+
+To prove (iii), apply \(S^{-1}\) to the exact sequence \(0 \rightarrow M \rightarrow N \rightarrow M/N \rightarrow 0\).
 
 # Algebraic dependence and integral dependence
 
