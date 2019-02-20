@@ -33,6 +33,9 @@
           [ac/2] Modules of fractions
         </h1>
         <span id="pubdate">Created: Mon, 18 Feb 2019</span><br /><span id="pubdate">Last updated: Wed, 20 Feb 2019</span>
+        <h2>
+          Rings of fractions
+        </h2>
         <p>
           Rings of fractions, and the associated localization process, correspond to the [algebro-geometric picture](/ag) of studying behavior of an open set or near a point. Using the way we construct \(\mathbb{Q}\) from \(\mathbb{Z}\), we can construct equivalence classes of \(a, s\), where \((a, s) \in A, s \neq 0\), defined as follows:
           \[(a, s) \equiv (b, t) \iff at - bs = 0\]
@@ -86,6 +89,9 @@
             Let \(I\) be an ideal in \(A\), such that \(S = 1 + I\). Then, \(S\) is multiplicatively closed.
           </li>
         </ol>
+        <h2>
+          Modules of fractions
+        </h2>
         <p>
           The same construction involving \(S^{-1}\) can be carried out in modules instead of rings. Let \(u : M \rightarrow N\) be an \(A\)-module homomorphism. This gives rise to an \(S^{-1} A\)-module homomorphism \(S^{-1} M \rightarrow S^{-1} N\), such that \(S^{-1} u\) maps \(m/s\) to \(u(m)/s\). We have \(S^{-1} (v \circ u) = S^{-1}v \circ S^{-1}u\).
         </p>
@@ -140,6 +146,34 @@
         </p>
         <p>
           \(S^{-1} A\) is a flat \(A\)-module, and this is immediately obvious.
+        </p>
+        <p>
+          If \(M, N\) are \(A\)-modules, there is an isomorphism of \(S^{-1} A\)-modules \(f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)\) such that:
+          \[f((m/s) \otimes (n/t)) = (m \otimes n)/st\]
+        </p>
+        <p>
+          In particular, if \(P\) is a prime ideal:
+          \[M_P \otimes_{A_P} N_P \cong (M \otimes_A N)_P\]
+        </p>
+        <h2>
+          Local properties
+        </h2>
+        <p>
+          A ring \(A\), or a module \(N\) is said to have a `local property` \(P\) if, \(A\) has \(P \iff A_P\) has \(P\), or \(N\) has \(P \iff N_P\) has \(P\), for prime ideal \(P\). Now, for example, the following statements are equivalent:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(N = 0\).
+          </li>
+          <li>
+            \(N_P = 0\), for all prime ideals \(P\) of \(A\).
+          </li>
+          <li>
+            \(N_M = 0\), for all maximal ideals \(M\) of \(A\).
+          </li>
+        </ol>
+        <p>
+          Given (iii), let us prove (i).
         </p>
         <h2>
           Algebraic dependence and integral dependence
