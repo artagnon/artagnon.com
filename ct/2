@@ -15,7 +15,7 @@ b \ar[r]^f & Sa
 
 Said differently, every arrow \(f\) factors uniquely through \(u\).
 
-Example:
+Examples:
 
 (i) \(\textbf{Vec}_K\) is defined as the vector space over field \(K\). The forgetful functor \(U : \textbf{Vec}_K \rightarrow \textbf{Set}\) is a function sending a vector space to its underlying elements. For any set \(X\), there exists a \(\textbf{Vec}_X\) with \(X\) as the basis. This fact is illustrated by the function \(j : X \rightarrow U(V_X)\), and there also exists \(k : X \rightarrow U(W)\) obtained by linear transformation. This makes \(j\) a universal functor.
 (ii) Free category \(C\) over graph \(G\) is given by the universal functor \(k : C \rightarrow UG\). Similarly, we have universal functors for a free group or free R-module on a given set of generators.
@@ -38,13 +38,13 @@ This states that \(\langle S/E, p \rangle\) is a universal element under the fun
 
 \(f : G \rightarrow G/N\), the morphism that sends each group to its quotient group, is another example of the universal element for the functor \(H : \textbf{Grp} \rightarrow \textbf{Set}\).
 
-Relationship between universal arrow and universal element: An element \(e\) can be considered universal arrow \(H : \textbf{*} \rightarrow Hr \in \textbf{Ens}\) from the one-point set \(*\); then \(\langle r, e \rangle\) from \(\textbf\{*\}\) to \(H\) is a universal element. If \(G : A \rightarrow B\) is a functor, then the pair \(\langle r, u : b \rightarrow Sr \rangle\) is a universal arrow if \(\langle r, u \in C(b, Sr) \rangle\) is a universal element of the functor \(H = C(b, S-)\).
+Relationship between universal arrow and universal element: An element \(e\) can be considered universal arrow \(H : \textbf{*} \rightarrow Hr \in \textbf{Ens}\) from the one-point set \(\textbf{*}\); then \(\langle r, e \rangle\) from \(\{\textbf{*}\}\) to \(H\) is a universal element. If \(G : A \rightarrow B\) is a functor, then the pair \(\langle r, u : b \rightarrow Sr \rangle\) is a universal arrow if \(\langle r, u \in C(b, Sr) \rangle\) is a universal element of the functor \(H = C(b, S-)\).
 
 Projections \(p : a \times b \rightarrow a\) and \(q : a \times b \rightarrow b\) give us another example of universal arrows. Given any other pair of arrows \(f : c \rightarrow a\), \(g : \rightarrow b\), and \(h : c \rightarrow a \times b\), we get \(ph = f\) making \(\langle p, q \rangle\) a `universal pair`. To make it a universal arrow, consider the diagonal functor \(\Delta C = C \times C\) so that the pair \(\langle f, g \rangle : \Delta c \rightarrow \langle a, b \rangle\); then \(\langle p, q \rangle\) is a universal arrow from \(\Delta\) to \(a \times b\).
 
 # Yoneda lemma
 
-The concept of universality can be formulated in terms of hom-sets as follows. Given functor \(S: A \rightarrow B\), the pair \(\langle r, u : b \rightarrow Sr \rangle\) for \(r \in A\) is universal if and only if the function \(g : r \rightarrow a\) and the composition \(Sg \circ u : b \rightarrow Sa\) satisfies the bijection of hom-sets \(A(r, a) \cong B(b, Sa)\). This is natural in \(A\). If \(A, B\) have small hom-sets, then the functor \(B(b, S-)\) to \(\textbf{Set}\) is isomorphic to the covariant hom-functor \(A(r, -)\). Such isomorphisms are called `representations`.
+The concept of universality can be formulated in terms of [hom-sets](/ct/1#hom-sets) as follows. Given functor \(S: A \rightarrow B\), the pair \(\langle r, u : b \rightarrow Sr \rangle\) for \(r \in A\) is universal if and only if the function \(g : r \rightarrow a\) and the composition \(Sg \circ u : b \rightarrow Sa\) satisfies the bijection of hom-sets \(A(r, a) \cong B(b, Sa)\). This is natural in \(A\). If \(A, B\) have small hom-sets, then the functor \(B(b, S-)\) to \(\textbf{Set}\) is isomorphic to the covariant hom-functor \(A(r, -)\). Such isomorphisms are called `representations`.
 
 Let \(D\) be a category with small hom-sets. Then, `representation` of functor \(K : D \rightarrow \textbf{Set}\), given \(r \in D\), is the pair \(\langle r, \psi \rangle\) such that:
 \[\psi : D(r, -) \cong K\]
