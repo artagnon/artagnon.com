@@ -101,7 +101,10 @@ Equivalently, a group is a category with one object, and in which every arrow ha
 
 # Functor
 
-A functor is a morphism of categories. Let \(T : B \rightarrow C\) be a functor of two categories. Then, the object function assigns to each object \(b \in B\), an object \(Tb \in C\); the arrow function assigns each arrow \(b \rightarrow b' \in B\) to the arrow \(Tb \rightarrow Tb' \in C\).
+A functor is a morphism of categories. Let \(T : B \rightarrow C\) be a functor of two categories. Then, the object function assigns to each object \(b \in B\), an object \(Tb \in C\); the arrow function assigns each arrow \(b \rightarrow b' \in B\) to the arrow \(Tb \rightarrow Tb' \in C\), in such a way that:
+\[T_c(1) = 1_{Tc} \quad T(f \circ g) = Tf \circ Tg\]
+
+the latter whenver \(f \circ g\) is defined in \(B\).
 
 They arise naturally in algebraic topology, where we have a topological space \(X\) lifted to a [homology group](/at/1#homology) \(H_n(X)\); topological spaces map to abelian groups as \(A : \textbf{Top} \rightarrow \textbf{Ab}\). In algebra, a forgetful functor would erase the group structure yielding \(B : \textbf{Grp} \rightarrow \textbf{Set}\).
 

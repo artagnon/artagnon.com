@@ -37,15 +37,23 @@
           Find two different functors \(T : \textbf{Grp} \rightarrow \textbf{Grp}\) with the object function \(T(G) = G\), the identity for every group \(G\).
         </p>
         <p>
-          Solution: In other words, we need to find morphisms \(\alpha, \beta\), such that the corresponding morphisms \(T \alpha, T \beta\) are present in the image of the \(T\). The two required morphisms are, given \(x \in G\), \(\alpha(x) = x\), the identity morphism, and \(\beta(x) = 0\}\), the zero morphism.
+          Solution: In other words, we need to find morphisms \(f, g\), such that the corresponding morphisms \(T f, T g\) are present in the image of the \(T\). The two required morphisms are, given \(x \in G\), \(f(x) = x\), the identity morphism, and \(g(x) = 1\), the zero morphism. Indeed, the functor carries identity to identity, and \(T(f \circ g) = Tf \circ Tg\) \(\Box\)
         </p>
         <hr />
         <p>
           Show how the field of quotients in an `integral domain` can be regarded as a functor.
         </p>
         <p>
-          Solution: An integral domain \(G\) is defined as having no zero-divisors other than \(0\).
+          Solution: An integral domain \(G\) is defined as having no zero-divisors other than \(0\). The field of quotients is a subgroup of this integral domain, where every element has an inverse. Indeed, we can define the functor \(T : G \rightarrow Q\) to be the forgetful functor, which maps only units in \(G\) to elements in \(Q\). Let \(f, g\) be two morphisms in \(G\) for which \(f \circ g\) is defined. Then, \(T(1) = 1, T(f \circ g) = Tf \circ Tg\) \(\Box\)
         </p>
+        <hr />
+        <p>
+          Prove that there is no functor \(T : textbf{Grp} \rightarrow \textbf{Ab}\) sending each element of group \(G\) to its center.
+        </p>
+        <p>
+          Proof: We have \(a \in G\), and the object function \(T(a) = bab^{-1}, b \in G\). Then, the object function takes identity to identity: \(T(1) = bb^{-1} = 1\). But there is a problem with the arrow function \(T(f \circ g)\), where \(f(a) = 1, g(a) = a\).
+        </p>
+        <hr />
       </div>
       <div id="sidebar">
         <ul>
