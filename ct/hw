@@ -12,8 +12,16 @@ Solution: An integral domain \(G\) is defined as having no zero-divisors other t
 
 --
 
-Prove that there is no functor \(T : textbf{Grp} \rightarrow \textbf{Ab}\) sending each element of group \(G\) to its center.
+Prove that there is no functor \(T : \textbf{Grp} \rightarrow \textbf{Ab}\) sending each element of group \(G\) to its center.
 
-Proof: We have \(a \in G\), and the object function \(T(a) = bab^{-1}, b \in G\). Then, the object function takes identity to identity: \(T(1) = bb^{-1} = 1\). But there is a problem with the arrow function \(T(f \circ g)\), where \(f(a) = 1, g(a) = a\).
+Proof: We have \(a \in G\), and the object function \(T(a) = bab^{-1}, b \in G\). Then, the object function takes identity to identity: \(T(1) = bb^{-1} = 1\). But there is a problem with the arrow function: take \(f = g = \text{id}\), so that \(f \circ g = \text{id}\). Then, \((Tf \circ Tg)(a) = cbab^{-1}c^{-1} \neq T(f \circ g)(a) = bab^{-1}\) \(\Box\)
+
+--
+
+Let \(S\) be a fixed set, and \(X^S\) all functions \(h : S \rightarrow X\). Show that \(X \mapsto X^S\) is the object function of functor \(\textbf{Set} \rightarrow \textbf{Set}\), and that evaluation \(e_X : X^S \times X \overset{\bullet}{\rightarrow} X\) defined by \(e(h, s) = h(s)\), the value of the function \(h\) at \(s \in S\), is an NT.
+
+--
+
+For a fixed group \(H\), show that \(G \mapsto H \times G\) defines a functor \(H \times - : \textbf{Grp} \rightarrow \textbf{Grp}\), and that each morphism of groups \(f : H \rightarrow K\) defines an NT \(H \times - \overset{\bullet}{\rightarrow} K \times -\).
 
 --
