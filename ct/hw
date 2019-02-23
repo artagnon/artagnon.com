@@ -20,8 +20,36 @@ Proof: We have \(a \in G\), and the object function \(T(a) = bab^{-1}, b \in G\)
 
 Let \(S\) be a fixed set, and \(X^S\) all functions \(h : S \rightarrow X\). Show that \(X \mapsto X^S\) is the object function of functor \(\textbf{Set} \rightarrow \textbf{Set}\), and that evaluation \(e_X : X^S \times X \overset{\bullet}{\rightarrow} X\) defined by \(e(h, s) = h(s)\), the value of the function \(h\) at \(s \in S\), is an NT.
 
+Proof: We have the category \(\textbf{Set}\) along with morphisms \(X^S\); let \(f, g \in X^S\) be two morphism in this category, and let \(Q\) be a morphism from this category to another category; obviously, \(X \mapsto X^S\) is the object function of \(Q\). We have to show that \(Q_X(1) = 1_{QX}\) and that \(Q(f \circ g) = Qf \circ Qg\) for \(Q\) to be a functor. Now, the first part is obviously true, and \(Q(f \circ g)(x) = Q(g(f(x)))\), while \((Qf \circ Qg)(x) = Qg(Qf(x))\).
+
+For the NT, the following diagram:
+
+\[
+\begin{xy}
+\xymatrix{
+(X^S \times X)b\ar[r]\ar[d] & X^S(X)b\ar[d] \\
+(X^S \times X)b'\ar[r] & X^S(X)b'
+}
+\end{xy}
+\]
+
+commutes.
+
 --
 
 For a fixed group \(H\), show that \(G \mapsto H \times G\) defines a functor \(H \times - : \textbf{Grp} \rightarrow \textbf{Grp}\), and that each morphism of groups \(f : H \rightarrow K\) defines an NT \(H \times - \overset{\bullet}{\rightarrow} K \times -\).
+
+Proof: For the NT, the following diagram:
+
+\[
+\begin{xy}
+\xymatrix{
+(H \times -)b\ar[r]\ar[d] & (K \times -)b\ar[d] \\
+(H \times -)b'\ar[r] & (K \times -) b'
+}
+\end{xy}
+\]
+
+commutes.
 
 --
