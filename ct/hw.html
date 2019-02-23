@@ -58,7 +58,7 @@
           Let \(S\) be a fixed set, and \(X^S\) all functions \(h : S \rightarrow X\). Show that \(X \mapsto X^S\) is the object function of functor \(\textbf{Set} \rightarrow \textbf{Set}\), and that evaluation \(e_X : X^S \times X \overset{\bullet}{\rightarrow} X\) defined by \(e(h, s) = h(s)\), the value of the function \(h\) at \(s \in S\), is an NT.
         </p>
         <p>
-          Proof: We have the category \(\textbf{Set}\) along with morphisms \(X^S\); let \(f, g \in X^S\) be two morphism in this category, and let \(Q\) be a morphism from this category to another category; obviously, \(X \mapsto X^S\) is the object function of \(Q\). We have to show that \(Q_X(1) = 1_{QX}\) and that \(Q(f \circ g) = Qf \circ Qg\) for \(Q\) to be a functor. Now, the first part is obviously true, and \(Q(f \circ g)(x) = Q(g(f(x)))\), while \((Qf \circ Qg)(x) = Qg(Qf(x))\).
+          Proof: From the information given, we can conclude that \(\mathscr{P} : X \mapsto X^S\) is the power-set functor, mapping every object \(X \in \textbf{Set}\) to its power-set \(\mathscr{P}X\). This is a functor, as identity maps to identity, and \(\mathscr{P}(f \circ g) = \mathscr{P}f \circ \mathscr{P}g\) for any two morphisms \(f, g \in \textbf{Set}\).
         </p>
         <p>
           For the NT, the following diagram:
@@ -67,14 +67,14 @@
           \[
           \begin{xy}
           \xymatrix{
-          (X^S \times X)b\ar[r]\ar[d] & X^S(X)b\ar[d] \\
-          (X^S \times X)b'\ar[r] & X^S(X)b'
+          (\mathscr{P} \times X)b\ar[r]\ar[d] & \mathscr{P}(X)b\ar[d] \\
+          (\mathscr{P} \times X)b'\ar[r] & \mathscr{P}(X)b'
           }
           \end{xy}
           \]
         </p>
         <p>
-          commutes.
+          commutes, for \(b, b' \in X\) \(\Box\)
         </p>
         <hr />
         <p>
