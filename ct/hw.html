@@ -41,14 +41,14 @@
         </p>
         <hr />
         <p>
-          Show how the field of quotients in an `integral domain` can be regarded as a functor.
+          Show how the field of quotients in an integral domain can be regarded as a functor.
         </p>
         <p>
           Solution: An integral domain \(G\) is defined as having no zero-divisors other than \(0\). The field of quotients is a subgroup of this integral domain, where every element has an inverse. Indeed, we can define the functor \(T : G \rightarrow Q\) to be the forgetful functor, which maps only units in \(G\) to elements in \(Q\). Let \(f, g\) be two morphisms in \(G\) for which \(f \circ g\) is defined. Then, \(T(1) = 1, T(f \circ g) = Tf \circ Tg\) \(\Box\)
         </p>
         <hr />
         <p>
-          Prove that there is no functor \(T : \textbf{Grp} \rightarrow \textbf{Ab}\) sending each element of group \(G\) to its center.
+          Prove that there is no functor \(T : \textbf{Grp} \rightarrow \textbf{Ab}\) sending each element of group \(G\) to its `center`.
         </p>
         <p>
           Proof: We have \(a \in G\), and the object function \(T(a) = bab^{-1}, b \in G\). Then, the object function takes identity to identity: \(T(1) = bb^{-1} = 1\). But there is a problem with the arrow function: take \(f = g = \text{id}\), so that \(f \circ g = \text{id}\). Then, \((Tf \circ Tg)(a) = cbab^{-1}c^{-1} \neq T(f \circ g)(a) = bab^{-1}\) \(\Box\)
@@ -94,9 +94,33 @@
           \]
         </p>
         <p>
-          commutes.
+          commutes, for \(b, b' \in X\).
         </p>
         <hr />
+        <p>
+          Let \(B, C\) be groups, and \(S, T : B \rightarrow C\) functors (group homomorphisms). Then, show that an NT \(S \overset{\bullet}{\rightarrow} T\) exists only if \(S, T\) are `conjugate`; i.e. there is an element \(h \in C\) such that \(Tg = h(Sg)h^{-1}\), for all \(g \in B\).
+        </p>
+        <hr />
+        <p>
+          Find a category with an arrow that is both epi and monic, but not invertible.
+        </p>
+        <p>
+          Solution: \(m : a \rightarrow b\) is such that \(a \circ m = b \circ m \implies a = b\) and \(m \circ a = m \circ b \implies a = b\), but \(\exists\) no \(m^{-1}\). This is true of an integral domain \(\Box\)
+        </p>
+        <hr />
+        <p>
+          If \(f \circ g\) is monic, so is \(g\). Is it true of \(f\)?
+        </p>
+        <p>
+          Solution: The condition that \(f \circ g\) is monic can be written as \((f \circ g) \circ a = (f \circ g) \circ b \implies a = b\), by cancelation of \(f \circ g\). We know that \(g\) is also monic, and this can be written as \(g \circ a = g \circ b \implies a = b\). By comparing with the previous condition, we see that \(f\) is also monic \(\Box\)
+        </p>
+        <hr />
+        <p>
+          Prove that composites of monics is monic, and that of epis is epi.
+        </p>
+        <p>
+          Proof: This follows immediately from the previuos problem \(\Box\)
+        </p>
       </div>
       <div id="sidebar">
         <ul>
