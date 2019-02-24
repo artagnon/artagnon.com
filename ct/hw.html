@@ -194,9 +194,32 @@
         <p>
           Describe \(B^X\), for \(X\) a finite set.
         </p>
+        <p>
+          Solution: \(B^X\) is a category with objects the functors \(T : \textbf{Set} \rightarrow B\), and arrows the morphisms between these functors. We can think of \(T\) as functors that endow additional structure to the \(\textbf{Set}\). Contained in \(T\) is also the identity functor that identifies each element in \(\textbf{Set}\) to a corresponding element in the richer category \(B\) \(\Box\)
+        </p>
         <hr />
         <p>
           If \(P, Q\) are preorders, describe \(P^Q\), and show that it is a preorder.
+        </p>
+        <p>
+          Proof: The functor category may be written as \(P^Q = \text{Funct}(Q, P)\), with objects the functors \(T : Q \rightarrow P\), and morphisms the NTs between two such functors. A preorder is defined by reflexivity \(a \leq a\) and transitivity \(a \leq b \wedge \b \leq c \implies a \leq c\); we need to show that \(P^Q\) preserves this property.
+        </p>
+        <hr />
+        <p>
+          Given categories \(B, C\), and functor category \(B^2\), show that each functor \(H : C \rightarrow B^2\) determines the functors \(S, T : C \rightarrow B\), and an NT \(\tau : S \overset{\bullet}{\rightarrow} T\), and show that the assignment \(H \mapsto \langle S, T, \tau \rangle\) is bijective.
+        </p>
+        <p>
+          Proof: \(B^2\) is the category whose objects are arrows \(f : a \rightarrow b \in B\), and whose arrows \(f \rightarrow f'\) are those that, along with pair \(\langle h, k \rangle\), make the following diagram commute:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          a \ar[r]^h\ar[d]^f & a' \ar[d]^{f'} \\
+          b \ar[r]^k & b'
+          }
+          \end{xy}
+          \]
         </p>
       </div>
       <div id="sidebar">
