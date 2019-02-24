@@ -32,7 +32,7 @@
         <h1>
           [ct/1] Natural Transforms, Products, Free Categories
         </h1>
-        <span id="pubdate">Created: Wed, 26 Sep 2018</span><br /><span id="pubdate">Last updated: Sat, 23 Feb 2019</span>
+        <span id="pubdate">Created: Wed, 26 Sep 2018</span><br /><span id="pubdate">Last updated: Sun, 24 Feb 2019</span>
         <p>
           For the product set \(X \times Y\), given \(W, f, g\), and projections \(p : X \times Y \mapsto X\), \(q : X \times Y \mapsto Y\), the following diagram commutes:
         </p>
@@ -437,8 +437,11 @@
           Functor \(S : B \times C \rightarrow D\) is defined to be a `bifunctor` or a functor in two variable objects. Hom-sets may be described as bifunctors \(\text{hom} : C^{op} \times C \rightarrow \textbf{Set}\).
         </p>
         <p>
-          Consider NT \(\alpha\) between bifunctors \(S, S' : B \times C \rightarrow D\): \(\alpha(b, c) : S(b, c) \rightarrow S'(b, c)\) is called `natural` in \(b\) if:
+          Consider an NT \(\alpha\) between bifunctors \(S, S' : B \times C \rightarrow D\). Let \(\alpha\) be a function which assigns to every pair of objects \(b \in B, c \in C\), the arrow \(\alpha(b, c) : S(b, c) \rightarrow S'(b, c)\). \(\alpha\) is called `natural` in \(b\) if, for every \(c \in C\):
           \[\alpha(-, c) : S(-, c) \overset{\bullet}{\rightarrow} S'(-, c)\]
+        </p>
+        <p>
+          FOr bifunctors \(S, S'\), \(\alpha\) is an NT of bifunctors \(\alpha : S \rightarrow S'\), iff \(\alpha(b, c)\) is natural in \(b\) for every \(c \in C\) and natural in \(c\) for every \(b \in B\).
         </p>
         <p>
           Consider the product category \(C \times \textbf{2}\), where \(\textbf{2}\) is the category of the two-point set \(\{0, 1\}\):
@@ -460,7 +463,7 @@
           \[\mu : T_0 \overset{\bullet}{\rightarrow} T_1 \quad \mu c = \langle c, \uparrow \rangle\]
         </p>
         <p>
-          for any object \(c\). It maps "bottom" to "top", and is natural. We call \(\mu\) the universal natural transform from \(C\).
+          for any object \(c\). It maps "bottom" to "top", and is natural. We call \(\mu\) the `universal natural transform` from \(C\).
         </p>
         <h2 id="functor-category">
           Functor category

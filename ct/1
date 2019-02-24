@@ -295,8 +295,10 @@ Thus, \(\times\) is a pair of functions, assigning to each pair of categories \(
 
 Functor \(S : B \times C \rightarrow D\) is defined to be a `bifunctor` or a functor in two variable objects. Hom-sets may be described as bifunctors \(\text{hom} : C^{op} \times C \rightarrow \textbf{Set}\).
 
-Consider NT \(\alpha\) between bifunctors \(S, S' : B \times C \rightarrow D\): \(\alpha(b, c) : S(b, c) \rightarrow S'(b, c)\) is called `natural` in \(b\) if:
+Consider an NT \(\alpha\) between bifunctors \(S, S' : B \times C \rightarrow D\). Let \(\alpha\) be a function which assigns to every pair of objects \(b \in B, c \in C\), the arrow \(\alpha(b, c) : S(b, c) \rightarrow S'(b, c)\). \(\alpha\) is called `natural` in \(b\) if, for every \(c \in C\):
 \[\alpha(-, c) : S(-, c) \overset{\bullet}{\rightarrow} S'(-, c)\]
+
+FOr bifunctors \(S, S'\), \(\alpha\) is an NT of bifunctors \(\alpha : S \rightarrow S'\), iff \(\alpha(b, c)\) is natural in \(b\) for every \(c \in C\) and natural in \(c\) for every \(b \in B\).
 
 Consider the product category \(C \times \textbf{2}\), where \(\textbf{2}\) is the category of the two-point set \(\{0, 1\}\):
 
@@ -314,7 +316,7 @@ C \times 0 & \bullet \ar[rr]\ar[ur]\ar[uu] & & \bullet \ar[uu]
 Here \(T_0, T_1 : C \rightarrow C \times \mathbf{2}\) are functors from "bottom" to "top". \(T_0 f = \langle f, 0 \rangle\), \(T_1 f = \langle f, 1 \rangle\). If \(\uparrow : 0 \rightarrow 1\) denotes the unique non-identity arrow in \(\mathbf{2}\), then \(T_0, T_1\) are defined by:
 \[\mu : T_0 \overset{\bullet}{\rightarrow} T_1 \quad \mu c = \langle c, \uparrow \rangle\]
 
-for any object \(c\). It maps "bottom" to "top", and is natural. We call \(\mu\) the universal natural transform from \(C\).
+for any object \(c\). It maps "bottom" to "top", and is natural. We call \(\mu\) the `universal natural transform` from \(C\).
 
 # Functor category
 
