@@ -320,7 +320,7 @@ for any object \(c\). It maps "bottom" to "top", and is natural. We call \(\mu\)
 
 # Functor category
 
-Consider functors \(R, S, T : C \rightarrow B\) and NTs \(\sigma : R \overset{\bullet}{\rightarrow} S, \tau : S \overset{\bullet}{\rightarrow} T\). Then, \((\tau \bullet \sigma) c = \tau c \circ \sigma c\), and \(\tau \bullet \sigma : R \overset{\bullet}{\rightarrow} T\), and we get the following commutative diagram:
+Consider functors \(R, S, T : C \rightarrow B\) and NTs \(\sigma : R \overset{\bullet}{\rightarrow} S, \tau : S \overset{\bullet}{\rightarrow} T\). Define \((\tau \bullet \sigma) c = \tau c \circ \sigma c\), which are components of the NT \(\tau \bullet \sigma : R \overset{\bullet}{\rightarrow} T\). To show that \(\tau \bullet \sigma\) is natural, let \(f : c \rightarrow c' \in C\) in the commutative diagram:
 
 \[
 \begin{xy}
@@ -332,7 +332,7 @@ Tc \ar[r]^{Tf} & Tc'
 \end{xy}
 \]
 
-The category of functors may be written as \(B^C = \text{Funct}(C, B)\), with objects the functors \(T : C \rightarrow B\), and morphisms the NTs between two such functors. The hom-set for this category is:
+The `functor category` may be written as \(B^C = \text{Funct}(C, B)\), with objects the functors \(T : C \rightarrow B\), and morphisms the NTs between two such functors. The hom-set for this category is:
 \[\text{Nat}(S, T) = B^C(S, T) = \{\tau \mid \tau : S \overset{\bullet}{\rightarrow} T\}\]
 
 If \(B = \{0, 1\}\), then \(B^1\) is isomorphic to \(B\), and \(B^2\) is the category whose objects are arrows \(f : a \rightarrow b\) of \(B\), and whose arrows \(f \rightarrow f'\) are those that, along with pair \(\langle h, k \rangle\), make the following diagram commute:
