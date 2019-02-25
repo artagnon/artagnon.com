@@ -78,7 +78,7 @@ Starting from (iii), we know that the only ideals of \(A/\mathfrak{N}\) are \((0
 
 Let ring \(A\) be such that every ideal not contained in the nilradical contains a nonzero idempotent (i.e. \(e^2 = e \neq 0\)). Prove that \(\mathfrak{N} = \mathfrak{R}\).
 
-Proof: \(\mathfrak{N}\) is the set of nilpotent elements; every element not contained in this is of the form \(\{x \in A \mid \forall n, x^n \neq 0\}\).
+Proof: \(e \in \mathfrak{N} \iff 1 - ey\) is unit, for some \(y \in A\), but \(e \notin \mathfrak{R}\). Inverting logic, we get \(e \notin \mathfrak{N} \iff 1 - ey\) is not unit. Now, plugging \(e = e^2 \neq 0\), we get \(1 - e\) is not unit \(\implies 1 - e\) must be contained in some maximal ideal \(\implies e\) must be contained in every maximal ideal, and we arrive at our contradiction \(\Box\)
 
 --
 
@@ -92,4 +92,4 @@ Proof, the other way: \(I\) is the set of nilpotent elements. Let \(x \in I\) be
 
 Prove that a local ring contains no idempotent \(\neq 0, 1\).
 
-Proof: A local ring is defined as having exactly one maximal ideal, \(M\). Let \(e\) be an element in this ring, and \(e(1 - e) \in M\).
+Proof: A local ring is defined as having exactly one maximal ideal, \(M\). Consider idempotent \(e \in M \implies 1 - e^2\) is unit, and is not contained within \(M\). Since \(e\) is idempotent, \(1 - e\) is unit as well. Now, since \(M\) and \(1 - e\) must generate \((1)\), \(e(1 - e) = 1 \implies e = 0 \vee e = 1\) \(\Box\)
