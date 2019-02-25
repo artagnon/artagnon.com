@@ -32,7 +32,7 @@
         <h1>
           [ac/hw] Homework
         </h1>
-        <span id="pubdate">Created: Sat, 17 Nov 2018</span><br /><span id="pubdate">Last updated: Tue, 19 Feb 2019</span>
+        <span id="pubdate">Created: Sat, 17 Nov 2018</span><br /><span id="pubdate">Last updated: Mon, 25 Feb 2019</span>
         <p>
           Prove the Nullstellansatz: \(J \subsetneq k[x_1 ... x_n] \implies V(J) \neq \phi\) and \(I(V(J)) = \text{ rad } J\) in an algebraically closed field \(k[x_1 ... x_n]\).
         </p>
@@ -106,13 +106,10 @@
         </p>
         <hr />
         <p>
-          Prove that, in \(A[x]\), the Jacobson radical is equal to the nilradical. \(A[x]\) is termed `principal ideal domain`.
+          Prove that, in \(A[x]\), the Jacobson radical is equal to the nilradical.
         </p>
         <p>
-          Proof: The Jacobson radical is the intersection of all maximal ideals, while the nilradical is the intersection of all prime ideals. It remains to be shown that every prime ideal is maximal in \(A[x]\), since all maximal ideals are necessarily prime.
-        </p>
-        <p>
-          Let \((p)\) be a prime ideal, and \(m\) be a maximal ideal, and let \((p) \subset (m)\). Then, \(p = mz\), but since \(m \notin (p), z \in (p)\), say \(z = tp\). Then, \(p = mz = mtp \implies mt = 1\), or \((m) = 1\). Hence, \((p)\) must be maximal \(\Box\)
+          Proof: Let \((p) \in \mathfrak{N}\), and \((m) \in \mathfrak{R}\), and let \((p) \subset (m)\). Then, \(p = mz\), but since \(m \notin (p), z \in (p)\), say \(z = tp\). Then, \(p = mz = mtp \implies mt = 1\), or \((m) = 1\). Hence, \((p)\) must be maximal, and \(\mathfrak{N} = \mathfrak{R}\) \(\Box\)
         </p>
         <hr />
         <p>
@@ -147,10 +144,10 @@
         </p>
         <hr />
         <p>
-          Let \(I\) be an ideal in ring \(A\) that is \(neq (1)\). Then, show that \(I = \sqrt{I} \iff I\) is an intersection of prime ideals.
+          Let \(I\) be an ideal in ring \(A\) that is \(\neq (1)\). Then, show that \(I = \sqrt{I} \iff I\) is an intersection of prime ideals.
         </p>
         <p>
-          Proof: \(\sqrt{I} = \{x \in A \mid \exists n \gt 0 : x^n \in I\}\), by definition. Now, since \(I = \sqrt{I}\), \(\exists n \gt 0 : \forall x \in I, x^n \in I\). Suppose, for \(p \in A\), \(x^n = p \neq 0\). Then, \(px \in I\), by definition of an ideal, and the chain would not terminate at \(n\). Hence, \(\forall x \in I, x^n = 0\), and this is exactly the definition of the set of nilpotent elements.
+          Proof: \(\sqrt{I} = \{x \in A \mid \exists n \gt 0 : x^n \in I\}\), by definition. Now suppose, for \(p \in A\), \(x^n = p \neq 0\). Then, \(px \in I\), by definition of an ideal, and the chain would not terminate at \(n\). Hence, \(\forall x \in I, x^n = 0\), and this is exactly the definition of the set of nilpotent elements.
         </p>
         <p>
           Proof, the other way: \(I\) is the set of nilpotent elements. Let \(x \in I\) be any element; then, \(\exists n : x^n = 0 \in I\). Since every element of \(I\) is of this form, \(I = \sqrt{I}\) \(\Box\)
@@ -160,7 +157,7 @@
           Prove that a local ring contains no idempotent \(\neq 0, 1\).
         </p>
         <p>
-          Proof: A local ring is defined as having exactly one maximal ideal.
+          Proof: A local ring is defined as having exactly one maximal ideal, \(M\). Let \(e\) be an element in this ring, and \(e(1 - e) \in M\).
         </p>
       </div>
       <div id="sidebar">
