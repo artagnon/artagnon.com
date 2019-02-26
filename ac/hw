@@ -41,24 +41,25 @@ which yields \(X = V_1 \cup V_2\), a reducible, as required \(\Box\)
 
 If \(x\) is nilpotent \(\iff 1 - x\) is unit.
 
-Proof: Assume that \(1 - x\) is unit. By binomial expansion,
-\[\frac{1}{1 - x} = \sum_{i = 0}^{\infty} x^i\]
-
-This has to terminate at some \(x^n\), and hence \(x\) is nilpotent.
-
-Conversely, if \(x\) is nilpotent, \(\exists n : x^n = 0\). We can use the binomial expansion again to show that \(1 - x\) is unit, since the series terminates at some point \(\Box\)
+Proof: \((1 - x)(1 + x + \ldots + x^{n - 1}) = 1\); by binomial expansion, \(x^n = 0\) \(\Box\)
 
 --
 
-For ring \(A\) and polynomial ring \(A[x]\), let \(f = a_0 + \ldots + a_n x^n\) in \(A[x]\). Then, prove that \(f\) is unit in \(A[x] \iff a_0\) is nilpotent in \(A\).
+Prove that \(f = a_0 + \ldots + a_n x^n \in A[x]\) is unit iff \(a_1, \ldots, a_n\) are nilpotent, and \(a_0\) is unit.
 
-Proof: For \(f\) to be invertible, \(1/f\) has to terminate at some point.
+Proof: Let \(fg = 1\), where \(g = \sum_m b_i x^i\). Clearly, \(a_0 = b_0 = 1\), and by collecting terms, we get:
+
+\[a_n b_m = 0 \\
+a_{n - 1} b_m + a_n b_{m - 1} = 0 \implies {a_n}^2 b_{m - 1} = 0 \\
+\ldots \implies {a_n}^{m - 1} b_0 = 0\]
+
+Since \(b_0 = 1\), it follows that \({a_n}^{m - 1} = 0\), which means \(a_n\) is nilpotent. By induction, we can prove that all \(a_i\)s for \(i > 0\) are nilpotent \(\Box\)
 
 --
 
 Prove that, in \(A[x]\), the Jacobson radical is equal to the nilradical.
 
-Proof: If \(A[x]\) is a principal ideal domain, let \((p) \in \mathfrak{N}\), and \((m) \in \mathfrak{R}\), and let \((p) \subset (m)\). Then, \(p = mz\), but since \(m \notin (p), z \in (p)\), say \(z = tp\). Then, \(p = mz = mtp \implies mt = 1\), or \((m) = 1\). Hence, \((p)\) must be maximal, and \(\mathfrak{N} = \mathfrak{R}\)
+Proof: Let \(f = a_0 + \ldots + a_n x^n \in \mathfrak{R}\). Then, \(1 + xf\) is unit, and by the previous problem, \(a_1, \ldots, a_n\) are all nilpotent, implying\(\mathfrak{R} = \mathfrak{N}\) \(\Box\)
 
 --
 
