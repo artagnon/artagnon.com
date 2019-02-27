@@ -5,7 +5,7 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
     meta charset="UTF-8"
     meta name="description" content="Ramkumar Ramachandra's site"
     meta name="author" content="Ramkumar Ramachandra"
-    meta name="keywords" content="mathematics, mathematical notes, study notes, james munkres, miles reid, dummit and foote, ravi vakil, rising sea, allen hatcher, saunders mac lane, categories for the working mathematician"
+    meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     link rel="stylesheet" href="/design/all.css" media="all"
     link rel="stylesheet" href="/design/screen.css" media="screen"
@@ -25,9 +25,9 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
     div id="wrapper"
       div id="main"
         h1 #{title}
-        span id="pubdate" Created: #{authdate}
+        time datetime="#{isopubdate}" Last updated: #{pubdate}
         br
-        span id="pubdate" Last updated: #{pubdate}
+        time datetime="#{isoauthdate}" Created: #{authdate}
         - paragraphs.each do |paragraph|
           - if paragraph.is_header?
             p class="header"
