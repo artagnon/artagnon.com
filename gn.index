@@ -52,6 +52,17 @@ A property of product spaces is:
 Given the topology \((X, \tau)\) and a \(Y \subset X\), the subspace topology \(\tau_Y\) is defined as:
 \[\tau_Y = \{Y \cap U \mid U \in \tau\}\]
 
+If \(\mathscr{B}\) is the basis for topology \(X\), then \(\mathscr{B}_Y = \{B \cap Y \mid B \in \mathscr{B}\}\) is a basis for the subspace topology on \(Y\). We prove this as follows: Given \(U\) open in \(X\) and \(y \in U \cap Y\), we can choose \(B\) so that \(y \in B \subset U\). Then, \(y \in B \cap Y \subset U \cap Y\). It follows that \(\mathscr{B}_Y\) is the basis for the subpsace topology on \(Y\).
+
+Let \(Y\) be a subspace of \(X\). If \(U\) is open in \(Y\) and \(Y\) is open in \(X\), then \(U\) is open in \(X\). To prove this, notice that, since \(Y\) is open in \(U\), \(Y = U \cap V\), for some open set \(V\) in \(X\). Now, since both \(U\) and \(V\) are open in \(X\), so is \(U \cap V\).
+
+If \(A\) and \(B\) are subspaces of \(X\) and \(Y\), then the product topology \(A \times B\) is the same as the topology \(A \times B\) one inherits as a subspace of \(X \times Y\). To prove this, let \(U, V\) be the general basis element of \(X, Y\), where \(U\) is open in \(X\) and \(V\) is open in \(Y\). We know that the general basis element for for the subspace topology of \(A \times B\) satisfies:
+\[(U \times A) \cap (V \times B) = (U \cap V) \times (A \cap B)\]
+
+So, \((U \cap V) \times (A \cap B)\) is the general basis element for the product topology on \(A \times B\). Since the bases for the product topology on \(A \times B\) and the subspace topology \(A \times B\) are the same, the topologies are the same.
+
+Let \(X\) be an ordered set in the order topology, and \(Y\) be a subset. The resulting order topology on \(Y\) need not be the same as the topology \(Y\) inherits as a subspace of \(X\).
+
 # Closure and interior
 
 Given a subset \(A\) of a topology, the interior of \(A\), denoted by \(\text{Int } A\), is defined as the union of all open sets contained in \(A\), and the closure of \(A\), denoted by \(\bar{A}\), is defined as the intersection of all closed sets containing \(A\).
