@@ -32,7 +32,7 @@
         <h1>
           General Topology
         </h1>
-        <time datetime="2019-02-28">Last updated: Thu, 28 Feb 2019</time><br /><time datetime="2019-01-11">Created: Fri, 11 Jan 2019</time>
+        <time datetime="2019-03-01">Last updated: Fri, 1 Mar 2019</time><br /><time datetime="2019-01-11">Created: Fri, 11 Jan 2019</time>
         <p>
           A topology \((X, \tau)\) is defined as a collection \(\tau\) of subsets of \(X\) with the following properties:
         </p>
@@ -131,7 +131,19 @@
           \[\mathscr{D} = \{B \times C \mid B \in \mathscr{B}, C \in \mathscr{C}\}\]
         </p>
         <p>
-          is a basis for \(X \times Y\).
+          is a basis for \(X \times Y\). This can be proved as follows. Given an open set \(W\) of \(X \times Y\), and a point \(x \times y \in W\), by definition of product topology, there is a basis element \(U \times V\) such that \(x \times y \in U \times V \subset W\). Because \(\mathscr{B}, \mathscr{C}\) are bases of \(X, Y\), we can choose an element \(B \in \mathscr{B}\) such that \(x \in B \subset U\), and \(C \in \mathscr{C}\) such that \(y \in C \subset V\). Then \(x \times y \in B \times C \subset W\). Thus the collection \(\mathscr{D}\) meets the criterion for being a basis of \(X \times Y\).
+        </p>
+        <p>
+          `Projections` \(\pi_1 : X \times Y \rightarrow X\) and \(\pi_2 : X \times Y \rightarrow Y\) are defined in the usual way. Moreover, they are surjective.
+        </p>
+        <p>
+          The collection \(\mathscr{S}\) defined as:
+        </p>
+        <p class="mathjax">
+          \[\mathscr{S} = \{\pi_1^{-1}(U) \mid U \text{ open in } X\} \cup \{\pi_2^{-1}(V) \mid V \text{ open in } Y\}\]
+        </p>
+        <p>
+          is a subbasis for the product topology on \(X \times Y\).
         </p>
         <h2 id="subspace-topology">
           Subspace topology
