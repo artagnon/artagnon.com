@@ -80,6 +80,10 @@ So, \((U \cap V) \times (A \cap B)\) is the general basis element for the produc
 
 Let \(X\) be an ordered set in the order topology, and \(Y\) be a subset. The resulting order topology on \(Y\) need not be the same as the topology \(Y\) inherits as a subspace of \(X\).
 
+# Closed sets
+
+A subset \(A\) of a topological space \(X\) is said to be closed if \(X - A\) is open. As an example, consider the subset \([a, b] \in \mathbb{R}\). It is closed because \(\mathbb{R} - [a, b] = (-\infty, a) \cup (b, +\infty)\) is open.
+
 # Closure and interior
 
 Given a subset \(A\) of a topology, the interior of \(A\), denoted by \(\text{Int } A\), is defined as the union of all open sets contained in \(A\), and the closure of \(A\), denoted by \(\bar{A}\), is defined as the intersection of all closed sets containing \(A\).
@@ -110,9 +114,11 @@ A topology \(X\) converges to the point \(x\), if for each neighborhood \(U\) of
 
 A topological space \(X\) is Hausdorff if, for each pair of points \(x_1\) and \(x_2\), the corresponding neighborhoods \(U_1\) and \(U_2\) are disjoint.
 
-The \(T_1\) axiom: every point set is closed; this is weaker than the Hausdorff condition and implies it.
+Every finite point set in a Hausdorff space \(X\) is closed. The proof follows. It suffices to show that every one-point set \(\{x_0\}\) is closed. If \(x \in X\) is a point different from \(x_0\), then \(x\) and \(x_0\) have disjoint neighborhoods \(U\) and \(V\). Since \(U\) does not intersect \(\{x_0\}\), the point \(x\) cannot belong to the closure of the set \(\{x_0\}\). As a result, the closure of \(\{x_0\}\) is \(\{x_0\}\) itself, so it is closed.
 
-A sequence of points of a Hausdorff space \(X\) converges to atmost one point.
+The \(T_1\) axiom: every point set is closed; this is weaker than the Hausdorff condition and implies it. Our lack of interest in the \(T_1\) axiom is due to the fact that most interesting results require the full strength of the Hausdorff condition.
+
+A sequence of points of a Hausdorff space \(X\) converges to atmost one point. To prove this, suppose that \(x_n\) is a sequence of points in \(X\) that converges to \(x\). If \(y \neq x\), let \(U, V\) be disjoint neighborhoods of \(x, y\). Since \(U\) contains \(x_n\) for all but finitely many points of \(n\), the set \(V\) cannot. Hence, \(x_n\) cannot converge to \(y\).
 
 # Continuous functions
 

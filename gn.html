@@ -168,6 +168,12 @@
         <p>
           Let \(X\) be an ordered set in the order topology, and \(Y\) be a subset. The resulting order topology on \(Y\) need not be the same as the topology \(Y\) inherits as a subspace of \(X\).
         </p>
+        <h2 id="closed-sets">
+          Closed sets
+        </h2>
+        <p>
+          A subset \(A\) of a topological space \(X\) is said to be closed if \(X - A\) is open. As an example, consider the subset \([a, b] \in \mathbb{R}\). It is closed because \(\mathbb{R} - [a, b] = (-\infty, a) \cup (b, +\infty)\) is open.
+        </p>
         <h2 id="closure-and-interior">
           Closure and interior
         </h2>
@@ -217,10 +223,13 @@
           A topological space \(X\) is Hausdorff if, for each pair of points \(x_1\) and \(x_2\), the corresponding neighborhoods \(U_1\) and \(U_2\) are disjoint.
         </p>
         <p>
-          The \(T_1\) axiom: every point set is closed; this is weaker than the Hausdorff condition and implies it.
+          Every finite point set in a Hausdorff space \(X\) is closed. The proof follows. It suffices to show that every one-point set \(\{x_0\}\) is closed. If \(x \in X\) is a point different from \(x_0\), then \(x\) and \(x_0\) have disjoint neighborhoods \(U\) and \(V\). Since \(U\) does not intersect \(\{x_0\}\), the point \(x\) cannot belong to the closure of the set \(\{x_0\}\). As a result, the closure of \(\{x_0\}\) is \(\{x_0\}\) itself, so it is closed.
         </p>
         <p>
-          A sequence of points of a Hausdorff space \(X\) converges to atmost one point.
+          The \(T_1\) axiom: every point set is closed; this is weaker than the Hausdorff condition and implies it. Our lack of interest in the \(T_1\) axiom is due to the fact that most interesting results require the full strength of the Hausdorff condition.
+        </p>
+        <p>
+          A sequence of points of a Hausdorff space \(X\) converges to atmost one point. To prove this, suppose that \(x_n\) is a sequence of points in \(X\) that converges to \(x\). If \(y \neq x\), let \(U, V\) be disjoint neighborhoods of \(x, y\). Since \(U\) contains \(x_n\) for all but finitely many points of \(n\), the set \(V\) cannot. Hence, \(x_n\) cannot converge to \(y\).
         </p>
         <h2 id="continuous-functions">
           Continuous functions
