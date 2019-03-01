@@ -84,6 +84,20 @@ Let \(X\) be an ordered set in the order topology, and \(Y\) be a subset. The re
 
 A subset \(A\) of a topological space \(X\) is said to be closed if \(X - A\) is open. As an example, consider the subset \([a, b] \in \mathbb{R}\). It is closed because \(\mathbb{R} - [a, b] = (-\infty, a) \cup (b, +\infty)\) is open.
 
+Let \(X\) be a topological space. Then:
+
+(i) \(X\) and \(\phi\) are closed.
+(ii) Arbitrary intersections of closed sets are closed.
+(iii) Finite unions of closed sets are closed.
+
+To prove (i), notice that \(X, \phi\) are complements of open sets \(\phi, X\), and are hence closed. To prove (ii), apply De-Morgan's law to a collection of closed sets \(\{A_\alpha\}_{\alpha \in J}\):
+\[X - \bigcap_{\alpha \in J} A_\alpha = \bigcup_{\alpha \in J}(X - A_\alpha)\]
+
+Notice that the right hand side of this equation represents arbitary unions of open sets, and is hence open, since \(X - A_\alpha\) is open by definition. To prove (iii), apply De-Morgan's law again on closed sets \(A_j\):
+\[X - \bigcup_{j \in J} A_j = \bigcap_{j \in J}(X - A_j)\]
+
+The right side of this equation represents finite intersections of open sets and is therefore open. Hence, \(\bigcup A_j\) is closed.
+
 # Closure and interior
 
 Given a subset \(A\) of a topology, the interior of \(A\), denoted by \(\text{Int } A\), is defined as the union of all open sets contained in \(A\), and the closure of \(A\), denoted by \(\bar{A}\), is defined as the intersection of all closed sets containing \(A\).
