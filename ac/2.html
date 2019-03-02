@@ -32,7 +32,7 @@
         <h1>
           [ac/2] Modules of fractions
         </h1>
-        <time datetime="2019-02-21">Last updated: Thu, 21 Feb 2019</time><br /><time datetime="2019-02-18">Created: Mon, 18 Feb 2019</time>
+        <time datetime="2019-03-02">Last updated: Sat, 2 Mar 2019</time><br /><time datetime="2019-02-18">Created: Mon, 18 Feb 2019</time>
         <h2 id="rings-of-fractions">
           Rings of fractions
         </h2>
@@ -145,7 +145,7 @@
           Hence, \(f\) is injective, and therefore an isomorphism.
         </p>
         <p>
-          \(S^{-1} A\) is a flat \(A\)-module, and this is immediately obvious.
+          \(S^{-1} A\) is a [flat](/ac/1#exactness-of-the-tensor-product) \(A\)-module, and this is immediately obvious.
         </p>
         <p>
           If \(M, N\) are \(A\)-modules, there is an isomorphism of \(S^{-1} A\)-modules \(f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)\) such that:
@@ -175,8 +175,55 @@
         <p>
           Since (i) \(\implies\) (ii) \(\implies\) (iii) is obvious, let us prove (i), given (iii). Suppose \(N \neq 0\), then \(x \in N\), and let \(I = \text{Ann}(x)\). \(I\) is an ideal, and therefore must be contained within some maximal ideal \(M\). Let \(x/1 \in N_M\). Since \(N_M = 0\), \(x/1 = 0\), and hence, \(x\) is killed by some element of \(N - M\). But this is impossible since \(\text{Ann}(x) \subseteq M\).
         </p>
-        <h2 id="algebraic-dependence-and-integral-dependence">
-          Algebraic dependence and integral dependence
+        <p>
+          Let \(\varphi: S \rightarrow T\) be an \(A\)-module homomorphism. Then, the following statements are equivalent:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(\varphi\) is injective.
+          </li>
+          <li>
+            \(\varphi_M : S_P \rightarrow T_P\) is injective for each prime ideal \(P\).
+          </li>
+          <li>
+            \(\varphi_M : S_M \rightarrow T_M\) is injective for each maximal ideal \(M\).
+          </li>
+        </ol>
+        <p>
+          Flatness is a local property. For any \(A\)-module \(N\), the following statements are equivalent:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(N\) is a flat \(A\)-module.
+          </li>
+          <li>
+            \(N_P\) is flat for each prime ideal \(P\).
+          </li>
+          <li>
+            \(N_M\) is flat for each maximal ideal \(M\).
+          </li>
+        </ol>
+        <h2 id="primary-decomposition">
+          Primary decomposition
+        </h2>
+        <p>
+          Ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
+        </p>
+        <p class="mathjax">
+          \[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0\]
+        </p>
+        <p>
+          A counter-example: \(I = (X^{2}, XY)\); \(\text{rad}(I) = X\); \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
+        </p>
+        <p class="mathjax">
+          \[Q \text{ is P-primary if } Q \text{ is primary and } P = rad(Q)\]
+          \[Q \text{ is P-primary} \leftrightarrow \text{Ass}(A/Q) = \{P\}\]
+        </p>
+        <p>
+          In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
+        </p>
+        <h2 id="integral-dependence-and-valuations">
+          Integral dependence and valuations
         </h2>
         <p>
           \(y\) is algebraic over \(k\) if it satisfies the algebraic dependence relation:
@@ -198,7 +245,50 @@
         </p>
         <p>
           \(XY = 1\) is an example of something that is algebraically closed, but not integrally closed. It can be perturbed as \((X + \epsilon Y) Y = 1\) to avoid the unlucky accident of a "missing zero" over \(X = 0\).
+          # Chain conditions
         </p>
+        <h2 id="noetherian-rings">
+          Noetherian rings
+        </h2>
+        <h2 id="artin-rings">
+          Artin rings
+        </h2>
+        <h2 id="discrete-valuation-rings">
+          Discrete valuation rings
+        </h2>
+        <p>
+          \(v : K \backslash \{0\} \to \mathbb{Z}\) is a discrete valuation of \(K\), a surjective map so that:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(v(xy) = v(x) + v(y)\)
+          </li>
+          <li>
+            \(v(x \pm y) = \text{min}\{v(x), v(y)\} \forall x, y \in K \backslash \{0\}\)
+          </li>
+        </ol>
+        <p>
+          By convention, \(v(0) = \infty\).
+        </p>
+        <p>
+          Valuation ring of a discrete valuation \(v\) is given by \(A = \{x \in K \mid v(x) \geq 0\}\).
+        </p>
+        <p>
+          For valuation ring \(A\):
+          \[A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}\]
+        </p>
+        <h2 id="dedekind-domains">
+          Dedekind domains
+        </h2>
+        <h2 id="completions">
+          Completions
+        </h2>
+        <h2 id="graded-rings-and-modules">
+          Graded rings and modules
+        </h2>
+        <h2 id="associated-graded-ring">
+          Associated graded ring
+        </h2>
         <h2 id="the-nullstellansatz">
           The Nullstellansatz
         </h2>
@@ -309,51 +399,6 @@
         </ol>
         <p>
           In the disjoint union \(\mathcal{M} = \sqcup M_{P}\), \(M_{P}\) is termed as the stalk of \(\mathcal{M}\) over \(P\).
-        </p>
-        <h2 id="primary-decomposition">
-          Primary decomposition
-        </h2>
-        <p>
-          Ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
-        </p>
-        <p class="mathjax">
-          \[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0\]
-        </p>
-        <p>
-          A counter-example: \(I = (X^{2}, XY)\); \(\text{rad}(I) = X\); \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
-        </p>
-        <p class="mathjax">
-          \[Q \text{ is P-primary if } Q \text{ is primary and } P = rad(Q)\]
-          \[Q \text{ is P-primary} \leftrightarrow \text{Ass}(A/Q) = \{P\}\]
-        </p>
-        <p>
-          In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
-        </p>
-        <h2 id="discrete-valuation-rings">
-          Discrete valuation rings
-        </h2>
-        <p>
-          \(v : K \backslash \{0\} \to \mathbb{Z}\) is a discrete valuation of \(K\), a surjective map so that:
-        </p>
-        <ol class="olitems" type="i" start="1">
-          <li>
-            \(v(xy) = v(x) + v(y)\)
-          </li>
-          <li>
-            \(v(x \pm y) = \text{min}\{v(x), v(y)\} \forall x, y \in K \backslash \{0\}\)
-          </li>
-        </ol>
-        <p>
-          By convention, \(v(0) = \infty\).
-        </p>
-        <p>
-          Valuation ring of a discrete valuation \(v\) is given by \(A = \{x \in K \mid v(x) \geq 0\}\).
-        </p>
-        <p>
-          For valuation ring \(A\):
-        </p>
-        <p class="mathjax">
-          \[A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}\]
         </p>
       </div>
       <div id="sidebar">

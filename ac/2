@@ -66,7 +66,7 @@ To prove this, notice that the mapping \(S^{-1} A \rightarrow S^{-1} M\) given b
 
 Hence, \(f\) is injective, and therefore an isomorphism.
 
-\(S^{-1} A\) is a flat \(A\)-module, and this is immediately obvious.
+\(S^{-1} A\) is a [flat](/ac/1#exactness-of-the-tensor-product) \(A\)-module, and this is immediately obvious.
 
 If \(M, N\) are \(A\)-modules, there is an isomorphism of \(S^{-1} A\)-modules \(f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)\) such that:
 \[f((m/s) \otimes (n/t)) = (m \otimes n)/st\]
@@ -84,7 +84,32 @@ A ring \(A\), or a module \(N\) is said to have a `local property` \(P\) if, \(A
 
 Since (i) \(\implies\) (ii) \(\implies\) (iii) is obvious, let us prove (i), given (iii). Suppose \(N \neq 0\), then \(x \in N\), and let \(I = \text{Ann}(x)\). \(I\) is an ideal, and therefore must be contained within some maximal ideal \(M\). Let \(x/1 \in N_M\). Since \(N_M = 0\), \(x/1 = 0\), and hence, \(x\) is killed by some element of \(N - M\). But this is impossible since \(\text{Ann}(x) \subseteq M\).
 
-# Algebraic dependence and integral dependence
+Let \(\varphi: S \rightarrow T\) be an \(A\)-module homomorphism. Then, the following statements are equivalent:
+
+(i) \(\varphi\) is injective.
+(ii) \(\varphi_M : S_P \rightarrow T_P\) is injective for each prime ideal \(P\).
+(iii) \(\varphi_M : S_M \rightarrow T_M\) is injective for each maximal ideal \(M\).
+
+Flatness is a local property. For any \(A\)-module \(N\), the following statements are equivalent:
+
+(i) \(N\) is a flat \(A\)-module.
+(ii) \(N_P\) is flat for each prime ideal \(P\).
+(iii) \(N_M\) is flat for each maximal ideal \(M\).
+
+# Primary decomposition
+
+Ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
+
+\[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0\]
+
+A counter-example: \(I = (X^{2}, XY)\); \(\text{rad}(I) = X\); \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
+
+\[Q \text{ is P-primary if } Q \text{ is primary and } P = rad(Q)\]
+\[Q \text{ is P-primary} \leftrightarrow \text{Ass}(A/Q) = \{P\}\]
+
+In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
+
+# Integral dependence and valuations
 
 \(y\) is algebraic over \(k\) if it satisfies the algebraic dependence relation:
 
@@ -99,6 +124,33 @@ This is termed as integral dependence. \(\varphi : A \rightarrow B\) is finite, 
 C is termed nonsingular if \((\partial f/\partial x, \partial f/\partial y) \neq 0\) for \(P \in C\), so that \(C\) has a well-defined tangent at every point \(P\).
 
 \(XY = 1\) is an example of something that is algebraically closed, but not integrally closed. It can be perturbed as \((X + \epsilon Y) Y = 1\) to avoid the unlucky accident of a "missing zero" over \(X = 0\).
+# Chain conditions
+
+# Noetherian rings
+
+# Artin rings
+
+# Discrete valuation rings
+
+\(v : K \backslash \{0\} \to \mathbb{Z}\) is a discrete valuation of \(K\), a surjective map so that:
+
+(i) \(v(xy) = v(x) + v(y)\)
+(ii) \(v(x \pm y) = \text{min}\{v(x), v(y)\} \forall x, y \in K \backslash \{0\}\)
+
+By convention, \(v(0) = \infty\).
+
+Valuation ring of a discrete valuation \(v\) is given by \(A = \{x \in K \mid v(x) \geq 0\}\).
+
+For valuation ring \(A\):
+\[A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}\]
+
+# Dedekind domains
+
+# Completions
+
+# Graded rings and modules
+
+# Associated graded ring
 
 # The Nullstellansatz
 
@@ -164,31 +216,3 @@ Example: If \(n = p^{\alpha} q^{\beta}\), then \(\text{Ass }(\mathbb{Z}/n) = \{(
 (iv) If \(P \subset \text{Supp } M\), then \(\mathcal{V}(P) \subset \text{Supp } M\).
 
 In the disjoint union \(\mathcal{M} = \sqcup M_{P}\), \(M_{P}\) is termed as the stalk of \(\mathcal{M}\) over \(P\).
-
-# Primary decomposition
-
-Ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
-
-\[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0\]
-
-A counter-example: \(I = (X^{2}, XY)\); \(\text{rad}(I) = X\); \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
-
-\[Q \text{ is P-primary if } Q \text{ is primary and } P = rad(Q)\]
-\[Q \text{ is P-primary} \leftrightarrow \text{Ass}(A/Q) = \{P\}\]
-
-In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
-
-# Discrete valuation rings
-
-\(v : K \backslash \{0\} \to \mathbb{Z}\) is a discrete valuation of \(K\), a surjective map so that:
-
-(i) \(v(xy) = v(x) + v(y)\)
-(ii) \(v(x \pm y) = \text{min}\{v(x), v(y)\} \forall x, y \in K \backslash \{0\}\)
-
-By convention, \(v(0) = \infty\).
-
-Valuation ring of a discrete valuation \(v\) is given by \(A = \{x \in K \mid v(x) \geq 0\}\).
-
-For valuation ring \(A\):
-
-\[A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}\]
