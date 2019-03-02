@@ -207,20 +207,35 @@
           Primary decomposition
         </h2>
         <p>
-          Ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
-        </p>
-        <p class="mathjax">
-          \[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0\]
+          Just as prime ideals are generalizations of primes in \(\mathbb{Z}\), in some sense, powers of primes can be generalized to primary ideals: ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
+          \[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n &gt; 0\]
         </p>
         <p>
-          A counter-example: \(I = (X^{2}, XY)\); \(\text{rad}(I) = X\); \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
-        </p>
-        <p class="mathjax">
-          \[Q \text{ is P-primary if } Q \text{ is primary and } P = rad(Q)\]
-          \[Q \text{ is P-primary} \leftrightarrow \text{Ass}(A/Q) = \{P\}\]
+          In other words, for \(Q\) to be primary,
+          \[A/Q \neq 0 \text{, and every zerodivisor in } A/Q \text{ is nilpotent}\]
         </p>
         <p>
-          In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
+          Clearly, every prime ideal is primary. Also, the contraction of a primary ideal is primary, for if \(f : A \rightarrow B\) and \(Q\) is primary in \(B\), \(A/Q^c \cong B/Q\).
+        </p>
+        <p>
+          Let \(Q\) be a primary ideal in \(A\). Then \(\sqrt{Q}\) is the smallest prime ideal containing \(Q\). To prove this, it suffices to show that \(\sqrt{Q}\) is prime. Let \(xy \in \sqrt{Q}\). Then \((xy)^m \in Q, m \gt 0\), which implies that either \(x^m \in Q\) or \(y^{mn} \in Q, n \gt 0\); i.e. \(x \in \sqrt{Q}\) or \(y \in \sqrt{Q}\). If \(P = \sqrt{Q}\), then \(Q\) is said to be `\(P\)-primary`.
+        </p>
+        <p>
+          Examples:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(0\) and \(P^n\) are primary in \(\mathbb{Z}\), where \(P\) is a prime number.
+          </li>
+          <li>
+            Let \(A = k[x, y]\) and \(Q = (x, y^2)\). Then, \(A/Q \cong k[y]/(y^2)\), in which all zero-divisors are multiples of \(y\), hence nilpotent. Hence, \(Q\) is primary and its radical \(P = (x, y)\) is such that \(P^2 \subset Q \subset P\), so that a primary ideal is not necessarily a prime power.
+          </li>
+          <li>
+            Let \(I = (X^{2}, XY), \sqrt{I} = X\). \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
+          </li>
+        </ol>
+        <p>
+          If \(\sqrt{P}\) is maximal, then \(P\) is primary. In particular, the powers of a maximal ideal \(M\) are \(M\)-primary.
         </p>
         <h2 id="integral-dependence-and-valuations">
           Integral dependence and valuations
@@ -245,11 +260,16 @@
         </p>
         <p>
           \(XY = 1\) is an example of something that is algebraically closed, but not integrally closed. It can be perturbed as \((X + \epsilon Y) Y = 1\) to avoid the unlucky accident of a "missing zero" over \(X = 0\).
-          # Chain conditions
         </p>
+        <h2 id="chain-conditions">
+          Chain conditions
+        </h2>
         <h2 id="noetherian-rings">
           Noetherian rings
         </h2>
+        <p>
+          In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
+        </p>
         <h2 id="artin-rings">
           Artin rings
         </h2>

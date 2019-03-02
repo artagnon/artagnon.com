@@ -98,16 +98,23 @@ Flatness is a local property. For any \(A\)-module \(N\), the following statemen
 
 # Primary decomposition
 
-Ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
-
+Just as prime ideals are generalizations of primes in \(\mathbb{Z}\), in some sense, powers of primes can be generalized to primary ideals: ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
 \[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0\]
 
-A counter-example: \(I = (X^{2}, XY)\); \(\text{rad}(I) = X\); \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
+In other words, for \(Q\) to be primary,
+\[A/Q \neq 0 \text{, and every zerodivisor in } A/Q \text{ is nilpotent}\]
 
-\[Q \text{ is P-primary if } Q \text{ is primary and } P = rad(Q)\]
-\[Q \text{ is P-primary} \leftrightarrow \text{Ass}(A/Q) = \{P\}\]
+Clearly, every prime ideal is primary. Also, the contraction of a primary ideal is primary, for if \(f : A \rightarrow B\) and \(Q\) is primary in \(B\), \(A/Q^c \cong B/Q\).
 
-In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
+Let \(Q\) be a primary ideal in \(A\). Then \(\sqrt{Q}\) is the smallest prime ideal containing \(Q\). To prove this, it suffices to show that \(\sqrt{Q}\) is prime. Let \(xy \in \sqrt{Q}\). Then \((xy)^m \in Q, m \gt 0\), which implies that either \(x^m \in Q\) or \(y^{mn} \in Q, n \gt 0\); i.e. \(x \in \sqrt{Q}\) or \(y \in \sqrt{Q}\). If \(P = \sqrt{Q}\), then \(Q\) is said to be `\(P\)-primary`.
+
+Examples:
+
+(i) \(0\) and \(P^n\) are primary in \(\mathbb{Z}\), where \(P\) is a prime number.
+(ii) Let \(A = k[x, y]\) and \(Q = (x, y^2)\). Then, \(A/Q \cong k[y]/(y^2)\), in which all zero-divisors are multiples of \(y\), hence nilpotent. Hence, \(Q\) is primary and its radical \(P = (x, y)\) is such that \(P^2 \subset Q \subset P\), so that a primary ideal is not necessarily a prime power.
+(iii) Let \(I = (X^{2}, XY), \sqrt{I} = X\). \(I\) is not primary because \(XY \in I\), but \(X \notin I\) and \(Y^{n} \notin I\).
+
+If \(\sqrt{P}\) is maximal, then \(P\) is primary. In particular, the powers of a maximal ideal \(M\) are \(M\)-primary.
 
 # Integral dependence and valuations
 
@@ -124,9 +131,12 @@ This is termed as integral dependence. \(\varphi : A \rightarrow B\) is finite, 
 C is termed nonsingular if \((\partial f/\partial x, \partial f/\partial y) \neq 0\) for \(P \in C\), so that \(C\) has a well-defined tangent at every point \(P\).
 
 \(XY = 1\) is an example of something that is algebraically closed, but not integrally closed. It can be perturbed as \((X + \epsilon Y) Y = 1\) to avoid the unlucky accident of a "missing zero" over \(X = 0\).
+
 # Chain conditions
 
 # Noetherian rings
+
+In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
 
 # Artin rings
 
