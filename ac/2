@@ -120,11 +120,18 @@ If \(Q_i\) are \(P\)-primary, then so is \(\bigcap_i Q_i\). To prove this, notic
 
 Let \(Q\) be \(P\) primary, and \(x \in A\). Then:
 
-(i) If \(x \in Q\), then \((Q : x) = (1)\).
+(i) If \(x \in Q\), then the [ideal quotient](/ac/1#operations-on-ideals) \((Q : x) = (1)\).
 (ii) If \(x \notin Q\) then \((Q : x)\) is \(P\)-primary, and hence \(\sqrt{(Q : x)} = P\).
 (iii) If \(x \notin P\), then \((Q : x) = Q\).
 
 Let us prove (iii), since (i) and (ii) are obvious. Let \(y \in (Q : x)\) and \(xy \in Q\), and hence, since \(x \notin Q\), \(y \in P\). Hence, \(Q \subseteq (Q : x) \subseteq P\); taking radicals, we get \(\sqrt{(Q : x)} = P\). Let \(yz \in (Q : x)\) so that \(y \notin P\); then \(xyz \in Q\), hence \(xz \in Q\) and \(z \in (Q : x)\).
+
+The `primary decomposition` of ideal \(I\) is given by finite intersection of primary ideals:
+\[I = \bigcap_i Q_i\]
+
+An ideal is said to be `decomposable` if such a decomposition exists.
+
+`First uniqueness theorem`: Let \(I\) be decomposable, and \(I = \bigcap_i Q_i\) be its `minimal priamry decomposition`. Let \(P_i = \sqrt{Q_i}\); then prime ideals \(P_i\) are precisely the ones that occur in the set \(\sqrt{(I : x)}\), for \(x \in A\), and are hence independent of a particular primary decomposition of \(I\). To prove this, let \(x \in A\), so that \((I : x) = \bigcap_i (Q_i : x)\). Hence \(\sqrt{(I : x)} = \sqrt{\bigcap_i (Q_i : x)} = \bigcap_{x \notin Q_j} P_j\). Suppose \(\sqrt{(I : x)}\) is prime; then \(\sqrt{(I : x)} = P_j\), for some \(j\). Hence, every prime ideal of the form \(\sqrt{(I : x)}\) is one of \(P_j\). Conversely, for each \(i\), there exists \(x_i \notin Q_i\), \(x_i = \bigcap_{i \neq j} Q_j\), since the decomposition is minimal. Hence, \(\sqrt{(I : x_i)} = P_i\).
 
 # Integral dependence and valuations
 
