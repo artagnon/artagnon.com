@@ -114,7 +114,17 @@ Examples:
 (ii) Let \(A = k[x, y]\) and \(Q = (x, y^2)\). Then, \(A/Q \cong k[y]/(y^2)\), in which all zero-divisors are multiples of \(y\), hence nilpotent. Hence, \(Q\) is primary and its radical \(P = (x, y)\) is such that \(P^2 \subset Q \subset P\), so that a primary ideal is not necessarily a prime power.
 (iii) Let \(I = (x^{2}, xy), \sqrt{I} = x\). \(I\) is not primary because \(xy \in I\), but \(x \notin I\) and \(y^{n} \notin I\).
 
-If \(\sqrt{P}\) is maximal, then \(P\) is primary. In particular, the powers of a maximal ideal \(M\) are \(M\)-primary.
+If \(\sqrt{P}\) is maximal, then \(P\) is primary. In particular, the powers of a maximal ideal \(M\) are \(M\)-primary. To prove this, let \(\sqrt{I} = M\). The image of \(M\) in \(A/I\) is the nilradical of \(A/I\), and hence \(A/I\) only has one prime ideal. Every element of \(A\) is either unit or nilpotent, so every zero-divisior of \(A\) is nilpotent.
+
+If \(Q_i\) are \(P\)-primary, then so is \(\bigcap_i Q_i\). To prove this, notice that \(\sqrt{Q} = \sqrt{\bigcap_i Q_i} = \bigcap_i \sqrt{Q_i} = P\). Let \(xy \in Q\), \(y \notin Q\). Then, for some \(i\), we have \(xy \in Q_i\) and \(y \notin Q_i\). Hence, \(x \in P\) since \(Q_i\) is primary.
+
+Let \(Q\) be \(P\) primary, and \(x \in A\). Then:
+
+(i) If \(x \in Q\), then \((Q : x) = (1)\).
+(ii) If \(x \notin Q\) then \((Q : x)\) is \(P\)-primary, and hence \(\sqrt{(Q : x)} = P\).
+(iii) If \(x \notin P\), then \((Q : x) = Q\).
+
+Let us prove (iii), since (i) and (ii) are obvious. Let \(y \in (Q : x)\) and \(xy \in Q\), and hence, since \(x \notin Q\), \(y \in P\). Hence, \(Q \subseteq (Q : x) \subseteq P\); taking radicals, we get \(\sqrt{(Q : x)} = P\). Let \(yz \in (Q : x)\) so that \(y \notin P\); then \(xyz \in Q\), hence \(xz \in Q\) and \(z \in (Q : x)\).
 
 # Integral dependence and valuations
 

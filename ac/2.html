@@ -32,7 +32,7 @@
         <h1>
           [ac/2] Modules of fractions, Primary decomposition
         </h1>
-        <time datetime="2019-03-02">Last updated: Sat, 2 Mar 2019</time><br /><time datetime="2019-02-18">Created: Mon, 18 Feb 2019</time>
+        <time datetime="2019-03-03">Last updated: Sun, 3 Mar 2019</time><br /><time datetime="2019-02-18">Created: Mon, 18 Feb 2019</time>
         <h2 id="rings-of-fractions">
           Rings of fractions
         </h2>
@@ -235,7 +235,27 @@
           </li>
         </ol>
         <p>
-          If \(\sqrt{P}\) is maximal, then \(P\) is primary. In particular, the powers of a maximal ideal \(M\) are \(M\)-primary.
+          If \(\sqrt{P}\) is maximal, then \(P\) is primary. In particular, the powers of a maximal ideal \(M\) are \(M\)-primary. To prove this, let \(\sqrt{I} = M\). The image of \(M\) in \(A/I\) is the nilradical of \(A/I\), and hence \(A/I\) only has one prime ideal. Every element of \(A\) is either unit or nilpotent, so every zero-divisior of \(A\) is nilpotent.
+        </p>
+        <p>
+          If \(Q_i\) are \(P\)-primary, then so is \(\bigcap_i Q_i\). To prove this, notice that \(\sqrt{Q} = \sqrt{\bigcap_i Q_i} = \bigcap_i \sqrt{Q_i} = P\). Let \(xy \in Q\), \(y \notin Q\). Then, for some \(i\), we have \(xy \in Q_i\) and \(y \notin Q_i\). Hence, \(x \in P\) since \(Q_i\) is primary.
+        </p>
+        <p>
+          Let \(Q\) be \(P\) primary, and \(x \in A\). Then:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            If \(x \in Q\), then \((Q : x) = (1)\).
+          </li>
+          <li>
+            If \(x \notin Q\) then \((Q : x)\) is \(P\)-primary, and hence \(\sqrt{(Q : x)} = P\).
+          </li>
+          <li>
+            If \(x \notin P\), then \((Q : x) = Q\).
+          </li>
+        </ol>
+        <p>
+          Let us prove (iii), since (i) and (ii) are obvious. Let \(y \in (Q : x)\) and \(xy \in Q\), and hence, since \(x \notin Q\), \(y \in P\). Hence, \(Q \subseteq (Q : x) \subseteq P\); taking radicals, we get \(\sqrt{(Q : x)} = P\). Let \(yz \in (Q : x)\) so that \(y \notin P\); then \(xyz \in Q\), hence \(xz \in Q\) and \(z \in (Q : x)\).
         </p>
         <h2 id="integral-dependence-and-valuations">
           Integral dependence and valuations
