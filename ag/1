@@ -6,6 +6,26 @@ Informally speaking, the collection of all functions on all open subsets of a sp
 (b) In terms of stalks.
 (c) In terms of a base of a topology.
 
-# The sheaf of differentiable functions
+# Germ of differentiable functions
 
-The ring of functions on each open set \(U \subset X\) of topological space \(X\) is written as \(\mathscr{O}(U)\).
+The ring of functions on each open set \(U \subset X\) of topological space \(X\) is written as \(\mathscr{O}(U)\). If \(W \hookrightarrow V \hookrightarrow U\), then the following diagram commutes:
+
+\[
+\begin{xy}
+\xymatrix{
+\mathscr{O}(U)\ar[rr]^{\text{res}_{U, V}}\ar[rd]_{\text{res}_{U, W}} & & \mathscr{O}(V)\ar[ld]^{\text{res}_{V, W}} \\
+& \mathscr{O}(W) &
+} 
+\end{xy}
+\]
+
+Let \(U_i\) be a covering of \(U\), and \(f_1, f_2 \in \mathscr{O}(U)\). If \(f_1 = res_{U, U_i} f_2\), then \(f_1 = f_2\). Thus, we can identify functions by looking at them on a covering of open sets.
+
+Given \(f_i \in \mathscr{O}(U_i)\) all agreeing pairwise, we can glue them together to make one differentiable function on all of \(U\), \(f \in \mathscr{O}(U)\).
+
+`Germ` of a differentiable function \(f\) at a point \(p\) is defined as:
+\[\{f, \text{open } U \mid p \in U, f \in \mathscr{O}(U)\}\]
+
+modulo the relation \((f, U) \sim (g, V)\), if there is some open set \(W \subset U\), \(p \in V\), such that \(f|_W = g|_W\) (i.e. \(\text{res}_{U, W} f = \text{res}_{V, W} g\)). Intuitively, two functions that are the same in an open neighborhood of \(p\), but different elsewhere, have the same germ. We call this set of germs at \(p\) the `stalk` at \(p\), denoted by \(\mathscr{O}_p\). If \(f\) is defined on \(U\) and \(g\) is defined on \(V\), then \(f + g\) is defined on \(U \cap V\). If additionally, \(p \in U\) then we get the map \(\mathscr{O}(U) \rightarrow \mathscr{O}_p\). We're talking about germs as [colimits](/ct/2#coproducts-and-colimits). Moreover, \(\mathscr{O}_p\) is a local ring, since it has exactly one maximal ideal \(m_p \subset \mathscr{O}_p\), the ideal of germs vanishing at \(p\). We can interpret the value of the function, or the value of the germ, at a point, as an element of the local ring modulo the maximal ideal: this doesn't work for all sheaves, but does work for things behaving like sheaves of functions, formalized as a `locally ringed space`.
+
+# Definition of presheaf and sheaf
