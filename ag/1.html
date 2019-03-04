@@ -64,11 +64,16 @@
           \]
         </p>
         <p>
-          Let \(U_i\) be a covering of \(U\), and \(f_1, f_2 \in \mathscr{O}(U)\). If \(f_1 = res_{U, U_i} f_2\), then \(f_1 = f_2\). Thus, we can identify functions by looking at them on a covering of open sets.
+          Two additional facts:
         </p>
-        <p>
-          Given \(f_i \in \mathscr{O}(U_i)\) all agreeing pairwise, we can glue them together to make one differentiable function on all of \(U\), \(f \in \mathscr{O}(U)\).
-        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            Let \(U_i\) be a covering of \(U\), and \(f_1, f_2 \in \mathscr{O}(U)\). If \(f_1 = res_{U, U_i} f_2\), then \(f_1 = f_2\). Thus, we can identify functions by looking at them on a covering of open sets.
+          </li>
+          <li>
+            Given \(f_i \in \mathscr{O}(U_i)\) all agreeing pairwise, we can glue them together to make one differentiable function on all of \(U\), \(f \in \mathscr{O}(U)\).
+          </li>
+        </ol>
         <p>
           `Germ` of a differentiable function \(f\) at a point \(p\) is defined as:
           \[\{f, \text{open } U \mid p \in U, f \in \mathscr{O}(U)\}\]
@@ -79,6 +84,100 @@
         <h2 id="definition-of-presheaf-and-sheaf">
           Definition of presheaf and sheaf
         </h2>
+        <p>
+          We will be considering sheafs on sets, and this can be done without loss in generality. The fact that \(\mathscr{F}\) is a presheaf or sheaf on topological space \(X\) is written as:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \mathscr{F}\ar@{-}[d] \\
+          X
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          A `presheaf` \(\mathscr{F}\) on topological space \(X\) is the following data:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            The set \(\mathscr{F}(U) = \Gamma(U, \mathscr{F}) = H^0(U, \mathscr{F}\). The elements of \(\mathscr{F}(U)\) are called the `sections` of \(\mathscr{F}\).
+          </li>
+          <li>
+            For each inclusion \(U \hookrightarrow V\) of open sets, we have the restriction map \(\text{res}_{V, U}: \mathscr{F}(V) \rightarrow \mathscr{F}(U)\).
+          </li>
+        </ol>
+        <p>
+          The data is required to satisfy identity and composition:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            \(\text{res}_{U, U} = \text{id}_{\mathscr{F}(U)}\).
+          </li>
+          <li>
+            For the inclusion \(W \hookrightarrow V \hookrightarrow U\), the following diagram commutes:
+          </li>
+        </ol>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \mathscr{F}(U)\ar[rr]^{\text{res}_{U, V}}\ar[rd]_{\text{res}_{U, W}} & & \mathscr{F}(V)\ar[ld]^{\text{res}_{V, W}} \\
+          & \mathscr{F}(W) &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          A presheaf is the same thing as a contravariant functor.
+        </p>
+        <p>
+          The stalk of a presheaf \(\mathscr{F}\) is defined to be the set of germs of \(\mathscr{F}\) at point \(p\), denoted \(\mathscr{F}_p\):
+          \[\{f, \text{open } U \mid p \in U, f \in \mathscr{F}(U)\}\]
+        </p>
+        <p>
+          modulo the relation \((f, U) \sim (g, V)\), where \(f|_W = g|_W\).
+        </p>
+        <p>
+          Another equivalent definition in terms of colimits is:
+          \[\mathscr{F}_p = \underset{\rightarrow}{\text{lim}} \mathscr{F}(U)\]
+        </p>
+        <p>
+          If \(p \in U, f \in \mathscr{F}(U)\), then \(\mathscr{F}_p\) is called the ring of germs of \(f\) at point \(p\).
+        </p>
+        <p>
+          A sheaf is defined as a presheaf along with two additional axioms:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            Identity axiom: Let \(U_i\) be a covering of \(U\), and \(f_1, f_2 \in \mathscr{F}(U)\). If \(f_1 = res_{U, U_i} f_2\), then \(f_1 = f_2\).
+          </li>
+          <li>
+            Gluability axiom: Given \(f_i \in \mathscr{F}(U_i)\) all agreeing pairwise, we can glue them together to make one differentiable function on all of \(U\), \(f \in \mathscr{F}(U)\).
+          </li>
+        </ol>
+        <p>
+          Here, the identity axiom asserts that there is atmost one way to glue, and the gluability axiom asserts that there is atleast one way to glue.
+        </p>
+        <p>
+          As an example, consider \(\mathscr{F}(U \cup V) = \mathscr{F}(U) \times \mathscr{F}(V)\). Here, we use the fact that \(\mathscr{F}(\phi)\) is the final object.
+        </p>
+        <p>
+          The two axioms for a sheaf can be interpreted as "exactnesss" of the "[equalizer](/ct/2#limits-and-products) exact sequence":
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \bullet \ar[r] & \mathscr{F}(U) \ar[r] & \prod \mathscr{F}(U_i)\ar@<-.5ex>[r]\ar@<.5ex>[r] & \prod \mathscr{F}(U_i \cap U_j)
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          where identity is exactness over \(\mathscr{F}(U)\), and gluability is exactness over \(\prod \mathscr{F}(U_i)\).
+        </p>
       </div>
       <div id="sidebar">
         <ul>
