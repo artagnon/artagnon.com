@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>artagnon.com: ag/hart</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/design/all.css" media="all" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 600px)" />
+    <link rel="stylesheet" href="/design/print.css" media="only print" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans|Roboto+Mono" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/design/claytext.js"></script>
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"], "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} }, tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}, TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>
+          Notes from Hartshorne
+        </h1>
+        <time datetime="2019-03-04">Last updated: Mon, 4 Mar 2019</time><br /><time datetime="2019-02-09">Created: Sat, 9 Feb 2019</time>
+        <p>
+          Modern algebraic geometry is built on the theory of schemes and cohomology. The subject is intricately linked with commutative algebra and homological algebra.
+        </p>
+        <h2 id="affine-varieties">
+          Affine varieties
+        </h2>
+        <p>
+          Let \(k\) be an algebraically closed field. Then `affine variety` over an \(n\)-space, \(A_k^n\), is defined as the set of \(n\)-tuples over the set \(k\). \(P = (a_1, \ldots, a_n)\) is called a point in \(A^n\), and \(a_i\)s are called coordinates.
+        </p>
+        <p>
+          Let \(A = k[x_1, \ldots, x_n]\) be a polynomial ring in \(n\)-space over \(k\). Elements of \(A\) are then functions from affine \(n\)-space to \(k\), defined by \(f(P) = f(a_1, \ldots, a_n)\), where \(f \in A, P \in A^n\). The `zero-set` of \(T \in A\) is defined as the set of simultaneous zeros of \(f\):
+          \[Z(T) = \{P \in A^n \mid f(P) = 0 \quad \forall f \in T\}\]
+        </p>
+        <p>
+          Note that if \(a\) is an ideal, then \(Z(a) = Z(T)\).
+        </p>
+        <p>
+          The set \(Y \in A^n\) is called an `algebraic set` if there exists \(T \subseteq A\) such that \(Y = Z(T)\). The union and intersection of any two algebraic sets is an algebraic set, as is the empty set, and the whole space.
+        </p>
+        <p>
+          Define the `Zariski topology` in \(A^n\) by taking, as open subsets, the complement of algebraic sets. Considering the Zariski topology on the affine line \(A^1\), we note that every ideal \(A = k[x]\) is principal, so every algebraic set is the set of zeros of a single polynomial. Thus algebraic sets in \(A^1\) are just the finite subsets and the whole space; in particular, this is not [Hausdorff](/gn#hausdorff-space).
+        </p>
+        <p>
+          The nonempty subset \(Y\) of a topological space \(X\) is `irreducible` if it cannot be expressed as the union, \(Y = Y_1 \cup Y_2\), of two proper closed sets. The empty set is not irreducible, but \(A^1\) is.
+        </p>
+        <p>
+          An affine variety can then be expressed as an irreducible subset of \(A^n\). An open subset of an affine variety is called `quasi-affine`.
+        </p>
+        <p>
+          An `ideal` \(I(Y)\) for \(Y \subseteq A^n\) is defined as:
+          \[I(Y) = \{f \in A \mid f(P) = 0 \quad \forall P \in Y\}\]
+        </p>
+        <p>
+          So, we have the functions \(Z\) and \(I\), \(Z\) mapping subsets of \(A\) to an algebraic set, and \(I\) mapping the subsets of \(A^n\) to ideals. Their properties can be summarized as follows:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            If \(T_1 \subseteq T_2\), then \(Z(T_2) \subseteq Z(T_1)\).
+          </li>
+          <li>
+            If \(Y_1 \subseteq Y_2\), then \(I(Y_2) \subseteq I(Y_1)\).
+          </li>
+          <li>
+            \(I(Y_1 \cup Y_2) = I(Y_1) \cap I(Y_2)\).
+          </li>
+          <li>
+            \(I(Z(a)) = \sqrt{a}\), a direct consequence of the Nullstellansatz.
+          </li>
+          <li>
+            \(Z(I(Y)) = \bar{Y}\), the closure of \(Y\).
+          </li>
+        </ol>
+        <p>
+          There is a one-to-one correspondence between the algebraic sets in \(A^n\) and the radical ideals in \(A\), given by \(Y \mapsto I(Y)\), and \(a \mapsto Z(a)\). Furthermore, the set is irreducible iff its ideal is a prime ideal. For example, \(A^n\) is irreducible, since it corresponds to the zero ideal in \(A\).
+        </p>
+        <p>
+          If \(f\) is an irreducible polynomial in \(k = A[x_1, \ldots, x_n]\), then the affine variety is defined as \(Y = Z(f)\), an \(n\)-dimensional hypersurface.
+        </p>
+        <p>
+          Let \(Y \subseteq A^n\) be an affine algebraic set. Then, the `affine coordinate ring`, \(A(Y)\), is defined to be \(A/I(Y)\). Furthermore, if \(Y\) is an affine variety, then \(A(Y)\) is an integral domain, and \(A(Y)\) is also a finitely generated \(k\)-algebra.
+        </p>
+        <p>
+          A topological space is termed `noetherian` if it satisfies the descending chain condition. For instance, \(A^n\) is noetherian. In this space, every subspace \(Y\) can be expressed as a union of irreducible subspaces, \(Y = Y_1 \cup \ldots \cup Y_n\). If we also require that \(Y_i \not\subseteq Y_j\) for \(i \neq j\), then \(Y_i\) is uniquely determined; they are termed the `irreducible components` of \(Y\).
+        </p>
+        <p>
+          Every algebraic set of \(A^n\) can be expressed uniquely as a union of varieties, with no single variety containing the other.
+        </p>
+        <p>
+          The `dimension` of an affine or quasi-affine variety is equal to the dimension of the topological space, and this is exactly the supremum integer \(n\) in \(Z_0 \subset \ldots \subset Z_n\), the irreducible closed subsets of the topological space. As an example, dimension of \(A^n\) is \(n\).
+        </p>
+        <p>
+          The `height` of a prime ideal \(p\) is defined as the supermum of \(n\) in the chain of distinct prime ideals \(p_0 \subset p_1 \subset \ldots \subset p_n = p\). The `Krull dimension` of \(A\) is the supremum of heights of the prime ideals in \(A\).
+        </p>
+        <p>
+          The dimension of an affine algebraic set, \(\text{dim } Y\), is equal to the dimension of its affine coordinate ring \(A(Y)\).
+        </p>
+        <p>
+          Let \(k\) be a field, and \(B\) be an integral domain which is a finitely-generated \(k\)-algebra. Then:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            Dimension of \(B\) is equal to the `transcendence degree` of the quotient field \(K(B)\) of \(B\) over \(k\).
+          </li>
+          <li>
+            For any prime ideal \(p \in B\), we have \(\text{height } p + \text{dim}(B \mathbin{/} p) = \text{dim}(B)\).
+          </li>
+        </ol>
+        <p>
+          If \(Y\) is a quasi-affine variety, then \(\text{dim}(Y) = \text{dim}(\bar{Y})\). Let \(Z_0 \subset \ldots \subset Z_n\) be a sequence of distinct closed irreducible sets in \(Y\), \(\bar{Z_0} \subset \ldots \subset \bar{Z_n}\) be that of \(\bar{Y}\). \(Y\) is finite, so we can choose a maximal \(n = \text{dim}(Y)\). In that case, \(Z_0\) must be a point \(P\), and the chain will also be maximal. Now, \(P_0\) corresponds to the maximal ideal in affine coordinate ring \(A(\bar{Y})\) of \(\bar{Y}\). \(Z_i\)s correspond to prime ideals contained in \(m\), so \(\text{height}(m) = n\). Since \(P\) is a point in affine space, \(A(\bar{Y}) \mathbin{/} m \cong k\). Hence, \(\text{dim}(A(\bar{Y})) = \text{dim}(\bar{Y}) = n\), and \(\text{dim}(Y) = \text{dim}(\bar{Y}) = n\).
+        </p>
+        <p>
+          What follows is a bunch of results:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            `Krull's Haputidealsatz`: Let \(A\) be a noetherian ring, and \(f \in A\) be an element which is neither a zero-divisor nor unit. Then, every minimal prime ideal containing \(f\) has height \(1\).
+          </li>
+          <li>
+            Every noetherian integral domain \(A\) is a UFD iff every prime ideal of height \(1\) is principal.
+          </li>
+          <li>
+            A variety \(Y \in A^n\) has dimension \(n - 1\) iff it is the zero set of a single nonconstant irreducible polynomial in \(A\).
+          </li>
+        </ol>
+        <h2 id="projective-varieties">
+          Projective varieties
+        </h2>
+        <p>
+          We proceed as before, but in the projective space \(P_k^n\), the set of equivalence classes of \((n + 1)\)-tuples, denoted \((a_0, \ldots, a_n)\), nonzero elements of \(k\) with the equivalence relation \((a_0, \ldots, a_n) \sim (\lambda a_0, \ldots, \lambda a_n)\), for all \(\lambda \in k\). An element of \(P^n\) is called a point, and the \((n + 1)\)-tuple \((a_0, \ldots, a_n)\) in the equivalence class of \(P\) is called set of `homogenous coordinates` for \(P\).
+        </p>
+        <p>
+          A `graded ring` \(S\) is a ring together with the decomposition \(S = \bigoplus_{d \geq 0} S_d\), the direct sum of abelian groups, such that for \(d, e \geq 0\), \(S_d . S_e \subseteq S_{d + e}\). An element of \(S_d\) is called a `homogenous element` of degree \(d\). Ideal \(a \subseteq S\) is a `homogenous ideal` if \(a = \bigoplus_{d \geq 0} (a \cap S_d)\). An ideal is said to be homogenous if it is generated by homogenous elements. The sum, product, intersection, and radical of homogenous ideals yields a homogenous ideal.
+        </p>
+        <p>
+          A polynomial \(f \in S\) cannot be used to define a polynomial in \(P^n\) because of the nonuniqueness of homogenous coordinates. However, if \(f\) is a `homogenous polynomial` of degree \(d\), then \(f(\lambda a_0, \ldots, \lambda a_n) = \lambda^d f(a_0, \ldots, a_n)\), so the property of \(f\) being zero depends only on the equivalence class of \((a_0, \ldots, a_n)\). Thus, if \(T \in S\) is a set of homogenous elements, the zero-set \(Z\) can be defined as:
+          \[Z(T) = \{P \in P^n \mid f(P) = 0 \quad \forall f \in T\}\]
+        </p>
+        <p>
+          Since \(S\) is noetherian, any set of homogenous elements \(T\) has a finite subset \(f_1, \ldots, f_r\) such that \(Z(T) = Z(f_1, \ldots, f_r)\).
+        </p>
+        <p>
+          Subset \(Y \subset P^n\) is an `algebraic set` if there exists a set of homogenous elements \(T\) such that \(Y = Z(T)\). The union of any two algebraic sets is an algebraic set, as is the intersection. The Zariski topology on \(P^n\) is defined in the usual way.
+        </p>
+        <p>
+          A `projective variety` is the irreducible algebraic sets of \(P^n\) along with the induced topology. An open subset of a projective variety is a `quasi-projective variety`. If \(Y \subset P^n\) is a subset, we define the `projective ideal`, \(I(Y)\) to be the ideal \(\{f | f \text{ is homogenous}, f(P) = 0 \, \forall P \in Y\}\). If \(Y\) is an algebraic set, we define the `homogenous coordinate ring` to be \(S(Y) = S/I(Y)\).
+        </p>
+        <p>
+          We want to show that every projective \(n\)-space has a covering by the affine \(n\)-space, and hence, every projective (or quasi-projective) variety has a covering by an affine (or quasi-affine) variety. If \(f \in S\) is a linear homogenous polynomial, then the zero set of \(f\) is called a `hyperplane`; we denote the zero-set of \(x_i\) to be \(H_i\). Let \(U_i = P^n - H_i\) be open subsets. Then, \(P^n\) is covered by \(U_i\), since if \(P = (a_0, \ldots, a_n)\) is a point, then atleast one \(a_i\) is nonzero, and hence \(P \in U_i\). We define mapping \(\varphi_i : U_i \rightarrow A^n\), such that if \(P \in U_i\) and \(\varphi_i(P) = Q\), where \(Q\) is the point defined by:
+          \[Q = \left(\frac{a_0}{a_i}, \ldots, \frac{a_n}{a_i}\right)\]
+        </p>
+        <p>
+          with \(a_i/a_i\) omitted. Note that \(\varphi_i\) is well-defined since \(a_j/a_i\) is independent of the choice of homogenous coordinates.
+        </p>
+        <p>
+          \(\varphi_i\) is a homeomorphism of \(U_i\) with its induced topology to \(A^n\) its Zariski topology. \(\varphi_i\) is clearly bijective, so it will be sufficient to show that closed sets of \(U_i\) are identified with the closed sets of \(A^n\) by \(\varphi_i\). We can assume that \(i = 0\) and write \(U\) for \(U_0\), \(\varphi\) for \(\varphi_0\); then we have \(\varphi : U \rightarrow A^n\). Let \(A = k[y_1, \ldots, y_n]\), \(\alpha\) be a map \(S^h\), the set of homogenous elements of \(S\) to \(A\), \(\beta\) be a map from \(A\) to \(S^h\). Set \(\alpha(f) = [1, y_1, \ldots, y_n]\) and \(\beta(g) = x_0^e g(x_1/x_0, \ldots, x_n/x_0)\). Let \(Y \subseteq U\), and let \(\bar{Y}\) be its closure in \(P^n\). This is an algebraic set so \(\bar{Y} = Z(T)\), for some subset \(T \subseteq S^h\). Let \(T' = \alpha(T)\), so \(\varphi(Y) = Z(T')\). Checking the converse as well yields the result that both \(\varphi\) and \(\varphi^{-1}\) are closed maps, so \(\varphi\) is a homeomorphism.
+        </p>
+        <h2 id="morphisms">
+          Morphisms
+        </h2>
+        <p>
+          A function \(f: Y \rightarrow k\) is `regular` at point \(P \in Y\), if \(P \in U \subseteq Y\) for open neighborhood \(U\), and \(f, g \in A = k[x_1, \ldots, x_n]\), \(h\) is nowhere zero on \(U\), and \(f = g \mathbin{/} h\). \(f\) is regular on \(Y\) if it is regular on every point of \(Y\).
+        </p>
+        <p>
+          A regular function is continuous when \(k\) is identified with \(A_k^1\) in its Zariski topology. It suffices to show that \(f^{-1}\) of a closed set is closed. A closed set of \(A_k^1\) is a finite set of points, so it's enough to show that \(f^{-1}(a) = \{P \in Y \mid f(P) = a\}\), for all \(a \in k\). Subset \(Z\) of a topological space \(Y\) is closed iff it can be covered by open subset \(U\), such that \(Z \cap U\) is closed in \(U\) for every \(U\). Let \(U\) be an open set on which \(f\) can be expressed as \(f = g \mathbin{/} h\), \(g, h \in A\), \(h\) nowhere zero in \(U\). So, \(f^{-1}(a) \cap U = \{P \in U \mid g(P) \mathbin{/} h(P) = a\}\). But \(g(P) \mathbin{/} h(P) = a\) iff \((g - ah)(P) = 0\). Hence, \(f^{-1}(a) \cap U = Z(g - ah) \cap U\), and \(f^{-1}(a)\) is closed in \(Y\). A similar argument holds for a quasi-projective variety.
+        </p>
+        <p>
+          If \(f, g\) are regular functions in variety \(X\), and \(f = g\) in some subset \(U \subseteq X\), then \(f = g\) everywhere.
+        </p>
+        <p>
+          If \(X, Y\) are two `varieties` (affine, projective, quasi-affine, or quasi-projective), and \(\varphi : X \rightarrow Y\) a morphism, such that for each open subset \(V \subseteq Y\), and every regular function \(f : V \rightarrow k\), the function \(f \circ \varphi : \varphi^{-1}(V) \rightarrow k\) is regular. This defines the isomorphism \(\varphi : X \rightarrow Y\) and its inverse \(\psi : Y \rightarrow X\) in the `category of varieties`. Isomorphisms are necessarily bijective and bicontinuous.
+        </p>
+        <p>
+          Let \(Y\) be a variety, \(\mathcal{O}(Y)\) the ring of regular functions on \(Y\). If \(P\) is a point of \(Y\), we define local ring of \(P\) on \(Y\), \(\mathcal{O}_P\), as the `ring of germs` of regular functions of \(Y\) near \(P\). An element of \(\mathcal{O}_P\) is the pair \(\langle U, f \rangle\) such that \(U\) is an open subset of \(Y\) near \(P\), and \(f\) is a regular function on \(U\). We identify two such pairs \(\langle U, f \rangle\) and \(\langle V, g \rangle\) if \(f = g\) in \(U \cap V\).
+        </p>
+        <p>
+          \(\mathcal{O}_P\) is indeed a local ring; its maximal ideal \(m\) is the set of germs of regular functions that vanish at \(P\). If \(f(P) \neq 0\), then \(1/f\) is regular on some neighborhood of \(P\). The residue field \(\mathcal{O}_P \mathbin{/} m \cong k\).
+        </p>
+        <p>
+          Elements of `function field` \(K(Y)\) of variety \(Y\) are the equivalence classes of the pair \(\langle U, f \rangle\), where \(U\) is an open neighborhood of \(Y\), and \(f\) is a regular function on \(U\).
+        </p>
+        <p>
+          \(K(Y)\) is a field that can be made into a ring by defining addition and multiplication. Set \(V = U - (U \cap Z(f))\) so that \(1/f\) is a regular function on \(V\). Then, \(\langle V, 1/f \rangle\) is the inverse of \(\langle U, f \rangle\).
+        </p>
+        <p>
+          By restricting functions, we obtain the natual map \(\mathcal{O}(Y) \rightarrow \mathcal{O}_P \rightarrow K(Y)\) which is injective. We normally treat \(\mathcal{O}(Y), \mathcal{O}_P\) as subrings of \(K(Y)\). If we replace \(Y\) by an isomorphic variety, we obtain isomorphic rings, and say that \(\mathcal{O}(Y), \mathcal{O}_P, K(Y)\) are invariants of the variety \(Y\).
+        </p>
+        <p>
+          Let \(A(Y)\) be the affine coordinate ring, and \(S(Y)\) be the homogenous coordinate ring (as in projective spaces). Then, \(A(Y) = \mathcal{O}(Y)\), but \(S(Y)\) is not invariant; it depends on the embedding of \(Y\) in the projective space.
+        </p>
+        <p>
+          Let \(Y \subseteq A^n\) be an affine variety, and \(A(Y)\) the affine coordinate ring. Then:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            \(\mathcal{O}(Y) \cong A(Y)\).
+          </li>
+          <li>
+            For each point \(P \in Y\), let \(m_P \subseteq A(Y)\) be the set of functions vanishing at \(P\). Then, there is a one-to-one correspondence between the points of \(Y\) and the maximal ideals of \(A(Y)\), given by \(P \mapsto m_P\).
+          </li>
+          <li>
+            For each \(P\), \(\mathcal{O}_P \cong A(Y)_{m_P}\), and \(\text{dim } \mathcal{O}_P = \text{dim } Y\).
+          </li>
+          <li>
+            \(K(Y)\) is isomorphic to the quotient field of \(A(Y)\), and hence \(K(Y)\) is a finitely generated extension field of \(k\), with transcendence degree = \(\text{dim } Y\).
+          </li>
+        </ol>
+        <p>
+          To prove (a), notice that every polynomial \(f\) is regular on \(A^n\), and hence \(Y\); thus, the kernel of the injective homomorphism \(A \rightarrow \mathcal{O}(Y)\) is just \(I(Y)\).
+        </p>
+        <p>
+          To prove (b), notice that there is a one-to-one correspondence between points of \(Y\) and maximal ideals of \(A(Y)\), passing to the quotient \(I(Y)\). Identifying \(A(Y)\) with regular functions on \(Y\), the maximal ideal corresponding to \(P\) is \(m_P = \{f \in A(Y) \mid f(P) = 0\}\).
+        </p>
+        <p>
+          To prove (c), notice that, for every point \(P\), there is a natural map \(A(Y)_{m_P} \rightarrow \mathcal{O}_P\) which is injective; it is also surjective by definition of a regular function. Hence, \(\mathcal{O}_P \cong A(Y)_{m_P}\). Now, \(\text{dim } \mathcal{O}_P = \text{height } m_P\). Since \(A(Y) \mathbin{/} m_P \cong k\), \(\text{dim } \mathcal{O}_P = \text{dim } Y\).
+        </p>
+        <p>
+          From (c), it follows that the quotient field of \(A(Y)\) is isomorphic to the quotient field of \(\mathcal{O}_P\), and this is equal to \(K(Y)\), because any rational function is in some \(\mathcal{O}_P\). Since \(A(Y)\) is a finitely generated \(k\)-algebra, \(K(Y)\) is a finitely generated field extension of \(k\). Furthermore, its transcendence degree equals \(\text{dim } Y\). This proves (d).
+        </p>
+        <p>
+          Let \(U_i \subseteq P^n\) be an open set defined by the equations \(x_i \neq 0\). Then, \(\varphi : U_i \rightarrow A^n\) is an isomorphism of varieties.
+        </p>
+        <p>
+          Let us introduce some notation. If \(S\) is a graded ring, and \(p\) is a homogenous prime ideal in \(S\), then \(S_{(p)}\) denotes the subring of elements of degree \(0\) in the localization of \(S\) with respect to multiplicative subset \(T\) consisting of homogenous elements of \(S \backslash (p)\). Notice that \(T\) has a natural grading given by \(\text{deg }(f/g) = \text{deg }f - \text{deg }g\), where \(f\) is homogenous in \(S\), and \(g \in T\). \(S_{(p)}\) is a local ring given by \((p . T^{-1} S) \cap S_{(p)}\). In particular, if \(S\) is a domain, then for \(p = (0)\), we obtain a field \(S_{((0))}\). Similarly, if \(f \in S\) is homogenous, \(S_{(f)}\) denotes a subring with elements of degree \(0\) in the localized ring \(S_{(f)}\).
+        </p>
+        <p>
+          Let \(Y \subseteq P^n\) be a projective variety with homogenous coordinate ring \(S(Y)\). Then:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            \(\mathcal{O}(Y) = k\).
+          </li>
+          <li>
+            For any point \(P \in S(Y)\), let \(m_P \in Y\) be the ideal generated by the set of homogenous \(f \in S(Y)\) such that \(f(P) = 0\). Then, \(\mathcal{O}_P = S(Y)_{(m_P)}\).
+          </li>
+          <li>
+            \(K(Y) \cong S(Y)_{((0))}\).
+          </li>
+        </ol>
+        <p>
+          Let \(U_i \subseteq P^n\) be the open set \(x_i \neq 0\), and let \(Y_i = Y \cap U_i\). \(U_i\) is isomorphic to \(A^n\), and \(Y_i\) is an affine variety. There is a natural isomorphism \(\varphi^*\) of the affine coordinate ring \(A(Y_i)\) with the localization \(S(Y)_{(x_i)}\) of the homogenous coordinate ring of \(Y\). First, make an isomorphism from \(f[y_1, \ldots, y_n]\) to \(f[x_1/x_0, \ldots, x_n/x_0]\) leaving out \(x_i/x_i\); this isomorphism sends \(I(Y)\) to \(I(Y)S_{(x_i)}\), so passing to the quotient, we obtain \(A(Y) \cong S(Y)_{x_i}\).
+        </p>
+        <p>
+          To prove (b), let \(P\) be any point, and choose \(i\) so that \(P \in Y_i\). Then, \(\mathcal{O}_P \cong A(Y_i)_{m'_P}\). where \(m'_P\) is the maximal ideal of \(Y_i\) corresponding to \(P\). Since \(\varphi_i^*(m'_P) = m_P . S(Y)_{x_i}\), \(x_i \notin m_P\), and localization is transitive, we obtain \(\mathcal{O}_P = S(Y)_{(m_P)}\).
+        </p>
+        <p>
+          To prove (c), notice that \(K(Y)\), which is equal to \(K(Y_i)\), which is the quotient field of \(A(Y)\). But by \(\varphi_i^*\), this is isomorphic to \(S(Y)_{((0))}\).
+        </p>
+        <p>
+          To prove (a), let \(f \in \mathcal{O}(Y)\) be a global regular function. For each \(i\), \(f\) is regular on \(Y_i\), so \(f \in A(Y_i)\). But we know that \(A(Y_i) \cong S(Y)_{(x_i)}\), so \(f\) can be written as \(g_i/x_i^{N_i}\), where \(g_i \in S(Y)\) is homogenous of degree \(N_i\). Thinking of \(\mathcal{O}(Y), K(Y), S(Y)\) as subrings of the quotient field \(L\) of \(S(Y)\), we get \(x_i^{N_i} f = S(Y)_{N_i}\). Now, choose \(N \geq \sum N_i\). Then, \(S(Y)_N\) is spanned as a \(k\)-vector space as monomials of degree \(N\) in \(x_0, \ldots, x_n\), and in any such mononomial atleast one \(x_i\) occurs as with power \(\geq N_i\). Thus, \(S(Y)_N . f^q \subseteq S(Y)_N \, \forall q \gt 0\) and \(x_0^N . f^q \subseteq S(Y) \, \forall q \gt 0\). This shows that a subring \(S(Y)[f]\) of \(L\) is contained in \(x_0^{-N} S(Y)\), which is a finitely-generated \(S(Y)\)-module. Since \(S(Y)\) is noetherian, \(S(Y)[f]\) is a finitely-generated \(S(Y)\)-module, and therefore, \(f\) is integral over \(S(Y)\). This means that there are elements \(a_0, \ldots, a_n \in S(Y)\) such that:
+          \[a_n f^n + \ldots + a_0 = 0\]
+        </p>
+        <p>
+          Now, \(S(Y)_0 = k\), so \(a_i \in k\) and \(f\) is algebraic over \(k\). But \(f\) is algebraically closed, so \(f \in k\), completing the proof.
+        </p>
+      </div>
+      <div id="sidebar">
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/ac">ac</a>
+          </li>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/cv">cv</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/sw">sw</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
