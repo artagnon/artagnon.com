@@ -25,9 +25,9 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
     div id="wrapper"
       div id="main"
         h1 #{title}
-        time datetime="#{isopubdate}" Last updated: #{pubdate}
+        time datetime="#{pubdateobj.strftime('%F')}" Last updated: #{pubdate}
         br
-        time datetime="#{isoauthdate}" Created: #{authdate}
+        time datetime="#{authdateobj.strftime('%F')}" Created: #{authdate}
         - paragraphs.each do |paragraph|
           - if paragraph.is_header?
             p class="header"
