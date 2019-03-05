@@ -32,7 +32,7 @@
         <h1>
           [ag/1] Sheaves
         </h1>
-        <time datetime="2019-03-04">Last updated: Mon, 4 Mar 2019</time><br /><time datetime="2019-03-04">Created: Mon, 4 Mar 2019</time>
+        <time datetime="2019-03-05">Last updated: Tue, 5 Mar 2019</time><br /><time datetime="2019-03-04">Created: Mon, 4 Mar 2019</time>
         <p>
           Informally speaking, the collection of all functions on all open subsets of a space is termed as a `sheaf`. There are several ways of getting hold of them:
         </p>
@@ -141,7 +141,7 @@
         </p>
         <p>
           Another equivalent definition in terms of colimits is:
-          \[\mathscr{F}_p = \underset{\rightarrow}{\text{lim}} \mathscr{F}(U)\]
+          \[\mathscr{F}_p = \underset{\rightarrow}{\text{lim }} \mathscr{F}(U)\]
         </p>
         <p>
           If \(p \in U, f \in \mathscr{F}(U)\), then \(\mathscr{F}_p\) is called the ring of germs of \(f\) at point \(p\).
@@ -177,6 +177,25 @@
         </p>
         <p>
           where identity is exactness over \(\mathscr{F}(U)\), and gluability is exactness over \(\prod \mathscr{F}(U_i)\).
+        </p>
+        <p>
+          As an example, consider the restriction of sheaf \(\mathscr{F}\) on \(U\), \(\mathscr{F}|_U = \mathscr{F}|_U(V)\) for all open subsets \(V \subset U\).
+        </p>
+        <p>
+          As another example, consider the `skyscraper sheaf`. Suppose \(X\) is a topological space, \(p \in X\), and \(S\) is a set. Let \(i_p : p \rightarrow X\) be the inclusion; then \(i_{p, *}S\) is defined by:
+          \[i_{p, *}S(U) = \begin{cases} S \quad p \in U \\ \{e\} \quad p \notin U \end{cases}\]
+        </p>
+        <p>
+          where \(\{e\}\) is any one-point set. This is called the skyscraper sheaf, because the informal picture looks like a skyscraper at point \(p\).
+        </p>
+        <p>
+          Let \(X\) be a topological space, and \(S\) a set. Then, \(\underline{S}_{\text{pre}}(U) = S\) for all open sets \(U\), and \(\underline{S}_{\text{pre}}\) is called the `constant presheaf` associated to \(S\).
+        </p>
+        <p>
+          Let \(\mathscr{F}(U)\) be maps to \(S\) that are locally constant; i.e. for any point \(p \in U\), there is an open neighborhood of \(p\) where the function is constant. This is called the `constant sheaf` associated to \(S\), and is denoted by \(\underline{S}\).
+        </p>
+        <p>
+          Suppose \(\pi : X \rightarrow Y\) is a continuous map, and \(\mathscr{F}\) is a preshef on \(X\). Then define \(\pi_* \mathscr{F}\) by \(\pi_* \mathscr{F}(V) = \mathscr{F}(\pi^{-1}(V))\), where \(V\) is an open subset of \(Y\). Then, \(\pi_* \mathscr{F}\) is called the `pushforward` of \(\mathscr{F}\) by \(\pi\). The skyscraper sheaf can be interpreted as a pushforward of the constant sheaf \(\underline{S}\) on a one-point space \(p\), under the inclusion morphism \(i_p : \{p\} \rightarrow X\).
         </p>
       </div>
       <div id="sidebar">

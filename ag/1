@@ -69,7 +69,7 @@ The stalk of a presheaf \(\mathscr{F}\) is defined to be the set of germs of \(\
 modulo the relation \((f, U) \sim (g, V)\), where \(f|_W = g|_W\).
 
 Another equivalent definition in terms of colimits is:
-\[\mathscr{F}_p = \underset{\rightarrow}{\text{lim}} \mathscr{F}(U)\]
+\[\mathscr{F}_p = \underset{\rightarrow}{\text{lim }} \mathscr{F}(U)\]
 
 If \(p \in U, f \in \mathscr{F}(U)\), then \(\mathscr{F}_p\) is called the ring of germs of \(f\) at point \(p\).
 
@@ -93,3 +93,17 @@ The two axioms for a sheaf can be interpreted as "exactnesss" of the "[equalizer
 \]
 
 where identity is exactness over \(\mathscr{F}(U)\), and gluability is exactness over \(\prod \mathscr{F}(U_i)\).
+
+As an example, consider the restriction of sheaf \(\mathscr{F}\) on \(U\), \(\mathscr{F}|_U = \mathscr{F}|_U(V)\) for all open subsets \(V \subset U\).
+
+As another example, consider the `skyscraper sheaf`. Suppose \(X\) is a topological space, \(p \in X\), and \(S\) is a set. Let \(i_p : p \rightarrow X\) be the inclusion; then \(i_{p, *}S\) is defined by:
+\[i_{p, *}S(U) = \begin{cases} S \quad p \in U \\ \{e\} \quad p \notin U \end{cases}\]
+
+where \(\{e\}\) is any one-point set. This is called the skyscraper sheaf, because the informal picture looks like a skyscraper at point \(p\).
+
+Let \(X\) be a topological space, and \(S\) a set. Then, \(\underline{S}_{\text{pre}}(U) = S\) for all open sets \(U\), and \(\underline{S}_{\text{pre}}\) is called the `constant presheaf` associated to \(S\).
+
+Let \(\mathscr{F}(U)\) be maps to \(S\) that are locally constant; i.e. for any point \(p \in U\), there is an open neighborhood of \(p\) where the function is constant. This is called the `constant sheaf` associated to \(S\), and is denoted by \(\underline{S}\).
+
+Suppose \(\pi : X \rightarrow Y\) is a continuous map, and \(\mathscr{F}\) is a preshef on \(X\). Then define \(\pi_* \mathscr{F}\) by \(\pi_* \mathscr{F}(V) = \mathscr{F}(\pi^{-1}(V))\), where \(V\) is an open subset of \(Y\). Then, \(\pi_* \mathscr{F}\) is called the `pushforward` of \(\mathscr{F}\) by \(\pi\). The skyscraper sheaf can be interpreted as a pushforward of the constant sheaf \(\underline{S}\) on a one-point space \(p\), under the inclusion morphism \(i_p : \{p\} \rightarrow X\).
+
