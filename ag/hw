@@ -36,7 +36,15 @@ For homogenous ideal \(a \subseteq S\), show that the following conditions are e
 
 --
 
-Show that the pushforward \(\pi_* \mathscr{F}\) is a presheaf or sheaf, if \(\mathscr{F}\) is.
+Suppose \(\mathscr{F}(U)\) are maps to \(S = \underline{S}_{\text{pre}}(U)\) that are locally constant; i.e. for any \(p \in U\), there is an open neighborhood of \(p\) where the function is constant. Show that this is a sheaf.
+
+Proof: In the axioms of a presheaf, let the restriction map be the identity map. The gluability axiom of a sheaf is satisfied trivially \(\Box\)
+
+--
+
+Show that the [pushforward](/ag/1#definition-of-presheaf-and-sheaf) \(\pi_* \mathscr{F}\) is a sheaf, if \(\mathscr{F}\) is.
+
+Proof: Suppose \(\pi : X \rightarrow Y\) is a continuous function, and \(\mathscr{F}\) is a sheaf on \(X\). Then, \(\pi_* \mathscr{F}(V) = \mathscr{F}(\pi^{-1}(V))\), where \(V\) is an open subset of \(Y\). To show that this is a presheaf, let \(U \subset X\) be the preimage of \(V\) under \(\pi^{-1}\). Then, we have a restriction map for the inclusion map \(V \hookrightarrow U\). Further, let \(\phi_* \mathscr{F}(U) = \mathscr{F}(\phi^{-1}(U))\), where \(\phi : Z \rightarrow X\). We end up with the inclusion map \(V \hookrightarrow U \hookrightarrow W\), where \(W \subset Z\). This satisfies the commutative diagram for the restriction map, and the gluability axiom for a sheaf, since \(\mathscr{F}\) does \(\Box\)
 
 --
 
