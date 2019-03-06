@@ -123,3 +123,14 @@ Just as we have modules over a ring, we have \(\mathscr{O}_X\)-modules over the 
 Just as an \(A\)-module generalizes the notion of an abelian group, since an abelian group is the same thing as a \(\mathbb{Z}\)-module, an \(\mathscr{O}_X\)-module generalizes the notion of a sheaf of abelian groups, as the latter is the same thing as a \(\underline{\mathbb{Z}}\)-module.
 
 # Morphisms of presheaves and sheaves
+
+A morphism of presheaves or shaves, \(\phi : \mathscr{F} \rightarrow \mathscr{G}\), is the data of maps \(\phi(U) : \mathscr{F}(U) \rightarrow \mathscr{G}(U)\), for all \(U\), behaving well with respect to the restriction: if \(U \hookrightarrow V\), then the following diagram commutes:
+
+\[
+\begin{xy}
+\xymatrix{
+\mathscr{F}(V)\ar[d]_{\text{res}_{V, U}}\ar[r]^{\phi(V)} & \mathscr{G}(V)\ar[d]^{\text{res}_{V, U}} \\
+\mathscr{F}(U)\ar[r]^{\phi(U)} & \mathscr{G}(U)
+}
+\end{xy}
+\]
