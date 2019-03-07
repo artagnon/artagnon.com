@@ -32,7 +32,7 @@
         <h1>
           [ag/1] Sheaves
         </h1>
-        <time datetime="2019-03-06">Last updated: Wed, 6 Mar 2019</time><br /><time datetime="2019-03-04">Created: Mon, 4 Mar 2019</time>
+        <time datetime="2019-03-07">Last updated: Thu, 7 Mar 2019</time><br /><time datetime="2019-03-04">Created: Mon, 4 Mar 2019</time>
         <p>
           Informally speaking, the collection of all functions on all open subsets of a space is termed as a `sheaf`. There are several ways of getting hold of them:
         </p>
@@ -247,6 +247,18 @@
         <p>
           This is a sheaf, called `sheaf \(\textit{Hom}\)`, of sets on \(X\). The functor is contravariant in its first argument and covariant in its second argument. \(\textit{Hom}\), however, does not commute with taking stalks; i.e. \(\textit{Hom}(\mathscr{F}, \mathscr{G})_p\) is not isomorphic to \(\textit{Hom}(\mathscr{F}_p, \mathscr{G}_p)\).
         </p>
+        <p>
+          We can make module-like constructions using presheaves of abelian groups on a topological space \(X\). We can clearly add maps of presheaves to get another map of presheaves. Indeed, \((\phi + \psi)(V) = \phi(V) + \psi(V)\). We say that presheaves of abelian groups form an additive category.
+        </p>
+        <p>
+          If \(\phi : \mathscr{F} \rightarrow \mathscr{G}\) is a morphism of presheaves, then the kernel of this map is defined by \((\text{ker}_\text{pre}\phi)(U) := \text{ker}\phi(U)\). \(\text{ker}_\text{pre}\phi \rightarrow \mathscr{F}\) satisfies the universal property for kernels. The cokernel is defined similarly. It can readily be verified that presheaves of abelian groups form an abelian category.
+        </p>
+        <p>
+          Sheaves of abelian groups also form an abelian category, albeit with an additional complication of `sheafification`. \(\text{Ab}_X\) forms an additive category, just as with presheaves, and the definition of kernel of a sheaf gives us no problems; in fact \(\text{ker}_\text{pre}\phi := \text{ker }\phi\). The issue arises in cokernels.
+        </p>
+        <h2 id="sheafification">
+          Sheafification
+        </h2>
       </div>
       <div id="sidebar">
         <ul>
