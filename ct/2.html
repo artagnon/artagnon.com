@@ -32,7 +32,7 @@
         <h1>
           [ct/2] Universal Arrows, Yoneda Lemma, Limits
         </h1>
-        <time datetime="2019-03-04">Last updated: Mon, 4 Mar 2019</time><br /><time datetime="2019-01-28">Created: Mon, 28 Jan 2019</time>
+        <time datetime="2019-03-08">Last updated: Fri, 8 Mar 2019</time><br /><time datetime="2019-01-28">Created: Mon, 28 Jan 2019</time>
         <h2 id="universal-arrow">
           Universal arrow
         </h2>
@@ -233,7 +233,7 @@
           \[
           \begin{xy}
           \xymatrix{
-          \langle f, g \rangle \ar[d] & c\ar[d]^h & a\ar[d]^{hf = kg}\ar[l]_f\ar[r]^g & b\ar[d]^k \\
+          \langle f, g \rangle \ar[d] & b\ar[d]^h & a\ar[d]^{hf = kg}\ar[l]_f\ar[r]^g & c\ar[d]^k \\
           \Delta(s)& s & s\ar[l]_1\ar[r]^1 & s
           }
           \end{xy}
@@ -293,19 +293,19 @@
           Alternatively, colimit of \(F : J \rightarrow C\) consists of object \(\underset{\longrightarrow}{\text{Lim }} F \in C\) along with the cone \(\mu : F \overset{\bullet}{\rightarrow} \Delta (\underset{\longrightarrow}{\text{Lim }} F)\), from base \(F\) to the vertex \(\underset{\longrightarrow}{\text{Lim }} F\), which is a `universal cone` (or `limiting cone`).
         </p>
         <p>
-          As an example, consider \(J = \omega = \{0 \rightarrow 1 \rightarrow 2 \rightarrow \ldots\}\), and functor \(F : \omega \rightarrow \textbf{Set}\) which maps every arrow in \(\omega\) to an inclusion map (subset in set). This functor is simply the inclusion \(F_0 \subset F_1 \subset F_2 \subset \ldots\). The union \(U\) of all sets, with cone given by inclusion map \(F_n \rightarrow U\), is \(\underset{\longrightarrow}{\text{Lim} } F\). For \(J\) small, any \(J \rightarrow \textbf{Set}\) has a colimit.
+          As an example, consider \(J = \omega = \{0 \rightarrow 1 \rightarrow 2 \rightarrow \ldots\}\), and functor \(F : \omega \rightarrow \textbf{Set}\) which maps every arrow in \(\omega\) to an inclusion map (subset in set). This functor is simply the inclusion \(F_0 \subset F_1 \subset F_2 \subset \ldots\). The union \(U\) of all sets, with cone given by inclusion map \(F_n \rightarrow U\), is \(\underset{\longrightarrow}{\text{Lim }} F\). For \(J\) small, any \(J \rightarrow \textbf{Set}\) has a colimit.
         </p>
         <h2 id="limits-and-products">
           Limits and products
         </h2>
         <p>
-          The notion of a limit is dual to that of a colimit. Let \(C\) be a category, \(J\) be an index set, and \(\Delta : C \rightarrow C^J\) be a diagonal functor. Limit of functor \(F : J \rightarrow C\) is defined as the universal arrow \(\langle r, \nu \rangle\) from \(\Delta\) to \(F\); it consists of object \(r \in C\), \(r = \underset{\longleftarrow}{\text{Lim }} F = \text{Lim } F\), called the `limit object` (or `projective limit`, `inverse limit`) of \(F\), and the NT \(\nu : \Delta r \overset{\bullet}{\rightarrow} F\), which is universal among \(\tau : \Delta c \overset{\bullet}{\rightarrow} F\) for \(c \in C\). \(\tau : c \overset{\bullet}{\rightarrow} F\) is then called cone to base \(F\) from vertex \(c\), pictued as:
+          The notion of a limit is dual to that of a colimit. Let \(C\) be a category, \(J\) be an index set, and \(\Delta : C \rightarrow C^J\) be a diagonal functor. Limit of functor \(F : J \rightarrow C\) is defined as the universal arrow \(\langle r, \nu \rangle\) from \(\Delta\) to \(F\); it consists of object \(r \in C\), \(r = \underset{\longleftarrow}{\text{Lim }} F = \text{Lim } F\), called the `limit object` (or `projective limit`, `inverse limit`) of \(F\), and the NT \(\nu : \Delta r \overset{\bullet}{\rightarrow} F\), which is universal among \(\tau : \Delta c \overset{\bullet}{\rightarrow} F\) for \(c \in C\). \(\tau : c \overset{\bullet}{\rightarrow} F\) is then called cone to base \(F\) from vertex \(c\), pictured as:
         </p>
         <p class="mathjax">
           \[
           \begin{xy}
           \xymatrix{
-          c\ar[d]_{\tau_i}\ar[dr]|{\hole}_{\tau_j}\ar[r]^t & \underset{\longleftarrow}{\text{Lim}} F = \text{Lim } F\ar[d]^{\nu_j}\ar[dl]_{\nu_i} \\
+          c\ar[d]_{\tau_i}\ar[dr]|{\hole}_{\tau_j}\ar[r]^t & \underset{\longleftarrow}{\text{Lim }} F = \text{Lim } F\ar[d]^{\nu_j}\ar[dl]_{\nu_i} \\
           F_i\ar[r]_{Fu} & F_j
           }
           \end{xy}
