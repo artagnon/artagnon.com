@@ -54,11 +54,24 @@ Proof: Suppose \(\pi : X \rightarrow Y\) is a continuous function, and \(\mathsc
 
 Pushforward induces maps of stalks. Suppose \(\pi : X \rightarrow Y\) is a continuous map and \(\mathscr{F}\) is a sheaf of sets, rings or \(A\)-modules. If \(\pi(p) = q\), describe the natural morphism of stalks \((\pi_* \mathscr{F})_q \rightarrow \mathscr{F}_p\).
 
-Solution: The task is to describe the map \(\underset{\longrightarrow}{\text{Lim }} \mathscr{F}(\pi^{-1}(V)) \rightarrow \underset{\longrightarrow}{\text{Lim }} \mathscr{F}(U)\), where \(p \in U \subset X, q \in V \subset Y\). This maps the preimage of \(V\) to the subset \(U\); in other words, what we have is the identity map \(\Box\)
+Solution: The task is to describe the map \(\underset{\longrightarrow}{\text{Lim }} \mathscr{F}(\pi^{-1}(V)) \rightarrow \underset{\longrightarrow}{\text{Lim }} \mathscr{F}(U)\), where \(p \in U \subset X, q \in V \subset Y\). This maps the colimit of the sheaf of the preimage of \(V\) to that of the subset \(U\); in other words, what we have is the identity map \(\Box\)
 
 --
 
 If \((X, \mathscr{O}_X)\) is a ringed space, and \(\mathscr{F}\) is an \(\mathscr{O}_X\)-module, describe how for each \(p \in X\), \(\mathscr{F}_p\) is an \(\mathscr{O}_{X, p}\)-module.
+
+Solution: For \(\mathscr{F}_p\) to be an \(\mathscr{O}_{X, p}\)-module, the following diagram must commute, for \(U \subset V\):
+
+\[
+\begin{xy}
+\xymatrix{
+\mathscr{F}(V) \times \mathscr{O}_X(V)\ar[r]\ar[d]_{\text{res}_{V, U} \times \text{res}_{V, U}} & \mathscr{F}(V)\ar[d]^{\text{res}_{V, U}} \\
+\mathscr{F}(U) \times \mathscr{O}_X(U)\ar[r] & \mathscr{F}(U)
+}
+\end{xy}
+\]
+
+Taking colimits for all open neighborhoods \(U, V\) such that \(U \subset V\), we get the required result \(\Box\)
 
 --
 
@@ -66,7 +79,7 @@ Show that the sequence of presheaves \(0 \rightarrow \mathscr{F}_1 \rightarrow \
 
 --
 
-Suppose \(\phi : \mathscr{F} \rightarrow \mathscr{G}\) is a morphism of sheaves. Show that the presheaf kernel \(\text{ker}_\text{pre} \phi\) is in fact a sheaf. Further show that it satisfies the universal properties of kernels.
+Suppose \(\phi : \mathscr{F} \rightarrow \mathscr{G}\) is a morphism of sheaves. Show that the presheaf kernel \(\text{ker}_\text{pre} \phi\) is in fact a sheaf. Further show that it satisfies the universal property of kernels.
 
 --
 
