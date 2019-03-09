@@ -292,8 +292,20 @@
         <p>
           Next, we want to show that any presheaf has a sheafification. Indeed, define \(\mathscr{F}^\text{sh}(U)\) to be the set of compatible germs of the presheaf \(\mathscr{F}\) over \(U\). More precisely, \(\mathscr{F}^\text{sh}(U) = \{(f_p \in \mathscr{F}_p)_{p \in U}\}\) such that for all \(p \in U\), there exists an open neighborhood \(V\) of \(p\) contained in \(U\), and \(s \in \mathscr{F}(V)\) with \(s_q = f_q\) for all \(q \in V\). Here, \(s_q\) means the germ of \(s\) at \(q\); i.e. the image of \(s\) in the stalk \(\mathscr{F}_q\).
         </p>
-        <h2 id="subsheaves-and-quotient-sheaves">
-          Subsheaves and quotient sheaves
+        <p>
+          Let \(\phi : \mathscr{F} \rightarrow \mathscr{G}\) be a morphism of sheaves on topological space \(X\). Then \(\mathscr{G}\) is called the `quotient sheaf` of \(\mathscr{F}\) if \(\phi\) is an epimorphism in the category of sheaves, or equivalently if \(\phi\) is surjective on the level of stalks: \(\phi_p : \mathscr{F}_p \rightarrow \mathscr{G}_p\) is surjective for all \(p \in X\). Monomorphism and epimorphism - `sheafiness` and `quotient sheafiness` - may be checked at the level of stalks.
+        </p>
+        <p>
+          As an example, consider the `exponential exact sequence`. Let \(X = \mathbb{C}\) in classical topology, \(\mathscr{O}_X\) be the sheaf of holomorphic functions, and \(\mathscr{O}^*_X\) be the sheaf of invertible holomorphic functions. This is a sheaf of abelian groups under multiplication. We have the map:
+        </p>
+        <p class="mathjax">
+          \[0 \rightarrow \underline{\mathbb{Z}} \xrightarrow{\times 2 \pi i} \mathscr{O}_X \xrightarrow{\text{exp}} \mathscr{O}^*_X \rightarrow 1\]
+        </p>
+        <p>
+          where \(\underline{\mathbb{Z}}\) is the constant sheaf associated to \(\mathbb{Z}\).
+        </p>
+        <h2 id="recovering-sheaves-from-&quot;sheaf-on-a-base&quot;">
+          Recovering sheaves from "sheaf on a base"
         </h2>
       </div>
       <div id="sidebar">
