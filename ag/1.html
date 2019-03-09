@@ -304,9 +304,29 @@
         <p>
           where \(\underline{\mathbb{Z}}\) is the constant sheaf associated to \(\mathbb{Z}\).
         </p>
-        <h2 id="recovering-sheaves-from-&quot;sheaf-on-a-base&quot;">
-          Recovering sheaves from "sheaf on a base"
+        <h2 id="sheaf-on-a-base">
+          Sheaf on a base
         </h2>
+        <p>
+          We have discussed how to get a hold of sheaves using stalks (invoking compatible germs), and we describe the second way now. Suppose we have the sheaf \(\mathscr{F}\) on topological space, and a base \({B_i}\) of open sets on \(X\). Then, consider the following information:
+        </p>
+        <p class="mathjax">
+          \[(\{f(B_i)\}, \{\text{res}_{B_i, B_j} : \mathscr{F}(B_i) \rightarrow \mathscr{F}(B_j)\})\]
+        </p>
+        <p>
+          We can recover the sheaf from this information, because we can recover stalks, and when germs are compatible.
+        </p>
+        <p>
+          A sheaf on \(\{B_i\}\) is the following information. For each base in \(\{B_i\}\), we have the set \(F(B_i)\). If \(B_i \subset B_j\), then we have \(\text{res}_{B_j, B_i} : F(B_j) \rightarrow F(B_i)\) with \(\text{res}_{B_i, B_i} = id_{F(B_i)}\). Further, if \(B_i \subset B_j \subset B_k\), then \(\text{res}_{B_k, B_i} = \text{res}_{B_j, B_i} \circ \text{res}_{B_k, B_j}\). This is the definition of `presheaf on a base`. For the definition of `sheaf on a base`, we need two additional axioms:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            The base identity axiom.
+          </li>
+          <li>
+            The base gluability axiom.
+          </li>
+        </ol>
       </div>
       <div id="sidebar">
         <ul>

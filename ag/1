@@ -186,5 +186,15 @@ As an example, consider the `exponential exact sequence`. Let \(X = \mathbb{C}\)
 
 where \(\underline{\mathbb{Z}}\) is the constant sheaf associated to \(\mathbb{Z}\).
 
-# Recovering sheaves from "sheaf on a base"
+# Sheaf on a base
 
+We have discussed how to get a hold of sheaves using stalks (invoking compatible germs), and we describe the second way now. Suppose we have the sheaf \(\mathscr{F}\) on topological space, and a base \({B_i}\) of open sets on \(X\). Then, consider the following information:
+
+\[(\{f(B_i)\}, \{\text{res}_{B_i, B_j} : \mathscr{F}(B_i) \rightarrow \mathscr{F}(B_j)\})\]
+
+We can recover the sheaf from this information, because we can recover stalks, and when germs are compatible.
+
+A sheaf on \(\{B_i\}\) is the following information. For each base in \(\{B_i\}\), we have the set \(F(B_i)\). If \(B_i \subset B_j\), then we have \(\text{res}_{B_j, B_i} : F(B_j) \rightarrow F(B_i)\) with \(\text{res}_{B_i, B_i} = id_{F(B_i)}\). Further, if \(B_i \subset B_j \subset B_k\), then \(\text{res}_{B_k, B_i} = \text{res}_{B_j, B_i} \circ \text{res}_{B_k, B_j}\). This is the definition of `presheaf on a base`. For the definition of `sheaf on a base`, we need two additional axioms:
+
+(a) The base identity axiom.
+(b) The base gluability axiom.
