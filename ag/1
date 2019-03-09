@@ -164,3 +164,14 @@ We say that an element \(\prod_{p \in U} s_p\) of \(\prod_{p \in U} \mathscr{F}_
 \[\{U_p \text{ open in } U, \tilde{s}_p \in \mathscr{F}(U_p)\}\]
 
 for \(s_p\) (where \(p \in U_p \subset U\)), such that the germ \(\tilde{s}_p\) is \(s_q\) for all \(q \in U_p\). Equivalently, there an open cover \(\{U_i\}\) of \(U\) and sections \(f_i \in \mathscr{F}(U_i)\), such that if \(p \in U_i\), then \(s_p\) is the germ of \(s_i\) at \(p\). Hence, any section \(s\) of \(\mathscr{F}\) over \(U\) gives a choice of compatible germs for \(U\).
+
+Just as groupification gives an abelian group that best approximates to a an abelian semigroup, sheafification gives a sheaf that best approximates to a presheaf, with an analogus universal property. If \(\mathscr{F}\) is a presheaf, then \(\text{sh} : \mathscr{F} \rightarrow \mathscr{F}^\text{sh}\) on \(X\) is the `sheafification` of \(\mathscr{F}\). If \(\mathscr{F}^\text{sh}\) is a sheaf, then for any sheaf \(\mathscr{G}\), and the presheaf morphism \(g : \mathscr{F} \rightarrow \mathscr{G}\), there exists a unique morphism of sheaves \(f : \mathscr{F}^\text{sh} \rightarrow \mathscr{G}\) making the following diagram commute:
+
+\[
+\begin{xy}
+\xymatrix{
+\mathscr{F}\ar[r]^{\text{sh}}\ar[dr]_g & \mathscr{F}^{\text{sh}}\ar[d]^f \\
+& \mathscr{G}
+}
+\end{xy}
+\]
