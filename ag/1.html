@@ -32,7 +32,7 @@
         <h1>
           [ag/1] Sheaves
         </h1>
-        <time datetime="2019-03-09">Last updated: Sat, 9 Mar 2019</time><br /><time datetime="2019-03-04">Created: Mon, 4 Mar 2019</time>
+        <time datetime="2019-03-10">Last updated: Sun, 10 Mar 2019</time><br /><time datetime="2019-03-04">Created: Mon, 4 Mar 2019</time>
         <p>
           Informally speaking, the collection of all functions on all open subsets of a space is termed as a `sheaf`. There are several ways of getting hold of them:
         </p>
@@ -304,8 +304,8 @@
         <p>
           where \(\underline{\mathbb{Z}}\) is the constant sheaf associated to \(\mathbb{Z}\).
         </p>
-        <h2 id="sheaf-on-a-base">
-          Sheaf on a base
+        <h2 id="sheaves-on-a-base">
+          Sheaves on a base
         </h2>
         <p>
           We have discussed how to get a hold of sheaves using stalks (invoking compatible germs), and we describe the second way now. Suppose we have the sheaf \(\mathscr{F}\) on topological space, and a base \({B_i}\) of open sets on \(X\). Then, consider the following information:
@@ -321,12 +321,22 @@
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            The base identity axiom.
+            The base identity axiom. If \(B = \cup B_i\), then if \(f, g \in F(B)\) such that \(\text{res}_{B, B_i} f = \text{res}_{B, B_i} g\) for all \(i\), then \(f = g\).
           </li>
           <li>
-            The base gluability axiom.
+            The base gluability axiom. If \(B = \cup B_i\), and we have \(f_i \in B_i\) such that \(f_i\) agress with \(f_j\) on any basic open set \(B_i \cap B_j\), then there exists \(f \in B\) such that \(\text{res}_{B, B_i} f_i = f\) for all \(i\).
           </li>
         </ol>
+        <p>
+          Suppose \(B_i\) is a base on \(X\), and \(F\) is a sheaf of sets on this base, then there exists sheaf \(\mathscr{F}\) extending \(F\), with isomorphisms \(\mathscr{F}(B_i) \cong F(B_i)\) agreeing with restriction maps. This sheaf \(\mathscr{F}\) is unique upto isomorphism. To prove this, let \(\mathscr{F}\) be the sheaf of compatible germs of \(F\). Define stalk of a presheaf \(F\) on a base \(p \in X\) by \(F_p = \underset{\longrightarrow}{\text{Lim }} F(B_i)\) where colimit is over all \(B_i\) in the base containing \(p\). A family of germs in open set \(U\) is compatible near \(p\) if there is a section \(s\) over some \(B_i\) containing \(p\) such that the germs over \(B_i\) are the germs of \(s\); more precisely,
+          \[\mathscr{F}(U) = \{(f_p \in F_p)_{p \in U}\}\]
+        </p>
+        <p>
+          such that for all \(p \in U\) there exists \(B\) with \(p \in B \subset U\), \(s \in F(B)\), with \(s_q = f_q\) for all \(q \in B\), where \(B\) is in our base. This a sheaf for the same reason a sheaf of compatible germs was. Now, we claim that \(F(B) \rightarrow \mathscr{F}(B)\) is an isomorphism, and that \(\mathscr{F}\) is unique upto isomorphism, completing our proof.
+        </p>
+        <h2 id="sheaves-of-abelian-groups-and-\(\mathscr{o}_x\)-modules">
+          Sheaves of abelian groups and \(\mathscr{O}_X\)-modules
+        </h2>
       </div>
       <div id="sidebar">
         <ul>

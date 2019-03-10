@@ -186,7 +186,7 @@ As an example, consider the `exponential exact sequence`. Let \(X = \mathbb{C}\)
 
 where \(\underline{\mathbb{Z}}\) is the constant sheaf associated to \(\mathbb{Z}\).
 
-# Sheaf on a base
+# Sheaves on a base
 
 We have discussed how to get a hold of sheaves using stalks (invoking compatible germs), and we describe the second way now. Suppose we have the sheaf \(\mathscr{F}\) on topological space, and a base \({B_i}\) of open sets on \(X\). Then, consider the following information:
 
@@ -196,5 +196,12 @@ We can recover the sheaf from this information, because we can recover stalks, a
 
 A sheaf on \(\{B_i\}\) is the following information. For each base in \(\{B_i\}\), we have the set \(F(B_i)\). If \(B_i \subset B_j\), then we have \(\text{res}_{B_j, B_i} : F(B_j) \rightarrow F(B_i)\) with \(\text{res}_{B_i, B_i} = id_{F(B_i)}\). Further, if \(B_i \subset B_j \subset B_k\), then \(\text{res}_{B_k, B_i} = \text{res}_{B_j, B_i} \circ \text{res}_{B_k, B_j}\). This is the definition of `presheaf on a base`. For the definition of `sheaf on a base`, we need two additional axioms:
 
-(a) The base identity axiom.
-(b) The base gluability axiom.
+(a) The base identity axiom. If \(B = \cup B_i\), then if \(f, g \in F(B)\) such that \(\text{res}_{B, B_i} f = \text{res}_{B, B_i} g\) for all \(i\), then \(f = g\).
+(b) The base gluability axiom. If \(B = \cup B_i\), and we have \(f_i \in B_i\) such that \(f_i\) agress with \(f_j\) on any basic open set \(B_i \cap B_j\), then there exists \(f \in B\) such that \(\text{res}_{B, B_i} f_i = f\) for all \(i\).
+
+Suppose \(B_i\) is a base on \(X\), and \(F\) is a sheaf of sets on this base, then there exists sheaf \(\mathscr{F}\) extending \(F\), with isomorphisms \(\mathscr{F}(B_i) \cong F(B_i)\) agreeing with restriction maps. This sheaf \(\mathscr{F}\) is unique upto isomorphism. To prove this, let \(\mathscr{F}\) be the sheaf of compatible germs of \(F\). Define stalk of a presheaf \(F\) on a base \(p \in X\) by \(F_p = \underset{\longrightarrow}{\text{Lim }} F(B_i)\) where colimit is over all \(B_i\) in the base containing \(p\). A family of germs in open set \(U\) is compatible near \(p\) if there is a section \(s\) over some \(B_i\) containing \(p\) such that the germs over \(B_i\) are the germs of \(s\); more precisely,
+\[\mathscr{F}(U) = \{(f_p \in F_p)_{p \in U}\}\]
+
+such that for all \(p \in U\) there exists \(B\) with \(p \in B \subset U\), \(s \in F(B)\), with \(s_q = f_q\) for all \(q \in B\), where \(B\) is in our base. This a sheaf for the same reason a sheaf of compatible germs was. Now, we claim that \(F(B) \rightarrow \mathscr{F}(B)\) is an isomorphism, and that \(\mathscr{F}\) is unique upto isomorphism, completing our proof.
+
+# Sheaves of abelian groups and \(\mathscr{O}_X\)-modules

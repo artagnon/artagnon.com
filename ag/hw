@@ -134,3 +134,25 @@ Show that the sheafification functor is left-adjoint to the forgetful functor fr
 --
 
 Show that \(\mathscr{O}_X \xrightarrow{exp} \mathscr{O}^*_X\) describes \(\mathscr{O}^*_X\) as a quotient sheaf of \(\mathscr{O}_X\). Find the open set in which this map is not surjective.
+
+--
+
+Morphisms of sheaves correspond to morphisms of sheaves on a base. Suppose \(\{B_i\}\) is a base for topology of \(X\). A morphism \(F \rightarrow G\) of sheaves on the base is the collection of maps \(F(B_k) \rightarrow G(B_k)\) such that the following diagram commutes:
+
+\[
+\begin{xy}
+\xymatrix{
+F(B_i)\ar[r]\ar[d]_{\text{res}_{B_i, B_j}} & G(B_i)\ar[d]^{\text{res}_{B_i, B_j}} \\
+F(B_j)\ar[r] & G(B_j)
+}
+\end{xy}
+\]
+
+for all \(B_j \hookrightarrow B_i\). Prove the following:
+
+(a) A morphism of sheaves is determined by an induced morphims of sheaves on a base.
+(b) A morphism of sheaves on a base gives a morphism of induced sheaves.
+
+--
+
+Suppose \(X = \cup U_i\) is an open cover, and we have sheaves \(\mathscr{F}_i\) on \(U_i\) along with the isomorphisms \(\phi_{ij} : \mathscr{F}_i|_{U_i \cap U_j} \rightarrow \mathscr{F}_j|_{U_i \cap U_j}\), that agree on triple overlaps; i.e. \(\phi_{ik} = \phi_{jk} \circ \phi_{ij}\) on \(U_i \cap U_j \cap U_k\). Show that these sheaves can be glued together into a sheaf \(\mathscr{F}\) on \(X\), such that \(\mathscr{F}_i \cong \mathscr{F}|_{U_i}\), and the isomorphisms over \(U_i \cap U_j\) are the obvious ones. Thus, we can glue sheaves together using limited patching information.
