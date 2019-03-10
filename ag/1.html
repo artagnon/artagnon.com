@@ -334,9 +334,55 @@
         <p>
           such that for all \(p \in U\) there exists \(B\) with \(p \in B \subset U\), \(s \in F(B)\), with \(s_q = f_q\) for all \(q \in B\), where \(B\) is in our base. This a sheaf for the same reason a sheaf of compatible germs was. Now, we claim that \(F(B) \rightarrow \mathscr{F}(B)\) is an isomorphism, and that \(\mathscr{F}\) is unique upto isomorphism, completing our proof.
         </p>
-        <h2 id="sheaves-of-abelian-groups-and-\(\mathscr{o}_x\)-modules">
-          Sheaves of abelian groups and \(\mathscr{O}_X\)-modules
+        <h2 id="sheaves-of-abelian-groups-form-an-abelian-category">
+          Sheaves of abelian groups form an abelian category
         </h2>
+        <p>
+          We will see that sheaves of abelian groups and \(\mathscr{O}_X\)-modules are abelian categories. The properties of kernels, cokernels, exactness and so forth can be understood at the level of stalks (which are just abelian groups), and compatibility of germs will come for free.
+        </p>
+        <p>
+          We have shown that the category of sheaves is an additive category. To show that it is an abelian category, we must show that \(\phi : \mathscr{F} \rightarrow \mathscr{G}\) has a kernel and cokernel. We have already shown that it has a kernel: the presheaf kernel is a sheaf, and is a kernel in the category of sheaves. Further, \(\phi : \mathscr{F} \rightarrow \mathscr{G}\) has a cokernel in the category of presheaves: call it \(\mathscr{H}_\text{pre}\), and let \(\text{sh} : \mathscr{H}_\text{pre} \rightarrow \mathscr{H}\) be its sheafification. Then the cokernel is the colimit of the diagram:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \mathscr{F}\ar[r]\ar[d] & \mathscr{G} \\
+          0 &
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Now, the morphism \(\mathscr{G} \rightarrow \mathscr{H}\) is a cokernel of \(\phi\) in the category of sheaves. To prove this, consider the following diagram, where \(\mathscr{E}\) is any sheaf:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \mathscr{F}\ar[r]^\phi\ar[d] & \mathscr{G}\ar[d] \\
+          0\ar[r] & \mathscr{E}
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          We construct:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \mathscr{F}\ar[r]^\phi\ar[d] & \mathscr{G}\ar[d]\ar@/^1pc/[rrdd] & & \\
+          0\ar[r]\ar@/_/[rrrd] & \mathscr{H}_{\text{pre}}\ar[r]^{\text{sh}} & \mathscr{H} & \\
+          & & & \mathscr{E}
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          We want to show that there is a unique morphism \(\mathscr{H} \rightarrow \mathscr{E}\). Since \(\mathscr{H}_\text{pre}\) is a cokernel in the category of presheaves, there exists a unique morphism of presheaves\(\mathscr{H}_\text{pre} \rightarrow \mathscr{E}\). By universality of sheafification, there is a unique morphism \(\mathscr{H} \rightarrow \mathscr{E}\) making the diagram commute. Hence, we have shown that the sheaves of abelian groups over topological space \(X\) form an abelian category.
+        </p>
       </div>
       <div id="sidebar">
         <ul>
