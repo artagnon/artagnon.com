@@ -20,14 +20,14 @@ Setting \(h : X' \rightarrow X, h^* g = g \circ h\), naturality in \(X, W\) are 
 \[
 \begin{xy}
 \xymatrix{
-\textbf{Set}(X, U(W))\ar[r]^\varphi\ar[d]^{Vh^*} & \textbf{Vec}_K(V(X), W)\ar[d]^{h^*} \\
+\textbf{Set}(X, U(W))\ar[r]^\varphi\ar[d]^{h^*} & \textbf{Vec}_K(V(X), W)\ar[d]^{(Vh)^*} \\
 \textbf{Set}(X', U(W))\ar[r]^\varphi & \textbf{Vec}_K(V(X'), W)
 }
 \end{xy}
 \]
 
-As an example, consider the [free category](/ct/1#graphs-and-free-categories) over a small graph \(G\), \(C = FG\), and \(D : \textbf{Grph} \rightarrow \textbf{Cat}\) given by; it is related to the forgetful functor \(U : \textbf{Cat} \rightarrow \textbf{Grph}\) since \(D : G \rightarrow UB\) extends to \(D' : FG \rightarrow B\). Moreover \(D \mapsto D'\) is a natural isomorphism:
-\[\textbf{Cat}(FG, B) \cong \textbf{Set}(G, UB)\]
+As another example, consider the [free category](/ct/1#graphs-and-free-categories) over a small graph \(G\), \(C = FG\), and \(D : \textbf{Grph} \rightarrow \textbf{Cat}\) given by; it is related to the forgetful functor \(U : \textbf{Cat} \rightarrow \textbf{Grph}\) since \(D : G \rightarrow UB\) extends to \(D' : FG \rightarrow B\). Moreover \(D \mapsto D'\) is a natural isomorphism:
+\[\textbf{Cat}(FG, B) \cong \textbf{Grph}(G, UB)\]
 
 In the category of small sets, the function \(g : T \times R \rightarrow S\), a function of two variables, can be considered as \(\varphi g : T \rightarrow \text{Hom}(R, S)\), a function of one variable, so that the following bijection holds:
 \[\varphi : \text{Hom}(T \times R, S) \cong \text{Hom}(T, \text{Hom}(R, S))\]
@@ -35,7 +35,7 @@ In the category of small sets, the function \(g : T \times R \rightarrow S\), a 
 For modules \(A, B, C\) in a commutative ring \(K\), a similar bijection holds:
 \[\text{Hom}(A \otimes_K B, C) \cong \text{Hom}(A, \text{Hom}_K(B, C))\]
 
-The `adjuction` of categories \(X, A\), where \(F, G\) are functors, is given by the triple \(\langle F, G, \varphi \rangle : X \rightharpoonup A\)
+The `adjuction` from category \(X\) to category \(A\), where \(F, G\) are functors, is given by the triple \(\langle F, G, \varphi \rangle : X \rightharpoonup A\)
 
 \[
 \begin{xy}
@@ -57,26 +57,26 @@ It satisfies the diagrams:
 \[
 \begin{xy}
 \xymatrix{
-X(Fx, a)\ar[r]^\varphi\ar[d]^{k_*} & X(x, Ga)\ar[d]^{(Gk)_*} \\
-X(Fx, a')\ar[r]^\varphi & X(x, Ga')
+A(Fx, a)\ar[r]^\varphi\ar[d]^{k_*} & X(x, Ga)\ar[d]^{(Gk)_*} \\
+A(Fx, a')\ar[r]^\varphi & X(x, Ga')
 }
 \end{xy}
 \begin{xy}
 \xymatrix{
-X(Fx, a)\ar[r]^\varphi\ar[d]^{h^*} & X(x, Ga)\ar[d]^{(Fh)^*} \\
-X(Fx', a)\ar[r]^\varphi & X(x', Ga)
+A(Fx, a)\ar[r]^\varphi\ar[d]^{(Fh)^*} & X(x, Ga)\ar[d]^{h^*} \\
+A(Fx', a)\ar[r]^\varphi & X(x', Ga)
 }
 \end{xy}
 \]
 
 Here, \(h^* = X(h, Ga), k_* = A(Fx, k)\).
 
-An adjuncion can also be described without talking about hom-sets, directly in terms of arrows. There is a bijection which assigns to each of the arrows \(f : Fx \rightarrow a\) arrows \(g = \text{rad } f : x \rightarrow Ga\), the right adjunct of \(f\), in such a way that the natural compositions hold:
+An adjunction can also be described without talking about hom-sets, directly in terms of arrows. There is a bijection which assigns to each of the arrows \(f : Fx \rightarrow a\) arrows \(\varphi f = \text{rad } f : x \rightarrow Ga\), the `right adjunct` of \(f\), in such a way that the natural compositions hold:
 \[\varphi(k \circ f) = Gk \circ \varphi f \quad \varphi(f \circ Fh) = \varphi f \circ h\]
 
 \(F\) is said to be `right adjoint` for \(G\), and \(G\) is the `left adjoint` for \(F\).
 
-Every adjunction yields a universal arrow. Call the hom-set that contains the identity \(1 : Fx \rightarrow Fx\) the \(\varphi\)-image of \(\eta_x\).
+Every adjunction yields a universal arrow. Call the hom-set that contains the identity \(1 : Fx \rightarrow Fx\) the \(\varphi\)-image of \(\eta_x\). \(\eta_x\) is a universal arrow by [Yoneda's proposition](/ct/2#yoneda-lemma):
 \[\eta_x : x \rightarrow GFx \quad \eta_x = \varphi(1_{Fx})\]
 
 The adjunction gives such a universal arrow \(\eta_x\) for every object \(x\). The function \(x \mapsto \eta_x\) is an NT \(I_x \rightarrow GF\). We obtain the following diagrams:
