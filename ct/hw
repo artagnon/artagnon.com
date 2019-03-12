@@ -115,7 +115,7 @@ Comparing with the first diagram for monoid, we get \(P = M \times M \times M\) 
 
 A group is defined as a monoid with an additional operation for inverse. We don't need this additional operation for the product structure to be defined.
 
-Set is simply a discrete category (category with one object), so the product structure is defined, in the obvious way, in terms of projections \(\Box\)
+\(\textbf{Set}\) is simply a discrete category (category with one object), so the product structure is defined, in the obvious way, in terms of projections \(\Box\)
 
 --
 
@@ -134,6 +134,8 @@ Describe the opposite of the category \(\textbf{Matr}_K\).
 Solution: \(\textbf{Matr}_K\) is the category of rectangular matrices of dimension \(m \times n\) with entries in the commutative ring \(K\). The objects are positive integers \(m, n, \ldots\), and each \(m \times n\) matrix \(A\) is regarded as an arrow \(A : n \rightarrow m\). The opposite category is a category with the same objects and direction of arrows reversed, i.e. the arrows are \(A^{\text{op}} : m \rightarrow n\) \(\Box\)
 
 --
+
+# Functor categories, comma categories, free categories
 
 Describe \(B^X\), for \(X\) a finite set.
 
@@ -159,3 +161,22 @@ b \ar[r]^k & b'
 }
 \end{xy}
 \]
+
+--
+
+For small categories \(A, B, C\), establish the bijection:
+\[\textbf{Cat}(A \times B, C) \cong \textbf{Cat}(A, C^B)\]
+
+and show that it is natural in \(A, B, C\).
+
+--
+
+Let \(S\) be a set with two everywhere-defined binary operations \(\bullet : S \times S \rightarrow S\) and \(\circ : S \times S \rightarrow S\), such that both have the same two-sided identity element \(e\), and satisfy the interchange law:
+
+\[(\tau' \bullet \sigma') \circ (\tau \bullet \sigma) = (\tau \circ \tau') \bullet (\sigma \circ \sigma')\]
+
+Prove that \(\circ\) and \(\bullet\) are equal, and that each is commutative.
+
+--
+
+If \(K\) is a commutative ring, show that the comma category \((K \downarrow \textbf{CRng})\) is the category of small commutative \(K\)-algebras.
