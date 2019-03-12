@@ -293,17 +293,45 @@
           \begin{xy}
           \xymatrix{
           F\ar[r]^{F \eta} & FGF\ar[d]^{\epsilon F} \\
-          & F
+          & F\ar@{.}[ul]|{=}
           }
           \end{xy}
           \begin{xy}
           \xymatrix{
           GFG\ar[d]^{G \epsilon} & G\ar[l]_{\eta G} \\
-          G
+          G\ar@{.}[ur]|{=}
           }
           \end{xy}
           \]
         </p>
+        <p>
+          Any two left adjoints of the \(G : A \rightarrow X\) are naturally isomorphic. This follows immediately from the fact that universal arrows are unique upto isomorphism.
+        </p>
+        <p>
+          A functor \(G : A \rightarrow X\) is said to have a left adjoint iff for every \(x \in X\), the functor \(X(x, Ga)\) is representable as a functor of \(a \in A\). If \(\varphi : A(F_0 x, a) \cong X(x, Ga)\) is a representation of this functor, then \(F_0\) is the object function of the left adjoint of \(G\), for which \(\varphi\) is natural in \(a\) and gives the adjunction. This is simply a restatement of (ii).
+        </p>
+        <p>
+          If additive functor \(G : A \rightarrow M\) between \(\text{Ab}\)-categories \(A, M\) has left adjoint \(F : M \rightarrow A\), then \(F\) is additive, and the adjunction bijections
+          \[\varphi : A(Fm, a) \cong M(m, Ga)\]
+        </p>
+        <p>
+          are isomorphisms of abelian groups for all \(m \in M, a \in A\). This can be shown as follows. If \(\eta : I \overset{\bullet}{\rightarrow} GF\) is the unit of the adjunction, then \(\varphi\) may be written as \(\varphi f = Gf \circ \eta_m\) for any \(f : Fm \rightarrow a\). If also \(f' : Fm \rightarrow a\), additivity of \(G\) gives:
+          \[\varphi(f + f') = (Gf + Gf')\eta_m = \varphi f + \varphi f'\]
+        </p>
+        <p>
+          Therefore \(\varphi\) is a morphism of abelian groups. Next, take \(g, g' : m \rightarrow n\) in \(M\). Since \(\eta\) is nautural,
+          \[GF(g + g') \circ \eta_m = \eta_n(g + g') = \eta_n g + \eta_n g'\]
+        </p>
+        <p>
+          On the other hand, since \(G\) is additive,
+          \[G(Fg + Fg') \circ \eta_m = \eta_n g + \eta_n g'\]
+        </p>
+        <p>
+          The equality of these two results, along with the universal property of \(\eta_m\) show that \(F(g + g') = Fg + Fg'\). Hence \(F\) is additive. Dually, right adjoint of an additive functor is additive.
+        </p>
+        <h2 id="examples-of-adjoints">
+          Examples of adjoints
+        </h2>
       </div>
       <div id="sidebar">
         <ul>
