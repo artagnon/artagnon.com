@@ -1,6 +1,6 @@
 [ct/3] Adjunctions
 
-# Adjunction
+# Adjoints
 
 For a fixed field \(K\), consider the functors
 
@@ -176,4 +176,34 @@ A(Fx, a)\ar@<.5ex>[r]^\varphi & X(x, Ga)\ar@<.5ex>[l]^\theta
 by \(\varphi f = Gf \circ \eta_x\) for all \(f : Fx \rightarrow a\), and \(\theta g = \epsilon_a \circ Fg\) for all \(g : x \rightarrow Ga\). Since \(G\) is a functor and \(\varphi\) an NT, we have:
 \[\varphi \theta g = G \eta_a \circ GFg \circ \eta_x = G \eta_a \circ \eta_{Ga} \circ g\]
 
-Now, since \(G \eta_a \circ \eta_{Ga} = 1\), \(\varphi \theta\) is identity.
+Now, since \(G \eta_a \circ \eta_{Ga} = 1\), \(\varphi \theta\) is identity. Dually, \(\theta \varphi\) is also identity, and therefore, \(\varphi\) is a bijection with inverse \(\theta\). It is clearly natural, and hence an adjunction.
+
+The result is very useful; for instance, (iii) and (iv) let us construct an adjuction whenever we have a universal arrow from or to all objects in a category. For example, \(C\) has finite products when for each pair \(\langle a, b \rangle \in C \times C\), when there is a universal arrow \(\Delta : C \rightarrow C \times C\) to \(\langle a, b \rangle\). From the result, we conclude that the function \(\langle a, b \rangle \rightarrow a \times b\) giving a product object is actually a functor \(C \times C \rightarrow C\), and this functor is right adjoint to \(\Delta\):
+\[\varphi : (C \times C)(\Delta c, \langle a, b \rangle) \cong C(c, a \times b)\]
+
+Using the definition of arrows in \(C \times C\), we get:
+\[\varphi : C(c, a) \times C(c, b) \cong C(c, a \times b)\]
+
+The counit of this adjuction is \(\langle a \times b, a \times b \rangle \rightarrow \langle a, b \rangle\); it is thus just projections of the product. The adjunction \(\varphi^{-1}\) sends the pair \(f : c \rightarrow a \times b\) to the pair \(\langle pf, qf \rangle\); this is the way in which the adjuction \(\varphi\) is determined by the counit \(\epsilon\).
+
+Similarly, if the category \(C\) has coproducts \(\langle a, b \rangle \rightarrow a \sqcup b\), they define the coproduct functor \(C \times C \rightarrow C\) which is left adjoint to \(\Delta\):
+\[C(a \sqcup b, c) \cong (C \times C)(\langle a, b \rangle, \Delta c)\]
+
+Similar arguments hold for limits. Proving universality is an easy way of showing that adjoints exist.
+
+Part (v) describes all adjunctions by two simple identities:
+
+\[
+\begin{xy}
+\xymatrix{
+F\ar[r]^{F \eta} & FGF\ar[d]^{\epsilon F} \\
+& F
+}
+\end{xy}
+\begin{xy}
+\xymatrix{
+GFG\ar[d]^{G \epsilon} & G\ar[l]_{\eta G} \\
+G
+}
+\end{xy}
+\]
