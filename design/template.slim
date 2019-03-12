@@ -49,8 +49,10 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
             h2 id="#{paragraph.bookmark}"
               == paragraph.contents.join "\n"
           - elsif paragraph.is_footer?
-            p class="footer"
-              == paragraph.contents.join "\n"
+            ul id="footer"
+              - for item in paragraph.contents
+                li
+                  == item
           - elsif paragraph.is_codeblock?
             pre
               code
