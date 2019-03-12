@@ -503,7 +503,7 @@
           Category of all categories
         </h2>
         <p>
-          Natural transforms satisfy the interchange law with respect to horizontal and vertical products:
+          Given three categories and four NTs, we have:
         </p>
         <p class="mathjax">
           \[
@@ -514,8 +514,23 @@
           \end{xy}
           \]
         </p>
+        <p>
+          The vertical and horizontal composities satisfy the interchange law:
+        </p>
         <p class="mathjax">
           \[(\tau' \bullet \sigma') \circ (\tau \bullet \sigma) = (\tau' \circ \tau) \bullet (\sigma' \circ \sigma)\]
+        </p>
+        <p>
+          The collection of all NTs is the set of arrows of two different categories under two different operations of composition, \(\circ\) and \(\bullet\), which satisfy the above interchange law. Moreover, any arrow that is identity for the composition \(\circ\) is also identity for the composition \(\bullet\). To prove this, notice that objects for the horizontal composition \(\circ\) are the categories, for vertical composition, the functors. Notice that the objects and arrows of \(C\) may be written as \(c : \textbf{1} \rightarrow C\) and \(f : \textbf{2} \rightarrow C\). Then, the symbols such as \(\sigma \circ c = \sigma c\) have their accepted meaning in a situation such as:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \textbf{1}\ar[r]^c & C \ar@<1ex>[r]_{\downarrow \sigma}\ar@<-1ex>[r] & B
+          }
+          \end{xy}
+          \]
         </p>
         <h2 id="comma-category">
           Comma category
