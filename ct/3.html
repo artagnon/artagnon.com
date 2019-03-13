@@ -382,7 +382,33 @@
           </li>
         </ol>
         <p>
-          Trivially, (b) implies (a).
+          Trivially, (b) implies (a). To prove that (a) implies (c), note that \(ST \cong I\) shows that each \(c \in C\) has the form \(c \cong S(Tc)\) for an \(a = Tc \in A\). The natural isomorphism \(\theta : TS \cong I\) gives for each \(f : a \rightarrow a'\) the commutative diagram:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          TSa\ar[r]^{\theta_a}\ar[d]_{TSf} & a\ar[d]^f \\
+          TSa'\ar[r]^{\theta_{a'}} & a'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          It follows that \(S\) is faithful. Symmetrically, \(ST \cong I\) proves that \(T\) is faithful. To show that \(S\) is full, consider any \(h : Sa \rightarrow Sa'\), and set \(f = \theta_a \circ Th \circ \theta_a^{-1}\). Then the above square commutes when \(Sf\) is replaced by \(h\), so \(TSf = Th\). Since \(T\) is faithful, and \(Sf = h\), it implies that \(S\) is full. To prove that (c) implies (b), we must construct \(S\) from a left adjoint \(T\). For each \(c \in C\), choose some object \(a_0 = T_0 c \in A\) and the isomorphism \(\eta_c\):
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \eta_c : c\ar@{}[r]|{\cong}\ar[dr]_f & S(T_0 c)\ar[d]^{S_g} \\
+          & Sa
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          For every arrow \(f : c \rightarrow Sa\), the composite \(f \circ \eta_c^{-1}\) has the form \(Sg\) because \(S\) is full; this \(g\) is unique because \(S\) is faithful. In other words, \(f = Sg \circ \eta_c\), for unique \(G\), so \(\eta_c\) is universal from \(c\) to \(S\). Therefore, \(T_0\) can be made a functor \(T : C \rightarrow A\) in exactly one way so \(\eta : I \overset{\bullet}{\rightarrow} ST\) is natural, and then \(T\) is left adjoint of \(S\) with unit the isomorphism \(\eta\). As with any adjunction, \(S \epsilon_a \bullet \eta_{S_a} = 1\) by putting \(c = Sa, f = 1\) in the above diagram. Thus, \(S \epsilon_a = (\eta_{S_a})^{-1}\) is invertible. Since \(S\) is full and faithful, the counit \(\epsilon_a\) is also invertible. Therefore, \(\langle S, T, \eta, \epsilon \rangle : C \rightharpoonup A\) is an adjunction equivalence.
         </p>
       </div>
       <div id="sidebar">
