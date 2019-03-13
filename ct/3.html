@@ -333,7 +333,24 @@
           Reflective subcategories
         </h2>
         <p>
-          Let \(f^* : A(a, -) \overset{\bullet}{\rightarrow} A(b, -)\) be the NT induced by the arrow \(f : b \rightarrow a\) of \(A\). Then \(f^*\) is monic iff \(f\) is epi, and \(f^*\) is epi iff \(f\) is a split monic. Note that \(f^* \mapsto f\) is the bijection \(Nat(A(a, -), A(b, -)) \cong A(b, a)\) given by the Yoneda lemma. Observe that for functors \(S, T : C \rightarrow B\), the NT \(\tau : S \overset{\bullet}{\rightarrow} T\) is epi in \(B^C\) iff every component \(\tau_c : S_c \rightarrow T_c\) is epi in \(B\) for \(B = \textbf{Set}\).
+          Let \(f^* : A(a, -) \overset{\bullet}{\rightarrow} A(b, -)\) be the NT induced by the arrow \(f : b \rightarrow a\) of \(A\). Then \(f^*\) is monic iff \(f\) is epi, and \(f^*\) is epi iff \(f\) is a split monic. Note that \(f^* \mapsto f\) is the bijection \(Nat(A(a, -), A(b, -)) \cong A(b, a)\) given by the Yoneda lemma. Observe that for functors \(S, T : C \rightarrow B\), the NT \(\tau : S \overset{\bullet}{\rightarrow} T\) is epi in \(B^C\) iff every component \(\tau_c : S_c \rightarrow T_c\) is epi in \(B\) for \(B = \textbf{Set}\). To show this, notice that for \(h \in A\), \(f^*h = hf\). Hence the first result is just the definition of an epi \(f\). If \(f^*\) is epi, there is an \(h_0 : a \rightarrow b\) such that \(f^* h_0 = h_0 f^* = 1 : b \rightarrow b\), so \(f\) has a left inverse. The converse is immediate. Now apply Yoneda lemma to the NT:
+          \[A(a, c) \xrightarrow{G_{a, c}} X(Ga, Gc) \xrightarrow{\varphi^{-1}} A(FGa, c)\]
+        </p>
+        <p>
+          It is determined by the image of \(1 : a \rightarrow a\), which is exactly the definition of counit \(\epsilon_a : FGa \rightarrow a\). But \(\varphi^{-1}\) is an isomorphism, hence this NT is monic or epi, respectively, whenver \(G_{a, c}\) is injective or surjective; i.e. when \(G_{a, c}\) is full or faithful.
+        </p>
+        <p>
+          For an adjunction \(\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A\), \(G\) is faithful iff every component \(\epsilon_a\) of the counit \(\epsilon\) is epi, and \(G\) is full iff every \(\epsilon_a\) is split monic. Hence, \(G\) is full and faithful iff each \(\epsilon_a\) is an isomorphism \(FGa \cong a\). This follows immediately from the last result.
+        </p>
+        <p>
+          A subcategory \(A\) of \(B\) is `reflective` in \(B\) when the inclusion function \(K : A \rightarrow B\) has left adjoint \(F : B \rightarrow A\). The functor \(F\) may be called a `reflector`, and the adjunction \(\langle F, K, \varphi \rangle = \langle F, \varphi \rangle : B \rightharpoonup A\) a `reflection` of \(B\) in subcategory \(A\). Since the inclusion functor \(K\) is always faithful, the counit \(\epsilon\) of the reflection is always epi. A reflection can be described in terms of the composite functor \(R = KF : b \rightarrow b\); indeed \(A \subset B\) is reflective in \(B\) iff there is a functor \(R : B \rightarrow B\) with values in the subcategory \(A\) and a bijection of sets:
+          \[A(Rb, a) \cong B(b, a)\]
+        </p>
+        <p>
+          natural in \(b \in B, a \in A\). A reflection can also be described in terms of universal arrows: \(A \subset B\) is reflective iff to each \(b \in B\), there is an object \(Rb\) of the subcategory \(A\), and the arrow \(\eta_b : b \rightarrow Rb\) such that every arrow \(g : b \rightarrow a \in A\) has the form \(g = f \circ \eta_b\) for \(f : Rb \rightarrow a\) of \(A\). \(R\) is then the object function of a functor \(B \rightarrow B\) with values in \(A\). If a full subcategory \(A \subset B\) is reflective in \(B\), then each object \(a \in A\) is isommorphic to \(FKa\), and hence \(Ra \cong a\) for all \(a\). Dually, \(A \subset B\) is `coreflective` in \(B\) when the inclusion functor \(A \rightarrow B\) has right adjoint.
+        </p>
+        <p>
+          As an example, \(\textbf{Ab}\) is reflective in \(\textbf{Grp}\).
         </p>
       </div>
       <div id="sidebar">
