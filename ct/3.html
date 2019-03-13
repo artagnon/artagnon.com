@@ -364,6 +364,26 @@
         <p>
           In any category \(C\), the `skeleton` of \(C\) is any full subcategory \(A\), such that every object of \(C\) is isomorphic to exactly one object in \(A\). Then \(A\) is equivalent to \(C\), and any functor \(K : A \rightarrow C\) is an equivalence of categories, for we can select to each \(c \in C\) an isomorphism \(\theta_c : c \cong Tc\), with \(Tc\) an object of \(A\). We can then make \(T : C \rightarrow A\) a functor in exactly one way, so that \(\theta\) will become a natural isomorphism \(\theta : I \cong KT\). Moreover, \(TK \cong I\), so \(K\) is indeed an equivalence. This discussion can be summarized as: A category is equivalent to any of its skeletons. As an example, the category of all finite sets has as a skeleton the full subcategory with objects all finite ordinals. A category is called `skeletal` when any two isomorphic objects are identical; i.e. when a category is its own skeleton.
         </p>
+        <p>
+          An `adjoint equivalence` of categories is an adjoint \(\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A\) such that both units \(\eta : I \overset{\bullet}{\rightarrow} ST\) and counits \(\epsilon : TS \overset{\bullet}{\rightarrow} I\) are the natural isomorphisms \(I \cong ST, TS \cong I\). Then \(\eta^{-1}, \epsilon^{-1}\) are also identities, and the triangular identities \(\epsilon T \bullet T \eta = 1\) and \(S \epsilon \bullet \eta S = 1\) can be written as \(T \epsilon^{-1} \bullet \eta^{-1} T = 1\) and \(\epsilon^{-1} S \bullet S \eta^{-1} = 1\). These state that \(\langle T, S, \epsilon^{-1}, \eta^{-1} \rangle : A \rightharpoonup C\) are adjunctions with unit \(\epsilon^{-1} : I \overset{\bullet}{\rightarrow} TS\) and counit \(\eta^{-1} : ST \overset{\bullet}{\rightarrow} I\). Thus, in an adjoint equivalence \(\langle T, S, -, - \rangle\), the functor \(T : C \rightarrow A\) is left adjoint of \(S : A \rightarrow C\) with unit \(\eta\), and \(T\) is right adjoint of \(S\) at the same time, with unit \(\epsilon^{-1}\).
+        </p>
+        <p>
+          The following properties about functor \(S : A \rightarrow C\) are equivalent:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            \(S\) is an equivalence of categories.
+          </li>
+          <li>
+            \(S\) is part of the adjoint equivalence \(\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A\).
+          </li>
+          <li>
+            \(S\) is full and faithful, and each object \(c \in C\) is isomorphic to \(Sa\) for some object \(a \in A\).
+          </li>
+        </ol>
+        <p>
+          Trivially, (b) implies (a).
+        </p>
       </div>
       <div id="sidebar">
         <ul>
