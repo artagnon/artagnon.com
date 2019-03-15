@@ -459,6 +459,58 @@
         <p>
           To assert that a category has finite products and coproducts is to say that the category has products, terminal, initial, and coproducts; thus the functors \(C \rightarrow \textbf{1}\) and \(\Delta: C \rightarrow C \times C\) have both left and right adjoints. Indeed, left adjoints give initial object and coproduct, while right adjoints give terminal object and product.
         </p>
+        <p>
+          A category is termed `cartesian closed` if the following functors have specified right adjoints:
+        </p>
+        <p class="mathjax">
+          \[C \rightarrow \textbf{1} \quad C \rightarrow C \times C \quad C \xrightarrow{- \times b} C \\
+          c \mapsto 0 \quad c \mapsto \langle c, c \rangle \quad a \mapsto a \times b\]
+        </p>
+        <p>
+          These right adjoints are:
+        </p>
+        <p class="mathjax">
+          \[t \leftarrow\!\shortmid 0 \quad a \times b \leftarrow\!\shortmid \langle a, b \rangle \quad c^b \leftarrow\!\shortmid c\]
+        </p>
+        <p>
+          To specify the first is to specify the terminal object \(t \in C\). To specify the second is to specify, for each pair of objects \(a, b \in C\), the product object \(a \times b\) along with projections \(a \leftarrow a \times b \rightarrow b\): the projections consistite the counit of the adjunction, and \(\times\) is a bifunctor. The third specifies \(- \times b : C \rightarrow C\), a right adjoint with bijection:
+          \[\text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)\]
+        </p>
+        <p>
+          natural in \(a\) and \(c\). By the `parameter theorem`, \(\langle b, c \rangle \rightarrow c^b\) is the object functor of bifunctor \(C^{op} \times C \rightarrow C\). Specifying the adjunction amounts to specifying specifying for all \(c, b\), the arrow:
+          \[e : c^b \times b \rightarrow c\]
+        </p>
+        <p>
+          which is natural in \(c\), and universal from \(- \times b\) to \(c\). We call this \(e = e_{c, b}\) the `evaluation map`. It amounts to ordinary evaluation \(\langle f, x \rangle \mapsto fx\) in the following cases:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            \(\textbf{Set}\) is a cartesian closed category with \(b^c = \text{Hom}(b, c)\).
+          </li>
+          <li>
+            \(\textbf{Cat}\) is a cartesian closed category with \(B^C\) the functor category.
+          </li>
+        </ol>
+        <p>
+          A closely related example of adjunctions is the functor:
+          \[- \otimes_K B : \text{K-Mod} \rightarrow \text{K-Mod}\]
+        </p>
+        <p>
+          which has right adjoint \(\text{Hom}_K(B, -)\); the adjunct is determined by counit \(\text{Hom}_K(B, A) \otimes_K B \rightarrow A\) given by the evaluation.
+        </p>
+        <h2 id="transformations-of-adjoints">
+          Transformations of adjoints
+        </h2>
+        <p>
+          Next, we turn our attention to maps between adjunctions. Given two adjunctions,
+        </p>
+        <p class="mathjax">
+          \[\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
+          \langle F', G', \eta', \epsilon' \rangle, X' \rightharpoonup A\]
+        </p>
+        <p>
+          we define the map between the two adjunctions by two functors \(K : A \rightarrow A'\) and \(L : X \rightarrow X'\) such that the following squares commute:
+        </p>
       </div>
       <div id="sidebar">
         <ul>
