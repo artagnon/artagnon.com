@@ -427,8 +427,14 @@
           \[Lp \geq q \text{ in Q } \iff p \leq Rq \text{ in P}\]
         </p>
         <p>
-          When this is the case, there is exactly one adjunction \(\varphi\) making \(L\) the left adjoint of \(R\). For all \(p, q\), \(p \leq RLp\) and \(LRq \geq q\); hence also:
+          A pair of order-preserving functions \(L, R\) satisfying this is called the `Galios connection` from \(P\) to \(Q\). When this is the case, there is exactly one adjunction \(\varphi\) making \(L\) the left adjoint of \(R\). For all \(p, q\), \(p \leq RLp\) and \(LRq \geq q\); hence also:
           \[Lp \geq LRLp \geq Lp \quad Rq \leq RLRq \leq Rq\]
+        </p>
+        <p>
+          To prove this, notice that \(P\) becomes a category when there is exactly one arrow \(p \rightarrow p'\) whenver \(p \leq p'\). Thus, the first condition states that there is a bijection \(\text{Hom}_{Q^{op}}(Lp, q) \cong \text{Hom}_P(p, Rq)\). Since each hom-set has exactly one element, this bijection is natural. The unit of the adjunction is the inequality \(p \leq RLp\) and the counit is \(LRq \geq q\). Thus, the second condition is the triangular identity connecting unit and counit. In the convenient case when \(P, Q\) are posets, these conditions become \(L = LRL, R = RLR\).
+        </p>
+        <p>
+          As a fundamental example, consider the group \(G\) acting on a set \(U\), by \(\langle \sigma, x \rangle \rightarrow \sigma \bullet x\) for all \(\sigma \in G, x \in U\). Take \(P = \mathscr{P}(U), Q = \mathscr{P}(G)\), the powersets. Let \(LX = \{\sigma \mid x \in X \implies \sigma \bullet x = x\}\), \(RS = \{\sigma \mid x \in S \implies \sigma \bullet x = x\}\); in other words, \(LX\) is the subgroup of \(G\) which fixes all points \(x \in X\) and \(RS\) is the set of fixed points of automorphisms of \(S\). Then, \(LX \geq S\) in \(Q\), iff \(\sigma \bullet x = x\) for all \(\sigma \in S, x \in X\), which in turn only holds if \(X \leq RS\) in \(P\). Therefore, \(L, S\) form an adjoint pair or Galios connection.
         </p>
       </div>
       <div id="sidebar">
