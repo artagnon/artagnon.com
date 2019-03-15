@@ -436,6 +436,29 @@
         <p>
           As a fundamental example, consider the group \(G\) acting on a set \(U\), by \(\langle \sigma, x \rangle \rightarrow \sigma \bullet x\) for all \(\sigma \in G, x \in U\). Take \(P = \mathscr{P}(U), Q = \mathscr{P}(G)\), the powersets. Let \(LX = \{\sigma \mid x \in X \implies \sigma \bullet x = x\}\), \(RS = \{\sigma \mid x \in S \implies \sigma \bullet x = x\}\); in other words, \(LX\) is the subgroup of \(G\) which fixes all points \(x \in X\) and \(RS\) is the set of fixed points of automorphisms of \(S\). Then, \(LX \geq S\) in \(Q\), iff \(\sigma \bullet x = x\) for all \(\sigma \in S, x \in X\), which in turn only holds if \(X \leq RS\) in \(P\). Therefore, \(L, S\) form an adjoint pair or Galios connection.
         </p>
+        <p>
+          As another example, consider sets \(U, V\) and powersets \(\mathscr{P}(U), \mathscr{P}(V)\). For each function \(f : U \rightarrow V\), the direct image \(f_*(X) = \{f(x) | x \in X\}\) is order-preserving, and is hence \(f_* : \mathscr{P}(U) \rightarrow \mathscr{P}(V)\) is the corresponding functor. The inverse image \(f^*(Y) = \{x | \exists y : f(x) = y\}\) is also order preserving, and hence \(f^* : \mathscr{P}(V) \rightarrow \mathscr{P}(U)\) is the corresponding functor. Hence, the direct image \(f_*\) is left-adjoint to the inverse image \(f^*\).
+        </p>
+        <p>
+          As yet another example, consider Boolean algebras. Let \(\mathscr{P}(U)\) be a category. The diagonal functor \(\Delta : \mathscr{P}(U) \rightarrow \mathscr{P}(U) \times \mathscr{P}(U)\) has right adjoint \(\cap\), with \(\langle X, Y \rangle \mapsto X \cap Y\), and left adjoint \(\cup\), with \(\langle X, Y \rangle \mapsto X \cup Y\). If \(X\) is a fixed subset of \(U\), intersection with \(X\) is the functor \(X \cap - : \mathscr{P}(U) \rightarrow \mathscr{P}(U)\). Since \(X \cap Y \leq Z\) if \(Y \leq Z \cup X'\), where \(X'\) is the complement of \(X\) in \(U\), right adjoint of \(X \cap -\) is \(X' \cup -\). Thus, construction of suitable adjoints leads to \(\cap, \cup, '\). Now, let \(P : U \times V \rightarrow U\) be a projection from sets \(U, V\). Each subset \(S \in U \times V\) determines subsets of \(U\) by:
+        </p>
+        <p class="mathjax">
+          \[P_* S = \{x \mid \exists y \in V \text{ and } \langle x, y \rangle \in S\} \\
+          P_\# S = \{x \mid \forall y \in V \implies \langle x, y \rangle \in S\}\]
+        </p>
+        <p>
+          They arise from \(\langle x, y \rangle\) by applying universal and existential quantifiers. Also, \(P_* S\) is the direct image of \(S\) under projection \(P\). Now, for all subsets \(X \subset U\), we have:
+          \[S \leq P^* X \iff P_* S \leq X \quad P^* X \leq S \iff X \leq P_* S\]
+        </p>
+        <p>
+          This states that inverse image operation \(P^*\) has left adjoint \(P_*\) and right adjoint \(P_\#\). In this sense, both quantifiers \(\exists\) and \(\forall\) can be interpreted as adjoints. This also has the following geometric interpretation: \(P^* X\) is the cylinder \(X \times Y \subset U \times V\) over the base \(X \in U\), \(P_* S\) is the projection of \(S \subset U \times V\) onto base \(U\), \(P_\# S\) is the largest subset \(X \subset U\) such that the cylinder is contained wholly within \(S\).
+        </p>
+        <h2 id="cartesian-closed-categories">
+          Cartesian closed categories
+        </h2>
+        <p>
+          To assert that a category has finite products and coproducts is to say that the category has products, terminal, initial, and coproducts; thus the functors \(C \rightarrow \textbf{1}\) and \(\Delta: C \rightarrow C \times C\) have both left and right adjoints. Indeed, left adjoints give initial object and coproduct, while right adjoints give terminal object and product.
+        </p>
       </div>
       <div id="sidebar">
         <ul>
