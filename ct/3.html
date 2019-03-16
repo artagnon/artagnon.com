@@ -563,7 +563,7 @@
           A(F'x, a)\ar@{}[r]|{\overset{\varphi'}{\cong}}\ar[d]_{(\sigma_x)^* = A(\sigma_x, a)} & X(x, G'a)\ar[d]^{X(x, \tau_a) = (\tau_a)_*} \\
           A(Fx, a)\ar@{}[r]|{\overset{\varphi}{\cong}} & X(x, Ga)
           }
-          \end{xy}
+          \end{xy}\tag{1}\label{conj}
           \]
         </p>
         <p>
@@ -582,7 +582,7 @@
           F\ar[r]^\sigma\ar[d]_{F \eta'} & F' \\
           FG'F'\ar[r]_{F \tau F'} & FGF'\ar[u]^{\epsilon F'}
           }
-          \end{xy}
+          \end{xy}\tag{2}\label{conj1}
           \]
         </p>
         <p class="mathjax">
@@ -598,11 +598,11 @@
           I_X\ar[r]^\eta\ar[d]^{\eta'} & GF\ar[d]^{G \sigma} \\
           G'F'\ar[r]^{\tau F'} & GF'
           }
-          \end{xy}
+          \end{xy}\tag{3}\label{conj2}
           \]
         </p>
         <p>
-          Also, given the NT \(\sigma : F \overset{\bullet}{\rightarrow} F'\), there is a unique \(\tau : G \overset{\bullet}{\rightarrow} G'\) such that \(\langle \sigma, \tau \rangle\) is conjugate. To prove this, consider:
+          Also, given the NT \(\sigma : F \overset{\bullet}{\rightarrow} F'\), there is a unique \(\tau : G' \overset{\bullet}{\rightarrow} G\) such that \(\langle \sigma, \tau \rangle\) is conjugate. To prove this, consider:
         </p>
         <p class="mathjax">
           \[
@@ -628,7 +628,7 @@
           \]
         </p>
         <p>
-          This yields the first commutative diagram and its dual. A slightly different chase yields the second commutative diagram and its dual:
+          This yields \(\eqref{conj1}\) and its dual. A slightly different chase yields \(\eqref{conj2}\) and its dual:
         </p>
         <p class="mathjax">
           \[
@@ -639,6 +639,9 @@
           }
           \end{xy}
           \]
+        </p>
+        <p>
+          Next, suppose \(\sigma, \tau\) are not given. Then, applying Yoneda lemma to \(\varphi \circ (\sigma_x)^* \circ \varphi^{-1}\) yields a unique family of arrows \(\tau'_a\) for which \(\eqref{conj}\) commutes, and this family is an NT. Since each \(\epsilon_a : FGa \rightarrow a\) is universal from \(F\) to \(a\), there is also a unique family of arrows \(\tau''_a : G'a \rightarrow Ga\) such that \(\eqref{conj2}\) commutes. Since \(\eqref{conj}\) implies \(\eqref{conj2}\), \(\tau'_a = \tau''_a\); in other words, if \(\tau'' = \tau\) makes \(\eqref{conj2}\) commute, it also makes \(\eqref{conj}\) commute. Therefore \(\eqref{conj2}\) implies \(\eqref{conj}\). Given \(\sigma\), there is immediately a unique NT \(\tau : G' \rightarrow G\) for which \(\eqref{conj1}\) commutes; since \(\eqref{conj}\) implies \(\eqref{conj1}\), \(\tau_a = \tau'_a\). Hence solutions of \(\tau'_a\) of \(\eqref{conj}\) are necessarily natural; moreover \(\eqref{conj1}\) implies \(\eqref{conj}\), completing the proof.
         </p>
       </div>
       <div id="sidebar">
