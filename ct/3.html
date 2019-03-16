@@ -547,6 +547,60 @@
         <p>
           where \(LGF = G'F'L\). Conversely, given the identity \(L \eta = \eta' L\) of the NTs, the definition of adjunctions \(\varphi, \varphi'\) by their units gives the required result. The case of counits is dual to this case.
         </p>
+        <p>
+          Next, consider two adjunctions between the same two categories:
+        </p>
+        <p class="mathjax">
+          \[\langle F, G, \eta, \epsilon \rangle, \langle F', G', \eta', epsilon' \rangle : X \rightharpoonup A\]
+        </p>
+        <p>
+          The following two NTs are said to be `conjugate` when the diagram commutes for every pair of objects \(x \in X, a \in A\):
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          A(F'x, a)\ar@{}[r]|{\overset{\varphi'}{\cong}}\ar[d]_{(\sigma_x)^* = A(\sigma_x, a)} & X(x, G'a)\ar[d]^{X(x, \tau_a) = (\tau_a)_*} \\
+          A(Fx, a)\ar@{}[r]|{\overset{\varphi}{\cong}} & X(x, Ga)
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Given the above two adjunctions, the NTs \(\sigma, \tau\) are said to be `conjugate` iff the following diagrams commute:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          G'\ar[r]^\tau\ar[d]_{\eta G'} & G \\
+          GF'G\ar[r]_{G \sigma G'} & GF'G'\ar[u]^{G \epsilon'}
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          F\ar[r]^\sigma\ar[d]_{F \eta'} & F' \\
+          FG'F'\ar[r]_{F \tau F'} & FGF'\ar[u]^{\epsilon F'}
+          }
+          \end{xy}
+          \]
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          FG'\ar[r]^{F \tau}\ar[d]^{\sigma G'} & FG\ar[d]^c \\
+          F'G'\ar[r]^{c'} & I_A
+          }
+          \end{xy}
+          \begin{xy}
+          \xymatrix{
+          I_X\ar[r]^\eta\ar[d]^{\eta'} & GF\ar[d]^{G \sigma} \\
+          G'F'\ar[r]^{\tau F'} & GF'
+          }
+          \end{xy}
+          \]
+        </p>
       </div>
       <div id="sidebar">
         <ul>
