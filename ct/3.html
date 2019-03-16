@@ -551,7 +551,7 @@
           Next, consider two adjunctions between the same two categories:
         </p>
         <p class="mathjax">
-          \[\langle F, G, \eta, \epsilon \rangle, \langle F', G', \eta', epsilon' \rangle : X \rightharpoonup A\]
+          \[\langle F, G, \eta, \epsilon \rangle, \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A\]
         </p>
         <p>
           The following two NTs are said to be `conjugate` when the diagram commutes for every pair of objects \(x \in X, a \in A\):
@@ -597,6 +597,45 @@
           \xymatrix{
           I_X\ar[r]^\eta\ar[d]^{\eta'} & GF\ar[d]^{G \sigma} \\
           G'F'\ar[r]^{\tau F'} & GF'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Also, given the NT \(\sigma : F \overset{\bullet}{\rightarrow} F'\), there is a unique \(\tau : G \overset{\bullet}{\rightarrow} G'\) such that \(\langle \sigma, \tau \rangle\) is conjugate. To prove this, consider:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          A(F'G'a, a)\ar@{}[r]|{\overset{\varphi'}{\cong}}\ar[d]_{(\sigma_x)^* = A(\sigma_x, a)} & X(G'a, G'a)\ar[d]^{X(G'a, \tau_a) = (\tau_a)_*} \\
+          A(FG'a, a)\ar@{}[r]|{\overset{\varphi}{\cong}} & X(G'a, Ga)
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Start with the identity arrow \(1 : G'a \rightarrow G'a\), and use the description of \(\varphi, \varphi'\) by unit and counit, and chase the diagram around \(1\) as follows:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \epsilon'_a\ar@{|->}[d] & 1 = 1_{G'a}\ar@{|->}[l]\ar@{|->}[d] \\
+          \epsilon'_a \circ \sigma_{G'a} \ar@{|->}[r] & G \epsilon'_a \circ G \sigma_{G'a} \circ \eta_{G'a} = \tau_a
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          This yields the first commutative diagram and its dual. A slightly different chase yields the second commutative diagram and its dual:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \epsilon'_a\ar@{|->}[d] & 1\ar@{|->}[l]\ar@{|->}[d] \\
+          \epsilon'_a \circ \sigma_{G'a} = \epsilon_a \circ \tau_{Fa} & \tau_a\ar@{|->}[l]
           }
           \end{xy}
           \]
