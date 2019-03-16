@@ -426,7 +426,7 @@ G'F'\ar[r]^{\tau F'} & GF'
 \end{xy}\tag{3}\label{conj2}
 \]
 
-Also, given the NT \(\sigma : F \overset{\bullet}{\rightarrow} F'\), there is a unique \(\tau : G' \overset{\bullet}{\rightarrow} G\) such that \(\langle \sigma, \tau \rangle\) is conjugate. To prove this, consider:
+Also, given the NT \(\sigma : F \overset{\bullet}{\rightarrow} F'\), there is a unique \(\tau : G' \overset{\bullet}{\rightarrow} G\) such that \(\langle \sigma, \tau \rangle\) is conjugate. To prove this, consider \(\eqref{conj}\) with \(x = G'a\):
 
 \[
 \begin{xy}
@@ -437,7 +437,7 @@ A(FG'a, a)\ar@{}[r]|{\overset{\varphi}{\cong}} & X(G'a, Ga)
 \end{xy}
 \]
 
-Start with the identity arrow \(1 : G'a \rightarrow G'a\), and use the description of \(\varphi, \varphi'\) by unit and counit, and chase the diagram around \(1\) as follows:
+Start with the identity arrow \(1 : G'a \rightarrow G'a\) on the top right, use the description of \(\varphi, \varphi'\) by unit and counit, and chase the diagram around \(1\) as follows:
 
 \[
 \begin{xy}
@@ -460,3 +460,40 @@ This yields \(\eqref{conj1}\) and its dual. A slightly different chase yields \(
 \]
 
 Next, suppose \(\sigma, \tau\) are not given. Then, applying Yoneda lemma to \(\varphi \circ (\sigma_x)^* \circ \varphi^{-1}\) yields a unique family of arrows \(\tau'_a\) for which \(\eqref{conj}\) commutes, and this family is an NT. Since each \(\epsilon_a : FGa \rightarrow a\) is universal from \(F\) to \(a\), there is also a unique family of arrows \(\tau''_a : G'a \rightarrow Ga\) such that \(\eqref{conj2}\) commutes. Since \(\eqref{conj}\) implies \(\eqref{conj2}\), \(\tau'_a = \tau''_a\); in other words, if \(\tau'' = \tau\) makes \(\eqref{conj2}\) commute, it also makes \(\eqref{conj}\) commute. Therefore \(\eqref{conj2}\) implies \(\eqref{conj}\). Given \(\sigma\), there is immediately a unique NT \(\tau : G' \rightarrow G\) for which \(\eqref{conj1}\) commutes; since \(\eqref{conj}\) implies \(\eqref{conj1}\), \(\tau_a = \tau'_a\). Hence solutions of \(\tau'_a\) of \(\eqref{conj}\) are necessarily natural; moreover \(\eqref{conj1}\) implies \(\eqref{conj}\), completing the proof.
+
+The vertical compositions of:
+
+\[\langle F, G, \eta, \epsilon \rangle \xrightarrow{\langle \sigma, \tau \rangle} \langle F', G', \eta' \epsilon' \rangle \xrightarrow{\langle \sigma', \tau' \rangle} \langle F'', G'', \eta'', \epsilon'' \rangle\]
+
+are given by \(\langle \sigma, \tau \rangle \circ \langle \sigma', \tau' \rangle = \langle \sigma \bullet \sigma', \tau \bullet \tau' \rangle\)
+
+For two given categories \(X, A\), we have a new category \(A^{(\text(adj)X)}\), the `category of adjunctions` from \(X\) to \(A\); its objects are adjunctions \(\langle F, G, \eta, \epsilon \rangle\) and arrows are conjugate pairs \(\langle \sigma, \tau \rangle\) with composition just noted. There are also two forgetful functors to the ordinary functor categories:
+
+\[
+\begin{xy}
+\xymatrix{
+A^X \leftarrow A^{(\text{adj})X} & & [A^{(\text{adj}X)}]^{\text{op}} \rightarrow X^A \\
+F\ar[d]^\sigma & \langle F, G, \eta, \epsilon \rangle\ar[d]^{\langle \sigma, \tau \rangle}\ar@{|->}[l]\ar@{|->}[r] & G\ar[d]^\tau \\
+F' & \langle F', G', \eta', \epsilon' \rangle\ar@{|->}[l]\ar@{|->}[r] & G'
+}
+\end{xy}
+\]
+
+A typical example is for \(\textbf{Set}\):
+\[\text{Hom}(S \times T, R) \cong \text{Hom}(S, \text{Hom}(T, R))\]
+
+If \(t : T \rightarrow T'\) is a function between the two sets, then \(- \times t\) is a NT of functors \(- \times T \overset{\bullet}{\rightarrow} T'\). Its conjugate is the NT \(\text{Hom}(t \times -) : \text{Hom}(T', -) \rightarrow \text{Hom}(T, -)\); this is in the reverse direction as \(S \times T\) is covariant in \(\text{Hom}(T, R)\) and contravariant in \(T\). We may call the above an `adjuction with parameter` \(T \in \textbf{Set}\).
+
+Given a bifunctor \(F : X \times P \rightarrow A\), assume for each \(p \in P\), that \(F(-, p) : X \rightarrow A\) has a right adjoint \(G(p, -) : A \rightarrow X\) via the adjunction:
+\[\text{Hom}(F(x, p), a) \cong \text{Hom}(x, G(p, a))\]
+
+natural in \(x\) and \(a\). Then, there is a unique way to assign to each arrow \(h : p' \rightarrow p\) of \(P\), and each object \(a \in A\), an arrow \(G(h, p') \rightarrow G(h, p)\) of \(X\) so that \(G\) becomes a bifunctor \(P^{\text{op}} \times A \rightarrow X\) for which the bijection of the adjunction is natural in \(x, p, a\). This assignment of arrows \(G(h, a)\) to \(\langle h, a \rangle\) may also be described as the unique way to make \(G(h, -)\) an NT conjugate to \(F(-, h)\). To prove this, first notice that the bijection implies the following commutative diagram:
+
+\[
+\begin{xy}
+\xymatrix{
+\text{Hom}(F(x, p), a)\ar@{}[r]|{\cong} & \text{Hom}(x, G(p, a)) \\
+\text{Hom}(F(x, p'), a)\ar[u]^{F(x, h)_*}\ar@{}[r]|{\cong} & \text{Hom}(x, G(p', a))\ar[u]_{G(h, a)_*}
+}
+\end{xy}
+\]
