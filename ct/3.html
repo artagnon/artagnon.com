@@ -32,7 +32,7 @@
         <h1>
           [ct/3] Adjunctions
         </h1>
-        <time datetime="2019-03-15">Last updated: Fri, 15 Mar 2019</time><br /><time datetime="2019-02-05">Created: Tue, 5 Feb 2019</time>
+        <time datetime="2019-03-16">Last updated: Sat, 16 Mar 2019</time><br /><time datetime="2019-02-05">Created: Tue, 5 Feb 2019</time>
         <h2 id="adjoints">
           Adjoints
         </h2>
@@ -502,7 +502,7 @@
           Transformations of adjoints
         </h2>
         <p>
-          Next, we turn our attention to maps between adjunctions. Given two adjunctions,
+          Next, we turn our attention to maps between adjunctions. Given two adjunctions:
         </p>
         <p class="mathjax">
           \[\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
@@ -510,6 +510,42 @@
         </p>
         <p>
           we define the map between the two adjunctions by two functors \(K : A \rightarrow A'\) and \(L : X \rightarrow X'\) such that the following squares commute:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          A\ar[r]^G\ar[d]^K & X\ar[r]^F\ar[d]^L & A\ar[d]^K \\
+          A'\ar[r]^G & X'\ar[r]^F & A'
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          and such that the diagram of adjunctions and hom-sets commutes for all \(x \in X, a \in A\):
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          A(x, Fa)\ar[r]^\varphi\ar[d]_{K = K_{Fx, a}} & X(Gx, a)\ar[d]^{L = L_{x, Ga}} \\
+          A'(KFx, Ka)\ar@{}[d]|{=} & X'(Lx, LGa)\ar@{}[d]|{=} \\
+          A'(F'Lx, Ka)\ar[r]^{\varphi'} & X'(Lx, G'Ka)
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Here, \(K_{Fx, a}\) is the map \(f \mapsto Kf\) given by the functor \(K\) applied to each \(f : Fx \rightarrow a\).
+        </p>
+        <p>
+          The above condition is equivalent to \(L \eta = \eta' L\) and \(\epsilon' K = K \epsilon\). To prove this, set \(a = Fx\) and chase \(1 : Fx \rightarrow Fx\) around the commutative diagram to get the units \(\eta, \eta'\), and the equality:
+        </p>
+        <p class="mathjax">
+          \[\langle L, \eta : L \rightarrow LGF \rangle = \langle \eta', L : L \rightarrow G'F'L \rangle\]
+        </p>
+        <p>
+          where \(LGF = G'F'L\). Conversely, given the identity \(L \eta = \eta' L\) of the NTs, the definition of adjunctions \(\varphi, \varphi'\) by their units gives the required result. The case of counits is dual to this case.
         </p>
       </div>
       <div id="sidebar">
