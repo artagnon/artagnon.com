@@ -542,3 +542,26 @@ This means that \(\textbf{Adj}\) is a `two-dimensional category` as is \(\textbf
 
 The characteristic function of a subset \(S \subset X\) is the two-valued function \(\psi_S : X \rightarrow \{0, 1\}\) on \(X\) with values:
 \[\psi_S X = 0 \text{ if } x \in S \quad \psi_S X = 1 \text { if } x \in X, x \notin S\]
+
+Put differently, \(\{0\} \subset \{0, 1\}\) is the simplest non-trivial subset. An arbitrary subset \(S \subset X\) can be mapped into this simple subset by \(\psi_S\), as defined. This produces the pullback map:
+
+\[
+\begin{xy}
+\xymatrix{
+S\ar[r]\ar[d] & \{0\}\ar[d] \\
+X\ar[r]^{\psi_S} & \{0, 1\}
+}
+\end{xy}
+\]
+
+These appear in probability theory; in logic, \(\{0, 1\}\) are "truth values", and "truth" is represented by \(\{0\}\). The monomorphism \(t : \{0\} \rightarrow \{0, 1\}\) is termed `subobject classifier` for the category of sets. A subobject classifier for the category \(C\) with terminal object \(1\) is defined to be \(t : 1 \rightarrow \Omega\), such that every monomorphism \(m\) in \(C\) is a pullback of \(t\) in a unique way. In other words, for each \(m\), there exists a pullback square:
+
+\[
+\newdir{ >}{{}*!/-7pt/\dir{>}}
+\begin{xy}
+\xymatrix{
+S\ar@{ >->}[d]^m\ar[r] & 1\ar@{ >->}[d]^t \\
+X\ar[r]^\psi & \Omega
+}
+\end{xy}
+\]
