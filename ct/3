@@ -541,7 +541,7 @@ This means that \(\textbf{Adj}\) is a `two-dimensional category` as is \(\textbf
 # Subsets and characteristic functions
 
 The characteristic function of a subset \(S \subset X\) is the two-valued function \(\psi_S : X \rightarrow \{0, 1\}\) on \(X\) with values:
-\[\psi_S X = 0 \text{ if } x \in S \quad \psi_S X = 1 \text { if } x \in X, x \notin S\]
+\[\psi_S x = 0 \text{ if } x \in S \quad \psi_S x = 1 \text { if } x \in X, x \notin S\]
 
 Put differently, \(\{0\} \subset \{0, 1\}\) is the simplest non-trivial subset. An arbitrary subset \(S \subset X\) can be mapped into this simple subset by \(\psi_S\), as defined. This produces the pullback map:
 
@@ -565,3 +565,45 @@ X\ar[r]^\psi & \Omega
 }
 \end{xy}
 \]
+
+The top horizontal arrow is the unique map to terminal object \(1\), and the lower horizontal arrow acts as the `characteristic function` of subobject \(S\), while the universal morphism \(t : 1 \rightarrow \Omega\) may be called "truth".
+
+For example, take \(C\) to be a category of functions \(f : X \rightarrow Y\). Here a monomorphism \(g \rightarrowtail f\) is a function \(S \rightarrow T\) between a pair of subsets \(S \subset X\) and \(T \subset Y\), such that \(g(s) = f(s)\) for all \(s \in S\). This means that the following diagram commutes:
+
+\[
+\begin{xy}
+\xymatrix{
+S\ar[r]^g\ar[d] & T\ar[d] \\
+X\ar[r]^f & Y
+}
+\end{xy}
+\]
+
+In this case, there are three types of elements in \(X\): those \(x \in S\), those \(x \notin S\), but with \(gx \in T\), and those \(x \notin S, gx \notin T\). We may then define a characteristic function with three values by setting:
+
+\[\psi_S x = \begin{cases} 0 \quad x \in S \\ 1 \quad x \notin S, fx \in T \\ 2 \quad fx \notin T \end{cases}\]
+
+Again, this prescription provides a pullback map:
+
+\[
+\begin{xy}
+\xymatrix{
+X\ar[rr]\ar@{ >->}[dd]\ar[dr]^g & & \{0\}\ar[dd]\ar[dr] & \\
+& T\ar@{ >->}[dd]|{\hole}\ar[rr] & & \{0\}\ar@{ >->}[dd] \\
+X\ar[dr]^f\ar[rr]^{\psi_S} & & \{0, 1, 2\}\ar[dr]^j & \\
+& Y\ar[rr]^{\psi_T} & & \{0, 2\}
+}
+\end{xy}
+\]
+
+of objects \(X \rightarrow Y\) and \(j : \{0, 1, 2\} \rightarrow \{0, 1\}\) in the category of functions, whose function \(j\) is given by \(j0 = 0, j1 = 1, j2 = 2\). Thus, the inclusion \(j\) is the subobject classifier for the category of functions.
+
+As an example, consider the arrow category \(\textbf{2}\) as a category with two objects \(0, 1\), and only one non-identity arrow \(a : 0 \rightarrow 1\). Thus, an ordinary function \(f\) is the same thing as a functor \(\textbf{2} \rightarrow \textbf{Sets}\). Hence, we have constructed above the functor category for \(\textbf{Sets}^2\).
+
+# Categories like sets
+
+An elementary `topos` is defined to be a category \(E\) with the following properties:
+
+(a) \(E\) has all finite limits.
+(b) \(E\) has a subobject classifier.
+(c) \(E\) is cartesian closed.
