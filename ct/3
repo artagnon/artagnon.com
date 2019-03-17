@@ -598,7 +598,7 @@ X\ar[dr]^f\ar[rr]^{\psi_S} & & \{0, 1, 2\}\ar[dr]^j & \\
 
 of objects \(X \rightarrow Y\) and \(j : \{0, 1, 2\} \rightarrow \{0, 1\}\) in the category of functions, whose function \(j\) is given by \(j0 = 0, j1 = 1, j2 = 2\). Thus, the inclusion \(j\) is the subobject classifier for the category of functions.
 
-As an example, consider the arrow category \(\textbf{2}\) as a category with two objects \(0, 1\), and only one non-identity arrow \(a : 0 \rightarrow 1\). Thus, an ordinary function \(f\) is the same thing as a functor \(\textbf{2} \rightarrow \textbf{Sets}\). Hence, we have constructed above the functor category for \(\textbf{Sets}^2\).
+As an example, consider the arrow category \(\textbf{2}\) as a category with two objects \(0\) and \(1\), and only one non-identity arrow \(a : 0 \rightarrow 1\). Thus, an ordinary function \(f\) is the same thing as a functor \(\textbf{2} \rightarrow \textbf{Sets}\). Hence, we have constructed above the functor category for \(\textbf{Sets}^2\).
 
 # Categories like sets
 
@@ -607,3 +607,10 @@ An elementary `topos` is defined to be a category \(E\) with the following prope
 (a) \(E\) has all finite limits.
 (b) \(E\) has a subobject classifier.
 (c) \(E\) is cartesian closed.
+
+Requiring \(E\) to be cartesian closed means requring each functor "product with b" (i.e. \(a \mapsto a \times b\)) has for each \(b \in E\) a right adjoint \(c \mapsto c^b\) so that:
+\[\text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)\]
+
+In other words, \(E\) has exponentials.
+
+The category \(\text{Sets}\) of all small sets is a topos, as is \(\textbf{Sets}^{C^\text{op}}\), the set of all contravariant functors on small category \(C\). Such a functor \(F : C^{\text{op}} \rightarrow \textbf{Sets}\) is called a [presheaf](/ag/1#definition-of-presheaf-and-sheaf). This is a reference to topology where \(C\) is the set of all open subsets \(U\) of topological space \(X\); in this case, presheaf \(F\) assigns to each \(U\) a set \(F(U)\), with functorial properties for continuous maps \(U \rightarrow V\). If \(F\) is the set of continuous real-valued functions on \(U\), it is said to be a [sheaf](/ag/1#definition-of-presheaf-and-sheaf). A topological structure is essentially described by its topos of sheaves of \(\textbf{Sets}\). Various logical properties are reflected in subobject classifiers \(\Omega\) of a topos. Suitable toposes can replace the category of sets as a foundation for mathematics.
