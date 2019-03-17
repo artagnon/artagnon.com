@@ -32,7 +32,7 @@
         <h1>
           [ct/3] Adjunctions
         </h1>
-        <time datetime="2019-03-16">Last updated: Sat, 16 Mar 2019</time><br /><time datetime="2019-02-05">Created: Tue, 5 Feb 2019</time>
+        <time datetime="2019-03-17">Last updated: Sun, 17 Mar 2019</time><br /><time datetime="2019-02-05">Created: Tue, 5 Feb 2019</time>
         <h2 id="adjoints">
           Adjoints
         </h2>
@@ -709,6 +709,47 @@
         </p>
         <p>
           We prove it by noticing that, with hom-sets, the two given adjunctions yield a composite isomorphism, natural for all \(x \in X, d \in D\):
+          \[D(\bar{F}Fx, d) \cong D(Fx, \bar{G}d) \cong X(x, G\bar{G}d)\]
+        </p>
+        <p>
+          This makes the composite \(\bar{F}F\) left adjoint to \(G\bar{G}\). Setting \(d = \bar{F}Fx\), and applying these two isomorphisms to the identity \(1 : \bar{F}Fx \rightarrow \bar{F}Fx\), we find that the unit of composite adjunction is \(x \xrightarrow{\eta x} GFx \xrightarrow{G\bar{\eta}Fx} G\bar{F}\bar{F}Fx\), so is \(G\bar{\eta}F . \eta\), as asserted. The dual argument yields counit \(\bar{\epsilon} . \bar{G}\epsilon\bar{F}\), as required.
+        </p>
+        <p>
+          Using this composition, we may form a category \(\textbf{Adj}\), whose objects are small categories \(X, A, D\), and whose arrows are adjunctions \(\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A\) composed as above; the identity arrow is \(A \rightharpoonup A\). This category has additional structure; each hom-set \(\textbf{Adj}(X, A)\) may be regarded as a category; the category of adjunctions \(A^{(\text{adj})X}\) has already been described. Its objects are these adjunctions, and arrows are conjugate pairs \(\langle \sigma, \tau \rangle\) under "vertical" composition.
+        </p>
+        <p>
+          Given two conjugate pairs:
+        </p>
+        <p class="mathjax">
+          \[\langle \sigma, \tau \rangle : \langle F, G, \eta, \epsilon \rangle \overset{\bullet}{\rightarrow} \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A \\
+          \langle \bar{\sigma}, \bar{\tau} \rangle : \langle \bar{F}, \bar{G}, \bar{\eta}, \bar{\epsilon} \rangle \overset{\bullet}{\rightarrow} \langle \bar{F'}, \bar{G'}, \bar{\eta'}, \bar{\epsilon'} \rangle : A \rightharpoonup D\]
+        </p>
+        <p>
+          The "horizontal" composite NTs yield a conjugate pair \(\bar{\sigma} \sigma : \bar{F}F \overset{\bullet}{\rightarrow} \bar{F'}F'\), \(\tau \bar{\tau} : G'\bar{G'} \overset{\bullet}{\rightarrow} G\bar{G}\) of NTs for the conjugate adjunction. The proof may be visualized by the commutative diagram of hom-sets:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          D(\bar{F'}F'x, d)\ar@{}[r]|{\cong}\ar[d]^{(\bar{\sigma} \sigma x)^*} & A(F'x, \bar{G'}d)\ar@{}[r]|{\cong}\ar[d]^{(\sigma x)^* (\bar{\tau} d)_*} & X(x, G'\bar{G'}d)\ar[d]^{(\tau \bar{\tau_d})_*} \\
+          D(\bar{F}Fx, d)\ar@{}[r]|{\cong} & A(Fx, \bar{G}d)\ar@{}[r]|{\cong} & X(x, G\bar{G}d)
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          Moreover, this operation of horizontal composition is a bifunctor:
+          \[\textbf{Adj}(A, D) \times \textbf{Adj}(X, A) \cong \textbf{Adj}(X, D)\]
+        </p>
+        <p>
+          This means that \(\textbf{Adj}\) is a `two-dimensional category` as is \(\textbf{Cat}\).
+        </p>
+        <h2 id="subsets-and-characteristic-functions">
+          Subsets and characteristic functions
+        </h2>
+        <p>
+          The characteristic function of a subset \(S \subset X\) is the two-valued function \(\psi_S : X \rightarrow \{0, 1\}\) on \(X\) with values:
+          \[\psi_S X = 0 \text{ if } x \in S \quad \psi_S X = 1 \text { if } x \in X, x \notin S\]
         </p>
       </div>
       <div id="sidebar">
