@@ -30,3 +30,15 @@ We will first define \(\text{Spec } A\) to be the prime spectrum of ring \(A\), 
 An element of the ring lying in a prime ideal \(\mathfrak{p}\) translates to a function vanishing at point \([\mathfrak{p}]\). If we add or multiply two functions, we add or multiply their values at all points; this is a direct consequence of \(A \rightarrow A/\mathfrak{p}\) being a ring homomorphism. If \(A\) is generated over a base field or base ring by elements \(x_1, \ldots, x_r\), these elements are called `coordinates`.
 
 We will interpret functions on \(\text{Spec } A\) as global sections on the structure sheaf; i.e. a function on a ringed space. The notion of "value of a function" will later be interpreted as values on a particular locally ringed space.
+
+As a first example, consider the complex affine line \(\mathbb{A}_\mathbb{C}^1 := \text{Spec } \mathbb{C}[x]\). Since \(\mathbb{C}[x]\) is an integral domain, \(0\) is a prime ideal. \((x - a)\) is a prime ideal too, and it is maximal, since quotient by this ideal gives a field:
+
+\[0 \rightarrow (x - a) \rightarrow \mathbb{C}[x] \xrightarrow{f \mapsto f(a)} \mathbb{C} \rightarrow 0\]
+
+There are no other prime ideals. In the geometric picture, there is one "traditional point" for each \(a \in \mathbb{C}\) plus one bonus point \([(0)]\). \([(x - a)]\) will readily associate to \(a \in C\), but \([(0)]\) is mysterious, for it lies somehwere on the complex line, but nowhere in particular: we will call it a "generic point".
+
+To get some intuition for this space, note that functions of \(\mathbb{C}[x]\) are just polynomials in a single variable. Its value at \(([x - a])\) is \(f(a)\); equivalently, we can evalute \(f(x) \text{ mod } (x - a)\). Its value at \([(0)]\) is simply \(f(x)\).
+
+\(g(x) = (x - 3)^3/(x - 2)\) is defined everywhere by at \(2\); as we will see later, it is an element of the structure sheaf on the open set \(\mathbb{A}_\mathbb{C}^1 \backslash \{2\}\). \(g(x)\) has a triple zero at \(x = 3\), and a single pole at \(x = 2\).
+
+Example 2: \(\mathbb{A}_k^1 := \text{Spec } k[x]\) over algebraically closed \(k\) is the `affine line` over \(k = \bar{k}\).
