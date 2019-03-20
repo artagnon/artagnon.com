@@ -169,11 +169,24 @@
           The non-traditional points in the picture correspond to "closed" "irreducible" algebraic subsets. Each closed irreducible subset has a generic point sitting in it.
         </p>
         <p>
-          We have also seen how points of \(\text{Spec } A/I\) should be visualized as subsets of \(\text{Spec } A\); \(\text{Spec } \mathbb{C}[x, y]/(x + y)\) should be interpreted as a line in the xy-plane. Similarly, points of \(\text{Spec } S^{-1} A\) should be interpreted as subsets of \(\text{Spec } A\); \(\text{Spec } A_f\) are the subset of points of \(\text{Spec } A\) where \(f\) does not vanished: these will be formalized as `distinguished open sets`. If \(\mathfrak{p}\) is a prime ideal, points of \(\text{Spec } A_\mathfrak{p}\) should be seen as a "shred of the space \(\text{Spec } A\) near the subset corresponding to \(\mathfrak{p}\)".
+          We have also seen how points of \(\text{Spec } A/I\) should be visualized as subsets of \(\text{Spec } A\); \(\text{Spec } \mathbb{C}[x, y]/(x + y)\) should be interpreted as a line in the \(xy\)-plane. Similarly, points of \(\text{Spec } S^{-1} A\) should be interpreted as subsets of \(\text{Spec } A\); \(\text{Spec } A_f\) are the subset of points of \(\text{Spec } A\) where \(f\) does not vanished: these will be formalized as `distinguished open sets`. If \(\mathfrak{p}\) is a prime ideal, points of \(\text{Spec } A_\mathfrak{p}\) should be seen as a "shred of the space \(\text{Spec } A\) near the subset corresponding to \(\mathfrak{p}\)".
         </p>
         <h2 id="underlying-topological-space-of-an-affine-scheme">
           Underlying topological space of an affine scheme
         </h2>
+        <p>
+          The locus where a polynomial vanishes should be a closed set. The `Zariski topology` says that the only closed sets we should consider are these sets, and other sets that are forced to be closed by these; in other words, it is the coarsest topology in which the locus where a polynomial vanishes is a closed set. We define the `vanishing set` of \(S\) by:
+          \[V(S) = \{[\mathfrak{p}] \in \text{Spec } A : S \subset \mathfrak{p}\]
+        </p>
+        <p>
+          It is the set of points where all elements of \(S\) vanish (or equivalently, are contained in a prime ideal).
+        </p>
+        <p>
+          Consider \(V(xy, yz) \subset \mathbb{A}_\mathbb{C}^3 = \text{Spec } \mathbb{C}[x, y, z]\). The points in this vanishing set can be obtained by solving \(xy = yz = 0\), yielding traditional points \(y = 0\) corresponding the \(xz\)-plane, \(xz = 0\) corresponding to the \(y\)-axis, and generic points \([(x, z)]\) and \([(y)]\). We also have a bunch of one-dimensional points contained in the \(xz\) plane.
+        </p>
+        <p>
+          We define the `Zariski topology` by declaring that \(V(S)\) is closed for all \(S\). The function \(V(\bullet)\) is obviously inclusion reversing, for if \(S_1 \subset S_2\), then \(V(S_2) \subset V(S_1)\).
+        </p>
       </div>
       <div id="sidebar">
         <ul>
