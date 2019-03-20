@@ -67,3 +67,16 @@ The two natural ways of getting new rings from old, quotients and localizations,
 (b) Localizations. \(\text{Spec } S^{-1}A\) is a subset of \(\text{Spec } A\). There are two important flavors of localization, namely \(\{1, f, f^2, \ldots\}^{-1} A\) for \(f \in A\) and \((A \backslash \mathfrak{p})^{-1} A\). If \(S = \{1, f, f^2, \ldots\}\), the prime ideals of \(S^{-1} A\) are just those where \(f\) does not vanish, and we will call this a `distinguished open set`. For instance, \(\mathbb{C}[x, y]_{y - x^2}\) is pictured as the affine plane with points on \(y = x^2\) thrown out; i.e. points \((a, a^2)\) for \(a \in \mathbb{C}\), by which we mean \([(x - a, y - a^2)]\), as well as a "new kind of point" \([(y - x^2)]\). \(A \rightarrow S^{-1} A\) is non-injective, and this may lead to some confusion. For instance, take \(A = \mathbb{C}[x, y]/(xy)\) with \(f = x\). We end up with an isomorphism \((\mathbb{C}[x, y]/(xy))_x \xrightarrow{~} (\mathbb{C}[x])_x\). For \(S = A \backslash \mathfrak{p}\), prime ideals of \(S^{-1} A\) are just those prime ideals of \(A\) contained in \(\mathfrak{p}\). For example, setting \(\mathfrak{p} = (x, y)\) in \(\mathbb{C}[x, y]\), we get "things" through origin; indeed, the zero-dimensional points \([(x, y)]\), the two-dimensional point \([(0)]\), and the one-dimensional points \(f\) for which \(f(0, 0) = 0\); i.e. irreducible curves through origin. As an important example, consider \(A = k[x]\) and \(\mathfrak{p} = (x)\), or any maximal ideal. Then \(A_\mathfrak{p}\) is the germ of a "smooth curve" where one point is a "classical point", and another is a "generic point of the curve". This is an example of a `discrete valuation ring`.
 
 Therefore, maps of rings induce maps of spectra.
+
+In an algebraically closed affine variety, the translation between maps given by explicit functions and maps of rings is quite direct. For example, consider the parabola in \(\mathbb{C}^2\) given by \(b = a^2\) and the parabola in \(\mathbb{C}^3\) given by \(y = x^2, z = y^2\). Suppose that the map sends the point \((a, b) \in \mathbb{C}^2\) to the point \((a, b, b^2) \in \mathbb{C}^3\). In our new language, we have the map:
+
+\[\text{Spec } \mathbb{C}[a, b]/(b - a^2) \rightarrow \text{Spec } \mathbb{C}[x, y, z]/(y - x^2, z - y^2)\]
+
+given by:
+
+\[\mathbb{C}[a, b]/(b - a^2) \leftarrow \mathbb{C}[x, y, z]/(y - x^2, z - y^2) \\
+(a, b, b^2) \leftarrow (x, y, z)\]
+
+Now, we turn our attention to functions not determined by their values at points: the failure of nilpotents. A non-zero function may vanish at all points. Any function whose power is zero necessarily lies in the intersection of all prime ideals. The [nilradical](/ac/1#nilradicals) \(\mathfrak{N}\) is the intersection of all prime ideals. To specify exactly when our intuition fails, two functions have the same value at two different points iff they differ by a nilpotent. Geometrically, a function vanishes at all points in a ring spectrum iff a power of it is \(0\). A ring with no nonzero nilpotents is termed `reduced`.
+
+# Visualizing schemes
