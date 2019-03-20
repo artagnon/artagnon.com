@@ -90,10 +90,19 @@ We have also seen how points of \(\text{Spec } A/I\) should be visualized as sub
 # Underlying topological space of an affine scheme
 
 The locus where a polynomial vanishes should be a closed set. The `Zariski topology` says that the only closed sets we should consider are these sets, and other sets that are forced to be closed by these; in other words, it is the coarsest topology in which the locus where a polynomial vanishes is a closed set. We define the `vanishing set` of \(S\) by:
-\[V(S) = \{[\mathfrak{p}] \in \text{Spec } A : S \subset \mathfrak{p}\]
+\[V(S) = \{[\mathfrak{p}] \in \text{Spec } A : S \subset \mathfrak{p}\}\]
 
 It is the set of points where all elements of \(S\) vanish (or equivalently, are contained in a prime ideal).
 
 Consider \(V(xy, yz) \subset \mathbb{A}_\mathbb{C}^3 = \text{Spec } \mathbb{C}[x, y, z]\). The points in this vanishing set can be obtained by solving \(xy = yz = 0\), yielding traditional points \(y = 0\) corresponding the \(xz\)-plane, \(xz = 0\) corresponding to the \(y\)-axis, and generic points \([(x, z)]\) and \([(y)]\). We also have a bunch of one-dimensional points contained in the \(xz\) plane.
 
-We define the `Zariski topology` by declaring that \(V(S)\) is closed for all \(S\). The function \(V(\bullet)\) is obviously inclusion reversing, for if \(S_1 \subset S_2\), then \(V(S_2) \subset V(S_1)\).
+We define the `Zariski topology` by declaring that \(V(S)\) is closed for all \(S\). The function \(V(\bullet)\) is obviously inclusion-reversing, for if \(S_1 \subset S_2\), then \(V(S_2) \subset V(S_1)\).
+
+A couple of uninteresting examples follow. Consider the Zariski topology on \(\mathbb{A}_\mathbb{C}^1\): the closed sets correspond to maximal ideals and the generic point \([(0)]\). Open sets are the empty set and points of \(\mathbb{A}_\mathbb{C}^1\) minus the maximal ideals. The case of \(\text{Spec } \mathbb{Z}\) is similar: the open sets are the empty set and all points minus a finite number of \((p)\), where \(p\) is prime.
+
+Next, consider the Zariski topology on \(\mathbb{A}_\mathbb{C}^2\). The prime ideals of \(\mathbb{C}[x, y]\), or the points of \(\mathbb{A}_\mathbb{C}^2\) were previously identified to be \([(0)]\), \([(x - a, y - b)]\) for \(a, b \in \mathbb{C}\), and \((f(x, y))\) where \(f(x, y)\) is an irreducible polynomial. Hence, the closed subsets in its Zariski topology are:
+
+(a) The entire space, obtained as a closure of the two-dimensional point \([(0)]\).
+(b) A number of "curves", obtained as a closure of one-dimensional points (along with the zero-dimensional points lying on them).
+
+Maps of rings induce continuous maps on topological spaces. Map \(\phi : B \rightarrow A\) of rings induces the map \(\pi : \text{Spec } A \rightarrow \text{Spec } B\) on topological spaces.
