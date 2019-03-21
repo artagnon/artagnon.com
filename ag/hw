@@ -24,12 +24,6 @@ Show that the Zariski topology on \(A^2\) is not the [product topology](/gn#prod
 
 --
 
-Any non-empty open subset of an irreducible topological space is [dense](/gn#countability-axioms) and irreducible. If \(Y\) is a subset of a topological space \(X\), which is [irreducible](/ag/2#topological-and-noetherian-properties) in its induced topology, then show that the closure \(\bar{Y}\) is also irreducible.
-
-Solution: \(\bar{Y} = X\), since \(Y\) is dense. Since \(X\) is irreducible, so is \(Y\). Let \(Y \subset C_1 \cup C_2\). Then, \(X = \bar{Y} = \bar{C_1} \cup \bar{C_2} = C_1 \cup C_2\), so \(C_1\) or \(C_2\) contains \(\bar{Y}\), and hence \(\bar{Y}\) is irreducible \(\Box\)
-
---
-
 For homogenous ideal \(a \subseteq S\), show that the following conditions are equivalent:
 
 (a) \(Z(a) = \phi\).
@@ -278,16 +272,22 @@ For \(A = A_1 \times \ldots \times A_n\), describe homeomorhpism \(\text{Spec } 
 
 --
 
-(a) Show that, in an irreducible topological space, any nonempty open set is dense.
+(a) Show that, in an irreducible topological space \(X\), any nonempty open set is dense.
 (b) If \(X\) is a topological space, and \(Z \subset X\) is an irreducible subset, show that \(\bar{Z}\) is also irreducible in \(X\).
+
+Solution: To prove (a), let \(U\) be this nonempty open set, and \(\bar{U} \neq X\). Then, \(X = U' \cup \bar{U}\), leading to a contradiction since \(X\) is irreducible. To prove (b), take closure of \(Z \subset X\), leading to \(\bar{Z} \subset \bar{X}\). Since \(X \subset \bar{X}\), and \(X \not\subset \bar{Z}\), we get \(\bar{Z} \subset X \subset \bar{X}\) \(\Box\)
 
 --
 
 If \(A\) is an integral domain, show that \(\text{Spec } A\) is irreducible.
 
+Solution: \(A\) has no zerodivisors or nilpotents other than \(0\).
+
 --
 
-Show that an irreducible topological space is connected.
+Show that an irreducible topological space \(X\) is connected.
+
+Solution: Since \(X\) is irreducible, \(X = Y \cup Z \implies Y = X \vee Z = X\), where \(X, Y\) are proper closed subsets. Since all open subsets of irreducible spaces are dense, \(Y = \bar{Y}, Z = \bar{Z}\). Taking closure and complement, we get \(\phi = Y' \cap Z' \implies Y' \neq \phi \wedge Z' \neq \phi\); hence, for nonempty open subsets \(Y', Z'\), we get \(\phi = Y' \cap Z'\); this is exactly the condition for separability, as required by the definition of connectedness \(\Box\)
 
 --
 
