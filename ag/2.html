@@ -32,7 +32,7 @@
         <h1>
           [ag/2] Schemes
         </h1>
-        <time datetime="2019-03-20">Last updated: Wednesday, 20 March 2019</time><br /><time datetime="2019-03-10">Created: Sunday, 10 March 2019</time>
+        <time datetime="2019-03-21">Last updated: Thursday, 21 March 2019</time><br /><time datetime="2019-03-10">Created: Sunday, 10 March 2019</time>
         <p>
           We will understand schemes through the sheaf of functions on a space. We define schemes in terms of three pieces of data:
         </p>
@@ -185,7 +185,7 @@
           Consider \(V(xy, yz) \subset \mathbb{A}_\mathbb{C}^3 = \text{Spec } \mathbb{C}[x, y, z]\). The points in this vanishing set can be obtained by solving \(xy = yz = 0\), yielding traditional points \(y = 0\) corresponding the \(xz\)-plane, \(xz = 0\) corresponding to the \(y\)-axis, and generic points \([(x, z)]\) and \([(y)]\). We also have a bunch of one-dimensional points contained in the \(xz\) plane.
         </p>
         <p>
-          We define the `Zariski topology` by declaring that \(V(S)\) is closed for all \(S\). The function \(V(\bullet)\) is obviously inclusion-reversing, for if \(S_1 \subset S_2\), then \(V(S_2) \subset V(S_1)\).
+          We define the `Zariski topology` by declaring that \(V(S)\) is closed for all \(S\). The function \(V(\bullet)\) is obviously inclusion-reversing, for if \(S_1 \subset S_2\), then \(V(S_2) \subset V(S_1)\). Moreover, since \((I \cap J)^2 \subset IJ \subset (I \cap J)\), \(V(IJ) = V(I \cap J) = V(I) \cup V(J)\).
         </p>
         <p>
           A couple of uninteresting examples follow. Consider the Zariski topology on \(\mathbb{A}_\mathbb{C}^1\): the closed sets correspond to maximal ideals and the generic point \([(0)]\). Open sets are the empty set and points of \(\mathbb{A}_\mathbb{C}^1\) minus the maximal ideals. The case of \(\text{Spec } \mathbb{Z}\) is similar: the open sets are the empty set and all points minus a finite number of \((p)\), where \(p\) is prime.
@@ -202,8 +202,14 @@
           </li>
         </ol>
         <p>
-          Maps of rings induce continuous maps on topological spaces. Map \(\phi : B \rightarrow A\) of rings induces the map \(\pi : \text{Spec } A \rightarrow \text{Spec } B\) on topological spaces.
+          Maps of rings induce continuous maps on topological spaces. Map \(\phi : B \rightarrow A\) of rings induces the map \(\pi : \text{Spec } A \rightarrow \text{Spec } B\) on topological spaces. Not all continuous maps arise in this way; for example, consider \(\mathbb{A}_\mathbb{C}^1\) which is identity, except that points \(0\) and \(1\) are swapped: no polynomial can achieve this feat.
         </p>
+        <p>
+          We saw that \(\text{Spec } B/I\) and \(\text{Spec } S^{-1} B\) were subsets of \(\text{Spec } B\). The Zariski topology behaves well with respect to these inclusions. In particular, if \(I \subset \mathfrak{N}\) is an ideal of nilpotents, then \(\text{Spec } B/I \rightarrow \text{Spec } B\) is a homeomorphism. Thus, nilpotents do not affect the topological space.
+        </p>
+        <h2 id="distinguished-open-sets">
+          Distinguished open sets
+        </h2>
       </div>
       <div id="sidebar">
         <ul>

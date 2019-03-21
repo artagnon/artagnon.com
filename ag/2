@@ -96,7 +96,7 @@ It is the set of points where all elements of \(S\) vanish (or equivalently, are
 
 Consider \(V(xy, yz) \subset \mathbb{A}_\mathbb{C}^3 = \text{Spec } \mathbb{C}[x, y, z]\). The points in this vanishing set can be obtained by solving \(xy = yz = 0\), yielding traditional points \(y = 0\) corresponding the \(xz\)-plane, \(xz = 0\) corresponding to the \(y\)-axis, and generic points \([(x, z)]\) and \([(y)]\). We also have a bunch of one-dimensional points contained in the \(xz\) plane.
 
-We define the `Zariski topology` by declaring that \(V(S)\) is closed for all \(S\). The function \(V(\bullet)\) is obviously inclusion-reversing, for if \(S_1 \subset S_2\), then \(V(S_2) \subset V(S_1)\).
+We define the `Zariski topology` by declaring that \(V(S)\) is closed for all \(S\). The function \(V(\bullet)\) is obviously inclusion-reversing, for if \(S_1 \subset S_2\), then \(V(S_2) \subset V(S_1)\). Moreover, since \((I \cap J)^2 \subset IJ \subset (I \cap J)\), \(V(IJ) = V(I \cap J) = V(I) \cup V(J)\).
 
 A couple of uninteresting examples follow. Consider the Zariski topology on \(\mathbb{A}_\mathbb{C}^1\): the closed sets correspond to maximal ideals and the generic point \([(0)]\). Open sets are the empty set and points of \(\mathbb{A}_\mathbb{C}^1\) minus the maximal ideals. The case of \(\text{Spec } \mathbb{Z}\) is similar: the open sets are the empty set and all points minus a finite number of \((p)\), where \(p\) is prime.
 
@@ -105,4 +105,9 @@ Next, consider the Zariski topology on \(\mathbb{A}_\mathbb{C}^2\). The prime id
 (a) The entire space, obtained as a closure of the two-dimensional point \([(0)]\).
 (b) A number of "curves", obtained as a closure of one-dimensional points (along with the zero-dimensional points lying on them).
 
-Maps of rings induce continuous maps on topological spaces. Map \(\phi : B \rightarrow A\) of rings induces the map \(\pi : \text{Spec } A \rightarrow \text{Spec } B\) on topological spaces.
+Maps of rings induce continuous maps on topological spaces. Map \(\phi : B \rightarrow A\) of rings induces the map \(\pi : \text{Spec } A \rightarrow \text{Spec } B\) on topological spaces. Not all continuous maps arise in this way; for example, consider \(\mathbb{A}_\mathbb{C}^1\) which is identity, except that points \(0\) and \(1\) are swapped: no polynomial can achieve this feat.
+
+We saw that \(\text{Spec } B/I\) and \(\text{Spec } S^{-1} B\) were subsets of \(\text{Spec } B\). The Zariski topology behaves well with respect to these inclusions. In particular, if \(I \subset \mathfrak{N}\) is an ideal of nilpotents, then \(\text{Spec } B/I \rightarrow \text{Spec } B\) is a homeomorphism. Thus, nilpotents do not affect the topological space.
+
+# Distinguished open sets
+
