@@ -62,7 +62,7 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
           - elsif paragraph.is_mathjax?
             p class="mathjax"
               == paragraph.contents.join "\n"
-        - if indexfill
+        - if indexfill && indexfill.any?
           ul id="indexfill"
             - indexfill.each do |page|
               li
