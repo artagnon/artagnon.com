@@ -255,8 +255,26 @@
           Spaces can be broken up into a finite number of irreducible components. For example, in the locus of \(xy = 0 \in \mathbb{A}_\mathbb{C}^2\), we think of the space as having two "pieces": the \(x\) and \(y\) axes. The reason for this is that the underlying topological space is `Noetherian`. In particular a topological space is said to be Noetherian if it satisfies the `descending chain condition` for closed subsets.
         </p>
         <p>
-          If \(X\) is a Noetherian topological space, then every nonempty subset \(Z\) can be expressed as a finite union of irreducible subsets: \(Z = Z_1 \cup \ldots \cup Z_n\), none contained in the other. To prove this, we will use the technique of `Noetherian induction`.
+          If \(X\) is a Noetherian topological space, then every nonempty subset \(Z\) can be expressed as a finite union of irreducible subsets: \(Z = Z_1 \cup \ldots \cup Z_n\), none contained in the other. To prove this, we will use the technique of `Noetherian induction`. Consider the collection of closed subsets of \(X\) which cannot be expressed as a finite union of irreducible closed subsets. Let \(Y_1\) be one such, and let it contain another such, call it \(Y_2\). If \(Y_2\) contains another such, call it \(Y_3\), and so on. By the d.c.c, this sequence must eventually stop, so let it stop at some \(Y_r\), which cannot be written as a finite union of irreducible closed sets; moreover, every closed subset contained in it can be so written. But \(Y_r\) is not irreducible, so we can write \(Y_r = Y' \cup Y''\), where \(Y', Y''\) are proper closed subsets. By hypothesis, both of these can be written as a finite union of closed irreducible sets, and hence so can \(Y_r\), leading to a contradiction. Next we show uniqueness; let:
+          \[Z = Z_1 \cup \ldots \cup Z_r = Z'_1 \cup \ldots \cup Z'_s\]
         </p>
+        <p>
+          be two such representations. Then, \(Z'_1 \subset Z_1 \cup \ldots \cup Z_r\) so \(Z'_1 = (Z_1 \cap Z'_1) \cup \ldots \cup (Z_r \cap Z'_1)\). Since \(Z'_1\) is irreducible, one of these is equal to \(Z'_1\) itself; say \(Z_1 \cap Z'_1\) without loss of generality. Thus \(Z'_1 \subset Z_1 \subset Z'_a\) for some \(a\). But hypothesis, \(Z'_1\) is not contained in any other \(Z'_i\), leading to \(a = 1\). Hence, \(Z'_1 = Z_1\), and induction completes the proof.
+        </p>
+        <p>
+          It turns out that all the spectra we have considered are Noetherian topological spaces, but this isn't true of spectrum of all rings. A ring is Noetherian if the ideals satisfy `ascending chain condition`. Some trivial properties of Noetherian rings are:
+        </p>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            Fields are Noetherian, as is \(\mathbb{Z}\).
+          </li>
+          <li>
+            Noetherianness is preserved by quotients.
+          </li>
+          <li>
+            Noetherianness is preserved by localizations.
+          </li>
+        </ol>
       </div>
       <div id="sidebar">
         <ul>
