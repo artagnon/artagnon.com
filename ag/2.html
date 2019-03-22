@@ -275,6 +275,25 @@
             Noetherianness is preserved by localizations.
           </li>
         </ol>
+        <p>
+          Hence, any finitely generated algebra over \(k\) or \(\mathbb{Z}\) is Noetherian. Example of a non-Noetherian ring: \(k[x_1, x_2, \ldots]\), since the sequence of ideals does not terminate.
+        </p>
+        <p>
+          Hilbert's Basis Theorem: If \(A\) is Noetherian, so is \(A[x]\). To prove this, we show that any ideal \(I \subset A[x]\) is finitely-generated. We inductively produce a set of generators \(f_1, \ldots\) as follows. For \(n \gt 0\) if \(I \neq (f_1, \ldots, f_{n - 1})\), let \(f_n = I - (f_1, \ldots, f_{n - 1})\) be a nonzero element of lowest degree. Thus, \(f_1\) is an element of \(I\) of lowest degree, assuming \(I \neq (0)\). If this procedure terminates, then we are done. Otherwise, let \(a_n \in A\) be an initial coefficient of \(f_n\) for \(n \gt 0\). Then, as \(A\) is Noetherian, \((a_1, a_2, \ldots) = (a_1, \ldots, a_N)\) for some \(N\). Let \(a_{N + 1} = \sum_{i = 1}^N b_i a_i\). Then,
+          \[f_{N + 1} - \sum_{i = 1}^N b_i f_i x^{\text{deg } f_{N + 1} - \text{deg } f_i}\]
+        </p>
+        <p>
+          is an element of \(I\) that is nonzero, and of lower degree than \(f_{N + 1}\), leading to a contradiction.
+        </p>
+        <p>
+          All Noetherian rings yield Noetherian topological spaces, but the converse is not true. For instance, consider \(k[x_1, x_2, x_3, \ldots]/(x_1, x_2^2, x_3^3, \ldots)\). Then \(\text{Spec } A\) is one point, so is Noetherian, but \(A\) is not Noetherian because \((x_1) \subsetneq (x_1, x_2) \subsetneq (x_1, x_2, x_3) \subsetneq \ldots\).
+        </p>
+        <p>
+          If \(A\) is a ring, not necessarily Noetherian, we say that the \(A\)-module is a `Noetherian module` if it satisfies the a.c.c for submodules.
+        </p>
+        <h2 id="the-function-ibullet">
+          The function \(I(\bullet)\)
+        </h2>
       </div>
       <div id="sidebar">
         <ul>
