@@ -1,2 +1,13 @@
 [ag/3] Schemes II
 
+The final ingredient in the definition of an affine scheme is the structure sheaf \(\mathscr{O}_{\text{Spec } A}\), which we will think of as the sheaf of algebraic functions. For example, in \(\mathfrak{A}^2\), we expect that on the open set \(D(xy)\), \((3x^4 + y + 7)/(x^3 y^8)\) is an algebraic function. The function will have values at points, but won't be determined by their values at points; instead, they will be determined by their germs. It suffices to describe the structure sheaf as the sheaf of rings on the base of distinguished open sets.
+
+Define \(\mathscr{O}_{\text{Spec } A}(D(f))\) to be the localization of ring \(A\) at the multiplicative sets of all functions that do not vanish outside of \(V(f)\); i.e. those \(g\) for which \(V(g) \subset V(f)\) or equivalently \(I(f) \subset I(g)\). This depends only on \(D(f)\) and not on \(f\) itself.
+
+If \(D(f') \subset D(f)\), define the restriction map:
+
+\[\text{res}_{D(f), D(f')} : \mathscr{O}_{\text{Spec } A}(D(f)) \rightarrow \mathscr{O}_{\text{Spec } A}(D(f'))\]
+
+in the obvious way; the latter ring is a further restriction of the former ring. The restriction maps obviously commute, and this is a presheaf on a distinguished base.
+
+The data just described give a sheaf on a distinguished open set, and hence determine a sheaf on the topological space on \(\text{Spec } A\). The topological space along with the structure sheaf will be called an `affine scheme`. The notation \(\text{Spec } A\) will henceforth denote the data of the topological space along with the structure sheaf. \(\mathscr{O}_{\text{Spec } A}\) contains data not just of the sheaf, but also the underlying distinguished base that provides a good way of working with \(\mathscr{O}_{\text{Spec } A}\).
