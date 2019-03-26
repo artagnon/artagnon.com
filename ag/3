@@ -61,3 +61,15 @@ Next, consider the intersection of the parabola \(y = x^2\) and the \(x\)-axis:
 We interpret this intersection as having multiplicity \(2\) on the \(x\)-axis.
 
 # Definition of schemes
+
+First, define isomorphism of ringed spaces \((X, \mathscr{O}_X), (Y, \mathscr{O}_Y)\) as:
+
+(a) A homeomorphism from \(X\) to \(Y\).
+(b) An isomorphism of sheaves \(\mathscr{O}_X, \mathscr{O}_Y\), considered to be on the same space via \(\pi\). In other words, it is the isomorphism \(\mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X\), or equivalently using adjoints, \(\pi^{-1} \mathscr{O}_Y \rightarrow \mathscr{O}_X\) of sheaves on \(X\).
+
+We have a correspondence between sets, topologies, and structure sheaves. An `affine scheme` is a ringed space isomorphic to \((\text{Spec } A, \mathscr{O}_{\text{Spec } A})\) for some \(A\). A `scheme` \((X, \mathscr{O}_X)\) is a ringed space such that every point \(X\) has open neighborhood \(U\) such that \((X, \mathscr{O}_X|_U)\) is an affine scheme. The topology on a scheme is the Zariski topology. The isomorphism between two schemes is an isomorphism as ringed spaces. If \(U \subset X\) is an open set, \(\Gamma(U, \mathscr{O}_X)\) is said to be a function on \(U\); this generalizes in the obvious way to functions on an affine scheme.
+
+From the definition of a structure sheaf on an affine scheme, if \((X, \mathscr{O}_X)\) is an affine scheme, we can recover its ring \(A\) where \(X = \text{Spec } A\) by taking global sections as \(X = D(1)\):
+\[\Gamma(X, \mathscr{O}_X) = \Gamma(D(1), \mathscr{O}_X) = A\]
+
+We can recognize \(X\) as the scheme on \(\text{Spec } A\): we get the isomorphism \(\pi : (\text{Spec } \Gamma(X, \mathscr{O}_X), \mathscr{O}_{\text{Spec } \Gamma(X, \mathscr{O}_X)}) \rightarrow (X, \mathscr{O}_X)\). For example, if \(\mathfrak{m}\) is a maximal ideal of \(\Gamma(X, \mathscr{O}_X)\), \(\{\pi(\mathfrak{m})\} = V(\mathfrak{m})\).
