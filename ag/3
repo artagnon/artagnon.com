@@ -79,3 +79,30 @@ Given \(f \in A\), \(\Gamma(D(f), \mathscr{O}_{\text{Spec } A}) = A_f\). Under n
 We say that \((U, \mathscr{O}_X|_U)\) is an `open subscheme` of \(X\). If \(U\) is also an affine scheme, \(U\) is called `affine open subscheme`, or simply `affine open`. For example, \(D(f)\) is an affine open subscheme.
 
 Open subsets of schemes come with a natural scheme structure. For comparison, closed subschemes on \(X\) are, informally, a particular kind of scheme structure on closed subsets of \(X\). For example, if \(I \subset A\) is an ideal, then \(\text{Spec } A/I\) endows \(V(I) \subset \text{Spec } A\) with a scheme structure, but note that there can be different ideals with the same vanishing set; for example, \((x), (x^2)\) in \(k[x]\).
+
+The stalk of sheaf \(\tilde{M}\) at point \([\mathfrak{p}]\) is \(M_\mathfrak{p}\). A section is determined by its germs meaning that \(M \rightarrow \prod_p M_p\) is an inclusion. For example, an \(A\)-module is zero iff all its localizations at prime ideals are zero.
+
+We say that a ringed space is a `locally ringed space` if all its stalks are local rings. Schemes and manifolds are examples of locally ringed spaces. Taking quotient at the maximal ideal can be interpreted as evaluation at the point. The maximal ideal of a local ring \(\mathscr{O}_{X, p}\) is denoted by \(m_p\) and the residue field \(\mathscr{O}_{X, p}/m_p\) is denoted by \(\kappa[p]\). Functions on an open subset \(U\) of a locally ringed space have values at each point of \(U\). The value \(p\) of such a function lies in \(\kappa[p]\). We say that a function vanishes at point \(p\) if its value at \(p\) is \(0\). Notice that we can't even make sense of a "function vanishing" on a ringed space in general.
+
+Consider the point \([\mathfrak{p}]\) of an affine scheme \(\text{Spec } A\). The residue field \(A_\mathfrak{p}/\mathfrak{p} A_\mathfrak{p}\) is isomorphic to \(K(A/\mathfrak{p})\), the fraction field of the quotient. Note that the following diagram commutes:
+
+\[
+\begin{xy}
+\xymatrix{
+& A_\mathfrak{p}\ar[dr]^{\text{quotient}} & \\
+A\ar[ur]^{\text{localize}}\ar[dr]_{\text{quotient}} & & A_\mathfrak{p}/\mathfrak{p} A_\mathfrak{p} = K(A/\mathfrak{p}) \\
+& A/\mathfrak{p}\ar[ur]_{\text{localize}} &
+}
+\end{xy}
+\]
+
+Consider an example \((x^2 + y^2)/x(y^2 - x^5)\) in \(\mathbb{A}_k^2 = k[x, y]\), in which \(k\) is a field of characteristic not \(2\). Then its value at \([(x - 2, y - 4)]\) is \((2^2 + 4^2)/2(4^2 - 2^5)\). Its value at the generic point on the \(x\)-axis is \(x^2/(-x^6) = -1/x^4\), which we see by setting \(y = 0\). Note that \(A_\mathfrak{p}/\mathfrak{p} A_\mathfrak{p}\) is not algebraically closed, even when \(A\) is a finitely-generated \(\mathbb{C}\)-algebra.
+
+As another example, consider \(27/4\) in \(\text{Spec } \mathbb{Z}\). Its value at \([(5)]\) is \(2/-1 \equiv -2 \text{ mod } 5\). Its value at generic point \([(0)]\) is \(27/4\), and it vanishes at \([(3)]\).
+
+If \(\mathscr{F}\) is an \(\mathscr{O}_X\)-module on scheme \(X\), or more generally, a locally ringed space, define the `fiber` of \(\mathscr{F}\) at a point \(p \in X\) by:
+\[\mathscr{F}|_p := \mathscr{F}_p \otimes_{\mathscr{O}_{X, p}} \kappa(p)\]
+
+For example, \(\mathscr{O}_X|_p = \kappa(p)\).
+
+# Three examples
