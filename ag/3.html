@@ -32,7 +32,7 @@
         <h1>
           [ag/3] Schemes II
         </h1>
-        <time datetime="2019-03-27">Last updated: Wednesday, 27 March 2019</time><br /><time datetime="2019-03-23">Created: Saturday, 23 March 2019</time>
+        <time datetime="2019-03-28">Last updated: Thursday, 28 March 2019</time><br /><time datetime="2019-03-23">Created: Saturday, 23 March 2019</time>
         <p>
           The final ingredient in the definition of an affine scheme is the structure sheaf \(\mathscr{O}_{\text{Spec } A}\), which we will think of as the sheaf of algebraic functions. For example, in \(\mathfrak{A}^2\), we expect that on the open set \(D(xy)\), \((3x^4 + y + 7)/(x^3 y^8)\) is an algebraic function. The function will have values at points, but won't be determined by their values at points; instead, they will be determined by their germs. It suffices to describe the structure sheaf as the sheaf of rings on the base of distinguished open sets.
         </p>
@@ -205,11 +205,11 @@
           We can really work with a structure sheaf, and can compute the ring of sections of open sets that aren't just distinguished open sets of affine schemes.
         </p>
         <p>
-          First example: The plane minus the origin. Our goal here is to show that a distinguished base is something we can work with. Let \(A = k[x, y]\) so that \(\text{Spec } A = \mathbb{A}_k^2\). Let us work with the space of functions in \(\mathbb{A}^2 - \{(0, 0)\} = \mathbb{A}^2 - \{[(x, y)]\}\). It is not immediately obvious if this is a distinguished open set. In any case, we can describe the union of two distinguished open sets \(U = D(x) \cup D(y)\). We will find functions in \(U\) by gluing together functions in \(D(x)\) and \(D(y)\). Functions on \(D(x)\) are, by definition, \(A_x = [x, y, 1/x]\), and those on \(D(y)\) are \(A_y = [x, y, 1/y]\). Notice that \(A\) injects into its localizations, as it is an integral domain, so it injects onto both \(A_x\) and \(A_y\), and both inject into \(A_{xy}\), and indeed \(k[x, y] = K(A)\). So we are looking for functions on \(D(x) \cap D(y) = D(xy)\); i.e. we are interpreting \(A_x \cap A_y\) in \(A_{xy}\) or in \(k(x, y)\). Clearly, those rational functions with powers in \(x\) in the denominator and those with powers in \(y\) in the denominator, are the polynomials. In other words, \(A_x \cap A_y = A\). Thus we get:
+          First example: The plane minus the origin. Our goal here is to show that a distinguished base is something we can work with. Let \(A = k[x, y]\) so that \(\text{Spec } A = \mathbb{A}_k^2\). Let us work with the space of functions in \(\mathbb{A}^2 - \{(0, 0)\} = \mathbb{A}^2 - \{[(x, y)]\}\). It is not immediately obvious if this is a distinguished open set. In any case, we can describe the union of two distinguished open sets \(U = D(x) \cup D(y)\). We will find functions in \(U\) by gluing together functions in \(D(x)\) and \(D(y)\). Functions on \(D(x)\) are, by definition, \(A_x = [x, y, 1/x]\), and those on \(D(y)\) are \(A_y = [x, y, 1/y]\). Notice that \(A\) injects into its localizations, as it is an integral domain, so it injects onto both \(A_x\) and \(A_y\), and both inject into \(A_{xy}\); indeed \(k[x, y] = K(A)\). So we are looking for functions on \(D(x) \cap D(y) = D(xy)\); i.e. we are interpreting \(A_x \cap A_y\) in \(A_{xy}\) or in \(k(x, y)\). Clearly, those rational functions with powers in \(x\) in the denominator and those with powers in \(y\) in the denominator, are the polynomials. In other words, \(A_x \cap A_y = A\). Thus we get:
           \[\Gamma(U, \mathscr{O}_{\mathbb{A}^2}) \equiv k[x, y]\]
         </p>
         <p>
-          We get no extra functions by removing the origin.
+          We get no extra functions by removing the origin. Notice how any function on \(\mathbb{A} - \{(0, 0)\}\) extends over all of \(\mathbb{A}^2\). This is an analog of `Hartogs's lemma` in complex geometry: any holomorphic function defined on the complement of a set of codimension atleast two can be extended to a complex manifold over the missing set. This works in a general algebraic setting: we can extend points in codimension atleast two, not only if they are smooth, but also if they are mildly singular (or `normal`).
         </p>
       </div>
       <div id="sidebar">
