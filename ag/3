@@ -128,3 +128,18 @@ Now we will look at examples of non-affine schemes by gluing together \(X = \tex
 `Third example`: The projective line. Consider isomorphism \(U \cong V\) via the isomorphism \(k[t, 1/t] \cong k[u, 1/u]\) given by \(t \leftrightarrow 1/u\). The resulting scheme is called the projective line over field \(k\), and is denoted by \(\mathbb{P}_k^1\). Traditional point \(a\) on the \(t\)-line is glued to point \(1/a\) on the \(u\)-line assuming \(a \neq 0\), and generic point \((0)\) on the \(t\)-line maps to the generic point \((0)\) on the \(u\)-line, under the isomorphism \(t \rightarrow 1/u\). If \(k\) is algebraically closed, we can interpret the closed points of \(\mathbb{P}_k^1\) in the following way: the points are \([a, b]\) where both \(a, b\) are nonzero, and \([a, b]\) is identified with \([ac, bc], c \in k^\times\). If \(b \neq 0\), this is identified with \(a/b\) on the \(t\)-line, and if \(a \neq 0\), this is identified with \(b/a\) on the \(u\)-line.
 
 To prove that \(\mathbb{P}_k^1\) is not affine, we compute the ring of global sections. Global sections correspond to sections on \(X\) and sections on \(Y\) that agree on overlap. Restricting to overlap, we get polynomials \(f(t)\) in \(X\), and \(g(u)\) in \(Y\). We want \(f(t) = g(1/t)\), but the only polynomials that are both polynomials in \(t\) and \(1/t\) are the constants \(k\). Thus, if \(\mathbb{P}_k^1\) we affine, \(\Gamma(\mathbb{P}^1, \mathscr{O}_{\mathbb{P}^1}) = k\), and hence, \(\text{Spec } \Gamma(\mathbb{P}^1, \mathscr{O}_{\mathbb{P}^1}) = \text{Spec } k\), i.e. one point. But it isn't: it has lots of points. We have proved an analog of an important theorem: the only holomorphic functions on \(\mathbb{CP}^1\) are constants.
+
+We will now define projective \(n\)-space over field \(k\), \(\mathbb{P}_k^n\), by gluing \(n + 1\) open sets, each isomorphic to \(\mathbb{A}_n^k\). We think of points \((x_0, x_1)\) in the projective space as being equivalent upto scalars; \((\lambda x_0, \lambda x_1)\) is equivalent to \((x_0, x_1)\). The first patch can be thought of as points \([1, t]\) where \(t = x_1/x_0, x_0 \neq 0\), and the second patch can be thought of as points \([u, 1]\) where \(u = x_0/x_1, x_1 \neq 0\). It will be useful, to instead use the notation \(x_{0/1}\) for \(u\) and \(x_{1/0}\) for \(t\). Then, the \(i^{th}\) open set will have coordinates \(x_{0/i}, \ldots, x_{i/i}, \ldots, x_{n/i}\). It will be convenient to write this as:
+\[\text{Spec } k[x_{1/i}, \ldots, x_{n/i}]/(x_{i/i} - 1)\]
+
+so we have introduced dummy variable \(x_{i/i}\) which we immediately set to \(1\). We glue distinguished open sets \(D(x_{i/j})\) of \(U_j\) to distinguished open sets \(D(x_{j/i})\) of \(U_i\), by identifying these two schemes by describing the identification of rings
+
+\[\text{Spec } k[x_{1/i}, \ldots, x_{n/i}]/(x_{i/i} - 1) \cong \\
+\text{Spec } k[x_{1/j}, \ldots, x_{n/j}]/(x_{j/j} - 1)\]
+
+via \(x_{k/i} = x_{k/j}/x_{i/j}\) and \(x_{k/j} = x_{k/i}/x_{j/i}\), which implies that \(x_{i/j} x_{j/i} = 1\).
+
+The `Chinese remainder theorem` is embedded in our argument; it can be thought of as a geometric fact. The prime ideals of \(\mathbb{Z}/60\) are \((2), (3), (5)\), and its stalks are \(\mathbb{Z}/4, \mathbb{Z}/3, \mathbb{Z}/5\). Nilpotents at \((2)\) can be thought of as a fuzz at \((2)\) in the corresponding picture. The global sections on this scheme are sections on the open sets \((2), (3)\), and \((5)\). Indeed, there is a natural isomorphism of rings:
+\[\mathbb{Z}/60 \rightarrow \mathbb{Z}/4 \times \mathbb{Z}/3 \times \mathbb{Z}/5\]
+
+# Projective schemes
