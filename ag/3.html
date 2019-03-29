@@ -225,7 +225,13 @@
           Now we will look at examples of non-affine schemes by gluing together \(X = \text{Spec } k[t], Y = \text{Spec } k[u]\). Let \(U = D(t) = k[t, 1/t] \subset X, V = D(u) = k[u, 1/u] \subset Y\). In both examples, we will glue \(X, Y\) along \(U, V\); the difference is in how we glue.
         </p>
         <p>
-          `Second example`: Affine line with doubled origin. Consider the isomorphism \(U \simeq V\) via \(k[t, 1/t] \simeq k[u, 1/u]\) given by \(t \leftrightarrow u\).
+          `Second example`: Affine line with doubled origin. Consider the isomorphism \(U \simeq V\) via \(k[t, 1/t] \simeq k[u, 1/u]\) given by \(t \leftrightarrow u\). This can be intuitively thought of as an analog of failure of Hausdorffness, although \(\mathbb{A}^1\) itself is not Hausdorff. We will define separatedness later, which will be the right condition for Hausdorffness. In a separated scheme, the affine base of a Zariski topology is nice: the intersection of two open affine sets will be affine.
+        </p>
+        <p>
+          `Third example`: The projective line. Consider isomorphism \(U \cong V\) via the isomorphism \(k[t, 1/t] \cong k[u, 1/u]\) given by \(t \leftrightarrow 1/u\). The resulting scheme is called the projective line over field \(k\), and is denoted by \(\mathbb{P}_k^1\). Traditional point \(a\) on the \(t\)-line is glued to point \(1/a\) on the \(u\)-line assuming \(a \neq 0\), and generic point \((0)\) on the \(t\)-line maps to the generic point \((0)\) on the \(u\)-line, under the isomorphism \(t \rightarrow 1/u\). If \(k\) is algebraically closed, we can interpret the closed points of \(\mathbb{P}_k^1\) in the following way: the points are \([a, b]\) where both \(a, b\) are nonzero, and \([a, b]\) is identified with \([ac, bc], c \in k^\times\). If \(b \neq 0\), this is identified with \(a/b\) on the \(t\)-line, and if \(a \neq 0\), this is identified with \(b/a\) on the \(u\)-line.
+        </p>
+        <p>
+          To prove that \(\mathbb{P}_k^1\) is not affine, we compute the ring of global sections. Global sections correspond to sections on \(X\) and sections on \(Y\) that agree on overlap. Restricting to overlap, we get polynomials \(f(t)\) in \(X\), and \(g(u)\) in \(Y\). We want \(f(t) = g(1/t)\), but the only polynomials that are both polynomials in \(t\) and \(1/t\) are the constants \(k\). Thus, if \(\mathbb{P}_k^1\) we affine, \(\Gamma(\mathbb{P}^1, \mathscr{O}_{\mathbb{P}^1}) = k\), and hence, \(\text{Spec } \Gamma(\mathbb{P}^1, \mathscr{O}_{\mathbb{P}^1}) = \text{Spec } k\), i.e. one point. But it isn't: it has lots of points. We have proved an analog of an important theorem: the only holomorphic functions on \(\mathbb{CP}^1\) are constants.
         </p>
       </div>
       <div id="sidebar">
