@@ -81,3 +81,20 @@ Another way to think about them: associated points are generic points of irreduc
 
 (a) The associated primes/points of \(M\) are precisely the generic points of generic points of irreducible components of the support of some element of \(M\).
 (b) \(M\) has a finite number of associated points/primes. For example, there are only a finite number of irreducible closed subsets of \(\text{Spec } A\), such that the only possible functions of \(\text{Spec } A\) are unions of these. We can interpret this as Noetherianness forcing some kind of finiteness. This gives some meaning to the statement that generic points are the few crucial points of the scheme. We can completely describe which supports of \(\text{Spec } A\) are the support of an element of \(M\): precisely those subsets which are the closure of the subsets of the associated points.
+
+We immediately see from (a) that, if \(M = A\), the generic points of the irreducible components of \(\text{Spec } A\) are the associated primes of \(M = A\), by considering the function \(1\). Other associated points of \(\text{Spec } A\) are called `embedded points`. Thus, in the case of \(\text{Spec } k[x, y]/(y^2, xy)\), the only embedded point is the origin. Furthermore the map:
+\[M \rightarrow \prod_{\text{associated } p} M_p\]
+
+is injective (Once again, we see that the associated points are where all the action happens). We show this by showing that the kernel is \(0\). Suppose the function \(f\) has a germ \(0\) at each associated point, so its support contains no associated points. It is supported on a closed subset, which by (a), must be the union of closures of associated points. Thus, it must be supported nowhere, and be the zero function.
+
+(c) An element \(A\) is a zerodivisor of \(M\) iff it vanishes on some associated point in \(M\); i.e. is contained within some associated prime of \(M\).
+
+Associated points/primes can be determined locally. For example, associated points of \(A\) can be checked by looking at the stalks of the structure sheaf. As another example, associated prime ideals of \(M\) may be determined by working on a distinguished open cover of \(\text{Spec } A\). We define the associated points of a locally Noetherian scheme \(X\) to be those points \(p \in X\) such that, on any affine open set in \(\text{Spec } A\) containing \(p\), \(p\) corresponds to the associated prime of \(A\). This notion is independent of the choice of open neighborhood of \(\text{Spec } A\): if \(p\) has two open neighborhoods \(\text{Spec } A\) and \(\text{Spec } B\), \(p\) corresponds to the associated prime of \(A\) (say, \(p\) corresponds to a prime ideal in \(A\) and \(q\) corresponds to a prime ideal in \(B\)) iff it corresponds to an associated prime \(A_p = \mathscr{O}_{X, p} = B_q\) iff it corresponds to an associated prime of \(B\).
+
+Combining the properties above, we get the following list of facts:
+
+(i) A Noetherian scheme has finitely many associated points.
+(ii) Each of the irreducible components of the support of any function of a locally Noetherian scheme is the union of closures of some subset of the associated points.
+(iii) The generic points of the irreducible components of a locally Noetherian scheme are the associated points.
+(iv) A reduced locally Noetherian scheme has no embedded points.
+(v) A nonreduced locus of a locally Noetherian scheme is the closure of those associated points that have nonreduced stalks.
