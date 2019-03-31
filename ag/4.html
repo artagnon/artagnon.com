@@ -119,8 +119,48 @@
         <p>
           Now, (b)(i) is clear: if \(A\) is generated over \(B\) as \(r_1, \ldots, r_n\), then \(A_f\) is generated over \(B\) as \(r_1, \ldots, r_n, 1/f\). For part (ii), since \(f_i\)s generate \(A\), we can write \(1 = \sum c_i f_i\) for \(c_i \in A\). We have generators of \(A_f : r_{ij}/f_i^{k_j}\), where \(r_{ij} \in A\). Now, claim that \(\{c_i\} \cup \{f_i\}_i \cup \{r_{ij}\}_{ij}\) generate \(A\) as a \(B\)-algebra. Suppose we have \(r \in A\). Then in \(A_{f_i}\), we can write \(r\) as some polynomial in \(r_{ij}\)s and \(f_i\), divided by some huge power of \(f_i\). So, in each \(f_i\), we have described \(r\) in the obvious way, except for the huge denominator. Now use the partition of unity argument to combine all this expressions into a single expression killing the denominator. The resulting expression we build agrees with \(r\) in each \(A_{f_i}\). Thus, it is indeed \(r\) by identity axiom for the structure sheaf.
         </p>
-        <h2 id="normality-and-fractionality">
-          Normality and fractionality
+        <h2 id="normality-and-factoriality">
+          Normality and factoriality
+        </h2>
+        <p>
+          We define a property of schemes that are "not too far from smooth", normality. Locally Noetherian normal schemes satisfy Hartogs's lemma: functions defined away from a set of codimension \(2\) extend over that set. As a consequence, rational functions that have no poles are defined everywhere. An integral domain \(A\) is `integrally closed` iff the zeros in \(K(A)\) to any monic polynomial in \(A[x]\) must lie in \(A\) itself. We say that scheme \(X\) is `normal` if all of its stalks \(\mathscr{O}_{X, p}\) are normal; i.e. are integral domains, and integrally closed in their fraction fields. By definition, normality is a stalk-local property, as is reducedness. If \(A\) is an integrally closed domain, then \(\text{Spec } A\) is normal. For quasicompact schemes, normality can be checked at closed points. For such schemes, any point is a generization of a closed point. Normal schemes, however, need not be integral. Thus, \(\text{Spec } k \sqcup \text{Spec } k \cong \text{Spec}(k \times k) \cong \text{Spec } k[x]/x(x - 1)\) is normal, but its ring of global sections is not an integral domain.
+        </p>
+        <p>
+          To quote a result from commutative algebra, if \(A\) is an integral domain, then the following statements are equivalent:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            \(A\) is integrally closed.
+          </li>
+          <li>
+            \(A_\mathfrak{p}\) is integrally closed for prime ideal \(\mathfrak{p} \subset A\).
+          </li>
+          <li>
+            \(A_\mathfrak{m}\) is integrally closed for maximal ideal \(\mathfrak{m} \subset A\).
+          </li>
+        </ol>
+        <p>
+          If all stalks of a scheme \(X\) are UFDs, we say that \(X\) is `factorial`. Thus, if \(A\) is a UFD, \(\text{Spec } A\) is factorial, but the converse need not hold. We will later see that elliptic curves are factorial, yet no affine open set is the Spec of a UFD. We can show factoriality by finding an appropriate affine open cover, but there need not be such a cover of a factorial scheme. There are few means of checking if a Noetherian integral domain is a UFD:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            Localization of a UFD is also a UFD.
+          </li>
+          <li>
+            Height \(1\) prime ideals are principal.
+          </li>
+          <li>
+            Normal and \(CI = 0\).
+          </li>
+          <li>
+            Nagata's lemma.
+          </li>
+        </ol>
+        <p>
+          Moreover, factoriality implies normality.
+        </p>
+        <h2 id="associated-points-and-primes">
+          Associated points and primes
         </h2>
       </div>
       <div id="sidebar">
