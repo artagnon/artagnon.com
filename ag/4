@@ -98,3 +98,15 @@ Combining the properties above, we get the following list of facts:
 (iii) The generic points of the irreducible components of a locally Noetherian scheme are the associated points.
 (iv) A reduced locally Noetherian scheme has no embedded points.
 (v) A nonreduced locus of a locally Noetherian scheme is the closure of those associated points that have nonreduced stalks.
+
+Furthermore, note that for any integral scheme \(X\) (for instance, an irreducible affine variety), that is not shared by all schemes, is that for any nonempty open subset \(U \subset X\), the natural map \(\Gamma(U, \mathscr{O}_X) \rightarrow K(X)\) is an inclusion. Thus, sections over any nonempty open subset, and elements of all stalks, can be thought of as lying in \(K(X)\), the stalk at the generic point. Associated primes allow us to generalize this idea.
+
+A `rational` funtion on a locally Noetherian scheme is an element of the image of \(\Gamma(U, \mathscr{O}_U)\) for some \(U\) containing the associated primes. Equivalently, the set of rational functions is the colimit of \(\mathscr{O}_X(U)\) over the open sets containing associated points. Another equivalent definition: a rational function is a function defined on the open set containing all associated points; i.e. an ordered pair \((U, f)\) with \(U\) an open set containing all associated points, and \(f \in \Gamma(U, \mathscr{O}_X)\). Two such data \((U, f), (U', f')\) define the same rational function iff the restrictions of \(f, f'\) on \(U \cap U'\) are the same. If \(X\) is reduced, it is the same as requiring that they be defined on an open set of each of the irreducible components. For example, in \(\text{Spec } k[x, y]/(y^2, xy)\), \(\frac{x - 2}{(x - 1)(x - 3)}\) is a rational function but \(\frac{x - 2}{x(x - 1)}\) is not.
+
+A rational function has a maximal `domain of definition` because any two actual functions that agree as rational functions must be the same. We say that a rational function \(f\) must be `regular` at point \(p\) if \(p\) is contained in this maximal domain of definition. For example, in \(\text{Spec } k[x, y]/(y^2, xy)\), \(\frac{x - 2}{(x - 1)(x - 3)}\) has domain of definition on everything except at \(1, 3\). A rational function is regular if it is regular at all points.
+
+A rational function forms a ring, called `total fraction ring` or `total quotient ring` of \(X\). If \(X = \text{Spec } A\) is affine, then this ring is called the total fraction ring of \(A\). If \(X\) is integral, the total fraction ring is the total function field \(K(X)\): the stalk at the generic point.
+
+To augment our earlier definitions, let \(M\) be an \(A\)-module for arbitarary ring \(A\). Then:
+
+(d) A prime \(\mathfrak{p} \subset A\) is said to be associated to \(M\) if \(\mathfrak{p}\) is an annihilator of element \(m \in M\). Equivalently, \(\mathfrak{p}\) is associated to \(M\) iff \(M\) has a submodule associated to \(A/\mathfrak{p}\). The set of prime ideals associated to \(M\) is denoted by \(\text{Ass } M\). Awkwardly, if \(I\) is an ideal, the associated prime ideals of the module \(A/I\) are said to be the associated prime ideals of \(I\).
