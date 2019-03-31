@@ -28,8 +28,8 @@ If \(g' = g''/f^n (g'' \in A)\), then \(\text{Spec}(A_f)_{g'} = \text{Spec}(A_{f
 
 `Affine Communication Lemma`: Let \(P\) be some property enjoyed by some affine open subsets of scheme \(X\), such that:
 
-(a) If an affine open subset \(\text{Spec } A \hookrightarrow X\) has property \(P\), then for any \(f \in A\), \(\text{Spec } A_f \hookrightarrow X\) does too.
-(b) If \((f_1, \ldots, f_n) = A\), and \(\text{Spec } A_f \hookrightarrow X\) has property \(P\) for all \(i\), then so does \(\text{Spec } A \hookrightarrow X\).
+(i) If an affine open subset \(\text{Spec } A \hookrightarrow X\) has property \(P\), then for any \(f \in A\), \(\text{Spec } A_f \hookrightarrow X\) does too.
+(ii) If \((f_1, \ldots, f_n) = A\), and \(\text{Spec } A_f \hookrightarrow X\) has property \(P\) for all \(i\), then so does \(\text{Spec } A \hookrightarrow X\).
 
 Suppose \(X = \cup_{i \in I} \text{Spec } A_i\) where each \(\text{Spec } A_i\) has property \(P\). Then, every affine open subset of \(X\) also has property \(P\). We say that such a property is affine-local: indeed, we can check it on any affine open cover. For example, reducedness is an affine-local property. If \(U\) is an affine open subscheme of \(X\), then \(U\) inherits any affine-local prperty of \(X\). Note that any property that is stalk-local is affine-local as well. To prove this, let \(\text{Spec } A\) be an affine subscheme of \(X\). Cover \(\text{Spec } A\) with a finite number of distinguished open sets \(\text{Spec } A_{g_j}\), each of which is distinguished in some \(\text{Spec } A_i\). By (i), each \(\text{Spec } A_{g_j}\) has property \(P\), and by (ii), each \(\text{Spec } A\) does too.
 
@@ -43,3 +43,15 @@ Suppose \(A\) is a ring, and \((f_1, \ldots, f_n) = A\).
 
 (a) If \(A\) is Noetherian, then so is \(\text{Spec } A\). If each \(A_{f_i}\) is Noetherian, then so is \(A\).
 (b) If \(A\) be a finitely-generated \(B\)-algebra, then so is \(A_{f_i}\). If each \(A_{f_i}\) is a finitely-generated \(B\)-algebra, then so is \(A\).
+
+We divide the proof into parts (i) and (ii) in accordance with the Affine Communication Lemma. To prove (a)(i), consider the strictly increasing chain of ideals \(I_1 \subsetneq I_2 \subsetneq \ldots\) of \(A_f\). Then, we can verify that \(J_1 \subsetneq J_2 \subsetneq \ldots\) is a strictly increasing chain of ideals of \(A\), where:
+\[J_j = \{r \in A : r \in I_j\}\]
+
+where \(r \in I_j\) means image of \(r\) in \(A_f\) lies in \(I_j\). Clearly \(J_j\) is an ideal of \(A\). If \(x/f^n \in I_{j + 1} \backslash I_j\), where \(x \in A\), then \(x \in J_{j + 1}\) and \(x \notin J_j\). For part (ii), consider the strictly increasing chain of ideals \(I_1 \subsetneq I_2 \subsetneq \ldots\) in \(A\). Then, for each \(1 \leq i \leq n\):
+\[I_{i, 1} \subset I_{i, 2} \subset I_{i, 3} \subset \ldots\]
+
+is an increasing chain of ideals of \(A_f\). Then, \(I_{i, j} = I_j \otimes_A A_{f_i}\). It remains to be shown that for each \(j\), \(I_{i, j} \subsetneq I_{i, j + 1}\), for some \(i\); then the result will follow.
+
+Now, (b)(i) is clear: if \(A\) is generated over \(B\) as \(r_1, \ldots, r_n\), then \(A_f\) is generated over \(B\) as \(r_1, \ldots, r_n, 1/f\). For part (ii), since \(f_i\)s generate \(A\), we can write \(1 = \sum c_i f_i\) for \(c_i \in A\). We have generators of \(A_f : r_{ij}/f_i^{k_j}\), where \(r_{ij} \in A\). Now, claim that \(\{c_i\} \cup \{f_i\}_i \cup \{r_{ij}\}_{ij}\) generate \(A\) as a \(B\)-algebra. Suppose we have \(r \in A\). Then in \(A_{f_i}\), we can write \(r\) as some polynomial in \(r_{ij}\)s and \(f_i\), divided by some huge power of \(f_i\). So, in each \(f_i\), we have described \(r\) in the obvious way, except for the huge denominator. Now use the partition of unity argument to combine all this expressions into a single expression killing the denominator. The resulting expression we build agrees with \(r\) in each \(A_{f_i}\). Thus, it is indeed \(r\) by identity axiom for the structure sheaf.
+
+# Normality and fractionality

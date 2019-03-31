@@ -32,7 +32,7 @@
         <h1>
           [ag/4] Properties of schemes
         </h1>
-        <time datetime="2019-03-30">Last updated: Saturday, 30 March 2019</time><br /><time datetime="2019-03-30">Created: Saturday, 30 March 2019</time>
+        <time datetime="2019-03-31">Last updated: Sunday, 31 March 2019</time><br /><time datetime="2019-03-30">Created: Saturday, 30 March 2019</time>
         <p>
           We have already shown that \(\mathbb{A}_k^n\) is irreducible; this argument behaves well under gluing yielding the fact that \(\mathbb{P}_k^n\) behaves well under gluing. If there is some property \(P\) of schemes that is "open", then to check if all points of the quasicompact scheme have \(P\), it is sufficient to check just the closed points. In many good situations, the closed points are dense.
         </p>
@@ -74,7 +74,7 @@
         <p>
           `Affine Communication Lemma`: Let \(P\) be some property enjoyed by some affine open subsets of scheme \(X\), such that:
         </p>
-        <ol class="olitems" type="a" start="1">
+        <ol class="olitems" type="i" start="1">
           <li>
             If an affine open subset \(\text{Spec } A \hookrightarrow X\) has property \(P\), then for any \(f \in A\), \(\text{Spec } A_f \hookrightarrow X\) does too.
           </li>
@@ -105,6 +105,23 @@
             If \(A\) be a finitely-generated \(B\)-algebra, then so is \(A_{f_i}\). If each \(A_{f_i}\) is a finitely-generated \(B\)-algebra, then so is \(A\).
           </li>
         </ol>
+        <p>
+          We divide the proof into parts (i) and (ii) in accordance with the Affine Communication Lemma. To prove (a)(i), consider the strictly increasing chain of ideals \(I_1 \subsetneq I_2 \subsetneq \ldots\) of \(A_f\). Then, we can verify that \(J_1 \subsetneq J_2 \subsetneq \ldots\) is a strictly increasing chain of ideals of \(A\), where:
+          \[J_j = \{r \in A : r \in I_j\}\]
+        </p>
+        <p>
+          where \(r \in I_j\) means image of \(r\) in \(A_f\) lies in \(I_j\). Clearly \(J_j\) is an ideal of \(A\). If \(x/f^n \in I_{j + 1} \backslash I_j\), where \(x \in A\), then \(x \in J_{j + 1}\) and \(x \notin J_j\). For part (ii), consider the strictly increasing chain of ideals \(I_1 \subsetneq I_2 \subsetneq \ldots\) in \(A\). Then, for each \(1 \leq i \leq n\):
+          \[I_{i, 1} \subset I_{i, 2} \subset I_{i, 3} \subset \ldots\]
+        </p>
+        <p>
+          is an increasing chain of ideals of \(A_f\). Then, \(I_{i, j} = I_j \otimes_A A_{f_i}\). It remains to be shown that for each \(j\), \(I_{i, j} \subsetneq I_{i, j + 1}\), for some \(i\); then the result will follow.
+        </p>
+        <p>
+          Now, (b)(i) is clear: if \(A\) is generated over \(B\) as \(r_1, \ldots, r_n\), then \(A_f\) is generated over \(B\) as \(r_1, \ldots, r_n, 1/f\). For part (ii), since \(f_i\)s generate \(A\), we can write \(1 = \sum c_i f_i\) for \(c_i \in A\). We have generators of \(A_f : r_{ij}/f_i^{k_j}\), where \(r_{ij} \in A\). Now, claim that \(\{c_i\} \cup \{f_i\}_i \cup \{r_{ij}\}_{ij}\) generate \(A\) as a \(B\)-algebra. Suppose we have \(r \in A\). Then in \(A_{f_i}\), we can write \(r\) as some polynomial in \(r_{ij}\)s and \(f_i\), divided by some huge power of \(f_i\). So, in each \(f_i\), we have described \(r\) in the obvious way, except for the huge denominator. Now use the partition of unity argument to combine all this expressions into a single expression killing the denominator. The resulting expression we build agrees with \(r\) in each \(A_{f_i}\). Thus, it is indeed \(r\) by identity axiom for the structure sheaf.
+        </p>
+        <h2 id="normality-and-fractionality">
+          Normality and fractionality
+        </h2>
       </div>
       <div id="sidebar">
         <ul>
