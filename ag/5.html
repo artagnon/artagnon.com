@@ -32,7 +32,7 @@
         <h1>
           [ag/5] Morphisms of schemes
         </h1>
-        <time datetime="2019-04-01">Last updated: Monday, 01 April 2019</time><br /><time datetime="2019-03-31">Created: Sunday, 31 March 2019</time>
+        <time datetime="2019-04-02">Last updated: Tuesday, 02 April 2019</time><br /><time datetime="2019-03-31">Created: Sunday, 31 March 2019</time>
         <p>
           Just as we defined schemes as (i) a set (ii) with a topology (iii) with a structure shceaf of functions, let us define morphisms between schemes \(X \rightarrow Y\) as (i) a map between sets (ii) that is continuous (iii) with some additional information about sheaves of functions. We want morphisms of affine schemes \(\text{Spec } A \rightarrow \text{Spec } B\) to correspond to morphisms between rings \(B \rightarrow A\). We have already seen that ring maps \(B \rightarrow A\) induce maps of topological spaces in the opposite direction. The main new ingredient will be adding the structure sheaf of functions to this. From the geometric side, we want morphisms of schemes to be, at the very least, a morphism between ringed spaces. If \(\pi : X \rightarrow Y\) is a map of differentiable manifolds, then a differentiable function on \(Y\) pulls back to a differentiable function on \(X\). More precisely, given an open subset \(U \subset Y\), there is a natural map \(\Gamma(U, \mathscr{O}_X) \rightarrow \Gamma(\pi^{-1}(U), \mathscr{O}_X)\). This behaves well with respect to restriction, so we have a map on \(Y\): \(\mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X\). Similarly a morphism of schemes \(\pi : X \rightarrow Y\) should induce \(\mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X\). In the category of differentiable manifolds, a continuous map \(\pi : X \rightarrow Y\) is a map of differentiable manifolds precisely when differentiable functions on \(Y\) pull back to differentiable functions on \(X\), so this map of sheaves characterizes morphisms in a differentiable category. We could use this as the definition of a morphism in a differentiable category, but functions are odder than schemes, and we can't recover the pullback map from a map of topological spaces. The right patch is to hardwire this into the definition of the morphism: we have \(\pi : X \rightarrow Y\) along with the pullback map \(\pi^\# : \mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X\), and this leads to the definition of ringed spaces. We might be able to define morphisms between sheaves as morphisms between ringed spaces, but this isn't quite right: to each morphism \(A \rightarrow B\) there is a corresponding morphism \(\text{Spec } B \rightarrow \text{Spec } A\), but there can be additional morphisms of ringed spaces \(\text{Spec } B \rightarrow \text{Spec } A\) not arising in this way.
         </p>
@@ -62,6 +62,28 @@
         </p>
         <p>
           If \(\pi : \text{Spec } A \rightarrow \text{Spec } B\) is a morphism of locally ringed spaces, then it is the morphism of locally ringed spaces induced by the map \(\pi^\# : \Gamma(\text{Spec } B, \mathscr{O}_{\text{Spec } B}) = B \rightarrow \Gamma(\text{Spec } A, \mathscr{O}_{\text{Spec } A}) = A\). To prove this, we want to show that \(\pi\) is determined by its ring of global sections \(\pi^\# : B \rightarrow A\). We first need to check that the map of points is determined by global sections. Now, a point \(p\) of \(\text{Spec } A\) can be identified with the prime ideal of global functions vanishing on it. The image point \(\pi(p)\) can be identified with a unique point \(q\) in \(\text{Spec } B\), where the functions vanishing at \(q\) are precisely those that pull back to functions vanishing at \(p\). This is precisely the way in which maps of sets \(\text{Spec } A \rightarrow \text{Spec } B\) induced by the ring map \(B \rightarrow A\) was defined. Note in particular that if \(b \in B\), then \(\pi^{-1}(D(b)) = D(\pi^\# B)\), again using the hypothesis that \(\pi\) is a morphism of locally ringed spaces. It remains to be shown that \(\pi^\# : \mathscr{O}_{\text{Spec } B} \rightarrow \pi_* \mathscr{O}_{\text{Spec } A}\) is a morphism of sheaves. It suffices to check this on a distinguished base. We want to show that for any map of locally ringed spaces including the map of sheaves \(\mathscr{O}_{\text{Spec } B} \rightarrow \pi_* \mathscr{O}_{\text{Spec } A}\), the map of schemes on any distinguished open set \(D(b) \subset \text{Spec } B\) is determined by the map of global sections \(B \rightarrow A\).
+        </p>
+        <p>
+          Consider the commutative diagram:
+        </p>
+        <p class="mathjax">
+          \[
+          \begin{xy}
+          \xymatrix{
+          \Gamma(\text{Spec } B, \mathscr{O}_{\text{Spec } B})\ar[r]^{\pi^\#_{\text{Spec } B}}\ar[d]^{\text{res}_{\text{Spec } B, D(b)}} & \Gamma(\text{Spec } A, \mathscr{O}_{\text{Spec } A})\ar[d]^{\text{res}_{\text{Spec } A, D(\pi^\# b)}} \\
+          \Gamma(D(b), \mathscr{O}_{\text{Spec } B})\ar[r]^{\pi^\#_{D(b)}} & \Gamma(D(\pi^\# b), \mathscr{O}_{\text{Spec } A})
+          }
+          \end{xy}
+          \]
+        </p>
+        <p>
+          The vertical arrows (restrictions to distinguished open sets) are localizations by \(b\). The lower horizontal map \(\pi^\#_{D(b)}\) is determined by the upper map (it is just localization by \(b\)).
+        </p>
+        <p>
+          If \(X, Y\) are schemes, then a morphism \(\pi : X \rightarrow Y\) as locally ringed spaces is a morphism of schemes. Thus, we have defined the category of schemes denoted by \(\text{Sch}\). In practice, we will use the affine cover interpretation, and forget completely about locally ringed spaces. In particular, to put imprecisely, the category of affine schemes is the category of rings with arrows reversed.
+        </p>
+        <p>
+          In particular, there can be many different maps from one point to another. For example, here is a map of two maps from a point on \(\text{Spec } \mathbb{C}\) to another point on \(\text{Spec } \mathbb{C}\): the identity map and the complex conjugation. It is clear that morphisms glue and that composition of two morphisms is a morphism.
         </p>
       </div>
       <div id="sidebar">
