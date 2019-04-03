@@ -32,7 +32,7 @@
         <h1>
           [ag/2] Schemes I
         </h1>
-        <time datetime="2019-03-23">Last updated: Saturday, 23 March 2019</time><br /><time datetime="2019-03-10">Created: Sunday, 10 March 2019</time>
+        <time datetime="2019-04-03">Last updated: Wednesday, 03 April 2019</time><br /><time datetime="2019-03-10">Created: Sunday, 10 March 2019</time>
         <p>
           We will understand schemes through the sheaf of functions on a space. We define schemes in terms of three pieces of data:
         </p>
@@ -76,7 +76,7 @@
           Underlying set of affine schemes
         </h2>
         <p>
-          We will first define \(\text{Spec } A\) to be the prime spectrum of ring \(A\), the set of all prime ideals of \(A\). Later, we will endow it with topology, and define a structure sheaf on it, yielding an `affine scheme`. The prime ideal \(\mathfrak{p}\) of \(A\), when considered as an element of \(\text{Spec } A\), will be denoted by \([\mathfrak{p}]\). Elements \(a \in A\) will be called `functions on` \(\text{Spec } A\), and their `value` at point \([\mathfrak{p}]\) will be \(a\, (\text{mod } \mathfrak{p})\).
+          We will first define \(\text{Spec } A\) to be the prime spectrum of ring \(A\), the set of all prime ideals of \(A\). Later, we will endow it with topology, and define a structure sheaf on it, yielding an `affine scheme`. The prime ideal \(\mathfrak{p}\) of \(A\), when considered as an element of \(\text{Spec } A\), will be denoted by \([\mathfrak{p}]\). Elements \(a \in A\) will be called `functions on \(\text{Spec } A\)`, and their `value` at point \([\mathfrak{p}]\) will be \(a\, (\text{mod } \mathfrak{p})\).
         </p>
         <p>
           An element of the ring lying in a prime ideal \(\mathfrak{p}\) translates to a function vanishing at point \([\mathfrak{p}]\). If we add or multiply two functions, we add or multiply their values at all points; this is a direct consequence of \(A \rightarrow A/\mathfrak{p}\) being a ring homomorphism. If \(A\) is generated over a base field or base ring by elements \(x_1, \ldots, x_r\), these elements are called `coordinates`.
@@ -91,19 +91,19 @@
           \[0 \rightarrow (x - a) \rightarrow \mathbb{C}[x] \xrightarrow{f \mapsto f(a)} \mathbb{C} \rightarrow 0\]
         </p>
         <p>
-          There are no other prime ideals. In the geometric picture, there is one "traditional point" for each \(a \in \mathbb{C}\) plus one bonus point \([(0)]\). \([(x - a)]\) will readily associate to \(a \in C\), but \([(0)]\) is mysterious, for it lies somehwere on the complex line, but nowhere in particular: we will call it a "generic point".
+          There are no other prime ideals. In the geometric picture, there is one "traditional point" for each \(a \in \mathbb{C}\) plus one bonus point \([(0)]\). \([(x - a)]\) will readily associate to \(a \in C\), but \([(0)]\) is mysterious, for it lies somewhere on the complex line, but nowhere in particular: we will call it a "generic point".
         </p>
         <p>
-          To get some intuition for this space, note that functions of \(\mathbb{C}[x]\) are just polynomials in a single variable. Its value at \(([x - a])\) is \(f(a)\); equivalently, we can evalute \(f(x) \text{ mod } (x - a)\). Its value at \([(0)]\) is simply \(f(x)\).
+          To get some intuition for this space, note that functions of \(\mathbb{C}[x]\) are just polynomials in a single variable. Its value at \([(x - a)]\) is \(f(a)\); equivalently, we can evalute \(f(x) \text{ mod } (x - a)\). Its value at \([(0)]\) is simply \(f(x)\).
         </p>
         <p>
-          \(g(x) = (x - 3)^3/(x - 2)\) is defined everywhere by at \(2\); as we will see later, it is an element of the structure sheaf on the open set \(\mathbb{A}_\mathbb{C}^1 \backslash \{2\}\). \(g(x)\) has a triple zero at \(x = 3\), and a single pole at \(x = 2\).
+          \(g(x) = (x - 3)^3/(x - 2)\) is defined everywhere but at \(2\); as we will see later, it is an element of the structure sheaf on the open set \(\mathbb{A}_\mathbb{C}^1 \backslash \{2\}\). \(g(x)\) has a triple zero at \(x = 3\), and a single pole at \(x = 2\).
         </p>
         <p>
           Example 2: \(\mathbb{A}_k^1 := \text{Spec } k[x]\) over algebraically closed \(k\) is the `affine line` over \(k = \bar{k}\).
         </p>
         <p>
-          Example 3: \(\text{Spec } \mathbb{Z}\), which looks a lot like \(\mathbb{A}_\bar{k}^1\), is a unique factorization domain with prime ideals \((0), (p)\). \(27/4\) has a double zero at \((2)\) and a triple pole at \((3)\).
+          Example 3: \(\text{Spec } \mathbb{Z}\), which looks a lot like \(\mathbb{A}_\bar{k}^1\), is a unique factorization domain with prime ideals \((0), (p)\). \(27/4\) has a double pole at \((2)\) and a triple zero at \((3)\).
         </p>
         <p>
           Example 4: \(\text{Spec } k\) where \(k\) is a field is boring: it a single one point, and has no prime ideals.
@@ -115,7 +115,7 @@
           Example 6: \(\mathbb{A}_{\mathbb{F}_p}^1 := \text{Spec } \mathbb{F}_p[x]\) is the affine line over \(\mathbb{F}_p[x]\). \(\mathbb{F}_p[x]\) is a Eucledian domain with prime ideals \((0)\) and \((f(x))\), irreducible polynomials of any degree \(f(x) \in \mathbb{F}_p[x]\). Irreducible polynomials correspond to Galios conjugates \(\bar{\mathbb{F}}_p\). Note that \(\mathbb{F}_p[x]\) has points \(p\) in the corresponding \(\mathbb{F}_p\), but has infinitely many more determined by \(\text{Spec } \mathbb{F}_p[x]\).
         </p>
         <p>
-          Example 7: The affine complex plane \(\mathbb{A}_\mathbb{C}^2 := \text{Spec } \mathbb{C}[x, y]\) is not a principal ideal domain. Its prime ideals are \((0), (x - a, y - b), (f(x, y))\) with \(f(x, y)\) irreducible. The points of \(\mathbb{A}_\mathbb{C}^2\) are therefore traditional points \(a, b\) corresponding to \([(x - a, y - b)]\), generic point corresponding to \([(0)]\), plus bonus points: for instance, \([(y^2 - x)]\) lies everywhere on \(x = y^2\), but nowhere in partiular. The prime ideals \((x - a, y - b)\) are of dimension \(0\), \((f(x))\) for irreducible \(f(x)\) are of dimension \(1\), and \((0)\) is of dimension \(2\). Notice that maximal ideals correspond to the smallest points: in general, containment between two ideals is reversed when considering containment of the corresponding points.
+          Example 7: The affine complex plane \(\mathbb{A}_\mathbb{C}^2 := \text{Spec } \mathbb{C}[x, y]\) is not a principal ideal domain. Its prime ideals are \((0), (x - a, y - b), (f(x, y))\) with \(f(x, y)\) irreducible. The points of \(\mathbb{A}_\mathbb{C}^2\) are therefore traditional points \(a, b\) corresponding to \([(x - a, y - b)]\), generic point corresponding to \([(0)]\), plus bonus points: for instance, \([(y^2 - x)]\) lies everywhere on \(x = y^2\), but nowhere in particular. The prime ideals \((x - a, y - b)\) are of dimension \(0\), \((f(x))\) for irreducible \(f(x)\) are of dimension \(1\), and \((0)\) is of dimension \(2\). Notice that maximal ideals correspond to the smallest points: in general, containment between two ideals is reversed when considering containment of the corresponding points.
         </p>
         <p>
           Example 8: The complex affine \(n\)-space \(\mathbb{A}_\mathbb{C}^n := \text{Spec } \mathbb{C}[x_0, \ldots, x_n]\) has prime ideals \((x - a, y - b, z - c)\) when \(n = 3\) corresponding to traditional points, since the residue ring is the field \((\mathbb{C})\). These are the only maximal ideals, by `Hilbert's Nullstellansatz`; it states, in the the weak version, that in \(\mathbb{A}_k^n := k[x_0, \ldots, x_n]\) for \(k\) an algebraically closed field, the only maximal ideals are \((x_0 - a_0, \ldots, x_n - a_n)\).
@@ -134,10 +134,10 @@
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            Quotients. \(\text{Spec } A/I\) is a subset of \(\text{Spec } A\). Prime ideals of \(A/I\) are in bijective correspondence with prime ideals of \(A\) containing \(I\). Consider the picture of affine complex varieties. Suppose \(A\) is a finitely generated \(\mathbb{C}\)-algebra, generated by \(x_1, \ldots, x_n\) with the relations \(f_1(x_1, \ldots, x_n) =  \ldots = f_r(x_1, \ldots, x_n)\). This gives us an interpretation of \(\text{Spec } A\) as a subset of \(\mathbb{A}_\mathbb{C}^n\), which we think of as "traditional points" along with some "bonus points" not yet fully described. To obtain the traditional points, simply solve \(f_1 = \ldots f_r = 0\). The entire picture carries over, along with the Nullstellansatz, when \(\mathbb{C}\) is replaced by any algebraically closed field.
+            Quotients. \(\text{Spec } A/I\) is a subset of \(\text{Spec } A\). Prime ideals of \(A/I\) are in bijective correspondence with prime ideals of \(A\) containing \(I\). Consider the picture of affine complex varieties. Suppose \(A\) is a finitely generated \(\mathbb{C}\)-algebra, generated by \(x_1, \ldots, x_n\) with the relations \(f_1(x_1, \ldots, x_n) = \ldots = f_r(x_1, \ldots, x_n)\). This gives us an interpretation of \(\text{Spec } A\) as a subset of \(\mathbb{A}_\mathbb{C}^n\), which we think of as "traditional points" along with some "bonus points" not yet fully described. To obtain the traditional points, simply solve \(f_1 = \ldots = f_r = 0\). The entire picture carries over, along with the Nullstellansatz, when \(\mathbb{C}\) is replaced by any algebraically closed field.
           </li>
           <li>
-            Localizations. \(\text{Spec } S^{-1}A\) is a subset of \(\text{Spec } A\). There are two important flavors of localization, namely \(\{1, f, f^2, \ldots\}^{-1} A\) for \(f \in A\) and \((A \backslash \mathfrak{p})^{-1} A\). If \(S = \{1, f, f^2, \ldots\}\), the prime ideals of \(S^{-1} A\) are just those where \(f\) does not vanish, and we will call this a `distinguished open set`. For instance, \(\mathbb{C}[x, y]_{y - x^2}\) is pictured as the affine plane with points on \(y = x^2\) thrown out; i.e. points \((a, a^2)\) for \(a \in \mathbb{C}\), by which we mean \([(x - a, y - a^2)]\), as well as a "new kind of point" \([(y - x^2)]\). \(A \rightarrow S^{-1} A\) is non-injective, and this may lead to some confusion. For instance, take \(A = \mathbb{C}[x, y]/(xy)\) with \(f = x\). We end up with an isomorphism \((\mathbb{C}[x, y]/(xy))_x \xrightarrow{~} (\mathbb{C}[x])_x\). For \(S = A \backslash \mathfrak{p}\), prime ideals of \(S^{-1} A\) are just those prime ideals of \(A\) contained in \(\mathfrak{p}\). For example, setting \(\mathfrak{p} = (x, y)\) in \(\mathbb{C}[x, y]\), we get "things" through origin; indeed, the zero-dimensional points \([(x, y)]\), the two-dimensional point \([(0)]\), and the one-dimensional points \(f\) for which \(f(0, 0) = 0\); i.e. irreducible curves through origin. As an important example, consider \(A = k[x]\) and \(\mathfrak{p} = (x)\), or any maximal ideal. Then \(A_\mathfrak{p}\) is the germ of a "smooth curve" where one point is a "classical point", and another is a "generic point of the curve". This is an example of a `discrete valuation ring`.
+            Localizations. \(\text{Spec } S^{-1}A\) is a subset of \(\text{Spec } A\). There are two important flavors of localization, namely \(\{1, f, f^2, \ldots\}^{-1} A\) for \(f \in A\) and \((A \backslash \mathfrak{p})^{-1} A\). If \(S = \{1, f, f^2, \ldots\}\), the prime ideals of \(S^{-1} A\) are just those where \(f\) does not vanish, and we will call this a `distinguished open set`. For instance, \(\mathbb{C}[x, y]_{y - x^2}\) is pictured as the affine plane with points on \(y = x^2\) thrown out; i.e. points \((a, a^2)\) for \(a \in \mathbb{C}\), by which we mean \([(x - a, y - a^2)]\), as well as a "new kind of point" \([(y - x^2)]\). \(A \rightarrow S^{-1} A\) is non-injective, and this may lead to some confusion. For instance, take \(A = \mathbb{C}[x, y]/(xy)\) with \(f = x\). We end up with an isomorphism \((\mathbb{C}[x, y]/(xy))_x \xrightarrow{\sim} (\mathbb{C}[x])_x\). For \(S = A \backslash \mathfrak{p}\), prime ideals of \(S^{-1} A\) are just those prime ideals of \(A\) contained in \(\mathfrak{p}\). For example, setting \(\mathfrak{p} = (x, y)\) in \(\mathbb{C}[x, y]\), we get "things" through origin; indeed, the zero-dimensional points \([(x, y)]\), the two-dimensional point \([(0)]\), and the one-dimensional points \(f\) for which \(f(0, 0) = 0\); i.e. irreducible curves through origin. As an important example, consider \(A = k[x]\) and \(\mathfrak{p} = (x)\), or any maximal ideal. Then \(A_\mathfrak{p}\) is the germ of a "smooth curve" where one point is a "classical point", and another is a "generic point" of the curve. This is an example of a `discrete valuation ring`.
           </li>
         </ol>
         <p>
@@ -169,7 +169,7 @@
           The non-traditional points in the picture correspond to "closed" "irreducible" algebraic subsets. Each closed irreducible subset has a generic point sitting in it.
         </p>
         <p>
-          We have also seen how points of \(\text{Spec } A/I\) should be visualized as subsets of \(\text{Spec } A\); \(\text{Spec } \mathbb{C}[x, y]/(x + y)\) should be interpreted as a line in the \(xy\)-plane. Similarly, points of \(\text{Spec } S^{-1} A\) should be interpreted as subsets of \(\text{Spec } A\); \(\text{Spec } A_f\) are the subset of points of \(\text{Spec } A\) where \(f\) does not vanished: these will be formalized as `distinguished open sets`. If \(\mathfrak{p}\) is a prime ideal, points of \(\text{Spec } A_\mathfrak{p}\) should be seen as a "shred of the space \(\text{Spec } A\) near the subset corresponding to \(\mathfrak{p}\)".
+          We have also seen how points of \(\text{Spec } A/I\) should be visualized as subsets of \(\text{Spec } A\); \(\text{Spec } \mathbb{C}[x, y]/(x + y)\) should be interpreted as a line in the \(xy\)-plane. Similarly, points of \(\text{Spec } S^{-1} A\) should be interpreted as subsets of \(\text{Spec } A\); \(\text{Spec } A_f\) are the subset of points of \(\text{Spec } A\) where \(f\) does not vanish: these will be formalized as `distinguished open sets`. If \(\mathfrak{p}\) is a prime ideal, points of \(\text{Spec } A_\mathfrak{p}\) should be seen as a "shred of the space \(\text{Spec } A\) near the subset corresponding to \(\mathfrak{p}\)".
         </p>
         <h2 id="underlying-topological-space-of-an-affine-scheme">
           Underlying topological space of an affine scheme
@@ -279,7 +279,7 @@
           Hence, any finitely generated algebra over \(k\) or \(\mathbb{Z}\) is Noetherian. Example of a non-Noetherian ring: \(k[x_1, x_2, \ldots]\), since the sequence of ideals does not terminate.
         </p>
         <p>
-          Hilbert's Basis Theorem: If \(A\) is Noetherian, so is \(A[x]\). To prove this, we show that any ideal \(I \subset A[x]\) is finitely-generated. We inductively produce a set of generators \(f_1, \ldots\) as follows. For \(n \gt 0\) if \(I \neq (f_1, \ldots, f_{n - 1})\), let \(f_n = I - (f_1, \ldots, f_{n - 1})\) be a nonzero element of lowest degree. Thus, \(f_1\) is an element of \(I\) of lowest degree, assuming \(I \neq (0)\). If this procedure terminates, then we are done. Otherwise, let \(a_n \in A\) be an initial coefficient of \(f_n\) for \(n \gt 0\). Then, as \(A\) is Noetherian, \((a_1, a_2, \ldots) = (a_1, \ldots, a_N)\) for some \(N\). Let \(a_{N + 1} = \sum_{i = 1}^N b_i a_i\). Then,
+          `Hilbert's Basis Theorem`: If \(A\) is Noetherian, so is \(A[x]\). To prove this, we show that any ideal \(I \subset A[x]\) is finitely-generated. We inductively produce a set of generators \(f_1, \ldots\) as follows. For \(n \gt 0\) if \(I \neq (f_1, \ldots, f_{n - 1})\), let \(f_n = I - (f_1, \ldots, f_{n - 1})\) be a nonzero element of lowest degree. Thus, \(f_1\) is an element of \(I\) of lowest degree, assuming \(I \neq (0)\). If this procedure terminates, then we are done. Otherwise, let \(a_n \in A\) be an initial coefficient of \(f_n\) for \(n \gt 0\). Then, as \(A\) is Noetherian, \((a_1, a_2, \ldots) = (a_1, \ldots, a_N)\) for some \(N\). Let \(a_{N + 1} = \sum_{i = 1}^N b_i a_i\). Then,
           \[f_{N + 1} - \sum_{i = 1}^N b_i f_i x^{\text{deg } f_{N + 1} - \text{deg } f_i}\]
         </p>
         <p>
