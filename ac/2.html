@@ -32,7 +32,7 @@
         <h1>
           [ac/2] Modules of fractions, Primary decomposition
         </h1>
-        <time datetime="2019-03-04">Last updated: Monday, 04 March 2019</time><br /><time datetime="2019-02-18">Created: Monday, 18 February 2019</time>
+        <time datetime="2019-04-04">Last updated: Thursday, 04 April 2019</time><br /><time datetime="2019-02-18">Created: Monday, 18 February 2019</time>
         <h2 id="rings-of-fractions">
           Rings of fractions
         </h2>
@@ -77,13 +77,13 @@
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            Let \(P\) be a prime ideal in \(A\). Then \(A - P\) is multiplicatively closed and is written as \(S^{-1} A = A_P\), the localization of \(A\) at \(P\). \(a/s\) with \(a \in P\) form an ideal \(M\) in \(A_P\). If \(b/t \neq M\), and \(b \notin P\), then \(b/t\) is unit. \(M\) is the only maximal ideal in \(P\), and \(A_P\) is a local ring. If \(A = \mathbb{Z}, P\) is the set of prime numbers, and \(A_P\) is the set of all rationals with denominators as powers of \(f\).
+            Let \(\mathfrak{p}\) be a prime ideal in \(A\). Then \(A - \mathfrak{p}\) is multiplicatively closed and is written as \(S^{-1} A = A_\mathfrak{p}\), the localization of \(A\) at \(\mathfrak{p}\). \(a/s\) with \(a \in \mathfrak{p}\) form an ideal \(M\) in \(A_\mathfrak{p}\). If \(b/t \neq M\), and \(b \notin \mathfrak{p}\), then \(b/t\) is unit. \(M\) is the only maximal ideal in \(\mathfrak{p}\), and \(A_\mathfrak{p}\) is a local ring. If \(A = \mathbb{Z}, \mathfrak{p}\) is the set of prime numbers, then \(A_\mathfrak{p}\) is the set of all rationals with denominators as powers of \(f\).
           </li>
           <li>
             \(S^{-1} A\) is the zero ring \(\iff 0 \in S\).
           </li>
           <li>
-            Let \(f \in A\) \(S^{-1} = (1/f, 1/f^2, \ldots, 1/f^n)\). Then we write \(A_f\) for \(S^{-1} A\) in this case. Let \(A = k[t_1, \ldots, t_n]\) be a polynomial ring where \(k\) is a field, and \(P\) a prime ideal in \(A\). Then, \(A_P\) is the ring of all rational functions \(g/h, g \notin P\). Let \(V\) be a variety defined by \(P\), that is to say the set \((x_1, \ldots, x_n) \in k^n\) such that \(f(x) = 0\) whenever \(f \in P\). Then, \(A_P\) can be identified with the ring of all rational functions in \(k^n\) which are defined at almost all points of \(V\); it is the local ring of \(k^n\) defined along variety \(V\). This is the prototype of local rings, as they arise in [algebraic geometry](/ag).
+            Let \(f \in A\) \(S^{-1} = (1/f, 1/f^2, \ldots, 1/f^n)\). Then we write \(A_f\) for \(S^{-1} A\) in this case. Let \(A = k[t_1, \ldots, t_n]\) be a polynomial ring where \(k\) is a field, and \(\mathfrak{p}\) a prime ideal in \(A\). Then, \(A_\mathfrak{p}\) is the ring of all rational functions \(g/h, g \notin \mathfrak{p}\). Let \(V\) be a variety defined by \(\mathfrak{p}\), that is to say the set \((x_1, \ldots, x_n) \in k^n\) such that \(f(x) = 0\) whenever \(f \in \mathfrak{p}\). Then, \(A_\mathfrak{p}\) can be identified with the ring of all rational functions in \(k^n\) which are defined at almost all points of \(V\); it is the local ring of \(k^n\) defined along variety \(V\). This is the prototype of local rings, as they arise in algebraic geometry.
           </li>
           <li>
             Let \(I\) be an ideal in \(A\), such that \(S = 1 + I\). Then, \(S\) is multiplicatively closed.
@@ -152,28 +152,28 @@
           \[f((m/s) \otimes (n/t)) = (m \otimes n)/st\]
         </p>
         <p>
-          In particular, if \(P\) is a prime ideal:
-          \[M_P \otimes_{A_P} N_P \cong (M \otimes_A N)_P\]
+          In particular, if \(\mathfrak{p}\) is a prime ideal:
+          \[M_\mathfrak{p} \otimes_{A_\mathfrak{p}} N_\mathfrak{p} \cong (M \otimes_A N)_\mathfrak{p}\]
         </p>
         <h2 id="local-properties">
           Local properties
         </h2>
         <p>
-          A ring \(A\), or a module \(N\) is said to have a `local property` \(P\) if, \(A\) has \(P \iff A_P\) has \(P\), or \(N\) has \(P \iff N_P\) has \(P\), for prime ideal \(P\). Now, for example, the following statements are equivalent:
+          A ring \(A\), or a module \(N\) is said to have a `local property` \(P\) if, \(A\) has \(\mathfrak{p} \iff A_\mathfrak{p}\) has \(\mathfrak{p}\), or \(N\) has \(\mathfrak{p} \iff N_\mathfrak{p}\) has \(\mathfrak{p}\), for prime ideal \(\mathfrak{p}\). Now, for example, the following statements are equivalent:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
             \(N = 0\).
           </li>
           <li>
-            \(N_P = 0\), for all prime ideals \(P\) of \(A\).
+            \(N_\mathfrak{p} = 0\), for all prime ideals \(\mathfrak{p}\) of \(A\).
           </li>
           <li>
-            \(N_M = 0\), for all maximal ideals \(M\) of \(A\).
+            \(N_\mathfrak{m} = 0\), for all maximal ideals \(\mathfrak{m}\) of \(A\).
           </li>
         </ol>
         <p>
-          Since (i) \(\implies\) (ii) \(\implies\) (iii) is obvious, let us prove (i), given (iii). Suppose \(N \neq 0\), then \(x \in N\), and let \(I = \text{Ann}(x)\). \(I\) is an ideal, and therefore must be contained within some maximal ideal \(M\). Let \(x/1 \in N_M\). Since \(N_M = 0\), \(x/1 = 0\), and hence, \(x\) is killed by some element of \(N - M\). But this is impossible since \(\text{Ann}(x) \subseteq M\).
+          Since (i) \(\implies\) (ii) \(\implies\) (iii) is obvious, let us prove (i), given (iii). Suppose \(N \neq 0\), then \(x \in N\), and let \(I = \text{Ann}(x)\). \(I\) is an ideal, and therefore must be contained within some maximal ideal \(\mathfrak{m}\). Let \(x/1 \in N_\mathfrak{m}\). Since \(N_\mathfrak{m} = 0\), \(x/1 = 0\), and hence, \(x\) is killed by some element of \(N - \mathfrak{m}\). But this is impossible since \(\text{Ann}(x) \subseteq \mathfrak{m}\).
         </p>
         <p>
           Let \(\varphi: S \rightarrow T\) be an \(A\)-module homomorphism. Then, the following statements are equivalent:
@@ -183,10 +183,10 @@
             \(\varphi\) is injective.
           </li>
           <li>
-            \(\varphi_M : S_P \rightarrow T_P\) is injective for each prime ideal \(P\).
+            \(\varphi_M : S_\mathfrak{p} \rightarrow T_\mathfrak{p}\) is injective for each prime ideal \(\mathfrak{p}\).
           </li>
           <li>
-            \(\varphi_M : S_M \rightarrow T_M\) is injective for each maximal ideal \(M\).
+            \(\varphi_M : S_\mathfrak{m} \rightarrow T_\mathfrak{m}\) is injective for each maximal ideal \(\mathfrak{m}\).
           </li>
         </ol>
         <p>
@@ -197,10 +197,10 @@
             \(N\) is a flat \(A\)-module.
           </li>
           <li>
-            \(N_P\) is flat for each prime ideal \(P\).
+            \(N_\mathfrak{p}\) is flat for each prime ideal \(\mathfrak{p}\).
           </li>
           <li>
-            \(N_M\) is flat for each maximal ideal \(M\).
+            \(N_\mathfrak{m}\) is flat for each maximal ideal \(\mathfrak{m}\).
           </li>
         </ol>
         <h2 id="primary-decomposition">
