@@ -36,318 +36,318 @@
         <h1>
           [ac/2] Modules of fractions, Primary decomposition
         </h1>
-        <time datetime="2019-04-04">Last updated: Thursday, 04 April 2019</time><br /><time datetime="2019-02-18">Created: Monday, 18 February 2019</time>
+        <time datetime="2019-11-25">Last updated: Monday, 25 November 2019</time><br /><time datetime="2019-02-18">Created: Monday, 18 February 2019</time>
         <h2 id="rings-of-fractions">
           Rings of fractions
         </h2>
         <p>
-          Rings of fractions, and the associated localization process, correspond to the [algebro-geometric picture](/ag) of studying behavior of an open set or near a point. Using the way we construct \(\mathbb{Q}\) from \(\mathbb{Z}\), we can construct equivalence classes of \(a, s\), where \((a, s) \in A, s \neq 0\), defined as follows:
-          \[(a, s) \equiv (b, t) \iff at - bs = 0\]
+          Rings of fractions, and the associated localization process, correspond to the [algebro-geometric picture](/ag) of studying behavior of an open set or near a point. Using the way we construct $\mathbb{Q}$ from $\mathbb{Z}$, we can construct equivalence classes of $a, s$, where $(a, s) \in A, s \neq 0$, defined as follows:
+          $$(a, s) \equiv (b, t) \iff at - bs = 0$$
         </p>
         <p>
-          but this definition only works if \(A\) is an integral domain. A more general definition of equivalence involves using a `multiplicative subset` \(S\) of \(A\) and defining \(\equiv\) over \(A \times S\):
-          \[(a, s) \equiv (b, t) \iff \exists u \in S : u(at - bs) = 0\]
+          but this definition only works if $A$ is an integral domain. A more general definition of equivalence involves using a `multiplicative subset` $S$ of $A$ and defining $\equiv$ over $A \times S$:
+          $$(a, s) \equiv (b, t) \iff \exists u \in S : u(at - bs) = 0$$
         </p>
         <p>
-          Let \(a/s\) denote the equivalence class of \((a, s)\) and \(S^{-1} A\) the set of all equivalence classes. We can endow \(S^{-1} A\) with a ring structure by defining addition and multiplication as operations on fractions, as in elementry algebra:
-          \[a/s + b/t = (at + bs)/st\]
-          \[(a/s)(b/t) = ab/st\]
+          Let $a/s$ denote the equivalence class of $(a, s)$ and $S^{-1} A$ the set of all equivalence classes. We can endow $S^{-1} A$ with a ring structure by defining addition and multiplication as operations on fractions, as in elementry algebra:
+          $$a/s + b/t = (at + bs)/st$$
+          $$(a/s)(b/t) = ab/st$$
         </p>
         <p>
-          We also have the ring homomorphism \(A \rightarrow S^{-1} A\) defined by \(x \mapsto x/1\). It is not injective in general. \(S^{-1} A\) is termed the `ring of fractions` of \(A\) with respect to \(S\).
+          We also have the ring homomorphism $A \rightarrow S^{-1} A$ defined by $x \mapsto x/1$. It is not injective in general. $S^{-1} A$ is termed the `ring of fractions` of $A$ with respect to $S$.
         </p>
         <p>
-          Let \(g : A \rightarrow B\) be a ring homomorphism where \(g(s)\) is unit in \(B\) for all \(s \in S\). Then there exists a unique ring homomorphism \(h : S^{-1} A \rightarrow B\) such that \(g = h \circ f\).
+          Let $g : A \rightarrow B$ be a ring homomorphism where $g(s)$ is unit in $B$ for all $s \in S$. Then there exists a unique ring homomorphism $h : S^{-1} A \rightarrow B$ such that $g = h \circ f$.
         </p>
         <p>
-          The ring \(S^{-1} A\) and the homomorphism \(f : A \rightarrow S^{-1} A\) have the following properties:
+          The ring $S^{-1} A$ and the homomorphism $f : A \rightarrow S^{-1} A$ have the following properties:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(s \in S \implies f(s)\) is unit in \(S^{-1} A\).
+            $s \in S \implies f(s)$ is unit in $S^{-1} A$.
           </li>
           <li>
-            \(f(a) = 0 \implies as = 0\) for some \(s \in S\).
+            $f(a) = 0 \implies as = 0$ for some $s \in S$.
           </li>
           <li>
-            Every element of \(S^{-1} A\) has the form \(f(a)f(s)^{-1}\) for some \(a \in A, s \in S\).
+            Every element of $S^{-1} A$ has the form $f(a)f(s)^{-1}$ for some $a \in A, s \in S$.
           </li>
         </ol>
         <p>
-          Conversely, these properties determine \(S^{-1} A\) uniquely upto isomorphism.
+          Conversely, these properties determine $S^{-1} A$ uniquely upto isomorphism.
         </p>
         <p>
           Some examples follow:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            Let \(\mathfrak{p}\) be a prime ideal in \(A\). Then \(A - \mathfrak{p}\) is multiplicatively closed and is written as \(S^{-1} A = A_\mathfrak{p}\), the localization of \(A\) at \(\mathfrak{p}\). \(a/s\) with \(a \in \mathfrak{p}\) form an ideal \(M\) in \(A_\mathfrak{p}\). If \(b/t \neq M\), and \(b \notin \mathfrak{p}\), then \(b/t\) is unit. \(M\) is the only maximal ideal in \(\mathfrak{p}\), and \(A_\mathfrak{p}\) is a local ring. If \(A = \mathbb{Z}, \mathfrak{p}\) is the set of prime numbers, then \(A_\mathfrak{p}\) is the set of all rationals with denominators as powers of \(f\).
+            Let $\mathfrak{p}$ be a prime ideal in $A$. Then $A - \mathfrak{p}$ is multiplicatively closed and is written as $S^{-1} A = A_\mathfrak{p}$, the localization of $A$ at $\mathfrak{p}$. $a/s$ with $a \in \mathfrak{p}$ form an ideal $M$ in $A_\mathfrak{p}$. If $b/t \neq M$, and $b \notin \mathfrak{p}$, then $b/t$ is unit. $M$ is the only maximal ideal in $\mathfrak{p}$, and $A_\mathfrak{p}$ is a local ring. If $A = \mathbb{Z}, \mathfrak{p}$ is the set of prime numbers, then $A_\mathfrak{p}$ is the set of all rationals with denominators as powers of $f$.
           </li>
           <li>
-            \(S^{-1} A\) is the zero ring \(\iff 0 \in S\).
+            $S^{-1} A$ is the zero ring $\iff 0 \in S$.
           </li>
           <li>
-            Let \(f \in A\) \(S^{-1} = (1/f, 1/f^2, \ldots, 1/f^n)\). Then we write \(A_f\) for \(S^{-1} A\) in this case. Let \(A = k[t_1, \ldots, t_n]\) be a polynomial ring where \(k\) is a field, and \(\mathfrak{p}\) a prime ideal in \(A\). Then, \(A_\mathfrak{p}\) is the ring of all rational functions \(g/h, g \notin \mathfrak{p}\). Let \(V\) be a variety defined by \(\mathfrak{p}\), that is to say the set \((x_1, \ldots, x_n) \in k^n\) such that \(f(x) = 0\) whenever \(f \in \mathfrak{p}\). Then, \(A_\mathfrak{p}\) can be identified with the ring of all rational functions in \(k^n\) which are defined at almost all points of \(V\); it is the local ring of \(k^n\) defined along variety \(V\). This is the prototype of local rings, as they arise in algebraic geometry.
+            Let $f \in A$ $S^{-1} = (1/f, 1/f^2, \ldots, 1/f^n)$. Then we write $A_f$ for $S^{-1} A$ in this case. Let $A = k[t_1, \ldots, t_n]$ be a polynomial ring where $k$ is a field, and $\mathfrak{p}$ a prime ideal in $A$. Then, $A_\mathfrak{p}$ is the ring of all rational functions $g/h, g \notin \mathfrak{p}$. Let $V$ be a variety defined by $\mathfrak{p}$, that is to say the set $(x_1, \ldots, x_n) \in k^n$ such that $f(x) = 0$ whenever $f \in \mathfrak{p}$. Then, $A_\mathfrak{p}$ can be identified with the ring of all rational functions in $k^n$ which are defined at almost all points of $V$; it is the local ring of $k^n$ defined along variety $V$. This is the prototype of local rings, as they arise in algebraic geometry.
           </li>
           <li>
-            Let \(I\) be an ideal in \(A\), such that \(S = 1 + I\). Then, \(S\) is multiplicatively closed.
+            Let $I$ be an ideal in $A$, such that $S = 1 + I$. Then, $S$ is multiplicatively closed.
           </li>
         </ol>
         <h2 id="modules-of-fractions">
           Modules of fractions
         </h2>
         <p>
-          The same construction involving \(S^{-1}\) can be carried out in modules instead of rings. Let \(u : M \rightarrow N\) be an \(A\)-module homomorphism. This gives rise to an \(S^{-1} A\)-module homomorphism \(S^{-1} M \rightarrow S^{-1} N\), such that \(S^{-1} u\) maps \(m/s\) to \(u(m)/s\). We have \(S^{-1} (v \circ u) = S^{-1}v \circ S^{-1}u\).
+          The same construction involving $S^{-1}$ can be carried out in modules instead of rings. Let $u : M \rightarrow N$ be an $A$-module homomorphism. This gives rise to an $S^{-1} A$-module homomorphism $S^{-1} M \rightarrow S^{-1} N$, such that $S^{-1} u$ maps $m/s$ to $u(m)/s$. We have $S^{-1} (v \circ u) = S^{-1}v \circ S^{-1}u$.
         </p>
         <p>
-          \(S^{-1}\) preserves exactness, in that if the following sequence is exact at \(M\):
-          \[L \xrightarrow{f} M \xrightarrow{g} N\]
+          $S^{-1}$ preserves exactness, in that if the following sequence is exact at $M$:
+          $$L \xrightarrow{f} M \xrightarrow{g} N$$
         </p>
         <p>
-          then, this sequence is exact at \(S^{-1} M\):
-          \[S^{-1} L \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} N\]
+          then, this sequence is exact at $S^{-1} M$:
+          $$S^{-1} L \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} N$$
         </p>
         <p>
-          This can proved by noticing that if \(g \circ f = 0\), then so is \(S^{-1} g \circ S^{-1} f = S^{-1} (0)\). Hence, \(\text{Im}(S^{-1} f) \subseteq \text{Ker}(S^{-1} g)\). To prove inclusion in the other direction, let \(m/s \in S^{-1} g\), then \(g(m)/s \in S^{-1} N\), hence \(\exists t : t g(m) = 0\) in \(N\). But \(t g(m) = g(tm)\), since \(g\) is an \(A\)-module homomorphism, hence \(t(m) \in \text{Ker}(g) = \text{Im}(f)\). Therefore, \(\exists m' \in M : t(m) = f(m')\). Hence, in \(S^{-1} M\), we have \(m/s = f(m')/st = S^{-1} f(m'/st) \in \text{Im}(S^{-1} f)\). Hence, \(\text{Ker}(S^{-1} g) \subseteq \text{Im}(S^{-1} f)\).
+          This can proved by noticing that if $g \circ f = 0$, then so is $S^{-1} g \circ S^{-1} f = S^{-1} (0)$. Hence, $\text{Im}(S^{-1} f) \subseteq \text{Ker}(S^{-1} g)$. To prove inclusion in the other direction, let $m/s \in S^{-1} g$, then $g(m)/s \in S^{-1} N$, hence $\exists t : t g(m) = 0$ in $N$. But $t g(m) = g(tm)$, since $g$ is an $A$-module homomorphism, hence $t(m) \in \text{Ker}(g) = \text{Im}(f)$. Therefore, $\exists m' \in M : t(m) = f(m')$. Hence, in $S^{-1} M$, we have $m/s = f(m')/st = S^{-1} f(m'/st) \in \text{Im}(S^{-1} f)$. Hence, $\text{Ker}(S^{-1} g) \subseteq \text{Im}(S^{-1} f)$.
         </p>
         <p>
-          If \(N\) is a submodule of \(M\), then the mapping \(S^{-1} M \rightarrow S^{-1} N\) is injective, and \(S^{-1} N\) is a submodule of \(S^{-1} M\).
+          If $N$ is a submodule of $M$, then the mapping $S^{-1} M \rightarrow S^{-1} N$ is injective, and $S^{-1} N$ is a submodule of $S^{-1} M$.
         </p>
         <p>
-          We have the following properties of fractions of modules, given that \(M, N\) are submodules of \(A\)-module \(M\):
+          We have the following properties of fractions of modules, given that $M, N$ are submodules of $A$-module $M$:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(S^{-1}(N + P) = S^{-1} N + S^{-1} P\).
+            $S^{-1}(N + P) = S^{-1} N + S^{-1} P$.
           </li>
           <li>
-            \(S^{-1}(N \cap N) = S^{-1} N \cap S^{-1} P\).
+            $S^{-1}(N \cap N) = S^{-1} N \cap S^{-1} P$.
           </li>
           <li>
-            \(S^{-1}(M/N) \cong (S^{-1} M)/(S^{-1} N)\).
+            $S^{-1}(M/N) \cong (S^{-1} M)/(S^{-1} N)$.
           </li>
         </ol>
         <p>
-          The first is obvious. To prove (ii), consider \(y/s = z/t, y \in N, z \in P, s, t \in S\). Then, \(\exists u \in S : u(ty - zt) = 0\). Hence, \(w = uty = usz \in N \cap P\), and therefore, \(y/s = w/stu \in S^{-1} N \cap P\). Consequently, \(S^{-1} N \cap S^{-1} P \subseteq S^{-1}(N \cap P)\). The reverse inclusion is obvious.
+          The first is obvious. To prove (ii), consider $y/s = z/t, y \in N, z \in P, s, t \in S$. Then, $\exists u \in S : u(ty - zt) = 0$. Hence, $w = uty = usz \in N \cap P$, and therefore, $y/s = w/stu \in S^{-1} N \cap P$. Consequently, $S^{-1} N \cap S^{-1} P \subseteq S^{-1}(N \cap P)$. The reverse inclusion is obvious.
         </p>
         <p>
-          To prove (iii), apply \(S^{-1}\) to the exact sequence \(0 \rightarrow M \rightarrow N \rightarrow M/N \rightarrow 0\).
+          To prove (iii), apply $S^{-1}$ to the exact sequence $0 \rightarrow M \rightarrow N \rightarrow M/N \rightarrow 0$.
         </p>
         <p>
-          Let \(M\) be an \(A\)-module. Then, there exists a unique isomorphism \(f : S^{-1} A \otimes_A M \rightarrow S^{-1} M\) such that:
-          \[f((a/s) \otimes m) = am/s \quad \forall a \in A, m \in M, s \in S\]
+          Let $M$ be an $A$-module. Then, there exists a unique isomorphism $f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$ such that:
+          $$f((a/s) \otimes m) = am/s \quad \forall a \in A, m \in M, s \in S$$
         </p>
         <p>
-          To prove this, notice that the mapping \(S^{-1} A \rightarrow S^{-1} M\) given by \((a/s, m) \mapsto am/s\) is \(A\)-bilinear, and by universal property of the tensor product, induces the \(A\)-homomorphism:
-          \[f : S^{-1} A \otimes_A M \rightarrow S^{-1} M\]
+          To prove this, notice that the mapping $S^{-1} A \rightarrow S^{-1} M$ given by $(a/s, m) \mapsto am/s$ is $A$-bilinear, and by universal property of the tensor product, induces the $A$-homomorphism:
+          $$f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$$
         </p>
         <p>
-          \(f\) is clearly surjective, and it remains to be proved that it is injective as well. Notice that every element of \(S^{-1} A \otimes M\) is of the form \((1/s) \otimes m\). Suppose that \((1/s) \otimes m = 0\), then \(m/s = 0\) and hence \(\exists t : tm = 0\). Therefore:
-          \[\frac{1}{s} \otimes m = \frac{t}{ts} \otimes m = \frac{1}{s} \otimes tm = 0\]
+          $f$ is clearly surjective, and it remains to be proved that it is injective as well. Notice that every element of $S^{-1} A \otimes M$ is of the form $(1/s) \otimes m$. Suppose that $(1/s) \otimes m = 0$, then $m/s = 0$ and hence $\exists t : tm = 0$. Therefore:
+          $$\frac{1}{s} \otimes m = \frac{t}{ts} \otimes m = \frac{1}{s} \otimes tm = 0$$
         </p>
         <p>
-          Hence, \(f\) is injective, and therefore an isomorphism.
+          Hence, $f$ is injective, and therefore an isomorphism.
         </p>
         <p>
-          \(S^{-1} A\) is a [flat](/ac/1#exactness-of-the-tensor-product) \(A\)-module, and this is immediately obvious.
+          $S^{-1} A$ is a [flat](/ac/1#exactness-of-the-tensor-product) $A$-module, and this is immediately obvious.
         </p>
         <p>
-          If \(M, N\) are \(A\)-modules, there is an isomorphism of \(S^{-1} A\)-modules \(f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)\) such that:
-          \[f((m/s) \otimes (n/t)) = (m \otimes n)/st\]
+          If $M, N$ are $A$-modules, there is an isomorphism of $S^{-1} A$-modules $f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)$ such that:
+          $$f((m/s) \otimes (n/t)) = (m \otimes n)/st$$
         </p>
         <p>
-          In particular, if \(\mathfrak{p}\) is a prime ideal:
-          \[M_\mathfrak{p} \otimes_{A_\mathfrak{p}} N_\mathfrak{p} \cong (M \otimes_A N)_\mathfrak{p}\]
+          In particular, if $\mathfrak{p}$ is a prime ideal:
+          $$M_\mathfrak{p} \otimes_{A_\mathfrak{p}} N_\mathfrak{p} \cong (M \otimes_A N)_\mathfrak{p}$$
         </p>
         <h2 id="local-properties">
           Local properties
         </h2>
         <p>
-          A ring \(A\), or a module \(N\) is said to have a `local property` \(P\) if, \(A\) has \(\mathfrak{p} \iff A_\mathfrak{p}\) has \(\mathfrak{p}\), or \(N\) has \(\mathfrak{p} \iff N_\mathfrak{p}\) has \(\mathfrak{p}\), for prime ideal \(\mathfrak{p}\). Now, for example, the following statements are equivalent:
+          A ring $A$, or a module $N$ is said to have a `local property` $P$ if, $A$ has $\mathfrak{p} \iff A_\mathfrak{p}$ has $\mathfrak{p}$, or $N$ has $\mathfrak{p} \iff N_\mathfrak{p}$ has $\mathfrak{p}$, for prime ideal $\mathfrak{p}$. Now, for example, the following statements are equivalent:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(N = 0\).
+            $N = 0$.
           </li>
           <li>
-            \(N_\mathfrak{p} = 0\), for all prime ideals \(\mathfrak{p}\) of \(A\).
+            $N_\mathfrak{p} = 0$, for all prime ideals $\mathfrak{p}$ of $A$.
           </li>
           <li>
-            \(N_\mathfrak{m} = 0\), for all maximal ideals \(\mathfrak{m}\) of \(A\).
+            $N_\mathfrak{m} = 0$, for all maximal ideals $\mathfrak{m}$ of $A$.
           </li>
         </ol>
         <p>
-          Since (i) \(\implies\) (ii) \(\implies\) (iii) is obvious, let us prove (i), given (iii). Suppose \(N \neq 0\), then \(x \in N\), and let \(I = \text{Ann}(x)\). \(I\) is an ideal, and therefore must be contained within some maximal ideal \(\mathfrak{m}\). Let \(x/1 \in N_\mathfrak{m}\). Since \(N_\mathfrak{m} = 0\), \(x/1 = 0\), and hence, \(x\) is killed by some element of \(N - \mathfrak{m}\). But this is impossible since \(\text{Ann}(x) \subseteq \mathfrak{m}\).
+          Since (i) $\implies$ (ii) $\implies$ (iii) is obvious, let us prove (i), given (iii). Suppose $N \neq 0$, then $x \in N$, and let $I = \text{Ann}(x)$. $I$ is an ideal, and therefore must be contained within some maximal ideal $\mathfrak{m}$. Let $x/1 \in N_\mathfrak{m}$. Since $N_\mathfrak{m} = 0$, $x/1 = 0$, and hence, $x$ is killed by some element of $N - \mathfrak{m}$. But this is impossible since $\text{Ann}(x) \subseteq \mathfrak{m}$.
         </p>
         <p>
-          Let \(\varphi: S \rightarrow T\) be an \(A\)-module homomorphism. Then, the following statements are equivalent:
+          Let $\varphi: S \rightarrow T$ be an $A$-module homomorphism. Then, the following statements are equivalent:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(\varphi\) is injective.
+            $\varphi$ is injective.
           </li>
           <li>
-            \(\varphi_M : S_\mathfrak{p} \rightarrow T_\mathfrak{p}\) is injective for each prime ideal \(\mathfrak{p}\).
+            $\varphi_M : S_\mathfrak{p} \rightarrow T_\mathfrak{p}$ is injective for each prime ideal $\mathfrak{p}$.
           </li>
           <li>
-            \(\varphi_M : S_\mathfrak{m} \rightarrow T_\mathfrak{m}\) is injective for each maximal ideal \(\mathfrak{m}\).
+            $\varphi_M : S_\mathfrak{m} \rightarrow T_\mathfrak{m}$ is injective for each maximal ideal $\mathfrak{m}$.
           </li>
         </ol>
         <p>
-          Flatness is a local property. For any \(A\)-module \(N\), the following statements are equivalent:
+          Flatness is a local property. For any $A$-module $N$, the following statements are equivalent:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(N\) is a flat \(A\)-module.
+            $N$ is a flat $A$-module.
           </li>
           <li>
-            \(N_\mathfrak{p}\) is flat for each prime ideal \(\mathfrak{p}\).
+            $N_\mathfrak{p}$ is flat for each prime ideal $\mathfrak{p}$.
           </li>
           <li>
-            \(N_\mathfrak{m}\) is flat for each maximal ideal \(\mathfrak{m}\).
+            $N_\mathfrak{m}$ is flat for each maximal ideal $\mathfrak{m}$.
           </li>
         </ol>
         <h2 id="primary-decomposition">
           Primary decomposition
         </h2>
         <p>
-          Just as prime ideals are generalizations of primes in \(\mathbb{Z}\), in some sense, powers of primes can be generalized to primary ideals: ideal \(Q\) of \(A\) is primary if \(Q \neq A\) and
-          \[fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n &gt; 0\]
+          Just as prime ideals are generalizations of primes in $\mathbb{Z}$, in some sense, powers of primes can be generalized to primary ideals: ideal $Q$ of $A$ is primary if $Q \neq A$ and
+          $$fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n &gt; 0$$
         </p>
         <p>
-          In other words, for \(Q\) to be primary,
-          \[A/Q \neq 0 \text{, and every zerodivisor in } A/Q \text{ is nilpotent}\]
+          In other words, for $Q$ to be primary,
+          $$A/Q \neq 0 \text{, and every zerodivisor in } A/Q \text{ is nilpotent}$$
         </p>
         <p>
-          Clearly, every prime ideal is primary. Also, the contraction of a primary ideal is primary, for if \(f : A \rightarrow B\) and \(Q\) is primary in \(B\), \(A/Q^c \cong B/Q\).
+          Clearly, every prime ideal is primary. Also, the contraction of a primary ideal is primary, for if $f : A \rightarrow B$ and $Q$ is primary in $B$, $A/Q^c \cong B/Q$.
         </p>
         <p>
-          Let \(Q\) be a primary ideal in \(A\). Then \(\sqrt{Q}\) is the smallest prime ideal containing \(Q\). To prove this, it suffices to show that \(\sqrt{Q}\) is prime. Let \(xy \in \sqrt{Q}\). Then \((xy)^m \in Q, m \gt 0\), which implies that either \(x^m \in Q\) or \(y^{mn} \in Q, n \gt 0\); i.e. \(x \in \sqrt{Q}\) or \(y \in \sqrt{Q}\). If \(P = \sqrt{Q}\), then \(Q\) is said to be `\(P\)-primary`.
+          Let $Q$ be a primary ideal in $A$. Then $\sqrt{Q}$ is the smallest prime ideal containing $Q$. To prove this, it suffices to show that $\sqrt{Q}$ is prime. Let $xy \in \sqrt{Q}$. Then $(xy)^m \in Q, m \gt 0$, which implies that either $x^m \in Q$ or $y^{mn} \in Q, n \gt 0$; i.e. $x \in \sqrt{Q}$ or $y \in \sqrt{Q}$. If $P = \sqrt{Q}$, then $Q$ is said to be `$P$-primary`.
         </p>
         <p>
           Examples:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(0\) and \(P^n\) are primary in \(\mathbb{Z}\), where \(P\) is a prime number.
+            $0$ and $P^n$ are primary in $\mathbb{Z}$, where $P$ is a prime number.
           </li>
           <li>
-            Let \(A = k[x, y]\) and \(Q = (x, y^2)\). Then, \(A/Q \cong k[y]/(y^2)\), in which all zero-divisors are multiples of \(y\), hence nilpotent. Hence, \(Q\) is primary and its radical \(P = (x, y)\) is such that \(P^2 \subset Q \subset P\), so that a primary ideal is not necessarily a prime power.
+            Let $A = k[x, y]$ and $Q = (x, y^2)$. Then, $A/Q \cong k[y]/(y^2)$, in which all zero-divisors are multiples of $y$, hence nilpotent. Hence, $Q$ is primary and its radical $P = (x, y)$ is such that $P^2 \subset Q \subset P$, so that a primary ideal is not necessarily a prime power.
           </li>
           <li>
-            Let \(I = (x^{2}, xy), \sqrt{I} = x\). \(I\) is not primary because \(xy \in I\), but \(x \notin I\) and \(y^{n} \notin I\).
+            Let $I = (x^{2}, xy), \sqrt{I} = x$. $I$ is not primary because $xy \in I$, but $x \notin I$ and $y^{n} \notin I$.
           </li>
         </ol>
         <p>
-          If \(\sqrt{P}\) is maximal, then \(P\) is primary. In particular, the powers of a maximal ideal \(M\) are \(M\)-primary. To prove this, let \(\sqrt{I} = M\). The image of \(M\) in \(A/I\) is the nilradical of \(A/I\), and hence \(A/I\) only has one prime ideal. Every element of \(A\) is either unit or nilpotent, so every zero-divisior of \(A\) is nilpotent.
+          If $\sqrt{P}$ is maximal, then $P$ is primary. In particular, the powers of a maximal ideal $M$ are $M$-primary. To prove this, let $\sqrt{I} = M$. The image of $M$ in $A/I$ is the nilradical of $A/I$, and hence $A/I$ only has one prime ideal. Every element of $A$ is either unit or nilpotent, so every zero-divisior of $A$ is nilpotent.
         </p>
         <p>
-          If \(Q_i\) are \(P\)-primary, then so is \(\bigcap_i Q_i\). To prove this, notice that \(\sqrt{Q} = \sqrt{\bigcap_i Q_i} = \bigcap_i \sqrt{Q_i} = P\). Let \(xy \in Q\), \(y \notin Q\). Then, for some \(i\), we have \(xy \in Q_i\) and \(y \notin Q_i\). Hence, \(x \in P\) since \(Q_i\) is primary.
+          If $Q_i$ are $P$-primary, then so is $\bigcap_i Q_i$. To prove this, notice that $\sqrt{Q} = \sqrt{\bigcap_i Q_i} = \bigcap_i \sqrt{Q_i} = P$. Let $xy \in Q$, $y \notin Q$. Then, for some $i$, we have $xy \in Q_i$ and $y \notin Q_i$. Hence, $x \in P$ since $Q_i$ is primary.
         </p>
         <p>
-          Let \(Q\) be \(P\)-primary, and \(x \in A\). Then:
+          Let $Q$ be $P$-primary, and $x \in A$. Then:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            If \(x \in Q\), then the [ideal quotient](/ac/1#operations-on-ideals) \((Q : x) = (1)\).
+            If $x \in Q$, then the [ideal quotient](/ac/1#operations-on-ideals) $(Q : x) = (1)$.
           </li>
           <li>
-            If \(x \notin Q\) then \((Q : x)\) is \(P\)-primary, and hence \(\sqrt{(Q : x)} = P\).
+            If $x \notin Q$ then $(Q : x)$ is $P$-primary, and hence $\sqrt{(Q : x)} = P$.
           </li>
           <li>
-            If \(x \notin P\), then \((Q : x) = Q\).
+            If $x \notin P$, then $(Q : x) = Q$.
           </li>
         </ol>
         <p>
-          Let us prove (iii), since (i) and (ii) are obvious. Let \(y \in (Q : x)\) and \(xy \in Q\), and hence, since \(x \notin Q\), \(y \in P\). Hence, \(Q \subseteq (Q : x) \subseteq P\); taking radicals, we get \(\sqrt{(Q : x)} = P\). Let \(yz \in (Q : x)\) so that \(y \notin P\); then \(xyz \in Q\), hence \(xz \in Q\) and \(z \in (Q : x)\).
+          Let us prove (iii), since (i) and (ii) are obvious. Let $y \in (Q : x)$ and $xy \in Q$, and hence, since $x \notin Q$, $y \in P$. Hence, $Q \subseteq (Q : x) \subseteq P$; taking radicals, we get $\sqrt{(Q : x)} = P$. Let $yz \in (Q : x)$ so that $y \notin P$; then $xyz \in Q$, hence $xz \in Q$ and $z \in (Q : x)$.
         </p>
         <p>
-          The `primary decomposition` of ideal \(I\) is given by finite intersection of primary ideals:
-          \[I = \bigcap_i Q_i\]
+          The `primary decomposition` of ideal $I$ is given by finite intersection of primary ideals:
+          $$I = \bigcap_i Q_i$$
         </p>
         <p>
           An ideal is said to be `decomposable` if such a decomposition exists.
         </p>
         <p>
-          `First uniqueness theorem`: Let \(I\) be decomposable, and \(I = \bigcap_i Q_i\) be its minimal primary decomposition. Let \(P_i = \sqrt{Q_i}\); then prime ideals \(P_i\) are precisely the ones that occur in the set \(\sqrt{(I : x)}\), for \(x \in A\), and are hence independent of a particular primary decomposition of \(I\). To prove this, let \(x \in A\), so that \((I : x) = \bigcap_i (Q_i : x)\). Hence \(\sqrt{(I : x)} = \sqrt{\bigcap_i (Q_i : x)} = \bigcap_{x \notin Q_j} P_j\). Suppose \(\sqrt{(I : x)}\) is prime; then \(\sqrt{(I : x)} = P_j\), for some \(j\). Hence, every prime ideal of the form \(\sqrt{(I : x)}\) is one of \(P_j\). Conversely, for each \(i\), there exists \(x_i \notin Q_i\), \(x_i = \bigcap_{i \neq j} Q_j\), since the decomposition is minimal. Hence, \(\sqrt{(I : x_i)} = P_i\).
+          `First uniqueness theorem`: Let $I$ be decomposable, and $I = \bigcap_i Q_i$ be its minimal primary decomposition. Let $P_i = \sqrt{Q_i}$; then prime ideals $P_i$ are precisely the ones that occur in the set $\sqrt{(I : x)}$, for $x \in A$, and are hence independent of a particular primary decomposition of $I$. To prove this, let $x \in A$, so that $(I : x) = \bigcap_i (Q_i : x)$. Hence $\sqrt{(I : x)} = \sqrt{\bigcap_i (Q_i : x)} = \bigcap_{x \notin Q_j} P_j$. Suppose $\sqrt{(I : x)}$ is prime; then $\sqrt{(I : x)} = P_j$, for some $j$. Hence, every prime ideal of the form $\sqrt{(I : x)}$ is one of $P_j$. Conversely, for each $i$, there exists $x_i \notin Q_i$, $x_i = \bigcap_{i \neq j} Q_j$, since the decomposition is minimal. Hence, $\sqrt{(I : x_i)} = P_i$.
         </p>
         <p>
-          Let \(I\) be a decomposable ideal. Then, any prime ideal \(P \supseteq I\) contains a minimal prime ideal belonging to \(I\), and thus the minimal prime ideals of \(I\) are exactly the minimal elements in the set of all prime ideals containing \(I\).
+          Let $I$ be a decomposable ideal. Then, any prime ideal $P \supseteq I$ contains a minimal prime ideal belonging to $I$, and thus the minimal prime ideals of $I$ are exactly the minimal elements in the set of all prime ideals containing $I$.
         </p>
         <p>
-          Let \(I = \bigcap_i Q_i\) be a minimal primary primary decomposition, and \(\sqrt{Q_i} = P_i\). Then,
-          \[\bigcup_i P_i = \{x \in A \mid (I : x) \neq I\}\]
+          Let $I = \bigcap_i Q_i$ be a minimal primary primary decomposition, and $\sqrt{Q_i} = P_i$. Then,
+          $$\bigcup_i P_i = \{x \in A \mid (I : x) \neq I\}$$
         </p>
         <p>
-          In particular, if the zero ideal is decomposable, then the set \(D\) of zero-divisors of \(A\) is the union of prime ideals belonging to \(0\).
+          In particular, if the zero ideal is decomposable, then the set $D$ of zero-divisors of $A$ is the union of prime ideals belonging to $0$.
         </p>
         <p>
-          Let \(S\) be a multiplicatively closed subset of \(A\), and let \(Q\) be \(P\)-primary. Then:
+          Let $S$ be a multiplicatively closed subset of $A$, and let $Q$ be $P$-primary. Then:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            If \(S \cap P \neq \phi\), then \(S^{-1} Q = S^{-1} A\).
+            If $S \cap P \neq \phi$, then $S^{-1} Q = S^{-1} A$.
           </li>
           <li>
-            If \(S \cap P = \phi\), then \(S^{-1} Q\) is \(S^{-1} P\)-primary, and its contraction in \(A\) is \(Q\).
+            If $S \cap P = \phi$, then $S^{-1} Q$ is $S^{-1} P$-primary, and its contraction in $A$ is $Q$.
           </li>
         </ol>
         <p>
-          Let \(S\) be a multiplicatively closed subset of \(A\), and \(I = \bigcap_i Q_i\) be the minimal primary decomposition of \(I\) in \(A\). Let \(P_i = \sqrt{Q_i}\), and suppose \(Q_i\) is numbered so that \(S\) meets \(P_{m + 1} \ldots P_n\), but not \(P_1 \ldots P_m\). Then:
-          \[S^{-1} I = \bigcap_{i = 1}^m S^{-1} Q_i, \quad S(I) = \bigcap_{i = 1}^m Q_i\]
+          Let $S$ be a multiplicatively closed subset of $A$, and $I = \bigcap_i Q_i$ be the minimal primary decomposition of $I$ in $A$. Let $P_i = \sqrt{Q_i}$, and suppose $Q_i$ is numbered so that $S$ meets $P_{m + 1} \ldots P_n$, but not $P_1 \ldots P_m$. Then:
+          $$S^{-1} I = \bigcap_{i = 1}^m S^{-1} Q_i, \quad S(I) = \bigcap_{i = 1}^m Q_i$$
         </p>
         <p>
           Moreover, these are minimal primary decompositions.
         </p>
         <p>
-          The set \(\Sigma\) of prime ideals belonging to \(I\) is said to be `isolated` if it satisfies the following condition: if \(P'\) is a prime ideal belonging to \(I\), and \(P' \supseteq P\) for some \(P \in \Sigma\), then \(P' \in \Sigma\).
+          The set $\Sigma$ of prime ideals belonging to $I$ is said to be `isolated` if it satisfies the following condition: if $P'$ is a prime ideal belonging to $I$, and $P' \supseteq P$ for some $P \in \Sigma$, then $P' \in \Sigma$.
         </p>
         <p>
-          `Second uniqueness theorem`: Let \(I = \bigcap_i Q_i\) be a minimal primary decomposition of ideal \(I\), and let \(\{P_{i_1} \ldots P_{i_n}\}\) be an isolated set of prime ideals of \(I\). Then, \(Q_1 \cap \ldots \cap Q_n\) is independent of the decomposition. In particular, isolated primary components are uniquely determined by \(I\).
+          `Second uniqueness theorem`: Let $I = \bigcap_i Q_i$ be a minimal primary decomposition of ideal $I$, and let $\{P_{i_1} \ldots P_{i_n}\}$ be an isolated set of prime ideals of $I$. Then, $Q_1 \cap \ldots \cap Q_n$ is independent of the decomposition. In particular, isolated primary components are uniquely determined by $I$.
         </p>
         <h2 id="integral-dependence">
           Integral dependence
         </h2>
         <p>
-          Let \(B\) be a ring, and \(A\) a subring of \(B\). Then, element \(x\) of \(B\) is said to be `integral over \(A\)` if \(x\) is the root of the polynomial with coefficients in \(A\), that is, if \(x\) satisfies:
-          \[x^n + a_1 x^{n - 1} + \ldots + a_n = 0\]
+          Let $B$ be a ring, and $A$ a subring of $B$. Then, element $x$ of $B$ is said to be `integral over $A$` if $x$ is the root of the polynomial with coefficients in $A$, that is, if $x$ satisfies:
+          $$x^n + a_1 x^{n - 1} + \ldots + a_n = 0$$
         </p>
         <p>
-          Let \(A = \mathbb{Z}, B = \mathbb{Q}\). If a rational number \(x = r/s\) is integral over \(\mathbb{Z}\), where \(r, s\) have no common factor, we have:
-          \[r^n + a_1 r^{n - 1} s + \ldots + a_n s^n = 0\]
+          Let $A = \mathbb{Z}, B = \mathbb{Q}$. If a rational number $x = r/s$ is integral over $\mathbb{Z}$, where $r, s$ have no common factor, we have:
+          $$r^n + a_1 r^{n - 1} s + \ldots + a_n s^n = 0$$
         </p>
         <p>
-          the \(a_i\) being rational integers. Hence, \(s\) divides \(r^n\), \(s = \pm 1\), and \(x \in \mathbb{Z}\).
+          the $a_i$ being rational integers. Hence, $s$ divides $r^n$, $s = \pm 1$, and $x \in \mathbb{Z}$.
         </p>
         <p>
           The following are equivalent:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(x \in B\) is integral over \(A\).
+            $x \in B$ is integral over $A$.
           </li>
           <li>
-            \(A[x]\) is a finitely generated \(A\)-module.
+            $A[x]$ is a finitely generated $A$-module.
           </li>
           <li>
-            \(A\) is contained in a subring \(C\) of \(B\), such that \(C\) is a finitely generated \(A\)-module.
+            $A$ is contained in a subring $C$ of $B$, such that $C$ is a finitely generated $A$-module.
           </li>
           <li>
-            There exists a faithful \(A[x]\)-module \(M\) which is finitely generated as an \(A\)-module.
+            There exists a faithful $A[x]$-module $M$ which is finitely generated as an $A$-module.
           </li>
         </ol>
         <p>
-          To prove (i) \(\implies\) (ii), we have:
-          \[x^{n + r} = -(a_1 x^{n + r - 1} + \ldots + a_n x^n)\]
+          To prove (i) $\implies$ (ii), we have:
+          $$x^{n + r} = -(a_1 x^{n + r - 1} + \ldots + a_n x^n)$$
         </p>
         <p>
-          for all \(r \geq 0\). Hence, by induction, all positive powers of \(x\) lie in the \(A\)-module generated by \(1, x, \ldots, x^{n - 1}\). Hence, \(A[x]\) lie in the \(A\)-module generated by \(1, x, \ldots, x^{n - 1}\). Hence, \(A[x]\) is generated by \(1, x, \ldots, x^{n - 1}\).
+          for all $r \geq 0$. Hence, by induction, all positive powers of $x$ lie in the $A$-module generated by $1, x, \ldots, x^{n - 1}$. Hence, $A[x]$ lie in the $A$-module generated by $1, x, \ldots, x^{n - 1}$. Hence, $A[x]$ is generated by $1, x, \ldots, x^{n - 1}$.
         </p>
         <p>
-          C is termed nonsingular if \((\partial f/\partial x, \partial f/\partial y) \neq 0\) for \(P \in C\), so that \(C\) has a well-defined tangent at every point \(P\).
+          C is termed nonsingular if $(\partial f/\partial x, \partial f/\partial y) \neq 0$ for $P \in C$, so that $C$ has a well-defined tangent at every point $P$.
         </p>
         <p>
-          \(XY = 1\) is an example of something that is algebraically closed, but not integrally closed. It can be perturbed as \((X + \epsilon Y) Y = 1\) to avoid the unlucky accident of a "missing zero" over \(X = 0\).
+          $XY = 1$ is an example of something that is algebraically closed, but not integrally closed. It can be perturbed as $(X + \epsilon Y) Y = 1$ to avoid the unlucky accident of a "missing zero" over $X = 0$.
         </p>
         <h2 id="the-going-up-theorem">
           The going-up theorem
@@ -365,7 +365,7 @@
           Noetherian rings
         </h2>
         <p>
-          In a Noetherian ring \(A\), every ideal \(I\) has a primary decomposition.
+          In a Noetherian ring $A$, every ideal $I$ has a primary decomposition.
         </p>
         <h2 id="artin-rings">
           Artin rings
@@ -374,25 +374,25 @@
           Discrete valuation rings
         </h2>
         <p>
-          \(v : K \backslash \{0\} \to \mathbb{Z}\) is a discrete valuation of \(K\), a surjective map so that:
+          $v : K \backslash \{0\} \to \mathbb{Z}$ is a discrete valuation of $K$, a surjective map so that:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(v(xy) = v(x) + v(y)\)
+            $v(xy) = v(x) + v(y)$
           </li>
           <li>
-            \(v(x \pm y) = \text{min}\{v(x), v(y)\} \forall x, y \in K \backslash \{0\}\)
+            $v(x \pm y) = \text{min}\{v(x), v(y)\} \forall x, y \in K \backslash \{0\}$
           </li>
         </ol>
         <p>
-          By convention, \(v(0) = \infty\).
+          By convention, $v(0) = \infty$.
         </p>
         <p>
-          Valuation ring of a discrete valuation \(v\) is given by \(A = \{x \in K \mid v(x) \geq 0\}\).
+          Valuation ring of a discrete valuation $v$ is given by $A = \{x \in K \mid v(x) \geq 0\}$.
         </p>
         <p>
-          For valuation ring \(A\):
-          \[A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}\]
+          For valuation ring $A$:
+          $$A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}$$
         </p>
         <h2 id="dedekind-domains">
           Dedekind domains
@@ -410,32 +410,32 @@
           The Nullstellansatz
         </h2>
         <p>
-          Variety \(V(J) = \{P = (a_1, \ldots, a_n) \mid f(P) = 0\, \forall f \subset J\}\)
+          Variety $V(J) = \{P = (a_1, \ldots, a_n) \mid f(P) = 0\, \forall f \subset J\}$
         </p>
         <p>
-          Tautologically, \(X \subset V(I(X))\); \(X = V(I(X)) \iff X\) is a variety.
+          Tautologically, $X \subset V(I(X))$; $X = V(I(X)) \iff X$ is a variety.
         </p>
         <p>
           The Nullstellansatz states that:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            If \(J \subsetneq k[X_1 \ldots X_n]\) then \(V(J) \neq 0\)
+            If $J \subsetneq k[X_1 \ldots X_n]$ then $V(J) \neq 0$
           </li>
           <li>
-            \(I(V(J)) = \text{rad } J\), the radical of the ideal
+            $I(V(J)) = \text{rad } J$, the radical of the ideal
           </li>
         </ol>
         <p>
           A variety is irreducible if it cannot be expressed as the union of two proper subvarieties:
         </p>
         <p>
-          \(J(X) = J(X_1) \cup J(X_2) \Rightarrow X = X_1 \text{ or } X_2\); \(X\) is a prime ideal.
+          $J(X) = J(X_1) \cup J(X_2) \Rightarrow X = X_1 \text{ or } X_2$; $X$ is a prime ideal.
         </p>
         <p>
           The following reverse-inclusions are obvious:
-          \[X \subset Y \Rightarrow I(X) \supset I(Y)\]
-          \[I \subset J \Rightarrow V(I) \supset V(J)\]
+          $$X \subset Y \Rightarrow I(X) \supset I(Y)$$
+          $$I \subset J \Rightarrow V(I) \supset V(J)$$
         </p>
         <h2 id="zariski-topology">
           Zariski topology
@@ -443,77 +443,77 @@
         <p>
           Zariski topology is a topology where the only closed sets are the algebraic ones, the zeros of polynomials. The Zariski topology on a variety is Noetherian.
         </p>
-        <p class="mathjax">
-          \[V(I) \cup V(J) = V(I \cap J) = V(IJ)\]
+        <p>
+          $$V(I) \cup V(J) = V(I \cap J) = V(IJ)$$
         </p>
         <p>
-          corresponds exactly to the Zariski topology on \(\text{Spec } A\), \(\mathcal{V}(I)\):
-          \[\mathcal{V}(I) \cup \mathcal{V}(J) = \mathcal{V}(I \cap J) = \mathcal{V}(IJ)\]
+          corresponds exactly to the Zariski topology on $\text{Spec } A$, $\mathcal{V}(I)$:
+          $$\mathcal{V}(I) \cup \mathcal{V}(J) = \mathcal{V}(I \cap J) = \mathcal{V}(IJ)$$
         </p>
         <p>
-          where \(\mathcal{V}(I) = {P \in \text{Spec A} \mid P \subset I}\).
+          where $\mathcal{V}(I) = {P \in \text{Spec A} \mid P \subset I}$.
         </p>
         <h2 id="localization">
           Localization
         </h2>
         <p>
-          \(A_{p}\) is a local ring \(\leftrightarrow\) \(A_{p}\) has a unique maximal ideal at \(p\).
+          $A_{p}$ is a local ring $\leftrightarrow$ $A_{p}$ has a unique maximal ideal at $p$.
         </p>
         <p>
-          \(\mathbb{Z}_{(p)}\), a localization of \(\mathbb{Z}\) at p = \(\{a/b \text{ with } a, b \in \mathbb{Z}, b \nmid p\}\).
+          $\mathbb{Z}_{(p)}$, a localization of $\mathbb{Z}$ at p = $\{a/b \text{ with } a, b \in \mathbb{Z}, b \nmid p\}$.
         </p>
         <p>
-          For a general construction, let \(S\) be a multiplicative set in \(A\), \(P\) a prime ideal so that \(S = A \backslash P\). Then \(A_P = S^{-1} A = A \times S / \sim\), where \(\sim\) is an equivalence relation.
+          For a general construction, let $S$ be a multiplicative set in $A$, $P$ a prime ideal so that $S = A \backslash P$. Then $A_P = S^{-1} A = A \times S / \sim$, where $\sim$ is an equivalence relation.
         </p>
         <p>
-          \(S^{-1}\) is an exact functor in that, if \(L \subset M\) and \(N = M/L\), then \(S^{-1} L \subset S^{-1} M\) and \(S^{-1} N = S^{-1} M / S^{-1} L\).
-        </p>
-        <p class="mathjax">
-          \[e : \{\text{ideals of A}\} \to \{\text{ideals of B}\}\]
-          \[r : \{\text{ideals of B}\} \to \{\text{ideals of A}\}\]
+          $S^{-1}$ is an exact functor in that, if $L \subset M$ and $N = M/L$, then $S^{-1} L \subset S^{-1} M$ and $S^{-1} N = S^{-1} M / S^{-1} L$.
         </p>
         <p>
-          Then, for ideal \(J\) in \(S^{-1} A\), \(e(r(J)) = J\), and for any ideal \(I\) of A, \(r(e(I)) = \{a \in A \mid as \in I, \text{ for some } s \in S\}\).
+          $$e : \{\text{ideals of A}\} \to \{\text{ideals of B}\}$$
+          $$r : \{\text{ideals of B}\} \to \{\text{ideals of A}\}$$
+        </p>
+        <p>
+          Then, for ideal $J$ in $S^{-1} A$, $e(r(J)) = J$, and for any ideal $I$ of A, $r(e(I)) = \{a \in A \mid as \in I, \text{ for some } s \in S\}$.
         </p>
         <p>
           These three statements are equivalent:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            \(A\) is local if it has a unique maximal ideal \(m\).
+            $A$ is local if it has a unique maximal ideal $m$.
           </li>
           <li>
-            \(m = \{\text{nonunits of A}\}\) is the unique maximal ideal.
+            $m = \{\text{nonunits of A}\}$ is the unique maximal ideal.
           </li>
           <li>
-            If \(m \subset A\) is a maximal ideal and \(x \in A\), then \(1 + x\) is unit.
+            If $m \subset A$ is a maximal ideal and $x \in A$, then $1 + x$ is unit.
           </li>
         </ol>
         <h2 id="support-and-annihilator">
           Support and annihilator
         </h2>
         <p>
-          Support of M is defined as \(\text{Supp } M = \{ P \subset \text{Spec } A \mid M_p \neq 0\} \subset \text{Spec } A\). Here \(M_p = S^{-1} M\), the module of fractions. Assassin \(\text{Ass } M \subset \text{Supp } M\). Annihilator of M over A is defined as \(\text{Ann } M = \{f \subset A \mid fM = 0\}\).
+          Support of M is defined as $\text{Supp } M = \{ P \subset \text{Spec } A \mid M_p \neq 0\} \subset \text{Spec } A$. Here $M_p = S^{-1} M$, the module of fractions. Assassin $\text{Ass } M \subset \text{Supp } M$. Annihilator of M over A is defined as $\text{Ann } M = \{f \subset A \mid fM = 0\}$.
         </p>
         <p>
-          Example: If \(n = p^{\alpha} q^{\beta}\), then \(\text{Ass }(\mathbb{Z}/n) = \{(p), (q)\}\). If \(m = p^{\alpha - 1} q^{\beta} \text{ mod } n \in \mathbb{Z}/(n)\), then annihilator \(\text{Ann } m = p\).
+          Example: If $n = p^{\alpha} q^{\beta}$, then $\text{Ass }(\mathbb{Z}/n) = \{(p), (q)\}$. If $m = p^{\alpha - 1} q^{\beta} \text{ mod } n \in \mathbb{Z}/(n)$, then annihilator $\text{Ann } m = p$.
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            If \(M\) is generated by a single element \(x\), such that \(x = \text{Ann } I\), then \(\text{Supp } M = \mathcal{V}(I)\).
+            If $M$ is generated by a single element $x$, such that $x = \text{Ann } I$, then $\text{Supp } M = \mathcal{V}(I)$.
           </li>
           <li>
-            If \(L \subset M\) and \(N = L/M\), then \(\text{Supp } L = \text{Supp } M \cup \text{Supp } N\).
+            If $L \subset M$ and $N = L/M$, then $\text{Supp } L = \text{Supp } M \cup \text{Supp } N$.
           </li>
           <li>
-            If \(L \subset M\) and \(N = L/M\), then \(\text{Ass } L = \text{Ass } M \cup \text{Ass } N\).
+            If $L \subset M$ and $N = L/M$, then $\text{Ass } L = \text{Ass } M \cup \text{Ass } N$.
           </li>
           <li>
-            If \(P \subset \text{Supp } M\), then \(\mathcal{V}(P) \subset \text{Supp } M\).
+            If $P \subset \text{Supp } M$, then $\mathcal{V}(P) \subset \text{Supp } M$.
           </li>
         </ol>
         <p>
-          In the disjoint union \(\mathcal{M} = \sqcup M_{P}\), \(M_{P}\) is termed as the stalk of \(\mathcal{M}\) over \(P\).
+          In the disjoint union $\mathcal{M} = \sqcup M_{P}$, $M_{P}$ is termed as the stalk of $\mathcal{M}$ over $P$.
         </p>
       </div>
       <div id="sidebar">
