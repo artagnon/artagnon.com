@@ -4,7 +4,7 @@ Detecting loops in a directed graph can be tricky, depending on how you define y
 
 There are five [^1] reduced cases we must consider, where backedges are marked by dotted arrows:
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & & 1 \ar[dl]\ar[dr] & \\
@@ -12,9 +12,9 @@ There are five [^1] reduced cases we must consider, where backedges are marked b
 & & 4 &
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & & \text{header}\ar[dl] & \\
@@ -22,9 +22,9 @@ There are five [^1] reduced cases we must consider, where backedges are marked b
 & & \text{exit target} &
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & & \text{entry source}\ar[dl]\ar[dr] & \\
@@ -32,9 +32,9 @@ There are five [^1] reduced cases we must consider, where backedges are marked b
 & & \text{body}\ar[ur] &
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & & \text{header A}\ar[dl] & \\
@@ -42,16 +42,16 @@ There are five [^1] reduced cases we must consider, where backedges are marked b
 & & \text{footer B}\ar@{.>}[ul] &
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 \text{Shared header} & & \text{shared header}\ar[dl] & \\
 & \text{body}\ar[r] & \text{footer A}\ar@{.>}[u]\ar[r] & \text{footer B}\ar@{.>}[ul]
 }
 \end{xy}
-\]
+$$
 
 Now, let's employ a simple DFS:
 
@@ -67,7 +67,7 @@ void DFS(Node *v) {
 
 We get the following start times and end times:
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & & \text{1/8} \ar[dl]\ar[dr] & \\
@@ -75,9 +75,9 @@ We get the following start times and end times:
 & & \text{3/4} &
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & & \text{1/8}\ar[dl] & \\
@@ -85,9 +85,9 @@ We get the following start times and end times:
 & & \text{3/6} &
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & & \text{1/8}\ar[dl]\ar[dr] & \\
@@ -95,9 +95,9 @@ We get the following start times and end times:
 & & \text{3/6}\ar[ur] &
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & & \text{1/8}\ar[dl] & \\
@@ -105,16 +105,16 @@ We get the following start times and end times:
 & & \text{4/5}\ar@{.>}[ul] &
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 \text{Shared header} & & & \text{1/8}\ar[dll] & & \\
 & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[u]\ar[rr] & & \text{4/5}\ar@{.>}[ull]
 }
 \end{xy}
-\]
+$$
 
 Let's call the first number "DFS number", and the second number "topo number", to indicate that this is the order that topological sort would have produced, in the absence of backedges (topological sort is meaningless when there are loops).
 

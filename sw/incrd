@@ -4,7 +4,7 @@ Incrementally updating the Dominator
 
 An input program function is represented using a Control Flow Graph (CFG). It's composed of different Statements, which decompose into Expressions, but we will not concern ourselves with Expressions. The main control flow constructs are SplitStatement and MergeStatement. The SplitStatement has outgoing edges to N (N = 2 in the case of IfStatement) other Statements, and the MergeStatement has incoming edges from M other Statements.
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & & & \text{Split}\ar[dl]\ar[dll]\ar[dlll]\ar[d]\ar[dr] & & & \\
@@ -12,11 +12,11 @@ An input program function is represented using a Control Flow Graph (CFG). It's 
 & \text{Merge A} & & \text{Merge B} &
 }
 \end{xy}
-\]
+$$
 
 The Dominator is a data structure that holds "domination relationship" between any two Statements in the CFG. "A dominates B" means: all paths starting from the start of the CFG to end of the CFG, that flow through A, must necessarily flow through B. It's represented using a tree of things that progressively dominate their children. We want to incrementally update this structure.
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & \text{start}\ar[d] & \\
@@ -26,7 +26,7 @@ The Dominator is a data structure that holds "domination relationship" between a
 & \text{end} &
 }
 \end{xy}
-\]
+$$
 
 # Motivation
 
@@ -36,7 +36,7 @@ Any code motion transform will invalidate the Dominator at each step, and runnin
 
 The main supporting data structure we will use for this feat is the Program Structure Tree, which is incrementally updated. The PST is a tree representation of structured control flow: all Control Flow Graph nodes belong to a Region in a nesting of single-entry single-exit Regions. Any control-flow that cannot be classified is boxed in an UnstructuredRegion, which we will not handle.
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & \text{ChainRegion}\ar[d]\ar[dr] & \\
@@ -44,7 +44,7 @@ The main supporting data structure we will use for this feat is the Program Stru
 \text{BBRegion (true branch)} & \text{BBRegion (false branch)} & \text{BBRegion(body of for)}
 }
 \end{xy}
-\]
+$$
 
 This is a Region:
 
@@ -76,14 +76,14 @@ if (A < 17)
 Updating a vanilla Dominator tree is relatively easy: simply add a child to the correct node. The problem at hand is that we have an O(1)-query Dominator object that we want to keep up to date as we make edits to the IR. How is it O(1)-query? Every node in the tree is assigned DFS start and end times: so if one interval nests within another, the corresponding node is dominated by the
 other node.
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & \text{IfStmt(1/8)}\ar[dl]\ar[d]\ar[dr] & \\
 \text{TrueStmt(2/3)} & \text{MergeStmt(4/5)} & \text{FalseStmt(6/7)}
 }
 \end{xy}
-\]
+$$
 
 Supporting arbitarary IR edits is both very hard and not a useful goal: we can reduce all our edits to two items, namely inserting a SESE Statement, and inserting a SESE PST Region. Removing a Statment or Region is not interesting, because it just leaves gaps in the numbering, and doesn't affect any existing Dominance relationships if we make no changes after removal. Modifying a Region can be easily expressed as the removal of the old Region/insertion of the new Region.
 
@@ -116,7 +116,7 @@ The reason we need to match a Split to a Merge is that there are two cases:
 
 The intervals of the each of the outEdges ("branches") must stagger with each other so there's no false dominance relationship between them. Two intervals "staggering" means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & \text{split}\ar[dl]\ar[dr] & \\
@@ -124,9 +124,9 @@ The intervals of the each of the outEdges ("branches") must stagger with each ot
 & \text{merge} &
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & \text{merge}\ar[d] & \\
@@ -135,9 +135,9 @@ The intervals of the each of the outEdges ("branches") must stagger with each ot
 \text{outsideRegion} & & \text{body B}\ar[uuul]_{\text{backedge}}
 }
 \end{xy}
-\]
+$$
 
-\[
+$$
 \begin{xy}
 \xymatrix{
 & \text{MergeStmt(1/12)}\ar[d] & \\
@@ -146,7 +146,7 @@ The intervals of the each of the outEdges ("branches") must stagger with each ot
 \text{StmtB(4/7)} & & \text{outsideRegion(8/9)}
 }
 \end{xy}
-\]
+$$
 
 Our API looks like:
 

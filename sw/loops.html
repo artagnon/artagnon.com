@@ -36,66 +36,66 @@
         <h1>
           Detecting loops
         </h1>
-        <time datetime="2019-02-20">Last updated: Wednesday, 20 February 2019</time><br /><time datetime="2016-07-16">Created: Saturday, 16 July 2016</time>
+        <time datetime="2019-11-25">Last updated: Monday, 25 November 2019</time><br /><time datetime="2016-07-16">Created: Saturday, 16 July 2016</time>
         <p>
           Detecting loops in a directed graph can be tricky, depending on how you define your loop. If you only want to admit "natural loops", where the header of the loop dominates every node in the body, as well as the footer, we have a simple algorithm. If you want to go to the other extreme, and define the most general "strongly connected components", without regard for loops, you have Tarjan's SCC algorithm. However, I'm going to discuss a definition of loop that admits strange loops, but only things we'd intuitively call "loops".
         </p>
         <p>
           There are five [^1] reduced cases we must consider, where backedges are marked by dotted arrows:
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          & & 1 \ar[dl]\ar[dr] & \\
-          \text{No loops} & 2 \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & 3 \ar[dl] \\
-          & & 4 &
+          &amp; &amp; 1 \ar[dl]\ar[dr] &amp; \\
+          \text{No loops} &amp; 2 \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} &amp; &amp; 3 \ar[dl] \\
+          &amp; &amp; 4 &amp;
           }
           \end{xy}
-          \]
+          $$
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          & & \text{header}\ar[dl] & \\
-          \text{Early exit} & \text{body}\ar[dr] & & \text{footer}\ar[dl]\ar@{.>}[ul] \\
-          & & \text{exit target} &
+          &amp; &amp; \text{header}\ar[dl] &amp; \\
+          \text{Early exit} &amp; \text{body}\ar[dr] &amp; &amp; \text{footer}\ar[dl]\ar@{.&gt;}[ul] \\
+          &amp; &amp; \text{exit target} &amp;
           }
           \end{xy}
-          \]
+          $$
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          & & \text{entry source}\ar[dl]\ar[dr] & \\
-          \text{Multi-entry} & \text{header}\ar[dr] & & \text{footer}\ar[ul]\ar@{.>}[ll] \\
-          & & \text{body}\ar[ur] &
+          &amp; &amp; \text{entry source}\ar[dl]\ar[dr] &amp; \\
+          \text{Multi-entry} &amp; \text{header}\ar[dr] &amp; &amp; \text{footer}\ar[ul]\ar@{.&gt;}[ll] \\
+          &amp; &amp; \text{body}\ar[ur] &amp;
           }
           \end{xy}
-          \]
+          $$
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          & & \text{header A}\ar[dl] & \\
-          \text{Cuddled loops} & \text{body A or header B}\ar[rr] & & \text{footer A or body B}\ar@{.>}[ul]\ar[dl] \\
-          & & \text{footer B}\ar@{.>}[ul] &
+          &amp; &amp; \text{header A}\ar[dl] &amp; \\
+          \text{Cuddled loops} &amp; \text{body A or header B}\ar[rr] &amp; &amp; \text{footer A or body B}\ar@{.&gt;}[ul]\ar[dl] \\
+          &amp; &amp; \text{footer B}\ar@{.&gt;}[ul] &amp;
           }
           \end{xy}
-          \]
+          $$
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          \text{Shared header} & & \text{shared header}\ar[dl] & \\
-          & \text{body}\ar[r] & \text{footer A}\ar@{.>}[u]\ar[r] & \text{footer B}\ar@{.>}[ul]
+          \text{Shared header} &amp; &amp; \text{shared header}\ar[dl] &amp; \\
+          &amp; \text{body}\ar[r] &amp; \text{footer A}\ar@{.&gt;}[u]\ar[r] &amp; \text{footer B}\ar@{.&gt;}[ul]
           }
           \end{xy}
-          \]
+          $$
         </p>
         <p>
           Now, let's employ a simple DFS:
@@ -110,59 +110,59 @@
         <p>
           We get the following start times and end times:
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          & & \text{1/8} \ar[dl]\ar[dr] & \\
-          \text{No loops} & \text{6/7} \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & \text{2/5} \ar[dl] \\
-          & & \text{3/4} &
+          &amp; &amp; \text{1/8} \ar[dl]\ar[dr] &amp; \\
+          \text{No loops} &amp; \text{6/7} \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} &amp; &amp; \text{2/5} \ar[dl] \\
+          &amp; &amp; \text{3/4} &amp;
           }
           \end{xy}
-          \]
+          $$
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          & & \text{1/8}\ar[dl] & \\
-          \text{Early exit} & \text{2/7}\ar[dr] & & \text{4/5}\ar[dl]\ar@{.>}[ul] \\
-          & & \text{3/6} &
+          &amp; &amp; \text{1/8}\ar[dl] &amp; \\
+          \text{Early exit} &amp; \text{2/7}\ar[dr] &amp; &amp; \text{4/5}\ar[dl]\ar@{.&gt;}[ul] \\
+          &amp; &amp; \text{3/6} &amp;
           }
           \end{xy}
-          \]
+          $$
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          & & \text{1/8}\ar[dl]\ar[dr] & \\
-          \text{Multi-entry} & \text{4/5}\ar[dr] & & \text{2/7}\ar[ul]\ar@{.>}[ll] \\
-          & & \text{3/6}\ar[ur] &
+          &amp; &amp; \text{1/8}\ar[dl]\ar[dr] &amp; \\
+          \text{Multi-entry} &amp; \text{4/5}\ar[dr] &amp; &amp; \text{2/7}\ar[ul]\ar@{.&gt;}[ll] \\
+          &amp; &amp; \text{3/6}\ar[ur] &amp;
           }
           \end{xy}
-          \]
+          $$
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          & & \text{1/8}\ar[dl] & \\
-          \text{Cuddled loops} & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[ul]\ar[dl] \\
-          & & \text{4/5}\ar@{.>}[ul] &
+          &amp; &amp; \text{1/8}\ar[dl] &amp; \\
+          \text{Cuddled loops} &amp; \text{2/7}\ar[rr] &amp; &amp; \text{3/6}\ar@{.&gt;}[ul]\ar[dl] \\
+          &amp; &amp; \text{4/5}\ar@{.&gt;}[ul] &amp;
           }
           \end{xy}
-          \]
+          $$
         </p>
-        <p class="mathjax">
-          \[
+        <p>
+          $$
           \begin{xy}
           \xymatrix{
-          \text{Shared header} & & & \text{1/8}\ar[dll] & & \\
-          & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[u]\ar[rr] & & \text{4/5}\ar@{.>}[ull]
+          \text{Shared header} &amp; &amp; &amp; \text{1/8}\ar[dll] &amp; &amp; \\
+          &amp; \text{2/7}\ar[rr] &amp; &amp; \text{3/6}\ar@{.&gt;}[u]\ar[rr] &amp; &amp; \text{4/5}\ar@{.&gt;}[ull]
           }
           \end{xy}
-          \]
+          $$
         </p>
         <p>
           Let's call the first number "DFS number", and the second number "topo number", to indicate that this is the order that topological sort would have produced, in the absence of backedges (topological sort is meaningless when there are loops).
