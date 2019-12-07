@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>artagnon.com: cv</title>
+    <title>artagnon.com: topoi</title>
     <meta charset="UTF-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -34,15 +34,27 @@
     <div id="wrapper">
       <div id="main">
         <h1>
-          Complex Variables
+          Notes from Goldblatt&#39;s Topoi book
         </h1>
-        <time datetime="2019-11-25">Last updated: Monday, 25 November 2019</time><br /><time datetime="2018-11-15">Created: Thursday, 15 November 2018</time>
+        <time datetime="2019-12-06">Last updated: Friday, 06 December 2019</time><br /><time datetime="2019-12-06">Created: Friday, 06 December 2019</time>
         <p>
-          $\zeta = e^{\pi i / 3} = \cos(\pi i / 3) + i \sin(\pi i / 3)$ is a complex cube root of unity; its complex conjugate, $\bar{\zeta} = e^{2 \pi i / 3}$, is another root.
+          A topos is a categorical interpretation of boolean logic. We will start with some prerequisite set theory and category theory, build up the intuition for subobject classifiers, give an interpretation of set theory, and then move to formalizing boolean algebra using sheaves. The study of topoi is the study of cartesian-closed categories with subobject classifiers, and a category of sheaves over $\mathbb{B}$ is a complete boolean algebra.
+        </p>
+        <h2 id="set-theory">
+          Set theory
+        </h2>
+        <p>
+          The study of set theory starts with the study of `Russell's paradox`, and axiomatization into `Zermelo-Frankel set theory` with no paradoxes. To understand Russell's paradox, we first introduce the `Principle of Comprehension`: $\{x : \psi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\psi(x)$. Now, we construct the `Russell set` $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, which leads to the contradictory conclusion that $R \in R$.
         </p>
         <p>
-          $\alpha = e^{\pi i / p}$ is a complex p-th root of unity, then $\sum_{q = 0}^{p} e^{\pi i / q} = \alpha + \alpha^2 + \ldots + \alpha^p = 0$.
+          In ZF set theory, we say that a set can only be built up from another set (including $\phi$) using logical connectives like $\cup$, $\cap$, and $-$. The axioms can only be applied to a set and the result is always a set. $R$ isn't admitted as a set in this theory, resolving the contradiction.
         </p>
+        <p>
+          In category theory, the central concept of membership of an element in a set is replaced by the concept of a morphism between objects whose internal structures are opaque.
+        </p>
+        <h2 id="elementary-category-theory">
+          Elementary category theory
+        </h2>
       </div>
       <div id="sidebar">
         <ul>
