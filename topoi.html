@@ -36,63 +36,69 @@
         <h1>
           Notes from Goldblatt&#39;s Topoi book
         </h1>
-        <time datetime="2019-12-06">Last updated: Friday, 06 December 2019</time><br /><time datetime="2019-12-06">Created: Friday, 06 December 2019</time>
+        <time datetime="2019-12-08">Last updated: Sunday, 08 December 2019</time><br /><time datetime="2019-12-07">Created: Saturday, 07 December 2019</time>
         <p>
           A topos is a categorical interpretation of boolean logic. We will start with some prerequisite set theory and category theory, build up the intuition for subobject classifiers, give an interpretation of set theory, and then move to formalizing boolean algebra using sheaves. The study of topoi is the study of cartesian-closed categories with subobject classifiers, and a category of sheaves over $\mathbb{B}$ is a complete boolean algebra.
         </p>
-        <h2 id="set-theory">
-          Set theory
+        <h2 id="some-set-theoretic-foundations">
+          Some set theoretic foundations
         </h2>
         <p>
-          The study of set theory starts with the study of `Russell's paradox`, and axiomatization into `Zermelo-Frankel set theory` with no paradoxes. To understand Russell's paradox, we first introduce the `Principle of Comprehension`: $\{x : \psi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\psi(x)$. Now, we construct the `Russell set` $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, which leads to the contradictory conclusion that $R \in R$.
+          The study of set theory starts with the study of `Russell's paradox`, and axiomatization into `Zermelo-Frankel set theory` with no paradoxes. To understand Russell's paradox, we first introduce the `principle of comprehension`: $\{x : \varphi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\varphi(x)$. Now, we construct the `Russell set` $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, which leads to the contradictory conclusion that $R \in R$.
         </p>
         <p>
-          In ZF set theory, we say that a set can only be built up from another set (including $\phi$) using logical connectives like $\cup$, $\cap$, and $-$. The axioms can only be applied to a set and the result is always a set. $R$ isn't admitted as a set in this theory, resolving the contradiction.
+          In ZF set theory, we say that a set can only be built up from another set using logical connectives like $\cup$, $\cap$, and $-$. The axioms can only be applied to a set and the result is always a set. The comprehension principle is replaced by a `separation principle`: Given a set $A$, and a predicate $\varphi(x)$, there exists a set whose members are precisely the members of $A$ that satisfy the predicate. $R$ isn't admitted as a set in this theory, thus resolving the contradiction.
         </p>
         <p>
-          In category theory, the central concept of membership of an element in a set is replaced by the concept of a morphism between objects whose internal structures are opaque.
+          In category theory, the central concept of membership of an element in a set is replaced by the concept of a morphism between objects whose internal structures (elements) are opaque.
         </p>
-        <h2 id="elementary-category-theory">
-          Elementary category theory
+        <h2 id="functions-to-elementary-category-theory">
+          Functions to elementary category theory
         </h2>
+        <p>
+          We would first like to ask how functions are formalized in terms of sets. A function $f$ takes objects of $\text{dom } f$ to objects of $\text{codom } f$, represented as the pair $f = \langle x, y\rangle$, such that $\langle x, y\rangle = \langle z, y\rangle \implies x = z$. This formalism is weak because it doesn't include the domain, codomain, or the relation explicitly. To remedy this, we define the $f = \langle A, B, R\rangle$, with $A$ as the domain, $B$ the codomain, and $R \subseteq A \times B = \{\langle x, y\rangle : x \in A, y \in B\}$ the relation. Note that functions are composable yielding a unique $f \circ g = f(g(x))$ satisfying the associative law $f \circ (g \circ h) = (f \circ g) \circ h$.
+        </p>
+        <p>
+          We can further abstract functions to arrows between objects in a category.
+        </p>
       </div>
-      <div id="sidebar">
-        <ul>
-          <li>
-            <a href="/index">index</a>
-          </li>
-          <li>
-            <a href="/ac">ac</a>
-          </li>
-          <li>
-            <a href="/ag">ag</a>
-          </li>
-          <li>
-            <a href="/at">at</a>
-          </li>
-          <li>
-            <a href="/ct">ct</a>
-          </li>
-          <li>
-            <a href="/cv">cv</a>
-          </li>
-          <li>
-            <a href="/gn">gn</a>
-          </li>
-          <li>
-            <a href="/la">la</a>
-          </li>
-          <li>
-            <a href="/ra">ra</a>
-          </li>
-          <li>
-            <a href="/sw">sw</a>
-          </li>
-          <li>
-            <a href="/topoi">topoi</a>
-          </li>
-        </ul>
-      </div>
+    </div>
+    <div id="sidebar">
+      <ul>
+        <li>
+          <a href="/index">index</a>
+        </li>
+        <li>
+          <a href="/ac">ac</a>
+        </li>
+        <li>
+          <a href="/ag">ag</a>
+        </li>
+        <li>
+          <a href="/at">at</a>
+        </li>
+        <li>
+          <a href="/ct">ct</a>
+        </li>
+        <li>
+          <a href="/cv">cv</a>
+        </li>
+        <li>
+          <a href="/gn">gn</a>
+        </li>
+        <li>
+          <a href="/la">la</a>
+        </li>
+        <li>
+          <a href="/ra">ra</a>
+        </li>
+        <li>
+          <a href="/sw">sw</a>
+        </li>
+        <li>
+          <a href="/topoi">topoi</a>
+        </li>
+      </ul>
     </div>
   </body>
 </html>
