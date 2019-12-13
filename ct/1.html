@@ -40,12 +40,12 @@
         <p>
           For the product set $X \times Y$, given $W, f, g$, and projections $p : X \times Y \mapsto X$, $q : X \times Y \mapsto Y$, the following diagram commutes:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          &amp; W \ar@{.&gt;}[d]|{\exists! h} \ar[dl]_f \ar[dr]^g &amp; \\
-          X &amp; X \times Y \ar[l]_p \ar[r]^q &amp; Y
+          & W \ar@{.>}[d]|{\exists! h} \ar[dl]_f \ar[dr]^g & \\
+          X & X \times Y \ar[l]_p \ar[r]^q & Y
           }
           \end{xy}
           $$
@@ -73,22 +73,22 @@
         <p>
           A monoid is a set $M$ equipped with $\mu : M \times M \rightarrow M$ and $\eta : 1 \rightarrow M$ such that the following diagrams commute:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          M \times M \times M \ar[r]^{1 \times \mu}\ar[d]^{\mu \times 1} &amp; M \times M \ar[d]^{\mu} \\
-          M \times M \ar[r]^{\mu} &amp; M
+          M \times M \times M \ar[r]^{1 \times \mu}\ar[d]^{\mu \times 1} & M \times M \ar[d]^{\mu} \\
+          M \times M \ar[r]^{\mu} & M
           }
           \end{xy}
           $$
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          1 \times M \ar[r]^{\eta \times 1}\ar[d]^\lambda &amp; M \times M \ar[d]^\mu &amp; M \times 1 \ar[l]_{1 \times \eta}\ar[d]^\rho \\
-          M &amp; M &amp; M
+          1 \times M \ar[r]^{\eta \times 1}\ar[d]^\lambda & M \times M \ar[d]^\mu & M \times 1 \ar[l]_{1 \times \eta}\ar[d]^\rho \\
+          M & M & M
           }
           \end{xy}
           $$
@@ -99,12 +99,12 @@
         <p>
           Writing it out in terms of the elements, we get the familiar associativity axioms:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          \langle x, y, z \rangle \ar@{|-&gt;}[r]\ar@{|-&gt;}[d] &amp; \langle xy, z \rangle \ar@{|-&gt;}[d] \\
-          \langle x, yz \rangle \ar@{|-&gt;}[r] &amp; x(yz) = xy(z)
+          \langle x, y, z \rangle \ar@{|->}[r]\ar@{|->}[d] & \langle xy, z \rangle \ar@{|->}[d] \\
+          \langle x, yz \rangle \ar@{|->}[r] & x(yz) = xy(z)
           }
           \end{xy}
           $$
@@ -112,18 +112,18 @@
         <p>
           and the identity axioms:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          \langle 0, x \rangle \ar@{|-&gt;}[r]\ar@{|-&gt;}[d] &amp; \langle u, x \rangle \ar@{|-&gt;}[d] \\
-          x \ar@{}[r]|{=} &amp; ux
+          \langle 0, x \rangle \ar@{|->}[r]\ar@{|->}[d] & \langle u, x \rangle \ar@{|->}[d] \\
+          x \ar@{}[r]|{=} & ux
           }
           \end{xy}
           \begin{xy}
           \xymatrix{
-          \langle x, u \rangle \ar@{|-&gt;}[d] &amp; \langle x, 0 \rangle \ar@{|-&gt;}[l]\ar@{|-&gt;}[d] \\
-          xu \ar@{}[r]|{=} &amp; x
+          \langle x, u \rangle \ar@{|->}[d] & \langle x, 0 \rangle \ar@{|->}[l]\ar@{|->}[d] \\
+          xu \ar@{}[r]|{=} & x
           }
           \end{xy}
           $$
@@ -135,18 +135,18 @@
         <p>
           We describe a group as a monoid with the additional operation $\eta : M \rightarrow M$ corresponding to $x \rightarrow x^{-1}$:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          M \ar[d]\ar[r]^\delta &amp; M \times M \ar[r]^{1 \times \eta} &amp; M \times M \ar[d]^\lambda \\
-          1 \ar[rr] &amp; &amp; M
+          M \ar[d]\ar[r]^\delta & M \times M \ar[r]^{1 \times \eta} & M \times M \ar[d]^\lambda \\
+          1 \ar[rr] & & M
           }
           \end{xy}
           \begin{xy}
           \xymatrix{
-          x \ar@{|-&gt;}[d]\ar@{|-&gt;}[r] &amp; \langle x, x \rangle \ar@{|-&gt;}[r] &amp; \langle x, x^{-1} \rangle \ar@{|-&gt;}[d] \\
-          0 \ar@{|-&gt;}[rr] &amp; &amp; xx^{-1} = u
+          x \ar@{|->}[d]\ar@{|->}[r] & \langle x, x \rangle \ar@{|->}[r] & \langle x, x^{-1} \rangle \ar@{|->}[d] \\
+          0 \ar@{|->}[rr] & & xx^{-1} = u
           }
           \end{xy}
           $$
@@ -199,12 +199,12 @@
         <p>
           A natural transformation is a morphism of functors. Given two functors $S, T : B \rightarrow C$, let $\tau : S \overset{\bullet}{\rightarrow} T$ be an NT. Then, every arrow $f : b \rightarrow b' \in S$ is mapped to $\tau_b = \tau b : Sb \rightarrow Sb' \in C$, so the following diagram commutes:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          Sb \ar[r]^{\tau_b}\ar[d]^{Sb} &amp; Tb \ar[d]^{Tf} \\
-          Sb' \ar[r]^{\tau_{b'}} &amp; Tb'
+          Sb \ar[r]^{\tau_b}\ar[d]^{Sb} & Tb \ar[d]^{Tf} \\
+          Sb' \ar[r]^{\tau_{b'}} & Tb'
           }
           \end{xy}
           $$
@@ -212,20 +212,20 @@
         <p>
           If we think of $S$ as giving a picture in $C$ of all objects and arrows in $B$, we get the following commutative diagrams:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          a \ar[dd]^h\ar[dr]^f &amp; \\
-          &amp; b \ar[dl]^g \\
-          c &amp;
+          a \ar[dd]^h\ar[dr]^f & \\
+          & b \ar[dl]^g \\
+          c &
           }
           \end{xy}
           \begin{xy}
           \xymatrix{
-          Sa \ar[rr]^{\tau_a}\ar[dr]^{Sf}\ar[dd]^{Sh} &amp; &amp; Ta \ar[dr]^{Tf}\ar[dd]|{\hole} &amp; \\
-          &amp; Sb \ar[rr]^&lt;&lt;&lt;&lt;&lt;{\tau_b}\ar[dl]^{Sg} &amp; &amp; Tb \ar[dl]^{Tg} \\
-          Sc \ar[rr]^{\tau_c} &amp; &amp; Tc &amp;
+          Sa \ar[rr]^{\tau_a}\ar[dr]^{Sf}\ar[dd]^{Sh} & & Ta \ar[dr]^{Tf}\ar[dd]|{\hole} & \\
+          & Sb \ar[rr]^<<<<<{\tau_b}\ar[dl]^{Sg} & & Tb \ar[dl]^{Tg} \\
+          Sc \ar[rr]^{\tau_c} & & Tc &
           }
           \end{xy}
           $$
@@ -236,12 +236,12 @@
         <p>
           The [determinant](/la#determinant) is an NT $\tau : \textbf{CRng} \overset{\bullet}{\rightarrow} \textbf{Grp}$. Let $\text{det}_K M$ be the determinant of matrix $M$ with entries in commutative ring $K$. $\text{det}_K$ is a morphism $\text{GL}_n K \overset{\bullet}{\rightarrow} K^*$ of groups.
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          \text{GL}_n K \ar[r]^{\text{det}_K}\ar[d]_{\text{GL}_n f} &amp; K^* \ar[d]^{f^*} \\
-          \text{GL}_n K' \ar[r]_{\text{det}_{K'}} &amp; K'^{*}
+          \text{GL}_n K \ar[r]^{\text{det}_K}\ar[d]_{\text{GL}_n f} & K^* \ar[d]^{f^*} \\
+          \text{GL}_n K' \ar[r]_{\text{det}_{K'}} & K'^{*}
           }
           \end{xy}
           $$
@@ -249,12 +249,12 @@
         <p>
           For group $G$, the transform $p_G = G/[G, G]$ to the factor-commutator group defines a transform $p$ from the identity functor on $\textbf{Grp}$ to the factor-commutator functor $\textbf{Grp} \rightarrow \textbf{Ab} \rightarrow \textbf{Grp}$. Moreover, $p$ is natural, because the following diagram commutes:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          G\ar[r]^{p_G}\ar[d]^f &amp; G/[G, G]\ar[d]^{f'} \\
-          H\ar[r]^{p_H} &amp; H/[H, H]
+          G\ar[r]^{p_G}\ar[d]^f & G/[G, G]\ar[d]^{f'} \\
+          H\ar[r]^{p_H} & H/[H, H]
           }
           \end{xy}
           $$
@@ -336,12 +336,12 @@
             For every triple $\langle a, b, c \rangle$, the composition axiom:
           </li>
         </ol>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          \text{hom}(c, d) \times \text{hom}(b, c) \times \text{hom}(a, b) \ar[r]\ar[d] &amp; \text{hom}(b, d) \times \text{hom}(a, b) \ar[d] \\
-          \text{hom}(c, d) \times \text{hom}(a, c) \ar[r] &amp; \text{hom}(a, d)
+          \text{hom}(c, d) \times \text{hom}(b, c) \times \text{hom}(a, b) \ar[r]\ar[d] & \text{hom}(b, d) \times \text{hom}(a, b) \ar[d] \\
+          \text{hom}(c, d) \times \text{hom}(a, c) \ar[r] & \text{hom}(a, d)
           }
           \end{xy}
           $$
@@ -390,12 +390,12 @@
         <p>
           For $k : a \rightarrow a'$ and $g : b \rightarrow b'$, we have:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          \text{hom}(a', b) \ar[r]^{k^*}\ar[d]^{g_*} &amp; \text{hom}(a, b) \ar[d]^{g_*} \\
-          \text{hom}(a', b') \ar[r]^{k^*} &amp; \text{hom}(a, b')
+          \text{hom}(a', b) \ar[r]^{k^*}\ar[d]^{g_*} & \text{hom}(a, b) \ar[d]^{g_*} \\
+          \text{hom}(a', b') \ar[r]^{k^*} & \text{hom}(a, b')
           }
           \end{xy}
           $$
@@ -406,13 +406,13 @@
         <p>
           $P_1$ along with $X$ and $Y$ defines a product. There exists a unique morphism between $P_1$ and $P_2$ preserving the product structure.
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          P_2 \ar@/_/[ddr]_N \ar@{.&gt;}[dr]|{\exists!} \ar@/^/[drr]^M \\
-          &amp; P_1 \ar[d]^Q \ar[r]_P &amp; X \\
-          &amp; Y &amp;
+          P_2 \ar@/_/[ddr]_N \ar@{.>}[dr]|{\exists!} \ar@/^/[drr]^M \\
+          & P_1 \ar[d]^Q \ar[r]_P & X \\
+          & Y &
           }
           \end{xy}
           $$
@@ -423,12 +423,12 @@
         <p>
           Let $U : X \rightarrow Y, V : X' \rightarrow Y'$ be two functors; then $U \times V : X \times Y \rightarrow X' \times Y'$ is the product of two functors, and we yield the following commutative diagram:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          X \ar[d]^{U} &amp; X \times Y \ar[l]_P\ar[r]^Q\ar@{.&gt;}[d]|{U \times V} &amp; Y \ar[d]^{V} \\
-          X' &amp; X' \times Y' \ar[l]_{P'}\ar[r]^{Q'} &amp; Y'
+          X \ar[d]^{U} & X \times Y \ar[l]_P\ar[r]^Q\ar@{.>}[d]|{U \times V} & Y \ar[d]^{V} \\
+          X' & X' \times Y' \ar[l]_{P'}\ar[r]^{Q'} & Y'
           }
           \end{xy}
           $$
@@ -450,14 +450,14 @@
         <p>
           Consider the product category $C \times \textbf{2}$, where $\textbf{2}$ is the category of the two-point set $\{0, 1\}$:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          &amp; &amp; \bullet \ar[dr] &amp; \\
-          C \times 1 &amp; \bullet \ar[rr]\ar[ur] &amp; &amp; \bullet \\
-          &amp; &amp; \bullet \ar[dr]\ar@{.&gt;}[uu] &amp; \\
-          C \times 0 &amp; \bullet \ar[rr]\ar[ur]\ar[uu] &amp; &amp; \bullet \ar[uu]
+          & & \bullet \ar[dr] & \\
+          C \times 1 & \bullet \ar[rr]\ar[ur] & & \bullet \\
+          & & \bullet \ar[dr]\ar@{.>}[uu] & \\
+          C \times 0 & \bullet \ar[rr]\ar[ur]\ar[uu] & & \bullet \ar[uu]
           }
           \end{xy}
           $$
@@ -475,13 +475,13 @@
         <p>
           Consider functors $R, S, T : C \rightarrow B$ and NTs $\sigma : R \overset{\bullet}{\rightarrow} S, \tau : S \overset{\bullet}{\rightarrow} T$. Define $(\tau \bullet \sigma) c = \tau c \circ \sigma c$, which are components of the NT $\tau \bullet \sigma : R \overset{\bullet}{\rightarrow} T$. To show that $\tau \bullet \sigma$ is natural, let $f : c \rightarrow c' \in C$ in the commutative diagram:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          Rc \ar[r]^{Rf}\ar[d]^{\sigma_c}\ar@/_2pc/[dd]_{(\tau \bullet \sigma) c} &amp; Rc' \ar[d]^{\sigma_{c'}}\ar@/^2pc/[dd]^{(\tau \bullet \sigma) c'} \\
-          Sc \ar[r]^{Sf}\ar[d]^{\tau_c} &amp; Sc' \ar[d]^{\tau_{c'}} \\
-          Tc \ar[r]^{Tf} &amp; Tc'
+          Rc \ar[r]^{Rf}\ar[d]^{\sigma_c}\ar@/_2pc/[dd]_{(\tau \bullet \sigma) c} & Rc' \ar[d]^{\sigma_{c'}}\ar@/^2pc/[dd]^{(\tau \bullet \sigma) c'} \\
+          Sc \ar[r]^{Sf}\ar[d]^{\tau_c} & Sc' \ar[d]^{\tau_{c'}} \\
+          Tc \ar[r]^{Tf} & Tc'
           }
           \end{xy}
           $$
@@ -493,12 +493,12 @@
         <p>
           If $B = \{0, 1\}$, the category $\{0, 1\}^C$ is isomorphic to the powerset of $C$, $\mathscr{P}C$. For any category $B$, $B^1$ is isomorphic to $B$, and $B^2$ is the category whose objects are arrows $f : a \rightarrow b$ of $B$, and whose arrows $f \rightarrow f'$ are those that, along with pair $\langle h, k \rangle$, make the following diagram commute:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          a \ar[r]^h\ar[d]^f &amp; a' \ar[d]^{f'} \\
-          b \ar[r]^k &amp; b'
+          a \ar[r]^h\ar[d]^f & a' \ar[d]^{f'} \\
+          b \ar[r]^k & b'
           }
           \end{xy}
           $$
@@ -509,11 +509,11 @@
         <p>
           Given three categories and four NTs, we have:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          A \ar@&lt;-2ex&gt;[r] \ar[r]_{\downarrow \tau} \ar@&lt;2ex&gt;[r]_{\downarrow \sigma} &amp; B \ar@&lt;-2ex&gt;[r]\ar[r]_{\downarrow \tau'} \ar@&lt;2ex&gt;[r]_{\downarrow \sigma'} &amp; C
+          A \ar@<-2ex>[r] \ar[r]_{\downarrow \tau} \ar@<2ex>[r]_{\downarrow \sigma} & B \ar@<-2ex>[r]\ar[r]_{\downarrow \tau'} \ar@<2ex>[r]_{\downarrow \sigma'} & C
           }
           \end{xy}
           $$
@@ -521,17 +521,17 @@
         <p>
           The vertical and horizontal composities satisfy the interchange law:
         </p>
-        <p>
+        <p class="mathjax">
           $$(\tau' \bullet \sigma') \circ (\tau \bullet \sigma) = (\tau' \circ \tau) \bullet (\sigma' \circ \sigma)$$
         </p>
         <p>
           The collection of all NTs is the set of arrows of two different categories under two different operations of composition, $\circ$ and $\bullet$, which satisfy the above interchange law. Moreover, any arrow that is identity for the composition $\circ$ is also identity for the composition $\bullet$. To prove this, notice that objects for the horizontal composition $\circ$ are the categories, for vertical composition, the functors. Notice that the objects and arrows of $C$ may be written as $c : \textbf{1} \rightarrow C$ and $f : \textbf{2} \rightarrow C$. Then, the symbols such as $\sigma \circ c = \sigma c$ have their accepted meaning in a situation such as:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          \textbf{1}\ar[r]^c &amp; C \ar@&lt;1ex&gt;[r]_{\downarrow \sigma}\ar@&lt;-1ex&gt;[r] &amp; B
+          \textbf{1}\ar[r]^c & C \ar@<1ex>[r]_{\downarrow \sigma}\ar@<-1ex>[r] & B
           }
           \end{xy}
           $$
@@ -542,12 +542,12 @@
         <p>
           If $b$ is an object of category $C$, $(b \downarrow C)$ is a category in which objects are objects of $\langle f, c \rangle$, where $f : b \rightarrow c$, and arrows $h : \langle f, c \rangle \rightarrow \langle f', c' \rangle$, such that $h \circ f = f'$:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          &amp; b \ar[ld]_f \ar[rd]^{f'} &amp; \\
-          c \ar[rr]^h &amp; &amp; c'
+          & b \ar[ld]_f \ar[rd]^{f'} & \\
+          c \ar[rr]^h & & c'
           }
           \end{xy}
           $$
@@ -558,12 +558,12 @@
         <p>
           If $b$ is an object of category $C$, and $S : D \rightarrow C$ a functor, the category $(b \downarrow S)$ of objects under $b$ has as objects pairs $\langle f, d \rangle$, where $d \in \text{Obj } D$ and $f : b \rightarrow Sd$, and arrows $h : \langle f, d \rangle \rightarrow \langle f', d' \rangle$ all those arrows $h : f \rightarrow f'$ such that $Sh \circ f = f'$:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          &amp; b \ar[ld]_f \ar[rd]^{f'} &amp; \\
-          Sd \ar[rr]^{Sh} &amp; &amp; Sd'
+          & b \ar[ld]_f \ar[rd]^{f'} & \\
+          Sd \ar[rr]^{Sh} & & Sd'
           }
           \end{xy}
           $$
@@ -571,12 +571,12 @@
         <p>
           Consider $C \xleftarrow{T} A \xrightarrow{S} B$ where $S$ and $T$ are NTs. Then the category $(T \downarrow S)$, also written as $(T, S)$ is called the `comma category`. It has as objects triples $\langle c, b, f \rangle$, and as arrows $\langle c, b, f \rangle \rightarrow \langle c', b', f' \rangle$ all pairs $\langle k, h \rangle$ of arrows $k : c \rightarrow c'$, $h : b \rightarrow b'$ such that $f' \circ Tk = Sh \circ f$:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          Tc \ar[r]^{Tk}\ar[d]_f &amp; Tc' \ar[d]^{f'} \\
-          Sb \ar[r]^{Sh} &amp; Sb'
+          Tc \ar[r]^{Tk}\ar[d]_f & Tc' \ar[d]^{f'} \\
+          Sb \ar[r]^{Sh} & Sb'
           }
           \end{xy}
           $$
@@ -584,12 +584,12 @@
         <p>
           We get the following diagram when we consider projections of the comma category:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          &amp; &amp; \langle c, b, f : Tc \rightarrow Sb \rangle \ar@{|-&gt;}[d]\ar@{|-&gt;}[lld]\ar@{|-&gt;}[rrd] &amp; &amp; \\
-          b \ar@{|-&gt;}[r] &amp; Sb &amp; (f : Tc \rightarrow Sb) \ar@{|-&gt;}[l]\ar@{|-&gt;}[r] &amp; Tc &amp; c \ar@{|-&gt;}[l]
+          & & \langle c, b, f : Tc \rightarrow Sb \rangle \ar@{|->}[d]\ar@{|->}[lld]\ar@{|->}[rrd] & & \\
+          b \ar@{|->}[r] & Sb & (f : Tc \rightarrow Sb) \ar@{|->}[l]\ar@{|->}[r] & Tc & c \ar@{|->}[l]
           }
           \end{xy}
           $$
@@ -603,11 +603,11 @@
         <p>
           A directed graph is a set of objects $O$ and a set $A$ of arrows $f$ such that there exists a pair of arrows:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          A \ar@&lt;-.5ex&gt;[r]_{\partial_1} \ar@&lt;.5ex&gt;[r]^{\partial_0} &amp; O &amp; \partial_0 f = \text{dom } f &amp; \partial_1 f = \text{codom } f
+          A \ar@<-.5ex>[r]_{\partial_1} \ar@<.5ex>[r]^{\partial_0} & O & \partial_0 f = \text{dom } f & \partial_1 f = \text{codom } f
           }
           \end{xy}
           $$
@@ -629,18 +629,18 @@
         <p>
           A category with objects $O$ may be described as an O-graph equipped with the two morphisms $c : A \times_O A \rightarrow A$ and $i : O \rightarrow A$, composition and identity, such that the following commute:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          A \times_O A \times_O A \ar[r]^{c \times 1}\ar[d]^{1 \times c} &amp; A \times_O A \ar[d]^c \\
-          A \times_O A \ar[r]^c &amp; A
+          A \times_O A \times_O A \ar[r]^{c \times 1}\ar[d]^{1 \times c} & A \times_O A \ar[d]^c \\
+          A \times_O A \ar[r]^c & A
           }
           \end{xy}
           \begin{xy}
           \xymatrix{
-          O \times_O A \ar[r]^{i \times 1}\ar[d]^\cong &amp; A \times_O A \ar[d]^c &amp; A \times_O O \ar[l]_{1 \times i}\ar[d]^\cong \\
-          A &amp; A &amp; A
+          O \times_O A \ar[r]^{i \times 1}\ar[d]^\cong & A \times_O A \ar[d]^c & A \times_O O \ar[l]_{1 \times i}\ar[d]^\cong \\
+          A & A & A
           }
           \end{xy}
           $$
@@ -648,12 +648,12 @@
         <p>
           A `free category` may be "generated by a graph" $G$ having the same set of objects $O$, and morphisms composition on edges of the graph, and this is written as $C_G$. Given $D : B \rightarrow C$, we get the following diagram in terms of underlying graphs:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          G \ar[r]\ar[dr] &amp; UB \ar@{.&gt;}[d]|{\exists! UD} \\
-          &amp; UC
+          G \ar[r]\ar[dr] & UB \ar@{.>}[d]|{\exists! UD} \\
+          & UC
           }
           \end{xy}
           $$
@@ -668,12 +668,12 @@
         <p>
           Let $C$ be a category and $R_{a, b}$ be a relation defined on the hom-set. Then, quotient category $C/R$ is defined in terms of a universal functor $Q$:
         </p>
-        <p>
+        <p class="mathjax">
           $$
           \begin{xy}
           \xymatrix{
-          C \ar[r]^Q \ar[d]_H &amp; C/R \ar@{.&gt;}[dl]|{\exists! P} \\
-          D &amp;
+          C \ar[r]^Q \ar[d]_H & C/R \ar@{.>}[dl]|{\exists! P} \\
+          D &
           }
           \end{xy}
           $$
@@ -693,6 +693,9 @@
         </li>
         <li>
           <a href="/ag">ag</a>
+        </li>
+        <li>
+          <a href="/articles">articles</a>
         </li>
         <li>
           <a href="/at">at</a>

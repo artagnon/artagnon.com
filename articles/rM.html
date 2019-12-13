@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>artagnon.com: articles/rM</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/design/all.css" media="all" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 450px)" />
+    <link rel="stylesheet" href="/design/print.css" media="only print" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Parisienne|Josefin+Sans|Roboto+Mono" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/design/claytext.js"></script>
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"],
+      "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} },
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+      TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="main">
+        <h1>
+          reMarkable: the perfect tablet for academics
+        </h1>
+        <time datetime="2019-12-13">Last updated: Friday, 13 December 2019</time><br /><time datetime="2019-12-13">Created: Friday, 13 December 2019</time>
+        <div class="imgrow">
+          <div class="imgcol-left">
+            <img src="rM-reading.jpg" style="width:100%" />
+          </div>
+          <div class="imgcol-right">
+            <img src="rM-writing.jpg" style="width:100%" />
+          </div>
+        </div>
+        <p>
+          What a wonderful device for reading and writing! It's very close to real paper, as advertised; no distractions, and no anti-features like search. Certain things are proprietary, but easy to reverse-engineer: it's great to hack on. It has an ample 6~7 GiB of storage, and a native cloud; with third-party command-line applications like [rmapi](https://github.com/juruen/rmapi), it's easy to transfer PDFs and ePubs. You can export your handwriting to PDF, or to plain text, using their fantastic OCR technology. However, it's a device that targets a very niche audience: a large segment of the population would be much happier with a general-purpose device like the iPad or Surface; people who read novels would get a Kobo, and designers would get a Wacom. The rM is for mathematicians, computer scientists, and (maybe) journalists; the flood of negative reviews on a Google search can be explained with this simple fact.
+        </p>
+        <p>
+          Immediately after unboxing, I attempted to bulk-upload my PDFs to their native cloud, and was annoyed that the existing annotations in PDFs were erased. Another source of disappointment was that their cloud was slow and glitchy compared to industry-standard solutions like Dropbox, and decided that they made a bad decision by going with their own cloud instead of just connecting to Dropbox. A prospective-buyer-friend was against using any cloud service (he's a mathematician); I poked around a bit, and found that you can opt-out of the cloud and transfer via the provided USB cable. I further discovered that they were using mostly GPLv3 software, and that I could ssh into the device. The OCR was great, but I didn't quite understand the utility, as you could only email the OCR'ed notes, and was having a hard time imagining someone who would prefer hand-writing an email to typing it out.
+        </p>
+        <p>
+          The proprietary bits are `xochitl` (the main interface), and the `.rM` file format; it's a proprietary binary file format, but is quite simple, and has been [reverse-engineered](https://github.com/ax3l/lines-are-beautiful) successfully. There are even [wrappers](https://github.com/dixonary/draft-reMarkable) available for the main interface, and the community is [thriving](https://remarkablewiki.com). Along with each PDF, rM stores the associated metadata like current-page in JSON files, and brush strokes in a beautifully simple binary format (the `.rM`). I'm glad they didn't choose to store annotations directly in the PDF; it would have been a nightmare rewriting and uploading the entire PDF file on each save, and having to deal with binary-merge issues. I have extensive experience using PDF Expert on my iPad to know that it's a bad idea to save annotations in-file.
+        </p>
+        <p>
+          Shortly thereafter, I realized that the native cloud was a good idea, because they wanted to build their own cloud API. Other than for the intial bulk-transfer, their cloud works quite well: you only ever upload/download one PDF or a few brush strokes at a time; besides, their cloud API is simple and elegant, in line with their overall design philosophy. I also initally thought their OCR was mainly for writing email, but it turns out that it's actually a fantastic replacement to a physical diary; I was very skeptical at first, because I love using my Lamy fountain pen to write in my diary, but the writing experience on rM is on par.
+        </p>
+        <p>
+          In summary, rM is a breakthrough technology with a niche audience. The build-quality of the tablet, pencil, and folio are worth the €600.
+        </p>
+      </div>
+    </div>
+    <div id="sidebar">
+      <ul>
+        <li>
+          <a href="/index">index</a>
+        </li>
+        <li>
+          <a href="/ac">ac</a>
+        </li>
+        <li>
+          <a href="/ag">ag</a>
+        </li>
+        <li>
+          <a href="/articles">articles</a>
+        </li>
+        <li>
+          <a href="/at">at</a>
+        </li>
+        <li>
+          <a href="/ct">ct</a>
+        </li>
+        <li>
+          <a href="/gn">gn</a>
+        </li>
+        <li>
+          <a href="/la">la</a>
+        </li>
+        <li>
+          <a href="/ra">ra</a>
+        </li>
+        <li>
+          <a href="/sw">sw</a>
+        </li>
+        <li>
+          <a href="/topoi">topoi</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

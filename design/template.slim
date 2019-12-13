@@ -61,6 +61,15 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
             pre
               code
                 == paragraph.contents.join "\n"
+          - elsif paragraph.is_images?
+              div class="imgrow"
+                - if paragraph.contents.length == 1
+                  img src="#{paragraph.contents[0]}" style="width:100%"
+                - else
+                  div class="imgcol-left"
+                    img src="#{paragraph.contents[0]}" style="width:100%"
+                  div class="imgcol-right"
+                    img src="#{paragraph.contents[1]}" style="width:100%"
           - elsif paragraph.is_horizrule?
             hr
           - elsif paragraph.is_mathjax?
