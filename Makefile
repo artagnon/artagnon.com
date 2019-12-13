@@ -2,7 +2,7 @@ all:
 	@clayoven
 
 aggressive:
-	@clayoven all
+	@clayoven aggressive
 
 deploy:
 	@git push
