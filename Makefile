@@ -1,3 +1,5 @@
+SHELL=/bin/zsh
+
 all:
 	@clayoven
 
