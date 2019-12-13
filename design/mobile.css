@@ -4,12 +4,12 @@ pre {
   padding-bottom: 7px;
 }
 
-#wrapper {
+div#wrapper {
   top: calc(2.8rem + 8.3vw);
   width: 100%;
 }
 
-#sidebar {
+div#sidebar {
   height: calc(2.8rem + 8vw);
   position: fixed;
   top: 0;
@@ -19,29 +19,29 @@ pre {
   border-bottom: dotted 0.3vw black;
 }
 
-#sidebar ul {
+div#sidebar ul {
   padding: 0 0 0 0;
   margin: 0 0 0 0;
   height: 18vw;
 }
 
-#sidebar li,
+div#sidebar li,
 ul#indexfill li {
   list-style: none;
 }
 
-#sidebar li {
+div#sidebar li {
   float: left;
   padding-top: 2vw;
   padding-right: 4vw;
   font-size: 1rem;
 }
 
-#sidebar li:last-child {
+div#sidebar li:last-child {
   padding-right: 0px;
 }
 
-#indexfill li {
+ul#indexfill li {
   padding: 0;
   font-size: 1em;
   font-weight: 500;
@@ -51,7 +51,7 @@ ul#indexfill li {
   padding-bottom: 10px;
 }
 
-#main {
+div#main {
   position: absolute;
   top: calc(2.8rem + 8.3vw);
   height: calc(100% - calc(2.8rem + 8.3vw));
@@ -61,8 +61,8 @@ ul#indexfill li {
   padding-right: 5%;
 }
 
-#sidebar,
-#main {
+div#sidebar,
+div#main {
   float: none;
   clear: both;
   width: 100%;
@@ -73,19 +73,22 @@ ul#indexfill li {
   box-sizing: border-box;
 }
 
-#footer li {
+ul#footer li {
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-.imgcol-left .imgcol-right {
-  display: table;
+.imgcol-left,
+.imgcol-right {
   clear: both;
-  width: 100%;
+  width: 80%;
+  padding-top: 5%;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.imgcol-right {
-  float: right;
-  width: 45%;
-  padding: 2.5%;
+.imgrow::after {
+  content: "";
+  clear: both;
+  display: table;
 }
