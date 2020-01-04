@@ -1,0 +1,26 @@
+The cultural chasm: Lean versus Coq
+
+<<
+leancoq-lean.png
+leancoq-coq.png
+>>
+
+Lean has much lower startup-cost for pure mathematicians, since the built-in features and [mathlib](https://github.com/leanprover-community/mathlib) are great for doing undergraduate-level group theory & topology, masters-level commutative algebra & category theory, but it plateaus quickly thereafter; future releases of Lean will probably fix this.
+
+Lean seems to have taken a top-down approach, by focusing on writing real proofs as quickly as possible, without compromising on [soundness](https://github.com/digama0/lean-type-theory/releases/download/v1.0/main.pdf). There are three axioms in Lean: `propositional extensionality`, `quotient soundness`, and `choice`; however, these don't block computation, since computation is done in a VM. They do, however, break good type theoretic properties like `strong normalization`, `subject reduction`, and `canonicity` — this was a conscious design choice.
+
+Coq, on the other hand, has always been very particular about sound type theoretic foundations. The recent ["Coq Coq Correct!" paper](https://www.irif.fr/~sozeau/research/publications/drafts/Coq_Coq_Correct.pdf) formalizes the Coq engine proving metatheoretic properties about it, in Coq, and [HoTT](https://github.com/HoTT/HoTT) is being developed actively to fix many of the issues.
+
+Working mathematicians have only just started using software for their work, and they often rely on unverified (and sometimes proprietary) tools like magma, sage, and mathematica. Lean is a big step-up, and the good type theoretic properties preserved by Coq doesn't seem important.
+
+Lean supports both constructive and classical reasoning, but classical reasoning in Coq is painful due to ["setoid-hell"](http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf); something that would be fixed by the HoTT line of work.
+
+Quotients are indeed a great feature to have, and makes formalizing commutative algebra painless; see [this](https://github.com/leanprover-community/mathlib/blob/master/docs/tutorial/Zmod37.lean) example of using quotients in Lean. However, quotients are tricky to implement without breaking certain metatheoretic properties that Coq'ers cherish.
+
+Lean's [inheritance](https://leanprover.github.io/theorem_proving_in_lean/structures_and_records.html#inheritance) is another good feature; it disallows diamond-inheritance, and seems like a bit of a hack, but Coq is definitely missing some form of a well-thought-out ad-hoc polymorphism.
+
+Category theory in Lean has not been [developed](https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md) with higher categories in mind; I'm not sure how one would define $\infty$-categories, since universes are explicit, and since there are no coinductive types: Coq's impredicativity seems to have been a better design choice.
+
+One would think that Lean is an engineering feat, since it's written in C++ (and Lean4 is written mostly in C): [math-comp](https://github.com/math-comp/math-comp) is 90k loc, while mathlib is 150k loc; and it takes over thirty minutes to build mathlib! Indeed, due to their design decision to use a VM for computations, computation happens at a speed comparable to Python bytecode evaluation — they seem to be overhauling this in Lean4, by compiling Lean code down to C before execution.
+
+[^1]: [Metamath Zero](https://github.com/digama0/mm0) might be of interest to readers of this article.
