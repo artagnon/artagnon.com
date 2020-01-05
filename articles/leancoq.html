@@ -36,7 +36,7 @@
         <h1>
           Lean versus Coq: The cultural chasm
         </h1>
-        <time datetime="2020-01-04">Last updated: Saturday, 04 January 2020</time><br /><time datetime="2020-01-04">Created: Saturday, 04 January 2020</time>
+        <time datetime="2020-01-05">Last updated: Sunday, 05 January 2020</time><br /><time datetime="2020-01-04">Created: Saturday, 04 January 2020</time>
         <div class="imgrow">
           <div class="imgcol-left">
             <img src="leancoq-lean.png" style="width:100%" />
@@ -59,7 +59,7 @@
         </p>
         <hr />
         <p>
-          Lean supports both constructive and classical reasoning, but classical reasoning in Coq is painful due to ["setoid-hell"](http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf); something that would be fixed by the HoTT line of work.
+          Lean supports both constructive and classical reasoning, but quotienting in Coq is painful due to ["setoid-hell"](http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf); something that would be fixed when types are modeled as $\infty$-groupoids instead of setoids, as in the HoTT line of work.
         </p>
         <p>
           [Quotient-reasoning](https://github.com/leanprover-community/mathlib/blob/master/docs/tutorial/Zmod37.lean) makes formalizing commutative algebra painless, and it's baked into the Lean kernel. However, quotients are tricky to implement without breaking certain metatheoretic properties that Coq'ers cherish; nevertheless, there is an [implementation](https://math-comp.github.io/htmldoc/mathcomp.ssreflect.generic_quotient.html) in Coq's [math-comp](https://github.com/math-comp/math-comp), albeit, without a reduction rule.
@@ -69,7 +69,7 @@
         </p>
         <hr />
         <p>
-          Category theory in Lean has not been [developed](https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md) with higher categories in mind; I'm not sure how one would define $\infty$-categories, since universes are explicit, and since there are no coinductive types: Coq's impredicativity seems to have been a better design choice.
+          Category theory in Lean has not been [developed](https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md) with higher categories in mind; I'm not sure how one would define $\infty$-categories, since universes are explicit, and since there are no coinductive types: Coq's cumulativity seems to have been a better design choice.
         </p>
         <hr />
         <p>
