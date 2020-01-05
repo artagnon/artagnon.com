@@ -1,5 +1,4 @@
 $(function() {
-  window.location.hash = "#main";
   $("p, li").each(function() {
     $(this).html(
       $(this)
