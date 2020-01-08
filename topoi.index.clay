@@ -14,4 +14,17 @@ In category theory, the central concept of membership of an element in a set is 
 
 We would first like to ask how functions are formalized in terms of sets. A function $f$ takes objects of $\text{dom } f$ to objects of $\text{codom } f$, represented as the pair $f = \langle x, y\rangle$, such that $\langle x, y\rangle = \langle z, y\rangle \implies x = z$. This formalism is weak because it doesn't include the domain, codomain, or the relation explicitly. To remedy this, we define the $f = \langle A, B, R\rangle$, with $A$ as the domain, $B$ the codomain, and $R \subseteq A \times B = \{\langle x, y\rangle : x \in A, y \in B\}$ the relation. Note that functions are composable yielding a unique $f \circ g = f(g(x))$ satisfying the associative law $f \circ (g \circ h) = (f \circ g) \circ h$.
 
-We can further abstract functions to arrows between objects in a category.
+We can further abstract functions to arrows between objects in a category. The notion of "set membership" is an "internal notion" between the various members of the object, and needs to be "externalized". Let's start with some category theory.
+
+A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions.
+
+$$
+\begin{xy}
+\xymatrix{
+  a\ar[r]^{f}\ar[rd]_>>>>>{h \circ g}\ar[d]_{h \circ g \circ f = h \circ (g \circ f)} & b\ar[d]^{g}\ar[dl]^<<<<<{g \circ f} \\
+  c & d\ar[l]^{h}
+}
+\end{xy}
+$$
+
+A pre-order is defined as a category in which there is atmost one arrow between any two objects. In this kind of category, there is only one way to define composites.
