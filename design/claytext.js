@@ -1,4 +1,5 @@
 $(function() {
+  document.getElementById("main").focus();
   $("p, li").each(function() {
     $(this).html(
       $(this)
