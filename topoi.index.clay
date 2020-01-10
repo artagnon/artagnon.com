@@ -18,14 +18,10 @@ We can further abstract functions to arrows between objects in a category. The n
 
 A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions:
 
-$$
-\begin{xy}
-\xymatrix{
-  a\ar[r]^{f}\ar[rd]_>>>>>{h \circ g}\ar[d]_{h \circ g \circ f = h \circ (g \circ f)} & b\ar[d]^{g}\ar[dl]^<<<<<{g \circ f} \\
-  c & d\ar[l]^{h}
-}
-\end{xy}
-$$
+{{
+a\ar[r]^{f}\ar[rd]_>>>>>{h \circ g}\ar[d]_{h \circ g \circ f = h \circ (g \circ f)} & b\ar[d]^{g}\ar[dl]^<<<<<{g \circ f} \\
+c & d\ar[l]^{h}
+}}
 
 A `pre-order` is defined as a category in which there is at most one arrow $\langle p, q\rangle$ between any two objects $p$ and $q$. In this kind of category, there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
 
@@ -34,13 +30,10 @@ A `pre-order` is defined as a category in which there is at most one arrow $\lan
 
 With identity arrows omitted, this looks like:
 
-$$
-\begin{xy}
-\xymatrix{
-  \bullet\ar@/^/[r] & \bullet \ar@/^/[r]\ar@/^/[l] & \bullet\ar@/^/[l]
-}
-\end{xy}
-$$
+{{
+\bullet\ar@/^/[r] & \bullet \ar@/^/[r]\ar@/^/[l] & \bullet\ar@/^/[l]
+}}
+
 
 With one additional property described below, a `pre-order` becomes a `partial ordering`:
 
@@ -48,16 +41,12 @@ With one additional property described below, a `pre-order` becomes a `partial o
 
 To illustrate a `partial order`, using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
 
-$$
-\begin{xy}
-\xymatrix{
-  0\ar[r] & 1\ar[r] & 2\ar[r] & \ldots
-}
-\end{xy}
-$$
+{{
+0\ar[r] & 1\ar[r] & 2\ar[r] & \ldots
+}}
 
 A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsubseteq \rangle$, is called a `poset`. The specific category we have used to encode $\mathbb{N}$ above is called `Finord`, the category of finite ordinals. In `Finord`, these three statements are equivalent:
 
-(a) $m < n$
+(a) $m \lt n$
 (b) $m \subset n$
 (c) $m \in n$
