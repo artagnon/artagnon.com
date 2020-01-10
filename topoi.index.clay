@@ -16,7 +16,7 @@ We would first like to ask how functions are formalized in terms of sets. A func
 
 We can further abstract functions to arrows between objects in a category. The notion of "set membership" is an "internal notion" between the various members of the object, and needs to be "externalized". Let's start with some category theory.
 
-A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions.
+A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions:
 
 $$
 \begin{xy}
@@ -27,4 +27,37 @@ $$
 \end{xy}
 $$
 
-A pre-order is defined as a category in which there is atmost one arrow between any two objects. In this kind of category, there is only one way to define composites.
+A `pre-order` is defined as a category in which there is at most one arrow $\langle p, q\rangle$ between any two objects $p$ and $q$. In this kind of category, there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
+
+1. Reflexive: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.
+2. Transitive: whenever $pRq$ and $qRs$, we have $pRs$.
+
+With identity arrows omitted, this looks like:
+
+$$
+\begin{xy}
+\xymatrix{
+  \bullet\ar@/^/[r] & \bullet \ar@/^/[r]\ar@/^/[l] & \bullet\ar@/^/[l]
+}
+\end{xy}
+$$
+
+With one additional property described below, a `pre-order` becomes a `partial ordering`:
+
+3. Anti-symmetric: whenever $pRq$ and $qRp$, we have $p = q$.
+
+To illustrate a `partial order`, using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
+
+$$
+\begin{xy}
+\xymatrix{
+  0\ar[r] & 1\ar[r] & 2\ar[r] & \ldots
+}
+\end{xy}
+$$
+
+A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsubseteq \rangle$, is called a `poset`. The specific category we have used to encode $\mathbb{N}$ above is called `Finord`, the category of finite ordinals. In `Finord`, these three statements are equivalent:
+
+(a) $m < n$
+(b) $m \subset n$
+(c) $m \in n$
