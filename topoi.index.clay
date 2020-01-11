@@ -19,30 +19,31 @@ We can further abstract functions to arrows between objects in a category. The n
 A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions:
 
 {{
-a\ar[r]^{f}\ar[rd]_>>>>>{h \circ g}\ar[d]_{h \circ g \circ f = h \circ (g \circ f)} & b\ar[d]^{g}\ar[dl]^<<<<<{g \circ f} \\
-c & d\ar[l]^{h}
+  a\ar[r]^{f}\ar[rd]_>>>>>{h \circ g}\ar[d]_{h \circ g \circ f = h \circ (g \circ f)} & b\ar[d]^{g}\ar[dl]^<<<<<{g \circ f} \\
+  c & d\ar[l]^{h}
 }}
 
-A `pre-order` is defined as a category in which there is at most one arrow $\langle p, q\rangle$ between any two objects $p$ and $q$. In this kind of category, there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
+A `pre-order` is defined as a category in which there is at most one arrow, $\langle p, q\rangle$, between any two objects $p$ and $q$. In this kind of category, called there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
 
-1. Reflexive: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.
-2. Transitive: whenever $pRq$ and $qRs$, we have $pRs$.
+1. Reflexivity: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.
+2. Transitivity: whenever $pRq$ and $qRs$, we have $pRs$.
 
-With identity arrows omitted, this looks like:
+The typical example is to think of two non-comparable subsets of a set. With identity arrows omitted, this looks like:
 
 {{
-\bullet\ar@/^/[r] & \bullet \ar@/^/[r]\ar@/^/[l] & \bullet\ar@/^/[l]
+  \bullet\ar@/^/[rd] & \\
+  & \bullet\ar@/^/[lu] \\
+  \bullet\ar[ru] & \\
 }}
-
 
 With one additional property described below, a `pre-order` becomes a `partial ordering`:
 
-3. Anti-symmetric: whenever $pRq$ and $qRp$, we have $p = q$.
-
-To illustrate a `partial order`, using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
+3. Anti-symmetry: whenever $pRq$ and $qRp$, we have $p = q$.
 
 {{
-0\ar[r] & 1\ar[r] & 2\ar[r] & \ldots
+  \bullet\ar[rd] & \\
+  & \bullet \\
+  \bullet\ar[ru] & \\
 }}
 
 A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsubseteq \rangle$, is called a `poset`. The specific category we have used to encode $\mathbb{N}$ above is called `Finord`, the category of finite ordinals. In `Finord`, these three statements are equivalent:
@@ -50,3 +51,19 @@ A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsu
 (a) $m \lt n$
 (b) $m \subset n$
 (c) $m \in n$
+
+With one additional property, a `partial ordering` becomes a `total ordering`:
+
+4. Connexity: For all $p$, $q \in \mathcal{C}$, `pRq` or `qRp`.
+
+{{
+  \bullet\ar@/^/[r] & \bullet \ar@/^/[r] & \bullet
+}}
+
+Using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
+
+{{
+  0\ar[r] & 1\ar[r] & 2\ar[r] & \ldots
+}}
+
+This is a total order.

@@ -36,7 +36,7 @@
         <h1>
           Notes from Goldblatt&#39;s Topoi book
         </h1>
-        <time datetime="2020-01-10">Last updated: Friday, 10 January 2020</time><br /><time datetime="2019-12-07">Created: Saturday, 07 December 2019</time>
+        <time datetime="2020-01-11">Last updated: Saturday, 11 January 2020</time><br /><time datetime="2019-12-07">Created: Saturday, 07 December 2019</time>
         <p>
           A topos is a categorical interpretation of boolean logic. We will start with some prerequisite set theory and category theory, build up the intuition for subobject classifiers, give an interpretation of set theory, and then move to formalizing boolean algebra using sheaves. The study of topoi is the study of cartesian-closed categories with subobject classifiers, and a category of sheaves over $\mathbb{B}$ is a complete boolean algebra.
         </p>
@@ -69,33 +69,35 @@
             \begin{xy}
             \xymatrix{
           
-          a\ar[r]^{f}\ar[rd]_>>>>>{h \circ g}\ar[d]_{h \circ g \circ f = h \circ (g \circ f)} & b\ar[d]^{g}\ar[dl]^<<<<<{g \circ f} \\
-          c & d\ar[l]^{h}
+            a\ar[r]^{f}\ar[rd]_>>>>>{h \circ g}\ar[d]_{h \circ g \circ f = h \circ (g \circ f)} & b\ar[d]^{g}\ar[dl]^<<<<<{g \circ f} \\
+            c & d\ar[l]^{h}
             }
             \end{xy}
           
           $$
         </p>
         <p>
-          A `pre-order` is defined as a category in which there is at most one arrow $\langle p, q\rangle$ between any two objects $p$ and $q$. In this kind of category, there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
+          A `pre-order` is defined as a category in which there is at most one arrow, $\langle p, q\rangle$, between any two objects $p$ and $q$. In this kind of category, called there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
         </p>
         <ol class="olitems" type="none" start="1">
           <li>
-            Reflexive: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.
+            Reflexivity: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.
           </li>
           <li>
-            Transitive: whenever $pRq$ and $qRs$, we have $pRs$.
+            Transitivity: whenever $pRq$ and $qRs$, we have $pRs$.
           </li>
         </ol>
         <p>
-          With identity arrows omitted, this looks like:
+          The typical example is to think of two non-comparable subsets of a set. With identity arrows omitted, this looks like:
         </p>
         <p class="mathjax">
           $$
             \begin{xy}
             \xymatrix{
           
-          \bullet\ar@/^/[r] & \bullet \ar@/^/[r]\ar@/^/[l] & \bullet\ar@/^/[l]
+            \bullet\ar@/^/[rd] & \\
+            & \bullet\ar@/^/[lu] \\
+            \bullet\ar[ru] & \\
             }
             \end{xy}
           
@@ -106,18 +108,17 @@
         </p>
         <ol class="olitems" type="none" start="3">
           <li>
-            Anti-symmetric: whenever $pRq$ and $qRp$, we have $p = q$.
+            Anti-symmetry: whenever $pRq$ and $qRp$, we have $p = q$.
           </li>
         </ol>
-        <p>
-          To illustrate a `partial order`, using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
-        </p>
         <p class="mathjax">
           $$
             \begin{xy}
             \xymatrix{
           
-          0\ar[r] & 1\ar[r] & 2\ar[r] & \ldots
+            \bullet\ar[rd] & \\
+            & \bullet \\
+            \bullet\ar[ru] & \\
             }
             \end{xy}
           
@@ -137,6 +138,42 @@
             $m \in n$
           </li>
         </ol>
+        <p>
+          With one additional property, a `partial ordering` becomes a `total ordering`:
+        </p>
+        <ol class="olitems" type="none" start="4">
+          <li>
+            Connexity: For all $p$, $q \in \mathcal{C}$, `pRq` or `qRp`.
+          </li>
+        </ol>
+        <p class="mathjax">
+          $$
+            \begin{xy}
+            \xymatrix{
+          
+            \bullet\ar@/^/[r] & \bullet \ar@/^/[r] & \bullet
+            }
+            \end{xy}
+          
+          $$
+        </p>
+        <p>
+          Using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
+        </p>
+        <p class="mathjax">
+          $$
+            \begin{xy}
+            \xymatrix{
+          
+            0\ar[r] & 1\ar[r] & 2\ar[r] & \ldots
+            }
+            \end{xy}
+          
+          $$
+        </p>
+        <p>
+          This is a total order.
+        </p>
       </div>
     </div>
     <div id="sidebar">
