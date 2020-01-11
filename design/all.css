@@ -274,12 +274,17 @@ div#sidebar ul {
   padding-inline-start: 1.6em;
 }
 
-time,
-address {
+#metadata time,
+#metadata address {
   color: #a7a7a7;
   font-size: 90%;
   font-style: normal;
   float: right;
+}
+
+#metadata {
+  clear: both;
+  overflow: auto;
 }
 
 p.footer {
@@ -388,15 +393,15 @@ a[href*=".pdf"] {
   background-image: url("/design/icon.pdf.png");
 }
 
-time {
+#metadata time {
   background-image: url("/design/icon.calendar.png");
 }
 
-address {
+#metadata address {
   background-image: url("/design/icon.location.png");
 }
 
-a[href^="https://github.com"], a[href^="https://medium.com"], a[href*=".pdf"], time, address {
+a[href^="https://github.com"], a[href^="https://medium.com"], a[href*=".pdf"], #metadata time, #metadata address {
   background-repeat: no-repeat;
   background-position: center right;
   padding-right: calc(20rem / 20);

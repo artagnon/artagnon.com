@@ -29,10 +29,13 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
     div id="wrapper"
       div id="main" tabindex="0"
         h1 #{title}
-        time datetime="#{pubdate.strftime('%F')}" #{pubdate.strftime('%A, %d %B %Y')}
-        br
-        address
-          == locations.join(', ')
+        div id="metadata"
+          div id="timestamp"
+            time datetime="#{pubdate.strftime('%F')}" #{pubdate.strftime('%A, %d %B %Y')}
+          br
+          div id="locations"
+            address
+              == locations.join(', ')
         - paragraphs.each do |paragraph|
           - if paragraph.is_header?
             p class="header"
