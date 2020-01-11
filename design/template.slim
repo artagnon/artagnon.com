@@ -29,9 +29,10 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
     div id="wrapper"
       div id="main" tabindex="0"
         h1 #{title}
-        time datetime="#{pubdate.strftime('%F')}" Last updated: #{pubdate.strftime('%A, %d %B %Y')}
+        time datetime="#{pubdate.strftime('%F')}" #{pubdate.strftime('%A, %d %B %Y')}
         br
-        time datetime="#{authdate.strftime('%F')}" Created: #{authdate.strftime('%A, %d %B %Y')}
+        address
+          == locations.join(',')
         - paragraphs.each do |paragraph|
           - if paragraph.is_header?
             p class="header"

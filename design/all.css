@@ -200,6 +200,7 @@ h1,
 h2,
 span,
 time,
+address,
 a,
 ul,
 ol {
@@ -273,9 +274,11 @@ div#sidebar ul {
   padding-inline-start: 1.6em;
 }
 
-time {
+time,
+address {
   color: #a7a7a7;
   font-size: 90%;
+  font-style: normal;
 }
 
 p.footer {
@@ -384,10 +387,27 @@ a[href*=".pdf"] {
   background-image: url("/design/icon.pdf.png");
 }
 
+time {
+  background-image: url("/design/icon.calendar.png");
+}
+
+address {
+  background-image: url("/design/icon.location.png");
+}
+
 a[href^="https://github.com"], a[href^="https://medium.com"], a[href*=".pdf"] {
   background-repeat: no-repeat;
   background-position: center right;
   padding-right: calc(18rem / 14);
-  min-height: calc(16rem / 14);
+  max-height: calc(16rem / 14);
   background-size: calc(16rem / 14);
+}
+
+time,
+address {
+  background-repeat: no-repeat;
+  background-position: center left;
+  padding-left: calc(20rem / 20);
+  max-height: calc(16rem / 20);
+  background-size: calc(16rem / 20);
 }
