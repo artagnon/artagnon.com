@@ -1,23 +1,23 @@
-$(function() {
+// $() is from cash, doing a document.onLoad
+$(() => {
+  // main should have a valid taborder
   document.getElementById("main").focus();
 
-  $("p, li").each(function() {
-    // `...` text
-    $(this).html(
-      $(this)
+  for (el of $("p, li")) {
+    // we use fn.html() from cash
+    $(el).html(
+      $(el)
         .html()
+        // `...` text
         .replace(/`([^`]+)`/g, '<span class="tick">$1</span>')
+        // [...](...) links
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
     );
-    // [...](...) links
-    $(this).html(
-      $(this)
-        .html()
-        .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2">$1</a>')
-    );
-  });
+  }
 
   // humanize timestamp
-  $("#timestamp time").each(function() {
-    $(this).text(moment($(this).text()).fromNow());
-  });
+  for (el of $("#timestamp time")) {
+    // plain js
+    el.textContent = moment(el.textContent).fromNow();
+  }
 });
