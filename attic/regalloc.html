@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html>
   <head>
     <title>artagnon.com: attic/regalloc</title>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="city" content="Paris" />
+    <meta name="country" content="France" />
     <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="HandheldFriendly" content="true" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/design/all.css" media="all" />
     <link rel="stylesheet" href="/design/screen.css" media="screen" />
     <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 450px)" />
@@ -33,115 +37,119 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="main" tabindex="0">
-        <h1>
-          Inside a register allocator
-        </h1>
-        <div id="metadata">
-          <div id="timestamp">
-            <time datetime="2019-12-13">Fri, 13 Dec 2019 20:08:46 +0100</time>
+      <main tabindex="0">
+        <header>
+          <h1>
+            Inside a register allocator
+          </h1>
+          <div id="metadata">
+            <div id="timestamp">
+              <time datetime="2019-12-13">Fri, 13 Dec 2019 20:08:46 +0100</time>
+            </div>
+            <br />
+            <div id="locations">
+              <address>Paris, Chennai, Boston</address>
+            </div>
           </div>
-          <br />
-          <div id="locations">
-            <address>Paris, Chennai, Boston</address>
-          </div>
-        </div>
-        <p>
-          We are going to be discussing LLVM's Fast Register Allocator: you might like to open [RegAllocFast.cpp](https://github.com/llvm-mirror/llvm/blob/master/lib/CodeGen/RegAllocFast.cpp) and refer to it as we go through the article.
-        </p>
-        <p>
-          FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses `PhysRegState` to keep track of the state of various physical registers: they can be 0 (`regDisabled`), 1 (`regFree`), 2 (`regReserved`), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like `LR.LastUse`); a register can either be a `&lt;def&gt;` or a use. If `IsImplicit` is flipped, it could also be a implicit-def (`&lt;imp-def&gt;`) or implicit-use (`&lt;imp-use&gt;`).
-        </p>
-        <pre><code>%vreg349<def> = MOVZX32rm8 %vreg351, 1, %noreg, 0, %noreg</code></pre>
-        <p>
-          turns into
-        </p>
-        <pre><code>%ESI<def> = MOVZX32rm8 %RDX<kill>, 1, %noreg, 0, %noreg</code></pre>
-        <p>
-          after allocation. The `&lt;kill&gt;` indicates that the instruction is the last use of `%RDX`. In another example,
-        </p>
-        <pre><code>CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>
-        <p>
-          turns into
-        </p>
-        <pre><code>CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use,kill></code></pre>
-        <p>
-          Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend `%RAX` into `%RDX` (not any other register) for use in a later `IDIV`. Remember that `IDIV` operates on `%RDX:%RAX` as the numerator, and writes the quotient in `%RAX`, reminder in `%RDX`.
-        </p>
-        <p>
-          The instruction is modeled as `MachineInstr`, and the operands as `MachineOperand`. Note that a `MO` doesn't have to be a register: it could also be an immediate value; we use `MO.isReg()` to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, `MO` can also be `EarlyClobber`, `Dead`, or `Undef`. A Dead `MO` implies Def, and
-          indicates that the value defined is used no longer.
-        </p>
-        <p>
-          `AllocateBasicBlock`, which operates on `MachineBasicBlock`, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the `LiveIns` (registers coming in live from the previous `MBB`) as `regReserved` so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls `usePhysReg` on them. At this stage, the physical register must be either `regDisabled`, `regReserved`, or `regFree`. It cannot be allocated to a virtual register. Why? Imagine you see:
-        </p>
-        <pre><code>CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>
-        <p>
-          Now, if `%RAX` were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as `regFree`, and move on: we have done our part by completing the use of the register that was reserved earlier.
-        </p>
-        <p>
-          The second scan operates only on virtual register Uses. We add the register to `LiveVirtRegs`, via `reloadVirtReg`. If it didn't already exist in the map, we `allocVirtReg` it, which essentially gets the first `regFree` register not used in an instruction, and calls `assignVirtToPhysReg` on it. `assignVirtToPhysReg` is very simple: it just updates the `PhysRegState` mapping. Finally,
-          `reloadVirtReg` updates the `UsedInInstr` map.
-        </p>
-        <p>
-          The third scan operates on physical and virtual registers that are Defs. If the register is a physical register, it does `definePhysReg` with `regReserved` unless `MO.isDead()`, in which case it's regFree. `definePhysReg` is very simple: it just puts the register in the state that was requested (`regReserved` or `regFree`, in this case).
-        </p>
-        <p>
-          To think about the problem, if we have,
-        </p>
-        <pre><code>%RAX<def> = COPY %vreg342</code></pre>
-        <p>
-          we should always `regReserve` `%RAX`, right? Except if `%RAX` is dead. What
-          about if it's an `&lt;imp-def&gt;`?
-        </p>
-        <pre><code>CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>
-        <p>
-          We didn't pass `CQO` `%RAX` explicitly, but that doesn't mean that a later instruction (for instance, `IDIV`) is not relying on this register's value. If we have an instruction between `CQO` and `IDIV`, that can potentially clobber `%RAX`, leading to a regalloc crash. Hence, we `regReserve` even if `MO.isImplicit()`.
-        </p>
-        <p>
-          The third scan does `defineVirtReg` on virtual registers, to grab the first free physical register for the virtual register.
-        </p>
-        <p>
-          Note: the "pretty-prints" are generated by setting a breakpoint in `AllocateBasicBlock` and executing `p MBB-&gt;dump()`.
-        </p>
-      </div>
-    </div>
-    <div id="sidebar">
-      <ul>
-        <li>
-          <a href="/index">index</a>
-        </li>
-        <li>
-          <a href="/ac">ac</a>
-        </li>
-        <li>
-          <a href="/ag">ag</a>
-        </li>
-        <li>
-          <a href="/articles">articles</a>
-        </li>
-        <li>
-          <a href="/at">at</a>
-        </li>
-        <li>
-          <a href="/attic">attic</a>
-        </li>
-        <li>
-          <a href="/ct">ct</a>
-        </li>
-        <li>
-          <a href="/gn">gn</a>
-        </li>
-        <li>
-          <a href="/la">la</a>
-        </li>
-        <li>
-          <a href="/ra">ra</a>
-        </li>
-        <li>
-          <a href="/topoi">topoi</a>
-        </li>
-      </ul>
+        </header>
+        <article>
+          <p>
+            We are going to be discussing LLVM's Fast Register Allocator: you might like to open [RegAllocFast.cpp](https://github.com/llvm-mirror/llvm/blob/master/lib/CodeGen/RegAllocFast.cpp) and refer to it as we go through the article.
+          </p>
+          <p>
+            FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses `PhysRegState` to keep track of the state of various physical registers: they can be 0 (`regDisabled`), 1 (`regFree`), 2 (`regReserved`), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like `LR.LastUse`); a register can either be a `&lt;def&gt;` or a use. If `IsImplicit` is flipped, it could also be a implicit-def (`&lt;imp-def&gt;`) or implicit-use (`&lt;imp-use&gt;`).
+          </p>
+          <pre><code>%vreg349<def> = MOVZX32rm8 %vreg351, 1, %noreg, 0, %noreg</code></pre>
+          <p>
+            turns into
+          </p>
+          <pre><code>%ESI<def> = MOVZX32rm8 %RDX<kill>, 1, %noreg, 0, %noreg</code></pre>
+          <p>
+            after allocation. The `&lt;kill&gt;` indicates that the instruction is the last use of `%RDX`. In another example,
+          </p>
+          <pre><code>CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>
+          <p>
+            turns into
+          </p>
+          <pre><code>CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use,kill></code></pre>
+          <p>
+            Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend `%RAX` into `%RDX` (not any other register) for use in a later `IDIV`. Remember that `IDIV` operates on `%RDX:%RAX` as the numerator, and writes the quotient in `%RAX`, reminder in `%RDX`.
+          </p>
+          <p>
+            The instruction is modeled as `MachineInstr`, and the operands as `MachineOperand`. Note that a `MO` doesn't have to be a register: it could also be an immediate value; we use `MO.isReg()` to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, `MO` can also be `EarlyClobber`, `Dead`, or `Undef`. A Dead `MO` implies Def, and
+            indicates that the value defined is used no longer.
+          </p>
+          <p>
+            `AllocateBasicBlock`, which operates on `MachineBasicBlock`, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the `LiveIns` (registers coming in live from the previous `MBB`) as `regReserved` so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls `usePhysReg` on them. At this stage, the physical register must be either `regDisabled`, `regReserved`, or `regFree`. It cannot be allocated to a virtual register. Why? Imagine you see:
+          </p>
+          <pre><code>CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>
+          <p>
+            Now, if `%RAX` were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as `regFree`, and move on: we have done our part by completing the use of the register that was reserved earlier.
+          </p>
+          <p>
+            The second scan operates only on virtual register Uses. We add the register to `LiveVirtRegs`, via `reloadVirtReg`. If it didn't already exist in the map, we `allocVirtReg` it, which essentially gets the first `regFree` register not used in an instruction, and calls `assignVirtToPhysReg` on it. `assignVirtToPhysReg` is very simple: it just updates the `PhysRegState` mapping. Finally,
+            `reloadVirtReg` updates the `UsedInInstr` map.
+          </p>
+          <p>
+            The third scan operates on physical and virtual registers that are Defs. If the register is a physical register, it does `definePhysReg` with `regReserved` unless `MO.isDead()`, in which case it's regFree. `definePhysReg` is very simple: it just puts the register in the state that was requested (`regReserved` or `regFree`, in this case).
+          </p>
+          <p>
+            To think about the problem, if we have,
+          </p>
+          <pre><code>%RAX<def> = COPY %vreg342</code></pre>
+          <p>
+            we should always `regReserve` `%RAX`, right? Except if `%RAX` is dead. What
+            about if it's an `&lt;imp-def&gt;`?
+          </p>
+          <pre><code>CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>
+          <p>
+            We didn't pass `CQO` `%RAX` explicitly, but that doesn't mean that a later instruction (for instance, `IDIV`) is not relying on this register's value. If we have an instruction between `CQO` and `IDIV`, that can potentially clobber `%RAX`, leading to a regalloc crash. Hence, we `regReserve` even if `MO.isImplicit()`.
+          </p>
+          <p>
+            The third scan does `defineVirtReg` on virtual registers, to grab the first free physical register for the virtual register.
+          </p>
+          <p>
+            Note: the "pretty-prints" are generated by setting a breakpoint in `AllocateBasicBlock` and executing `p MBB-&gt;dump()`.
+          </p>
+        </article>
+      </main>
+      <nav>
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/ac">ac</a>
+          </li>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/topoi">topoi</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </body>
 </html>

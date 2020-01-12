@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html>
   <head>
     <title>artagnon.com: attic/loops</title>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="city" content="Paris" />
+    <meta name="country" content="France" />
     <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="HandheldFriendly" content="true" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/design/all.css" media="all" />
     <link rel="stylesheet" href="/design/screen.css" media="screen" />
     <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 450px)" />
@@ -33,216 +37,222 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="main" tabindex="0">
-        <h1>
-          Detecting loops
-        </h1>
-        <div id="metadata">
-          <div id="timestamp">
-            <time datetime="2019-12-13">Fri, 13 Dec 2019 20:08:46 +0100</time>
+      <main tabindex="0">
+        <header>
+          <h1>
+            Detecting loops
+          </h1>
+          <div id="metadata">
+            <div id="timestamp">
+              <time datetime="2019-12-13">Fri, 13 Dec 2019 20:08:46 +0100</time>
+            </div>
+            <br />
+            <div id="locations">
+              <address>Paris, Chennai, Boston</address>
+            </div>
           </div>
-          <br />
-          <div id="locations">
-            <address>Paris, Chennai, Boston</address>
-          </div>
-        </div>
-        <p>
-          Detecting loops in a directed graph can be tricky, depending on how you define your loop. If you only want to admit "natural loops", where the header of the loop dominates every node in the body, as well as the footer, we have a simple algorithm. If you want to go to the other extreme, and define the most general "strongly connected components", without regard for loops, you have Tarjan's SCC algorithm. However, I'm going to discuss a definition of loop that admits strange loops, but only things we'd intuitively call "loops".
-        </p>
-        <p>
-          There are five [^1] reduced cases we must consider, where backedges are marked by dotted arrows:
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & 1 \ar[dl]\ar[dr] & \\
-          \text{No loops} & 2 \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & 3 \ar[dl] \\
-          & & 4 &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{header}\ar[dl] & \\
-          \text{Early exit} & \text{body}\ar[dr] & & \text{footer}\ar[dl]\ar@{.>}[ul] \\
-          & & \text{exit target} &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{entry source}\ar[dl]\ar[dr] & \\
-          \text{Multi-entry} & \text{header}\ar[dr] & & \text{footer}\ar[ul]\ar@{.>}[ll] \\
-          & & \text{body}\ar[ur] &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{header A}\ar[dl] & \\
-          \text{Cuddled loops} & \text{body A or header B}\ar[rr] & & \text{footer A or body B}\ar@{.>}[ul]\ar[dl] \\
-          & & \text{footer B}\ar@{.>}[ul] &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          \text{Shared header} & & \text{shared header}\ar[dl] & \\
-          & \text{body}\ar[r] & \text{footer A}\ar@{.>}[u]\ar[r] & \text{footer B}\ar@{.>}[ul]
-          }
-          \end{xy}
-          $$
-        </p>
-        <p>
-          Now, let's employ a simple DFS:
-        </p>
-        <pre><code>void DFS(Node *v) {
+        </header>
+        <article>
+          <p>
+            Detecting loops in a directed graph can be tricky, depending on how you define your loop. If you only want to admit "natural loops", where the header of the loop dominates every node in the body, as well as the footer, we have a simple algorithm. If you want to go to the other extreme, and define the most general "strongly connected components", without regard for loops, you have Tarjan's SCC algorithm. However, I'm going to discuss a definition of loop that admits strange loops, but only things we'd intuitively call "loops".
+          </p>
+          <p>
+            There are five [^1] reduced cases we must consider, where backedges are marked by dotted arrows:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & 1 \ar[dl]\ar[dr] & \\
+            \text{No loops} & 2 \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & 3 \ar[dl] \\
+            & & 4 &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & \text{header}\ar[dl] & \\
+            \text{Early exit} & \text{body}\ar[dr] & & \text{footer}\ar[dl]\ar@{.>}[ul] \\
+            & & \text{exit target} &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & \text{entry source}\ar[dl]\ar[dr] & \\
+            \text{Multi-entry} & \text{header}\ar[dr] & & \text{footer}\ar[ul]\ar@{.>}[ll] \\
+            & & \text{body}\ar[ur] &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & \text{header A}\ar[dl] & \\
+            \text{Cuddled loops} & \text{body A or header B}\ar[rr] & & \text{footer A or body B}\ar@{.>}[ul]\ar[dl] \\
+            & & \text{footer B}\ar@{.>}[ul] &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            \text{Shared header} & & \text{shared header}\ar[dl] & \\
+            & \text{body}\ar[r] & \text{footer A}\ar@{.>}[u]\ar[r] & \text{footer B}\ar@{.>}[ul]
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Now, let's employ a simple DFS:
+          </p>
+          <pre><code>void DFS(Node *v) {
   assign_start_time(v); // increment a clock as you assign
   for (auto u : v->outEdges()) {
     if (start_time_not_assigned(v)) DFS(v);
   }
   assign_end_time(v); // increment a clock as you assign
 }</code></pre>
-        <p>
-          We get the following start times and end times:
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{1/8} \ar[dl]\ar[dr] & \\
-          \text{No loops} & \text{6/7} \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & \text{2/5} \ar[dl] \\
-          & & \text{3/4} &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{1/8}\ar[dl] & \\
-          \text{Early exit} & \text{2/7}\ar[dr] & & \text{4/5}\ar[dl]\ar@{.>}[ul] \\
-          & & \text{3/6} &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{1/8}\ar[dl]\ar[dr] & \\
-          \text{Multi-entry} & \text{4/5}\ar[dr] & & \text{2/7}\ar[ul]\ar@{.>}[ll] \\
-          & & \text{3/6}\ar[ur] &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{1/8}\ar[dl] & \\
-          \text{Cuddled loops} & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[ul]\ar[dl] \\
-          & & \text{4/5}\ar@{.>}[ul] &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          \text{Shared header} & & & \text{1/8}\ar[dll] & & \\
-          & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[u]\ar[rr] & & \text{4/5}\ar@{.>}[ull]
-          }
-          \end{xy}
-          $$
-        </p>
-        <p>
-          Let's call the first number "DFS number", and the second number "topo number", to indicate that this is the order that topological sort would have produced, in the absence of backedges (topological sort is meaningless when there are loops).
-        </p>
-        <p>
-          First pass: do the dfs, and number everything.
-        </p>
-        <p>
-          Second pass: find the backedge. When `start_time[destination] &lt; start_time[source]` and `end_time[destination] &gt; end_time[source]`, we have a backedge from source to destination.
-        </p>
-        <p>
-          Third pass: find all the nodes in the loop. Here, we walk backwards from the source of the backedge until the loop header, and take everything that's "nested within" the loop header start and end times to be within the loop.
-        </p>
-        <p>
-          In the no loop case, there's nothing to do since no backedges were detected. Note that in the `6/7`-`2/5` and `6/7`-`3/4` combinations, both start times and end times are greater in one pair; this is how we identify crossedges.
-        </p>
-        <p>
-          In the early exit case, `2/7` and `4/5` are nested within `1/8`, and we never reach `exit target` by walking backward from the source of the backedge.
-        </p>
-        <p>
-          In the multi-entry case, we correctly detect that `1/8` is not nested within `2/7`, while `3/6` and `4/5` are: when a node reached via a backward walk doesn't nest within the header, the loop is classified as *irreducible*.
-        </p>
-        <p>
-          In the cuddled loops case, everything nests within `1/8`, and the inner loop consists of `4/5`, `3/6`, and `2/7`, all of which nest within `2/7`. Finally, the shared header case is detected as two nested loops as well: a loop is identified by a unique backedge, not a unique header [^2]. The analysis is weak in that these cases are indistinguishable from normal nested loops.
-        </p>
-        <ul id="footer">
+          <p>
+            We get the following start times and end times:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & \text{1/8} \ar[dl]\ar[dr] & \\
+            \text{No loops} & \text{6/7} \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & \text{2/5} \ar[dl] \\
+            & & \text{3/4} &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & \text{1/8}\ar[dl] & \\
+            \text{Early exit} & \text{2/7}\ar[dr] & & \text{4/5}\ar[dl]\ar@{.>}[ul] \\
+            & & \text{3/6} &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & \text{1/8}\ar[dl]\ar[dr] & \\
+            \text{Multi-entry} & \text{4/5}\ar[dr] & & \text{2/7}\ar[ul]\ar@{.>}[ll] \\
+            & & \text{3/6}\ar[ur] &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & \text{1/8}\ar[dl] & \\
+            \text{Cuddled loops} & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[ul]\ar[dl] \\
+            & & \text{4/5}\ar@{.>}[ul] &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            \text{Shared header} & & & \text{1/8}\ar[dll] & & \\
+            & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[u]\ar[rr] & & \text{4/5}\ar@{.>}[ull]
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Let's call the first number "DFS number", and the second number "topo number", to indicate that this is the order that topological sort would have produced, in the absence of backedges (topological sort is meaningless when there are loops).
+          </p>
+          <p>
+            First pass: do the dfs, and number everything.
+          </p>
+          <p>
+            Second pass: find the backedge. When `start_time[destination] &lt; start_time[source]` and `end_time[destination] &gt; end_time[source]`, we have a backedge from source to destination.
+          </p>
+          <p>
+            Third pass: find all the nodes in the loop. Here, we walk backwards from the source of the backedge until the loop header, and take everything that's "nested within" the loop header start and end times to be within the loop.
+          </p>
+          <p>
+            In the no loop case, there's nothing to do since no backedges were detected. Note that in the `6/7`-`2/5` and `6/7`-`3/4` combinations, both start times and end times are greater in one pair; this is how we identify crossedges.
+          </p>
+          <p>
+            In the early exit case, `2/7` and `4/5` are nested within `1/8`, and we never reach `exit target` by walking backward from the source of the backedge.
+          </p>
+          <p>
+            In the multi-entry case, we correctly detect that `1/8` is not nested within `2/7`, while `3/6` and `4/5` are: when a node reached via a backward walk doesn't nest within the header, the loop is classified as *irreducible*.
+          </p>
+          <p>
+            In the cuddled loops case, everything nests within `1/8`, and the inner loop consists of `4/5`, `3/6`, and `2/7`, all of which nest within `2/7`. Finally, the shared header case is detected as two nested loops as well: a loop is identified by a unique backedge, not a unique header [^2]. The analysis is weak in that these cases are indistinguishable from normal nested loops.
+          </p>
+          <footer>
+            <ul>
+              <li>
+                [^1]: Hat tip to [Sanjoy](http://playingwithpointers.com) for pointing out the fifth case.
+              </li>
+              <li>
+                [^2]: You might want to merge loops that share a header in a post-pass.
+              </li>
+            </ul>
+          </footer>
+        </article>
+      </main>
+      <nav>
+        <ul>
           <li>
-            [^1]: Hat tip to [Sanjoy](http://playingwithpointers.com) for pointing out the fifth case.
+            <a href="/index">index</a>
           </li>
           <li>
-            [^2]: You might want to merge loops that share a header in a post-pass.
+            <a href="/ac">ac</a>
+          </li>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/topoi">topoi</a>
           </li>
         </ul>
-      </div>
-    </div>
-    <div id="sidebar">
-      <ul>
-        <li>
-          <a href="/index">index</a>
-        </li>
-        <li>
-          <a href="/ac">ac</a>
-        </li>
-        <li>
-          <a href="/ag">ag</a>
-        </li>
-        <li>
-          <a href="/articles">articles</a>
-        </li>
-        <li>
-          <a href="/at">at</a>
-        </li>
-        <li>
-          <a href="/attic">attic</a>
-        </li>
-        <li>
-          <a href="/ct">ct</a>
-        </li>
-        <li>
-          <a href="/gn">gn</a>
-        </li>
-        <li>
-          <a href="/la">la</a>
-        </li>
-        <li>
-          <a href="/ra">ra</a>
-        </li>
-        <li>
-          <a href="/topoi">topoi</a>
-        </li>
-      </ul>
+      </nav>
     </div>
   </body>
 </html>

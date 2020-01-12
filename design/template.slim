@@ -1,12 +1,16 @@
 doctype html
-html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
+html
   head
     title artagnon.com: #{permalink}
-    meta charset="UTF-8"
-    meta name="description" content="Ramkumar Ramachandra's site"
+    meta charset="utf-8"
+    meta name="language" content="english"
     meta name="author" content="Ramkumar Ramachandra"
+    meta name="city" content="Paris"
+    meta name="country" content="France"
     meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website"
+    meta name="HandheldFriendly" content="true"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
+    meta name="robots" content="index,follow"
     link rel="stylesheet" href="/design/all.css" media="all"
     link rel="stylesheet" href="/design/screen.css" media="screen"
     link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 450px)"
@@ -28,69 +32,74 @@ html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""
     script hljs.initHighlightingOnLoad();
   body
     div id="wrapper"
-      div id="main" tabindex="0"
-        h1 #{title}
-        div id="metadata"
-          div id="timestamp"
-            time datetime="#{lastmod.strftime('%F')}"
-              == lastmod.rfc2822
-          br
-          div id="locations"
-            address
-              == locations.join(', ')
-        - paragraphs.each do |paragraph|
-          - if paragraph.is_header?
-            p class="header"
-              == paragraph.contents.join "\n"
-          - if paragraph.is_plain?
-            p
-              == paragraph.contents.join "\n"
-          - elsif paragraph.is_olitems?
-            ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.start}"
-              - for item in paragraph.contents
-                li
-                  == item
-          - elsif paragraph.is_ulitems?
-            ul class="ulitems"
-              - for item in paragraph.contents
-                li
-                  == item
-          - elsif paragraph.is_subheading?
-            h2 id="#{paragraph.bookmark}"
-              == paragraph.contents.join "\n"
-          - elsif paragraph.is_footer?
-            ul id="footer"
-              - for item in paragraph.contents
-                li
-                  == item
-          - elsif paragraph.is_codeblock?
-            pre
-              code
+      main tabindex="0"
+        header
+          h1
+            == title
+          div id="metadata"
+            div id="timestamp"
+              time datetime="#{lastmod.strftime('%F')}"
+                == lastmod.rfc2822
+            br
+            div id="locations"
+              address
+                == locations.join(', ')
+        article
+          - paragraphs.each do |paragraph|
+            - if paragraph.is_header?
+              p class="header"
                 == paragraph.contents.join "\n"
-          - elsif paragraph.is_images?
-              div class="imgrow"
-                - if paragraph.contents.length == 1
-                  img src="#{paragraph.contents[0]}" style="width:100%"
-                - else
-                  div class="imgcol-left"
-                    img src="#{paragraph.contents[0]}" style="width:100%"
-                  div class="imgcol-right"
-                    img src="#{paragraph.contents[1]}" style="width:100%"
-          - elsif paragraph.is_horizrule?
-            hr
-          - elsif paragraph.is_mathjax?
-            p class="mathjax"
-              == paragraph.contents.join "\n"
-        - if indexfill && indexfill.any?
-          ul id="indexfill"
-            - indexfill.each do |page|
-              li
-                a href="/#{page.permalink}"
-                  = page.title
-    div id="sidebar"
-      ul
+            - if paragraph.is_plain?
+              p
+                == paragraph.contents.join "\n"
+            - elsif paragraph.is_olitems?
+              ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.start}"
+                - for item in paragraph.contents
+                  li
+                    == item
+            - elsif paragraph.is_ulitems?
+              ul class="ulitems"
+                - for item in paragraph.contents
+                  li
+                    == item
+            - elsif paragraph.is_subheading?
+              h2 id="#{paragraph.bookmark}"
+                == paragraph.contents.join "\n"
+            - elsif paragraph.is_footer?
+              footer
+                ul
+                  - for item in paragraph.contents
+                    li
+                      == item
+            - elsif paragraph.is_codeblock?
+              pre
+                code
+                  == paragraph.contents.join "\n"
+            - elsif paragraph.is_images?
+                div class="imgrow"
+                  - if paragraph.contents.length == 1
+                    figure
+                      img src="#{paragraph.contents[0]}" style="width:100%"
+                  - else
+                    figure class="left"
+                      img src="#{paragraph.contents[0]}" style="width:100%"
+                    figure class="right"
+                      img src="#{paragraph.contents[1]}" style="width:100%"
+            - elsif paragraph.is_horizrule?
+              hr
+            - elsif paragraph.is_mathjax?
+              p class="mathjax"
+                == paragraph.contents.join "\n"
+          - if indexfill && indexfill.any?
+            ul id="indexfill"
+              - indexfill.each do |page|
+                li
+                  a href="/#{page.permalink}"
+                    == page.title
+      nav
         - if topics
-          - topics.each do |topic|
-            li
-              a href="/#{topic}"
-                = topic
+          ul
+            - topics.each do |topic|
+              li
+                a href="/#{topic}"
+                  == topic

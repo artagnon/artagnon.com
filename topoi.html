@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html>
   <head>
     <title>artagnon.com: topoi</title>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="city" content="Paris" />
+    <meta name="country" content="France" />
     <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="HandheldFriendly" content="true" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/design/all.css" media="all" />
     <link rel="stylesheet" href="/design/screen.css" media="screen" />
     <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 450px)" />
@@ -33,205 +37,209 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="main" tabindex="0">
-        <h1>
-          Notes from Goldblatt&#39;s Topoi book
-        </h1>
-        <div id="metadata">
-          <div id="timestamp">
-            <time datetime="2020-01-11">Sat, 11 Jan 2020 06:03:13 +0100</time>
+      <main tabindex="0">
+        <header>
+          <h1>
+            Notes from Goldblatt's Topoi book
+          </h1>
+          <div id="metadata">
+            <div id="timestamp">
+              <time datetime="2020-01-11">Sat, 11 Jan 2020 06:03:13 +0100</time>
+            </div>
+            <br />
+            <div id="locations">
+              <address>Paris</address>
+            </div>
           </div>
-          <br />
-          <div id="locations">
-            <address>Paris</address>
-          </div>
-        </div>
-        <p>
-          A topos is a categorical interpretation of boolean logic. We will start with some prerequisite set theory and category theory, build up the intuition for subobject classifiers, give an interpretation of set theory, and then move to formalizing boolean algebra using sheaves. The study of topoi is the study of cartesian-closed categories with subobject classifiers, and a category of sheaves over $\mathbb{B}$ is a complete boolean algebra.
-        </p>
-        <h2 id="some-set-theoretic-foundations">
-          Some set theoretic foundations
-        </h2>
-        <p>
-          The study of set theory starts with the study of `Russell's paradox`, and axiomatization into `Zermelo-Frankel set theory` with no paradoxes. To understand Russell's paradox, we first introduce the `principle of comprehension`: $\{x : \varphi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\varphi(x)$. Now, we construct the `Russell set` $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, which leads to the contradictory conclusion that $R \in R$.
-        </p>
-        <p>
-          In ZF set theory, we say that a set can only be built up from another set using logical connectives like $\cup$, $\cap$, and $-$. The axioms can only be applied to a set and the result is always a set. The comprehension principle is replaced by a `separation principle`: Given a set $A$, and a predicate $\varphi(x)$, there exists a set whose members are precisely the members of $A$ that satisfy the predicate. $R$ isn't admitted as a set in this theory, thus resolving the contradiction.
-        </p>
-        <p>
-          In category theory, the central concept of membership of an element in a set is replaced by the concept of a morphism between objects whose internal structures (elements) are opaque.
-        </p>
-        <h2 id="functions-to-elementary-category-theory">
-          Functions to elementary category theory
-        </h2>
-        <p>
-          We would first like to ask how functions are formalized in terms of sets. A function $f$ takes objects of $\text{dom } f$ to objects of $\text{codom } f$, represented as the pair $f = \langle x, y\rangle$, such that $\langle x, y\rangle = \langle z, y\rangle \implies x = z$. This formalism is weak because it doesn't include the domain, codomain, or the relation explicitly. To remedy this, we define the $f = \langle A, B, R\rangle$, with $A$ as the domain, $B$ the codomain, and $R \subseteq A \times B = \{\langle x, y\rangle : x \in A, y \in B\}$ the relation. Note that functions are composable yielding a unique $f \circ g = f(g(x))$ satisfying the associative law $f \circ (g \circ h) = (f \circ g) \circ h$.
-        </p>
-        <p>
-          We can further abstract functions to arrows between objects in a category. The notion of "set membership" is an "internal notion" between the various members of the object, and needs to be "externalized". Let's start with some category theory.
-        </p>
-        <p>
-          A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions:
-        </p>
-        <p class="mathjax">
-          $$
-            \begin{xy}
-            \xymatrix{
-          
-            a\ar[r]^{f}\ar[rd]_>>>>>{h \circ g}\ar[d]_{h \circ g \circ f = h \circ (g \circ f)} & b\ar[d]^{g}\ar[dl]^<<<<<{g \circ f} \\
-            c & d\ar[l]^{h}
-            }
-            \end{xy}
-          
-          $$
-        </p>
-        <p>
-          A `pre-order` is defined as a category in which there is at most one arrow, $\langle p, q\rangle$, between any two objects $p$ and $q$. In this kind of category, called there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
-        </p>
-        <ol class="olitems" type="none" start="1">
+        </header>
+        <article>
+          <p>
+            A topos is a categorical interpretation of boolean logic. We will start with some prerequisite set theory and category theory, build up the intuition for subobject classifiers, give an interpretation of set theory, and then move to formalizing boolean algebra using sheaves. The study of topoi is the study of cartesian-closed categories with subobject classifiers, and a category of sheaves over $\mathbb{B}$ is a complete boolean algebra.
+          </p>
+          <h2 id="some-set-theoretic-foundations">
+            Some set theoretic foundations
+          </h2>
+          <p>
+            The study of set theory starts with the study of `Russell's paradox`, and axiomatization into `Zermelo-Frankel set theory` with no paradoxes. To understand Russell's paradox, we first introduce the `principle of comprehension`: $\{x : \varphi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\varphi(x)$. Now, we construct the `Russell set` $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, which leads to the contradictory conclusion that $R \in R$.
+          </p>
+          <p>
+            In ZF set theory, we say that a set can only be built up from another set using logical connectives like $\cup$, $\cap$, and $-$. The axioms can only be applied to a set and the result is always a set. The comprehension principle is replaced by a `separation principle`: Given a set $A$, and a predicate $\varphi(x)$, there exists a set whose members are precisely the members of $A$ that satisfy the predicate. $R$ isn't admitted as a set in this theory, thus resolving the contradiction.
+          </p>
+          <p>
+            In category theory, the central concept of membership of an element in a set is replaced by the concept of a morphism between objects whose internal structures (elements) are opaque.
+          </p>
+          <h2 id="functions-to-elementary-category-theory">
+            Functions to elementary category theory
+          </h2>
+          <p>
+            We would first like to ask how functions are formalized in terms of sets. A function $f$ takes objects of $\text{dom } f$ to objects of $\text{codom } f$, represented as the pair $f = \langle x, y\rangle$, such that $\langle x, y\rangle = \langle z, y\rangle \implies x = z$. This formalism is weak because it doesn't include the domain, codomain, or the relation explicitly. To remedy this, we define the $f = \langle A, B, R\rangle$, with $A$ as the domain, $B$ the codomain, and $R \subseteq A \times B = \{\langle x, y\rangle : x \in A, y \in B\}$ the relation. Note that functions are composable yielding a unique $f \circ g = f(g(x))$ satisfying the associative law $f \circ (g \circ h) = (f \circ g) \circ h$.
+          </p>
+          <p>
+            We can further abstract functions to arrows between objects in a category. The notion of "set membership" is an "internal notion" between the various members of the object, and needs to be "externalized". Let's start with some category theory.
+          </p>
+          <p>
+            A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              a\ar[r]^{f}\ar[rd]_>>>>>{h \circ g}\ar[d]_{h \circ g \circ f = h \circ (g \circ f)} & b\ar[d]^{g}\ar[dl]^<<<<<{g \circ f} \\
+              c & d\ar[l]^{h}
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            A `pre-order` is defined as a category in which there is at most one arrow, $\langle p, q\rangle$, between any two objects $p$ and $q$. In this kind of category, called there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
+          </p>
+          <ol class="olitems" type="none" start="1">
+            <li>
+              Reflexivity: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.
+            </li>
+            <li>
+              Transitivity: whenever $pRq$ and $qRs$, we have $pRs$.
+            </li>
+          </ol>
+          <p>
+            The typical example is to think of two non-comparable subsets of a set. With identity arrows omitted, this looks like:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              \bullet\ar@/^/[rd] & \\
+              & \bullet\ar@/^/[lu] \\
+              \bullet\ar[ru] & \\
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            With one additional property described below, a `pre-order` becomes a `partial ordering`:
+          </p>
+          <ol class="olitems" type="none" start="3">
+            <li>
+              Anti-symmetry: whenever $pRq$ and $qRp$, we have $p = q$.
+            </li>
+          </ol>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              \bullet\ar[rd] & \\
+              & \bullet \\
+              \bullet\ar[ru] & \\
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsubseteq \rangle$, is called a `poset`. The specific category we have used to encode $\mathbb{N}$ above is called `Finord`, the category of finite ordinals. In `Finord`, these three statements are equivalent:
+          </p>
+          <ol class="olitems" type="a" start="1">
+            <li>
+              $m \lt n$
+            </li>
+            <li>
+              $m \subset n$
+            </li>
+            <li>
+              $m \in n$
+            </li>
+          </ol>
+          <p>
+            With one additional property, a `partial ordering` becomes a `total ordering`:
+          </p>
+          <ol class="olitems" type="none" start="4">
+            <li>
+              Connexity: For all $p$, $q \in \mathcal{C}$, `pRq` or `qRp`.
+            </li>
+          </ol>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              \bullet\ar@/^/[r] & \bullet \ar@/^/[r] & \bullet
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            Using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              0\ar[r] & 1\ar[r] & 2\ar[r] & \ldots
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            This is a total order.
+          </p>
+          <p>
+            If $a, b \in \mathcal{C}$, then we use $\mathcal{C}(a, b)$ to denote the set of arrows from $a$ to $b$. A `subcategory` $\mathcal{C}$ of $\mathcal{D}$, denoted $\mathcal{C} \subseteq \mathcal{D}$, is such that:
+          </p>
+          <ol class="olitems" type="a" start="1">
+            <li>
+              All objects of $\mathcal{C}$ are objects of $\mathcal{D}$.
+            </li>
+            <li>
+              $\mathcal{C}(a ,b) \subseteq \mathcal{D}(a, b)$; all arrows of $\mathcal{C}$ are present in $\mathcal{D}$.
+            </li>
+          </ol>
+        </article>
+      </main>
+      <nav>
+        <ul>
           <li>
-            Reflexivity: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.
+            <a href="/index">index</a>
           </li>
           <li>
-            Transitivity: whenever $pRq$ and $qRs$, we have $pRs$.
-          </li>
-        </ol>
-        <p>
-          The typical example is to think of two non-comparable subsets of a set. With identity arrows omitted, this looks like:
-        </p>
-        <p class="mathjax">
-          $$
-            \begin{xy}
-            \xymatrix{
-          
-            \bullet\ar@/^/[rd] & \\
-            & \bullet\ar@/^/[lu] \\
-            \bullet\ar[ru] & \\
-            }
-            \end{xy}
-          
-          $$
-        </p>
-        <p>
-          With one additional property described below, a `pre-order` becomes a `partial ordering`:
-        </p>
-        <ol class="olitems" type="none" start="3">
-          <li>
-            Anti-symmetry: whenever $pRq$ and $qRp$, we have $p = q$.
-          </li>
-        </ol>
-        <p class="mathjax">
-          $$
-            \begin{xy}
-            \xymatrix{
-          
-            \bullet\ar[rd] & \\
-            & \bullet \\
-            \bullet\ar[ru] & \\
-            }
-            \end{xy}
-          
-          $$
-        </p>
-        <p>
-          A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsubseteq \rangle$, is called a `poset`. The specific category we have used to encode $\mathbb{N}$ above is called `Finord`, the category of finite ordinals. In `Finord`, these three statements are equivalent:
-        </p>
-        <ol class="olitems" type="a" start="1">
-          <li>
-            $m \lt n$
+            <a href="/ac">ac</a>
           </li>
           <li>
-            $m \subset n$
+            <a href="/ag">ag</a>
           </li>
           <li>
-            $m \in n$
-          </li>
-        </ol>
-        <p>
-          With one additional property, a `partial ordering` becomes a `total ordering`:
-        </p>
-        <ol class="olitems" type="none" start="4">
-          <li>
-            Connexity: For all $p$, $q \in \mathcal{C}$, `pRq` or `qRp`.
-          </li>
-        </ol>
-        <p class="mathjax">
-          $$
-            \begin{xy}
-            \xymatrix{
-          
-            \bullet\ar@/^/[r] & \bullet \ar@/^/[r] & \bullet
-            }
-            \end{xy}
-          
-          $$
-        </p>
-        <p>
-          Using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
-        </p>
-        <p class="mathjax">
-          $$
-            \begin{xy}
-            \xymatrix{
-          
-            0\ar[r] & 1\ar[r] & 2\ar[r] & \ldots
-            }
-            \end{xy}
-          
-          $$
-        </p>
-        <p>
-          This is a total order.
-        </p>
-        <p>
-          If $a, b \in \mathcal{C}$, then we use $\mathcal{C}(a, b)$ to denote the set of arrows from $a$ to $b$. A `subcategory` $\mathcal{C}$ of $\mathcal{D}$, denoted $\mathcal{C} \subseteq \mathcal{D}$, is such that:
-        </p>
-        <ol class="olitems" type="a" start="1">
-          <li>
-            All objects of $\mathcal{C}$ are objects of $\mathcal{D}$.
+            <a href="/articles">articles</a>
           </li>
           <li>
-            $\mathcal{C}(a ,b) \subseteq \mathcal{D}(a, b)$; all arrows of $\mathcal{C}$ are present in $\mathcal{D}$.
+            <a href="/at">at</a>
           </li>
-        </ol>
-      </div>
-    </div>
-    <div id="sidebar">
-      <ul>
-        <li>
-          <a href="/index">index</a>
-        </li>
-        <li>
-          <a href="/ac">ac</a>
-        </li>
-        <li>
-          <a href="/ag">ag</a>
-        </li>
-        <li>
-          <a href="/articles">articles</a>
-        </li>
-        <li>
-          <a href="/at">at</a>
-        </li>
-        <li>
-          <a href="/attic">attic</a>
-        </li>
-        <li>
-          <a href="/ct">ct</a>
-        </li>
-        <li>
-          <a href="/gn">gn</a>
-        </li>
-        <li>
-          <a href="/la">la</a>
-        </li>
-        <li>
-          <a href="/ra">ra</a>
-        </li>
-        <li>
-          <a href="/topoi">topoi</a>
-        </li>
-      </ul>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/topoi">topoi</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </body>
 </html>

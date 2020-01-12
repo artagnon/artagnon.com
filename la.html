@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html>
   <head>
     <title>artagnon.com: la</title>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="city" content="Paris" />
+    <meta name="country" content="France" />
     <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="HandheldFriendly" content="true" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/design/all.css" media="all" />
     <link rel="stylesheet" href="/design/screen.css" media="screen" />
     <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 450px)" />
@@ -33,99 +37,103 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="main" tabindex="0">
-        <h1>
-          Linear Algebra
-        </h1>
-        <div id="metadata">
-          <div id="timestamp">
-            <time datetime="2019-12-09">Mon, 09 Dec 2019 11:44:19 +0100</time>
+      <main tabindex="0">
+        <header>
+          <h1>
+            Linear Algebra
+          </h1>
+          <div id="metadata">
+            <div id="timestamp">
+              <time datetime="2019-12-09">Mon, 09 Dec 2019 11:44:19 +0100</time>
+            </div>
+            <br />
+            <div id="locations">
+              <address>Paris, Chennai</address>
+            </div>
           </div>
-          <br />
-          <div id="locations">
-            <address>Paris, Chennai</address>
-          </div>
-        </div>
-        <p>
-          Vector spaces are defined over a field $\mathcal{F}$, while matrix entries can be chosen from elements of commutative ring $\mathcal{K}$.
-        </p>
-        <h2 id="cayley-hamilton-theorem">
-          Cayley-Hamilton theorem
-        </h2>
-        <p class="mathjax">
-          $$A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$$
-        </p>
-        <p>
-          $\lambda = 1, 3$ are the eigenvalues, which can be determined by solving $det(A - \lambda I) = 0$.
-        </p>
-        <p>
-          The Cayley-Hamilton theorem states that $(A - \lambda_1 I) \ldots (A - \lambda_n I) = 0$; hence the matrix can be factorized as $\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{bmatrix}$ and $\begin{bmatrix} -1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}$
-        </p>
-        <p>
-          Eigenvector $\mathbb{v}$ can be obtained by solving $A \mathbb{v} = \lambda \mathbb{v}$.
-        </p>
-        <h2 id="determinant">
-          Determinant
-        </h2>
-        <p>
-          The determinant function $D$ assigns to each $n \times n$ matrix, a scalar. It is n-linear, alternating, and $D(I) = 1$.
-        </p>
-        <p>
-          n-linear means: that for each $i$, $D$ is linear over the $i^{th}$ row, keeping all other rows fixed
-          $$D(\alpha_i + c\alpha_{i'}) = D(\alpha_i) + cD(\alpha_{i'})$$
-        </p>
-        <p>
-          Alternating means:
-        </p>
-        <ol class="olitems" type="i" start="1">
+        </header>
+        <article>
+          <p>
+            Vector spaces are defined over a field $\mathcal{F}$, while matrix entries can be chosen from elements of commutative ring $\mathcal{K}$.
+          </p>
+          <h2 id="cayley-hamilton-theorem">
+            Cayley-Hamilton theorem
+          </h2>
+          <p class="mathjax">
+            $$A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$$
+          </p>
+          <p>
+            $\lambda = 1, 3$ are the eigenvalues, which can be determined by solving $det(A - \lambda I) = 0$.
+          </p>
+          <p>
+            The Cayley-Hamilton theorem states that $(A - \lambda_1 I) \ldots (A - \lambda_n I) = 0$; hence the matrix can be factorized as $\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{bmatrix}$ and $\begin{bmatrix} -1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}$
+          </p>
+          <p>
+            Eigenvector $\mathbb{v}$ can be obtained by solving $A \mathbb{v} = \lambda \mathbb{v}$.
+          </p>
+          <h2 id="determinant">
+            Determinant
+          </h2>
+          <p>
+            The determinant function $D$ assigns to each $n \times n$ matrix, a scalar. It is n-linear, alternating, and $D(I) = 1$.
+          </p>
+          <p>
+            n-linear means: that for each $i$, $D$ is linear over the $i^{th}$ row, keeping all other rows fixed
+            $$D(\alpha_i + c\alpha_{i'}) = D(\alpha_i) + cD(\alpha_{i'})$$
+          </p>
+          <p>
+            Alternating means:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              If two rows in $A$ are equal, $D(A) = 0$
+            </li>
+            <li>
+              If $A'$ is the matrix we get by interchanging two rows of $A$, then $D(A') = -D(A)$
+            </li>
+          </ol>
+          <p>
+            In [category-theoretic terms](/ct/1#natural-transformation), the determinant is a natural transformation $\tau : \textbf{CRng} \overset{\bullet}{\rightarrow} \textbf{Grp}$.
+          </p>
+        </article>
+      </main>
+      <nav>
+        <ul>
           <li>
-            If two rows in $A$ are equal, $D(A) = 0$
+            <a href="/index">index</a>
           </li>
           <li>
-            If $A'$ is the matrix we get by interchanging two rows of $A$, then $D(A') = -D(A)$
+            <a href="/ac">ac</a>
           </li>
-        </ol>
-        <p>
-          In [category-theoretic terms](/ct/1#natural-transformation), the determinant is a natural transformation $\tau : \textbf{CRng} \overset{\bullet}{\rightarrow} \textbf{Grp}$.
-        </p>
-      </div>
-    </div>
-    <div id="sidebar">
-      <ul>
-        <li>
-          <a href="/index">index</a>
-        </li>
-        <li>
-          <a href="/ac">ac</a>
-        </li>
-        <li>
-          <a href="/ag">ag</a>
-        </li>
-        <li>
-          <a href="/articles">articles</a>
-        </li>
-        <li>
-          <a href="/at">at</a>
-        </li>
-        <li>
-          <a href="/attic">attic</a>
-        </li>
-        <li>
-          <a href="/ct">ct</a>
-        </li>
-        <li>
-          <a href="/gn">gn</a>
-        </li>
-        <li>
-          <a href="/la">la</a>
-        </li>
-        <li>
-          <a href="/ra">ra</a>
-        </li>
-        <li>
-          <a href="/topoi">topoi</a>
-        </li>
-      </ul>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/topoi">topoi</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </body>
 </html>

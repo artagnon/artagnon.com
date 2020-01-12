@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html>
   <head>
     <title>artagnon.com: attic/incrd</title>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="city" content="Paris" />
+    <meta name="country" content="France" />
     <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="HandheldFriendly" content="true" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/design/all.css" media="all" />
     <link rel="stylesheet" href="/design/screen.css" media="screen" />
     <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 450px)" />
@@ -33,266 +37,272 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="main" tabindex="0">
-        <h1>
-          Incrementally updating the Dominator
-        </h1>
-        <div id="metadata">
-          <div id="timestamp">
-            <time datetime="2019-12-14">Sat, 14 Dec 2019 17:36:28 +0100</time>
+      <main tabindex="0">
+        <header>
+          <h1>
+            Incrementally updating the Dominator
+          </h1>
+          <div id="metadata">
+            <div id="timestamp">
+              <time datetime="2019-12-14">Sat, 14 Dec 2019 17:36:28 +0100</time>
+            </div>
+            <br />
+            <div id="locations">
+              <address>Paris, Chennai, Boston</address>
+            </div>
           </div>
-          <br />
-          <div id="locations">
-            <address>Paris, Chennai, Boston</address>
-          </div>
-        </div>
-        <h2 id="preface">
-          Preface
-        </h2>
-        <p>
-          An input program function is represented using a Control Flow Graph (CFG). It's composed of different Statements, which decompose into Expressions, but we will not concern ourselves with Expressions. The main control flow constructs are SplitStatement and MergeStatement. The SplitStatement has outgoing edges to N (N = 2 in the case of IfStatement) other Statements, and the MergeStatement has incoming edges from M other Statements.
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & & \text{Split}\ar[dl]\ar[dll]\ar[dlll]\ar[d]\ar[dr] & & & \\
-          \text{Branch A}\ar[dr] & \text{Branch B}\ar[d] & \text{Branch C}\ar[dl] & \text{Branch D}\ar[d] & \text{Branch E}\ar[dl] \\
-          & \text{Merge A} & & \text{Merge B} &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p>
-          The Dominator is a data structure that holds "domination relationship" between any two Statements in the CFG. "A dominates B" means: all paths starting from the start of the CFG to end of the CFG, that flow through A, must necessarily flow through B. It's represented using a tree of things that progressively dominate their children. We want to incrementally update this structure.
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & \text{start}\ar[d] & \\
-          & \text{A (dominates B, C, D)}\ar[dl]\ar[dr] & \\
-          \text{B (dominated by A)}\ar[dr] & & \text{C (dominated by A)}\ar[dl] \\
-          & \text{D (dominated by A)}\ar[d] & \\
-          & \text{end} &
-          }
-          \end{xy}
-          $$
-        </p>
-        <h2 id="motivation">
-          Motivation
-        </h2>
-        <p>
-          Any code motion transform will invalidate the Dominator at each step, and running Cooper or Lengauer-Tarjan on each invalidation is expensive even if the algorithm is near-linear. The number of queries is several times the number of reconstructions; we cannot trade off query-efficiency for ease-of-update.[^1]
-        </p>
-        <h2 id="background">
-          Background
-        </h2>
-        <p>
-          The main supporting data structure we will use for this feat is the Program Structure Tree, which is incrementally updated. The PST is a tree representation of structured control flow: all Control Flow Graph nodes belong to a Region in a nesting of single-entry single-exit Regions. Any control-flow that cannot be classified is boxed in an UnstructuredRegion, which we will not handle.
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & \text{ChainRegion}\ar[d]\ar[dr] & \\
-          & \text{IfRegion}\ar[dl]\ar[d] & \text{ForLoopRegion}\ar[d] \\
-          \text{BBRegion (true branch)} & \text{BBRegion (false branch)} & \text{BBRegion(body of for)}
-          }
-          \end{xy}
-          $$
-        </p>
-        <p>
-          This is a Region:
-        </p>
-        <pre><code>for (i : Vec)
+        </header>
+        <article>
+          <h2 id="preface">
+            Preface
+          </h2>
+          <p>
+            An input program function is represented using a Control Flow Graph (CFG). It's composed of different Statements, which decompose into Expressions, but we will not concern ourselves with Expressions. The main control flow constructs are SplitStatement and MergeStatement. The SplitStatement has outgoing edges to N (N = 2 in the case of IfStatement) other Statements, and the MergeStatement has incoming edges from M other Statements.
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & & \text{Split}\ar[dl]\ar[dll]\ar[dlll]\ar[d]\ar[dr] & & & \\
+            \text{Branch A}\ar[dr] & \text{Branch B}\ar[d] & \text{Branch C}\ar[dl] & \text{Branch D}\ar[d] & \text{Branch E}\ar[dl] \\
+            & \text{Merge A} & & \text{Merge B} &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            The Dominator is a data structure that holds "domination relationship" between any two Statements in the CFG. "A dominates B" means: all paths starting from the start of the CFG to end of the CFG, that flow through A, must necessarily flow through B. It's represented using a tree of things that progressively dominate their children. We want to incrementally update this structure.
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & \text{start}\ar[d] & \\
+            & \text{A (dominates B, C, D)}\ar[dl]\ar[dr] & \\
+            \text{B (dominated by A)}\ar[dr] & & \text{C (dominated by A)}\ar[dl] \\
+            & \text{D (dominated by A)}\ar[d] & \\
+            & \text{end} &
+            }
+            \end{xy}
+            $$
+          </p>
+          <h2 id="motivation">
+            Motivation
+          </h2>
+          <p>
+            Any code motion transform will invalidate the Dominator at each step, and running Cooper or Lengauer-Tarjan on each invalidation is expensive even if the algorithm is near-linear. The number of queries is several times the number of reconstructions; we cannot trade off query-efficiency for ease-of-update.[^1]
+          </p>
+          <h2 id="background">
+            Background
+          </h2>
+          <p>
+            The main supporting data structure we will use for this feat is the Program Structure Tree, which is incrementally updated. The PST is a tree representation of structured control flow: all Control Flow Graph nodes belong to a Region in a nesting of single-entry single-exit Regions. Any control-flow that cannot be classified is boxed in an UnstructuredRegion, which we will not handle.
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & \text{ChainRegion}\ar[d]\ar[dr] & \\
+            & \text{IfRegion}\ar[dl]\ar[d] & \text{ForLoopRegion}\ar[d] \\
+            \text{BBRegion (true branch)} & \text{BBRegion (false branch)} & \text{BBRegion(body of for)}
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            This is a Region:
+          </p>
+          <pre><code>for (i : Vec)
   A = i;</code></pre>
-        <p>
-          This is a ChainRegion comprising of an IfRegion and a BasicBlockRegion:
-        </p>
-        <pre><code>if (foo)
+          <p>
+            This is a ChainRegion comprising of an IfRegion and a BasicBlockRegion:
+          </p>
+          <pre><code>if (foo)
   A = 15;
 else
   A = 21;
 quux();</code></pre>
-        <p>
-          This is an UnstructuredRegion, but it is very much SESE:
-        </p>
-        <pre><code>jump:
+          <p>
+            This is an UnstructuredRegion, but it is very much SESE:
+          </p>
+          <pre><code>jump:
   A = 18;
 if (A < 17)
   A = A + 3;
   goto jump;</code></pre>
-        <p>
-          Updating a vanilla Dominator tree is relatively easy: simply add a child to the correct node. The problem at hand is that we have an O(1)-query Dominator object that we want to keep up to date as we make edits to the IR. How is it O(1)-query? Every node in the tree is assigned DFS start and end times: so if one interval nests within another, the corresponding node is dominated by the
-          other node.
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & \text{IfStmt(1/8)}\ar[dl]\ar[d]\ar[dr] & \\
-          \text{TrueStmt(2/3)} & \text{MergeStmt(4/5)} & \text{FalseStmt(6/7)}
-          }
-          \end{xy}
-          $$
-        </p>
-        <p>
-          Supporting arbitarary IR edits is both very hard and not a useful goal: we can reduce all our edits to two items, namely inserting a SESE Statement, and inserting a SESE PST Region. Removing a Statment or Region is not interesting, because it just leaves gaps in the numbering, and doesn't affect any existing Dominance relationships if we make no changes after removal. Modifying a Region can be easily expressed as the removal of the old Region/insertion of the new Region.
-        </p>
-        <p>
-          The PST gives us an excellent mechanism to classify the blob we're injecting into the CFG. The interesting Regions begin with a SplitStatement, and end with a MergeStatement, or begin with a MergeStatement and end with a SpiltStatement: IfRegions, SwitchRegions, and LoopRegions. This is the key property we will use to do the inremental update.
-        </p>
-        <h2 id="possible-approaches">
-          Possible approaches
-        </h2>
-        <p>
-          First, it must be noted that by using tight consecutive DFS start and end timers, we will have no choice but to renumber the descendant tree when something is inserted. So, we leave gaps of 64 between the numbering, to stuff our new SESE Statement or Region into. It may be argued that using fractions is profitable, but we found that space to fit intervals wasn't the bottlneck: the hard problem is determining dominance. When attempting to stuff a new Region into an existing gap, we can imagine centering around the midpoint of the gap, and leaving space for more Regions above and below. Bisecting each gap will exhaust the gaps quickly, and we decided to optimize for insertion only from top to bottom.
-        </p>
-        <p>
-          One approach we could take is to assume that the Region-to-be-inserted has been removed from a different part of the tree, and has some numbers already that we simply need to adjust them (those numbers will be spaced with gaps of 64, and we need to compress them). This approach wouldn't be able to handle newly created Regions.
-        </p>
-        <h2 id="our-algorithm">
-          Our algorithm
-        </h2>
-        <p>
-          The key insight in our algorithm is that we need to match a Split Statement with its Merge Statement(s), and need to paritition our DFS start/end time intervals into two categories: intervals to trust (ie. ones that exist, and should not be modified), and intervals to assign. The DFS start time corresponds to DFS first-visit sequence, and end time corresponds to DFS final-visit sequence. `interval1.start_time &gt; interval2.start_time` and `interval1.end_time &lt; interval2.end_time` means that interval1 is nested within interval2, or that the node corresponding to interval2 dominates the node corresponding to interval1.
-        </p>
-        <pre><code>void DFS(Node *v) {
+          <p>
+            Updating a vanilla Dominator tree is relatively easy: simply add a child to the correct node. The problem at hand is that we have an O(1)-query Dominator object that we want to keep up to date as we make edits to the IR. How is it O(1)-query? Every node in the tree is assigned DFS start and end times: so if one interval nests within another, the corresponding node is dominated by the
+            other node.
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & \text{IfStmt(1/8)}\ar[dl]\ar[d]\ar[dr] & \\
+            \text{TrueStmt(2/3)} & \text{MergeStmt(4/5)} & \text{FalseStmt(6/7)}
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Supporting arbitarary IR edits is both very hard and not a useful goal: we can reduce all our edits to two items, namely inserting a SESE Statement, and inserting a SESE PST Region. Removing a Statment or Region is not interesting, because it just leaves gaps in the numbering, and doesn't affect any existing Dominance relationships if we make no changes after removal. Modifying a Region can be easily expressed as the removal of the old Region/insertion of the new Region.
+          </p>
+          <p>
+            The PST gives us an excellent mechanism to classify the blob we're injecting into the CFG. The interesting Regions begin with a SplitStatement, and end with a MergeStatement, or begin with a MergeStatement and end with a SpiltStatement: IfRegions, SwitchRegions, and LoopRegions. This is the key property we will use to do the inremental update.
+          </p>
+          <h2 id="possible-approaches">
+            Possible approaches
+          </h2>
+          <p>
+            First, it must be noted that by using tight consecutive DFS start and end timers, we will have no choice but to renumber the descendant tree when something is inserted. So, we leave gaps of 64 between the numbering, to stuff our new SESE Statement or Region into. It may be argued that using fractions is profitable, but we found that space to fit intervals wasn't the bottlneck: the hard problem is determining dominance. When attempting to stuff a new Region into an existing gap, we can imagine centering around the midpoint of the gap, and leaving space for more Regions above and below. Bisecting each gap will exhaust the gaps quickly, and we decided to optimize for insertion only from top to bottom.
+          </p>
+          <p>
+            One approach we could take is to assume that the Region-to-be-inserted has been removed from a different part of the tree, and has some numbers already that we simply need to adjust them (those numbers will be spaced with gaps of 64, and we need to compress them). This approach wouldn't be able to handle newly created Regions.
+          </p>
+          <h2 id="our-algorithm">
+            Our algorithm
+          </h2>
+          <p>
+            The key insight in our algorithm is that we need to match a Split Statement with its Merge Statement(s), and need to paritition our DFS start/end time intervals into two categories: intervals to trust (ie. ones that exist, and should not be modified), and intervals to assign. The DFS start time corresponds to DFS first-visit sequence, and end time corresponds to DFS final-visit sequence. `interval1.start_time &gt; interval2.start_time` and `interval1.end_time &lt; interval2.end_time` means that interval1 is nested within interval2, or that the node corresponding to interval2 dominates the node corresponding to interval1.
+          </p>
+          <pre><code>void DFS(Node *v) {
   assign_start_time(v); // increment a clock as you assign
   for (auto u : v->outEdges()) {
     if (start_time_not_assigned(v)) DFS(v);
   }
   assign_end_time(v); // increment a clock as you assign
 }</code></pre>
-        <p>
-          The reason we need to match a Split to a Merge is that there are two cases:
-        </p>
-        <ol class="olitems" type="none" start="1">
-          <li>
-            The Merge dominates the Split, in which case, the Merge dominates everything lying on the outEdges of the Split leading to the Merge.
-          </li>
-          <li>
-            The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
-          </li>
-        </ol>
-        <p>
-          The intervals of the each of the outEdges ("branches") must stagger with each other so there's no false dominance relationship between them. Two intervals "staggering" means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & \text{split}\ar[dl]\ar[dr] & \\
-          \text{branch A}\ar[dr] & & \text{branch B}\ar[dl] \\
-          & \text{merge} &
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & \text{merge}\ar[d] & \\
-          & \text{body A}\ar[d] & \\
-          & \text{split}\ar[dl]\ar[dr] & \\
-          \text{outsideRegion} & & \text{body B}\ar[uuul]_{\text{backedge}}
-          }
-          \end{xy}
-          $$
-        </p>
-        <p class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & \text{MergeStmt(1/12)}\ar[d] & \\
-          & \text{StmtA(2/11)}\ar[d] & \\
-          & \text{SplitStmt(3/10)}\ar[dl]\ar[dr] & \\
-          \text{StmtB(4/7)} & & \text{outsideRegion(8/9)}
-          }
-          \end{xy}
-          $$
-        </p>
-        <p>
-          Our API looks like:
-        </p>
-        <pre><code>void assignHeads(std::vector<Statement*> branchHeads,
+          <p>
+            The reason we need to match a Split to a Merge is that there are two cases:
+          </p>
+          <ol class="olitems" type="none" start="1">
+            <li>
+              The Merge dominates the Split, in which case, the Merge dominates everything lying on the outEdges of the Split leading to the Merge.
+            </li>
+            <li>
+              The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
+            </li>
+          </ol>
+          <p>
+            The intervals of the each of the outEdges ("branches") must stagger with each other so there's no false dominance relationship between them. Two intervals "staggering" means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & \text{split}\ar[dl]\ar[dr] & \\
+            \text{branch A}\ar[dr] & & \text{branch B}\ar[dl] \\
+            & \text{merge} &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & \text{merge}\ar[d] & \\
+            & \text{body A}\ar[d] & \\
+            & \text{split}\ar[dl]\ar[dr] & \\
+            \text{outsideRegion} & & \text{body B}\ar[uuul]_{\text{backedge}}
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & \text{MergeStmt(1/12)}\ar[d] & \\
+            & \text{StmtA(2/11)}\ar[d] & \\
+            & \text{SplitStmt(3/10)}\ar[dl]\ar[dr] & \\
+            \text{StmtB(4/7)} & & \text{outsideRegion(8/9)}
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Our API looks like:
+          </p>
+          <pre><code>void assignHeads(std::vector<Statement*> branchHeads,
                  std::vector<Statement*> headsToStaggerWith,
                  Statement* nestWithin, Statement* toEnclose);</code></pre>
-        <p>
-          First, we assign intervals to the split and merge Statements in the Region, by looking at their predecessor and succeesor. The predecessor is something we need to nest within. Since we decided that we'll only optimize for the case of top-to-bottom insertion, we can simply add one to the start time, and subtract one from the end time to get the necessary start and end times for the Region entry. For the Region exit, it's a little more tricky: we need to leave gaps on either side, because there may be nodes along the inEdge(s) as well as nodes along the outEdge(s). For simplicity, let's simply assign an interval halfway between the Region entry and successor intervals.
-        </p>
-        <p>
-          Then, we assign intervals to be `branchHeads` (ie. successors of the SplitStatement whose intervals we need to assign), by staggering with the `headsToStaggerWith` (ie. successors of the SplitStmt whose intervals we must trust + the MergeStatement if Split-dominates-Merge). `nestWithin` is the SplitStatement, and `toEnclose` is `nullptr`.
-        </p>
-        <p>
-          Finally, we trivially assign intervals to the rest of the Stmts in the Region, following the Split, by nesting them within the branch heads.
-        </p>
-        <p>
-          Now, this API generalizes to SESE Statements as well. `branchHeads` is the singular SESE Statement, `headsToStaggerWith` may or may not include the containing Region's MergeStatement. `headsToStaggerWith` will contain all the other successors of the `SplitStatement`, if the SESE Statement is one of the successors, and may contain the MergeStatement. If the successor has one inEdge, it's used as `toEnclose`.
-        </p>
-        <p>
-          The actual interval calculation is quite simple. Subtract the `staggerUnion` interval (union of all the stagger intervals) from the `nestWithin` interval: this produces two "gaps" which we need to "dice up" into N intervals (where N is the number of `branchHeads`). The number of intervals in the left gap versus the right gap is dependent on the ratio of the sizes of the gaps. `toEnclose` simply tells us whether to pick the left gap or right gap in the case of a single `branchHead`. It's also useful to check interval exhaustion cases.
-        </p>
-        <p>
-          There is an elegant way to catch all the cases when the interval has been exhausted. Just `throw` an exception from the interval-construction class. Catch this exception and abort the incremental update: recompute the Dominator.
-        </p>
-        <h2 id="closing-notes">
-          Closing notes
-        </h2>
-        <p>
-          Conceptually, the algorithm is simple. The implementation, as leveraged by one transform, passes our entire testsuite (~6k tests).
-        </p>
-        <p>
-          Our implemenation of the Dominator incremental update relies on a correct implementation of the PST incremental update: incorrect information from one incremental update will propagate to the other incremental update and wreak havoc.
-        </p>
-        <p>
-          The best way to test the implementation is to have a recomputed Dominator as reference, and checking that the dominates-relationship between every two nodes is the same in the incremental update and recompution case.
-        </p>
-        <ul id="footer">
+          <p>
+            First, we assign intervals to the split and merge Statements in the Region, by looking at their predecessor and succeesor. The predecessor is something we need to nest within. Since we decided that we'll only optimize for the case of top-to-bottom insertion, we can simply add one to the start time, and subtract one from the end time to get the necessary start and end times for the Region entry. For the Region exit, it's a little more tricky: we need to leave gaps on either side, because there may be nodes along the inEdge(s) as well as nodes along the outEdge(s). For simplicity, let's simply assign an interval halfway between the Region entry and successor intervals.
+          </p>
+          <p>
+            Then, we assign intervals to be `branchHeads` (ie. successors of the SplitStatement whose intervals we need to assign), by staggering with the `headsToStaggerWith` (ie. successors of the SplitStmt whose intervals we must trust + the MergeStatement if Split-dominates-Merge). `nestWithin` is the SplitStatement, and `toEnclose` is `nullptr`.
+          </p>
+          <p>
+            Finally, we trivially assign intervals to the rest of the Stmts in the Region, following the Split, by nesting them within the branch heads.
+          </p>
+          <p>
+            Now, this API generalizes to SESE Statements as well. `branchHeads` is the singular SESE Statement, `headsToStaggerWith` may or may not include the containing Region's MergeStatement. `headsToStaggerWith` will contain all the other successors of the `SplitStatement`, if the SESE Statement is one of the successors, and may contain the MergeStatement. If the successor has one inEdge, it's used as `toEnclose`.
+          </p>
+          <p>
+            The actual interval calculation is quite simple. Subtract the `staggerUnion` interval (union of all the stagger intervals) from the `nestWithin` interval: this produces two "gaps" which we need to "dice up" into N intervals (where N is the number of `branchHeads`). The number of intervals in the left gap versus the right gap is dependent on the ratio of the sizes of the gaps. `toEnclose` simply tells us whether to pick the left gap or right gap in the case of a single `branchHead`. It's also useful to check interval exhaustion cases.
+          </p>
+          <p>
+            There is an elegant way to catch all the cases when the interval has been exhausted. Just `throw` an exception from the interval-construction class. Catch this exception and abort the incremental update: recompute the Dominator.
+          </p>
+          <h2 id="closing-notes">
+            Closing notes
+          </h2>
+          <p>
+            Conceptually, the algorithm is simple. The implementation, as leveraged by one transform, passes our entire testsuite (~6k tests).
+          </p>
+          <p>
+            Our implemenation of the Dominator incremental update relies on a correct implementation of the PST incremental update: incorrect information from one incremental update will propagate to the other incremental update and wreak havoc.
+          </p>
+          <p>
+            The best way to test the implementation is to have a recomputed Dominator as reference, and checking that the dominates-relationship between every two nodes is the same in the incremental update and recompution case.
+          </p>
+          <footer>
+            <ul>
+              <li>
+                [^1]: Thanks to [Sanjoy](http://playingwithpointers.com) for reviewing the draft.
+              </li>
+            </ul>
+          </footer>
+        </article>
+      </main>
+      <nav>
+        <ul>
           <li>
-            [^1]: Thanks to [Sanjoy](http://playingwithpointers.com) for reviewing the draft.
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/ac">ac</a>
+          </li>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/topoi">topoi</a>
           </li>
         </ul>
-      </div>
-    </div>
-    <div id="sidebar">
-      <ul>
-        <li>
-          <a href="/index">index</a>
-        </li>
-        <li>
-          <a href="/ac">ac</a>
-        </li>
-        <li>
-          <a href="/ag">ag</a>
-        </li>
-        <li>
-          <a href="/articles">articles</a>
-        </li>
-        <li>
-          <a href="/at">at</a>
-        </li>
-        <li>
-          <a href="/attic">attic</a>
-        </li>
-        <li>
-          <a href="/ct">ct</a>
-        </li>
-        <li>
-          <a href="/gn">gn</a>
-        </li>
-        <li>
-          <a href="/la">la</a>
-        </li>
-        <li>
-          <a href="/ra">ra</a>
-        </li>
-        <li>
-          <a href="/topoi">topoi</a>
-        </li>
-      </ul>
+      </nav>
     </div>
   </body>
 </html>

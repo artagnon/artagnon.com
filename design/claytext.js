@@ -1,7 +1,7 @@
 // $() is from cash, doing a document.onLoad
 $(() => {
   // main should have a valid taborder
-  document.getElementById("main").focus();
+  document.querySelector("main").focus();
 
   for (el of $("p, li")) {
     // we use fn.html() from cash
@@ -9,7 +9,7 @@ $(() => {
       $(el)
         .html()
         // `...` text
-        .replace(/`([^`]+)`/g, '<span class="tick">$1</span>')
+        .replace(/`([^`]+)`/g, "<mark>$1</mark>")
         // [...](...) links
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
     );

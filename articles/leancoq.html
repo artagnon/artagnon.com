@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html>
   <head>
     <title>artagnon.com: articles/leancoq</title>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Ramkumar Ramachandra&#39;s site" />
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="city" content="Paris" />
+    <meta name="country" content="France" />
     <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="HandheldFriendly" content="true" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/design/all.css" media="all" />
     <link rel="stylesheet" href="/design/screen.css" media="screen" />
     <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 450px)" />
@@ -33,103 +37,109 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="main" tabindex="0">
-        <h1>
-          Lean versus Coq: The cultural chasm
-        </h1>
-        <div id="metadata">
-          <div id="timestamp">
-            <time datetime="2020-01-05">Sun, 05 Jan 2020 06:08:14 +0100</time>
+      <main tabindex="0">
+        <header>
+          <h1>
+            Lean versus Coq: The cultural chasm
+          </h1>
+          <div id="metadata">
+            <div id="timestamp">
+              <time datetime="2020-01-05">Sun, 05 Jan 2020 06:08:14 +0100</time>
+            </div>
+            <br />
+            <div id="locations">
+              <address>Paris</address>
+            </div>
           </div>
-          <br />
-          <div id="locations">
-            <address>Paris</address>
+        </header>
+        <article>
+          <div class="imgrow">
+            <figure class="left">
+              <img src="leancoq-lean.png" style="width:100%" />
+            </figure>
+            <figure class="right">
+              <img src="leancoq-coq.png" style="width:100%" />
+            </figure>
           </div>
-        </div>
-        <div class="imgrow">
-          <div class="imgcol-left">
-            <img src="leancoq-lean.png" style="width:100%" />
-          </div>
-          <div class="imgcol-right">
-            <img src="leancoq-coq.png" style="width:100%" />
-          </div>
-        </div>
-        <p>
-          Lean has much lower startup-cost for pure mathematicians, since its built-in features and [math library](https://github.com/leanprover-community/mathlib) are great for doing undergraduate-level group theory &amp; topology, masters-level commutative algebra &amp; category theory, but it plateaus quickly thereafter.
-        </p>
-        <p>
-          Lean seems to have taken a top-down approach, by focusing on writing real proofs as quickly as possible, without compromising on [soundness](https://github.com/digama0/lean-type-theory/releases/download/v1.0/main.pdf). There are three axioms in Lean: `propositional extensionality`, `quotient soundness`, and `choice`; however, these don't block computation, since computation is done in a VM. They do, however, break good type theoretic properties like `strong normalization`, `subject reduction`, and `canonicity` — this was a conscious design choice.
-        </p>
-        <p>
-          Coq, on the other hand, has always been very particular about sound type theoretic foundations. The recent ["Coq Coq Correct!"](https://www.irif.fr/~sozeau/research/publications/drafts/Coq_Coq_Correct.pdf) formalizes the Coq engine proving metatheoretic properties about it, in Coq, and [HoTT](https://github.com/HoTT/HoTT) is being actively developed to fix many of Coq's issues.
-        </p>
-        <p>
-          Working mathematicians have only just started using software for their work, and they often rely on unverified (and sometimes proprietary) tools like magma, sage, and mathematica. Lean is a big step-up, and the good type theoretic properties preserved by Coq don't seem as important to them.
-        </p>
-        <hr />
-        <p>
-          Lean supports both constructive and classical reasoning, but quotienting in Coq is painful due to ["setoid-hell"](http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf); something that would be fixed when types are modeled as $\infty$-groupoids instead of setoids, as in the HoTT line of work.
-        </p>
-        <p>
-          [Quotient-reasoning](https://github.com/leanprover-community/mathlib/blob/master/docs/tutorial/Zmod37.lean) makes formalizing commutative algebra painless, and it's baked into the Lean kernel. However, quotients are tricky to implement without breaking certain metatheoretic properties that Coq'ers cherish; nevertheless, there is an [implementation](https://math-comp.github.io/htmldoc/mathcomp.ssreflect.generic_quotient.html) in Coq's [math-comp](https://github.com/math-comp/math-comp), albeit, without a reduction rule.
-        </p>
-        <p>
-          Lean's [inheritance](https://leanprover.github.io/theorem_proving_in_lean/structures_and_records.html#inheritance) is another good feature; it disallows diamond-inheritance, and seems like a bit of a hack, but Coq is definitely missing some form of a well-thought-out ad-hoc polymorphism.
-        </p>
-        <hr />
-        <p>
-          Category theory in Lean has not been [developed](https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md) with higher categories in mind; I'm not sure how one would define $\infty$-categories, since universes are explicit, and since there are no coinductive types: Coq's cumulativity seems to have been a better design choice.
-        </p>
-        <hr />
-        <p>
-          One would think that Lean is an engineering feat, since it's written in C++: Coq's math-comp (90k loc) compares to Lean's mathlib (150k loc); math-comp builds in under ten minutes, while mathlib takes over thirty minutes to build! Indeed, due to their design decision to use a VM for computations, computation happens at a speed comparable to Python-bytecode evaluation — they seem to be overhauling this in Lean4 though, by compiling Lean code down to C before execution.
-        </p>
-        <p>
-          Another reason for the relative slowness of Lean is that they do a lot of automation under the hood, figuring out, for instance, that when the user writes $X \times Y$, $X$ and $Y$ are topogical spaces, and that $\times$ here means product topology.
-        </p>
-        <ul id="footer">
+          <p>
+            Lean has much lower startup-cost for pure mathematicians, since its built-in features and [math library](https://github.com/leanprover-community/mathlib) are great for doing undergraduate-level group theory &amp; topology, masters-level commutative algebra &amp; category theory, but it plateaus quickly thereafter.
+          </p>
+          <p>
+            Lean seems to have taken a top-down approach, by focusing on writing real proofs as quickly as possible, without compromising on [soundness](https://github.com/digama0/lean-type-theory/releases/download/v1.0/main.pdf). There are three axioms in Lean: `propositional extensionality`, `quotient soundness`, and `choice`; however, these don't block computation, since computation is done in a VM. They do, however, break good type theoretic properties like `strong normalization`, `subject reduction`, and `canonicity` — this was a conscious design choice.
+          </p>
+          <p>
+            Coq, on the other hand, has always been very particular about sound type theoretic foundations. The recent ["Coq Coq Correct!"](https://www.irif.fr/~sozeau/research/publications/drafts/Coq_Coq_Correct.pdf) formalizes the Coq engine proving metatheoretic properties about it, in Coq, and [HoTT](https://github.com/HoTT/HoTT) is being actively developed to fix many of Coq's issues.
+          </p>
+          <p>
+            Working mathematicians have only just started using software for their work, and they often rely on unverified (and sometimes proprietary) tools like magma, sage, and mathematica. Lean is a big step-up, and the good type theoretic properties preserved by Coq don't seem as important to them.
+          </p>
+          <hr />
+          <p>
+            Lean supports both constructive and classical reasoning, but quotienting in Coq is painful due to ["setoid-hell"](http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf); something that would be fixed when types are modeled as $\infty$-groupoids instead of setoids, as in the HoTT line of work.
+          </p>
+          <p>
+            [Quotient-reasoning](https://github.com/leanprover-community/mathlib/blob/master/docs/tutorial/Zmod37.lean) makes formalizing commutative algebra painless, and it's baked into the Lean kernel. However, quotients are tricky to implement without breaking certain metatheoretic properties that Coq'ers cherish; nevertheless, there is an [implementation](https://math-comp.github.io/htmldoc/mathcomp.ssreflect.generic_quotient.html) in Coq's [math-comp](https://github.com/math-comp/math-comp), albeit, without a reduction rule.
+          </p>
+          <p>
+            Lean's [inheritance](https://leanprover.github.io/theorem_proving_in_lean/structures_and_records.html#inheritance) is another good feature; it disallows diamond-inheritance, and seems like a bit of a hack, but Coq is definitely missing some form of a well-thought-out ad-hoc polymorphism.
+          </p>
+          <hr />
+          <p>
+            Category theory in Lean has not been [developed](https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md) with higher categories in mind; I'm not sure how one would define $\infty$-categories, since universes are explicit, and since there are no coinductive types: Coq's cumulativity seems to have been a better design choice.
+          </p>
+          <hr />
+          <p>
+            One would think that Lean is an engineering feat, since it's written in C++: Coq's math-comp (90k loc) compares to Lean's mathlib (150k loc); math-comp builds in under ten minutes, while mathlib takes over thirty minutes to build! Indeed, due to their design decision to use a VM for computations, computation happens at a speed comparable to Python-bytecode evaluation — they seem to be overhauling this in Lean4 though, by compiling Lean code down to C before execution.
+          </p>
+          <p>
+            Another reason for the relative slowness of Lean is that they do a lot of automation under the hood, figuring out, for instance, that when the user writes $X \times Y$, $X$ and $Y$ are topogical spaces, and that $\times$ here means product topology.
+          </p>
+          <footer>
+            <ul>
+              <li>
+                [^1]: [Metamath Zero](https://github.com/digama0/mm0) might be of interest to readers of this article.
+              </li>
+            </ul>
+          </footer>
+        </article>
+      </main>
+      <nav>
+        <ul>
           <li>
-            [^1]: [Metamath Zero](https://github.com/digama0/mm0) might be of interest to readers of this article.
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/ac">ac</a>
+          </li>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/ct">ct</a>
+          </li>
+          <li>
+            <a href="/gn">gn</a>
+          </li>
+          <li>
+            <a href="/la">la</a>
+          </li>
+          <li>
+            <a href="/ra">ra</a>
+          </li>
+          <li>
+            <a href="/topoi">topoi</a>
           </li>
         </ul>
-      </div>
-    </div>
-    <div id="sidebar">
-      <ul>
-        <li>
-          <a href="/index">index</a>
-        </li>
-        <li>
-          <a href="/ac">ac</a>
-        </li>
-        <li>
-          <a href="/ag">ag</a>
-        </li>
-        <li>
-          <a href="/articles">articles</a>
-        </li>
-        <li>
-          <a href="/at">at</a>
-        </li>
-        <li>
-          <a href="/attic">attic</a>
-        </li>
-        <li>
-          <a href="/ct">ct</a>
-        </li>
-        <li>
-          <a href="/gn">gn</a>
-        </li>
-        <li>
-          <a href="/la">la</a>
-        </li>
-        <li>
-          <a href="/ra">ra</a>
-        </li>
-        <li>
-          <a href="/topoi">topoi</a>
-        </li>
-      </ul>
+      </nav>
     </div>
   </body>
 </html>
