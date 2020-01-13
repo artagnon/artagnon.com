@@ -49,7 +49,7 @@ html
             - if paragraph.is_header?
               p class="header"
                 == paragraph.contents.join "\n"
-            - if paragraph.is_plain?
+            - elsif paragraph.is_plain?
               p
                 == paragraph.contents.join "\n"
             - elsif paragraph.is_olitems?
