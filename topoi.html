@@ -44,7 +44,7 @@
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2020-01-13">Mon, 13 Jan 2020 19:44:49 +0100</time>
+              <time datetime="2020-01-13">Mon, 13 Jan 2020 20:38:05 +0100</time>
             </div>
             <br />
             <div id="locations">
@@ -191,7 +191,7 @@
             This is a total order.
           </p>
           <p>
-            Let us now consider categories with more than one arrow between two objects. A `monoid` is defined as an algebraic structure $(M, \circ, \mathbb{1})$ where $\circ$ is a function from $M \times M \rightarrow M$. A monoid naturally gives rise to a category with just one object: $M$. We can instantiate it with $M = \mathbb{N}$ and $\circ = +$ to obtain the familiar notion of addition of natural numbers:
+            Let us now consider categories with more than one arrow between two objects. A `monoid` is defined as an algebraic structure $(M, \circ, \mathbb{1})$ where $\circ$ is a function from $M \times M \rightarrow M$. A monoid naturally gives rise to a category with just one object: $M$. We can instantiate it with $M = \mathbb{N}$, $\circ = +$, and $\mathbb{1} = 0$ to obtain the familiar notion of addition of natural numbers:
           </p>
           <p class="mathjax">
             $$
@@ -205,8 +205,20 @@
             
             $$
           </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              \mathbb{N}\ar[r]^{m}\ar[dr]_{m} & \mathbb{N}\ar[d]^{0}\ar[dr]^{n} & \\
+              & \mathbb{N}\ar[r]_{n} & \mathbb{N}
+              }
+              \end{xy}
+            
+            $$
+          </p>
           <p>
-            If $a, b \in \mathcal{C}$, then we use $\mathcal{C}(a, b)$ to denote the set of arrows from $a$ to $b$. A `subcategory` $\mathcal{C}$ of $\mathcal{D}$, denoted $\mathcal{C} \subseteq \mathcal{D}$, is such that:
+            If $a, b \in \mathcal{C}$, then we use $\mathcal{C}(a, b)$ to denote the set of arrows from $a$ to $b$. A `subcategory` $\mathcal{C} \subseteq \mathcal{D}$ is defined as:
           </p>
           <ol class="olitems" type="a" start="1">
             <li>
@@ -216,6 +228,9 @@
               $\mathcal{C}(a ,b) \subseteq \mathcal{D}(a, b)$; all arrows of $\mathcal{C}$ are present in $\mathcal{D}$.
             </li>
           </ol>
+          <p>
+            A `full subcategory` $\mathcal{C}$ of $\mathcal{D}$ is defined as $\mathcal{C} \subseteq \mathcal{D}$ such that $\mathcal{C}(a, b) = \mathcal{D}(a, b)$; in other words, $\mathcal{D}$ has no arrows $a \arightarrow b$ other than the ones already present in $\mathcal{C}$. `Finord` is a full subcategory of `Finset`.
+          </p>
         </article>
       </main>
       <nav>
