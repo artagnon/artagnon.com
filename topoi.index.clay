@@ -124,13 +124,15 @@ To work our way up to `subobject classifiers`, we need to build some prerequisit
   b\ar[r]_f & c
 }}
 
-If $f$ is monic, the diagram above commutes, and $(f \circ g)(x) = (f \circ h)(x) = f(g(x)) = f(h(x)) \implies g = h$. In other words, a monic is said to be `left-cancelable`.
+If $f$ is monic, indicated as $f : b \rightarrowtail c$, the diagram above commutes, and $(f \circ g)(x) = (f \circ h)(x) = f(g(x)) = f(h(x)) \implies g = h$. In other words, a monic is said to be `left-cancelable`.
 
 {{
   a\ar[r]^{f}\ar[d]_{f} & b\ar[d]^{g} \\
   b\ar[r]_h & c
 }}
 
-If $f$ is epic, the diagram above commutes, and $(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$. In other words, an epic is said to be `right-cancelable`.
+If $f$ is epic, indicated as $f : a \twoheadrightarrow b$, the diagram above commutes, and $(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$. In other words, an epic is said to be `right-cancelable`.
 
-An `iso` arrow corresponds to a bijective function in $\textbf{Set}$, and it is indeed both monic and epic in $\textbf{Set}$. However, this is not true in other categories. More generally speaking, an `iso` arrow is invertible.
+An `iso` arrow, indicated as $f : a \rightarrowtail\mathrel{\mspace{-12mu}}\twoheadrightarrow b$, corresponds to a bijective function in $\textbf{Set}$. It is invertible, and its action can be thought of as a "relabeling"; as an example, $A \times \{0\}$ attaches $0$ to every element of $A$.
+
+Every iso is both monic and epic, but "iso" isn't equivalent to "monic and epic".  Consider $(\mathbb{N}, +, 0)$ in which all arrows are monic and epic, but the only iso arrows are the identities, since no natural number has an additive inverse.
