@@ -44,7 +44,7 @@
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2020-01-14">Tue, 14 Jan 2020 08:59:55 +0100</time>
+              <time datetime="2020-01-14">Tue, 14 Jan 2020 11:01:30 +0100</time>
             </div>
             <br />
             <div id="locations">
@@ -290,6 +290,45 @@
               \end{xy}
             
             $$
+          </p>
+          <h2 id="set-membership-categorically">
+            Set membership, categorically
+          </h2>
+          <p>
+            To work our way up to `subobject classifiers`, we need to build some prerequisite material. First, let us introduce the notion of `monic` and `epic` arrows, corresponding to injective and surjective functions in $\textbf{Set}$. $f$ is injective if $f(x) = f(y) \implies x = y$, and surjective if $\forall y, \exists x : y = f(x)$.
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              a\ar[r]^{g}\ar[d]_{h} & b\ar[d]^{f} \\
+              b\ar[r]_f & c
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            If $f$ is monic, the diagram above commutes, and $(f \circ g)(x) = (f \circ h)(x) = f(g(x)) = f(h(x)) \implies g = h$. In other words, a monic is said to be `left-cancelable`.
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              a\ar[r]^{f}\ar[d]_{f} & b\ar[d]^{g} \\
+              b\ar[r]_h & c
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            If $f$ is epic, the diagram above commutes, and $(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$. In other words, an epic is said to be `right-cancelable`.
+          </p>
+          <p>
+            An `iso` arrow corresponds to a bijective function in $\textbf{Set}$, and it is indeed both monic and epic in $\textbf{Set}$. However, this is not true in other categories. More generally speaking, an `iso` arrow is invertible.
           </p>
         </article>
       </main>
