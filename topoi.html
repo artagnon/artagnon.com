@@ -44,7 +44,7 @@
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2020-01-13">Mon, 13 Jan 2020 20:38:05 +0100</time>
+              <time datetime="2020-01-14">Tue, 14 Jan 2020 08:59:55 +0100</time>
             </div>
             <br />
             <div id="locations">
@@ -229,7 +229,67 @@
             </li>
           </ol>
           <p>
-            A `full subcategory` $\mathcal{C}$ of $\mathcal{D}$ is defined as $\mathcal{C} \subseteq \mathcal{D}$ such that $\mathcal{C}(a, b) = \mathcal{D}(a, b)$; in other words, $\mathcal{D}$ has no arrows $a \arightarrow b$ other than the ones already present in $\mathcal{C}$. `Finord` is a full subcategory of `Finset`.
+            A `full subcategory` $\mathcal{C}$ of $\mathcal{D}$ is defined as $\mathcal{C} \subseteq \mathcal{D}$ such that $\mathcal{C}(a, b) = \mathcal{D}(a, b)$; in other words, $\mathcal{D}$ has no arrows $a \rightarrow b$ other than the ones already present in $\mathcal{C}$. $\textbf{Finord}$ is a full subcategory of $\textbf{Finset}$.
+          </p>
+          <p>
+            Before introducing comma categories, let us briefly introduce arrow categories as a prerequisite. An `arrow category` $\textbf{Set}^\rightarrow$ has as objects, the functions $f : A \rightarrow B$, and arrows between objects $f : A \rightarrow B$ and $g : C \rightarrow D$, the pair of arrows $\langle h, k\rangle$ such that the following diagram commutes:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              A\ar[r]^{h}\ar[d]_{f} & C\ar[d]^{g} \\
+              B\ar[r]_{k} & D
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            A `comma category` can be viewed as a special case of an arrow categories with fixed domain or codomain. $\textbf{Set} \downarrow \mathbb{R}$ is the category of real-valued functions; the codomain of the category is fixed to $\mathbb{R}$. An arrow from $f: A \rightarrow \mathbb{R}$ to $g: B \rightarrow \mathbb{R}$ is the arrow $k: A \rightarrow B$ that makes the following commute:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              A\ar[rd]_{f}\ar[rr]^{k} & & B\ar[dl]^{g} \\
+              & \mathbb{R} &
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            $\textbf{Set} \downarrow \mathbb{R}$ can be construed to a $\textbf{Set}^\rightarrow$ as follows:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              A\ar[d]_{f}\ar[r]^{k} & B\ar[d]^{g} \\
+              \mathbb{R}\ar[r]^{id} & \mathbb{R}
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            Similarly, we can define $\mathcal{C} \uparrow a$ to be a comma category with a fixed domain instead of codomain:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+              & a\ar[ld]_{f}\ar[rd]^{g} & \\
+              b\ar[rr]^{k} & & c
+              }
+              \end{xy}
+            
+            $$
           </p>
         </article>
       </main>
