@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>artagnon.com: 404</title>
+    <title>artagnon.com: linear</title>
     <meta charset="utf-8" />
     <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -40,11 +40,11 @@
       <main tabindex="0">
         <header>
           <h1>
-            404: Not Found
+            Linear Algebra
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2019-12-14">Sat, 14 Dec 2019 13:36:30 +0100</time>
+              <time datetime="2020-01-16">Thu, 16 Jan 2020 11:05:39 +0100</time>
             </div>
             <br />
             <div id="locations">
@@ -54,15 +54,47 @@
         </header>
         <article>
           <p>
-            I'm sorry, but everything on artagnon.com is ephemeral.  If you're interested in history, you should be examining the repository [^1].
+            Vector spaces are defined over a field $\mathcal{F}$, while matrix entries can be chosen from elements of commutative ring $\mathcal{K}$.
           </p>
-          <footer>
-            <ul>
-              <li>
-                [^1]: [gh:artagnon/artagnon.com](https://github.com/artagnon/artagnon.com)
-              </li>
-            </ul>
-          </footer>
+          <h2 id="cayley-hamilton-theorem">
+            Cayley-Hamilton theorem
+          </h2>
+          <p class="mathjax">
+            $$A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$$
+          </p>
+          <p>
+            $\lambda = 1, 3$ are the eigenvalues, which can be determined by solving $det(A - \lambda I) = 0$.
+          </p>
+          <p>
+            The Cayley-Hamilton theorem states that $(A - \lambda_1 I) \ldots (A - \lambda_n I) = 0$; hence the matrix can be factorized as $\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 1 \end{bmatrix}$ and $\begin{bmatrix} -1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}$
+          </p>
+          <p>
+            Eigenvector $\mathbb{v}$ can be obtained by solving $A \mathbb{v} = \lambda \mathbb{v}$.
+          </p>
+          <h2 id="determinant">
+            Determinant
+          </h2>
+          <p>
+            The determinant function $D$ assigns to each $n \times n$ matrix, a scalar. It is n-linear, alternating, and $D(I) = 1$.
+          </p>
+          <p>
+            n-linear means: that for each $i$, $D$ is linear over the $i^{th}$ row, keeping all other rows fixed
+            $$D(\alpha_i + c\alpha_{i'}) = D(\alpha_i) + cD(\alpha_{i'})$$
+          </p>
+          <p>
+            Alternating means:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              If two rows in $A$ are equal, $D(A) = 0$
+            </li>
+            <li>
+              If $A'$ is the matrix we get by interchanging two rows of $A$, then $D(A') = -D(A)$
+            </li>
+          </ol>
+          <p>
+            In [category-theoretic terms](/ct/1#natural-transformation), the determinant is a natural transformation $\tau : \textbf{CRng} \overset{\bullet}{\rightarrow} \textbf{Grp}$.
+          </p>
         </article>
       </main>
       <nav>
