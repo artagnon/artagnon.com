@@ -1,7 +1,7 @@
 Foundations
 
 ...
-Foundations are important
+Here, we do exercises from Tao's excellent book on Analysis
 ...
 
 $\S$ Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
@@ -15,8 +15,58 @@ $$
 Equality is defined as:
 
 $$
-  \begin{bmatrix}
-  A = B \implies& (\forall x \in A, x \in B) \wedge \\
-  & (\forall x \in B, x \in A)
-  \end{bmatrix}
+  \begin{matrix}
+    A = B \rightarrow &\forall x \in A, x \in B \\
+    &\wedge \\
+    &\forall x \in B, x \in A
+  \end{matrix}
+$$
+
+Goals:
+
+$$
+  \begin{matrix}
+    \textrm{reflexive} & \forall A, A = A \\
+    \textrm{symmetric} & \forall A B, A = B \leftrightarrow B = A \\
+    \textrm{transitive} & \forall A B C, (A = B) \wedge (B = C) \rightarrow (A = C)
+  \end{matrix}
+$$
+
+Proofs:
+
+$$
+  \begin{matrix}
+    A = A & \rightarrow & \forall x \in A, x \in A \rightarrow \top & \textrm{by exact}. \\
+    A = B & \rightarrow & \forall x \in A, x \in B & \\
+    && \wedge & \\
+    && \forall x \in B, x \in A & \\
+    & \leftrightarrow & B = A & \textrm{by swapping the arguments of } \wedge. \\
+    A = B &&& \\
+    \wedge &&& \\
+    B = C & \rightarrow & \forall x \in A, x \in B & \textrm{(1)} \\
+    && \wedge & \\
+    && \forall x \in B, x \in A & \textrm{(2)} \\
+    && \wedge & \\
+    && \forall x \in B, x \in C & \textrm{(3)} \\
+    && \wedge & \\
+    && \forall x \in C, x \in B & \textrm{(4)} \\
+    & \rightarrow & \forall x \in A, x \in C & \textrm{by (1) and (3)} \\
+    && \wedge & \\
+    && \forall x \in C, x \in A & \textrm{by (4) and (2)} \\
+    & \rightarrow & A = C & \textrm{by exact}.
+  \end{matrix}
+$$
+
+--
+
+$\S$ Using the above definition of equality, the empty set axiom, and the pairwise union axiom, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
+
+Hypothesis:
+
+$$
+  \begin{align}
+    A = B \rightarrow (\forall x \in A, x \in B) \wedge (\forall x \in B, x \in A) \tag 1 \\
+    \forall x, x \not\in \phi \tag 2 \\
+    x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag 3
+  \end{align}
 $$

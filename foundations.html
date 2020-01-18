@@ -44,17 +44,17 @@
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2020-01-18">Sat, 18 Jan 2020 08:02:06 +0100</time>
+              <time datetime="2020-01-18">Sat, 18 Jan 2020 09:37:25 +0100</time>
             </div>
             <br />
             <div id="locations">
-              <address></address>
+              <address>Paris</address>
             </div>
           </div>
         </header>
         <article>
           <p class="blurb">
-            Foundations are important
+            Here, we do exercises from Tao's excellent book on Analysis
           </p>
           <p>
             $\S$ Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
@@ -72,10 +72,66 @@
           </p>
           <p class="mathjax">
             $$
-              \begin{bmatrix}
-              A = B \implies& (\forall x \in A, x \in B) \wedge \\
-              & (\forall x \in B, x \in A)
-              \end{bmatrix}
+              \begin{matrix}
+                A = B \rightarrow &\forall x \in A, x \in B \\
+                &\wedge \\
+                &\forall x \in B, x \in A
+              \end{matrix}
+            $$
+          </p>
+          <p>
+            Goals:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{matrix}
+                \textrm{reflexive} & \forall A, A = A \\
+                \textrm{symmetric} & \forall A B, A = B \leftrightarrow B = A \\
+                \textrm{transitive} & \forall A B C, (A = B) \wedge (B = C) \rightarrow (A = C)
+              \end{matrix}
+            $$
+          </p>
+          <p>
+            Proofs:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{matrix}
+                A = A & \rightarrow & \forall x \in A, x \in A \rightarrow \top & \textrm{by exact}. \\
+                A = B & \rightarrow & \forall x \in A, x \in B & \\
+                && \wedge & \\
+                && \forall x \in B, x \in A & \\
+                & \leftrightarrow & B = A & \textrm{by swapping the arguments of } \wedge. \\
+                A = B &&& \\
+                \wedge &&& \\
+                B = C & \rightarrow & \forall x \in A, x \in B & \textrm{(1)} \\
+                && \wedge & \\
+                && \forall x \in B, x \in A & \textrm{(2)} \\
+                && \wedge & \\
+                && \forall x \in B, x \in C & \textrm{(3)} \\
+                && \wedge & \\
+                && \forall x \in C, x \in B & \textrm{(4)} \\
+                & \rightarrow & \forall x \in A, x \in C & \textrm{by (1) and (3)} \\
+                && \wedge & \\
+                && \forall x \in C, x \in A & \textrm{by (4) and (2)} \\
+                & \rightarrow & A = C & \textrm{by exact}.
+              \end{matrix}
+            $$
+          </p>
+          <hr />
+          <p>
+            $\S$ Using the above definition of equality, the empty set axiom, and the pairwise union axiom, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
+          </p>
+          <p>
+            Hypothesis:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{align}
+                A = B \rightarrow (\forall x \in A, x \in B) \wedge (\forall x \in B, x \in A) \tag 1 \\
+                \forall x, x \not\in \phi \tag 2 \\
+                x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag 3
+              \end{align}
             $$
           </p>
         </article>
