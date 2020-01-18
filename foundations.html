@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>artagnon.com: scratch</title>
+    <title>artagnon.com: foundations</title>
     <meta charset="utf-8" />
     <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -40,76 +40,44 @@
       <main tabindex="0">
         <header>
           <h1>
-            claytext demo
+            Foundations
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2019-12-17">Tue, 17 Dec 2019 06:03:56 +0100</time>
+              <time datetime="2020-01-18">Sat, 18 Jan 2020 08:02:06 +0100</time>
             </div>
             <br />
             <div id="locations">
-              <address>Paris</address>
+              <address></address>
             </div>
           </div>
         </header>
         <article>
-          <p>
-            (Posts here have been ressurrected from several years ago)
+          <p class="blurb">
+            Foundations are important
           </p>
-          <div class="imgrow">
-            <figure class="left">
-              <img src="rM-reading.jpg" style="width:100%" />
-            </figure>
-            <figure class="right">
-              <img src="rM-writing.jpg" style="width:100%" />
-            </figure>
-          </div>
           <p>
-            I have written a lot of [code](https://github.com/artagnon) in the past.
+            $\S$ Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
           </p>
-          <h2 id="functors">
-            Functors
-          </h2>
           <p>
-            For a fixed field $K$, consider the functors
+            First, let us informally define sets and precisely define set membership $\epsilon$. A set is an unordered collection of `objects`, in which the set itself is an object. Set membership is defined as:
           </p>
           <p class="mathjax">
             $$
-            \begin{xy}
-            \xymatrix{
-            \textbf{Set}\ar@<.5ex>[r]^V & \textbf{Vct}_K\ar@<.5ex>[l]^U
-            }
-            \end{xy}
+              \epsilon : \textbf{Obj} \rightarrow \textbf{Obj} \rightarrow \mathbb{P}
             $$
           </p>
-          <hr />
-          <pre><code>void assignHeads(std::vector<Statement*> branchHeads,
-                 std::vector<Statement*> headsToStaggerWith,
-                 Statement* nestWithin, Statement* toEnclose);</code></pre>
-          <ol class="olitems" type="i" start="2">
-            <li>
-              Every element of $A$ is either unit or nilpotent.
-            </li>
-            <li>
-              $A/\mathfrak{N}$ is a field.
-            </li>
-          </ol>
-          <ol class="olitems" type="none" start="1">
-            <li>
-              The Merge dominates the Split, in which case, the Merge dominates everything lying on the outEdges of the Split leading to the Merge
-            </li>
-            <li>
-              The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
-            </li>
-          </ol>
-          <footer>
-            <p>
-              [^1]: Hat tip to [Sanjoy](http://playingwithpointers.com) for pointing out the fifth case.
-            </p>
-            <p>
-              [^2]: You might want to merge loops that share a header in a post-pass.
-            </p>
-          </footer>
+          <p>
+            Equality is defined as:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{bmatrix}
+              A = B \implies& (\forall x \in A, x \in B) \wedge \\
+              & (\forall x \in B, x \in A)
+              \end{bmatrix}
+            $$
+          </p>
         </article>
       </main>
       <nav>
