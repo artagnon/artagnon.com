@@ -6,10 +6,10 @@ Here, we do exercises from Tao's excellent book on Analysis
 
 $\S$ Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
 
-First, let us informally define sets and precisely define set membership $\epsilon$. A set is an unordered collection of `objects`, in which the set itself is an object. Set membership is defined as:
+First, let us informally defining sets and set membership $\epsilon$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
 
 $$
-  \epsilon : \textbf{Obj} \rightarrow \textbf{Obj} \rightarrow \mathbb{P}
+  \epsilon : \textbf{Set} \rightarrow \textbf{Obj} \rightarrow \mathbb{P}
 $$
 
 Equality is defined as:
@@ -22,7 +22,7 @@ $$
   \end{matrix}
 $$
 
-Goals:
+Goal:
 
 $$
   \begin{matrix}
@@ -32,15 +32,15 @@ $$
   \end{matrix}
 $$
 
-Proofs:
+Proof:
 
 $$
   \begin{matrix}
-    A = A & \rightarrow & \forall x \in A, x \in A \rightarrow \top & \textrm{by exact}. \\
+    A = A & \rightarrow & \forall x \in A, x \in A \rightarrow \top & \textrm{by exact} \\
     A = B & \rightarrow & \forall x \in A, x \in B & \\
     && \wedge & \\
     && \forall x \in B, x \in A & \\
-    & \leftrightarrow & B = A & \textrm{by swapping the arguments of } \wedge. \\
+    & \leftrightarrow & B = A & \textrm{by swapping the arguments of } \wedge \\
     A = B &&& \\
     \wedge &&& \\
     B = C & \rightarrow & \forall x \in A, x \in B & \textrm{(1)} \\
@@ -53,13 +53,13 @@ $$
     & \rightarrow & \forall x \in A, x \in C & \textrm{by (1) and (3)} \\
     && \wedge & \\
     && \forall x \in C, x \in A & \textrm{by (4) and (2)} \\
-    & \rightarrow & A = C & \textrm{by exact}.
+    & \rightarrow & A = C & \textrm{by exact}
   \end{matrix}
 $$
 
 --
 
-$\S$ Using the above definition of equality, the empty set axiom, and the pairwise union axiom, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
+$\S$ Using the above definition of equality, the empty set axiom, and the axiom for building sets pairwise, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
 
 Hypothesis:
 
@@ -67,6 +67,23 @@ $$
   \begin{align}
     A = B \rightarrow (\forall x \in A, x \in B) \wedge (\forall x \in B, x \in A) \tag 1 \\
     \forall x, x \not\in \phi \tag 2 \\
-    x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag 3
+    \forall x, x \in \{a\} \leftrightarrow x = a \tag 3 \\
+    \forall x, x \in \{a, b\} \leftrightarrow (x = a) \wedge (x = b) \tag 4
   \end{align}
 $$
+
+Proof:
+
+By the above properties of equality being transitive, to show that a certain collection of sets are distinct, it is sufficient to show pairwise equality upto transitivity.
+
+$$
+  \begin{align*}
+    (\phi \in \{\phi\}) \wedge (\phi \not\in \phi) & \rightarrow \phi \neq \{\phi\} & \textrm{by (3), (2), and (1)} \\
+    (\{\phi\} \in \{\{\phi\}\}) \wedge (\{\phi\} \not\in \{\phi\}) & \rightarrow \{\phi\} \neq \{\{\phi\}\} & \textrm{by (3) and (1)} \\
+    (\phi \in \{\phi, \{\phi\}\}) \wedge (\{\phi\} \in \{\phi, \{\phi\}\}) & \rightarrow \textrm{no two are equal} & \textrm{by (4) and (1)}
+  \end{align*}
+$$
+
+--
+
+$\S$
