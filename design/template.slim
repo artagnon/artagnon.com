@@ -46,10 +46,10 @@ html
                 == locations.join(', ')
         article
           - paragraphs.each do |paragraph|
-            - if paragraph.is_header?
-              p class="header"
+            - if paragraph.is_blurb?
+              p class="blurb"
                 == paragraph.contents.join "\n"
-            - elsif paragraph.is_plain?
+            - if paragraph.is_plain?
               p
                 == paragraph.contents.join "\n"
             - elsif paragraph.is_olitems?
@@ -64,27 +64,26 @@ html
                     == item
             - elsif paragraph.is_subheading?
               h2 id="#{paragraph.bookmark}"
-                == paragraph.contents.join "\n"
+                == paragraph.contents.first
             - elsif paragraph.is_footer?
               footer
-                ul
-                  - for item in paragraph.contents
-                    li
-                      == item
+                - for item in paragraph.contents
+                  p
+                    == item
             - elsif paragraph.is_codeblock?
               pre
                 code
                   == paragraph.contents.join "\n"
             - elsif paragraph.is_images?
-                div class="imgrow"
-                  - if paragraph.contents.length == 1
-                    figure
-                      img src="#{paragraph.contents[0]}" style="width:100%"
-                  - else
-                    figure class="left"
-                      img src="#{paragraph.contents[0]}" style="width:100%"
-                    figure class="right"
-                      img src="#{paragraph.contents[1]}" style="width:100%"
+              div class="imgrow"
+                - if paragraph.contents.length == 1
+                  figure
+                    img src="#{paragraph.contents[0]}" style="width:100%"
+                - else
+                  figure class="left"
+                    img src="#{paragraph.contents[0]}" style="width:100%"
+                  figure class="right"
+                    img src="#{paragraph.contents[1]}" style="width:100%"
             - elsif paragraph.is_horizrule?
               hr
             - elsif paragraph.is_mathjax?
@@ -97,9 +96,8 @@ html
                   a href="/#{page.permalink}"
                     == page.title
       nav
-        - if topics
-          ul
-            - topics.each do |topic|
-              li
-                a href="/#{topic}"
-                  == topic
+        ul
+          - topics.each do |topic|
+            li
+              a href="/#{topic}"
+                == topic
