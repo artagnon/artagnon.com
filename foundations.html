@@ -44,7 +44,7 @@
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2020-01-18">Sat, 18 Jan 2020 10:08:50 +0100</time>
+              <time datetime="2020-01-18">Sat, 18 Jan 2020 15:31:20 +0100</time>
             </div>
             <br />
             <div id="locations">
@@ -56,15 +56,15 @@
           <p class="blurb">
             Here, we do exercises from Tao's excellent book on Analysis
           </p>
-          <p>
-            $\S$ Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
+          <p class="exercise">
+            Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
           </p>
           <p>
             First, let us informally defining sets and set membership $\epsilon$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
           </p>
           <p class="mathjax">
             $$
-              \epsilon : \textbf{Set} \rightarrow \textbf{Obj} \rightarrow \mathbb{P}
+            \epsilon : \textbf{Set} \rightarrow \textbf{Obj} \rightarrow \mathbb{P}
             $$
           </p>
           <p>
@@ -72,7 +72,7 @@
           </p>
           <p class="mathjax">
             $$
-              \begin{matrix}
+            \begin{matrix}
                 A = B \rightarrow &\forall x \in A, x \in B \\
                 &\wedge \\
                 &\forall x \in B, x \in A
@@ -84,7 +84,7 @@
           </p>
           <p class="mathjax">
             $$
-              \begin{matrix}
+            \begin{matrix}
                 \textrm{reflexive} & \forall A, A = A \\
                 \textrm{symmetric} & \forall A B, A = B \leftrightarrow B = A \\
                 \textrm{transitive} & \forall A B C, (A = B) \wedge (B = C) \rightarrow (A = C)
@@ -96,7 +96,7 @@
           </p>
           <p class="mathjax">
             $$
-              \begin{matrix}
+            \begin{matrix}
                 A = A & \rightarrow & \forall x \in A, x \in A \rightarrow \top & \textrm{by exact} \\
                 A = B & \rightarrow & \forall x \in A, x \in B & \\
                 && \wedge & \\
@@ -119,15 +119,15 @@
             $$
           </p>
           <hr />
-          <p>
-            $\S$ Using the above definition of equality, the empty set axiom, and the axiom for building sets pairwise, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
+          <p class="exercise">
+            Using the above definition of equality, the empty set axiom, and the axiom for building sets pairwise, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
           </p>
           <p>
             Hypothesis:
           </p>
           <p class="mathjax">
             $$
-              \begin{align}
+            \begin{align}
                 A = B \rightarrow (\forall x \in A, x \in B) \wedge (\forall x \in B, x \in A) \tag 1 \\
                 \forall x, x \not\in \phi \tag 2 \\
                 \forall x, x \in \{a\} \leftrightarrow x = a \tag 3 \\
@@ -143,7 +143,7 @@
           </p>
           <p class="mathjax">
             $$
-              \begin{align*}
+            \begin{align*}
                 (\phi \in \{\phi\}) \wedge (\phi \not\in \phi) & \rightarrow \phi \neq \{\phi\} & \textrm{by (3), (2), and (1)} \\
                 (\{\phi\} \in \{\{\phi\}\}) \wedge (\{\phi\} \not\in \{\phi\}) & \rightarrow \{\phi\} \neq \{\{\phi\}\} & \textrm{by (3) and (1)} \\
                 (\phi \in \{\phi, \{\phi\}\}) \wedge (\{\phi\} \in \{\phi, \{\phi\}\}) & \rightarrow \textrm{no two are equal} & \textrm{by (4) and (1)}

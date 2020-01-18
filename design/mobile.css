@@ -20,13 +20,9 @@ nav {
 }
 
 nav ul {
-  padding: 0 0 0 0;
-  margin: 0 0 0 0;
+  padding: 0;
+  margin: 0;
   height: 18vw;
-}
-
-nav li,
-ul#indexfill li {
   list-style: none;
 }
 
@@ -49,16 +45,6 @@ main {
   padding-bottom: 1.5vw;
   padding-left: 5%;
   padding-right: 5%;
-}
-
-ul#indexfill li {
-  padding: 0;
-  font-size: 1em;
-  font-weight: 500;
-  text-align: left;
-
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
 
 nav,
@@ -86,4 +72,18 @@ div.imgrow::after {
   content: "";
   clear: both;
   display: table;
+}
+
+/* For iPhone SE: use two-line nav */
+@media (max-width: 350px) {
+  nav {
+    height: calc(4.2rem + 8.3vw);
+  }
+  main {
+    top: calc(4.2rem + 8.3vw);
+    height: calc(100% - calc(4.2rem + 8.3vw));
+  }
+  div#wrapper {
+    top: calc(4.2rem + 8.3vw);
+  }
 }

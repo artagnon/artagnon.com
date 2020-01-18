@@ -197,6 +197,7 @@ table {
 /* My styles */
 * {
   font-family: "Josefin Sans", sans-serif;
+  word-wrap: break-word;
 }
 
 h1 {
@@ -233,16 +234,18 @@ div#wrapper {
   overflow: hidden;
 }
 
-ul#indexfill li {
+ul#indexfill {
   list-style: none;
   font-weight: 500;
-  font-size: 110%;
+  margin-left: 0;
+  padding-left: 1em;
+  text-indent: -1em;
 }
 
-ul#indexfill li:before {
+ul#indexfill li::before {
   content: "\00BB \0020";
-  color: #888888;
-  margin-left: -10px;
+  color: olive;
+  -webkit-user-select: none;
 }
 
 main {
@@ -304,6 +307,17 @@ p.blurb {
   font-size: 1.5em;
 }
 
+p.exercise {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+p.exercise::before {
+  color: olive;
+  content: "§";
+  -webkit-user-select: none;
+}
+
 mark {
   background-color: gainsboro;
 }
@@ -316,7 +330,7 @@ hr {
   border: 0;
 }
 
-hr:before {
+hr::before {
   content: "...";
   display: inline-block;
   letter-spacing: 0.6em;
@@ -324,7 +338,7 @@ hr:before {
   position: relative;
   font-weight: 400;
   font-size: 30px;
-  color: rgba(0, 0, 0, 0.84);
+  color: olive;
 }
 
 pre code {

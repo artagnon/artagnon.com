@@ -43,52 +43,55 @@ html
             br
             div id="locations"
               address
-                == locations.join(', ')
+                == locations.join ", "
         article
           - paragraphs.each do |paragraph|
             - if paragraph.is_blurb?
               p class="blurb"
-                == paragraph.contents.join "\n"
+                == paragraph.to_s
             - if paragraph.is_plain?
               p
-                == paragraph.contents.join "\n"
+                == paragraph.to_s
             - elsif paragraph.is_olitems?
               ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.start}"
-                - for item in paragraph.contents
+                - for item in paragraph.split "\n"
                   li
                     == item
             - elsif paragraph.is_ulitems?
               ul class="ulitems"
-                - for item in paragraph.contents
+                - for item in paragraph.split "\n"
                   li
                     == item
             - elsif paragraph.is_subheading?
               h2 id="#{paragraph.bookmark}"
-                == paragraph.contents.first
+                == paragraph.to_s
             - elsif paragraph.is_footer?
               footer
-                - for item in paragraph.contents
+                - for item in paragraph.split "\n"
                   p
                     == item
             - elsif paragraph.is_codeblock?
               pre
                 code
-                  == paragraph.contents.join "\n"
+                  == paragraph.to_s
             - elsif paragraph.is_images?
               div class="imgrow"
-                - if paragraph.contents.length == 1
+                - if paragraph.to_s.length == 1
                   figure
-                    img src="#{paragraph.contents[0]}" style="width:100%"
+                    img src="#{paragraph.to_s}" style="width:100%"
                 - else
                   figure class="left"
-                    img src="#{paragraph.contents[0]}" style="width:100%"
+                    img src="#{paragraph.split("\n").first}" style="width:100%"
                   figure class="right"
-                    img src="#{paragraph.contents[1]}" style="width:100%"
+                    img src="#{paragraph.split("\n").first}" style="width:100%"
             - elsif paragraph.is_horizrule?
               hr
             - elsif paragraph.is_mathjax?
               p class="mathjax"
-                == paragraph.contents.join "\n"
+                == paragraph.to_s
+            - elsif paragraph.is_exercise?
+              p class="exercise"
+                == paragraph.to_s
           - if indexfill && indexfill.any?
             ul id="indexfill"
               - indexfill.each do |page|

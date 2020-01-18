@@ -108,7 +108,9 @@
             As a first example, consider the complex affine line $\mathbb{A}_\mathbb{C}^1 := \text{Spec } \mathbb{C}[x]$. Since $\mathbb{C}[x]$ is an integral domain, $0$ is a prime ideal. $(x - a)$ is a prime ideal too, and it is maximal, since quotient by this ideal gives a field:
           </p>
           <p class="mathjax">
-            $$0 \rightarrow (x - a) \rightarrow \mathbb{C}[x] \xrightarrow{f \mapsto f(a)} \mathbb{C} \rightarrow 0$$
+            $$
+            0 \rightarrow (x - a) \rightarrow \mathbb{C}[x] \xrightarrow{f \mapsto f(a)} \mathbb{C} \rightarrow 0
+            $$
           </p>
           <p>
             There are no other prime ideals. In the geometric picture, there is one "traditional point" for each $a \in \mathbb{C}$ plus one bonus point $[(0)]$. $[(x - a)]$ will readily associate to $a \in C$, but $[(0)]$ is mysterious, for it lies somewhere on the complex line, but nowhere in particular: we will call it a "generic point".
@@ -167,14 +169,18 @@
             In an algebraically closed affine variety, the translation between maps given by explicit functions and maps of rings is quite direct. For example, consider the parabola in $\mathbb{C}^2$ given by $b = a^2$ and the parabola in $\mathbb{C}^3$ given by $y = x^2, z = y^2$. Suppose that the map sends the point $(a, b) \in \mathbb{C}^2$ to the point $(a, b, b^2) \in \mathbb{C}^3$. In our new language, we have the map:
           </p>
           <p class="mathjax">
-            $$\text{Spec } \mathbb{C}[a, b]/(b - a^2) \rightarrow \text{Spec } \mathbb{C}[x, y, z]/(y - x^2, z - y^2)$$
+            $$
+            \text{Spec } \mathbb{C}[a, b]/(b - a^2) \rightarrow \text{Spec } \mathbb{C}[x, y, z]/(y - x^2, z - y^2)
+            $$
           </p>
           <p>
             given by:
           </p>
           <p class="mathjax">
-            $$\mathbb{C}[a, b]/(b - a^2) \leftarrow \mathbb{C}[x, y, z]/(y - x^2, z - y^2) \\
-            (a, b, b^2) \leftarrow (x, y, z)$$
+            $$
+            \mathbb{C}[a, b]/(b - a^2) \leftarrow \mathbb{C}[x, y, z]/(y - x^2, z - y^2) \\
+            (a, b, b^2) \leftarrow (x, y, z)
+            $$
           </p>
           <p>
             Now, we turn our attention to functions not determined by their values at points: the failure of nilpotents. A non-zero function may vanish at all points. Any function whose power is zero necessarily lies in the intersection of all prime ideals. The [nilradical](/ac/1#nilradicals) $\mathfrak{N}$ is the intersection of all prime ideals. To specify exactly when our intuition fails, two functions have the same value at two different points iff they differ by a nilpotent. Geometrically, a function vanishes at all points in a ring spectrum iff a power of it is $0$. A ring with no nonzero nilpotents is termed `reduced`.
@@ -234,7 +240,9 @@
             We define the distinguished open set to be:
           </p>
           <p class="mathjax">
-            $$D(f) := \{[\mathfrak{p}] \in \text{Spec } A \mid f \notin \mathfrak{p} \text{ or } f([\mathfrak{p}]) \neq 0\}$$
+            $$
+            D(f) := \{[\mathfrak{p}] \in \text{Spec } A \mid f \notin \mathfrak{p} \text{ or } f([\mathfrak{p}]) \neq 0\}
+            $$
           </p>
           <p>
             That is, the locus where $f$ does not vanish. Informally, this is the doesn't-vanish-set, analogous to the terminology we used for vanishing set $V(f)$. The Zariski topology on the distinguished open set $D(f) \subset \text{Spec } A$ coincides with the Zariski topology on $\text{Spec } A_f$. Distinguished open sets form a nice base for the Zariski topology.

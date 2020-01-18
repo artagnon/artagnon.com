@@ -117,7 +117,9 @@
             Here, $A(Fx, a)$ is the bifunctor:
           </p>
           <p class="mathjax">
-            $$X^{op} \times A \xrightarrow{F^{op} \times \text{Id}} A^{op} \times A \xrightarrow{\text{hom}} \textbf{Set}$$
+            $$
+            X^{op} \times A \xrightarrow{F^{op} \times \text{Id}} A^{op} \times A \xrightarrow{\text{hom}} \textbf{Set}
+            $$
           </p>
           <p>
             For all $h : x' \rightarrow x, k : a \rightarrow a'$, it satisfies the diagrams:
@@ -463,8 +465,10 @@
             As yet another example, consider Boolean algebras. Let $\mathscr{P}(U)$ be a category. The diagonal functor $\Delta : \mathscr{P}(U) \rightarrow \mathscr{P}(U) \times \mathscr{P}(U)$ has right adjoint $\cap$, with $\langle X, Y \rangle \mapsto X \cap Y$, and left adjoint $\cup$, with $\langle X, Y \rangle \mapsto X \cup Y$. If $X$ is a fixed subset of $U$, intersection with $X$ is the functor $X \cap - : \mathscr{P}(U) \rightarrow \mathscr{P}(U)$. Since $X \cap Y \leq Z$ if $Y \leq Z \cup X'$, where $X'$ is the complement of $X$ in $U$, right adjoint of $X \cap -$ is $X' \cup -$. Thus, construction of suitable adjoints leads to $\cap, \cup, '$. Now, let $P : U \times V \rightarrow U$ be a projection from sets $U, V$. Each subset $S \in U \times V$ determines subsets of $U$ by:
           </p>
           <p class="mathjax">
-            $$P_* S = \{x \mid \exists y \in V \text{ and } \langle x, y \rangle \in S\} \\
-            P_\# S = \{x \mid \forall y \in V \implies \langle x, y \rangle \in S\}$$
+            $$
+            P_* S = \{x \mid \exists y \in V \text{ and } \langle x, y \rangle \in S\} \\
+            P_\# S = \{x \mid \forall y \in V \implies \langle x, y \rangle \in S\}
+            $$
           </p>
           <p>
             They arise from $\langle x, y \rangle$ by applying universal and existential quantifiers. Also, $P_* S$ is the direct image of $S$ under projection $P$. Now, for all subsets $X \subset U$, we have:
@@ -483,14 +487,18 @@
             A category is termed `cartesian closed` if the following functors have specified right adjoints:
           </p>
           <p class="mathjax">
-            $$C \rightarrow \textbf{1} \quad C \rightarrow C \times C \quad C \xrightarrow{- \times b} C \\
-            c \mapsto 0 \quad c \mapsto \langle c, c \rangle \quad a \mapsto a \times b$$
+            $$
+            C \rightarrow \textbf{1} \quad C \rightarrow C \times C \quad C \xrightarrow{- \times b} C \\
+            c \mapsto 0 \quad c \mapsto \langle c, c \rangle \quad a \mapsto a \times b
+            $$
           </p>
           <p>
             These right adjoints are:
           </p>
           <p class="mathjax">
-            $$t \leftarrow\!\shortmid 0 \quad a \times b \leftarrow\!\shortmid \langle a, b \rangle \quad c^b \leftarrow\!\shortmid c$$
+            $$
+            t \leftarrow\!\shortmid 0 \quad a \times b \leftarrow\!\shortmid \langle a, b \rangle \quad c^b \leftarrow\!\shortmid c
+            $$
           </p>
           <p>
             To specify the first is to specify the terminal object $t \in C$. To specify the second is to specify, for each pair of objects $a, b \in C$, the product object $a \times b$ along with projections $a \leftarrow a \times b \rightarrow b$: the projections consistite the counit of the adjunction, and $\times$ is a bifunctor. The third specifies $- \times b : C \rightarrow C$, a right adjoint with bijection:
@@ -525,8 +533,10 @@
             Next, we turn our attention to maps between adjunctions. Given two adjunctions:
           </p>
           <p class="mathjax">
-            $$\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
-            \langle F', G', \eta', \epsilon' \rangle, X' \rightharpoonup A$$
+            $$
+            \langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
+            \langle F', G', \eta', \epsilon' \rangle, X' \rightharpoonup A
+            $$
           </p>
           <p>
             we define the map between the two adjunctions by two functors $K : A \rightarrow A'$ and $L : X \rightarrow X'$ such that the following squares commute:
@@ -562,7 +572,9 @@
             The above condition is equivalent to $L \eta = \eta' L$ and $\epsilon' K = K \epsilon$. To prove this, set $a = Fx$ and chase $1 : Fx \rightarrow Fx$ around the commutative diagram to get the units $\eta, \eta'$, and the equality:
           </p>
           <p class="mathjax">
-            $$\langle L, \eta : L \rightarrow LGF \rangle = \langle \eta', L : L \rightarrow G'F'L \rangle$$
+            $$
+            \langle L, \eta : L \rightarrow LGF \rangle = \langle \eta', L : L \rightarrow G'F'L \rangle
+            $$
           </p>
           <p>
             where $LGF = G'F'L$. Conversely, given the identity $L \eta = \eta' L$ of the NTs, the definition of adjunctions $\varphi, \varphi'$ by their units gives the required result. The case of counits is dual to this case.
@@ -571,7 +583,9 @@
             Next, consider two adjunctions between the same two categories:
           </p>
           <p class="mathjax">
-            $$\langle F, G, \eta, \epsilon \rangle, \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A$$
+            $$
+            \langle F, G, \eta, \epsilon \rangle, \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A
+            $$
           </p>
           <p>
             The following two NTs are said to be `conjugate` when the diagram commutes for every pair of objects $x \in X, a \in A$:
@@ -667,7 +681,9 @@
             The vertical compositions of:
           </p>
           <p class="mathjax">
-            $$\langle F, G, \eta, \epsilon \rangle \xrightarrow{\langle \sigma, \tau \rangle} \langle F', G', \eta' \epsilon' \rangle \xrightarrow{\langle \sigma', \tau' \rangle} \langle F'', G'', \eta'', \epsilon'' \rangle$$
+            $$
+            \langle F, G, \eta, \epsilon \rangle \xrightarrow{\langle \sigma, \tau \rangle} \langle F', G', \eta' \epsilon' \rangle \xrightarrow{\langle \sigma', \tau' \rangle} \langle F'', G'', \eta'', \epsilon'' \rangle
+            $$
           </p>
           <p>
             are given by $\langle \sigma, \tau \rangle \circ \langle \sigma', \tau' \rangle = \langle \sigma \bullet \sigma', \tau \bullet \tau' \rangle$
@@ -720,8 +736,10 @@
             Two adjunctions compose to give a single adjunction as follows. Given two adjunctions:
           </p>
           <p class="mathjax">
-            $$\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
-            \langle \bar{F}, \bar{G}, \bar{\eta}, \bar{\epsilon} \rangle : A \rightharpoonup D$$
+            $$
+            \langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
+            \langle \bar{F}, \bar{G}, \bar{\eta}, \bar{\epsilon} \rangle : A \rightharpoonup D
+            $$
           </p>
           <p>
             the composite functors yield the adjunction:
@@ -741,8 +759,10 @@
             Given two conjugate pairs:
           </p>
           <p class="mathjax">
-            $$\langle \sigma, \tau \rangle : \langle F, G, \eta, \epsilon \rangle \overset{\bullet}{\rightarrow} \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A \\
-            \langle \bar{\sigma}, \bar{\tau} \rangle : \langle \bar{F}, \bar{G}, \bar{\eta}, \bar{\epsilon} \rangle \overset{\bullet}{\rightarrow} \langle \bar{F'}, \bar{G'}, \bar{\eta'}, \bar{\epsilon'} \rangle : A \rightharpoonup D$$
+            $$
+            \langle \sigma, \tau \rangle : \langle F, G, \eta, \epsilon \rangle \overset{\bullet}{\rightarrow} \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A \\
+            \langle \bar{\sigma}, \bar{\tau} \rangle : \langle \bar{F}, \bar{G}, \bar{\eta}, \bar{\epsilon} \rangle \overset{\bullet}{\rightarrow} \langle \bar{F'}, \bar{G'}, \bar{\eta'}, \bar{\epsilon'} \rangle : A \rightharpoonup D
+            $$
           </p>
           <p>
             The "horizontal" composite NTs yield a conjugate pair $\bar{\sigma} \sigma : \bar{F}F \overset{\bullet}{\rightarrow} \bar{F'}F'$, $\tau \bar{\tau} : G'\bar{G'} \overset{\bullet}{\rightarrow} G\bar{G}$ of NTs for the conjugate adjunction. The proof may be visualized by the commutative diagram of hom-sets:
@@ -818,7 +838,9 @@
             In this case, there are three types of elements in $X$: those $x \in S$, those $x \notin S$, but with $gx \in T$, and those $x \notin S, gx \notin T$. We may then define a characteristic function with three values by setting:
           </p>
           <p class="mathjax">
-            $$\psi_S x = \begin{cases} 0 \quad x \in S \\ 1 \quad x \notin S, fx \in T \\ 2 \quad fx \notin T \end{cases}$$
+            $$
+            \psi_S x = \begin{cases} 0 \quad x \in S \\ 1 \quad x \notin S, fx \in T \\ 2 \quad fx \notin T \end{cases}
+            $$
           </p>
           <p>
             Again, this prescription provides a pullback map:
