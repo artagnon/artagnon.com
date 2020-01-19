@@ -44,7 +44,7 @@
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2020-01-19">Sun, 19 Jan 2020 10:26:36 +0100</time>
+              <time datetime="2020-01-19">Sun, 19 Jan 2020 14:36:20 +0100</time>
             </div>
             <br />
             <div id="locations">
@@ -60,18 +60,19 @@
             Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
           </p>
           <p>
-            First, let us informally defining sets and set membership $\in$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
+            First, let us informally define sets and set membership $\in$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
           </p>
           <p class="mathjax">
             $$
             \begin{matrix}
               A & = & \forall x, x \in A \\
-              \textrm{such that} && \forall x, x \in A \vee x \not\in A
+              \textrm{such that} && \forall x, x \in A \vee x \not\in A \\
+              \textrm{with the axiom of substitution} && A \in C \wedge A = B \rightarrow B \in C
               \end{matrix}
             $$
           </p>
           <p>
-            Equality is defined as:
+            The `axiom of substition` uses the definition of equality:
           </p>
           <p class="mathjax">
             $$
@@ -81,6 +82,9 @@
                 && \forall x, x \in B \rightarrow x \in A
               \end{matrix}
             $$
+          </p>
+          <p>
+            The axiom of substition is preserved for all sets only defined in terms of $\in$ and $=$.
           </p>
           <p>
             Goal:
@@ -131,10 +135,9 @@
           <p class="mathjax">
             $$
             \begin{align}
-                A = B \rightarrow (\forall x, x \in A \rightarrow x \in B) \wedge (\forall x, x \in B \rightarrow x \in A) \tag 1 \\
-                \forall x, x \not\in \phi \tag 2 \\
-                \forall x, x \in \{a\} \leftrightarrow x = a \tag 3 \\
-                \forall x, x \in \{a, b\} \leftrightarrow (x = a) \wedge (x = b) \tag 4
+                A = B \rightarrow (\forall x, x \in A \rightarrow x \in B) \wedge (\forall x, x \in B \rightarrow x \in A) \tag{eq} \\
+                \forall x, x \in \{a\} \leftrightarrow x = a \tag{1build} \\
+                \forall x, x \in \{a, b\} \leftrightarrow (x = a) \vee (x = b) \tag{2build}
               \end{align}
             $$
           </p>
@@ -147,9 +150,9 @@
           <p class="mathjax">
             $$
             \begin{align*}
-                (\phi \in \{\phi\}) \wedge (\phi \not\in \phi) & \rightarrow \phi \neq \{\phi\} & \textrm{by (3), (2), and (1)} \\
-                (\{\phi\} \in \{\{\phi\}\}) \wedge (\{\phi\} \not\in \{\phi\}) & \rightarrow \{\phi\} \neq \{\{\phi\}\} & \textrm{by (3) and (1)} \\
-                (\phi \in \{\phi, \{\phi\}\}) \wedge (\{\phi\} \in \{\phi, \{\phi\}\}) & \rightarrow \textrm{no two are equal} & \textrm{by (4) and (1)}
+                (\phi \in \{\phi\}) & \rightarrow \phi \neq \{\phi\} & \textrm{by (1build)} \\
+                (\{\phi\} \in \{\{\phi\}\}) & \rightarrow \{\phi\} \neq \{\{\phi\}\} & \textrm{by (1build)} \\
+                (\phi \in \{\phi, \{\phi\}\}) \wedge (\{\phi\} \in \{\phi, \{\phi\}\}) & \rightarrow \textrm{no two are equal} & \textrm{by (2build) and (eq)}
               \end{align*}
             $$
           </p>
@@ -163,7 +166,7 @@
           <p class="mathjax">
             $$
             \begin{align}
-                \forall x, x \in A = A \tag 0 \\
+                \forall x, x \in A = A \tag{eq} \\
                 \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag 1 \\
                 \forall x, x \not\in \phi \tag 2
               \end{align}
@@ -176,9 +179,9 @@
             $$
             \begin{align*}
                 A \cup A & \leftrightarrow \forall x, x \in A \cup A & \textrm{by (1)} \\
-                         & \leftrightarrow \forall x, x \in A = A & \textrm{by (0)} \\
+                         & \leftrightarrow \forall x, x \in A = A & \textrm{by (eq)} \\
                 A \cup \phi & \leftrightarrow \forall x, x \in A \vee x \in \phi & \textrm{by (1)} \\
-                            & \leftrightarrow \forall x, x \in A = A & \textrm{by (2), intuition, and (0)} \\
+                            & \leftrightarrow \forall x, x \in A = A & \textrm{by (2), intuition, and (eq)} \\
                 \phi \cup A & = A & \textrm{by similar argument}
               \end{align*}
             $$
@@ -193,8 +196,10 @@
           <p class="mathjax">
             $$
             \begin{align}
-                A \subseteq B & \rightarrow \forall x, x \in A \rightarrow x \in B \tag 0 \\
-                A \subsetneq B & \leftrightarrow A \subseteq B \wedge A \neq B \tag 1
+                A \in C \wedge A = B & \rightarrow B \in C \tag{subst} \\
+                A = B & \leftrightarrow \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
+                A \subseteq B & \rightarrow \forall x, x \in A \rightarrow x \in B \tag{subset-eq} \\
+                A \subsetneq B & \leftrightarrow A \subseteq B \wedge A \neq B \tag{subset-neq}
               \end{align}
             $$
           </p>
@@ -203,7 +208,23 @@
           </p>
           <p class="mathjax">
             $$
-            
+            \begin{matrix}
+                A \subseteq B \wedge B \subseteq A & \rightarrow & \forall x, x \in A \leftrightarrow x \in B & \textrm{by (subset-eq) and intuition} \\
+                & \leftrightarrow & A = B & \textrm{by (eq)} \\
+                A \subsetneq B \wedge B \subsetneq C & \rightarrow     & A \subseteq B \wedge B \subseteq C & \\
+                                                     &                 & \wedge & \\
+                                                     &                 & A \neq B \wedge B \neq C & \textrm{by (subset-neq)} \\
+                                                     & \rightarrow     & A \subseteq B \wedge A \subseteq C & \\
+                                                     &                 & \wedge & \\
+                                                     &                 & A \neq C & \textrm{by (subst)} \\
+                                                     & \rightarrow     & \forall x, x \in A \rightarrow x \in B & \textrm{by (subset-eq)} \\
+                                                     &                 & \wedge & \\
+                                                     &                 & \forall x, x \in B \rightarrow x \in C & \textrm{by (subset-eq)} \\
+                                                     & \rightarrow     & \forall x, x \in A \rightarrow x \in C & \textrm{by intuition} \\
+                                                     &                 & \wedge & \\
+                                                     &                 & A \neq C & \\
+                                                     & \leftrightarrow & A \subsetneq C & \textrm{by (subset-neq)}
+              \end{matrix}
             $$
           </p>
         </article>

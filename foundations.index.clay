@@ -6,16 +6,17 @@ Here, we do exercises from Tao's excellent book on Analysis
 
 + Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
 
-First, let us informally defining sets and set membership $\in$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
+First, let us informally define sets and set membership $\in$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
 
 $$
   \begin{matrix}
   A & = & \forall x, x \in A \\
-  \textrm{such that} && \forall x, x \in A \vee x \not\in A
+  \textrm{such that} && \forall x, x \in A \vee x \not\in A \\
+  \textrm{with the axiom of substitution} && A \in C \wedge A = B \rightarrow B \in C
   \end{matrix}
 $$
 
-Equality is defined as:
+The `axiom of substition` uses the definition of equality:
 
 $$
   \begin{matrix}
@@ -24,6 +25,8 @@ $$
     && \forall x, x \in B \rightarrow x \in A
   \end{matrix}
 $$
+
+The axiom of substition is preserved for all sets only defined in terms of $\in$ and $=$.
 
 Goal:
 
@@ -68,10 +71,9 @@ Hypothesis:
 
 $$
   \begin{align}
-    A = B \rightarrow (\forall x, x \in A \rightarrow x \in B) \wedge (\forall x, x \in B \rightarrow x \in A) \tag 1 \\
-    \forall x, x \not\in \phi \tag 2 \\
-    \forall x, x \in \{a\} \leftrightarrow x = a \tag 3 \\
-    \forall x, x \in \{a, b\} \leftrightarrow (x = a) \wedge (x = b) \tag 4
+    A = B \rightarrow (\forall x, x \in A \rightarrow x \in B) \wedge (\forall x, x \in B \rightarrow x \in A) \tag{eq} \\
+    \forall x, x \in \{a\} \leftrightarrow x = a \tag{1build} \\
+    \forall x, x \in \{a, b\} \leftrightarrow (x = a) \vee (x = b) \tag{2build}
   \end{align}
 $$
 
@@ -81,9 +83,9 @@ By the above properties of equality being transitive, to show that a certain col
 
 $$
   \begin{align*}
-    (\phi \in \{\phi\}) \wedge (\phi \not\in \phi) & \rightarrow \phi \neq \{\phi\} & \textrm{by (3), (2), and (1)} \\
-    (\{\phi\} \in \{\{\phi\}\}) \wedge (\{\phi\} \not\in \{\phi\}) & \rightarrow \{\phi\} \neq \{\{\phi\}\} & \textrm{by (3) and (1)} \\
-    (\phi \in \{\phi, \{\phi\}\}) \wedge (\{\phi\} \in \{\phi, \{\phi\}\}) & \rightarrow \textrm{no two are equal} & \textrm{by (4) and (1)}
+    (\phi \in \{\phi\}) & \rightarrow \phi \neq \{\phi\} & \textrm{by (1build)} \\
+    (\{\phi\} \in \{\{\phi\}\}) & \rightarrow \{\phi\} \neq \{\{\phi\}\} & \textrm{by (1build)} \\
+    (\phi \in \{\phi, \{\phi\}\}) \wedge (\{\phi\} \in \{\phi, \{\phi\}\}) & \rightarrow \textrm{no two are equal} & \textrm{by (2build) and (eq)}
   \end{align*}
 $$
 
@@ -95,7 +97,7 @@ Hypothesis:
 
 $$
   \begin{align}
-    \forall x, x \in A = A \tag 0 \\
+    \forall x, x \in A = A \tag{eq} \\
     \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag 1 \\
     \forall x, x \not\in \phi \tag 2
   \end{align}
@@ -106,9 +108,9 @@ Proof:
 $$
   \begin{align*}
     A \cup A & \leftrightarrow \forall x, x \in A \cup A & \textrm{by (1)} \\
-             & \leftrightarrow \forall x, x \in A = A & \textrm{by (0)} \\
+             & \leftrightarrow \forall x, x \in A = A & \textrm{by (eq)} \\
     A \cup \phi & \leftrightarrow \forall x, x \in A \vee x \in \phi & \textrm{by (1)} \\
-                & \leftrightarrow \forall x, x \in A = A & \textrm{by (2), intuition, and (0)} \\
+                & \leftrightarrow \forall x, x \in A = A & \textrm{by (2), intuition, and (eq)} \\
     \phi \cup A & = A & \textrm{by similar argument}
   \end{align*}
 $$
@@ -121,12 +123,31 @@ Hypothesis:
 
 $$
   \begin{align}
-    A \subseteq B & \rightarrow \forall x, x \in A \rightarrow x \in B \tag 0 \\
-    A \subsetneq B & \leftrightarrow A \subseteq B \wedge A \neq B \tag 1
+    A \in C \wedge A = B & \rightarrow B \in C \tag{subst} \\
+    A = B & \leftrightarrow \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
+    A \subseteq B & \rightarrow \forall x, x \in A \rightarrow x \in B \tag{subset-eq} \\
+    A \subsetneq B & \leftrightarrow A \subseteq B \wedge A \neq B \tag{subset-neq}
   \end{align}
 $$
 
 Proof:
 
 $$
+  \begin{matrix}
+    A \subseteq B \wedge B \subseteq A & \rightarrow & \forall x, x \in A \leftrightarrow x \in B & \textrm{by (subset-eq) and intuition} \\
+    & \leftrightarrow & A = B & \textrm{by (eq)} \\
+    A \subsetneq B \wedge B \subsetneq C & \rightarrow     & A \subseteq B \wedge B \subseteq C & \\
+                                         &                 & \wedge & \\
+                                         &                 & A \neq B \wedge B \neq C & \textrm{by (subset-neq)} \\
+                                         & \rightarrow     & A \subseteq B \wedge A \subseteq C & \\
+                                         &                 & \wedge & \\
+                                         &                 & A \neq C & \textrm{by (subst)} \\
+                                         & \rightarrow     & \forall x, x \in A \rightarrow x \in B & \textrm{by (subset-eq)} \\
+                                         &                 & \wedge & \\
+                                         &                 & \forall x, x \in B \rightarrow x \in C & \textrm{by (subset-eq)} \\
+                                         & \rightarrow     & \forall x, x \in A \rightarrow x \in C & \textrm{by intuition} \\
+                                         &                 & \wedge & \\
+                                         &                 & A \neq C & \\
+                                         & \leftrightarrow & A \subsetneq C & \textrm{by (subset-neq)}
+  \end{matrix}
 $$
