@@ -65,13 +65,12 @@ $$
 
 --
 
-+ Using the above definition of equality, the empty set axiom, and the axiom for building sets pairwise, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
++ Using the axiom for building sets pairwise, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
 
 Hypothesis:
 
 $$
   \begin{align}
-    A = B \rightarrow (\forall x, x \in A \rightarrow x \in B) \wedge (\forall x, x \in B \rightarrow x \in A) \tag{eq} \\
     \forall x, x \in \{a\} \leftrightarrow x = a \tag{1build} \\
     \forall x, x \in \{a, b\} \leftrightarrow (x = a) \vee (x = b) \tag{2build}
   \end{align}
@@ -85,7 +84,7 @@ $$
   \begin{align*}
     (\phi \in \{\phi\}) & \rightarrow \phi \neq \{\phi\} & \textrm{by (1build)} \\
     (\{\phi\} \in \{\{\phi\}\}) & \rightarrow \{\phi\} \neq \{\{\phi\}\} & \textrm{by (1build)} \\
-    (\phi \in \{\phi, \{\phi\}\}) \wedge (\{\phi\} \in \{\phi, \{\phi\}\}) & \rightarrow \textrm{no two are equal} & \textrm{by (2build) and (eq)}
+    (\phi \in \{\phi, \{\phi\}\}) \wedge (\{\phi\} \in \{\phi, \{\phi\}\}) & \rightarrow \textrm{no two are equal} & \textrm{by (2build)}
   \end{align*}
 $$
 
@@ -98,8 +97,8 @@ Hypothesis:
 $$
   \begin{align}
     \forall x, x \in A = A \tag{eq} \\
-    \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag 1 \\
-    \forall x, x \not\in \phi \tag 2
+    \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag{union} \\
+    \forall x, x \not\in \phi \tag{phi}
   \end{align}
 $$
 
@@ -107,17 +106,17 @@ Proof:
 
 $$
   \begin{align*}
-    A \cup A & \leftrightarrow \forall x, x \in A \cup A & \textrm{by (1)} \\
+    A \cup A & \leftrightarrow \forall x, x \in A \cup A & \textrm{by (union)} \\
              & \leftrightarrow \forall x, x \in A = A & \textrm{by (eq)} \\
-    A \cup \phi & \leftrightarrow \forall x, x \in A \vee x \in \phi & \textrm{by (1)} \\
-                & \leftrightarrow \forall x, x \in A = A & \textrm{by (2), intuition, and (eq)} \\
+    A \cup \phi & \leftrightarrow \forall x, x \in A \vee x \in \phi & \textrm{by (union)} \\
+                & \leftrightarrow \forall x, x \in A = A & \textrm{by (phi), intuition, and (eq)} \\
     \phi \cup A & = A & \textrm{by similar argument}
   \end{align*}
 $$
 
 --
 
-+ Show that for any three sets $A, B, C$, $A \subseteq B \wedge B \subseteq A \rightarrow A = B$, and $A \subsetneq B \subsetneq C \rightarrow A \subsetneq C$.
++ Show that, for any three sets $A, B, C$, $A \subseteq B \wedge B \subseteq A \rightarrow A = B$, and $A \subsetneq B \subsetneq C \rightarrow A \subsetneq C$.
 
 Hypothesis:
 
@@ -125,7 +124,7 @@ $$
   \begin{align}
     A \in C \wedge A = B & \rightarrow B \in C \tag{subst} \\
     A = B & \leftrightarrow \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
-    A \subseteq B & \rightarrow \forall x, x \in A \rightarrow x \in B \tag{subset-eq} \\
+    A \subseteq B & \leftrightarrow \forall x, x \in A \rightarrow x \in B \tag{subset-eq} \\
     A \subsetneq B & \leftrightarrow A \subseteq B \wedge A \neq B \tag{subset-neq}
   \end{align}
 $$
@@ -151,3 +150,50 @@ $$
                                          & \leftrightarrow & A \subsetneq C & \textrm{by (subset-neq)}
   \end{matrix}
 $$
+
+--
+
++ Show that, for any two sets $A, B$, $$A \subseteq B \leftrightarrow A \cup B = B \leftrightarrow A \cap B = A$$
+
+Hypothesis:
+
+$$
+  \begin{align}
+    A \subseteq B & \leftrightarrow & \forall x, x \in A \rightarrow x \in B \tag{subset-eq} \\
+    A \cup B & = & \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag{union} \\
+    A \cap B & = & \forall x, x \in A \cap B \leftrightarrow x \in A \wedge x \in B \tag{intersect}
+  \end{align}
+$$
+
+Proof:
+
+$$
+  \begin{matrix}
+    A \cup B = B & \leftrightarrow & \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B = B & \textrm{by (union)} \\
+                 & \leftrightarrow & \forall x, x \in A \vee x \in B \leftrightarrow x \in B & \textrm{by intuition} \\
+                 & \leftrightarrow & \forall x, x \in A \rightarrow x \in B & \textrm{by intuition} \\
+                 & \leftrightarrow & A \subseteq B & \textrm{by (subset-eq)} \\
+                 \\
+    A \cap B = A & \leftrightarrow & \forall x, x \in A \wedge x \in B \leftrightarrow x \in A & \textrm{by (intersect)} \\
+                 & \leftrightarrow & \forall x \in A \rightarrow x \in B & \textrm{by intuition} \\
+                 & \leftrightarrow & A \subseteq B & \textrm{by (subset-eq)}
+  \end{matrix}
+$$
+
+--
+
++ Let $A, B, C$ be sets.
+
+Goals:
+
+$$
+A \cap B \subseteq A \wedge A \cap B \subseteq B \\
+C \subseteq A \wedge C \subseteq B \leftrightarrow C \subseteq A \cap B \\
+A \subseteq C \wedge B \subseteq C \leftrightarrow A \cup B \subseteq C
+$$
+
+Hypothesis:
+
+Proof:
+
+--
