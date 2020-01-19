@@ -4,23 +4,21 @@ Foundations
 Here, we do exercises from Tao's excellent book on Analysis
 ...
 
-++
-Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
-++
++ Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
 
-First, let us informally defining sets and set membership $\epsilon$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
+First, let us informally defining sets and set membership $\in$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
 
 $$
-  \epsilon : \textbf{Set} \rightarrow \textbf{Obj} \rightarrow \mathbb{P}
+  A = \forall x, x \in A
 $$
 
 Equality is defined as:
 
 $$
   \begin{matrix}
-    A = B \rightarrow &\forall x \in A, x \in B \\
-    &\wedge \\
-    &\forall x \in B, x \in A
+    A = B & \leftrightarrow & \forall x, x \in A \rightarrow x \in B \\
+    && \wedge \\
+    && \forall x, x \in B \rightarrow x \in A
   \end{matrix}
 $$
 
@@ -38,38 +36,36 @@ Proof:
 
 $$
   \begin{matrix}
-    A = A & \rightarrow & \forall x \in A, x \in A \rightarrow \top & \textrm{by exact} \\
-    A = B & \rightarrow & \forall x \in A, x \in B & \\
+    A = A & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in A & \textrm{by exact} \\
+    A = B & \leftrightarrow & \forall x, x \in A \rightarrow x \in B & \\
     && \wedge & \\
-    && \forall x \in B, x \in A & \\
+    && \forall x, x \in B \rightarrow x \in A & \\
     & \leftrightarrow & B = A & \textrm{by swapping the arguments of } \wedge \\
     A = B &&& \\
     \wedge &&& \\
-    B = C & \rightarrow & \forall x \in A, x \in B & \textrm{(1)} \\
+    B = C & \rightarrow & \forall x, x \in A \rightarrow x \in B & \textrm{(1)} \\
     && \wedge & \\
-    && \forall x \in B, x \in A & \textrm{(2)} \\
+    && \forall x, x \in B \rightarrow x \in A & \textrm{(2)} \\
     && \wedge & \\
-    && \forall x \in B, x \in C & \textrm{(3)} \\
+    && \forall x, x \in B \rightarrow x \in C & \textrm{(3)} \\
     && \wedge & \\
-    && \forall x \in C, x \in B & \textrm{(4)} \\
-    & \rightarrow & \forall x \in A, x \in C & \textrm{by (1) and (3)} \\
+    && \forall x, x \in C \rightarrow x \in B & \textrm{(4)} \\
+    & \rightarrow & \forall x, x \in A \rightarrow x \in C & \textrm{by (1) and (3)} \\
     && \wedge & \\
-    && \forall x \in C, x \in A & \textrm{by (4) and (2)} \\
+    && \forall x, x \in C \rightarrow x \in A & \textrm{by (4) and (2)} \\
     & \rightarrow & A = C & \textrm{by exact}
   \end{matrix}
 $$
 
 --
 
-++
-Using the above definition of equality, the empty set axiom, and the axiom for building sets pairwise, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
-++
++ Using the above definition of equality, the empty set axiom, and the axiom for building sets pairwise, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
 
 Hypothesis:
 
 $$
   \begin{align}
-    A = B \rightarrow (\forall x \in A, x \in B) \wedge (\forall x \in B, x \in A) \tag 1 \\
+    A = B \rightarrow (\forall x, x \in A \rightarrow x \in B) \wedge (\forall x, x \in B \rightarrow x \in A) \tag 1 \\
     \forall x, x \not\in \phi \tag 2 \\
     \forall x, x \in \{a\} \leftrightarrow x = a \tag 3 \\
     \forall x, x \in \{a, b\} \leftrightarrow (x = a) \wedge (x = b) \tag 4
@@ -90,4 +86,28 @@ $$
 
 --
 
-$\S$
++ Show that, for any set $A$, $A \cup A = A \cup \phi = \phi \cup A = A$.
+
+Hypothesis:
+
+$$
+  \begin{align}
+    \forall x, x \in A = A \tag 0 \\
+    \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag 1 \\
+    \forall x, x \not\in \phi \tag 2
+  \end{align}
+$$
+
+Proof:
+
+$$
+  \begin{align*}
+    A \cup A & \leftrightarrow \forall x, x \in A \cup A & \textrm{by (1)} \\
+             & \leftrightarrow \forall x, x \in A = A & \textrm{by (0)} \\
+    A \cup \phi & \leftrightarrow \forall x, x \in A \vee x \in \phi & \textrm{by (1)} \\
+                & \leftrightarrow \forall x, x \in A = A & \textrm{by (2), intuition, and (0)} \\
+    \phi \cup A & = A & \textrm{by similar argument}
+  \end{align*}
+$$
+
+--
