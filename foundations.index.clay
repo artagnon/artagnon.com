@@ -9,7 +9,10 @@ Here, we do exercises from Tao's excellent book on Analysis
 First, let us informally defining sets and set membership $\in$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
 
 $$
-  A = \forall x, x \in A
+  \begin{matrix}
+  A & = & \forall x, x \in A \\
+  \textrm{such that} && \forall x, x \in A \vee x \not\in A
+  \end{matrix}
 $$
 
 Equality is defined as:
@@ -74,7 +77,7 @@ $$
 
 Proof:
 
-By the above properties of equality being transitive, to show that a certain collection of sets are distinct, it is sufficient to show pairwise equality upto transitivity.
+By the above properties of equality being transitive, to show that a certain collection of sets are distinct, it is sufficient to show pairwise inequality upto transitivity.
 
 $$
   \begin{align*}
@@ -111,3 +114,19 @@ $$
 $$
 
 --
+
++ Show that for any three sets $A, B, C$, $A \subseteq B \wedge B \subseteq A \rightarrow A = B$, and $A \subsetneq B \subsetneq C \rightarrow A \subsetneq C$.
+
+Hypothesis:
+
+$$
+  \begin{align}
+    A \subseteq B & \rightarrow \forall x, x \in A \rightarrow x \in B \tag 0 \\
+    A \subsetneq B & \leftrightarrow A \subseteq B \wedge A \neq B \tag 1
+  \end{align}
+$$
+
+Proof:
+
+$$
+$$

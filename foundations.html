@@ -44,7 +44,7 @@
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2020-01-19">Sun, 19 Jan 2020 09:35:43 +0100</time>
+              <time datetime="2020-01-19">Sun, 19 Jan 2020 10:26:36 +0100</time>
             </div>
             <br />
             <div id="locations">
@@ -64,7 +64,10 @@
           </p>
           <p class="mathjax">
             $$
-            A = \forall x, x \in A
+            \begin{matrix}
+              A & = & \forall x, x \in A \\
+              \textrm{such that} && \forall x, x \in A \vee x \not\in A
+              \end{matrix}
             $$
           </p>
           <p>
@@ -139,7 +142,7 @@
             Proof:
           </p>
           <p>
-            By the above properties of equality being transitive, to show that a certain collection of sets are distinct, it is sufficient to show pairwise equality upto transitivity.
+            By the above properties of equality being transitive, to show that a certain collection of sets are distinct, it is sufficient to show pairwise inequality upto transitivity.
           </p>
           <p class="mathjax">
             $$
@@ -181,6 +184,28 @@
             $$
           </p>
           <hr />
+          <p class="exercise">
+            Show that for any three sets $A, B, C$, $A \subseteq B \wedge B \subseteq A \rightarrow A = B$, and $A \subsetneq B \subsetneq C \rightarrow A \subsetneq C$.
+          </p>
+          <p>
+            Hypothesis:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align}
+                A \subseteq B & \rightarrow \forall x, x \in A \rightarrow x \in B \tag 0 \\
+                A \subsetneq B & \leftrightarrow A \subseteq B \wedge A \neq B \tag 1
+              \end{align}
+            $$
+          </p>
+          <p>
+            Proof:
+          </p>
+          <p class="mathjax">
+            $$
+            
+            $$
+          </p>
         </article>
       </main>
       <nav>
