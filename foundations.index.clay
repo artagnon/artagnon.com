@@ -9,11 +9,10 @@ Here, we do exercises from Tao's excellent book on Analysis
 First, let us informally define sets and set membership $\in$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
 
 $$
-  \begin{matrix}
-  A & = & \forall x, x \in A \\
-  \textrm{such that} && \forall x, x \in A \vee x \not\in A \\
-  \textrm{with the axiom of substitution} && A \in C \wedge A = B \rightarrow B \in C
-  \end{matrix}
+  \begin{align}
+    \forall x, x \in A \vee x \not\in A \tag{law of excluded middle} \\
+    A \in C \wedge A = B \rightarrow B \in C \tag{axiom of substitution}
+  \end{align}
 $$
 
 The `axiom of substition` uses the definition of equality:
@@ -80,14 +79,6 @@ Proof:
 
 By the above properties of equality being transitive, to show that a certain collection of sets are distinct, it is sufficient to show pairwise inequality upto transitivity.
 
-$$
-  \begin{align*}
-    \phi \in \{\phi\} & \rightarrow \phi \neq \{\phi\} & \textrm{by (1build)} \\
-    \{\phi\} \in \{\{\phi\}\} & \rightarrow \{\phi\} \neq \{\{\phi\}\} & \textrm{by (1build)} \\
-    \phi \in \{\phi, \{\phi\}\} \wedge \{\phi\} \in \{\phi, \{\phi\}\} & \rightarrow \textrm{no two are equal} & \textrm{by (2build)}
-  \end{align*}
-$$
-
 --
 
 + Show that, for any set $A$, $A \cup A = A \cup \phi = \phi \cup A = A$.
@@ -96,7 +87,7 @@ Hypothesis:
 
 $$
   \begin{align}
-    \forall x, x \in A = A \tag{eq} \\
+    A = B \leftrightarrow \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
     \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag{union} \\
     \forall x, x \not\in \phi \tag{phi}
   \end{align}
@@ -105,13 +96,15 @@ $$
 Proof:
 
 $$
-  \begin{align*}
-    A \cup A & \leftrightarrow \forall x, x \in A \cup A & \textrm{by (union)} \\
-             & \leftrightarrow \forall x, x \in A = A & \textrm{by (eq)} \\
-    A \cup \phi & \leftrightarrow \forall x, x \in A \vee x \in \phi & \textrm{by (union)} \\
-                & \leftrightarrow \forall x, x \in A = A & \textrm{by (phi), intuition, and (eq)} \\
-    \phi \cup A & = A & \textrm{by similar argument}
-  \end{align*}
+  \begin{matrix}
+    A \cup A    = A & \leftrightarrow \forall x, x \in A \vee x \in A \leftrightarrow x \in A & \textrm{by (eq) and (union)} \\
+                    & \leftrightarrow \forall x, x \in A \leftrightarrow x \in A & \textrm{by intuition} \\
+                    \\
+    A \cup \phi = A & \leftrightarrow \forall x, x \in A \vee x \in \phi \leftrightarrow x \in A & \textrm{by (eq) and (union)} \\
+                    & \leftrightarrow \forall x, x \in A \leftrightarrow x \in A & \textrm{by (phi) and intuition} \\
+                    \\
+    \phi \cup A = A && \textrm{by similar argument}
+  \end{matrix}
 $$
 
 --
@@ -135,19 +128,10 @@ $$
   \begin{matrix}
     A \subseteq B \wedge B \subseteq A & \rightarrow & \forall x, x \in A \leftrightarrow x \in B & \textrm{by (subset-eq) and intuition} \\
     & \leftrightarrow & A = B & \textrm{by (eq)} \\
+    \\
     A \subsetneq B \wedge B \subsetneq C & \rightarrow     & A \subseteq B \wedge B \subseteq C & \\
                                          &                 & \wedge & \\
                                          &                 & A \neq B \wedge B \neq C & \textrm{by (subset-neq)} \\
-                                         & \rightarrow     & A \subseteq B \wedge A \subseteq C & \\
-                                         &                 & \wedge & \\
-                                         &                 & A \neq C & \textrm{by (subst)} \\
-                                         & \rightarrow     & \forall x, x \in A \rightarrow x \in B & \textrm{by (subset-eq)} \\
-                                         &                 & \wedge & \\
-                                         &                 & \forall x, x \in B \rightarrow x \in C & \textrm{by (subset-eq)} \\
-                                         & \rightarrow     & \forall x, x \in A \rightarrow x \in C & \textrm{by intuition} \\
-                                         &                 & \wedge & \\
-                                         &                 & A \neq C & \\
-                                         & \leftrightarrow & A \subsetneq C & \textrm{by (subset-neq)}
   \end{matrix}
 $$
 
