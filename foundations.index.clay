@@ -83,7 +83,7 @@ Lemma:
 
 $$
   \begin{matrix}
-    A \neq B \leftrightarrow \exists x, (x \in A \wedge x \not\in B) \vee (x \not\in A \wedge x \in B) & \textrm{by (eq)}
+    A \neq B & \leftrightarrow & \exists x, (x \in A \wedge x \not\in B) \vee (x \not\in A \wedge x \in B) & \textrm{by (eq)}
   \end{matrix}
 $$
 
@@ -134,10 +134,10 @@ Hypothesis:
 
 $$
   \begin{align}
-    A \in C \wedge A = B & \rightarrow B \in C \tag{subst} \\
-    A = B & \leftrightarrow \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
-    A \subseteq B & \leftrightarrow \forall x, x \in A \rightarrow x \in B \tag{subset-eq} \\
-    A \subsetneq B & \leftrightarrow A \subseteq B \wedge A \neq B \tag{subset-neq}
+    A = B & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
+    A \neq B & \leftrightarrow & \exists x, (x \in A \wedge x \not\in B) \vee (x \not\in A \wedge x \in B) \tag{neq} \\
+    A \subseteq B & \leftrightarrow & \forall x, x \in A \rightarrow x \in B \tag{subset-eq} \\
+    A \subsetneq B & \leftrightarrow & A \subseteq B \wedge A \neq B \tag{subset-neq}
   \end{align}
 $$
 
@@ -148,9 +148,27 @@ $$
     A \subseteq B \wedge B \subseteq A & \rightarrow & \forall x, x \in A \leftrightarrow x \in B & \textrm{by (subset-eq) and intuition} \\
     & \leftrightarrow & A = B & \textrm{by (eq)} \\
     \\
-    A \subsetneq B \wedge B \subsetneq C & \rightarrow     & A \subseteq B \wedge B \subseteq C & \\
-                                         &                 & \wedge & \\
-                                         &                 & A \neq B \wedge B \neq C & \textrm{by (subset-neq)} \\
+    A \subsetneq B & \leftrightarrow & A \subseteq B \wedge A \neq B & \textrm{by (subset-neq)} \\
+                   & \leftrightarrow & \forall x, x \in A \rightarrow x \in B & \\
+                   &                 & \wedge & \\
+                   &                 & (\exists x, x \in A \wedge x \not\in B & \\
+                   &                 & \vee & \\
+                   &                 & \exists x, x \in B \wedge x \not\in A) & \textrm{by (subset-eq) and (neq)} \\
+                   & \rightarrow     & \forall x, x \in A \rightarrow x \in B & \\
+                   &                 & \wedge & \\
+                   &                 & \exists x, x \in B \wedge x \not\in A & \textrm{by intuition} \\
+    \\\\
+    B \subsetneq C & \rightarrow & \forall x, x \in B \rightarrow x \in C & \\
+                   &             & \wedge & \\
+                   &             & \exists x, x \in C \wedge x \not\in B & \textrm{by similar argument} \\
+    \\\\
+    A \subsetneq B \wedge B \subsetneq C & \rightarrow & \forall x, x \in A \rightarrow x \in C & \\
+                                         &             & \wedge & \\
+                                         &             & \exists x, x \in C \wedge x \not\in A & \textrm{by intuition} \\
+                                         & \rightarrow & A \subseteq C & \\
+                                         &             & \wedge & \\
+                                         &             & C \neq A & \textrm{by (subset-eq) and (neq)} \\
+                                         & \rightarrow & A \subsetneq C & \textrm{by (subset-neq)}
   \end{matrix}
 $$
 
@@ -176,7 +194,7 @@ $$
                  & \leftrightarrow & \forall x, x \in A \vee x \in B \leftrightarrow x \in B & \textrm{by intuition} \\
                  & \leftrightarrow & \forall x, x \in A \rightarrow x \in B & \textrm{by intuition} \\
                  & \leftrightarrow & A \subseteq B & \textrm{by (subset-eq)} \\
-                 \\
+   \\\\
     A \cap B = A & \leftrightarrow & \forall x, x \in A \wedge x \in B \leftrightarrow x \in A & \textrm{by (intersect) and intuition} \\
                  & \leftrightarrow & \forall x \in A \rightarrow x \in B & \textrm{by intuition} \\
                  & \leftrightarrow & A \subseteq B & \textrm{by (subset-eq)}
