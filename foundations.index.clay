@@ -151,12 +151,8 @@ $$
     A \subsetneq B & \leftrightarrow & A \subseteq B \wedge A \neq B & \textrm{by (subset-neq)} \\
                    & \leftrightarrow & \forall x, x \in A \rightarrow x \in B & \\
                    &                 & \wedge & \\
-                   &                 & (\exists x, x \in A \wedge x \not\in B & \\
-                   &                 & \vee & \\
-                   &                 & \exists x, x \in B \wedge x \not\in A) & \textrm{by (subset-eq) and (neq)} \\
-                   & \rightarrow     & \forall x, x \in A \rightarrow x \in B & \\
-                   &                 & \wedge & \\
-                   &                 & \exists x, x \in B \wedge x \not\in A & \textrm{by intuition} \\
+                   &                 & \exists x, (x \in A \wedge x \not\in B) \vee (x \in B \wedge x \not\in A) & \textrm{by (subset-eq) and (neq)} \\
+                   & \rightarrow     & \forall x, x \in A \rightarrow x \in B \wedge \exists x, x \in B \wedge x \not\in A & \textrm{by intuition} \\
     \\\\
     B \subsetneq C & \rightarrow & \forall x, x \in B \rightarrow x \in C & \\
                    &             & \wedge & \\
@@ -165,9 +161,7 @@ $$
     A \subsetneq B \wedge B \subsetneq C & \rightarrow & \forall x, x \in A \rightarrow x \in C & \\
                                          &             & \wedge & \\
                                          &             & \exists x, x \in C \wedge x \not\in A & \textrm{by intuition} \\
-                                         & \rightarrow & A \subseteq C & \\
-                                         &             & \wedge & \\
-                                         &             & C \neq A & \textrm{by (subset-eq) and (neq)} \\
+                                         & \rightarrow & A \subseteq C \wedge C \neq A & \textrm{by (subset-eq) and (neq)} \\
                                          & \rightarrow & A \subsetneq C & \textrm{by (subset-neq)}
   \end{matrix}
 $$
