@@ -4,9 +4,9 @@ Foundations
 Here, we do exercises from Tao's excellent book on Analysis
 ...
 
-+ Define set equality, and verify that it is `reflexive`, `symmetric`, and `transitive`.
+# Ouverture
 
-First, let us informally define sets and set membership $\in$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
+Let us informally define sets and set membership $\in$. A set is an unordered collection of `objects`, with the set itself being an object. Set membership checks whether a given object is contained within a set:
 
 $$
   \begin{align}
@@ -26,6 +26,8 @@ $$
 $$
 
 The axiom of substition is preserved for all sets only defined in terms of $\in$ and $=$.
+
++ Verify that set equality is `reflexive`, `symmetric`, and `transitive`.
 
 Goal:
 
@@ -64,20 +66,37 @@ $$
 
 --
 
-+ Using the axiom for building sets pairwise, prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
++ Prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
 
 Hypothesis:
 
 $$
   \begin{align}
-    \forall x, x \in \{a\} & \leftrightarrow & x = a \tag{1build} \\
-    \forall x, x \in \{a, b\} & \leftrightarrow & (x = a) \vee (x = b) \tag{2build}
+    A = B & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
+    \forall x, x & \not\in & \phi \tag{phi} \\
+    \forall x, x \in \{a\} & \leftrightarrow & x = a \tag{build-a} \\
+    \forall x, x \in \{a, b\} & \leftrightarrow & (x = a) \vee (x = b) \tag{build-b}
   \end{align}
+$$
+
+Lemma:
+
+$$
+  \begin{matrix}
+    A \neq B \leftrightarrow \exists x, (x \in A \wedge x \not\in B) \vee (x \not\in A \wedge x \in B) & \textrm{by (eq)}
+  \end{matrix}
 $$
 
 Proof:
 
-By the above properties of equality being transitive, to show that a certain collection of sets are distinct, it is sufficient to show pairwise inequality upto transitivity.
+$$
+  \begin{matrix}
+    \phi & \neq & \textrm{any other set} & \textrm{by (phi) and (eq)} \\
+    \textrm{Plugging } x = \{\phi\} \textrm{ in (lemma)} & \rightarrow & \{\{\phi\}\} \neq \{\phi\} & \textrm{by (build-a)} \\
+    \textrm{Plugging } x = \{\phi\} \textrm{ in (lemma)} & \rightarrow & \{\phi, \{\phi\}\} \neq \{\phi\} & \textrm{by (build-a) and (build-b)} \\
+    \textrm{Plugging } x = \phi \textrm{ in (lemma)} & \rightarrow & \{\phi, \{\phi\}\} \neq \{\{\phi\}\} & \textrm{by (build-a) and (build-b)}
+  \end{matrix}
+$$
 
 --
 
