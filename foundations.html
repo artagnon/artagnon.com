@@ -44,7 +44,7 @@
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2020-01-23">Thu, 23 Jan 2020 18:20:38 +0100</time>
+              <time datetime="2020-01-23">Thu, 23 Jan 2020 18:26:41 +0100</time>
             </div>
             <br />
             <div id="locations">
@@ -101,16 +101,26 @@
             $$
           </p>
           <p>
+            Hypothesis:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{matrix}
+                A = B & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in B \tag{eq}
+              \end{matrix}
+            $$
+          </p>
+          <p>
             Proof:
           </p>
           <p class="mathjax">
             $$
             \begin{matrix}
-                A = A & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in A & \textrm{by exact} \\
+                A = A & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in A & \textrm{by (eq)} \\
                 A = B & \leftrightarrow & \forall x, x \in A \rightarrow x \in B & \\
                 && \wedge & \\
                 && \forall x, x \in B \rightarrow x \in A & \\
-                & \leftrightarrow & B = A & \textrm{by swapping the arguments of } \wedge \\
+                & \leftrightarrow & B = A & \textrm{by (eq)} \\
                 A = B &&& \\
                 \wedge &&& \\
                 B = C & \rightarrow & \forall x, x \in A \rightarrow x \in B & \textrm{(1)} \\
@@ -123,7 +133,7 @@
                 & \rightarrow & \forall x, x \in A \rightarrow x \in C & \textrm{by (1) and (3)} \\
                 && \wedge & \\
                 && \forall x, x \in C \rightarrow x \in A & \textrm{by (4) and (2)} \\
-                & \rightarrow & A = C & \textrm{by exact}
+                & \rightarrow & A = C & \textrm{by (eq)}
               \end{matrix}
             $$
           </p>
@@ -281,7 +291,7 @@
             Let $A, B, C$ be sets.
           </p>
           <p>
-            Goals:
+            Goal:
           </p>
           <p class="mathjax">
             $$
