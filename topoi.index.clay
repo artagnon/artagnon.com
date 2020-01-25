@@ -4,7 +4,7 @@ A topos is a categorical interpretation of boolean logic. We will start with som
 
 # Some set theoretic foundations
 
-The study of set theory starts with the study of `Russell's paradox`, and axiomatization into `Zermelo-Frankel set theory` with no paradoxes. To understand Russell's paradox, we first introduce the `principle of comprehension`: $\{x : \varphi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\varphi(x)$. Now, we construct the `Russell set` $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, which leads to the contradictory conclusion that $R \in R$.
+The study of set theory starts with the study of `Russell's paradox`, and axiomatization into `Zermelo-Frankel set theory` with no paradoxes. To understand Russell's paradox, we first introduce the `principle of comprehension`: $\{x : \varphi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\varphi(x)$. Now, we construct the `Russell set` $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, yielding $R \in R$; if $R \in R$, then its elements belong to a set satisfying the predicate $x \not\in x$, yielding $R \not\in R$. This leads to a contradictory conclusion.
 
 In ZF set theory, we say that a set can only be built up from another set using logical connectives like $\cup$, $\cap$, and $-$. The axioms can only be applied to a set and the result is always a set. The comprehension principle is replaced by a `separation principle`: Given a set $A$, and a predicate $\varphi(x)$, there exists a set whose members are precisely the members of $A$ that satisfy the predicate. $R$ isn't admitted as a set in this theory, thus resolving the contradiction.
 
@@ -131,8 +131,6 @@ If $f$ is monic, indicated as $f : b \rightarrowtail c$, the diagram above commu
   b\ar[r]_h & c
 }}
 
---
-
 + If $g \circ f$ is monic, so is $f$.
 
 {{
@@ -144,7 +142,7 @@ If $f$ is monic, indicated as $f : b \rightarrowtail c$, the diagram above commu
 
 If $f$ is epic, indicated as $f : a \twoheadrightarrow b$, the diagram above commutes, and $(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$. In other words, an epic is said to be `right-cancelable`.
 
-An `iso` arrow, indicated as $f : a \rightarrowtail\mathrel{\mspace{-12mu}}\twoheadrightarrow b$, corresponds to a bijective function in $\textbf{Set}$. It is invertible, and its action can be thought of as a "relabeling"; as an example, $A \times \{0\}$ attaches $0$ to every element of $A$.
+An `iso` arrow, indicated as $f : a \rightarrowtail\mathrel{\mspace{-11mu}}\twoheadrightarrow b$, corresponds to a bijective function in $\textbf{Set}$. It is invertible, and its action can be thought of as a "relabeling"; as an example, $A \times \{0\}$ attaches $0$ to every element of $A$.
 
 Every iso is both monic and epic, but "iso" isn't equivalent to "monic and epic".  Consider $(\mathbb{N}, +, 0)$ in which all arrows are monic and epic, but the only iso arrows are the identities, since no natural number has an additive inverse.
 
@@ -154,3 +152,6 @@ Every iso is both monic and epic, but "iso" isn't equivalent to "monic and epic"
   A\ar@(ul, dl)[]_{\texttt{id}_A}\ar@/^/[rr]^{f \circ g} && B\ar@(ur, dr)[]^{\texttt{id}_B}\ar[ld]^{f^{-1}}\ar@/^/[ll]^{(f \circ g)^{-1}} \\
   & \bullet\ar[lu]^{g^{-1}} &
 }}
+
+--
+
