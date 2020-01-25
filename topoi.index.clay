@@ -131,8 +131,26 @@ If $f$ is monic, indicated as $f : b \rightarrowtail c$, the diagram above commu
   b\ar[r]_h & c
 }}
 
+--
+
++ If $g \circ f$ is monic, so is $f$.
+
+{{
+  \bullet\ar@<-0.5ex>[r]\ar@<0.5ex>[r] & \bullet\ar[dr]_{f}\ar[rr]^{g \circ f} && \bullet \\
+  && \bullet\ar[ru]_{g} &
+}}
+
+--
+
 If $f$ is epic, indicated as $f : a \twoheadrightarrow b$, the diagram above commutes, and $(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$. In other words, an epic is said to be `right-cancelable`.
 
 An `iso` arrow, indicated as $f : a \rightarrowtail\mathrel{\mspace{-12mu}}\twoheadrightarrow b$, corresponds to a bijective function in $\textbf{Set}$. It is invertible, and its action can be thought of as a "relabeling"; as an example, $A \times \{0\}$ attaches $0$ to every element of $A$.
 
 Every iso is both monic and epic, but "iso" isn't equivalent to "monic and epic".  Consider $(\mathbb{N}, +, 0)$ in which all arrows are monic and epic, but the only iso arrows are the identities, since no natural number has an additive inverse.
+
++ $f \circ g$ is iso, if $f$ and $g$ are, with $(f \circ g)^{-1} = g^{-1} \circ f^{-1}$.
+
+{{
+  A\ar@(ul, dl)[]_{\texttt{id}_A}\ar@/^/[rr]^{f \circ g} && B\ar@(ur, dr)[]^{\texttt{id}_B}\ar[ld]^{f^{-1}}\ar@/^/[ll]^{(f \circ g)^{-1}} \\
+  & \bullet\ar[lu]^{g^{-1}} &
+}}
