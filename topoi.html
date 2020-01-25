@@ -44,7 +44,7 @@
           </h1>
           <div id="metadata">
             <div id="timestamp">
-              <time datetime="2020-01-25">Sat, 25 Jan 2020 14:56:18 +0100</time>
+              <time datetime="2020-01-25">Sat, 25 Jan 2020 15:17:55 +0100</time>
             </div>
             <br />
             <div id="locations">
@@ -366,7 +366,7 @@
           </p>
           <hr />
           <p>
-            An `initial object` $\mathbb{0}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $\mathbb{0} \rightarrow a$, and a `terminal object` $\mathbb{1}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $a \rightarrow \mathbb{1}$.
+            An `initial object` $\mathbb{0}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $\mathbb{0} \rightarrow a$, and a `terminal object` $\mathbb{1}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $a \rightarrow \mathbb{1}$. In $\textbf{Set}$, $\phi$ is distinguished to be the initial object because there exists only one function from $\phi$ to every other element in the category, namely $\phi$, the empty function; the graph of $\phi \times a$ is empty; and $\{e\}$, the singleton set is distinguished to be the terminal object.
           </p>
           <p class="exercise">
             All initial objects are isomorphic to each other. By duality, all terminal objects are also isomorphic to each other.
@@ -375,6 +375,27 @@
             Indeed, let $\mathbb{0}, \mathbb{0'}$ be two initial objects. Consider $f : \mathbb{0} \rightarrow \mathbb{0'}, g : \mathbb{0'} \rightarrow \mathbb{0}$ so that $g \circ f = \mathbb{0'} \rightarrow \mathbb{0'} = \texttt{id}_{\mathbb{0'}}$ and $f \circ g = \texttt{id}_{\mathbb{0}}$; so $f = g^{-1}$, and $\mathbb{0} \simeq \mathbb{0'}$.
           </p>
           <hr />
+          <p class="exercise">
+            $\mathbb{1} \rightarrow a$ is monic.
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            \bullet\ar@<-0.5ex>[r]_{g}\ar@<0.5ex>[r]^{h} & \mathbb{1}\ar[r]^f & a
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            $f \circ g = f \circ h \Leftrightarrow g = h$. Now, $g = h$ is true because there is only one arrow to it from any given object, and hence, $f$ is monic.
+          </p>
+          <hr />
+          <p class="exercise">
+            $\langle \texttt{pr}_a, \texttt{pr}_b\rangle = \mathbb{1}_{a \times b}$.
+          </p>
         </article>
       </main>
       <nav>
