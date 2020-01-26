@@ -53,7 +53,7 @@ html
               p
                 == paragraph.to_s
             - elsif paragraph.is_olitems?
-              ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.start}"
+              ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.olstart}"
                 - for item in paragraph.split "\n"
                   li
                     == item
