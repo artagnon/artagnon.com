@@ -1,7 +1,10 @@
 doctype html
 html
   head
-    title artagnon.com: #{permalink}
+    - if permalink == "index"
+      title Ramkumar Ramachandra
+    - else
+      title artagnon.com: #{permalink}
     meta charset="utf-8"
     meta name="language" content="english"
     meta name="author" content="Ramkumar Ramachandra"
@@ -81,9 +84,9 @@ html
                     img src="#{paragraph.to_s}" style="width:100%"
                 - else
                   figure class="left"
-                    img src="#{paragraph.split("\n").first}" style="width:100%"
+                    img src="#{paragraph.split("\n")[0]}" style="width:100%"
                   figure class="right"
-                    img src="#{paragraph.split("\n").first}" style="width:100%"
+                    img src="#{paragraph.split("\n")[1]}" style="width:100%"
             - elsif paragraph.is_horizrule?
               hr
             - elsif paragraph.is_mathjax?
