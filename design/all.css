@@ -264,17 +264,22 @@ nav ul {
   padding-inline-start: 10%;
 }
 
-#metadata time,
-#metadata address {
+#metadata {
+  text-align: right;
+}
+
+#metadata * {
   color: #a7a7a7;
   font-size: 90%;
   font-style: normal;
-  float: right;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-#metadata {
-  clear: both;
-  overflow: hidden;
+#metadata span.to {
+  font-size: 70%;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 h1 {
@@ -389,7 +394,7 @@ a[href*=".pdf"] {
   background-image: url("/design/icon.pdf.png");
 }
 
-#metadata time {
+#metadata time.end {
   background-image: url("/design/icon.calendar.png");
 }
 
@@ -397,7 +402,7 @@ a[href*=".pdf"] {
   background-image: url("/design/icon.location.png");
 }
 
-a[href^="https://github.com"], a[href^="https://medium.com"], a[href*=".pdf"], #metadata time, #metadata address {
+a[href^="https://github.com"], a[href^="https://medium.com"], a[href*=".pdf"], #metadata time.end, #metadata address {
   background-repeat: no-repeat;
   background-position: center right;
   padding-right: calc(20rem / 20);

@@ -40,11 +40,14 @@ html
           h1
             == title
           div id="metadata"
-            div id="timestamp"
-              time datetime="#{lastmod.strftime('%F')}"
+            span id="timestamp"
+              time datetime="#{crdate.strftime('%F')}" class="begin"
+                == crdate.rfc2822
+              span class="to" ↪
+              time datetime="#{lastmod.strftime('%F')}" class="end"
                 == lastmod.rfc2822
             br
-            div id="locations"
+            span id="locations"
               address
                 == locations.join ", "
         article
