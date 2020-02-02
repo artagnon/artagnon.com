@@ -10,13 +10,33 @@ Mathematicians who hold a platonic view of mathematics are not comfortable with 
 
 # Departing from ZFC foundations
 
-Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of ~70% of current mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations. Objects and morphisms aren't sets. Indeed, set-theoretic questions (say, the intersection between two sub-collections of objects) are ill-formed in categories, although one can encode boolean algebras using topoi.
+Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of $\sim$70% of current mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations. Objects and morphisms aren't sets. Indeed, set-theoretic questions are ill-formed in categories, although one can encode boolean algebras using topoi.
 
 Moreover, mathematics is very precise, and one should aim for a foundation that is condusive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, or [HoTT](https://github.com/HoTT/HoTT).
 
-# Three intuitions of classical mathematics broken
+# Mathematical preliminaries: functions
 
-HoTT can be considered an extension to the Martin-Löf type theory; Martin-Löf type theory and Calculus of Inductive Constructions form the basis of Coq. Let us supply three examples of big consequences of constructive mathematics that breaks classical intuitions.
+What the following proposition says, is that, for every inhabitant of $\mathbb{N}$ that you supply, `f` will supply an inhabitant of $\mathbb{1}$:
+
+~~
+Theorem f : nat -> unit.
+Proof.
+  intros x.
+  exact tt.
+Qed.
+~~
+
+The proof is witness that we can always supply an inhabitant of the type `nat -> unit`. And indeed, by Curry-Howard isomorphism:
+
+~~
+Definition f' : nat -> unit := fun _ => tt.
+~~
+
+# Two intuitions of classical mathematics broken
+
+HoTT can be considered an extension to the Martin-Löf type theory; Martin-Löf type theory and Calculus of Inductive Constructions form the basis of Coq. Let us supply two examples of consequences of constructive mathematics that breaks classical intuitions.
+
+--
 
 The first is that a proof cannot proceed in the following logical sequence for a proposition $P$:
 
@@ -30,7 +50,7 @@ This is in line with the general philosophy of constructive mathematics, where n
 Axiom LEM : forall (P : Prop), P \/ ~P.
 ~~
 
-Many other intuitions in classical mathematics can be translated to the language of constructive mathematics. The example of the intuition $\mathbb{0} \implies \textrm {anything}$ is particularly illustrative:
+Many other intuitions in classical mathematics can be translated to the language of constructive mathematics. The example of the intuition $\mathbb{0} \Rightarrow \textrm {anything}$ is particularly illustrative:
 
 ~~
 Theorem FalseImpliesAnything : forall A, False -> A.
@@ -40,7 +60,7 @@ Proof.
 Qed.
 ~~
 
-Indeed, since there is no inhabitant of `False`, the construction of any inhabitant of any type `A` can be proved from it. To give you an idea about why $\mathbb{1} \not\implies \mathbb{0}$, consider:
+Indeed, since there is no inhabitant of `False`, the construction of any inhabitant of any type `A` can be proved from it. To give you an idea about why $\mathbb{1} \nRightarrow \mathbb{0}$, consider:
 
 ~~
 Theorem TrueDoesNotImplyFalse : True -> False.
@@ -55,7 +75,7 @@ Abort.
 This is in line with the philosophy of constructive mathematics: we cannot show the non-existence of an inhabitant in a Type. Circling back to the issue we started discussing,
 
 ~~
-Theorem TrueDoesNotImplyFalse' : ~True -> False.
+Theorem LEMRequiredToProve : ~True -> False.
 ~~
 
 cannot be proved without LEM.
@@ -71,26 +91,6 @@ $$
 
 The answer, as supplied by HoTT, is: Yes, proofs are relevant, and $p$ is different from $q$. This breaks the classical intuition of proof irrelevance; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths.
 
---
-
-The third, which should be least surprising to programmers, is that functions are not set functions, where two different inputs cannot map to the same output. Indeed, we can define a function from type whose inhabitants are the natural numbers, to the singly-inhabitated type:
-
-~~
-Theorem FunctionsAreNotSetFunctions : nat -> unit.
-Proof.
-  intros x.
-  exact tt.
-Qed.
-~~
-
-The function here more closely resembles the category-theoretic morphism. In the language of category theory, set functions can be rephrased by this diagram, with the condition that the composition is isomorphic:
-
-$$
-  G \hookrightarrow A \times B \rightarrow A
-$$
-
-$A$ is the domain and $B$ is the codomain. By taking the product, we have all pairs $(a, b)$, where $a \in A, b \in B$, in $G$. By making the arrow from $G$ to $A$ isomorphic, we've essentially forbidden two $a$s mapping to a single $b$.
-
 # Ongoing work in constructive mathematics
 
-Then, there's the 30% of current mathematical literature using constructive foundations. In particular, Jacob Lurie's [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Reihl's [Elements of $\infty$-Category Theory](http://www.math.jhu.edu/~eriehl/elements.pdf) extends the theory to complete Segal spaces. Shulman's recent [All ($\infty$, 1)-toposes have strict univalent universes](https://arxiv.org/abs/1904.07004) ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is developing Spectral Algebraic Geometry, with $\infty$-category foundations.
+Now, we speak about the 30% of current mathematical literature based on constructive foundations. In particular, Jacob Lurie's [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Reihl's [Elements of $\infty$-Category Theory](http://www.math.jhu.edu/~eriehl/elements.pdf) extends the theory to complete Segal spaces. Shulman's recent [All ($\infty$, 1)-toposes have strict univalent universes](https://arxiv.org/abs/1904.07004) ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is currently developing [Spectral Algebraic Geometry](https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf), with $\infty$-category foundations.

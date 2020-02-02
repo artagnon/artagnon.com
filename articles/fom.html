@@ -44,7 +44,7 @@
             An inquiry into the Foundations of Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-02" class="begin">Sun, 02 Feb 2020 11:11:41 +0100</time><span class="to">↪</span><time datetime="2020-02-02" class="end">Sun, 02 Feb 2020 14:03:31 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-02" class="begin">Sun, 02 Feb 2020 11:11:41 +0100</time><span class="to">↪</span><time datetime="2020-02-02" class="end">Sun, 02 Feb 2020 14:50:45 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -61,17 +61,33 @@
             Departing from ZFC foundations
           </h2>
           <p>
-            Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of ~70% of current mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations. Objects and morphisms aren't sets. Indeed, set-theoretic questions (say, the intersection between two sub-collections of objects) are ill-formed in categories, although one can encode boolean algebras using topoi.
+            Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of $\sim$70% of current mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations. Objects and morphisms aren't sets. Indeed, set-theoretic questions are ill-formed in categories, although one can encode boolean algebras using topoi.
           </p>
           <p>
             Moreover, mathematics is very precise, and one should aim for a foundation that is condusive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, or [HoTT](https://github.com/HoTT/HoTT).
           </p>
-          <h2 id="three-intuitions-of-classical-mathematics-broken">
-            Three intuitions of classical mathematics broken
+          <h2 id="mathematical-preliminaries-functions">
+            Mathematical preliminaries: functions
           </h2>
           <p>
-            HoTT can be considered an extension to the Martin-Löf type theory; Martin-Löf type theory and Calculus of Inductive Constructions form the basis of Coq. Let us supply three examples of big consequences of constructive mathematics that breaks classical intuitions.
+            What the following proposition says, is that, for every inhabitant of $\mathbb{N}$ that you supply, `f` will supply an inhabitant of $\mathbb{1}$:
           </p>
+          <pre><code class="language-coq">Theorem f : nat -> unit.
+Proof.
+  intros x.
+  exact tt.
+Qed.</code></pre>
+          <p>
+            The proof is witness that we can always supply an inhabitant of the type `nat -&gt; unit`. And indeed, by Curry-Howard isomorphism:
+          </p>
+          <pre><code class="language-coq">Definition f' : nat -> unit := fun _ => tt.</code></pre>
+          <h2 id="two-intuitions-of-classical-mathematics-broken">
+            Two intuitions of classical mathematics broken
+          </h2>
+          <p>
+            HoTT can be considered an extension to the Martin-Löf type theory; Martin-Löf type theory and Calculus of Inductive Constructions form the basis of Coq. Let us supply two examples of consequences of constructive mathematics that breaks classical intuitions.
+          </p>
+          <hr />
           <p>
             The first is that a proof cannot proceed in the following logical sequence for a proposition $P$:
           </p>
@@ -85,7 +101,7 @@
           </p>
           <pre><code class="language-coq">Axiom LEM : forall (P : Prop), P \/ ~P.</code></pre>
           <p>
-            Many other intuitions in classical mathematics can be translated to the language of constructive mathematics. The example of the intuition $\mathbb{0} \implies \textrm {anything}$ is particularly illustrative:
+            Many other intuitions in classical mathematics can be translated to the language of constructive mathematics. The example of the intuition $\mathbb{0} \Rightarrow \textrm {anything}$ is particularly illustrative:
           </p>
           <pre><code class="language-coq">Theorem FalseImpliesAnything : forall A, False -> A.
 Proof.
@@ -93,7 +109,7 @@ Proof.
   exact (fun x : False => match x with end).
 Qed.</code></pre>
           <p>
-            Indeed, since there is no inhabitant of `False`, the construction of any inhabitant of any type `A` can be proved from it. To give you an idea about why $\mathbb{1} \not\implies \mathbb{0}$, consider:
+            Indeed, since there is no inhabitant of `False`, the construction of any inhabitant of any type `A` can be proved from it. To give you an idea about why $\mathbb{1} \nRightarrow \mathbb{0}$, consider:
           </p>
           <pre><code class="language-coq">Theorem TrueDoesNotImplyFalse : True -> False.
 Proof.
@@ -105,7 +121,7 @@ Abort.</code></pre>
           <p>
             This is in line with the philosophy of constructive mathematics: we cannot show the non-existence of an inhabitant in a Type. Circling back to the issue we started discussing,
           </p>
-          <pre><code class="language-coq">Theorem TrueDoesNotImplyFalse' : ~True -> False.</code></pre>
+          <pre><code class="language-coq">Theorem LEMRequiredToProve : ~True -> False.</code></pre>
           <p>
             cannot be proved without LEM.
           </p>
@@ -122,31 +138,11 @@ Abort.</code></pre>
           <p>
             The answer, as supplied by HoTT, is: Yes, proofs are relevant, and $p$ is different from $q$. This breaks the classical intuition of proof irrelevance; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths.
           </p>
-          <hr />
-          <p>
-            The third, which should be least surprising to programmers, is that functions are not set functions, where two different inputs cannot map to the same output. Indeed, we can define a function from type whose inhabitants are the natural numbers, to the singly-inhabitated type:
-          </p>
-          <pre><code class="language-coq">Theorem FunctionsAreNotSetFunctions : nat -> unit.
-Proof.
-  intros x.
-  exact tt.
-Qed.</code></pre>
-          <p>
-            The function here more closely resembles the category-theoretic morphism. In the language of category theory, set functions can be rephrased by this diagram, with the condition that the composition is isomorphic:
-          </p>
-          <p class="mathjax">
-            $$
-            G \hookrightarrow A \times B \rightarrow A
-            $$
-          </p>
-          <p>
-            $A$ is the domain and $B$ is the codomain. By taking the product, we have all pairs $(a, b)$, where $a \in A, b \in B$, in $G$. By making the arrow from $G$ to $A$ isomorphic, we've essentially forbidden two $a$s mapping to a single $b$.
-          </p>
           <h2 id="ongoing-work-in-constructive-mathematics">
             Ongoing work in constructive mathematics
           </h2>
           <p>
-            Then, there's the 30% of current mathematical literature using constructive foundations. In particular, Jacob Lurie's [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Reihl's [Elements of $\infty$-Category Theory](http://www.math.jhu.edu/~eriehl/elements.pdf) extends the theory to complete Segal spaces. Shulman's recent [All ($\infty$, 1)-toposes have strict univalent universes](https://arxiv.org/abs/1904.07004) ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is developing Spectral Algebraic Geometry, with $\infty$-category foundations.
+            Now, we speak about the 30% of current mathematical literature based on constructive foundations. In particular, Jacob Lurie's [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Reihl's [Elements of $\infty$-Category Theory](http://www.math.jhu.edu/~eriehl/elements.pdf) extends the theory to complete Segal spaces. Shulman's recent [All ($\infty$, 1)-toposes have strict univalent universes](https://arxiv.org/abs/1904.07004) ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is currently developing [Spectral Algebraic Geometry](https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf), with $\infty$-category foundations.
           </p>
         </article>
       </main>
