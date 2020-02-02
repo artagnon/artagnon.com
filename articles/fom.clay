@@ -1,20 +1,20 @@
 An inquiry into the Foundations of Mathematics
 
 ...
-Starting from the question of what consequence Gödel's Incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for the new foundations in Coq. We conclude with where this modern mathematical literature is taking us.
+Starting from the question of what consequence Gödel's Incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for the new foundations in Coq. We conclude with a list of references to recent work in constructive foundations.
 ...
 
-Mathematics can be thought of as a game where you start with some objects (say, sets), some axioms on the objects (typically, ZFC), and use a calculus of logical deductions (such as intuitionistic logic) to prove things. To mechanize this game in a proof assistant, one would either use some kind of proof-search, or a tactic system, and check subject reduction.
+Mathematics can be thought of as a game where you start with some objects (say, sets), some axioms on the objects (typically, ZFC), and use a calculus of logical deductions (such as classical logic) to prove things. To mechanize this game in a proof assistant, one would either use a proof-search or tactic system, and check subject reduction.
 
-Mathematicians who hold a platonic view of mathematics are not comfortable with Gödel's Second Incompleteness Theorem. It essentially states that any formal system that can express elementary arithmetic cannot prove its own consistency, assuming à priori that the formal system is consistent. It doesn't destroy the platonic view as such, but does destroy the platonic view that there is only one correct foundation for mathematics. Further, one would argue that it is precisely this incompleteness theorem that makes mathematics exciting: we can keep rewriting foundations to better suit our abstract intutions, and build higher mathematics, without worrying about whether it is the "one true foundation".
+Gödel's Second Incompleteness Theorem essentially states that any formal system, that can express elementary arithmetic, cannot prove its own consistency, assuming à priori that the formal system is consistent. It doesn't destroy the platonic view of mathematics as such, but does destroy the platonic view that there is only one correct foundation for mathematics. Further, one would argue that it is precisely this theorem that makes mathematics exciting: we can keep rewriting foundations to better suit our abstract intutions, and build higher abstractions, without worrying about whether there is "one true foundation".
 
 # Departing from ZFC foundations
 
-Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of $\sim$70% of current mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations. Objects and morphisms aren't sets. Indeed, set-theoretic questions are ill-formed in categories, although one can encode boolean algebras using topoi.
+Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of $\sim$70% of current mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations. Objects and morphisms aren't sets. Indeed, set-theoretic questions about categories are ill-formed, although one can encode boolean algebras using topoi.
 
-Moreover, mathematics is very precise, and one should aim for a foundation that is condusive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, or [HoTT](https://github.com/HoTT/HoTT).
+Moreover, mathematics prides itself on precision, and one should aim for a foundation that is condusive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, which we will refer to as [HoTT](https://github.com/HoTT/HoTT). It is formalized in Coq, whose foundations are Martin-Löf type theory and the Calculus of Inductive Constructions.
 
-# Mathematical preliminaries: functions
+# Preliminaries
 
 What the following proposition says, is that, for every inhabitant of $\mathbb{N}$ that you supply, `f` will supply an inhabitant of $\mathbb{1}$:
 
@@ -32,25 +32,27 @@ The proof is witness that we can always supply an inhabitant of the type `nat ->
 Definition f' : nat -> unit := fun _ => tt.
 ~~
 
-# Two intuitions of classical mathematics broken
+In type theory, a function is just a non-dependent version of the $\Pi$ type, where the codomain $B$ is fixed:
 
-HoTT can be considered an extension to the Martin-Löf type theory; Martin-Löf type theory and Calculus of Inductive Constructions form the basis of Coq. Let us supply two examples of consequences of constructive mathematics that breaks classical intuitions.
+$$
+  A \rightarrow B = \Pi_{x : A} B = \forall (x : A), B
+$$
 
---
+# Two intuitions in classical mathematics broken
 
-The first is that a proof cannot proceed in the following logical sequence for a proposition $P$:
+Our first example is the classic proof-by-contradiction. A proof in constructive mathematics cannot proceed in the following logical sequence for a proposition $P$:
 
 $$
   \neg P \implies \ldots \textrm{contradiction} \implies P
 $$
 
-This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type (proposition, in this case) cannot be proved. A witness (or proof object) is first-class, and to supply a witness is to supply a construction of the inhabitant. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
+This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type cannot be proved; to supply a witness is to supply a construction of the inhabitant, and indeed, no such construction might exist. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
 
 ~~
 Axiom LEM : forall (P : Prop), P \/ ~P.
 ~~
 
-Many other intuitions in classical mathematics can be translated to the language of constructive mathematics. The example of the intuition $\mathbb{0} \Rightarrow \textrm {anything}$ is particularly illustrative:
+To understand this better, let us take the example of the constructive equivalent of $\mathbb{0} \Rightarrow \textrm {anything}$ in classical mathematics:
 
 ~~
 Theorem FalseImpliesAnything : forall A, False -> A.
@@ -60,7 +62,9 @@ Proof.
 Qed.
 ~~
 
-Indeed, since there is no inhabitant of `False`, the construction of any inhabitant of any type `A` can be proved from it. To give you an idea about why $\mathbb{1} \nRightarrow \mathbb{0}$, consider:
+Indeed, since there is no inhabitant of `False`, the construction of any inhabitant of any type `A` can be proved from it.
+
+It is perhaps prudent to supply another example of a classical statement to illustrate Coq's typechecker:
 
 ~~
 Theorem TrueDoesNotImplyFalse : True -> False.
@@ -72,7 +76,7 @@ Proof.
 Abort.
 ~~
 
-This is in line with the philosophy of constructive mathematics: we cannot show the non-existence of an inhabitant in a Type. Circling back to the issue we started discussing,
+Circling back to the issue we started discussing,
 
 ~~
 Theorem LEMRequiredToProve : ~True -> False.
@@ -82,15 +86,15 @@ cannot be proved without LEM.
 
 --
 
-The second is the issue of proof relevance. In ZFC, sets and propositions are in different universes of discourse, and proofs are not first-class, as opposed to type theory, where proofs objects are first-class. There was a question raised about whether or not proofs should be "relevant". In the following example, $p$ and $q$ are inhabitants of the type $x = y$, and the question is whether $p$ is different from $q$:
+The second is the issue of proof-relevance. In ZFC, sets and propositions are in different universes of discourse, as opposed to type theory, where proofs objects are first-class. There was a question raised about whether or not proofs should be "relevant". In the following example, $p$ and $q$ are inhabitants of the type $x = y$, and the question is whether $p$ is different from $q$:
 
 $$
 p : x = y \\
 q : x = y
 $$
 
-The answer, as supplied by HoTT, is: Yes, proofs are relevant, and $p$ is different from $q$. This breaks the classical intuition of proof irrelevance; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths.
+The answer, as supplied by HoTT, is: yes, proofs are relevant, and $p$ is different from $q$; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths. In classical mathematics, $p$ would always be equal to $q$.
 
-# Ongoing work in constructive mathematics
+# References
 
-Now, we speak about the 30% of current mathematical literature based on constructive foundations. In particular, Jacob Lurie's [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Reihl's [Elements of $\infty$-Category Theory](http://www.math.jhu.edu/~eriehl/elements.pdf) extends the theory to complete Segal spaces. Shulman's recent [All ($\infty$, 1)-toposes have strict univalent universes](https://arxiv.org/abs/1904.07004) ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is currently developing [Spectral Algebraic Geometry](https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf), with $\infty$-category foundations.
+Now, we speak about the 30% of current mathematical literature based on constructive foundations. In particular, Jacob Lurie's [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Riehl's [Elements of $\infty$-Category Theory](http://www.math.jhu.edu/~eriehl/elements.pdf) extends the theory to complete Segal spaces. Shulman's recent [All ($\infty$, 1)-Toposes have Strict Univalent Universes](https://arxiv.org/abs/1904.07004) ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is currently developing [Spectral Algebraic Geometry](https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf), with $\infty$-category foundations.
