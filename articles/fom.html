@@ -27,8 +27,10 @@
       tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
       TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
     </script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/coq.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/cpp.min.js"></script>
     <script type="text/javascript" src="/design/claytext.js"></script>
     <script>
       hljs.initHighlightingOnLoad();
@@ -42,7 +44,7 @@
             An inquiry into the Foundations of Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-02" class="begin">Sun, 02 Feb 2020 11:11:41 +0100</time><span class="to">↪</span><time datetime="2020-02-02" class="end">Sun, 02 Feb 2020 11:11:41 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-02" class="begin">Sun, 02 Feb 2020 11:11:41 +0100</time><span class="to">↪</span><time datetime="2020-02-02" class="end">Sun, 02 Feb 2020 12:23:53 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -87,11 +89,11 @@
           <p>
             This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type (proposition, in this case) cannot be proved. A witness (or proof object) is first-class, and to supply a witness is to supply a construction of the inhabitant. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
           </p>
-          <pre><code>Axiom LEM : forall (P : Prop), P \/ ~P.</code></pre>
+          <pre><code class="language-coq">Axiom LEM : forall (P : Prop), P \/ ~P.</code></pre>
           <p>
             Many other intuitions in classical mathematics can be translated to the language of constructive mathematics. The example of the intuition $\mathbb{0} \implies \textrm {anything}$ is particularly illustrative:
           </p>
-          <pre><code>Theorem FalseImpliesAnything : forall A, False -> A.
+          <pre><code class="language-coq">Theorem FalseImpliesAnything : forall A, False -> A.
 Proof.
   intros A.
   exact (fun x : False => match x with end).
@@ -99,7 +101,7 @@ Qed.</code></pre>
           <p>
             Indeed, since there is no inhabitant of `False`, the construction of any inhabitant of any type `A` can be proved from it. To give you an idea about why $\mathbb{1} \not\implies \mathbb{0}$, consider:
           </p>
-          <pre><code>Theorem TrueDoesNotImplyFalse : True -> False.
+          <pre><code class="language-coq">Theorem TrueDoesNotImplyFalse : True -> False.
 Proof.
   (* Due to enforced exhaustive pattern-matching on inhabitants of the LHS,
    * we'd need to match up an inhabitant of True (there is only tt)
@@ -109,7 +111,7 @@ Abort.</code></pre>
           <p>
             This is in line with the philosophy of constructive mathematics: we cannot show the non-existence of an inhabitant in a Type. Circling back to the issue we started discussing,
           </p>
-          <pre><code>Theorem TrueDoesNotImplyFalse' : ~True -> False.</code></pre>
+          <pre><code class="language-coq">Theorem TrueDoesNotImplyFalse' : ~True -> False.</code></pre>
           <p>
             cannot be proved without LEM.
           </p>
@@ -118,16 +120,19 @@ Abort.</code></pre>
           </p>
           <p class="mathjax">
             $$
-            p : x = y
+            p : x = y \\
             q : x = y
             $$
           </p>
           <p>
-            The answer, as supplied by the recent strain of type theory, homotopy type theory, is: Yes, proofs are relevant; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths. Higher category theory is built on classical category theory, with the notion of equality replaced with a homotopy equivalence.
+            The answer, as supplied by HoTT, is: Yes, proofs are relevant; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths.
           </p>
           <h2 id="where-constructive-mathematics">
             Where constructive mathematics
           </h2>
+          <p>
+            Higher category theory is built on classical category theory, with the notion of equality replaced with a homotopy equivalence.
+          </p>
         </article>
       </main>
       <nav>

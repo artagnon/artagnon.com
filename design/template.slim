@@ -29,8 +29,10 @@ html
       "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} },
       tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
       TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
-    link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css"
-    script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"
+    link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css"
+    script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"
+    script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/coq.min.js"
+    script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/cpp.min.js"
     script type="text/javascript" src="/design/claytext.js"
     script hljs.initHighlightingOnLoad();
   body
@@ -78,8 +80,13 @@ html
                     == item
             - elsif paragraph.is_codeblock?
               pre
-                code
-                  == paragraph.to_s
+                - if paragraph.prop == :coq
+                  code class="language-coq"
+                    == paragraph.to_s
+                - else
+                  // For attic
+                  code class="language-cpp"
+                    == paragraph.to_s
             - elsif paragraph.is_images?
               div class="imgrow"
                 - if paragraph.to_s.length == 1
