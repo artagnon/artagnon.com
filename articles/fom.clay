@@ -40,12 +40,24 @@ $$
   \end{matrix}
 $$
 
+The logical connective $\neg$, which we will use extensively in the next section has the following definition in type theory:
+
+$$
+  \neg P := P \rightarrow \mathbb{0}
+$$
+
 # Two intuitions in classical mathematics broken
 
 Our first example is the classic proof-by-contradiction. A proof in constructive mathematics cannot proceed in the following logical sequence for a proposition $P$:
 
 $$
   \neg P \implies \ldots \textrm{contradiction} \implies P
+$$
+
+In other words,
+
+$$
+  \neg \neg P \implies P
 $$
 
 This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type cannot be proved; to supply a witness is to supply a construction of the inhabitant, and indeed, no such construction might exist. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
