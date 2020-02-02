@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head><title>artagnon.com: articles/fom</title>
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="city" content="Paris" />
+    <meta name="country" content="France" />
+    <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/design/all.css" media="all" />
+    <link rel="stylesheet" href="/design/screen.css" media="screen" />
+    <link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 520px)" />
+    <link rel="stylesheet" href="/design/print.css" media="only print" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Parisienne|Josefin+Sans|Roboto+Mono" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
+    <link rel="shortcut icon" href="/design/favicon.ico" />
+    <script type="text/javascript" src="/design/analyticstracking.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"],
+      "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} },
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+      TeX: {extensions: ["/xypic.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script type="text/javascript" src="/design/claytext.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <main tabindex="0">
+        <header>
+          <h1>
+            An inquiry into the Foundations of Mathematics
+          </h1>
+          <div id="metadata">
+            <span id="timestamp"><time datetime="2020-02-02" class="begin">Sun, 02 Feb 2020 11:11:41 +0100</time><span class="to">↪</span><time datetime="2020-02-02" class="end">Sun, 02 Feb 2020 11:11:41 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+          </div>
+        </header>
+        <article>
+          <p class="blurb">
+            Starting from the question of what consequence Gödel's Incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for the new foundations in Coq. We conclude with where this modern mathematical literature is taking us.
+          </p>
+          <p>
+            Mathematics can be thought of as a game where you start with some objects (say, sets), some axioms on the objects (typically, ZFC), and use a calculus of logical deductions (such as intuitionistic logic) to prove things. To mechanize this game in a proof assistant, one would either use some kind of proof-search, or a tactic system, and check subject reduction.
+          </p>
+          <p>
+            Mathematicians who hold a platonic view of mathematics are not comfortable with Gödel's Second Incompleteness Theorem. It essentially states that any formal system that can express elementary arithmetic cannot prove its own consistency, assuming à priori that the formal system is consistent. It doesn't destroy the platonic view as such, but does destroy the platonic view that there is only one correct foundation for mathematics. Further, one would argue that it is precisely this incompleteness theorem that makes mathematics exciting: we can keep rewriting foundations to better suit our abstract intutions, and build higher mathematics, without worrying about whether it is the "one true foundation".
+          </p>
+          <h2 id="the-break-from-zfc">
+            The break from ZFC
+          </h2>
+          <p>
+            Some mathematicians would then argue that we've settled on ZFC as foundations, but this is only true of ~70% of current mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations. Objects and morphisms aren't sets, and the objects in a category do not form a set either. Indeed, set-theoretic questions (say, the intersection between two sub-collections of objects) are ill-formed in categories.
+          </p>
+          <p>
+            Moreover, mathematics is very precise, and one should aim for a foundation that is condusive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory (HoTT).
+          </p>
+          <p>
+            Then, there's the question of how much mathematics HoTT is capable of formalizing.
+          </p>
+          <p>
+            Algebraic topology is particularly convenient to formalize in category theory, and modern algebraic geometry also has categorical foundations. Higher category theory and homotopy theory have also appeared more recently, and are elegant.
+          </p>
+          <h2 id="some-intuition-for-the-new-foundations">
+            Some intuition for the new foundations
+          </h2>
+          <p>
+            Constructive mathematics is an alternate foundation for mathematics, based on homotopy type theory, which can be considered as an extension to the Martin-Löf type theory. Martin-Löf type type and Calculus of Inductive Constructions form the basis of Coq.
+          </p>
+          <p>
+            There are two consequences of constructive mathematics that breaks classical intuitions; classicists may find it surprising. The first is that a proof cannot proceed in the following logical sequence for a proposition $P$:
+          </p>
+          <p class="mathjax">
+            $$
+            \neg P \implies \ldots \textrm{contradiction} \implies P
+            $$
+          </p>
+          <p>
+            This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type (proposition, in this case) cannot be proved. A witness (or proof object) is first-class, and to supply a witness is to supply a construction of the inhabitant. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
+          </p>
+          <pre><code>Axiom LEM : forall (P : Prop), P \/ ~P.</code></pre>
+          <p>
+            Many other intuitions in classical mathematics can be translated to the language of constructive mathematics. The example of the intuition $\mathbb{0} \implies \textrm {anything}$ is particularly illustrative:
+          </p>
+          <pre><code>Theorem FalseImpliesAnything : forall A, False -> A.
+Proof.
+  intros A.
+  exact (fun x : False => match x with end).
+Qed.</code></pre>
+          <p>
+            Indeed, since there is no inhabitant of `False`, the construction of any inhabitant of any type `A` can be proved from it. To give you an idea about why $\mathbb{1} \not\implies \mathbb{0}$, consider:
+          </p>
+          <pre><code>Theorem TrueDoesNotImplyFalse : True -> False.
+Proof.
+  (* Due to enforced exhaustive pattern-matching on inhabitants of the LHS,
+   * we'd need to match up an inhabitant of True (there is only tt)
+   * to some inhabitant of False, but there are no inhabitants of False.
+   *)
+Abort.</code></pre>
+          <p>
+            This is in line with the philosophy of constructive mathematics: we cannot show the non-existence of an inhabitant in a Type. Circling back to the issue we started discussing,
+          </p>
+          <pre><code>Theorem TrueDoesNotImplyFalse' : ~True -> False.</code></pre>
+          <p>
+            cannot be proved without LEM.
+          </p>
+          <p>
+            The second is the issue of proof relevance. In ZFC, sets and propositions are in different universes, and proofs are not first-class, as opposed to type theory, where proofs objects are first-class. There was a question raised about whether or not proofs should be "relevant". In the following example, $p$ and $q$ are inhabitants of the type $x = y$, and the question is whether $p = q$:
+          </p>
+          <p class="mathjax">
+            $$
+            p : x = y
+            q : x = y
+            $$
+          </p>
+          <p>
+            The answer, as supplied by the recent strain of type theory, homotopy type theory, is: Yes, proofs are relevant; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths. Higher category theory is built on classical category theory, with the notion of equality replaced with a homotopy equivalence.
+          </p>
+          <h2 id="where-constructive-mathematics">
+            Where constructive mathematics
+          </h2>
+        </article>
+      </main>
+      <nav>
+        <ul>
+          <li>
+            <a href="/index">index</a>
+          </li>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/algebra">algebra</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/category">category</a>
+          </li>
+          <li>
+            <a href="/foundations">foundations</a>
+          </li>
+          <li>
+            <a href="/topoi">topoi</a>
+          </li>
+          <li>
+            <a href="/topology">topology</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>
