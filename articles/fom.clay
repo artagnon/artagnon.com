@@ -90,13 +90,15 @@ Proof.
 Abort.
 ~~
 
-In category theory, $\mathbb{0}$ would be the inital object, and there is at most one arrow from the initial object to every other object in the category; $\mathbb{1}$ would be the final object, and there is at most one arrow from every other object in the category to it. To illustrate this, any proposition $P$ is equivalent to:
+In category theory, $\mathbb{0}$ would be the inital object, and there is at most one arrow from the initial object to every other object in the category; $\mathbb{1}$ would be the final object, and there is at most one arrow from every other object in the category to it. The above theorem hypothesizes the existence of a morphism from the final object to the initial object, which of course, cannot exist.
+
+According to the definition of $\mathbb{0}$ and $\mathbb{1}$, any proposition $P$ is equivalent to:
 
 $$
   \begin{matrix}
-    \textrm{False} \rightarrow &P& \\
-    &P& \rightarrow \textrm{True} \\
-    \textrm{False} \rightarrow &P& \rightarrow \textrm{True}
+    \mathbb{0} \rightarrow &P& \\
+    &P& \rightarrow \mathbb{1} \\
+    \mathbb{0} \rightarrow &P& \rightarrow \mathbb{1}
   \end{matrix}
 $$
 
