@@ -8,7 +8,7 @@ Mathematics can be thought of as a game where you start with some objects (say, 
 
 Mathematicians who hold a platonic view of mathematics are not comfortable with Gödel's Second Incompleteness Theorem. It essentially states that any formal system that can express elementary arithmetic cannot prove its own consistency, assuming à priori that the formal system is consistent. It doesn't destroy the platonic view as such, but does destroy the platonic view that there is only one correct foundation for mathematics. Further, one would argue that it is precisely this incompleteness theorem that makes mathematics exciting: we can keep rewriting foundations to better suit our abstract intutions, and build higher mathematics, without worrying about whether it is the "one true foundation".
 
-# The break from ZFC
+# Departing from ZFC foundations
 
 Some mathematicians would then argue that we've settled on ZFC as foundations, but this is only true of ~70% of current mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations. Objects and morphisms aren't sets, and the objects in a category do not form a set either. Indeed, set-theoretic questions (say, the intersection between two sub-collections of objects) are ill-formed in categories.
 
@@ -18,14 +18,38 @@ Then, there's the question of how much mathematics HoTT is capable of formalizin
 
 Algebraic topology is particularly convenient to formalize in category theory, and modern algebraic geometry also has categorical foundations. Higher category theory and homotopy theory have also appeared more recently, and are elegant.
 
-# Some intuition for the new foundations
+# Some intuition for constructive mathematics
 
 Constructive mathematics is an alternate foundation for mathematics, based on homotopy type theory, which can be considered as an extension to the Martin-Löf type theory. Martin-Löf type type and Calculus of Inductive Constructions form the basis of Coq.
 
-There are two consequences of constructive mathematics that breaks classical intuitions; classicists may find it surprising. The first is that a proof cannot proceed in the following logical sequence for a proposition $P$:
+There are three consequences of constructive mathematics that breaks classical intuitions.
+
+--
+
+The third, which should be least surprising to programmers, is that functions are not set functions, where two different inputs cannot map to the same output. Indeed, we can define a function from `nat`, a `Set` whose inhabitants are the natural numbers, to inhabitants of the singly-inhabitated `Set`, `unit`:
+
+~~
+Theorem FunctionsAreNotSetFunctions : nat -> unit.
+Proof.
+  intros x.
+  exact tt.
+Qed.
+~~
+
+The function here more closely resembles the category-theoretic morphism. In the language of category theory, set functions can be rephrased by this diagram, with the condition that the composition is isomorphic:
 
 $$
-\neg P \implies \ldots \textrm{contradiction} \implies P
+  G \hookrightarrow A \times B \rightarrow A
+$$
+
+$A$ is the domain and $B$ is the codomain. By taking the product, we have all pairs $(a, b)$, where $a \in A, b \in B$, in $G$. By making the arrow from $G$ to $A$ isomorphic, we've essentially forbidden two $a$s mapping to a single $b$.
+
+--
+
+The first is that a proof cannot proceed in the following logical sequence for a proposition $P$:
+
+$$
+  \neg P \implies \ldots \textrm{contradiction} \implies P
 $$
 
 This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type (proposition, in this case) cannot be proved. A witness (or proof object) is first-class, and to supply a witness is to supply a construction of the inhabitant. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
@@ -50,7 +74,7 @@ Indeed, since there is no inhabitant of `False`, the construction of any inhabit
 Theorem TrueDoesNotImplyFalse : True -> False.
 Proof.
   (* Due to enforced exhaustive pattern-matching on inhabitants of the LHS,
-   * we'd need to match up an inhabitant of True (there is only tt)
+   * we'd need to match up an inhabitant of True (there is only I)
    * to some inhabitant of False, but there are no inhabitants of False.
    *)
 Abort.
@@ -64,7 +88,9 @@ Theorem TrueDoesNotImplyFalse' : ~True -> False.
 
 cannot be proved without LEM.
 
-The second is the issue of proof relevance. In ZFC, sets and propositions are in different universes, and proofs are not first-class, as opposed to type theory, where proofs objects are first-class. There was a question raised about whether or not proofs should be "relevant". In the following example, $p$ and $q$ are inhabitants of the type $x = y$, and the question is whether $p = q$:
+--
+
+The third is the issue of proof relevance. In ZFC, sets and propositions are in different universes, and proofs are not first-class, as opposed to type theory, where proofs objects are first-class. There was a question raised about whether or not proofs should be "relevant". In the following example, $p$ and $q$ are inhabitants of the type $x = y$, and the question is whether $p = q$:
 
 $$
 p : x = y \\
