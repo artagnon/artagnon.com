@@ -1,7 +1,7 @@
 An inquiry into the Foundations of Mathematics
 
 ...
-Starting from the question of what consequence Gödel's Incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for these new foundations in Coq. We conclude by linking to recent work in $\infty$-categories and HoTT.
+Starting from the question of what consequence Gödel's incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for these new foundations in Coq. We conclude by linking to recent work in $\infty$-categories and HoTT.
 ...
 
 Mathematics can be thought of as a game where you start with some objects (say, sets), some axioms on the objects (typically, ZFC), and use a calculus of logical deductions (such as classical logic) to prove things. To mechanize this game in a proof assistant, one would either use a proof-search or tactic system, and check subject reduction.
@@ -12,11 +12,11 @@ Gödel's second incompleteness theorem states that any formal system, that can e
 
 Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of $\sim$70% of recent mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations; objects and morphisms aren't sets. Indeed, set-theoretic questions about categories are ill-formed, although one can encode boolean algebras using topoi.
 
-Moreover, one should aim for a foundation that is conducive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, which we will refer to as [HoTT](https://github.com/HoTT/HoTT). It is formalized in Coq, whose foundations are Martin-Löf type theory and the Calculus of Inductive Constructions.
+Moreover, one should aim for a foundation that is conducive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, which we will refer to henceforth as [HoTT](https://github.com/HoTT/HoTT). It is formalized in Coq, whose foundations are Martin-Löf type theory and the Calculus of Inductive Constructions.
 
 # Preliminaries
 
-What the following proposition says, is that, for every inhabitant of $\mathbb{N}$ that you supply, `f` will supply an inhabitant of $\mathbb{1}$:
+What the following proposition says, is that, for every inhabitant of $\mathbb{N}$ that you supply, $f$ will supply an inhabitant of $\mathbb{1}$:
 
 ~~
 Theorem f : nat -> unit.
@@ -26,7 +26,7 @@ Proof.
 Qed.
 ~~
 
-The proof is witness that we can always supply an inhabitant of the type `nat -> unit`. By Curry-Howard isomorphism:
+The proof is witness that we can always supply an inhabitant of the type $\mathbb{N} \rightarrow \mathbb{1}$. By Curry-Howard isomorphism:
 
 ~~
 Definition f' : nat -> unit := fun _ => tt.
@@ -98,7 +98,7 @@ $$
 
 --
 
-For the second example, let us investigate the classical notion of proof irrelevance. In ZFC, sets and propositions are in different universes of discourse, as opposed to type theory, where proofs objects are first-class. Over the course of its development, a question was raised about whether or not proofs should be relevant in type theory. In the following example, $p$ and $q$ are inhabitants of the type $x = y$, and the question is whether $p$ is different from $q$:
+For the second example, let us investigate the classical notion of proof irrelevance. In ZFC, sets and propositions are in different universes of discourse, as opposed to type theory, where proofs objects are first-class. Over the course of its development, the question of proof relevance was raised in type theory. In the following example, $p$ and $q$ are inhabitants of the type $x = y$, and the question is whether $p$ is different from $q$:
 
 $$
 p : x = y \\
@@ -109,4 +109,4 @@ The answer, as supplied by HoTT, is: yes, proofs are relevant, and $p$ is differ
 
 # Recent work in the field
 
-Now, we speak about the 30% of recent mathematics which is constructive in nature. Jacob Lurie's [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Riehl's [Elements of $\infty$-Category Theory](http://www.math.jhu.edu/~eriehl/elements.pdf) extends the theory to complete Segal spaces. Shulman's recent [All ($\infty$, 1)-Toposes have Strict Univalent Universes](https://arxiv.org/pdf/1904.07004.pdf) ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is currently developing [Spectral Algebraic Geometry](https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf), with $\infty$-category foundations.
+We now provide references to the 30% of recent mathematics which is constructive in nature. Jacob Lurie's [Higher Topos Theory](https://www.math.ias.edu/~lurie/papers/HTT.pdf) from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Riehl's [Elements of $\infty$-Category Theory](http://www.math.jhu.edu/~eriehl/elements.pdf) extends the theory to complete Segal spaces. Shulman's 2019 work, [All ($\infty$, 1)-Toposes have Strict Univalent Universes](https://arxiv.org/pdf/1904.07004.pdf), ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is currently developing [Spectral Algebraic Geometry](https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf), with $\infty$-categoric foundations.
