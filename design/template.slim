@@ -48,54 +48,42 @@ html
     div id="wrapper"
       main tabindex="0"
         header
-          h1
-            == title
+          h1 == title
           div id="metadata"
             span id="timestamp"
-              time datetime="#{crdate.strftime('%F')}" class="begin"
-                == crdate.rfc2822
+              time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.rfc2822
               span class="to" ↪
-              time datetime="#{lastmod.strftime('%F')}" class="end"
-                == lastmod.rfc2822
+              time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.rfc2822
             br
             span id="locations"
-              address
-                == locations.join ", "
+              address = locations.join ", "
         article
           - paragraphs.each do |paragraph|
             - if paragraph.is_blurb?
-              p class="blurb"
-                == paragraph.to_s
+              p class="blurb" == paragraph.to_s
             - if paragraph.is_plain?
-              p
-                == paragraph.to_s
+              p == paragraph.to_s
             - elsif paragraph.is_olitems?
               ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.olstart}"
                 - for item in paragraph.split "\n"
-                  li
-                    == item
+                  li == item
             - elsif paragraph.is_ulitems?
               ul class="ulitems"
                 - for item in paragraph.split "\n"
-                  li
-                    == item
+                  li == item
             - elsif paragraph.is_subheading?
-              h2 id="#{paragraph.bookmark}"
-                == paragraph.to_s
+              h2 id="#{paragraph.bookmark}" = paragraph.to_s
             - elsif paragraph.is_footer?
               footer
                 - for item in paragraph.split "\n"
-                  p
-                    == item
+                  p == item
             - elsif paragraph.is_codeblock?
               pre
                 - if paragraph.prop == :coq
-                  code class="language-coq"
-                    == paragraph.to_s
+                  code class="language-coq" == paragraph.to_s
                 - else
                   // For attic
-                  code class="language-cpp"
-                    == paragraph.to_s
+                  code class="language-cpp" == paragraph.to_s
             - elsif paragraph.is_images?
               div class="imgrow"
                 - if paragraph.to_s.length == 1
@@ -109,20 +97,16 @@ html
             - elsif paragraph.is_horizrule?
               hr
             - elsif paragraph.is_mathjax?
-              p class="mathjax"
-                == paragraph.to_s
+              p class="mathjax" == paragraph.to_s
             - elsif paragraph.is_exercise?
-              p class="exercise"
-                == paragraph.to_s
+              p class="exercise" == paragraph.to_s
           - if indexfill && indexfill.any?
             ul id="indexfill"
               - indexfill.each do |page|
                 li
-                  a href="/#{page.permalink}"
-                    == page.title
+                  a href="/#{page.permalink}" = page.title
       nav
         ul
           - topics.each do |topic|
             li
-              a href="/#{topic}"
-                == topic
+              a href="/#{topic}" = topic
