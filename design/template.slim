@@ -11,27 +11,42 @@ html
     meta name="HandheldFriendly" content="true"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     meta name="robots" content="index,follow"
-    link rel="stylesheet" href="/design/all.css" media="all"
-    link rel="stylesheet" href="/design/screen.css" media="screen"
-    link rel="stylesheet" href="/design/mobile.css" media="only screen and (max-width: 520px)"
-    link rel="stylesheet" href="/design/print.css" media="only print"
+
+    // our styles
+    link rel="stylesheet" href="/design/all.css"
+    link rel="stylesheet" href="/design/screen.css"
+    link rel="stylesheet" href="/design/mobile.css"
+    link rel="stylesheet" href="/design/print.css"
+
+    // google fonts
     link rel="stylesheet" href="//fonts.googleapis.com/css?family=Parisienne|Josefin+Sans|Roboto+Mono"
+
+    // analytics
     link rel="icon" href="/design/favicon.ico"
-    script src="/design/analyticstracking.js" async
-    script src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js" defer
-    script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" defer
-    script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js" defer
+    javascript:
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-5837870-2', 'auto');
+      ga('send', 'pageview');
+    script async=true src="//www.google-analytics.com/analytics.js"
+
+    // cash, moment, mathjax, xypic
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"
     script type="text/x-mathjax-config" MathJax.Hub.Config({
       extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"],
       "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} },
       tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
       TeX: {extensions: ["/xypic.min.js","AMSmath.js","AMSsymbols.js"]} });
+
+    // hljs stuff
     link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css"
-    script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" defer
-    script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/coq.min.js" defer
-    script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/cpp.min.js" defer
-    script src="/design/claytext.js"
-    script hljs.initHighlightingOnLoad();
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/coq.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/cpp.min.js"
+
+    // our js
+    script defer=true src="/design/claytext.js"
   body
     div id="wrapper"
       main tabindex="0"

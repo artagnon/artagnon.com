@@ -20,4 +20,7 @@ $(() => {
     // plain js
     el.textContent = moment(el.textContent).fromNow();
   }
+
+  // syntax-highlight coq and cpp
+  hljs.initHighlightingOnLoad();
 });
