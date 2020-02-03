@@ -12,7 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/dist/style.min.css" />
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Parisienne|Josefin+Sans|Roboto+Mono&amp;display=swap" />
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+      WebFont.load({
+        google: {
+          families: ['Josefin Sans', 'Parisienne', 'Roboto Mono']
+        }
+      });
+    </script>
     <link rel="icon" href="/dist/favicon.ico" />
     <script>
       window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -30,7 +37,10 @@
       tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
       TeX: {extensions: ["/dist/xypic.min.js","AMSmath.js","AMSsymbols.js"]} });
     </script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css" />
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css" as="style" onload="this.onload=null;this.rel=&#39;stylesheet&#39;" />
+    <noscript>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css" />
+    </noscript>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/coq.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/cpp.min.js"></script>

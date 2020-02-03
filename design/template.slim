@@ -12,13 +12,19 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     meta name="robots" content="index,follow"
 
-    // our stylesheet, compiled from various css files in design/
+    // synchronously load our stylesheet, compiled from various css files in design/
     link rel="stylesheet" href="/dist/style.min.css"
 
-    // google fonts
-    link rel="stylesheet" href="//fonts.googleapis.com/css?family=Parisienne|Josefin+Sans|Roboto+Mono&display=swap"
+    // load google fonts using Web Font Loader; the Loader itself is downloaded synchronously to avoid FOUT
+    script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+    javascript:
+      WebFont.load({
+        google: {
+          families: ['Josefin Sans', 'Parisienne', 'Roboto Mono']
+        }
+      });
 
-    // analytics
+    // analytics; async, because it can be loaded at any point
     link rel="icon" href="/dist/favicon.ico"
     javascript:
       window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -36,8 +42,12 @@ html
       tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
       TeX: {extensions: ["/dist/xypic.min.js","AMSmath.js","AMSsymbols.js"]} });
 
-    // hljs stuff
-    link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css"
+    // preload hljs css, since solarized-dark is heavy
+    link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"
+    noscript
+      link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css"
+
+    // the js components of hljs
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/coq.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/cpp.min.js"
