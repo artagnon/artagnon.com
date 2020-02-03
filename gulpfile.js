@@ -7,14 +7,14 @@ function css() {
   return src("design/*.css")
     .pipe(cleanCSS())
     .pipe(concat("style.min.css"))
-    .pipe(dest("assets"));
+    .pipe(dest("dist"));
 }
 
 function js() {
   return src("design/*.js")
     .pipe(minify({ noSource: true }))
     .pipe(concat("script.min.js"))
-    .pipe(dest("assets"));
+    .pipe(dest("dist"));
 }
 
 exports.js = js;
