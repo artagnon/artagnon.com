@@ -1,12 +1,22 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var cleanCSS = require('gulp-clean-css');
+const { src, dest, parallel } = require("gulp");
+const concat = require("gulp-concat");
+const cleanCSS = require("gulp-clean-css");
+const minify = require("gulp-minify");
 
 function css() {
-  return gulp.src('design/*.css')
-  .pipe(concat('style.min.css'))
-  .pipe(cleanCSS())
-  .pipe(gulp.dest('design'), { sourcemaps: true })
+  return src("design/*.css")
+    .pipe(cleanCSS())
+    .pipe(concat("style.min.css"))
+    .pipe(dest("assets"));
 }
 
-exports.default = css;
+function js() {
+  return src("design/*.js")
+    .pipe(minify({ noSource: true }))
+    .pipe(concat("script.min.js"))
+    .pipe(dest("assets"));
+}
+
+exports.js = js;
+exports.css = css;
+exports.default = parallel(js, css);
