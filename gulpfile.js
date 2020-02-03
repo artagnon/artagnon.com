@@ -4,7 +4,12 @@ const cleanCSS = require("gulp-clean-css");
 const minify = require("gulp-minify");
 
 function css() {
-  return src("design/*.css")
+  return src([
+    "design/all.css",
+    "design/screen.css",
+    "design/mobile.css",
+    "design/print.css"
+  ])
     .pipe(cleanCSS())
     .pipe(concat("style.min.css"))
     .pipe(dest("dist"));
