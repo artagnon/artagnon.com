@@ -59,47 +59,48 @@ html
               address = locations.join ", "
         article
           - paragraphs.each do |paragraph|
-            - if paragraph.is_blurb?
-              p class="blurb" == paragraph.to_s
-            - if paragraph.is_plain?
-              p == paragraph.to_s
-            - elsif paragraph.is_olitems?
-              ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.olstart}"
-                - for item in paragraph.split "\n"
-                  li == item
-            - elsif paragraph.is_ulitems?
-              ul class="ulitems"
-                - for item in paragraph.split "\n"
-                  li == item
-            - elsif paragraph.is_subheading?
-              h2 id="#{paragraph.bookmark}" = paragraph.to_s
-            - elsif paragraph.is_footer?
-              footer
-                - for item in paragraph.split "\n"
-                  p == item
-            - elsif paragraph.is_codeblock?
-              pre
-                - if paragraph.prop == :coq
-                  code class="language-coq" == paragraph.to_s
-                - else
-                  // For attic
-                  code class="language-cpp" == paragraph.to_s
-            - elsif paragraph.is_images?
-              div class="imgrow"
-                - if paragraph.to_s.length == 1
-                  figure
-                    img src="#{paragraph.to_s}" style="width:100%"
-                - else
-                  figure class="left"
-                    img src="#{paragraph.split("\n")[0]}"
-                  figure class="right"
-                    img src="#{paragraph.split("\n")[1]}"
-            - elsif paragraph.is_horizrule?
-              hr
-            - elsif paragraph.is_mathjax?
-              p class="mathjax" == paragraph.to_s
-            - elsif paragraph.is_exercise?
-              p class="exercise" == paragraph.to_s
+            - case paragraph.type
+              - when :blurb
+                p class="blurb" == paragraph.to_s
+              - when :plain
+                p == paragraph.to_s
+              - when :olitems
+                ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.olstart}"
+                  - for item in paragraph.split "\n"
+                    li == item
+              - when :ulitems
+                ul class="ulitems"
+                  - for item in paragraph.split "\n"
+                    li == item
+              - when :subheading
+                h2 id="#{paragraph.bookmark}" = paragraph.to_s
+              - when :footer
+                footer
+                  - for item in paragraph.split "\n"
+                    p == item
+              - when :codeblock
+                pre
+                  - if paragraph.prop == :coq
+                    code class="language-coq" == paragraph.to_s
+                  - else
+                    // For attic
+                    code class="language-cpp" == paragraph.to_s
+              - when :images
+                div class="imgrow"
+                  - if paragraph.to_s.length == 1
+                    figure
+                      img src="#{paragraph.to_s}" style="width:100%"
+                  - else
+                    figure class="left"
+                      img src="#{paragraph.split("\n")[0]}"
+                    figure class="right"
+                      img src="#{paragraph.split("\n")[1]}"
+              - when :horizrule
+                hr
+              - when :mathjax
+                p class="mathjax" == paragraph.to_s
+              - when :exercise
+                p class="exercise" == paragraph.to_s
           - if indexfill && indexfill.any?
             ul id="indexfill"
               - indexfill.each do |page|
