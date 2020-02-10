@@ -195,11 +195,29 @@ By uniqueness of identity arrow, $\mathbb{1}_{a \times b} = \langle \texttt{pr}_
 
 {{
   a\ar[r]^{f} & c \\
-  a \times b\ar[u]^{\texttt{pr}_a}\ar[d]_{\texttt{pr}_b}\ar[r]^{\langle f, g\rangle}_{\langle k, h\rangle} & c \times d\ar[u]_{\texttt{pr}_c}\ar[d]^{\texttt{pr}_d} \\
+  a \times b\ar[u]^{\texttt{pr}_A}\ar[d]_{\texttt{pr}_B}\ar@{.>}[r]^{\langle f, g\rangle}_{\langle k, h\rangle}\ar[ur]^p\ar[rd]_q & c \times d\ar[u]_{\texttt{pr}_A}\ar[d]^{\texttt{pr}_B} \\
   b\ar[r]^{g} & d
 }}
 
-By uniqueness of all four projections, $f = k$ and $g = h$.
+By definition of product, since this diagram commutes,
+
+$$
+  \begin{matrix}
+  p &=& \texttt{pr}_A \circ \langle f, g \rangle = f \circ \texttt{pr}_A \\
+    &=& \texttt{pr}_A \circ \langle k, h \rangle = k \circ \texttt{pr}_A \\
+  q &=& \texttt{pr}_B \circ \langle f, g \rangle = g \circ \texttt{pr}_B \\
+    &=& \texttt{pr}_B \circ \langle k, h \rangle = h \circ \texttt{pr}_B
+  \end{matrix}
+$$
+
+Hence, $f = k$ and $g = h$.
 
 --
 
++ $\langle f \circ h, g \circ h\rangle = \langle f, g\rangle \circ h$.
+
+{{
+  & & a \\
+  d\ar[r]^h & c\ar@{.>}[r]^{\langle f, g\rangle}\ar[ru]^f\ar[rd]_g & a \times b\ar[u]_{\texttt{pr}_A}\ar[d]^{\texttt{pr}_B} \\
+  & & b
+}}
