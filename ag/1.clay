@@ -27,7 +27,7 @@ Two additional facts:
 `Germ` of a differentiable function $f$ at a point $p$ is defined as:
 $$\{f, \text{open } U \mid p \in U, f \in \mathscr{O}(U)\}$$
 
-modulo the relation $(f, U) \sim (g, V)$, if there is some open set $W \subset U$, $p \in V$, such that $f|_W = g|_W$ (i.e. $\text{res}_{U, W} f = \text{res}_{V, W} g$). Intuitively, two functions that are the same in an open neighborhood of $p$, but different elsewhere, have the same germ. We call this set of germs at $p$ the `stalk` at $p$, denoted by $\mathscr{O}_p$. If $f$ is defined on $U$ and $g$ is defined on $V$, then $f + g$ is defined on $U \cap V$. If additionally, $p \in U$ then we get the map $\mathscr{O}(U) \rightarrow \mathscr{O}_p$. We're talking about germs as [colimits](/ct/2#coproducts-and-colimits). Moreover, $\mathscr{O}_p$ is a local ring, since it has exactly one maximal ideal $m_p \subset \mathscr{O}_p$, the ideal of germs vanishing at $p$. We can interpret the value of the function, or the value of the germ, at a point, as an element of the local ring modulo the maximal ideal: this doesn't work for all sheaves, but does work for things behaving like sheaves of functions, formalized later as a `locally ringed space`.
+modulo the relation $(f, U) \sim (g, V)$, if there is some open set $W \subset U$, $p \in V$, such that $f|_W = g|_W$ (i.e. $\text{res}_{U, W} f = \text{res}_{V, W} g$). Intuitively, two functions that are the same in an open neighborhood of $p$, but different elsewhere, have the same germ. We call this set of germs at $p$ the `stalk` at $p$, denoted by $\mathscr{O}_p$. If $f$ is defined on $U$ and $g$ is defined on $V$, then $f + g$ is defined on $U \cap V$. If additionally, $p \in U$ then we get the map $\mathscr{O}(U) \rightarrow \mathscr{O}_p$. We're talking about germs as [colimits](/category/2#coproducts-and-colimits). Moreover, $\mathscr{O}_p$ is a local ring, since it has exactly one maximal ideal $m_p \subset \mathscr{O}_p$, the ideal of germs vanishing at $p$. We can interpret the value of the function, or the value of the germ, at a point, as an element of the local ring modulo the maximal ideal: this doesn't work for all sheaves, but does work for things behaving like sheaves of functions, formalized later as a `locally ringed space`.
 
 # Definition of presheaf and sheaf
 
@@ -82,7 +82,7 @@ Here, the identity axiom asserts that there is atmost one way to glue, and the g
 
 As an example, consider $\mathscr{F}(U \cup V) = \mathscr{F}(U) \times \mathscr{F}(V)$. Here, we use the fact that $\mathscr{F}(\phi)$ is the final object.
 
-The two axioms for a sheaf can be interpreted as "exactnesss" of the `[equalizer](/ct/2#limits-and-products) exact sequence`:
+The two axioms for a sheaf can be interpreted as "exactnesss" of the `[equalizer](/category/2#limits-and-products) exact sequence`:
 
 $$
 \begin{xy}
@@ -147,7 +147,7 @@ This is a sheaf, called `sheaf $\textit{Hom}$`, of sets on $X$. The functor is c
 
 We can make module-like constructions using presheaves of abelian groups on a topological space $X$. We can clearly add maps of presheaves to get another map of presheaves. Indeed, $(\phi + \psi)(V) = \phi(V) + \psi(V)$. We say that presheaves of abelian groups form an additive category.
 
-If $\phi : \mathscr{F} \rightarrow \mathscr{G}$ is a morphism of presheaves, then the `kernel` of this map is defined by $(\text{ker}_\text{pre}\phi)(U) := \text{ker }\phi(U)$. $\text{ker}_\text{pre}\phi \rightarrow \mathscr{F}$ satisfies the universal property for kernels. The cokernel is defined similarly. It can readily be verified that presheaves of abelian groups form an [abelian category](/ct/7).
+If $\phi : \mathscr{F} \rightarrow \mathscr{G}$ is a morphism of presheaves, then the `kernel` of this map is defined by $(\text{ker}_\text{pre}\phi)(U) := \text{ker }\phi(U)$. $\text{ker}_\text{pre}\phi \rightarrow \mathscr{F}$ satisfies the universal property for kernels. The cokernel is defined similarly. It can readily be verified that presheaves of abelian groups form an [abelian category](/category/7).
 
 Sheaves of abelian groups also form an abelian category, albeit with an additional complication of `sheafification`. $\text{Ab}_X$ forms an additive category, just as with presheaves, and the definition of kernel of a sheaf gives us no problems; in fact $\text{ker}_\text{pre}\phi := \text{ker }\phi$. The issue arises in cokernels.
 
@@ -246,7 +246,7 @@ We want to show that there is a unique morphism $\mathscr{H} \rightarrow \mathsc
 
 # Inverse image sheaf
 
-Given continuous map $\pi : X \rightarrow Y$, we get $\pi^{-1} : Y \rightarrow X$. Define $\pi^{-1}$ as [left-adjoint](/ct/3#adjunctions) to $\pi_*$. We then get canonical maps from $\pi^{-1}\pi_* \mathscr{F} \rightarrow \mathscr{F}$ associated to the identity morphism $\text{Mor}_Y(\pi_* \mathscr{F}, \pi_* \mathscr{F})$ and $\mathscr{G} \rightarrow \pi_*\pi^{-1} \mathscr{G}$ associated to the identity morphism $\text{Mor}_X(\pi^{-1}\mathscr{G}, \pi^{-1}\mathscr{G})$:
+Given continuous map $\pi : X \rightarrow Y$, we get $\pi^{-1} : Y \rightarrow X$. Define $\pi^{-1}$ as [left-adjoint](/category/3#adjunctions) to $\pi_*$. We then get canonical maps from $\pi^{-1}\pi_* \mathscr{F} \rightarrow \mathscr{F}$ associated to the identity morphism $\text{Mor}_Y(\pi_* \mathscr{F}, \pi_* \mathscr{F})$ and $\mathscr{G} \rightarrow \pi_*\pi^{-1} \mathscr{G}$ associated to the identity morphism $\text{Mor}_X(\pi^{-1}\mathscr{G}, \pi^{-1}\mathscr{G})$:
 
 $$
 \begin{xy}
