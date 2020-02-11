@@ -54,7 +54,7 @@
             Lean versus Coq: The cultural chasm
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-01-04" class="begin">Sat, 04 Jan 2020 15:38:56 +0100</time><span class="to">↪</span><time datetime="2020-02-02" class="end">Sun, 02 Feb 2020 17:54:08 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-01-04" class="begin">Sat, 04 Jan 2020 15:38:56 +0100</time><span class="to">↪</span><time datetime="2020-02-11" class="end">Tue, 11 Feb 2020 18:00:55 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -81,7 +81,7 @@
           <p>
             Working mathematicians have only just started using software for their work, and they often rely on unverified (and sometimes proprietary) tools like magma, sage, and mathematica. Lean is a big step-up, and the good type theoretic properties preserved by Coq don't seem as important to them.
           </p>
-          <hr />
+          <hr class="ellipses" />
           <p>
             Lean supports both constructive and classical reasoning, but quotienting in Coq is painful due to ["setoid-hell"](http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf); something that would be fixed when types are modeled as $\infty$-groupoids instead of setoids, as in the HoTT line of work.
           </p>
@@ -91,11 +91,11 @@
           <p>
             Lean's [inheritance](https://leanprover.github.io/theorem_proving_in_lean/structures_and_records.html#inheritance) is another good feature; it disallows diamond-inheritance, and seems like a bit of a hack, but Coq is definitely missing some form of a well-thought-out ad-hoc polymorphism.
           </p>
-          <hr />
+          <hr class="ellipses" />
           <p>
             Category theory in Lean has not been [developed](https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md) with higher categories in mind; I'm not sure how one would define $\infty$-categories, since universes are explicit, and since there are no coinductive types: Coq's cumulativity seems to have been a better design choice.
           </p>
-          <hr />
+          <hr class="ellipses" />
           <p>
             One would think that Lean is an engineering feat, since it's written in C++: Coq's math-comp (90k loc) compares to Lean's mathlib (150k loc); math-comp builds in under ten minutes, while mathlib takes over thirty minutes to build! Indeed, due to their design decision to use a VM for computations, computation happens at a speed comparable to Python-bytecode evaluation — they seem to be overhauling this in Lean4 though, by compiling Lean code down to C before execution.
           </p>

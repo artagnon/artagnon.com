@@ -328,6 +328,20 @@ hr {
   color: olive;
 }
 
+hr.ellipses {
+  border: 0;
+}
+
+hr.ellipses::before {
+  content: "...";
+  display: inline-block;
+  letter-spacing: 0.6em;
+  top: -30px;
+  position: relative;
+  font-weight: 400;
+  font-size: 30px;
+}
+
 pre code,
 pre code * {
   font-family: "Roboto Mono", monospace;

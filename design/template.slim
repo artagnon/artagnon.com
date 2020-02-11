@@ -106,7 +106,7 @@ html
                     figure class="right"
                       img src="#{paragraph.split("\n")[1]}"
               - when :horizrule
-                hr
+                hr class="#{paragraph.prop}"
               - when :mathjax
                 p class="mathjax" == paragraph.to_s
               - when :exercise
