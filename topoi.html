@@ -54,7 +54,7 @@
             Notes from Goldblatt's Topoi book
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2019-12-07" class="begin">Sat, 07 Dec 2019 08:57:56 +0100</time><span class="to">↪</span><time datetime="2020-02-10" class="end">Mon, 10 Feb 2020 12:10:08 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2019-12-07" class="begin">Sat, 07 Dec 2019 08:57:56 +0100</time><span class="to">↪</span><time datetime="2020-02-13" class="end">Thu, 13 Feb 2020 15:55:53 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -497,23 +497,18 @@
             $a \times b \simeq b \times a$.
           </p>
           <p>
-            By definition of product, since the following diagram commutes,
+            For isomorphism, there needs to exist $f : a \rightarrow b$ and $g : b \rightarrow a$, such that $f \circ g = g \circ f = \mathbb{1}$. From the diagram, we see that this is indeed the case:
           </p>
           <p class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
             
-            & b \\
-              a \times b\ar[ru]^{\texttt{pr}_B}\ar[rd]_{\texttt{pr}_A}\ar@{.>}[r]^p & b \times a\ar[u]_{\texttt{pr}_A}\ar[d]^{\texttt{pr}_B} \\
-              & a
+            a \times b\ar@/^/[rr]^{\texttt{pr}_B \times \texttt{pr}_A} & & b \times a\ar@/^/[ll]^{\texttt{pr}_A \times \texttt{pr}_B}
               }
               \end{xy}
             
             $$
-          </p>
-          <p>
-            $a \times b$ is unique upto isomorphism, with respect to $b \times a$.
           </p>
           <hr class="horizrule" />
         </article>
