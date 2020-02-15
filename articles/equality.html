@@ -54,7 +54,7 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-15" class="end">Sat, 15 Feb 2020 20:34:33 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-15" class="end">Sat, 15 Feb 2020 21:00:49 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -81,6 +81,11 @@ Abort.</code></pre>
   exact eq_refl.
 Qed.</code></pre>
           <p>
+            `eq_refl` is simply an `Inductive`.
+          </p>
+          <pre><code class="language-coq">Inductive eq (A:Type) (x:A) : A -> Prop :=
+  eq_refl : eq A x x.</code></pre>
+          <p>
             In [SProp](https://coq.inria.fr/refman/addendum/sprop.html), propositions are definitionally equal. However, `=` doesn't work as expected.
           </p>
           <pre><code class="language-coq">Theorem SPropIrr (P : SProp) (x y : P) : x = y.
@@ -93,8 +98,7 @@ Abort. (* Type-check fails at Qed.
           </p>
           <pre><code class="language-coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.
-  apply hprop_allpath; intros x y.
-  apply path_ishprop.
+  by apply path_ishprop.
 Qed.</code></pre>
           <footer>
             <p>

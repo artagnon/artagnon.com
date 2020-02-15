@@ -27,6 +27,13 @@ Theorem PropRefl (P : Prop) (x : P): x = x.
 Qed.
 ~~
 
+`eq_refl` is simply an `Inductive`.
+
+~~
+Inductive eq (A:Type) (x:A) : A -> Prop :=
+  eq_refl : eq A x x.
+~~
+
 In [SProp](https://coq.inria.fr/refman/addendum/sprop.html), propositions are definitionally equal. However, `=` doesn't work as expected.
 
 ~~
@@ -42,8 +49,7 @@ In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply (-1)-truncate
 ~~
 Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.
-  apply hprop_allpath; intros x y.
-  apply path_ishprop.
+  by apply path_ishprop.
 Qed.
 ~~
 
