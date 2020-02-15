@@ -1,11 +1,24 @@
-Equality in
+Equality in mechanized mathematics
 
 ...
-Here, we
+Here, we discuss various flavors of equalities in mechanized mathematics, by providing illustrative examples in Coq.
 ...
 
+First, let us talk about what a Proposition is. A Prop is a Type with impredicativity.
+
+There are two kinds of equalities in vanilla Coq. Definitional equality and propositional equality. Definitional equality is "equality by definition", and propositional equality is "equality by proposition", where the proposition is something that the user has to prove.
+
+~~
+Axiom DefinitionalEquality : forall (P Q : Prop), P = Q.
+Axiom PropositionalEquality : forall (P Q J: Prop), P -> Q -> J.
+~~
+
+In HoTT, a mere proposition, an inhabitant of `hProp`, is simply (-1)-truncated set.
+
+~~
 Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.
   apply hprop_allpath; intros x y.
   apply path_ishprop.
 Qed.
+~~

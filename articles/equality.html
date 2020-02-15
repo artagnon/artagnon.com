@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Equality in | artagnon.com</title>
+    <title>Equality in mechanized mathematics | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -51,23 +51,32 @@
       <main tabindex="0">
         <header>
           <h1>
-            Equality in
+            Equality in mechanized mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-15" class="end">Sat, 15 Feb 2020 18:12:59 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-15" class="end">Sat, 15 Feb 2020 19:01:56 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
           <p class="blurb">
-            Here, we
+            Here, we discuss various flavors of equalities in mechanized mathematics, by providing illustrative examples in Coq.
           </p>
           <p>
-            Theorem hPropEquality (P : hProp) (a b : P) : a = b.
-            Proof.
-              apply hprop_allpath; intros x y.
-              apply path_ishprop.
-            Qed.
+            First, let us talk about what a Proposition is. A Prop is a Type with impredicativity.
           </p>
+          <p>
+            There are two kinds of equalities in vanilla Coq. Definitional equality and propositional equality. Definitional equality is "equality by definition", and propositional equality is "equality by proposition", where the proposition is something that the user has to prove.
+          </p>
+          <pre><code class="language-coq">Axiom DefinitionalEquality : forall (P Q : Prop), P = Q.
+Axiom PropositionalEquality : forall (P Q J: Prop), P -> Q -> J.</code></pre>
+          <p>
+            In HoTT, a mere proposition, an inhabitant of `hProp`, is simply (-1)-truncated set.
+          </p>
+          <pre><code class="language-coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
+Proof.
+  apply hprop_allpath; intros x y.
+  apply path_ishprop.
+Qed.</code></pre>
         </article>
       </main>
       <nav>
