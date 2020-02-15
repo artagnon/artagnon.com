@@ -1,19 +1,43 @@
-Equality in mechanized mathematics
+Equality in Mechanized Mathematics
 
 ...
-Here, we discuss various flavors of equalities in mechanized mathematics, by providing illustrative examples in Coq.
+Here, we talk about equalities, by providing illustrative examples in vanilla Coq, SProp, and HoTT.
 ...
 
-First, let us talk about what a Proposition is. A Prop is a Type with impredicativity.
-
-There are two kinds of equalities in vanilla Coq. Definitional equality and propositional equality. Definitional equality is "equality by definition", and propositional equality is "equality by proposition", where the proposition is something that the user has to prove.
+First, let us briefly talk about the cumulative universe of Coq. `Prop` and `Set` are disjoint, but can be promoted to `Type` seamlessly.
 
 ~~
-Axiom DefinitionalEquality : forall (P Q : Prop), P = Q.
-Axiom PropositionalEquality : forall (P Q J: Prop), P -> Q -> J.
+Goal SetTypeCum : Set -> Type.
+  auto.
+Qed.
+
+Goal PropTypeCum : Prop -> Type.
+  auto.
+Qed.
+
+Goal SetPropDisjoint : Set -> Prop.
+Abort.
 ~~
 
-In HoTT, a mere proposition, an inhabitant of `hProp`, is simply (-1)-truncated set.
+There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be satisfisfied by the user", while definitional equality is a simple syntactic rewriting.
+
+~~
+Theorem PropRefl (P : Prop) (x : P): x = x.
+  exact eq_refl.
+Qed.
+~~
+
+In [SProp](https://coq.inria.fr/refman/addendum/sprop.html), propositions are definitionally equal. However, `=` doesn't work as expected.
+
+~~
+Theorem SPropIrr (P : SProp) (x y : P) : x = y.
+Proof.
+  by reflexivity.
+Abort. (* Type-check fails at Qed.
+        * (=) : forall A, A -> A -> Type, but we want to return an SProp. *)
+~~
+
+In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply (-1)-truncated set.
 
 ~~
 Theorem hPropEquality (P : hProp) (a b : P) : a = b.
@@ -22,3 +46,5 @@ Proof.
   apply path_ishprop.
 Qed.
 ~~
+
+[^1]: Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and checking of examples.
