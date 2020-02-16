@@ -1,7 +1,7 @@
 Equality in Mechanized Mathematics
 
 ...
-Here, we talk about equalities, by providing illustrative examples in vanilla Coq, SProp, and HoTT.
+Here, we talk about equalities, and provide illustrative examples in vanilla Coq, SProp, and HoTT.
 ...
 
 # Equality in Mathematics
@@ -63,9 +63,21 @@ Inductive eq (A:Type) (x:A) : A -> Prop :=
 
 # The proof-irrelevant SProp
 
-There are three inhabitants of `SProp`: `sUnit`, `sEmpty`, and `sPropoposition`. `sPropositions` are tagged.
+There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sPropoposition` corresponding to a definitionally proof-irrelevant term.
 
-An `SProp` universe is disjoint from the `Prop` universe:
+The way `SProp` implements definitional proof-irrelevance is inelegant; there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
+
+`=` doesn't work as expected:
+
+~~
+Theorem SPropIrr (P : SProp) (x y : P) : x = y.
+Proof.
+  by reflexivity.
+Abort. (* Type-check fails at Qed.
+        * (=) : forall A, A -> A -> Prop, but we want to return an SProp. *)
+~~
+
+This is because the `SProp` universe is disjoint from the `Prop` universe:
 
 ~~
 Theorem SPropToProp : SProp -> Prop.
@@ -75,20 +87,11 @@ Abort. (* Type-check fails at Qed.
         * SProp is not convertible to Prop. *)
 ~~
 
-
-In [SProp](https://coq.inria.fr/refman/addendum/sprop.html), propositions are definitionally equal. However, `=` doesn't work as expected.
-
-~~
-Theorem SPropIrr (P : SProp) (x y : P) : x = y.
-Proof.
-  by reflexivity.
-Abort. (* Type-check fails at Qed.
-        * (=) : forall A, A -> A -> Type, but we want to return an SProp. *)
-~~
+Highly inelegant, but avoids the complication of completely overhauling the type system in Coq.
 
 # Mere propositions in homotopy type theory
 
-In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply (-1)-truncated type.
+In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ is the ($\mathrm{-2}$)-truncated Type, and `Set` is the $\mathrm{0}$-truncated type. There is the central notion of truncation, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, where higher-than-$m$ morphisms are rendered uninteresting. The equalities are all propositional, so no hard-cording is needed:
 
 ~~
 Theorem hPropEquality (P : hProp) (a b : P) : a = b.

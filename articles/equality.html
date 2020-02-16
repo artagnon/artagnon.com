@@ -54,12 +54,12 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 06:44:47 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 08:02:00 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
           <p class="blurb">
-            Here, we talk about equalities, by providing illustrative examples in vanilla Coq, SProp, and HoTT.
+            Here, we talk about equalities, and provide illustrative examples in vanilla Coq, SProp, and HoTT.
           </p>
           <h2 id="equality-in-mathematics">
             Equality in Mathematics
@@ -118,10 +118,21 @@ Qed.</code></pre>
             The proof-irrelevant SProp
           </h2>
           <p>
-            There are three inhabitants of `SProp`: `sUnit`, `sEmpty`, and `sPropoposition`. `sPropositions` are tagged.
+            There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sPropoposition` corresponding to a definitionally proof-irrelevant term.
           </p>
           <p>
-            An `SProp` universe is disjoint from the `Prop` universe:
+            The way `SProp` implements definitional proof-irrelevance is inelegant; there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
+          </p>
+          <p>
+            `=` doesn't work as expected:
+          </p>
+          <pre><code class="language-coq">Theorem SPropIrr (P : SProp) (x y : P) : x = y.
+Proof.
+  by reflexivity.
+Abort. (* Type-check fails at Qed.
+        * (=) : forall A, A -> A -> Prop, but we want to return an SProp. *)</code></pre>
+          <p>
+            This is because the `SProp` universe is disjoint from the `Prop` universe:
           </p>
           <pre><code class="language-coq">Theorem SPropToProp : SProp -> Prop.
 Proof.
@@ -129,18 +140,13 @@ Proof.
 Abort. (* Type-check fails at Qed.
         * SProp is not convertible to Prop. *)</code></pre>
           <p>
-            In [SProp](https://coq.inria.fr/refman/addendum/sprop.html), propositions are definitionally equal. However, `=` doesn't work as expected.
+            Highly inelegant, but avoids the complication of completely overhauling the type system in Coq.
           </p>
-          <pre><code class="language-coq">Theorem SPropIrr (P : SProp) (x y : P) : x = y.
-Proof.
-  by reflexivity.
-Abort. (* Type-check fails at Qed.
-        * (=) : forall A, A -> A -> Type, but we want to return an SProp. *)</code></pre>
           <h2 id="mere-propositions-in-homotopy-type-theory">
             Mere propositions in homotopy type theory
           </h2>
           <p>
-            In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply (-1)-truncated type.
+            In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ is the ($\mathrm{-2}$)-truncated Type, and `Set` is the $\mathrm{0}$-truncated type. There is the central notion of truncation, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, where higher-than-$m$ morphisms are rendered uninteresting. The equalities are all propositional, so no hard-cording is needed:
           </p>
           <pre><code class="language-coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.
