@@ -6,7 +6,7 @@ Here, we talk about equalities, and provide illustrative examples in vanilla Coq
 
 # Equality in Mathematics
 
-In zfc-based Mathematics, say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a [set-based equality](/zfc). In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories, and model in dependent type theory is needed.
+In [zfc-based Mathematics](/zfc), say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a set-based equality. In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism"; when objects are sets, isomorphism asks for a bijection between the two sets. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory.
 
 # Universes in Coq
 
@@ -31,7 +31,7 @@ Inhabitants of a `Set` are sets of things like `nat`, while inhabitants of a `Pr
 
 # The proof-relevant Prop
 
-There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", while definitional equality is a simple syntactic rewriting. A propositional equality can be formalized as:
+There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", while definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality can be formalized as:
 
 ~~
 Axiom PropositionalEquality : forall (P : Prop) (a b : P), a = b.
@@ -46,7 +46,7 @@ Proof.
 Qed.
 ~~
 
-`Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal. There is, however, a propositional equality existing between two equal propositions:
+`Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal, although reasoning about the relationship between two different propositions is tedious at best. There is, however, a propositional equality existing between two equal propositions:
 
 ~~
 Theorem PropRefl (P : Prop) (x : P): x = x.
@@ -65,7 +65,7 @@ Inductive eq (A : Type) (x : A) : A -> Prop :=
 
 There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
 
-`=` doesn't work as expected:
+Unfortunately, `=` doesn't work as expected:
 
 ~~
 Theorem SPropIrr (P : SProp) (x y : P) : x = y.
@@ -85,11 +85,11 @@ Abort. (* Type-check fails at Qed.
         * SProp is not convertible to Prop. *)
 ~~
 
-Highly inelegant, but avoids the complication of completely overhauling the type system in Coq.
+Fortunately, we can do better.
 
 # Mere propositions in homotopy type theory
 
-In [HoTT](https://github.com/HoTT/HoTT), a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ (and anything that's contractible to $\mathbb{1}$ is the ($\mathrm{-2}$)-truncated Type, and `Set` can be approximated by `hSet`, the $\mathrm{0}$-truncated type.
+In [HoTT](https://github.com/HoTT/HoTT), a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ (and anything that's contractible to $\mathbb{1}$) is the ($\mathrm{-2}$)-truncated Type, and `Set` can be approximated by `hSet`, the $\mathrm{0}$-truncated type.
 
 ~~
 Notation Contr := (IsTrunc (minus_two)).

@@ -54,7 +54,7 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 10:20:40 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 10:35:01 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -65,7 +65,7 @@
             Equality in Mathematics
           </h2>
           <p>
-            In zfc-based Mathematics, say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a [set-based equality](/zfc). In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories, and model in dependent type theory is needed.
+            In [zfc-based Mathematics](/zfc), say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a set-based equality. In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism"; when objects are sets, isomorphism asks for a bijection between the two sets. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory.
           </p>
           <h2 id="universes-in-coq">
             Universes in Coq
@@ -93,7 +93,7 @@ Abort.</code></pre>
             The proof-relevant Prop
           </h2>
           <p>
-            There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", while definitional equality is a simple syntactic rewriting. A propositional equality can be formalized as:
+            There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", while definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality can be formalized as:
           </p>
           <pre><code class="language-coq">Axiom PropositionalEquality : forall (P : Prop) (a b : P), a = b.</code></pre>
           <p>
@@ -104,7 +104,7 @@ Proof.
   by apply PropositionalEquality.
 Qed.</code></pre>
           <p>
-            `Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal. There is, however, a propositional equality existing between two equal propositions:
+            `Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal, although reasoning about the relationship between two different propositions is tedious at best. There is, however, a propositional equality existing between two equal propositions:
           </p>
           <pre><code class="language-coq">Theorem PropRefl (P : Prop) (x : P): x = x.
   exact eq_refl.
@@ -121,7 +121,7 @@ Qed.</code></pre>
             There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
           </p>
           <p>
-            `=` doesn't work as expected:
+            Unfortunately, `=` doesn't work as expected:
           </p>
           <pre><code class="language-coq">Theorem SPropIrr (P : SProp) (x y : P) : x = y.
 Proof.
@@ -137,13 +137,13 @@ Proof.
 Abort. (* Type-check fails at Qed.
         * SProp is not convertible to Prop. *)</code></pre>
           <p>
-            Highly inelegant, but avoids the complication of completely overhauling the type system in Coq.
+            Fortunately, we can do better.
           </p>
           <h2 id="mere-propositions-in-homotopy-type-theory">
             Mere propositions in homotopy type theory
           </h2>
           <p>
-            In [HoTT](https://github.com/HoTT/HoTT), a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ (and anything that's contractible to $\mathbb{1}$ is the ($\mathrm{-2}$)-truncated Type, and `Set` can be approximated by `hSet`, the $\mathrm{0}$-truncated type.
+            In [HoTT](https://github.com/HoTT/HoTT), a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ (and anything that's contractible to $\mathbb{1}$) is the ($\mathrm{-2}$)-truncated Type, and `Set` can be approximated by `hSet`, the $\mathrm{0}$-truncated type.
           </p>
           <pre><code class="language-coq">Notation Contr := (IsTrunc (minus_two)).
 Notation IsHProp := (IsTrunc (minus_two.+1)).
