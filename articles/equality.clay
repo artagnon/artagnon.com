@@ -13,14 +13,8 @@ In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B = B \oplus 
 First, let us briefly talk about the cumulative universe of Coq. `Prop` is a `Set` that can be promoted to `Type` seamlessly. The reason for the distinction between `Prop` and `Set` is essentially an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
 
 ~~
-Goal SetTypeCumul : Set -> Type.
-  auto.
-Qed.
-
-Goal PropTypeCumul : Prop -> Type.
-  auto.
-Qed.
-
+Definition SetTypeIncl (A : Set) : Type := A.
+Definition PropTypeIncl (A : Prop) : Type := A.
 Definition PropSetIncl (A : Prop) : Set := A.
 ~~
 

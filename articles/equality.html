@@ -54,7 +54,7 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 13:52:01 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 13:56:00 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -73,14 +73,8 @@
           <p>
             First, let us briefly talk about the cumulative universe of Coq. `Prop` is a `Set` that can be promoted to `Type` seamlessly. The reason for the distinction between `Prop` and `Set` is essentially an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
           </p>
-          <pre><code class="language-coq">Goal SetTypeCumul : Set -> Type.
-  auto.
-Qed.
-
-Goal PropTypeCumul : Prop -> Type.
-  auto.
-Qed.
-
+          <pre><code class="language-coq">Definition SetTypeIncl (A : Set) : Type := A.
+Definition PropTypeIncl (A : Prop) : Type := A.
 Definition PropSetIncl (A : Prop) : Set := A.</code></pre>
           <p>
             There is an $\infty$ hierarchy within the `Type` universe, and types of Types are Types themselves.
