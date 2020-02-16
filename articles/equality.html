@@ -54,7 +54,7 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 13:14:34 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 13:48:55 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -65,13 +65,13 @@
             Equality in Mathematics
           </h2>
           <p>
-            In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a set-based equality. In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism"; when objects are sets, isomorphism asks for a bijection between the two sets. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
+            In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a set-based equality. In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
           </p>
           <h2 id="universes-in-coq">
             Universes in Coq
           </h2>
           <p>
-            First, let us briefly talk about the cumulative universe of Coq. `Prop` and `Set` are disjoint, but can be promoted to `Type` seamlessly. The reason for the disjoin is essentially an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
+            First, let us briefly talk about the cumulative universe of Coq. `Prop` is a `Set` that can be promoted to `Type` seamlessly. The reason for the distinction between `Prop` and `Set` is essentially an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
           </p>
           <pre><code class="language-coq">Goal SetTypeCumul : Set -> Type.
   auto.
@@ -81,16 +81,15 @@ Goal PropTypeCumul : Prop -> Type.
   auto.
 Qed.
 
-Goal SetPropDisjoint : Set -> Prop.
-Abort.</code></pre>
+Definition PropSetIncl (A : Prop) : Set := A.</code></pre>
           <p>
             There is an $\infty$ hierarchy within the `Type` universe, and types of Types are Types themselves.
           </p>
           <p>
             Inhabitants of a `Set` are sets of primitive things like $\mathbb{N}$ and $\mathbb{R}$, while inhabitants of a `Prop` are propositions, which could be $\top$, $\bot$, or some arbitrary term, the inhabitant of which acts as the proof.
           </p>
-          <h2 id="the-proof-relevant-prop">
-            The proof-relevant Prop
+          <h2 id="propositions">
+            Propositions
           </h2>
           <p>
             There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
@@ -104,7 +103,7 @@ Proof.
   by apply PropositionalEquality.
 Qed.</code></pre>
           <p>
-            `Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal, although reasoning about the relationship between two different propositions is tedious at best. There is, however, a propositional equality existing between two equal propositions:
+            In the general case, two different inhabitants of `Prop` are unequal. There is, however, a propositional equality existing between two equal propositions:
           </p>
           <pre><code class="language-coq">Theorem PropRefl (P : Prop) (x : P): x = x.
 Proof.
@@ -165,6 +164,9 @@ Qed.</code></pre>
             </p>
             <p>
               ‡ Kudos to Hugo Moeneclaey for giving a wonderful introduction to truncation in the last HoTT class.
+            </p>
+            <p>
+              § Thanks to [Pierre-Marie Pédrot](https://www.pédrot.fr) for pointing out some very serious errors.
             </p>
           </footer>
         </article>

@@ -6,11 +6,11 @@ Here, we talk about equalities, and provide illustrative examples in vanilla Coq
 
 # Equality in Mathematics
 
-In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a set-based equality. In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism"; when objects are sets, isomorphism asks for a bijection between the two sets. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
+In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a set-based equality. In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
 
 # Universes in Coq
 
-First, let us briefly talk about the cumulative universe of Coq. `Prop` and `Set` are disjoint, but can be promoted to `Type` seamlessly. The reason for the disjoin is essentially an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
+First, let us briefly talk about the cumulative universe of Coq. `Prop` is a `Set` that can be promoted to `Type` seamlessly. The reason for the distinction between `Prop` and `Set` is essentially an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
 
 ~~
 Goal SetTypeCumul : Set -> Type.
@@ -21,15 +21,14 @@ Goal PropTypeCumul : Prop -> Type.
   auto.
 Qed.
 
-Goal SetPropDisjoint : Set -> Prop.
-Abort.
+Definition PropSetIncl (A : Prop) : Set := A.
 ~~
 
 There is an $\infty$ hierarchy within the `Type` universe, and types of Types are Types themselves.
 
 Inhabitants of a `Set` are sets of primitive things like $\mathbb{N}$ and $\mathbb{R}$, while inhabitants of a `Prop` are propositions, which could be $\top$, $\bot$, or some arbitrary term, the inhabitant of which acts as the proof.
 
-# The proof-relevant Prop
+# Propositions
 
 There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
 
@@ -46,7 +45,7 @@ Proof.
 Qed.
 ~~
 
-`Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal, although reasoning about the relationship between two different propositions is tedious at best. There is, however, a propositional equality existing between two equal propositions:
+In the general case, two different inhabitants of `Prop` are unequal. There is, however, a propositional equality existing between two equal propositions:
 
 ~~
 Theorem PropRefl (P : Prop) (x : P): x = x.
@@ -111,3 +110,4 @@ Conceptually, this is as simple and elegant as `PropEquality`.
 
 † Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and for helping with the examples.
 ‡ Kudos to Hugo Moeneclaey for giving a wonderful introduction to truncation in the last HoTT class.
+§ Thanks to [Pierre-Marie Pédrot](https://www.pédrot.fr) for pointing out some very serious errors.
