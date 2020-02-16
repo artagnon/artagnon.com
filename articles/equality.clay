@@ -6,11 +6,11 @@ Here, we talk about equalities, and provide illustrative examples in vanilla Coq
 
 # Equality in Mathematics
 
-In zfc-based Mathematics, say abelian groups, $A \oplus B = B \oplus A$, where the equality is a [set-based equality](/zfc). In modern mathematics, say category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize $\infty$-categories, and it needs a model in dependent type theory.
+In zfc-based Mathematics, say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a [set-based equality](/zfc). In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories, and model in dependent type theory is needed.
 
-# Types in Coq
+# Universes in Coq
 
-First, let us briefly talk about the cumulative universe of Coq. `Prop` and `Set` are disjoint, but can be promoted to `Type` seamlessly.
+First, let us briefly talk about the cumulative universe of Coq. `Prop` and `Set` are disjoint, but can be promoted to `Type` seamlessly. The reason for the disjoin is essentially an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
 
 ~~
 Goal SetTypeCum : Set -> Type.
@@ -27,7 +27,7 @@ Abort.
 
 There is an $\infty$ hierarchy within the `Type` universe, and types of Types are Types themselves.
 
-Inhabitants of a `Set` are sets of things like `nat`, while inhabitants of a `Prop` are propositions, which could be $\top$, $\bot$, or some arbitrary term.
+Inhabitants of a `Set` are sets of things like `nat`, while inhabitants of a `Prop` are propositions, which could be $\top$, $\bot$, or some arbitrary term, the inhabitant of which acts as the proof.
 
 # The proof-relevant Prop
 
@@ -46,7 +46,7 @@ Proof.
 Qed.
 ~~
 
-`Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal, in the general case. There is an equality
+`Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal. There is, however, a propositional equality existing between two equal propositions:
 
 ~~
 Theorem PropRefl (P : Prop) (x : P): x = x.
@@ -57,15 +57,13 @@ Qed.
 where `eq_refl` is simply the sole inhabitant of an `Inductive`:
 
 ~~
-Inductive eq (A:Type) (x:A) : A -> Prop :=
+Inductive eq (A : Type) (x : A) : A -> Prop :=
   eq_refl : eq A x x.
 ~~
 
 # The proof-irrelevant SProp
 
-There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sPropoposition` corresponding to a definitionally proof-irrelevant term.
-
-The way `SProp` implements definitional proof-irrelevance is inelegant; there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
+There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
 
 `=` doesn't work as expected:
 
@@ -91,7 +89,15 @@ Highly inelegant, but avoids the complication of completely overhauling the type
 
 # Mere propositions in homotopy type theory
 
-In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ is the ($\mathrm{-2}$)-truncated Type, and `Set` is the $\mathrm{0}$-truncated type. There is the central notion of truncation, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, where higher-than-$m$ morphisms are rendered uninteresting. The equalities are all propositional, so no hard-cording is needed:
+In [HoTT](https://github.com/HoTT/HoTT), a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ (and anything that's contractible to $\mathbb{1}$ is the ($\mathrm{-2}$)-truncated Type, and `Set` can be approximated by `hSet`, the $\mathrm{0}$-truncated type.
+
+~~
+Notation Contr := (IsTrunc (minus_two)).
+Notation IsHProp := (IsTrunc (minus_two.+1)).
+Notation IsHSet := (IsTrunc minus_two.+2).
+~~
+
+The notion of truncation is central to HoTT, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, where higher-than-$m$ morphisms are rendered uninteresting. By propositional truncation, any two hProps are propositionally equal:
 
 ~~
 Theorem hPropEquality (P : hProp) (a b : P) : a = b.
@@ -100,4 +106,7 @@ Proof.
 Qed.
 ~~
 
-[^1]: Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and for helping with the examples.
+Conceptually, this is as simple and elegant as `PropEquality`.
+
+† Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and for helping with the examples.
+‡ Thanks to Hugo Moeneclaey for giving an introduction to truncation in the last HoTT class.

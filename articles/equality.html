@@ -54,7 +54,7 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 08:02:00 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 09:49:53 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -65,13 +65,13 @@
             Equality in Mathematics
           </h2>
           <p>
-            In zfc-based Mathematics, say abelian groups, $A \oplus B = B \oplus A$, where the equality is a [set-based equality](/zfc). In modern mathematics, say category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize $\infty$-categories, and it needs a model in dependent type theory.
+            In zfc-based Mathematics, say in abelian groups, $A \oplus B = B \oplus A$, where the equality is a [set-based equality](/zfc). In modern mathematics based on category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories, and model in dependent type theory is needed.
           </p>
-          <h2 id="types-in-coq">
-            Types in Coq
+          <h2 id="universes-in-coq">
+            Universes in Coq
           </h2>
           <p>
-            First, let us briefly talk about the cumulative universe of Coq. `Prop` and `Set` are disjoint, but can be promoted to `Type` seamlessly.
+            First, let us briefly talk about the cumulative universe of Coq. `Prop` and `Set` are disjoint, but can be promoted to `Type` seamlessly. The reason for the disjoin is essentially an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
           </p>
           <pre><code class="language-coq">Goal SetTypeCum : Set -> Type.
   auto.
@@ -87,7 +87,7 @@ Abort.</code></pre>
             There is an $\infty$ hierarchy within the `Type` universe, and types of Types are Types themselves.
           </p>
           <p>
-            Inhabitants of a `Set` are sets of things like `nat`, while inhabitants of a `Prop` are propositions, which could be $\top$, $\bot$, or some arbitrary term.
+            Inhabitants of a `Set` are sets of things like `nat`, while inhabitants of a `Prop` are propositions, which could be $\top$, $\bot$, or some arbitrary term, the inhabitant of which acts as the proof.
           </p>
           <h2 id="the-proof-relevant-prop">
             The proof-relevant Prop
@@ -104,7 +104,7 @@ Proof.
   by apply PropositionalEquality.
 Qed.</code></pre>
           <p>
-            `Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal, in the general case. There is an equality
+            `Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal. There is, however, a propositional equality existing between two equal propositions:
           </p>
           <pre><code class="language-coq">Theorem PropRefl (P : Prop) (x : P): x = x.
   exact eq_refl.
@@ -112,16 +112,13 @@ Qed.</code></pre>
           <p>
             where `eq_refl` is simply the sole inhabitant of an `Inductive`:
           </p>
-          <pre><code class="language-coq">Inductive eq (A:Type) (x:A) : A -> Prop :=
+          <pre><code class="language-coq">Inductive eq (A : Type) (x : A) : A -> Prop :=
   eq_refl : eq A x x.</code></pre>
           <h2 id="the-proof-irrelevant-sprop">
             The proof-irrelevant SProp
           </h2>
           <p>
-            There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sPropoposition` corresponding to a definitionally proof-irrelevant term.
-          </p>
-          <p>
-            The way `SProp` implements definitional proof-irrelevance is inelegant; there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
+            There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
           </p>
           <p>
             `=` doesn't work as expected:
@@ -146,15 +143,27 @@ Abort. (* Type-check fails at Qed.
             Mere propositions in homotopy type theory
           </h2>
           <p>
-            In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ is the ($\mathrm{-2}$)-truncated Type, and `Set` is the $\mathrm{0}$-truncated type. There is the central notion of truncation, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, where higher-than-$m$ morphisms are rendered uninteresting. The equalities are all propositional, so no hard-cording is needed:
+            In [HoTT](https://github.com/HoTT/HoTT), a "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type, where $\mathbb{1}$ (and anything that's contractible to $\mathbb{1}$ is the ($\mathrm{-2}$)-truncated Type, and `Set` can be approximated by `hSet`, the $\mathrm{0}$-truncated type.
+          </p>
+          <pre><code class="language-coq">Notation Contr := (IsTrunc (minus_two)).
+Notation IsHProp := (IsTrunc (minus_two.+1)).
+Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
+          <p>
+            The notion of truncation is central to HoTT, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, where higher-than-$m$ morphisms are rendered uninteresting. By propositional truncation, any two hProps are propositionally equal:
           </p>
           <pre><code class="language-coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.
   by apply path_ishprop.
 Qed.</code></pre>
+          <p>
+            Conceptually, this is as simple and elegant as `PropEquality`.
+          </p>
           <footer>
             <p>
-              [^1]: Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and for helping with the examples.
+              † Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and for helping with the examples.
+            </p>
+            <p>
+              ‡ Thanks to Hugo Moeneclaey for giving an introduction to truncation in the last HoTT class.
             </p>
           </footer>
         </article>
