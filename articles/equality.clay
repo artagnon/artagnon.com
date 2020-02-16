@@ -4,6 +4,12 @@ Equality in Mechanized Mathematics
 Here, we talk about equalities, by providing illustrative examples in vanilla Coq, SProp, and HoTT.
 ...
 
+# Equality in Mathematics
+
+In zfc-based Mathematics, say abelian groups, $A \oplus B = B \oplus A$, where the equality is a [set-based equality](/zfc). In modern mathematics, say category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize $\infty$-categories, and it needs a model in dependent type theory.
+
+# Types in Coq
+
 First, let us briefly talk about the cumulative universe of Coq. `Prop` and `Set` are disjoint, but can be promoted to `Type` seamlessly.
 
 ~~
@@ -19,7 +25,28 @@ Goal SetPropDisjoint : Set -> Prop.
 Abort.
 ~~
 
-There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be satisfisfied by the user", while definitional equality is a simple syntactic rewriting.
+There is an $\infty$ hierarchy within the `Type` universe, and types of Types are Types themselves.
+
+Inhabitants of a `Set` are sets of things like `nat`, while inhabitants of a `Prop` are propositions, which could be $\top$, $\bot$, or some arbitrary term.
+
+# The proof-relevant Prop
+
+There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", while definitional equality is a simple syntactic rewriting. A propositional equality can be formalized as:
+
+~~
+Axiom PropositionalEquality : forall (P : Prop) (a b : P), a = b.
+~~
+
+then, we get a proof obligation which we discharge using the axiom:
+
+~~
+Theorem PropEquality (P : Prop) (a b : P) : a = b.
+Proof.
+  by apply PropositionalEquality.
+Qed.
+~~
+
+`Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal, in the general case. There is an equality
 
 ~~
 Theorem PropRefl (P : Prop) (x : P): x = x.
@@ -27,12 +54,27 @@ Theorem PropRefl (P : Prop) (x : P): x = x.
 Qed.
 ~~
 
-`eq_refl` is simply an `Inductive`.
+where `eq_refl` is simply the sole inhabitant of an `Inductive`:
 
 ~~
 Inductive eq (A:Type) (x:A) : A -> Prop :=
   eq_refl : eq A x x.
 ~~
+
+# The proof-irrelevant SProp
+
+There are three inhabitants of `SProp`: `sUnit`, `sEmpty`, and `sPropoposition`. `sPropositions` are tagged.
+
+An `SProp` universe is disjoint from the `Prop` universe:
+
+~~
+Theorem SPropToProp : SProp -> Prop.
+Proof.
+  by intros x; exact x.
+Abort. (* Type-check fails at Qed.
+        * SProp is not convertible to Prop. *)
+~~
+
 
 In [SProp](https://coq.inria.fr/refman/addendum/sprop.html), propositions are definitionally equal. However, `=` doesn't work as expected.
 
@@ -44,7 +86,9 @@ Abort. (* Type-check fails at Qed.
         * (=) : forall A, A -> A -> Type, but we want to return an SProp. *)
 ~~
 
-In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply (-1)-truncated set.
+# Mere propositions in homotopy type theory
+
+In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply (-1)-truncated type.
 
 ~~
 Theorem hPropEquality (P : hProp) (a b : P) : a = b.
@@ -53,4 +97,4 @@ Proof.
 Qed.
 ~~
 
-[^1]: Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and checking of examples.
+[^1]: Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and for helping with the examples.

@@ -54,13 +54,22 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-15" class="end">Sat, 15 Feb 2020 21:00:49 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 06:44:47 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
           <p class="blurb">
             Here, we talk about equalities, by providing illustrative examples in vanilla Coq, SProp, and HoTT.
           </p>
+          <h2 id="equality-in-mathematics">
+            Equality in Mathematics
+          </h2>
+          <p>
+            In zfc-based Mathematics, say abelian groups, $A \oplus B = B \oplus A$, where the equality is a [set-based equality](/zfc). In modern mathematics, say category theory, we only speak of objects that are "unique upto isomorphism". In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize $\infty$-categories, and it needs a model in dependent type theory.
+          </p>
+          <h2 id="types-in-coq">
+            Types in Coq
+          </h2>
           <p>
             First, let us briefly talk about the cumulative universe of Coq. `Prop` and `Set` are disjoint, but can be promoted to `Type` seamlessly.
           </p>
@@ -75,16 +84,50 @@ Qed.
 Goal SetPropDisjoint : Set -> Prop.
 Abort.</code></pre>
           <p>
-            There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be satisfisfied by the user", while definitional equality is a simple syntactic rewriting.
+            There is an $\infty$ hierarchy within the `Type` universe, and types of Types are Types themselves.
+          </p>
+          <p>
+            Inhabitants of a `Set` are sets of things like `nat`, while inhabitants of a `Prop` are propositions, which could be $\top$, $\bot$, or some arbitrary term.
+          </p>
+          <h2 id="the-proof-relevant-prop">
+            The proof-relevant Prop
+          </h2>
+          <p>
+            There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", while definitional equality is a simple syntactic rewriting. A propositional equality can be formalized as:
+          </p>
+          <pre><code class="language-coq">Axiom PropositionalEquality : forall (P : Prop) (a b : P), a = b.</code></pre>
+          <p>
+            then, we get a proof obligation which we discharge using the axiom:
+          </p>
+          <pre><code class="language-coq">Theorem PropEquality (P : Prop) (a b : P) : a = b.
+Proof.
+  by apply PropositionalEquality.
+Qed.</code></pre>
+          <p>
+            `Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal, in the general case. There is an equality
           </p>
           <pre><code class="language-coq">Theorem PropRefl (P : Prop) (x : P): x = x.
   exact eq_refl.
 Qed.</code></pre>
           <p>
-            `eq_refl` is simply an `Inductive`.
+            where `eq_refl` is simply the sole inhabitant of an `Inductive`:
           </p>
           <pre><code class="language-coq">Inductive eq (A:Type) (x:A) : A -> Prop :=
   eq_refl : eq A x x.</code></pre>
+          <h2 id="the-proof-irrelevant-sprop">
+            The proof-irrelevant SProp
+          </h2>
+          <p>
+            There are three inhabitants of `SProp`: `sUnit`, `sEmpty`, and `sPropoposition`. `sPropositions` are tagged.
+          </p>
+          <p>
+            An `SProp` universe is disjoint from the `Prop` universe:
+          </p>
+          <pre><code class="language-coq">Theorem SPropToProp : SProp -> Prop.
+Proof.
+  by intros x; exact x.
+Abort. (* Type-check fails at Qed.
+        * SProp is not convertible to Prop. *)</code></pre>
           <p>
             In [SProp](https://coq.inria.fr/refman/addendum/sprop.html), propositions are definitionally equal. However, `=` doesn't work as expected.
           </p>
@@ -93,8 +136,11 @@ Proof.
   by reflexivity.
 Abort. (* Type-check fails at Qed.
         * (=) : forall A, A -> A -> Type, but we want to return an SProp. *)</code></pre>
+          <h2 id="mere-propositions-in-homotopy-type-theory">
+            Mere propositions in homotopy type theory
+          </h2>
           <p>
-            In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply (-1)-truncated set.
+            In HoTT, a "mere proposition", an inhabitant of `hProp`, is simply (-1)-truncated type.
           </p>
           <pre><code class="language-coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.
@@ -102,7 +148,7 @@ Proof.
 Qed.</code></pre>
           <footer>
             <p>
-              [^1]: Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and checking of examples.
+              [^1]: Big thanks to [Kenji Maillard](https://kenji.maillard.blue) for the scintillating discussion, and for helping with the examples.
             </p>
           </footer>
         </article>
