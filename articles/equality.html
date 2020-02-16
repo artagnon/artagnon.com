@@ -54,7 +54,7 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 13:08:19 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 13:11:11 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -107,6 +107,7 @@ Qed.</code></pre>
             `Prop` is proof-relevant, which means that two different inhabitants of propositions are unequal, although reasoning about the relationship between two different propositions is tedious at best. There is, however, a propositional equality existing between two equal propositions:
           </p>
           <pre><code class="language-coq">Theorem PropRefl (P : Prop) (x : P): x = x.
+Proof.
   exact eq_refl.
 Qed.</code></pre>
           <p>
@@ -149,7 +150,7 @@ Abort. (* Type-check fails at Qed.
 Notation IsHProp := (IsTrunc minus_two.+1).
 Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
           <p>
-            The notion of truncation is central to HoTT, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, where higher-than-$m$ morphisms are rendered uninteresting. Any two hProps are propositionally equal:
+            The notion of truncation is central to HoTT, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, whence higher-than-$m$ morphisms are rendered uninteresting. Any two hProps are propositionally equal:
           </p>
           <pre><code class="language-coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.
