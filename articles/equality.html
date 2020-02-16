@@ -54,7 +54,7 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 13:11:11 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 13:14:34 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -111,7 +111,7 @@ Proof.
   exact eq_refl.
 Qed.</code></pre>
           <p>
-            where `eq_refl` is simply the sole inhabitant of an `Inductive`:
+            where `eq_refl` is simply the sole inhabitant of an Inductive:
           </p>
           <pre><code class="language-coq">Inductive eq (A : Type) (x : A) : A -> Prop :=
   eq_refl : eq A x x.</code></pre>
@@ -119,7 +119,7 @@ Qed.</code></pre>
             The proof-irrelevant SProp
           </h2>
           <p>
-            There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
+            There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sProposition` trivially inter-convertible.
           </p>
           <p>
             Unfortunately, `=` doesn't work as expected:

@@ -55,7 +55,7 @@ Proof.
 Qed.
 ~~
 
-where `eq_refl` is simply the sole inhabitant of an `Inductive`:
+where `eq_refl` is simply the sole inhabitant of an Inductive:
 
 ~~
 Inductive eq (A : Type) (x : A) : A -> Prop :=
@@ -64,7 +64,7 @@ Inductive eq (A : Type) (x : A) : A -> Prop :=
 
 # The proof-irrelevant SProp
 
-There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sPropoposition` trivially inter-convertible.
+There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sProposition` trivially inter-convertible.
 
 Unfortunately, `=` doesn't work as expected:
 
