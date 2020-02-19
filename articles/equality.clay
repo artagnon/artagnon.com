@@ -6,7 +6,7 @@ Here, we talk about equalities, and provide illustrative examples in vanilla Coq
 
 # Equality in Mathematics
 
-In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B \simeq B \oplus A$, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a $\mathrm{1}$-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" completely replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
+In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B \simeq B \oplus A$, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a $\mathrm{1}$-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" almost fully replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
 
 # Universes in Coq
 
@@ -27,7 +27,7 @@ Inhabitants of a `Set` are sets of primitive things like $\mathbb{N}$ and $\math
 There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
 
 ~~
-Axiom PropositionalEquality : ∀ (P : Prop) (a b : P), a = b.
+Axiom ProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.
 ~~
 
 We then get a proof obligation which we discharge using the axiom:
@@ -35,7 +35,7 @@ We then get a proof obligation which we discharge using the axiom:
 ~~
 Theorem PropEquality (P : Prop) (a b : P) : a = b.
 Proof.
-  by apply PropositionalEquality.
+  by apply ProofIrrelevance.
 Qed.
 ~~
 
