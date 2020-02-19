@@ -27,7 +27,7 @@ Inhabitants of a `Set` are sets of primitive things like $\mathbb{N}$ and $\math
 There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
 
 ~~
-Axiom ProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.
+Axiom PropositionalProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.
 ~~
 
 We then get a proof obligation which we discharge using the axiom:
@@ -35,7 +35,7 @@ We then get a proof obligation which we discharge using the axiom:
 ~~
 Theorem PropEquality (P : Prop) (a b : P) : a = b.
 Proof.
-  by apply ProofIrrelevance.
+  by apply PropositionalProofIrrelevance.
 Qed.
 ~~
 

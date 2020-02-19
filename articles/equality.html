@@ -54,7 +54,7 @@
             Equality in Mechanized Mathematics
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-19" class="end">Wed, 19 Feb 2020 19:48:16 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-02-19" class="end">Wed, 19 Feb 2020 20:47:20 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -88,13 +88,13 @@ Definition PropSetIncl (A : Prop) : Set := A.</code></pre>
           <p>
             There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
           </p>
-          <pre><code class="language-coq">Axiom ProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.</code></pre>
+          <pre><code class="language-coq">Axiom PropositionalProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.</code></pre>
           <p>
             We then get a proof obligation which we discharge using the axiom:
           </p>
           <pre><code class="language-coq">Theorem PropEquality (P : Prop) (a b : P) : a = b.
 Proof.
-  by apply ProofIrrelevance.
+  by apply PropositionalProofIrrelevance.
 Qed.</code></pre>
           <p>
             In the general case, two different inhabitants of `Prop` are unequal. There is, however, a propositional equality existing between two equal propositions:
