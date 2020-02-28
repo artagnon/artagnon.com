@@ -1,4 +1,4 @@
-Foundations
+ZFC and first-order logic
 
 ...
 Here, we do exercises from Tao's excellent book on Analysis
@@ -204,5 +204,55 @@ $$
                  & \leftrightarrow & A \subseteq B & \textrm{by (subset-eq)}
   \end{matrix}
 $$
+
+--
+
++ Show that injective corresponds to left-cancelable, and surjective corresponds to right-cancelable, in function composition.
+
+Hypothesis:
+
+$$
+  \begin{align}
+    \forall x, x' \in X, f(x) = f(x') \rightarrow x = x' \tag{injective-func} \\
+    \forall y \in Y, \exists x \in X, f(x) = y \tag{surjective-func} \\
+    f, \tilde{f} : X \rightarrow Y \tag{xy-funcs} \\
+    g, \tilde{g} : Y \rightarrow Z \tag{yz-funcs}
+  \end{align}
+$$
+
+Goals:
+
+$$
+  \begin{matrix}
+    g \circ f = g \circ \tilde{f} & \wedge & g \textrm{ is injective} & \rightarrow & f = \tilde{f} \\
+    g \circ f = \tilde{g} \circ f & \wedge & f \textrm{ is surjective} & \rightarrow & g = \tilde{g}
+  \end{matrix}
+$$
+
+Proof:
+
+--
+
++ Show that if $g \circ f$ is injective, then so is $f$. Also show that if $g \circ f$ is surjective, so is $g$.
+
+Hypothesis:
+
+$$
+  \begin{align}
+    \forall x, x' \in X, f(x) = f(x') \rightarrow x = x' \tag{injective-func} \\
+    \forall y \in Y, \exists x \in X, f(x) = y \tag{surjective-func} \\
+    f : X \rightarrow Y \tag{f-func} \\
+    g : Y \rightarrow Z \tag{g-func}
+  \end{align}
+$$
+
+Goals:
+
+$$
+  g \circ f \textrm{ is injective} \rightarrow f \textrm{ is injective} \\
+  g \circ f \textrm{ is surjective} \rightarrow g \textrm{ is surjective}
+$$
+
+Proof:
 
 † Big thanks to [Hugo Herbelin](http://pauillac.inria.fr/~herbelin/) for patiently going through each proof and pointing out the errors.

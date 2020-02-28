@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Foundations | artagnon.com</title>
+    <title>ZFC and first-order logic | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -51,10 +51,10 @@
       <main tabindex="0">
         <header>
           <h1>
-            Foundations
+            ZFC and first-order logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-16" class="end">Sun, 16 Feb 2020 10:20:50 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-28" class="end">Fri, 28 Feb 2020 09:43:38 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -291,6 +291,66 @@
                              & \leftrightarrow & A \subseteq B & \textrm{by (subset-eq)}
               \end{matrix}
             $$
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Show that injective corresponds to left-cancelable, and surjective corresponds to right-cancelable, in function composition.
+          </p>
+          <p>
+            Hypothesis:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align}
+                \forall x, x' \in X, f(x) = f(x') \rightarrow x = x' \tag{injective-func} \\
+                \forall y \in Y, \exists x \in X, f(x) = y \tag{surjective-func} \\
+                f, \tilde{f} : X \rightarrow Y \tag{xy-funcs} \\
+                g, \tilde{g} : Y \rightarrow Z \tag{yz-funcs}
+              \end{align}
+            $$
+          </p>
+          <p>
+            Goals:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{matrix}
+                g \circ f = g \circ \tilde{f} & \wedge & g \textrm{ is injective} & \rightarrow & f = \tilde{f} \\
+                g \circ f = \tilde{g} \circ f & \wedge & f \textrm{ is surjective} & \rightarrow & g = \tilde{g}
+              \end{matrix}
+            $$
+          </p>
+          <p>
+            Proof:
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Show that if $g \circ f$ is injective, then so is $f$. Also show that if $g \circ f$ is surjective, so is $g$.
+          </p>
+          <p>
+            Hypothesis:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align}
+                \forall x, x' \in X, f(x) = f(x') \rightarrow x = x' \tag{injective-func} \\
+                \forall y \in Y, \exists x \in X, f(x) = y \tag{surjective-func} \\
+                f : X \rightarrow Y \tag{f-func} \\
+                g : Y \rightarrow Z \tag{g-func}
+              \end{align}
+            $$
+          </p>
+          <p>
+            Goals:
+          </p>
+          <p class="mathjax">
+            $$
+            g \circ f \textrm{ is injective} \rightarrow f \textrm{ is injective} \\
+              g \circ f \textrm{ is surjective} \rightarrow g \textrm{ is surjective}
+            $$
+          </p>
+          <p>
+            Proof:
           </p>
           <footer>
             <p>
