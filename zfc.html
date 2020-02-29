@@ -54,7 +54,7 @@
             ZFC and first-order logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-29" class="end">Sat, 29 Feb 2020 17:06:45 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-29" class="end">Sat, 29 Feb 2020 17:37:19 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -148,7 +148,7 @@
           </p>
           <hr class="horizrule" />
           <p class="exercise">
-            Prove that the following sets are distinct: $\phi, \{\phi\}, \{\{\phi\}\}, \{\phi, \{\phi\}\}$.
+            Prove that the following sets are distinct: $\emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \{\emptyset, \{\emptyset\}\}$.
           </p>
           <p>
             Hypothesis:
@@ -157,7 +157,7 @@
             $$
             \begin{align}
                 A = B & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
-                \forall x, x & \not\in & \phi \tag{phi} \\
+                \forall x, x & \not\in & \emptyset \tag{phi} \\
                 \forall x, x \in \{a\} & \leftrightarrow & x = a \tag{build-a} \\
                 \forall x, x \in \{a, b\} & \leftrightarrow & (x = a) \vee (x = b) \tag{build-b}
               \end{align}
@@ -179,10 +179,10 @@
           <p class="mathjax">
             $$
             \begin{matrix}
-                \phi & \neq & \textrm{any other set} & \textrm{by (phi) and (eq)} \\
-                \textrm{Plugging } x = \{\phi\} \textrm{ in (lemma)} & \rightarrow & \{\{\phi\}\} \neq \{\phi\} & \textrm{by (build-a)} \\
-                \textrm{Plugging } x = \{\phi\} \textrm{ in (lemma)} & \rightarrow & \{\phi, \{\phi\}\} \neq \{\phi\} & \textrm{by (build-a) and (build-b)} \\
-                \textrm{Plugging } x = \phi \textrm{ in (lemma)} & \rightarrow & \{\phi, \{\phi\}\} \neq \{\{\phi\}\} & \textrm{by (build-a) and (build-b)}
+                \emptyset & \neq & \textrm{any other set} & \textrm{by (phi) and (eq)} \\
+                \textrm{Plugging } x = \{\emptyset\} \textrm{ in (lemma)} & \rightarrow & \{\{\emptyset\}\} \neq \{\emptyset\} & \textrm{by (build-a)} \\
+                \textrm{Plugging } x = \{\emptyset\} \textrm{ in (lemma)} & \rightarrow & \{\emptyset, \{\emptyset\}\} \neq \{\emptyset\} & \textrm{by (build-a) and (build-b)} \\
+                \textrm{Plugging } x = \emptyset \textrm{ in (lemma)} & \rightarrow & \{\emptyset, \{\emptyset\}\} \neq \{\{\emptyset\}\} & \textrm{by (build-a) and (build-b)}
               \end{matrix}
             $$
           </p>
@@ -191,7 +191,7 @@
           </p>
           <hr class="horizrule" />
           <p class="exercise">
-            Show that, for any set $A$, $A \cup A = A \cup \phi = \phi \cup A = A$.
+            Show that, for any set $A$, $A \cup A = A \cup \emptyset = \emptyset \cup A = A$.
           </p>
           <p>
             Hypothesis:
@@ -201,7 +201,7 @@
             \begin{align}
                 A = B \leftrightarrow \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
                 \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag{union} \\
-                \forall x, x \not\in \phi \tag{phi}
+                \forall x, x \not\in \emptyset \tag{phi}
               \end{align}
             $$
           </p>
@@ -214,10 +214,10 @@
                 A \cup A    = A & \leftrightarrow \forall x, x \in A \vee x \in A \leftrightarrow x \in A & \textrm{by (eq) and (union)} \\
                                 & \leftrightarrow \forall x, x \in A \leftrightarrow x \in A & \textrm{by intuition} \\
                                 \\
-                A \cup \phi = A & \leftrightarrow \forall x, x \in A \vee x \in \phi \leftrightarrow x \in A & \textrm{by (eq) and (union)} \\
+                A \cup \emptyset = A & \leftrightarrow \forall x, x \in A \vee x \in \emptyset \leftrightarrow x \in A & \textrm{by (eq) and (union)} \\
                                 & \leftrightarrow \forall x, x \in A \leftrightarrow x \in A & \textrm{by (phi) and intuition} \\
                                 \\
-                \phi \cup A = A && \textrm{by similar argument}
+                \emptyset \cup A = A && \textrm{by similar argument}
               \end{matrix}
             $$
           </p>
@@ -320,8 +320,7 @@
                 \forall x, \tilde{x} \in X, f(x) = f(\tilde{x}) \rightarrow x = \tilde{x} \tag{injective} \\
                 \forall y \in Y, \exists x \in X, f(x) = y \tag{surjective} \\
                 f, \tilde{f} : X \rightarrow Y \tag{xy-funcs} \\
-                g, \tilde{g} : Y \rightarrow Z \tag{yz-funcs} \\
-                (g \circ f)(x) = g(f(x)) \tag{composition}
+                g, \tilde{g} : Y \rightarrow Z \tag{yz-funcs}
               \end{align}
             $$
           </p>
@@ -402,13 +401,16 @@
           <p class="mathjax">
             $$
             \begin{matrix}
-                \forall x, \tilde{x}, (g \circ f)(x) = (g \circ f)(\tilde{x}) & \rightarrow & x = \tilde{x} & \textrm{by (injective)} \\
-                & \rightarrow & f(x) = f(\tilde{x}) & \textrm{by definition of function} \\
-                & \leftrightarrow & f \textrm{ is injective} & \textrm{obtained (G1)} \\
+                \forall x, \tilde{x}, (g \circ f)(x) = (g \circ f)(\tilde{x}) & \rightarrow & x = \tilde{x} \wedge f(x) = f(\tilde{x}) & \textrm{by (injective) and definition of function} \\
+                & \leftrightarrow & f \textrm{ is injective} & \textrm{obtained (G1) by (injective)} \\
                 \\\\
-                \forall z, \exists x, z = (g \circ f)(x) & \rightarrow & ? & \textrm{by (surjective)} \\
+                \forall z, \exists x, z = (g \circ f)(x) & \rightarrow & \forall z, \exists y, z = g(y) & \textrm{by (surjective)} \\
+                & \leftrightarrow & g \textrm{ is surjective} & \textrm{obtained (G2) by (surjective)}
               \end{matrix}
             $$
+          </p>
+          <p>
+            Qed.
           </p>
           <hr class="horizrule" />
           <p class="exercise">
