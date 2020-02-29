@@ -54,7 +54,7 @@
             ZFC and first-order logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-29" class="end">Sat, 29 Feb 2020 10:32:17 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-29" class="end">Sat, 29 Feb 2020 12:34:55 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -317,7 +317,7 @@
           <p class="mathjax">
             $$
             \begin{align}
-                \forall x, x' \in X, f(x) = f(x') \rightarrow x = x' \tag{injective} \\
+                \forall x, \tilde{x} \in X, f(x) = f(\tilde{x}) \rightarrow x = \tilde{x} \tag{injective} \\
                 \forall y \in Y, \exists x \in X, f(x) = y \tag{surjective} \\
                 f, \tilde{f} : X \rightarrow Y \tag{xy-funcs} \\
                 g, \tilde{g} : Y \rightarrow Z \tag{yz-funcs} \\
@@ -349,26 +349,24 @@
           <p class="mathjax">
             $$
             \begin{matrix}
-                (g \circ f)(x) & = & z & \\
-                (g \circ \tilde{f})(x) & = & z & \textrm{by (G1.1)} \\
                 f(x) & = & y & \textrm{(H1.1)} \\
                 \tilde{f}(x) & = & \tilde{y} & \textrm{(H1.2)} \\
-                \forall y, g(y) = g(\tilde{y}) & = & z & \textrm{by (composition)} \\
                 \\
                 \forall y, g(y) = g(\tilde{y}) \wedge g \textrm{ is injective} & \leftrightarrow & y = \tilde{y} & \textrm{by (G1.2) and (injective)} \\
                 & \leftrightarrow & \forall x, f(x) = \tilde{f}(x) & \textrm{by (H1.1) and (H1.2)} \\
                 & \leftrightarrow & f = \tilde{f} & \textrm{obtained (G1.3)} \\
                 \\\\
-                (g \circ f)(x) & = & z & \\
-                (\tilde{g} \circ f)(x) & = & z & \textrm{by (G2.1)} \\
-                f(x) & = & y & \textrm{(H2.1)} \\
-                f(\tilde{x}) & = & \tilde{y} & \textrm{(H2.2)} \\
-                \forall y, g(y) = \tilde{g}(y) & = & z & \textrm{(by composition)} \\
+                g(y) & = & z & \textrm{(H2.1)} \\
+                \tilde{g}(y) & = & \tilde{z} & \textrm{(H2.2)} \\
                 \\
-                \forall x, g(f(x)) = \tilde{g}(f(x)) \wedge f \textrm{ is surjective} & \leftrightarrow & \forall y, g(y) = \tilde{g}(y) & \textrm{by (surjective) and (H2.1)} \\
+                \forall x, (g \circ f)(x) = (\tilde{g} \circ f)(x) \wedge f \textrm{ is surjective} & \leftrightarrow & z = \tilde{z} & \textrm{by (G2.2) and (surjective)} \\
+                & \leftrightarrow & \forall y, g(y) = \tilde{g}(y) & \textrm{by (H2.1), and (H2.2)} \\
                 & \leftrightarrow & g = \tilde{g} & \textrm{obtained (G2.3)}
              \end{matrix}
             $$
+          </p>
+          <p>
+            Qed.
           </p>
           <hr class="horizrule" />
           <p class="exercise">
@@ -380,7 +378,7 @@
           <p class="mathjax">
             $$
             \begin{align}
-                \forall x, x' \in X, f(x) = f(x') \rightarrow x = x' \tag{injective} \\
+                \forall x, \tilde{x} \in X, f(x) = f(\tilde{x}) \rightarrow x = \tilde{x} \tag{injective} \\
                 \forall y \in Y, \exists x \in X, f(x) = y \tag{surjective} \\
                 f : X \rightarrow Y \tag{f-func} \\
                 g : Y \rightarrow Z \tag{g-func}
@@ -392,12 +390,25 @@
           </p>
           <p class="mathjax">
             $$
-            g \circ f \textrm{ is injective} \rightarrow f \textrm{ is injective} \\
-              g \circ f \textrm{ is surjective} \rightarrow g \textrm{ is surjective}
+            \begin{align}
+                g \circ f \textrm{ is injective} \rightarrow f \textrm{ is injective} \tag{G1} \\
+                g \circ f \textrm{ is surjective} \rightarrow g \textrm{ is surjective} \tag{G2}
+              \end{align}
             $$
           </p>
           <p>
             Proof.
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{matrix}
+                \forall x, \tilde{x}, (g \circ f)(x) = (g \circ f)(\tilde{x}) & \rightarrow & x = \tilde{x} & \textrm{by (injective)} \\
+                & \rightarrow & f(x) = f(\tilde{x}) & \textrm{by definition of function} \\
+                & \leftrightarrow & f \textrm{ is injective} & \textrm{obtained (G1)} \\
+                \\\\
+                \forall z, \exists x, z = (g \circ f)(x) & \rightarrow & ? & \textrm{by (surjective)} \\
+              \end{matrix}
+            $$
           </p>
           <footer>
             <p>
