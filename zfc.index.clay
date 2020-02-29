@@ -217,7 +217,7 @@ Qed.
 
 --
 
-+ Show that injective corresponds to left-cancelable, and surjective corresponds to right-cancelable, in function composition.
++ Show that injective corresponds to left-cancelable, and dually, surjective corresponds to right-cancelable, in function composition.
 
 Hypothesis:
 
@@ -271,7 +271,7 @@ Qed.
 
 --
 
-+ Show that if $g \circ f$ is injective, then so is $f$. Also show that if $g \circ f$ is surjective, so is $g$.
++ Show that if $g \circ f$ is injective, then so is $f$. Dually, show that if $g \circ f$ is surjective, so is $g$.
 
 Hypothesis:
 
@@ -332,14 +332,14 @@ $$
 
 Proof.
 
-To prove each of $\textrm{(G1) - (G6)}$, we simply find the suitable $P(x)$ function to use in $\textrm{(H)}$:
+To prove each of $\textrm{(G1) - (G6)}$, we simply find a suitable $P(x)$ to use in $\textrm{(H)}$:
 
 $$
   \begin{matrix}
   P(x) = \textrm{ false} & \textrm{obtained (G1)} \\
   P(x) = (x = a) & \textrm{obtained (G2)} \\
   P(x) = (x = a) \vee (x = b) & \textrm{obtained (G3)} \\
-  P(x) = (x \in A) \vee (x \in B) & \textrm{(obtained (G4)} \\
+  P(x) = (x \in A) \vee (x \in B) & \textrm{obtained (G4)} \\
   P(x) = Q(x) \wedge x \in A & \textrm{obtained (G5)} \\
   P(x) = \lambda y. x \in A \wedge P(x, y) \textrm{ is true} & \textrm{obtained (G6)}
   \end{matrix}
@@ -347,5 +347,5 @@ $$
 
 Qed.
 
-† Thanks to [Chaitanya Leena Subramanium](https://sites.google.com/view/chaitanyals) for suggesting the exercises to do.
+† Thanks to [Chaitanya Leena Subramanium](https://sites.google.com/view/chaitanyals) for suggesting the exercises.
 ‡ Thanks to [Hugo Herbelin](http://pauillac.inria.fr/~herbelin/) for patiently going through many proofs and pointing out the errors.
