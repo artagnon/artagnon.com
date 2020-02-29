@@ -54,7 +54,7 @@
             ZFC and first-order logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-29" class="end">Sat, 29 Feb 2020 12:34:55 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-29" class="end">Sat, 29 Feb 2020 16:48:40 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -410,9 +410,62 @@
               \end{matrix}
             $$
           </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Show that the universal specification axiom implies six simpler naïve set-theory axioms.
+          </p>
+          <p>
+            Hypothesis:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align}
+                y = \{x \mid P(x) \textrm{ is true}\} \leftrightarrow P(y) \textrm{ is true} \tag{H}
+              \end{align}
+            $$
+          </p>
+          <p>
+            Goal:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align}
+                \forall x, x \not\in \emptyset \tag{G1} \\
+                \forall x, x \in \{a\} \leftrightarrow x = a \tag{G2} \\
+                \forall x, x \in \{a, b\} \leftrightarrow (x = a) \vee (x = b) \tag{G3} \\
+                x \in A \cup B \leftrightarrow x \in A \vee x \in B \tag{G4} \\
+                y = \{x \in A \mid Q(x) \textrm{ is true}\} \leftrightarrow y \in A \wedge Q(y) \textrm{ is true} \tag{G5} \\
+                z \in \{y \mid P(x, y) \textrm{ is true for some } x \in A\} \leftrightarrow P(x, z) \textrm{ is true for some } x \in A \tag{G6}
+              \end{align}
+            $$
+          </p>
+          <p>
+            Proof.
+          </p>
+          <p>
+            To prove each of $\textrm{(G1) - (G6)}$, we simply find the suitable $P(x)$ function to use in $\textrm{(H)}$:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{matrix}
+              P(x) = \textrm{ false} & \textrm{obtained (G1)} \\
+              P(x) = (x = a) & \textrm{obtained (G2)} \\
+              P(x) = (x = a) \vee (x = b) & \textrm{obtained (G3)} \\
+              P(x) = (x \in A) \vee (x \in B) & \textrm{(obtained (G4)} \\
+              P(x) = Q(x) \wedge x \in A & \textrm{obtained (G5)} \\
+              P(x) = \lambda y. x \in A \wedge P(x, y) \textrm{ is true} & \textrm{obtained (G6)}
+              \end{matrix}
+            $$
+          </p>
+          <p>
+            Qed.
+          </p>
           <footer>
             <p>
-              † Many thanks to [Hugo Herbelin](http://pauillac.inria.fr/~herbelin/) for patiently going through many proofs and pointing out the errors.
+              † Thanks to [Chaitanya Leena Subramanium](https://sites.google.com/view/chaitanyals) for suggesting the exercises to do.
+            </p>
+            <p>
+              ‡ Thanks to [Hugo Herbelin](http://pauillac.inria.fr/~herbelin/) for patiently going through many proofs and pointing out the errors.
             </p>
           </footer>
         </article>
