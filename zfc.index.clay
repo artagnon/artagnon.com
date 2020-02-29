@@ -1,7 +1,7 @@
 ZFC and first-order logic
 
 ...
-Here, we do exercises from Tao's excellent book on Analysis
+Using a mélange of mathematical syntaxes, we mechanize some exercises from Tao's excellent book.
 ...
 
 # Ouverture
@@ -343,6 +343,40 @@ $$
   P(x) = (x \in A) \vee (x \in B) & \textrm{obtained (G4)} \\
   P(x) = Q(x) \wedge x \in A & \textrm{obtained (G5)} \\
   P(x) = \lambda y. x \in A \wedge P(x, y) \textrm{ is true} & \textrm{obtained (G6)}
+  \end{matrix}
+$$
+
+Qed.
+
+--
+
++ Prove that the subset of a set is another set.
+
+Hypothesis:
+
+$$
+  \begin{align}
+    f : X \rightarrow Y \tag{image-func} \\
+    f(S) = \{f(x) \mid x \in S\} \textrm{ is a subset of y} \tag{image}
+  \end{align}
+$$
+
+Goal:
+
+$$
+  \begin{align}
+    \{Y \mid Y \subseteq X\} \textrm{ is a set} \tag{G}
+  \end{align}
+$$
+
+Proof.
+
+$$
+  \begin{matrix}
+    X & = & \{x \mid x \in X\} & \textrm{by definition of set} \\
+    Y & = & \{y \mid y \in Y\} & \textrm{by definition of set} \\
+    Y \subseteq X & \rightarrow & \{y \mid y \in Y\} \subseteq \{x \mid x \in X\} & \\
+    Y & = & \{y \mid y \in Y \wedge y \in X\} & \textrm{obtained (G)}
   \end{matrix}
 $$
 

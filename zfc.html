@@ -54,12 +54,12 @@
             ZFC and first-order logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-29" class="end">Sat, 29 Feb 2020 17:37:19 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-01-18" class="begin">Sat, 18 Jan 2020 08:02:23 +0100</time><span class="to">↪</span><time datetime="2020-02-29" class="end">Sat, 29 Feb 2020 17:53:37 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
           <p class="blurb">
-            Here, we do exercises from Tao's excellent book on Analysis
+            Using a mélange of mathematical syntaxes, we mechanize some exercises from Tao's excellent book.
           </p>
           <h2 id="ouverture">
             Ouverture
@@ -456,6 +456,47 @@
               P(x) = (x \in A) \vee (x \in B) & \textrm{obtained (G4)} \\
               P(x) = Q(x) \wedge x \in A & \textrm{obtained (G5)} \\
               P(x) = \lambda y. x \in A \wedge P(x, y) \textrm{ is true} & \textrm{obtained (G6)}
+              \end{matrix}
+            $$
+          </p>
+          <p>
+            Qed.
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Prove that the subset of a set is another set.
+          </p>
+          <p>
+            Hypothesis:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align}
+                f : X \rightarrow Y \tag{image-func} \\
+                f(S) = \{f(x) \mid x \in S\} \textrm{ is a subset of y} \tag{image}
+              \end{align}
+            $$
+          </p>
+          <p>
+            Goal:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align}
+                \{Y \mid Y \subseteq X\} \textrm{ is a set} \tag{G}
+              \end{align}
+            $$
+          </p>
+          <p>
+            Proof.
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{matrix}
+                X & = & \{x \mid x \in X\} & \textrm{by definition of set} \\
+                Y & = & \{y \mid y \in Y\} & \textrm{by definition of set} \\
+                Y \subseteq X & \rightarrow & \{y \mid y \in Y\} \subseteq \{x \mid x \in X\} & \\
+                Y & = & \{y \mid y \in Y \wedge y \in X\} & \textrm{obtained (G)}
               \end{matrix}
             $$
           </p>
