@@ -64,10 +64,11 @@ html
               time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.rfc2822
               span class="to" ↪
               time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.rfc2822
-              span class="audience" = audience
             br
             span id="locations"
               address = locations.join ", "
+            - if audience != :none
+              span id="audience" = audience
         article
           - paragraphs.each do |paragraph|
             - case paragraph.type
