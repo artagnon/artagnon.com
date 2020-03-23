@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Predicavity in Coq | artagnon.com</title>
+    <title>Predicativity in Coq | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -51,25 +51,58 @@
       <main tabindex="0">
         <header>
           <h1>
-            Predicavity in Coq
+            Predicativity in Coq
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-03-08" class="begin">Sun, 08 Mar 2020 07:27:41 +0100</time><span class="to">↪</span><time datetime="2020-03-08" class="end">Sun, 08 Mar 2020 07:27:41 +0100</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience"></span>
+            <span id="timestamp"><time datetime="2020-03-08" class="begin">Sun, 08 Mar 2020 07:27:41 +0100</time><span class="to">↪</span><time datetime="2020-03-23" class="end">Mon, 23 Mar 2020 19:13:24 +0100</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">vn</span>
           </div>
         </header>
         <article>
           <p class="blurb">
             Today, we write a quick specialized note on what impredicativity exactly means, for those reasonably familiar with the Coq syntax.
           </p>
+          <p>
+            Historically speaking, Coq started out with making `Set` predicative and they still carry around the flag `--set-impredicative` to maintain impredicativity in Sets. Let's check it quickly:
+          </p>
+          <pre><code class="language-coq">(* Set is predicative. *)
+Fail Definition SetPred := (forall X : Set, X) : Set.</code></pre>
+          <p>
+            We use a little macro to check the impredicativity of various types, since an equivalent definition wouldn't type-check:
+          </p>
+          <pre><code class="language-coq">(* Checks that all inhabitants of U are of type V. *)
+Notation "'check' U V" := ((forall X : U, X) : V) (at level 0, U, V at level 0).</code></pre>
+          <p>
+            All inhabitants of `Prop` are of type Prop, for good reason.
+          </p>
+          <pre><code class="language-coq">(* Prop is impredicative. *)
+Definition PropImpr := check Prop Prop.</code></pre>
+          <p>
+            Attempt to check the predicativity of `Type` naïvely:
+          </p>
+          <pre><code class="language-coq">(* Is Type impredicative? This is misleading. *)
+Definition TypeNaive := (forall X : Type, X) : Type.</code></pre>
+          <p>
+            The previous example was misleading, and we clarify it in the next example:
+          </p>
+          <pre><code class="language-coq">(* In the previous definition, Type is really Type@{i},
+ * and the following definition fails with: Universe {Predicativity.153} is unbound. *)
+Fail Definition TypePred@{i} := check Type@{i} Type@{i}.</code></pre>
+          <p>
+            The Type universe is cumulative, not impredicative. We show the cumulativity using algebraic universe notation:
+          </p>
+          <pre><code class="language-coq">(* Fails due to a bug in Coq: Unable to handle arbitrary u+k <= v constraints? *)
+Definition TypePred'@{i} := ((forall X : Type@{i}, X) : Type@{i+1}).
+
+Definition TypePred'@{i} := check Type@{i} Type@{i+1}.</code></pre>
           <footer>
             <p>
-              † [Paolo G. Giarrusso](http://blaisorblade.github.io): the initial push.
+              † [Paolo G. Giarrusso](http://blaisorblade.github.io): the initial push
             </p>
             <p>
-              ‡ [Gaëtan Gilbert](https://github.com/SkySkimmer): intricacies of universes in Coq.
+              ‡ [Gaëtan Gilbert](https://github.com/SkySkimmer): intricacies of universes in Coq
             </p>
             <p>
-              § [Hugo Herbelin](): syntactic mastery over Coq.
+              § [Hugo Herbelin](http://pauillac.inria.fr/~herbelin/): syntactic mastery over Coq
             </p>
           </footer>
         </article>
