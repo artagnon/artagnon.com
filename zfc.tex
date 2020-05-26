@@ -1,0 +1,23 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{lipsum}
+\usepackage[usenames, dvipsnames]{xcolor}
+\usepackage[landscape]{geometry}
+\usepackage{bookmark}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usepackage{mathpartir}
+\newcommand{\crelsyn}[6]{#1 \vdash #2~\{#3\} \sim #4~\{#5\}~|~#6}
+\newcommand{\crelsynL}[6]{#1 \vdash \left.{\begin{array}{cc} #2& \{#3\} \\[-0.8ex] \sim& \\[-0.8ex] #4 & \{#5\} \end{array}} ~\right |~#6}
+\newcommand{\srelsyn}[3]{\vdash #1 \sim #2 ~\left\{\>#3\>\right\}}
+\begin{document}
+\begin{mathpar}
+  \inferrule*[right=\inferrule{}{\implies-elim}]{\inferrule*{}{\Gamma \vdash g f x = g \tilde{f} x \implies f x = \tilde{f} x} \\ \inferrule*{}{\Gamma \vdash g f x = g \tilde{f} x}}{
+  \inferrule*[right=\inferrule{}{\forall-intro, x \not\in \Gamma}]{\Gamma \vdash f x = \tilde{f} x}{
+  \inferrule*{\Gamma \vdash \forall x, f x = \tilde{f} x}{
+  {\Gamma = g \texttt{ is injective} \wedge g f  = g \tilde{f}}}}}
+\end{mathpar}
+\end{document}
