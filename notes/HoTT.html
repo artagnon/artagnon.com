@@ -54,7 +54,7 @@
             Homotopy Type Theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-27" class="end">Wed, 27 May 2020 18:38:38 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-27" class="end">Wed, 27 May 2020 19:20:02 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -85,7 +85,7 @@
             Broadly speaking, there are two kinds of types: $\Pi$ (which turns out to be a degenerate case of an inductive type) and $\Sigma$.
           </p>
           <h2 id="the-dependent-product-type-pi-type">
-            The dependent product type ($\Pi$ type)
+            The dependent product type ($\Pi$-type)
           </h2>
           <p>
             Instead of defining projections $pr1$ and $pr2$ for the two projections from the pair, we will define a "recursor" as follows:
@@ -124,9 +124,52 @@
             ind_{A \times B}(C, g, (a, b)) :\equiv g(a)(b)
             $$
           </p>
-          <h2 id="the-dependent-sum-type-sigma-type">
-            The dependent sum type ($\Sigma$ type)
+          <p>
+            Because induction describes how to use an element of the product type, induction is often called the `dependent eliminator` and recursion is called the `non-dependent eliminator`.
+          </p>
+          <h2 id="the-dependent-pair-type-sigma-type">
+            The dependent pair type ($\Sigma$-type)
           </h2>
+          <p>
+            The dependent pair type is written $\Sigma_{x : A}, B(x)$. When the second component doesn't depend on the first, we get the cartesian product type $A \times B$. The first projection follows a straightforward extraction:
+          </p>
+          <p class="mathjax">
+            $$
+            pr1 : (\Sigma_{x : A} B(x)) \rightarrow A
+            $$
+          </p>
+          <p>
+            However, the second projection must be a dependent function, whose type involves the first projection function:
+          </p>
+          <p class="mathjax">
+            $$
+            pr2 : \Pi_{p: \Sigma_{x : A} B(x)} B(pr1(p))
+            $$
+          </p>
+          <p>
+            Thus, we need the induction principle for $\Sigma$-types (the `dependent eliminator`):
+          </p>
+          <p class="mathjax">
+            $$
+            g : \Pi_{a : A}\Pi_{b : B(a)} C((a, b))
+            $$
+          </p>
+          <p>
+            We can then derive a function:
+          </p>
+          <p class="mathjax">
+            $$
+            f : \Pi_{p:\Sigma_{x : A}, B(x)} C(p)
+            $$
+          </p>
+          <p>
+            In order to package up the recursion and induction principles into a recursor for $\Sigma$, which we will not bother elaborating here. Instead, let's provide an example of the magma type, in which the second component depends on the first component:
+          </p>
+          <p class="mathjax">
+            $$
+            Magma :\equiv \Sigma_{A : U} A \rightarrow A \rightarrow A
+            $$
+          </p>
         </article>
       </main>
       <nav>

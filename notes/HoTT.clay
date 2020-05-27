@@ -14,7 +14,7 @@ To specify a new type in HoTT, we need to specify four different rules: formatio
 
 Broadly speaking, there are two kinds of types: $\Pi$ (which turns out to be a degenerate case of an inductive type) and $\Sigma$.
 
-# The dependent product type ($\Pi$ type)
+# The dependent product type ($\Pi$-type)
 
 Instead of defining projections $pr1$ and $pr2$ for the two projections from the pair, we will define a "recursor" as follows:
 
@@ -44,5 +44,36 @@ $$
   ind_{A \times B}(C, g, (a, b)) :\equiv g(a)(b)
 $$
 
-# The dependent sum type ($\Sigma$ type)
+Because induction describes how to use an element of the product type, induction is often called the `dependent eliminator` and recursion is called the `non-dependent eliminator`.
 
+# The dependent pair type ($\Sigma$-type)
+
+The dependent pair type is written $\Sigma_{x : A}, B(x)$. When the second component doesn't depend on the first, we get the cartesian product type $A \times B$. The first projection follows a straightforward extraction:
+
+$$
+  pr1 : (\Sigma_{x : A} B(x)) \rightarrow A
+$$
+
+However, the second projection must be a dependent function, whose type involves the first projection function:
+
+$$
+  pr2 : \Pi_{p: \Sigma_{x : A} B(x)} B(pr1(p))
+$$
+
+Thus, we need the induction principle for $\Sigma$-types (the `dependent eliminator`):
+
+$$
+  g : \Pi_{a : A}\Pi_{b : B(a)} C((a, b))
+$$
+
+We can then derive a function:
+
+$$
+  f : \Pi_{p:\Sigma_{x : A}, B(x)} C(p)
+$$
+
+In order to package up the recursion and induction principles into a recursor for $\Sigma$, which we will not bother elaborating here. Instead, let's provide an example of the magma type, in which the second component depends on the first component:
+
+$$
+  Magma :\equiv \Sigma_{A : U} A \rightarrow A \rightarrow A
+$$
