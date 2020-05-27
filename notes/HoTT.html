@@ -54,7 +54,7 @@
             Homotopy Type Theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-27" class="end">Wed, 27 May 2020 19:20:02 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-27" class="end">Wed, 27 May 2020 20:26:33 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -168,6 +168,43 @@
           <p class="mathjax">
             $$
             Magma :\equiv \Sigma_{A : U} A \rightarrow A \rightarrow A
+            $$
+          </p>
+          <h2 id="mathbb-n-and-primitive-recursion">
+            $\mathbb{N}$ and primitive recursion
+          </h2>
+          <p>
+            To define infinite types like $\mathbb{N}$, we need the additional concept of well-founded recursion. We can package the recursor into a single function, as previously:
+          </p>
+          <p class="mathjax">
+            $$
+            rec_\mathbb{N} : \Pi_{C : U} C \rightarrow (\mathbb{N} \rightarrow C \rightarrow C) \rightarrow \mathbb{N} \rightarrow C
+            $$
+          </p>
+          <p>
+            Given step 0, and a next-step function, we can define:
+          </p>
+          <p class="mathjax">
+            $$
+            rec_{\mathbb{N}}(C, c_0, c_s, 0) = c_0 \\
+              rec_{\mathbb{N}}(C, c_0, c_s, succ(n)) = c_s(n, rec_\mathbb{N}(C, c_0, c_s, n))
+            $$
+          </p>
+          <p>
+            We can generalize general recursion to dependent functions as follows:
+          </p>
+          <p class="mathjax">
+            $$
+            ind_{\mathbb{N}} : \Pi_{C : \mathbb{N} \rightarrow U} C(0) \rightarrow (\Pi_{n : \mathbb{N}} C(n) \rightarrow C(succ(n))) \rightarrow \Pi_{n \in \mathbb{N}} C(n)
+            $$
+          </p>
+          <p>
+            with these defining equations:
+          </p>
+          <p class="mathjax">
+            $$
+            f(0) :\equiv c_0 \\
+              f(succ(n)) :\equiv c_s(n, f(n))
             $$
           </p>
         </article>

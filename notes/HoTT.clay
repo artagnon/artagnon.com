@@ -77,3 +77,31 @@ In order to package up the recursion and induction principles into a recursor fo
 $$
   Magma :\equiv \Sigma_{A : U} A \rightarrow A \rightarrow A
 $$
+
+# $\mathbb{N}$ and primitive recursion
+
+To define infinite types like $\mathbb{N}$, we need the additional concept of well-founded recursion. We can package the recursor into a single function, as previously:
+
+$$
+  rec_\mathbb{N} : \Pi_{C : U} C \rightarrow (\mathbb{N} \rightarrow C \rightarrow C) \rightarrow \mathbb{N} \rightarrow C
+$$
+
+Given step 0, and a next-step function, we can define:
+
+$$
+  rec_{\mathbb{N}}(C, c_0, c_s, 0) = c_0 \\
+  rec_{\mathbb{N}}(C, c_0, c_s, succ(n)) = c_s(n, rec_\mathbb{N}(C, c_0, c_s, n))
+$$
+
+We can generalize general recursion to dependent functions as follows:
+
+$$
+  ind_{\mathbb{N}} : \Pi_{C : \mathbb{N} \rightarrow U} C(0) \rightarrow (\Pi_{n : \mathbb{N}} C(n) \rightarrow C(succ(n))) \rightarrow \Pi_{n \in \mathbb{N}} C(n)
+$$
+
+with these defining equations:
+
+$$
+  f(0) :\equiv c_0 \\
+  f(succ(n)) :\equiv c_s(n, f(n))
+$$
