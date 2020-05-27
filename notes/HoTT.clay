@@ -10,4 +10,18 @@ To specify a new type in HoTT, we need to specify four different rules: formatio
 (ii) How to construct elements of this kind. For example, a function type has one constructor: $f(x) :\equiv 2x$.
 (iii) How to use elements of this type. These are called eliminators or `elimination rules`. For instance, a function type has one eliminator, namely function application.
 (iv) How the eliminator acts on the constructor. For example, $(\lambda x . \phi)(a)$ is judgementally equal to the expanded function $\lambda f . f(x)$.
-(v) An optional uniqueness principle which expresses uniqueness into or out of the type. Every element of the type is uniquely determined by results of applying type eliminators to it. It is often a provable propositional equality: in this case, we call it `propositional uniquness principle`.
+(v) An optional uniqueness principle which expresses uniqueness into or out of the type. Every element of the type is uniquely determined by results of applying type eliminators to it. It is often a provable propositional equality: in this case, we call it `propositional uniqueness principle`.
+
+Broadly speaking, there are three kinds of types: $\Pi, \Sigma$, and inductives. Pairs of the form $A \times B$ are really a degenerate case of inductives, whose study we will shelve for the moment. Instead of defining projections $pr1$ and $pr2$ for the two projections from the pair, we will define a "recursor" as follows:
+
+$$
+  rec_{A \times B} : \Pi_{C : U} (A \times B \times C) \rightarrow A \times B \rightarrow C \\
+  rec_{A \times B}(C, g, (a, b)) :\equiv g(a)(b)
+$$
+
+So that:
+
+$$
+  pr1 :\equiv rec_{A \times B}(A, \lambda a . \lambda b . a) \\
+  pr2 :\equiv rec_{A \times B}(B, \lambda a . \lambda b . b)
+$$

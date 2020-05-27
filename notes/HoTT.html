@@ -54,7 +54,7 @@
             Homotopy Type Theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-27" class="end">Wed, 27 May 2020 12:24:05 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-27" class="end">Wed, 27 May 2020 17:09:22 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -78,9 +78,27 @@
               How the eliminator acts on the constructor. For example, $(\lambda x . \phi)(a)$ is judgementally equal to the expanded function $\lambda f . f(x)$.
             </li>
             <li>
-              An optional uniqueness principle which expresses uniqueness into or out of the type. Every element of the type is uniquely determined by results of applying type eliminators to it. It is often a provable propositional equality: in this case, we call it `propositional uniquness principle`.
+              An optional uniqueness principle which expresses uniqueness into or out of the type. Every element of the type is uniquely determined by results of applying type eliminators to it. It is often a provable propositional equality: in this case, we call it `propositional uniqueness principle`.
             </li>
           </ol>
+          <p>
+            Broadly speaking, there are three kinds of types: $\Pi, \Sigma$, and inductives. Pairs of the form $A \times B$ are really a degenerate case of inductives, whose study we will shelve for the moment. Instead of defining projections $pr1$ and $pr2$ for the two projections from the pair, we will define a "recursor" as follows:
+          </p>
+          <p class="mathjax">
+            $$
+            rec_{A \times B} : \Pi_{C : U} (A \times B \times C) \rightarrow A \times B \rightarrow C \\
+              rec_{A \times B}(C, g, (a, b)) :\equiv g(a)(b)
+            $$
+          </p>
+          <p>
+            So that:
+          </p>
+          <p class="mathjax">
+            $$
+            pr1 :\equiv rec_{A \times B}(A, \lambda a . \lambda b . a) \\
+              pr2 :\equiv rec_{A \times B}(B, \lambda a . \lambda b . b)
+            $$
+          </p>
         </article>
       </main>
       <nav>
