@@ -1,0 +1,13 @@
+Homotopy Type Theory
+
+...
+This is a brief exposé, which serves as an introduction to homotopy type theory
+...
+
+To specify a new type in HoTT, we need to specify four different rules: formation, introduction, elimintion, computation (FIEC).
+
+(i) How to form a new type of this kind. For example $\Pi_{(x : A)} B(x)$
+(ii) How to construct elements of this kind. For example, a function type has one constructor: $f(x) :\equiv 2x$.
+(iii) How to use elements of this type. These are called eliminators or `elimination rules`. For instance, a function type has one eliminator, namely function application.
+(iv) How the eliminator acts on the constructor. For example, $(\lambda x . \phi)(a)$ is judgementally equal to the expanded function $\lambda f . f(x)$.
+(v) An optional uniqueness principle which expresses uniqueness into or out of the type. Every element of the type is uniquely determined by results of applying type eliminators to it. It is often a provable propositional equality: in this case, we call it `propositional uniquness principle`.

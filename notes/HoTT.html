@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Notes | artagnon.com</title>
+    <title>Homotopy Type Theory | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -51,33 +51,36 @@
       <main tabindex="0">
         <header>
           <h1>
-            Notes
+            Homotopy Type Theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2019-12-13" class="begin">Fri, 13 Dec 2019 17:28:36 +0100</time><span class="to">↪</span><time datetime="2020-03-09" class="end">Mon, 09 Mar 2020 10:06:10 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-27" class="end">Wed, 27 May 2020 12:24:05 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
           <p class="blurb">
-            Collection of human-readable notes on mathematics
+            This is a brief exposé, which serves as an introduction to homotopy type theory
           </p>
-          <ul id="indexfill">
+          <p>
+            To specify a new type in HoTT, we need to specify four different rules: formation, introduction, elimintion, computation (FIEC).
+          </p>
+          <ol class="olitems" type="i" start="1">
             <li>
-              <a href="/notes/HoTT">Homotopy Type Theory</a>
+              How to form a new type of this kind. For example $\Pi_{(x : A)} B(x)$
             </li>
             <li>
-              <a href="/notes/predicativity">Predicativity in Coq</a>
+              How to construct elements of this kind. For example, a function type has one constructor: $f(x) :\equiv 2x$.
             </li>
             <li>
-              <a href="/notes/equality">Equality in Mechanized Mathematics</a>
+              How to use elements of this type. These are called eliminators or `elimination rules`. For instance, a function type has one eliminator, namely function application.
             </li>
             <li>
-              <a href="/notes/fom">An inquiry into the Foundations of Mathematics</a>
+              How the eliminator acts on the constructor. For example, $(\lambda x . \phi)(a)$ is judgementally equal to the expanded function $\lambda f . f(x)$.
             </li>
             <li>
-              <a href="/notes/leancoq">Lean versus Coq: The cultural chasm</a>
+              An optional uniqueness principle which expresses uniqueness into or out of the type. Every element of the type is uniquely determined by results of applying type eliminators to it. It is often a provable propositional equality: in this case, we call it `propositional uniquness principle`.
             </li>
-          </ul>
+          </ol>
         </article>
       </main>
       <nav>
