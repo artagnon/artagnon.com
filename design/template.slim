@@ -104,9 +104,9 @@ html
                     code class="language-cpp" == paragraph.to_s
               - when :images
                 div class="imgrow"
-                  - if paragraph.to_s.length == 1
+                  - if paragraph.split("\n").length == 1
                     figure
-                      img src="#{paragraph.to_s}" style="width:100%"
+                      img src="#{paragraph.split("\n")[0]}" style="width:100%"
                   - else
                     figure class="left"
                       img src="#{paragraph.split("\n")[0]}"
