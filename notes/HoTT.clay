@@ -19,7 +19,7 @@ Broadly speaking, there are two kinds of types: $\Pi$ (which turns out to be a d
 Instead of defining projections $pr1$ and $pr2$ for the two projections from the pair, we will define a "recursor" as follows:
 
 $$
-  rec_{A \times B} : \Pi_{C : U} (A \times B \times C) \rightarrow A \times B \rightarrow C \\
+  rec_{A \times B} : \Pi_{C : \mathscr{U}} (A \times B \times C) \rightarrow A \times B \rightarrow C \\
   rec_{A \times B}(C, g, (a, b)) :\equiv g(a)(b)
 $$
 
@@ -95,7 +95,7 @@ In English, this reads: if $\forall x : A$, there is a $y : B$ such that $R(x, y
 Let's also provide an example of the magma type, in which the second component depends on the first component:
 
 $$
-  Magma :\equiv \Sigma_{A : U} A \rightarrow A \rightarrow A
+  Magma :\equiv \Sigma_{A : \mathscr{U}} A \rightarrow A \rightarrow A
 $$
 
 # Interlude: Coproduct types and booleans
@@ -103,15 +103,15 @@ $$
 The recursor for coproduct types can be written as:
 
 $$
-  rec_{A + B} : \Pi_{C : U} (A \rightarrow C) \rightarrow (B \rightarrow C) \rightarrow A + B \rightarrow C \\
-  rec_{A + B} : \Pi_{C : U} (C, g_0, g_1, inl(a)) :\equiv g_0(a) \\
-  rec_{A + B} : \Pi_{C : U} (C, g_0, g_1, inr(a)) :\equiv g_1(a)
+  rec_{A + B} : \Pi_{C : \mathscr{U}} (A \rightarrow C) \rightarrow (B \rightarrow C) \rightarrow A + B \rightarrow C \\
+  rec_{A + B}(C, g_0, g_1, inl(a)) :\equiv g_0(a) \\
+  rec_{A + B}(\Pi_{C : \mathscr{U}} (C, g_0, g_1, inr(a)) :\equiv g_1(a)
 $$
 
 The if-then-else pattern in general programming practice utilizes booleans as follows:
 
 $$
-  rec_2 : \Pi_{C : U} C \rightarrow C \rightarrow \mathbf{2} \rightarrow C \\
+  rec_2 : \Pi_{C : \mathscr{U}} C \rightarrow C \rightarrow \mathbf{2} \rightarrow C \\
   rec_2(C, c_0, c_1, 0_\mathbb{2}) :\equiv c_0 \\
   rec_2(C, c_0, c_1, 1_\mathbb{2}) :\equiv c_1
 $$
@@ -121,7 +121,7 @@ $$
 To define infinite types like $\mathbb{N}$, we need the additional concept of well-founded recursion. We can package the recursor into a single function, as previously:
 
 $$
-  rec_\mathbb{N} : \Pi_{C : U} C \rightarrow (\mathbb{N} \rightarrow C \rightarrow C) \rightarrow \mathbb{N} \rightarrow C
+  rec_\mathbb{N} : \Pi_{C : \mathscr{U}} C \rightarrow (\mathbb{N} \rightarrow C \rightarrow C) \rightarrow \mathbb{N} \rightarrow C
 $$
 
 Given step 0, and a next-step function, we can define:
@@ -142,4 +142,26 @@ with these defining equations:
 $$
   f(0) :\equiv c_0 \\
   f(succ(n)) :\equiv c_s(n, f(n))
+$$
+
+# Identity types
+
+The cornerstone of homotopy type theory is that there can be more than one witness that two objects are equal.
+
+The identity family takes two copies of $A$, and illustrates an equality between them: $id_A : A \rightarrow A \rightarrow \mathscr{U}$. The formation rule says that given a type $A : \mathscr{U}$ and two elements $a, b : A$, we can form the type $(a =_A b) : \mathscr{U}$ in the same universe. The introduction rule is a dependent function called reflexivity:
+
+$$
+  \texttt{refl} : \Pi_{a : A} a = a
+$$
+
+The elimination rule for identity types is subtle. We begin by considering the consequence that equals may be substituted for equals, called `indiscrenability of identicals`. For every family $C : A \rightarrow \mathscr{U}$, there is a function
+
+$$
+  f : \Pi_{x, y : A} \Pi_{x =_A y} C(x) \rightarrow C(y)
+$$
+
+such that:
+
+$$
+  f(x, x, \texttt{refl}_x) :\equiv id_{C(x)}
 $$

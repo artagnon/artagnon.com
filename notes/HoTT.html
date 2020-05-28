@@ -54,7 +54,7 @@
             Homotopy Type Theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-28" class="end">Thu, 28 May 2020 10:58:49 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-28" class="end">Thu, 28 May 2020 12:32:15 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -92,7 +92,7 @@
           </p>
           <p class="mathjax">
             $$
-            rec_{A \times B} : \Pi_{C : U} (A \times B \times C) \rightarrow A \times B \rightarrow C \\
+            rec_{A \times B} : \Pi_{C : \mathscr{U}} (A \times B \times C) \rightarrow A \times B \rightarrow C \\
               rec_{A \times B}(C, g, (a, b)) :\equiv g(a)(b)
             $$
           </p>
@@ -193,7 +193,7 @@
           </p>
           <p class="mathjax">
             $$
-            Magma :\equiv \Sigma_{A : U} A \rightarrow A \rightarrow A
+            Magma :\equiv \Sigma_{A : \mathscr{U}} A \rightarrow A \rightarrow A
             $$
           </p>
           <h2 id="interlude-coproduct-types-and-booleans">
@@ -204,9 +204,9 @@
           </p>
           <p class="mathjax">
             $$
-            rec_{A + B} : \Pi_{C : U} (A \rightarrow C) \rightarrow (B \rightarrow C) \rightarrow A + B \rightarrow C \\
-              rec_{A + B} : \Pi_{C : U} (C, g_0, g_1, inl(a)) :\equiv g_0(a) \\
-              rec_{A + B} : \Pi_{C : U} (C, g_0, g_1, inr(a)) :\equiv g_1(a)
+            rec_{A + B} : \Pi_{C : \mathscr{U}} (A \rightarrow C) \rightarrow (B \rightarrow C) \rightarrow A + B \rightarrow C \\
+              rec_{A + B}(C, g_0, g_1, inl(a)) :\equiv g_0(a) \\
+              rec_{A + B}(\Pi_{C : \mathscr{U}} (C, g_0, g_1, inr(a)) :\equiv g_1(a)
             $$
           </p>
           <p>
@@ -214,7 +214,7 @@
           </p>
           <p class="mathjax">
             $$
-            rec_2 : \Pi_{C : U} C \rightarrow C \rightarrow \mathbf{2} \rightarrow C \\
+            rec_2 : \Pi_{C : \mathscr{U}} C \rightarrow C \rightarrow \mathbf{2} \rightarrow C \\
               rec_2(C, c_0, c_1, 0_\mathbb{2}) :\equiv c_0 \\
               rec_2(C, c_0, c_1, 1_\mathbb{2}) :\equiv c_1
             $$
@@ -227,7 +227,7 @@
           </p>
           <p class="mathjax">
             $$
-            rec_\mathbb{N} : \Pi_{C : U} C \rightarrow (\mathbb{N} \rightarrow C \rightarrow C) \rightarrow \mathbb{N} \rightarrow C
+            rec_\mathbb{N} : \Pi_{C : \mathscr{U}} C \rightarrow (\mathbb{N} \rightarrow C \rightarrow C) \rightarrow \mathbb{N} \rightarrow C
             $$
           </p>
           <p>
@@ -254,6 +254,36 @@
             $$
             f(0) :\equiv c_0 \\
               f(succ(n)) :\equiv c_s(n, f(n))
+            $$
+          </p>
+          <h2 id="identity-types">
+            Identity types
+          </h2>
+          <p>
+            The cornerstone of homotopy type theory is that there can be more than one witness that two objects are equal.
+          </p>
+          <p>
+            The identity family takes two copies of $A$, and illustrates an equality between them: $id_A : A \rightarrow A \rightarrow \mathscr{U}$. The formation rule says that given a type $A : \mathscr{U}$ and two elements $a, b : A$, we can form the type $(a =_A b) : \mathscr{U}$ in the same universe. The introduction rule is a dependent function called reflexivity:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{refl} : \Pi_{a : A} a = a
+            $$
+          </p>
+          <p>
+            The elimination rule for identity types is subtle. We begin by considering the consequence that equals may be substituted for equals, called `indiscrenability of identicals`. For every family $C : A \rightarrow \mathscr{U}$, there is a function
+          </p>
+          <p class="mathjax">
+            $$
+            f : \Pi_{x, y : A} \Pi_{x =_A y} C(x) \rightarrow C(y)
+            $$
+          </p>
+          <p>
+            such that:
+          </p>
+          <p class="mathjax">
+            $$
+            f(x, x, \texttt{refl}_x) :\equiv id_{C(x)}
             $$
           </p>
         </article>
