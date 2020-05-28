@@ -204,3 +204,11 @@ $$
 $$
 
 Indiscrenability of identicals is an instance of path induction, as we will show later.
+
+By fixing a certain $a : A$, we can show `based path induction`, a simpler version:
+
+$$
+  ind'_{=A} : \Pi_{a : A}\Pi_{C : \Pi_{a : A} (a =_A x) \rightarrow \mathscr{U}} C(a, \texttt{refl}_a) \rightarrow \Pi_{x : A} \Pi_{p : a =_A x} C(x, p)
+$$
+
+Since every path is of the form $\texttt{refl}_a$, if we prove a property for reflexivity paths, then we have provided it for all paths.
