@@ -54,7 +54,7 @@
             Homotopy Type Theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-28" class="end">Thu, 28 May 2020 10:37:11 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-28" class="end">Thu, 28 May 2020 10:58:49 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -194,6 +194,29 @@
           <p class="mathjax">
             $$
             Magma :\equiv \Sigma_{A : U} A \rightarrow A \rightarrow A
+            $$
+          </p>
+          <h2 id="interlude-coproduct-types-and-booleans">
+            Interlude: Coproduct types and booleans
+          </h2>
+          <p>
+            The recursor for coproduct types can be written as:
+          </p>
+          <p class="mathjax">
+            $$
+            rec_{A + B} : \Pi_{C : U} (A \rightarrow C) \rightarrow (B \rightarrow C) \rightarrow A + B \rightarrow C \\
+              rec_{A + B} : \Pi_{C : U} (C, g_0, g_1, inl(a)) :\equiv g_0(a) \\
+              rec_{A + B} : \Pi_{C : U} (C, g_0, g_1, inr(a)) :\equiv g_1(a)
+            $$
+          </p>
+          <p>
+            The if-then-else pattern in general programming practice utilizes booleans as follows:
+          </p>
+          <p class="mathjax">
+            $$
+            rec_2 : \Pi_{C : U} C \rightarrow C \rightarrow \mathbf{2} \rightarrow C \\
+              rec_2(C, c_0, c_1, 0_\mathbb{2}) :\equiv c_0 \\
+              rec_2(C, c_0, c_1, 1_\mathbb{2}) :\equiv c_1
             $$
           </p>
           <h2 id="mathbb-n-and-primitive-recursion">
