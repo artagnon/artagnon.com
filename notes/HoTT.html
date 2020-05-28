@@ -54,7 +54,7 @@
             Homotopy Type Theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-27" class="end">Wed, 27 May 2020 20:26:33 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-28" class="end">Thu, 28 May 2020 10:37:11 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -82,7 +82,7 @@
             </li>
           </ol>
           <p>
-            Broadly speaking, there are two kinds of types: $\Pi$ (which turns out to be a degenerate case of an inductive type) and $\Sigma$.
+            Broadly speaking, there are two kinds of types: $\Pi$ (which turns out to be a degenerate case of an inductive type, which we will see later) and $\Sigma$.
           </p>
           <h2 id="the-dependent-product-type-pi-type">
             The dependent product type ($\Pi$-type)
@@ -125,7 +125,16 @@
             $$
           </p>
           <p>
-            Because induction describes how to use an element of the product type, induction is often called the `dependent eliminator` and recursion is called the `non-dependent eliminator`.
+            Because induction describes how to use an element of the product type, induction is often called the `dependent eliminator`; recursion is called the `non-dependent eliminator`.
+          </p>
+          <p>
+            Comment: the induction for the unit type turns out to be more useful than the recursor:
+          </p>
+          <p class="mathjax">
+            $$
+            uniq_1 : \Pi_{x : \mathbf{1}} x = \star \\
+              uniq_1(x) :\equiv refl_\star
+            $$
           </p>
           <h2 id="the-dependent-pair-type-sigma-type">
             The dependent pair type ($\Sigma$-type)
@@ -163,7 +172,24 @@
             $$
           </p>
           <p>
-            In order to package up the recursion and induction principles into a recursor for $\Sigma$, which we will not bother elaborating here. Instead, let's provide an example of the magma type, in which the second component depends on the first component:
+            In order to package up the recursion and induction principles into a recursor for $\Sigma$, which we will not bother elaborating here. As usual, the recursor is the special case of induction when the family $C$ is fixed.
+          </p>
+          <p>
+            Now, we present the `type-theoretic axiom of choice` where $R : A \rightarrow B \rightarrow U$:
+          </p>
+          <p class="mathjax">
+            $$
+            ac : (\Pi_{a : A} \Sigma_{y : B} R(x, y)) \rightarrow (\Sigma_{f : A \rightarrow B} \Pi_{x : A} R(x, f(x))) \\
+              ac(g) :\equiv (\lambda x . pr_1(g(x)), \lambda x . pr2(g(x)) \\
+              \lambda x . pr_1(g(x)) : A \rightarrow B \\
+              \lambda x . pr_2(g(x)) : \Pi_{x : A} R(x, pr_1(g(x)))
+            $$
+          </p>
+          <p>
+            In English, this reads: if $\forall x : A$, there is a $y : B$ such that $R(x, y)$, then $\exists f : A \rightarrow B$ such that $\forall x : A$, we have $R(x, f(x))$. We will provide a more familar axiom of choice later.
+          </p>
+          <p>
+            Let's also provide an example of the magma type, in which the second component depends on the first component:
           </p>
           <p class="mathjax">
             $$

@@ -12,7 +12,7 @@ To specify a new type in HoTT, we need to specify four different rules: formatio
 (iv) How the eliminator acts on the constructor. For example, $(\lambda x . \phi)(a)$ is judgementally equal to the expanded function $\lambda f . f(x)$.
 (v) An optional uniqueness principle which expresses uniqueness into or out of the type. Every element of the type is uniquely determined by results of applying type eliminators to it. It is often a provable propositional equality: in this case, we call it `propositional uniqueness principle`.
 
-Broadly speaking, there are two kinds of types: $\Pi$ (which turns out to be a degenerate case of an inductive type) and $\Sigma$.
+Broadly speaking, there are two kinds of types: $\Pi$ (which turns out to be a degenerate case of an inductive type, which we will see later) and $\Sigma$.
 
 # The dependent product type ($\Pi$-type)
 
@@ -44,7 +44,14 @@ $$
   ind_{A \times B}(C, g, (a, b)) :\equiv g(a)(b)
 $$
 
-Because induction describes how to use an element of the product type, induction is often called the `dependent eliminator` and recursion is called the `non-dependent eliminator`.
+Because induction describes how to use an element of the product type, induction is often called the `dependent eliminator`; recursion is called the `non-dependent eliminator`.
+
+Comment: the induction for the unit type turns out to be more useful than the recursor:
+
+$$
+  uniq_1 : \Pi_{x : \mathbf{1}} x = \star \\
+  uniq_1(x) :\equiv refl_\star
+$$
 
 # The dependent pair type ($\Sigma$-type)
 
@@ -72,7 +79,20 @@ $$
   f : \Pi_{p:\Sigma_{x : A}, B(x)} C(p)
 $$
 
-In order to package up the recursion and induction principles into a recursor for $\Sigma$, which we will not bother elaborating here. Instead, let's provide an example of the magma type, in which the second component depends on the first component:
+In order to package up the recursion and induction principles into a recursor for $\Sigma$, which we will not bother elaborating here. As usual, the recursor is the special case of induction when the family $C$ is fixed.
+
+Now, we present the `type-theoretic axiom of choice` where $R : A \rightarrow B \rightarrow U$:
+
+$$
+  ac : (\Pi_{a : A} \Sigma_{y : B} R(x, y)) \rightarrow (\Sigma_{f : A \rightarrow B} \Pi_{x : A} R(x, f(x))) \\
+  ac(g) :\equiv (\lambda x . pr_1(g(x)), \lambda x . pr2(g(x)) \\
+  \lambda x . pr_1(g(x)) : A \rightarrow B \\
+  \lambda x . pr_2(g(x)) : \Pi_{x : A} R(x, pr_1(g(x)))
+$$
+
+In English, this reads: if $\forall x : A$, there is a $y : B$ such that $R(x, y)$, then $\exists f : A \rightarrow B$ such that $\forall x : A$, we have $R(x, f(x))$. We will provide a more familar axiom of choice later.
+
+Let's also provide an example of the magma type, in which the second component depends on the first component:
 
 $$
   Magma :\equiv \Sigma_{A : U} A \rightarrow A \rightarrow A
