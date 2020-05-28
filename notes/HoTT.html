@@ -54,7 +54,7 @@
             Homotopy Type Theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-28" class="end">Thu, 28 May 2020 13:09:16 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-28" class="end">Thu, 28 May 2020 14:06:37 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -316,6 +316,28 @@
             $$
             f(x, x, \texttt{refl}_x) :\equiv c(x)
             $$
+          </p>
+          <p>
+            We can conclude that $C(x, y)$ is a reflexive relation that holds whenever $x = y$.
+          </p>
+          <p>
+            If we package up path induction into a single function, it takes the form:
+          </p>
+          <p class="mathjax">
+            $$
+            ind_{=A} : \Pi_{C : \Pi_{x, y : A} (x =_A y) \rightarrow \mathscr{U}} (\Pi_{x : A} C(x, x, \texttt{refl}_x)) \rightarrow \Pi_{x, y : A} \Pi_{p : x =_A y} C(x, y, p)
+            $$
+          </p>
+          <p>
+            with the equality, traditionally called $J$:
+          </p>
+          <p class="mathjax">
+            $$
+            ind_{=A}(C, c, x, x, \texttt{refl}_x) :\equiv c(x)
+            $$
+          </p>
+          <p>
+            Indiscrenability of identicals is an instance of path induction, as we will show later.
           </p>
         </article>
       </main>

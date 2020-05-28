@@ -188,3 +188,19 @@ such that
 $$
   f(x, x, \texttt{refl}_x) :\equiv c(x)
 $$
+
+We can conclude that $C(x, y)$ is a reflexive relation that holds whenever $x = y$.
+
+If we package up path induction into a single function, it takes the form:
+
+$$
+  ind_{=A} : \Pi_{C : \Pi_{x, y : A} (x =_A y) \rightarrow \mathscr{U}} (\Pi_{x : A} C(x, x, \texttt{refl}_x)) \rightarrow \Pi_{x, y : A} \Pi_{p : x =_A y} C(x, y, p)
+$$
+
+with the equality, traditionally called $J$:
+
+$$
+  ind_{=A}(C, c, x, x, \texttt{refl}_x) :\equiv c(x)
+$$
+
+Indiscrenability of identicals is an instance of path induction, as we will show later.
