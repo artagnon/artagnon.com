@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 12:38:31 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 13:03:11 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -128,6 +128,23 @@
           <p>
             This proof raises the question of why an induction on $q$ is required at all, when we already have the equality $x = z$. Indeed, we could have done an induction on $p$ yielding the computation rule $p \circ \texttt{refl}_x \equiv p$, an induction on $q$ yielding the computation rule $\texttt{refl}_y \circ q \equiv q$, or, as above, induction on both $p$ and $q$, yeilding $\texttt{refl}_x \circ \texttt{refl}_x \equiv \texttt{refl}_x$. We would merely have three different elements of the same type.
           </p>
+          <p class="exercise">
+            We will now state some results without the obvious proofs. For $\Pi_{A : \mathscr{U}} \Pi_{x, y, z, w : A}$, $p : x = y$, $q : y = z$, $r : z = w$:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $p = p \circ \texttt{refl}_y$ and $p = \texttt{refl}_x \circ p$
+            </li>
+            <li>
+              $p^{-1} \circ p = \texttt{refl}_y$ and $p \circ p^{-1} = \texttt{refl}_x$
+            </li>
+            <li>
+              $(p^{-1})^{-1} = p$
+            </li>
+            <li>
+              $(p \circ q) \circ r = p \circ (q \circ r)$
+            </li>
+          </ol>
         </article>
       </main>
       <nav>
