@@ -98,3 +98,30 @@ where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\
 $$
   \alpha \star \beta :\equiv (\alpha \circ_r r)(q \circ_l \beta)
 $$
+
+Now, suppose that $a \equiv b \equiv c$ so that all paths $p, q, r, s$ are elements of $\Omega(A, a)$, and assume moreover that $p \equiv q \equiv r \equiv s \equiv \texttt{refl}_a$, so that $\alpha : \texttt{refl}_a = \texttt{refl}_a$ and $\beta : \texttt{refl}_a = \texttt{refl}_a$ are composable in both orders. In this case, we have:
+
+$$
+  \alpha \star \beta = \alpha \circ \beta = \alpha \star' \beta = \beta \circ \alpha
+$$
+
+The foregoing fact, known as the `Eckmann-Hilton argument` comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
+
+A `pointed type` $(A, a)$ is a type $A : \mathscr{U}$ together with a point $a : A$ called its `basepoint`. We write $\mathscr{U}_\bullet :\equiv \Sigma_{A : \mathscr{U}}$ for the type of pointed types in universe $\mathscr{U}$.
+
+Given a pointed type $(A, a)$, we can define the `loop space` of $(A, a)$ to be the following pointed type:
+
+$$
+  \Omega(A, a) :\equiv ((a =_A a), \texttt{refl}_a)
+$$
+
+An element of it iwll be called a `loop` at a. For $n : \mathbb{N}$, the `n-fold iterated loop space` $\Omega^n(A, a)$ of a pointed type $(A, a)$ is defined recursively by:
+
+$$
+  \Omega^0(A, a) :\equiv (A, a) \\
+  \Omega^{n + 1}(A, a) :\equiv \Omega^n(\Omega(A, a))
+$$
+
+An element of it will be called an `n-loop` at $a$.
+
+# Functions are functors

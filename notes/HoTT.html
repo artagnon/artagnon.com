@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 17:25:45 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 17:50:50 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -206,6 +206,43 @@
             \alpha \star \beta :\equiv (\alpha \circ_r r)(q \circ_l \beta)
             $$
           </p>
+          <p>
+            Now, suppose that $a \equiv b \equiv c$ so that all paths $p, q, r, s$ are elements of $\Omega(A, a)$, and assume moreover that $p \equiv q \equiv r \equiv s \equiv \texttt{refl}_a$, so that $\alpha : \texttt{refl}_a = \texttt{refl}_a$ and $\beta : \texttt{refl}_a = \texttt{refl}_a$ are composable in both orders. In this case, we have:
+          </p>
+          <p class="mathjax">
+            $$
+            \alpha \star \beta = \alpha \circ \beta = \alpha \star' \beta = \beta \circ \alpha
+            $$
+          </p>
+          <p>
+            The foregoing fact, known as the `Eckmann-Hilton argument` comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
+          </p>
+          <p>
+            A `pointed type` $(A, a)$ is a type $A : \mathscr{U}$ together with a point $a : A$ called its `basepoint`. We write $\mathscr{U}_\bullet :\equiv \Sigma_{A : \mathscr{U}}$ for the type of pointed types in universe $\mathscr{U}$.
+          </p>
+          <p>
+            Given a pointed type $(A, a)$, we can define the `loop space` of $(A, a)$ to be the following pointed type:
+          </p>
+          <p class="mathjax">
+            $$
+            \Omega(A, a) :\equiv ((a =_A a), \texttt{refl}_a)
+            $$
+          </p>
+          <p>
+            An element of it iwll be called a `loop` at a. For $n : \mathbb{N}$, the `n-fold iterated loop space` $\Omega^n(A, a)$ of a pointed type $(A, a)$ is defined recursively by:
+          </p>
+          <p class="mathjax">
+            $$
+            \Omega^0(A, a) :\equiv (A, a) \\
+              \Omega^{n + 1}(A, a) :\equiv \Omega^n(\Omega(A, a))
+            $$
+          </p>
+          <p>
+            An element of it will be called an `n-loop` at $a$.
+          </p>
+          <h2 id="functions-are-functors">
+            Functions are functors
+          </h2>
         </article>
       </main>
       <nav>
