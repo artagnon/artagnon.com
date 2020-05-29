@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 12:11:14 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 12:38:31 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -121,6 +121,12 @@
             $$
             \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
             $$
+          </p>
+          <p>
+            The proof proceeds as follows: $\forall x, y, z : A$, every $p : x = y$ and every $q : y = z$, we need to construct an inhabitant of $x = z$. By induction on $p$, it sufficces to assume that $y = x$ and $p$ is $\texttt{refl}_x$. In this case, the type of $y = z$ of $q$ is $x = z$. By induction on $q$, it suffices to assume that $z = x$ and $q$ is $\texttt{refl}_x$. In this case, $x = z$ is $x = x$, and we have $\texttt{refl}_x : (x = x)$.
+          </p>
+          <p>
+            This proof raises the question of why an induction on $q$ is required at all, when we already have the equality $x = z$. Indeed, we could have done an induction on $p$ yielding the computation rule $p \circ \texttt{refl}_x \equiv p$, an induction on $q$ yielding the computation rule $\texttt{refl}_y \circ q \equiv q$, or, as above, induction on both $p$ and $q$, yeilding $\texttt{refl}_x \circ \texttt{refl}_x \equiv \texttt{refl}_x$. We would merely have three different elements of the same type.
           </p>
         </article>
       </main>

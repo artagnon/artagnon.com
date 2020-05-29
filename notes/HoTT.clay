@@ -44,3 +44,7 @@ The proof of this lemma would involve constructing an inhabitant of this type. L
 $$
   \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
 $$
+
+The proof proceeds as follows: $\forall x, y, z : A$, every $p : x = y$ and every $q : y = z$, we need to construct an inhabitant of $x = z$. By induction on $p$, it sufficces to assume that $y = x$ and $p$ is $\texttt{refl}_x$. In this case, the type of $y = z$ of $q$ is $x = z$. By induction on $q$, it suffices to assume that $z = x$ and $q$ is $\texttt{refl}_x$. In this case, $x = z$ is $x = x$, and we have $\texttt{refl}_x : (x = x)$.
+
+This proof raises the question of why an induction on $q$ is required at all, when we already have the equality $x = z$. Indeed, we could have done an induction on $p$ yielding the computation rule $p \circ \texttt{refl}_x \equiv p$, an induction on $q$ yielding the computation rule $\texttt{refl}_y \circ q \equiv q$, or, as above, induction on both $p$ and $q$, yeilding $\texttt{refl}_x \circ \texttt{refl}_x \equiv \texttt{refl}_x$. We would merely have three different elements of the same type.
