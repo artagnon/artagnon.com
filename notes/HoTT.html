@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 10:21:10 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 11:03:08 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -66,6 +66,33 @@
           </p>
           <p>
             The `fundamental group` of a fundamental $\infty$-groupoid of a space will agree with the classical definition of a fundamental group of the space: this correspondence illustrates how homotopy theory and higher-dimensional category theory are intimately related.
+          </p>
+          <p>
+            We will refer to $x =_A y$ as a path between the `start point` $x$ and `endpoint` $y$. $r : p =_{x =_A y} q$ can be thought of as a homotopy or a 2-path or 2-dimensional path. All of the basic constructions and axoims arises automatically from the induction principle for identity types. In other words, given the dependent funtions:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$
+            </li>
+            <li>
+              $d : \Pi_{a : A} D(a, a, \texttt{refl}_a)$
+            </li>
+          </ol>
+          <p>
+            there is a dependent function:
+          </p>
+          <p class="mathjax">
+            $$
+            ind_{=A}(D, d) : \Pi_{x, y : A} \Pi_{p : x = y} D(x, y, p)
+            $$
+          </p>
+          <p>
+            such that
+          </p>
+          <p class="mathjax">
+            $$
+            ind_{=A}(D, d, a, a, \texttt{refl}_a) \equiv d(a)
+            $$
           </p>
         </article>
       </main>
