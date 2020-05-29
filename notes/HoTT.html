@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 17:50:50 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 18:09:23 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -229,7 +229,7 @@
             $$
           </p>
           <p>
-            An element of it iwll be called a `loop` at a. For $n : \mathbb{N}$, the `n-fold iterated loop space` $\Omega^n(A, a)$ of a pointed type $(A, a)$ is defined recursively by:
+            An element of it will be called a `loop` at a. For $n : \mathbb{N}$, the `n-fold iterated loop space` $\Omega^n(A, a)$ of a pointed type $(A, a)$ is defined recursively by:
           </p>
           <p class="mathjax">
             $$
@@ -242,6 +242,43 @@
           </p>
           <h2 id="functions-are-functors">
             Functions are functors
+          </h2>
+          <p>
+            From a type theoretic perspective, functions should respect equality; topologically, this corresponds to saying that every function is continuous (or preserves paths).
+          </p>
+          <p class="exercise">
+            Given function $f : A \rightarrow B$, then for $x, y : A$, there is an operation
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(y))
+            $$
+          </p>
+          <p>
+            $\texttt{ap}_f$ can be read as the application of a function to a path.
+          </p>
+          <p>
+            To provide a simple proof, it suffices to assume that $p$ is $\texttt{refl}_x$. In this case, we may define $\texttt{ap}_f(p) :\equiv \texttt{refl}_{f(x)} f(x) = f(x)$. We will often write $\texttt{ap}_f(p)$ as $f(p)$, and this matches the common category theory convention of using the same symbol for application of a functor to objects and morphisms.
+          </p>
+          <p class="exercise">
+            We will now provide some facts about $\texttt{ap}_f$ without proof.
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $\texttt{ap}_f(p \circ q) = \texttt{ap}_f(p) \circ \texttt{ap}_f(q)$
+            </li>
+            <li>
+              $\texttt{ap}_f(p^{-1}) = \texttt{ap}_f(p)^{-1}$
+            </li>
+            <li>
+              $\texttt{ap}_g(\texttt{ap}_f(p)) = \texttt{ap}_{g \circ f}(p)$
+            </li>
+            <li>
+              $\texttt{ap}_{\texttt{id}_A} = p$
+            </li>
+          </ol>
+          <h2 id="type-families-are-fibrations">
+            Type families are fibrations
           </h2>
         </article>
       </main>
