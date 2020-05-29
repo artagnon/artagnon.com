@@ -26,3 +26,21 @@ $$
 $$
 
 Informally, the induction principle for identity types says that if we want to construct an object which depends on an inhabitant $p : x =_A y$ of an identity type, then it suffices to perform the construction in the special case when $x, y$ are judgementally the same, and $p$ is the reflexivity element $\texttt{refl}_x x = x$.
+
+The induction principle endows each type with the structure of an $\infty$-groupoid, and each function between two types with the structure of the an $\infty$-functor betwen two such groupoids.
+
+# Types are higher groupoids
+
++ To state our first lemma:
+
+$$
+  \Pi_{A : \mathscr{U}} \Pi_{x, y : A} (x = y) \rightarrow (y = x)
+$$
+
+The proof of this lemma would involve constructing an inhabitant of this type. Let us write the proof in an informal style, as this is preferred. We want to construct $x, y :A$, $p : x = y$, and $p^{-1} : y = x$. By induction, it suffices to consider the case when $y = x$ and $p = \texttt{refl}_x$. In this case, the type of $x = y$ and $y = x$, in which we're trying to construct $p^{-1}$, are both equal to $x = x$. Thus, in the reflexivity case, we can define $\texttt{refl}_x^{-1}$ to simply be $\texttt{refl}_x$. The general case therefore proceeds by the induction principle, and the conversion rule $\texttt{refl}_x^{-1} \equiv \texttt{refl}_x$.
+
++ To state our second lemma:
+
+$$
+  \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
+$$
