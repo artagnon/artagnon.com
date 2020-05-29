@@ -81,4 +81,20 @@ $$
   & & & &
 }}
 
-Composing the two upper and lower paths, we get $p \circ r, q \circ s : a = c$. The horizontal composition can be written as $\alpha \star \beta : p \circ r = q \circ s$ defined as follows. First, we define $\alpha \circ_r r = p \circ_r = q \circ r$ by path induction on $r$ so that $\alpha \circ_r \texttt{refl}_b \equiv ru_p^{-1} \circ \alpha \circ ru_q$, where $ru_p = p \circ \texttt{refl}_b$ is the right unit lemma, which we previously mentioned.
+Composing the two upper and lower paths, we get $p \circ r, q \circ s : a = c$. The horizontal composition can be written as $\alpha \star \beta : p \circ r = q \circ s$ defined as follows. First, we define $\alpha \circ_r r = p \circ_r = q \circ r$ by path induction on $r$ so that
+
+$$
+  \alpha \circ_r \texttt{refl}_b \equiv \texttt{ru}_p^{-1} \circ \alpha \circ \texttt{ru}_q
+$$
+
+where $\texttt{ru}_p = p \circ \texttt{refl}_b$ is the right unit lemma, which we previously mentioned. We can also define $q \circ_l \beta : q \circ r = q \circ s$ by induction on $q$ so that
+
+$$
+  \texttt{refl}_b \circ_l \beta \equiv \texttt{lu}_r^{-1} \circ \beta \circ \texttt{lu}_s
+$$
+
+where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called `whiskering`. Next, since $\alpha \circ_r r$ and $q \circ_l \beta$ are composable 2-paths, we can define horizontal composition by:
+
+$$
+  \alpha \star \beta :\equiv (\alpha \circ_r r)(q \circ_l \beta)
+$$
