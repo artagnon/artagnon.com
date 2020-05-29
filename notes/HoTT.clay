@@ -145,4 +145,32 @@ To provide a simple proof, it suffices to assume that $p$ is $\texttt{refl}_x$. 
 (iii) $\texttt{ap}_g(\texttt{ap}_f(p)) = \texttt{ap}_{g \circ f}(p)$
 (iv) $\texttt{ap}_{\texttt{id}_A} = p$
 
+These are themselves paths, which have to satisfy coherence laws, as usual.
+
 # Type families are fibrations
+
+If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingridient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as `indiscrenability of identicals` in our [previous note](HoTT-foundations#identity-types).
+
++ `Transport lemma`. Suppose $P$ is a type family over $A$ and $p : x =_A y$, then there is a function $p_\star : P(x) \rightarrow P(y)$.
+
+Let $D : \Pi_{x, y : A}(x = y) \rightarrow \mathscr{U}$ be the type family defined by:
+
+$$
+  D(x, y, p) :\equiv P(x) \rightarrow P(y)
+$$
+
+then we have the function
+
+$$
+  d :\equiv \lambda x . \texttt{id}_{P(x)} : \Pi_{x : A} D(x, x, \texttt{refl}_x)
+$$
+
+so that the induction principle gives us $\texttt{ind}_{=A}(D, d, x, y, p) : P(x) \rightarrow P(y)$.
+
+Sometimes, it is notate the type family $P$ in which the transport operation happens:
+
+$$
+  \texttt{transport}^P(p, -) : P(x) \rightarrow P(y)
+$$
+
+Topologically, the transport lemma can be viewed as a path lifting operation on a fibration. We think of a type famiy $P : A \rightarrow \mathscr{U}$ as a fibration with base space $A$, with $P(x)$ being the fiber over $x$, and with $\Sigma_{x : A} P(x)$ being the `total space` of the fibration, with first projection $\Sigma_{x : A} P(x) \rightarrow A$.
