@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 13:03:11 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-29" class="end">Fri, 29 May 2020 14:50:43 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
           </div>
         </header>
         <article>
@@ -145,6 +145,25 @@
               $(p \circ q) \circ r = p \circ (q \circ r)$
             </li>
           </ol>
+          <p>
+            Given a type $A$ with point $a : A$, we define its loop space $\Omega(A, a)$ to be the type $a =_A a$; we could concatenate this to $\Omega A$ if $a$ is understood from the context. Since any two elements of $\Omega A$ are paths with the same start and endpoints, we have $\Omega A \times \Omega A \rightarrow \Omega A$. It can also be fruitful to consider the loop space of a loop space of $A$, the space of 2-dimensional loops, written $\Omega^2(A, a)$, represented as $\texttt{refl}_a =_{a =_A a} \texttt{refl}_a$.
+          </p>
+          <p class="exercise">
+            The Eckmann-Hilton theorem can be stated as $\Omega^2(A) \times \Omega^2(A) \rightarrow \Omega^2(A)$ being commutative: $\alpha \circ \beta = \beta \circ \alpha$ for any $\alpha, \beta : \Omega^2(A)$.
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            & \ar@{=>}[dd]_\alpha && \ar@{=>}[dd]_\beta & \\
+              a \ar@/^3pc/[rr]^p\ar@/_3pc/[rr]_q && b \ar@/^3pc/[rr]^r\ar@/_3pc/[rr]_s && c \\
+              & & & &
+              }
+              \end{xy}
+            
+            $$
+          </p>
         </article>
       </main>
       <nav>
