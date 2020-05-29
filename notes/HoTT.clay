@@ -60,8 +60,25 @@ Given a type $A$ with point $a : A$, we define its loop space $\Omega(A, a)$ to 
 
 + The Eckmann-Hilton theorem can be stated as $\Omega^2(A) \times \Omega^2(A) \rightarrow \Omega^2(A)$ being commutative: $\alpha \circ \beta = \beta \circ \alpha$ for any $\alpha, \beta : \Omega^2(A)$.
 
+First, notice that $\Omega A \times \Omega A \rightarrow \Omega A$ induces an operation:
+
+$$
+  \star : \Omega^2(A) \times \Omega^2(A) \rightarrow \Omega^2(A)
+$$
+
+In the following diagram,
+$$
+  \begin{matrix}
+    p : a = b & q : a = b \\
+    r : b = c & s : b = c \\
+    \alpha : p = q & \beta : r = s
+  \end{matrix}
+$$
+
 {{
   & \ar@{=>}[dd]_\alpha && \ar@{=>}[dd]_\beta & \\
   a \ar@/^3pc/[rr]^p\ar@/_3pc/[rr]_q && b \ar@/^3pc/[rr]^r\ar@/_3pc/[rr]_s && c \\
   & & & &
 }}
+
+Composing the two upper and lower paths, we get $p \circ r, q \circ s : a = c$. The horizontal composition can be written as $\alpha \star \beta : p \circ r = q \circ s$ defined as follows. First, we define $\alpha \circ_r r = p \circ_r = q \circ r$ by path induction on $r$ so that $\alpha \circ_r \texttt{refl}_b \equiv ru_p^{-1} \circ \alpha \circ ru_q$, where $ru_p = p \circ \texttt{refl}_b$ is the right unit lemma, which we previously mentioned.
