@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 10:21:36 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 11:33:40 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -358,6 +358,26 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <pre><code class="language-cpp">Definition equiv_path_sigma `(P : A -> Type) (u v : sigT P)
 : {p : u.1 = v.1 &  p # u.2 = v.2} <~> (u = v)
   := Build_Equiv _ _ (path_sigma_uncurried P u v) _.</code></pre>
+          <p>
+            In classical homotopy theory, a fibration is defined as a map for which there exist liftings of paths, while in contrast, we have shown that in type theory, every type family comes with a specified "lifting function".
+          </p>
+          <p>
+            When the type family $P : A \rightarrow \mathscr{U}$ is regarded as a fibration, the base is $A$, and the total space is $\Sigma_{x : A} P(x)$. We may also refer to the dependent function $\Pi_{x : A} P(x)$ as the `section` of the fibration $P$, and we may say that something happens `fiberwise` if it happens for each $P(x)$. For instance, a section $f : \Pi_{x : A} P(x)$ shows that $P$ is "fiberwise inhabited".
+          </p>
+          <p>
+            We can now prove a dependent version of the lemma $\texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(b))$ as follows. Given $\Pi_{x : A} P(x)$, we can define a non-dependent version of the function $f' : A \rightarrow \Sigma_{x : A} P(x)$ by setting $f'(x) :\equiv (x, f(x))$ and consider $f'(p) : f'(x) = f'(y)$. Since $\texttt{pr}_1 \circ f' \equiv \texttt{id}_A$, we have $\texttt{pr}_1(f'(p)) \equiv p$; thus $f'(p)$ does "lie over" $p$ in this sense. However, it is not obvious from the type of $f'(p)$ that it lies over any specific path in $A$ (in this case $p$), which is sometimes important.
+          </p>
+          <p>
+            The solution is to use the transport lemma; we have a canonical path $\texttt{lift}(u, p)$ from $(x, u)$ to $(u, p_\star(u))$, which lies over $p$. Thus, any path from $u : P(x)$ to $v : P(y)$ lying over $p$ should factor through $\texttt{lift}(u, p)$.
+          </p>
+          <p class="exercise">
+            `Dependent map`. Suppose $f : \Pi_{x : A} P(x)$, we have a map
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{apd}_f : \Pi_{p : x = y} p_\star(f(x)) =_{P(y)} f(y)
+            $$
+          </p>
         </article>
       </main>
       <nav>
