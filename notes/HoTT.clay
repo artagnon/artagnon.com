@@ -260,3 +260,11 @@ We prove it as follows. Let $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$
 $$
   D(x, y, p) :\equiv p_\star(f(x)) = f(y)
 $$
+
+Then $D(x, x, \texttt{refl}_x)$ is ($\texttt{refl}_x)_\star = f(x)$. Then we get $D(x, x, \texttt{refl}_x) \equiv f(x) = f(x)$. Thus, we find the function:
+
+$$
+  d :\equiv \lambda x . \texttt{refl}_{f(x)} : \Pi_{x : A} D(x, x, \texttt{refl}_x)
+$$
+
+and now, path induction gives us $\texttt{apd}_f(p) : p_\star(f(x)) = f(y)$ for each $p : x = y$.
