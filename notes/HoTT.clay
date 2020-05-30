@@ -415,3 +415,21 @@ $$
 is poorly behaved. For instance, a single function $f : A \rightarrow B$, there may be multiple unequal multiple inhabitants. This is closely related to the observation in higher category theory that one often needs to consider `adjoint equivalences`. Let us instead do the following:
 
 Given $f : A \rightarrow B$, a quasi-inverse of $f$ is a triple $(g, \alpha, \beta)$ consisting of a function $g : B \rightarrow A$ and homotopies $\alpha : f \circ g \sim \texttt{id}_B$ and $\beta : g \circ f \sim \texttt{id}_A$. The quasi-inverse of $f$ is denoted $\texttt{qinv}(f)$.
+
+In general, we will reserve the use of the term isomorphism in the special case when $A$ and $B$ behave like sets, where it is unproblematic. Let us define `equivalence` for an improved notation $isequiv(f)$ with the following properties:
+
+(i) For each $f: A \rightarrow B$, there is a function $\texttt{qinv}(f) \rightarrow \texttt{isequiv}(f)$
+(ii) Similarly, for each $f$, we have $\texttt{isequiv}(f) \rightarrow \texttt{qinv}$
+(iii) For any two inhabitants $e_1, e_2 : \texttt{isequiv}(f)$, we have $e_1 = e_2$
+
+Later, we will see many different definitions of $isequiv(f)$, all of which satisfy these properties. For now, let us be satiated with the easiest such definition:
+
+$$
+  \texttt{isequiv}(f) :\equiv (\Sigma_{g : B \rightarrow A} f \circ g \sim \texttt{id}_B) \times (\Sigma_{h : B \rightarrow A} h \circ f \sim \texttt{id}_A)
+$$
+
+For the moment, the main takeaway is that we have a well-defined meaning for "$f$ is an equivalence" by exhibiting a quasi-inverse to it. We can write
+
+$$
+  A \simeq B :\equiv \Sigma_{f : A \rightarrow B} \texttt{isequiv(f)}
+$$

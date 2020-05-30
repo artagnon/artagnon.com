@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 15:13:02 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 15:31:57 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -578,6 +578,36 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
           </p>
           <p>
             Given $f : A \rightarrow B$, a quasi-inverse of $f$ is a triple $(g, \alpha, \beta)$ consisting of a function $g : B \rightarrow A$ and homotopies $\alpha : f \circ g \sim \texttt{id}_B$ and $\beta : g \circ f \sim \texttt{id}_A$. The quasi-inverse of $f$ is denoted $\texttt{qinv}(f)$.
+          </p>
+          <p>
+            In general, we will reserve the use of the term isomorphism in the special case when $A$ and $B$ behave like sets, where it is unproblematic. Let us define `equivalence` for an improved notation $isequiv(f)$ with the following properties:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              For each $f: A \rightarrow B$, there is a function $\texttt{qinv}(f) \rightarrow \texttt{isequiv}(f)$
+            </li>
+            <li>
+              Similarly, for each $f$, we have $\texttt{isequiv}(f) \rightarrow \texttt{qinv}$
+            </li>
+            <li>
+              For any two inhabitants $e_1, e_2 : \texttt{isequiv}(f)$, we have $e_1 = e_2$
+            </li>
+          </ol>
+          <p>
+            Later, we will see many different definitions of $isequiv(f)$, all of which satisfy these properties. For now, let us be satiated with the easiest such definition:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{isequiv}(f) :\equiv (\Sigma_{g : B \rightarrow A} f \circ g \sim \texttt{id}_B) \times (\Sigma_{h : B \rightarrow A} h \circ f \sim \texttt{id}_A)
+            $$
+          </p>
+          <p>
+            For the moment, the main takeaway is that we have a well-defined meaning for "$f$ is an equivalence" by exhibiting a quasi-inverse to it. We can write
+          </p>
+          <p class="mathjax">
+            $$
+            A \simeq B :\equiv \Sigma_{f : A \rightarrow B} \texttt{isequiv(f)}
+            $$
           </p>
         </article>
       </main>
