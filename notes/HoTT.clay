@@ -157,14 +157,11 @@ $$
   \texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(y))
 $$
 
-$\texttt{ap}_f$ can be read as the application of a function to a path. To give a flavor of how constant maps are defined in the HoTT codebase,
+$\texttt{ap}_f$ can be read as the application of a function to a path. To give a flavor of how `f(p)` is defined in the HoTT codebase,
 
 [[
-(** The action of constant maps. *)
-Definition ap_const {A B : Type} {x y : A} (p : x = y) (z : B) :
-  ap (fun _ => z) p = 1
-  :=
-  match p with idpath => idpath end.
+Definition ap {A B:Type} (f:A -> B) {x y:A} (p:x = y) : f x = f y
+  := match p with idpath => idpath end.
 ]]
 
 To provide a simple proof, it suffices to assume that $p$ is $\texttt{refl}_x$. In this case, we may define $\texttt{ap}_f(p) :\equiv \texttt{refl}_{f(x)} f(x) = f(x)$. We will often write $\texttt{ap}_f(p)$ as $f(p)$, and this matches the common category theory convention of using the same symbol for application of a functor to objects and morphisms.

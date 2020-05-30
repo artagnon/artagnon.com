@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 09:47:54 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 10:11:16 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -273,13 +273,10 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             $$
           </p>
           <p>
-            $\texttt{ap}_f$ can be read as the application of a function to a path. To give a flavor of how constant maps are defined in the HoTT codebase,
+            $\texttt{ap}_f$ can be read as the application of a function to a path. To give a flavor of how `f(p)` is defined in the HoTT codebase,
           </p>
-          <pre><code class="language-cpp">(** The action of constant maps. *)
-Definition ap_const {A B : Type} {x y : A} (p : x = y) (z : B) :
-  ap (fun _ => z) p = 1
-  :=
-  match p with idpath => idpath end.</code></pre>
+          <pre><code class="language-cpp">Definition ap {A B:Type} (f:A -> B) {x y:A} (p:x = y) : f x = f y
+  := match p with idpath => idpath end.</code></pre>
           <p>
             To provide a simple proof, it suffices to assume that $p$ is $\texttt{refl}_x$. In this case, we may define $\texttt{ap}_f(p) :\equiv \texttt{refl}_{f(x)} f(x) = f(x)$. We will often write $\texttt{ap}_f(p)$ as $f(p)$, and this matches the common category theory convention of using the same symbol for application of a functor to objects and morphisms.
           </p>
