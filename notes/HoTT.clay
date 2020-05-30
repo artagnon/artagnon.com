@@ -93,7 +93,19 @@ $$
   \texttt{refl}_b \circ_l \beta \equiv \texttt{lu}_r^{-1} \circ \beta \circ \texttt{lu}_s
 $$
 
-where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called `whiskering`. Next, since $\alpha \circ_r r$ and $q \circ_l \beta$ are composable 2-paths, we can define horizontal composition by:
+where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called `whiskering`. In the HoTT codebase, this is written as:
+
+[[
+Definition whiskerL {A : Type} {x y z : A} (p : x = y)
+  {q r : y = z} (h : q = r) : p @ q = p @ r
+:= 1 @@ h.
+
+Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
+  (h : p = q) (r : y = z) : p @ r = q @ r
+:= h @@ 1.
+]]
+
+Next, since $\alpha \circ_r r$ and $q \circ_l \beta$ are composable 2-paths, we can define horizontal composition by:
 
 $$
   \alpha \star \beta :\equiv (\alpha \circ_r r)(q \circ_l \beta)
@@ -105,7 +117,18 @@ $$
   \alpha \star \beta = \alpha \circ \beta = \alpha \star' \beta = \beta \circ \alpha
 $$
 
-The foregoing fact, known as the `Eckmann-Hilton argument` comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
+The foregoing fact, known as the `Eckmann-Hilton argument` comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups. In the HoTT codebase, this is defined as follows:
+
+[[
+Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :> (x = x)) : p @ q = q @ p :=
+  (whiskerR_p1 p @@ whiskerL_1p q)^
+  @ (concat_p1 _ @@ concat_p1 _)
+  @ (concat_1p _ @@ concat_1p _)
+  @ (concat_whisker _ _ _ _ p q)
+  @ (concat_1p _ @@ concat_1p _)^
+  @ (concat_p1 _ @@ concat_p1 _)^
+  @ (whiskerL_1p q @@ whiskerR_p1 p).
+]]
 
 A `pointed type` $(A, a)$ is a type $A : \mathscr{U}$ together with a point $a : A$ called its `basepoint`. We write $\mathscr{U}_\bullet :\equiv \Sigma_{A : \mathscr{U}}$ for the type of pointed types in universe $\mathscr{U}$.
 
