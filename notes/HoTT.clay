@@ -160,7 +160,7 @@ $$
 $\texttt{ap}_f$ can be read as the application of a function to a path. To give a flavor of how $f(p)$ is defined in the HoTT codebase,
 
 ~~
-Definition ap {A B:Type} (f:A -> B) {x y:A} (p:x = y) : f x = f y
+Definition ap {A B : Type} (f : A -> B) {x y : A} (p : x = y) : f x = f y
   := match p with idpath => idpath end.
 ~~
 
@@ -249,7 +249,7 @@ we use transport along [p] to make them comparable: [apD f p : p # f x = f y].
   The type [p # f x = f y] can profitably be considered as a heterogeneous or
   dependent equality type, of "paths from [f x] to [f y] over [p]". *)
 
-Definition apD {A:Type} {B:A->Type} (f:forall a:A, B a) {x y:A} (p:x=y):
+Definition apD {A : Type} {B : A->Type} (f : forall a: A, B a) {x y : A} (p : x=y):
   p # (f x) = f y
   :=
   match p with idpath => idpath end.
@@ -268,3 +268,24 @@ $$
 $$
 
 and now, path induction gives us $\texttt{apd}_f(p) : p_\star(f(x)) = f(y)$ for each $p : x = y$.
+
+We will refer generally to paths which "lie over paths" in this sense as `dependent paths`. Since a non-dependently typed function is a special case of a dependently typed function, we have the following relation between $\texttt{apd}_f$ and $\texttt{ap}_f$:
+
++ If $P : A \rightarrow \mathscr{U}$ is defined by $P(x) :\equiv B$ for a fixed $B : \mathscr{U}$, then for any $x, y : A$, $p : x = y$, and $b : B$, we have a path:
+
+$$
+  \texttt{transportconst}^B_P(b) : \texttt{transport}^P(p, b) = b
+$$
+
+The corresponding Coq code looks like:
+
+~~
+(** Transporting in a constant fibration. *)
+Definition transport_const {A B : Type} {x1 x2 : A} (p : x1 = x2) (y : B)
+  : transport (fun x => B) p y = y.
+Proof.
+  destruct p. exact 1.
+Defined.
+~~
+
+In English, it suffices to assume that $y$ is $x$, and $p$ is $\texttt{refl}_x$. But $\texttt{transport}^P(\texttt{refl}_x, b) \equiv b$, so in this case, we have to prove that $b = b$, which can be discharged by $\texttt{refl}_b$.
