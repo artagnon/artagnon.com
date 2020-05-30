@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 15:31:57 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 18:22:05 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -594,7 +594,7 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
             </li>
           </ol>
           <p>
-            Later, we will see many different definitions of $isequiv(f)$, all of which satisfy these properties. For now, let us be satiated with the easiest such definition:
+            Later, we will see many different definitions of $\texttt{isequiv}(f)$, all of which satisfy these properties. For now, let us be satiated with the easiest such definition:
           </p>
           <p class="mathjax">
             $$
@@ -609,6 +609,51 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
             A \simeq B :\equiv \Sigma_{f : A \rightarrow B} \texttt{isequiv(f)}
             $$
           </p>
+          <p class="exercise">
+            Type equivalence is an equivalence relation on $\mathscr{U}$. More specifically,
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              For any $A$, the identity fuction $\texttt{id}_A$ is an equivalence; $A \simeq A$
+            </li>
+            <li>
+              For any $f : A \simeq B$, we have an equivalence $f^{-1} : B \simeq A$
+            </li>
+            <li>
+              For any $f : A \simeq B$, $g : B \simeq C$, we have $g \circ f : A \simeq C$
+            </li>
+          </ol>
+          <h2 id="the-higher-groupoid-structure-of-type-formers">
+            The higher groupoid structure of type formers
+          </h2>
+          <p>
+            The goal now is to form new types corresponding to the type theoretic ones from our [previous note](/notes/HoTT-foundations). For instance, a cartesian product $A = B \times C$, $x :\equiv (b, c)$, $y :\equiv (b', c')$, then we have:
+          </p>
+          <p class="mathjax">
+            $$
+            (b, c) = (b', c') \simeq (b = b') \times (c = c')
+            $$
+          </p>
+          <p>
+            In more traditional language, two ordered pairs are equal just when their components are equal. The higher structure of identity types can also be expressed in terms of those equivalences. Similarly, when a type family $P : A \rightarrow \mathscr{U}$ is built up fiberwise, up to homotopy, in terms of the corresponding operations on the data that went into $P$. For instance, $P(x) = B(x) \times C(x)$. Then, we have:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{transport}^P(p, (b, c)) = (\texttt{transport}^B(p, b), \texttt{transport}^C(p, c)
+            $$
+          </p>
+          <p>
+            Finally, the type forming rules are also functorial, and if a function $f$ is built from this functorially, then the operations $\texttt{ap}_f$ and $\texttt{apd}_f$ can be computed based on the corresponding ones on the data going into into $f$. For instance, $g : B \rightarrow B'$ and $h : C \rightarrow C'$, and we define $f : B \times C \rightarrow B' \times C'$ by $f(b,c) :\equiv (g(b), h(c))$, then modulo equivalence, we can identify $\texttt{ap}_f$ with $(\texttt{ap}_g, \texttt{ap}_h)$.
+          </p>
+          <p>
+            Since our philosophy states that identity types are defined uniformly for all types by their induction principle, so we cannot redefine them to be different for different types. The [previous note](/notes/HoTT-foundations) is insufficient to prove the desired theorems for two type formers: $\Pi$ types and universes. For $\Pi$ types, we use the axiom of `functional extensionality`, and for universes, we use the `univalence axiom`, which we will state shortly.
+          </p>
+          <p>
+            It is, however, important to note that not all identity types can be determined by induction over the construction of types. Counterexamples include most non-trivial `higher inductive types` (HITs). For instance, calculating the identity types of types $\mathbb{S}^n$ is equivalent to calculating the higher homotopy groups of spheres, a field of research in algebraic topology.
+          </p>
+          <h2 id="cartesian-product-types">
+            Cartesian product types
+          </h2>
         </article>
       </main>
       <nav>
