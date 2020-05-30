@@ -157,7 +157,7 @@ $$
   \texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(y))
 $$
 
-$\texttt{ap}_f$ can be read as the application of a function to a path. To give a flavor of how `f(p)` is defined in the HoTT codebase,
+$\texttt{ap}_f$ can be read as the application of a function to a path. To give a flavor of how $f(p)$ is defined in the HoTT codebase,
 
 [[
 Definition ap {A B:Type} (f:A -> B) {x y:A} (p:x = y) : f x = f y
@@ -203,7 +203,12 @@ $$
 
 Topologically, the transport lemma can be viewed as a "path lifting" operation on a fibration. We think of a type famiy $P : A \rightarrow \mathscr{U}$ as a fibration with base space $A$, with $P(x)$ being the fiber over $x$, and with $\Sigma_{x : A} P(x)$ being the `total space` of the fibration, with first projection $\Sigma_{x : A} P(x) \rightarrow A$.
 
-The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path.
+The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path. In the HoTT codebase, this is written as:
+
+[[
+Definition transport {A : Type} (P : A -> Type) {x y : A} (p : x = y) (u : P x) : P y :=
+  match p with idpath => u end.
+]]
 
 + We now state `path lifting property` without proof. Let $P : A \rightarrow \mathscr{U}$ be a type family over $A$, and assume we have $u : P(x)$ for some $x : A$. Then, for $p : x = y$, we have:
 
@@ -211,4 +216,10 @@ $$
   \texttt{lift}(u, p) : (x, y) = (y, p_\star(u))
 $$
 
-in $\Sigma_{x : A} P(x)$, such that $\texttt{pr}_1(\texttt{lift}(u, p)) = p$.
+in $\Sigma_{x : A} P(x)$, such that $\texttt{pr}_1(\texttt{lift}(u, p)) = p$. To peek into the definition in the HoTT codebase:
+
+[[
+Definition equiv_path_sigma `(P : A -> Type) (u v : sigT P)
+: {p : u.1 = v.1 &  p # u.2 = v.2} <~> (u = v)
+  := Build_Equiv _ _ (path_sigma_uncurried P u v) _.
+]]
