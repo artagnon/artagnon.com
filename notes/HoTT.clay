@@ -335,3 +335,32 @@ Definition transport_pp {A : Type} (P : A -> Type) {x y z : A} (p : x = y) (q : 
 ~~
 
 # Homotopies and equivalences
+
+It is now time to talk about identifications between types and functions. For two functions to be equal, they must agree on every element in their domains. Let $f, g : \Pi_{x : A} P(x)$ be two sections of of the type family $P : A \rightarrow \mathscr{U}$. A homotopy from $f$ to $g$ is the dependent function:
+
+$$
+  f \sim g :\equiv \Pi_{x : A} f(x) = g(x)
+$$
+
+Note that this is not the same thing as $f = g$, but we will revisit this when we talk about the univalence axiom.
+
+Just as functions in type theory are automatically functors, homotopies are automatically natural transforms:
+
+$$
+  \Pi_{f : \Pi_{x : A} P(x)} (f \sim f) \\
+  \Pi_{f, g : \Pi_{x : A} P(x)} (f \sim g) \rightarrow (g \sim f) \\
+  \Pi_{f, g, h : \Pi_{x : A} P(x)} (f \sim g) \rightarrow (g \sim h) \rightarrow (f \sim h)
+$$
+
++ Suppose $H : f \sim g$ is a homotopy between functions $f, g : A \rightarrow B$ and let $p : x =_A y$. Then we have:
+
+$$
+  H(x) \circ g(p) = f(p) \circ H(y)
+$$
+
+We may also draw the commutative diagram:
+
+{{
+  f(x)\ar@{=}[r]^{f(p)}\ar@{=}[d]_{H(x)} & f(y)\ar@{=}[d]^{H(y)} \\
+  g(x)\ar@{=}[r]_{g(p)} & g(y)
+}}

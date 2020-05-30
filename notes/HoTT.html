@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 13:04:42 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 13:38:41 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -473,6 +473,50 @@ Defined.</code></pre>
           <h2 id="homotopies-and-equivalences">
             Homotopies and equivalences
           </h2>
+          <p>
+            It is now time to talk about identifications between types and functions. For two functions to be equal, they must agree on every element in their domains. Let $f, g : \Pi_{x : A} P(x)$ be two sections of of the type family $P : A \rightarrow \mathscr{U}$. A homotopy from $f$ to $g$ is the dependent function:
+          </p>
+          <p class="mathjax">
+            $$
+            f \sim g :\equiv \Pi_{x : A} f(x) = g(x)
+            $$
+          </p>
+          <p>
+            Note that this is not the same thing as $f = g$, but we will revisit this when we talk about the univalence axiom.
+          </p>
+          <p>
+            Just as functions in type theory are automatically functors, homotopies are automatically natural transforms:
+          </p>
+          <p class="mathjax">
+            $$
+            \Pi_{f : \Pi_{x : A} P(x)} (f \sim f) \\
+              \Pi_{f, g : \Pi_{x : A} P(x)} (f \sim g) \rightarrow (g \sim f) \\
+              \Pi_{f, g, h : \Pi_{x : A} P(x)} (f \sim g) \rightarrow (g \sim h) \rightarrow (f \sim h)
+            $$
+          </p>
+          <p class="exercise">
+            Suppose $H : f \sim g$ is a homotopy between functions $f, g : A \rightarrow B$ and let $p : x =_A y$. Then we have:
+          </p>
+          <p class="mathjax">
+            $$
+            H(x) \circ g(p) = f(p) \circ H(y)
+            $$
+          </p>
+          <p>
+            We may also draw the commutative diagram:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            f(x)\ar@{=}[r]^{f(p)}\ar@{=}[d]_{H(x)} & f(y)\ar@{=}[d]^{H(y)} \\
+              g(x)\ar@{=}[r]_{g(p)} & g(y)
+              }
+              \end{xy}
+            
+            $$
+          </p>
         </article>
       </main>
       <nav>
