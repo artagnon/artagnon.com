@@ -95,7 +95,7 @@ $$
 
 where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called `whiskering`. In the HoTT codebase, this is written as:
 
-[[
+~~
 Definition whiskerL {A : Type} {x y z : A} (p : x = y)
   {q r : y = z} (h : q = r) : p @ q = p @ r
 := 1 @@ h.
@@ -103,7 +103,7 @@ Definition whiskerL {A : Type} {x y z : A} (p : x = y)
 Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
   (h : p = q) (r : y = z) : p @ r = q @ r
 := h @@ 1.
-]]
+~~
 
 Next, since $\alpha \circ_r r$ and $q \circ_l \beta$ are composable 2-paths, we can define horizontal composition by:
 
@@ -119,7 +119,7 @@ $$
 
 The foregoing fact, known as the `Eckmann-Hilton argument` comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups. In the HoTT codebase, this is defined as follows:
 
-[[
+~~
 Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :> (x = x)) : p @ q = q @ p :=
   (whiskerR_p1 p @@ whiskerL_1p q)^
   @ (concat_p1 _ @@ concat_p1 _)
@@ -128,7 +128,7 @@ Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :> (x = x)) : p @ q = q 
   @ (concat_1p _ @@ concat_1p _)^
   @ (concat_p1 _ @@ concat_p1 _)^
   @ (whiskerL_1p q @@ whiskerR_p1 p).
-]]
+~~
 
 A `pointed type` $(A, a)$ is a type $A : \mathscr{U}$ together with a point $a : A$ called its `basepoint`. We write $\mathscr{U}_\bullet :\equiv \Sigma_{A : \mathscr{U}}$ for the type of pointed types in universe $\mathscr{U}$.
 
@@ -159,10 +159,10 @@ $$
 
 $\texttt{ap}_f$ can be read as the application of a function to a path. To give a flavor of how $f(p)$ is defined in the HoTT codebase,
 
-[[
+~~
 Definition ap {A B:Type} (f:A -> B) {x y:A} (p:x = y) : f x = f y
   := match p with idpath => idpath end.
-]]
+~~
 
 To provide a simple proof, it suffices to assume that $p$ is $\texttt{refl}_x$. In this case, we may define $\texttt{ap}_f(p) :\equiv \texttt{refl}_{f(x)} f(x) = f(x)$. We will often write $\texttt{ap}_f(p)$ as $f(p)$, and this matches the common category theory convention of using the same symbol for application of a functor to objects and morphisms.
 
@@ -205,10 +205,10 @@ Topologically, the transport lemma can be viewed as a "path lifting" operation o
 
 The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path. In the HoTT codebase, this is written as:
 
-[[
+~~
 Definition transport {A : Type} (P : A -> Type) {x y : A} (p : x = y) (u : P x) : P y :=
   match p with idpath => u end.
-]]
+~~
 
 + We now state `path lifting property` without proof. Let $P : A \rightarrow \mathscr{U}$ be a type family over $A$, and assume we have $u : P(x)$ for some $x : A$. Then, for $p : x = y$, we have:
 
@@ -218,11 +218,11 @@ $$
 
 in $\Sigma_{x : A} P(x)$, such that $\texttt{pr}_1(\texttt{lift}(u, p)) = p$. To peek into the definition in the HoTT codebase:
 
-[[
+~~
 Definition equiv_path_sigma `(P : A -> Type) (u v : sigT P)
 : {p : u.1 = v.1 &  p # u.2 = v.2} <~> (u = v)
   := Build_Equiv _ _ (path_sigma_uncurried P u v) _.
-]]
+~~
 
 In classical homotopy theory, a fibration is defined as a map for which there exist liftings of paths, while in contrast, we have shown that in type theory, every type family comes with a specified "lifting function".
 
@@ -236,4 +236,27 @@ The solution is to use the transport lemma; we have a canonical path $\texttt{li
 
 $$
   \texttt{apd}_f : \Pi_{p : x = y} p_\star(f(x)) =_{P(y)} f(y)
+$$
+
+Another peek into the HoTT codebase yields:
+
+~~
+(** Similarly, dependent functions act on paths; but the type is a bit more subtle.
+If [f : forall a:A, B a] and [p : x = y] is a path in [A], then [apD f p] should somehow
+be a path between [f x : B x] and [f y : B y]. Since these live in different types,
+we use transport along [p] to make them comparable: [apD f p : p # f x = f y].
+
+  The type [p # f x = f y] can profitably be considered as a heterogeneous or
+  dependent equality type, of "paths from [f x] to [f y] over [p]". *)
+
+Definition apD {A:Type} {B:A->Type} (f:forall a:A, B a) {x y:A} (p:x=y):
+  p # (f x) = f y
+  :=
+  match p with idpath => idpath end.
+~~
+
+We prove it as follows. Let $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$ be the type family defined by
+
+$$
+  D(x, y, p) :\equiv p_\star(f(x)) = f(y)
 $$
