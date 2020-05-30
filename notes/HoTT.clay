@@ -93,7 +93,7 @@ $$
   \texttt{refl}_b \circ_l \beta \equiv \texttt{lu}_r^{-1} \circ \beta \circ \texttt{lu}_s
 $$
 
-where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called `whiskering`. In the HoTT codebase, this is written as:
+where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called `whiskering`.
 
 ~~
 Definition whiskerL {A : Type} {x y z : A} (p : x = y)
@@ -117,7 +117,7 @@ $$
   \alpha \star \beta = \alpha \circ \beta = \alpha \star' \beta = \beta \circ \alpha
 $$
 
-The foregoing fact, known as the `Eckmann-Hilton argument` comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups. In the HoTT codebase, this is defined as follows:
+The foregoing fact, known as the `Eckmann-Hilton argument` comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
 
 ~~
 Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :> (x = x)) : p @ q = q @ p :=
@@ -157,7 +157,7 @@ $$
   \texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(y))
 $$
 
-$\texttt{ap}_f$ can be read as the application of a function to a path. To give a flavor of how $f(p)$ is defined in the HoTT codebase,
+$\texttt{ap}_f$ can be read as the application of a function to a path.
 
 ~~
 Definition ap {A B : Type} (f : A -> B) {x y : A} (p : x = y) : f x = f y
@@ -203,7 +203,7 @@ $$
 
 Topologically, the transport lemma can be viewed as a "path lifting" operation on a fibration. We think of a type famiy $P : A \rightarrow \mathscr{U}$ as a fibration with base space $A$, with $P(x)$ being the fiber over $x$, and with $\Sigma_{x : A} P(x)$ being the `total space` of the fibration, with first projection $\Sigma_{x : A} P(x) \rightarrow A$.
 
-The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path. In the HoTT codebase, this is written as:
+The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path.
 
 ~~
 Definition transport {A : Type} (P : A -> Type) {x y : A} (p : x = y) (u : P x) : P y :=
@@ -216,7 +216,7 @@ $$
   \texttt{lift}(u, p) : (x, y) = (y, p_\star(u))
 $$
 
-in $\Sigma_{x : A} P(x)$, such that $\texttt{pr}_1(\texttt{lift}(u, p)) = p$. To peek into the definition in the HoTT codebase:
+in $\Sigma_{x : A} P(x)$, such that $\texttt{pr}_1(\texttt{lift}(u, p)) = p$.
 
 ~~
 Definition equiv_path_sigma `(P : A -> Type) (u v : sigT P)
@@ -237,8 +237,6 @@ The solution is to use the transport lemma; we have a canonical path $\texttt{li
 $$
   \texttt{apd}_f : \Pi_{p : x = y} p_\star(f(x)) =_{P(y)} f(y)
 $$
-
-Another peek into the HoTT codebase yields:
 
 ~~
 (** Similarly, dependent functions act on paths; but the type is a bit more subtle.
