@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 12:53:26 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 13:04:42 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -435,6 +435,44 @@ Defined.</code></pre>
           <p>
             In English, it suffices to assume that $y$ is $x$, and $p$ is $\texttt{refl}_x$. But $\texttt{transport}^P(\texttt{refl}_x, b) \equiv b$, so in this case, we have to prove that $b = b$, which can be discharged by $\texttt{refl}_b$.
           </p>
+          <p>
+            By concatenating $\texttt{transportconst}$ and its inverse, we obtain:
+          </p>
+          <p class="mathjax">
+            $$
+            f(x) = f(y) \rightarrow p_\star(f(x)) = f(y) \\
+              p_\star(f(x) = f(y)) \rightarrow f(x) = f(y)
+            $$
+          </p>
+          <p class="exercise">
+            Let us now dump a few definitions and lemmas in Coq:
+          </p>
+          <pre><code class="language-coq">(** In a constant fibration, [apD] reduces to [ap], modulo [transport_const]. *)
+Lemma apD_const {A B} {x y : A} (f : A -> B) (p : x = y) :
+  apD f p = transport_const p (f x) @ ap f p.
+Proof.
+  destruct p; reflexivity.
+Defined.</code></pre>
+          <pre><code class="language-coq">(** Transporting in a pulled back fibration. *)
+Lemma transport_compose {A B} {x y : A} (P : B -> Type) (f : A -> B)
+  (p : x = y) (z : P (f x))
+  : transport (fun x => P (f x)) p z  =  transport P (ap f p) z.
+Proof.
+  destruct p; reflexivity.
+Defined.</code></pre>
+          <pre><code class="language-coq">Lemma ap_transport {A} {P Q : A -> Type} {x y : A} (p : x = y) (f : forall x, P x -> Q x) (z : P x) :
+  f y (p # z) = (p # (f x z)).
+Proof.
+  by induction p.
+Defined.</code></pre>
+          <pre><code class="language-coq">Definition transport_pp {A : Type} (P : A -> Type) {x y z : A} (p : x = y) (q : y = z) (u : P x) :
+  p @ q # u = q # p # u :=
+  match q with idpath =>
+    match p with idpath => 1 end
+  end.</code></pre>
+          <h2 id="homotopies-and-equivalences">
+            Homotopies and equivalences
+          </h2>
         </article>
       </main>
       <nav>

@@ -289,3 +289,49 @@ Defined.
 ~~
 
 In English, it suffices to assume that $y$ is $x$, and $p$ is $\texttt{refl}_x$. But $\texttt{transport}^P(\texttt{refl}_x, b) \equiv b$, so in this case, we have to prove that $b = b$, which can be discharged by $\texttt{refl}_b$.
+
+By concatenating $\texttt{transportconst}$ and its inverse, we obtain:
+
+$$
+  f(x) = f(y) \rightarrow p_\star(f(x)) = f(y) \\
+  p_\star(f(x) = f(y)) \rightarrow f(x) = f(y)
+$$
+
++ Let us now dump a few definitions and lemmas in Coq:
+
+~~
+(** In a constant fibration, [apD] reduces to [ap], modulo [transport_const]. *)
+Lemma apD_const {A B} {x y : A} (f : A -> B) (p : x = y) :
+  apD f p = transport_const p (f x) @ ap f p.
+Proof.
+  destruct p; reflexivity.
+Defined.
+~~
+
+~~
+(** Transporting in a pulled back fibration. *)
+Lemma transport_compose {A B} {x y : A} (P : B -> Type) (f : A -> B)
+  (p : x = y) (z : P (f x))
+  : transport (fun x => P (f x)) p z  =  transport P (ap f p) z.
+Proof.
+  destruct p; reflexivity.
+Defined.
+~~
+
+~~
+Lemma ap_transport {A} {P Q : A -> Type} {x y : A} (p : x = y) (f : forall x, P x -> Q x) (z : P x) :
+  f y (p # z) = (p # (f x z)).
+Proof.
+  by induction p.
+Defined.
+~~
+
+~~
+Definition transport_pp {A : Type} (P : A -> Type) {x y z : A} (p : x = y) (q : y = z) (u : P x) :
+  p @ q # u = q # p # u :=
+  match q with idpath =>
+    match p with idpath => 1 end
+  end.
+~~
+
+# Homotopies and equivalences
