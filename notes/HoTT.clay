@@ -364,3 +364,11 @@ We may also draw the commutative diagram:
   f(x)\ar@{=}[r]^{f(p)}\ar@{=}[d]_{H(x)} & f(y)\ar@{=}[d]^{H(y)} \\
   g(x)\ar@{=}[r]_{g(p)} & g(y)
 }}
+
+To supply a proof by induction, we may assume that $p$ is $\texttt{refl}_x$. Since $\texttt{ap}_f$ and $\texttt{ap}_g$ compute on reflexivity, in this case, what we must show is:
+
+$$
+  H(x) \circ \texttt{refl}_{g(x)} = \texttt{refl}_{f(x)} \circ H(x)
+$$
+
+... but this follows since both sides are equal to $H(x)$.
