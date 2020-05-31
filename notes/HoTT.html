@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-30" class="end">Sat, 30 May 2020 18:53:53 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 11:40:54 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -651,6 +651,42 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
           <h2 id="cartesian-product-types">
             Cartesian product types
           </h2>
+          <p>
+            We have the following function which we will prove is an equivalence by exhibiting its quasi-inverse:
+          </p>
+          <p class="mathjax">
+            $$
+            (x =_{A \times B} y) \rightarrow (\texttt{pr}_1(x) =_A \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) =_B \texttt{pr}_2(y))
+            $$
+          </p>
+          <pre><code class="language-coq">Definition equiv_path_prod {A B : Type} (z z' : A * B)
+  : (fst z = fst z') * (snd z = snd z')  <~>  (z = z')
+  := Build_Equiv _ _ (path_prod_uncurried z z') _.</code></pre>
+          <p>
+            We can now denote this by
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{pair}^= : (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) = \texttt{pr}_2(y)) \rightarrow x = y
+            $$
+          </p>
+          <p>
+            It can be helpful view $\texttt{pair}^=$ as an `introduction rule` for $x = y$.  to The elimination rules can then be written out as:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{ap}_{pr_1} : (x = y) \rightarrow (\texttt{pr}_1(x) = \texttt{pr}_1(y))
+              \texttt{ap}_{pr_2} : (x = y) \rightarrow (\texttt{pr}_2(x) = \texttt{pr}_2(y))
+            $$
+          </p>
+          <p>
+            For $p : \texttt{pr}_1 x = \texttt{pr}_1 y$ and $q : \texttt{pr}_2 x = \texttt{pr}_2 y$, we get the following `propositional uniqueness principle`:
+          </p>
+          <p class="mathjax">
+            $$
+            r = \texttt{pair}^=(\texttt{ap}_{pr_1}(r), \texttt{ap}_{pr_2}(r)) \quad r : x =_{A \times B} y
+            $$
+          </p>
         </article>
       </main>
       <nav>

@@ -459,3 +459,34 @@ Since our philosophy states that identity types are defined uniformly for all ty
 It is, however, important to note that not all identity types can be determined by induction over the construction of types. Counterexamples include most non-trivial `higher inductive types` (HITs). For instance, calculating the identity types of types $\mathbb{S}^n$ is equivalent to calculating the higher homotopy groups of spheres, a field of research in algebraic topology.
 
 # Cartesian product types
+
+We have the following function which we will prove is an equivalence by exhibiting its quasi-inverse:
+
+$$
+  (x =_{A \times B} y) \rightarrow (\texttt{pr}_1(x) =_A \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) =_B \texttt{pr}_2(y))
+$$
+
+~~
+Definition equiv_path_prod {A B : Type} (z z' : A * B)
+  : (fst z = fst z') * (snd z = snd z')  <~>  (z = z')
+  := Build_Equiv _ _ (path_prod_uncurried z z') _.
+~~
+
+We can now denote this by
+
+$$
+  \texttt{pair}^= : (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) = \texttt{pr}_2(y)) \rightarrow x = y
+$$
+
+It can be helpful view $\texttt{pair}^=$ as an `introduction rule` for $x = y$.  to The elimination rules can then be written out as:
+
+$$
+  \texttt{ap}_{pr_1} : (x = y) \rightarrow (\texttt{pr}_1(x) = \texttt{pr}_1(y))
+  \texttt{ap}_{pr_2} : (x = y) \rightarrow (\texttt{pr}_2(x) = \texttt{pr}_2(y))
+$$
+
+For $p : \texttt{pr}_1 x = \texttt{pr}_1 y$ and $q : \texttt{pr}_2 x = \texttt{pr}_2 y$, we get the following `propositional uniqueness principle`:
+
+$$
+  r = \texttt{pair}^=(\texttt{ap}_{pr_1}(r), \texttt{ap}_{pr_2}(r)) \quad r : x =_{A \times B} y
+$$
