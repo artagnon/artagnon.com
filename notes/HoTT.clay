@@ -558,3 +558,26 @@ It's tempting to do this proof by $\mathbb{1}$-induction, but we'd get stuck and
 Definition equiv_path_unit (z z' : Unit) : Unit <~> (z = z')
   := Build_Equiv _ _ (path_unit_uncurried z z') _.
 ~~
+
++ $\Pi$-types and functional extensionality
+
+We expect type $f = g$ of paths from $f$ to $g$ in $\Pi_{x : A} B(x)$ to be equivalent to the type of pointwise paths:
+
+$$
+  (f = g) \simeq \Pi_{x : A} (f(x) =_{B(x)} g(x))
+$$
+
+The `functional extensionality` axiom says that the above relation is an equivalence. This implies that there is a quasi-inverse:
+
+$$
+  \texttt{funext} : (\Pi_{x : a} f(x) = g(x)) \rightarrow (f = g)
+$$
+
+We can regard this as an introduction rule for the type $f = g$.
+
+~~
+Definition path_forall `{Funext} {A : Type} {P : A -> Type} (f g : forall x : A, P x) :
+  f == g -> f = g
+  :=
+  (@apD10 A P f g)^-1.
+~~

@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 13:23:35 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 13:35:57 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -753,6 +753,32 @@ Defined.</code></pre>
           </p>
           <pre><code class="language-coq">Definition equiv_path_unit (z z' : Unit) : Unit <~> (z = z')
   := Build_Equiv _ _ (path_unit_uncurried z z') _.</code></pre>
+          <p class="exercise">
+            $\Pi$-types and functional extensionality
+          </p>
+          <p>
+            We expect type $f = g$ of paths from $f$ to $g$ in $\Pi_{x : A} B(x)$ to be equivalent to the type of pointwise paths:
+          </p>
+          <p class="mathjax">
+            $$
+            (f = g) \simeq \Pi_{x : A} (f(x) =_{B(x)} g(x))
+            $$
+          </p>
+          <p>
+            The `functional extensionality` axiom says that the above relation is an equivalence. This implies that there is a quasi-inverse:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{funext} : (\Pi_{x : a} f(x) = g(x)) \rightarrow (f = g)
+            $$
+          </p>
+          <p>
+            We can regard this as an introduction rule for the type $f = g$.
+          </p>
+          <pre><code class="language-coq">Definition path_forall `{Funext} {A : Type} {P : A -> Type} (f g : forall x : A, P x) :
+  f == g -> f = g
+  :=
+  (@apD10 A P f g)^-1.</code></pre>
         </article>
       </main>
       <nav>
