@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 11:40:54 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 12:19:52 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -686,6 +686,19 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
             $$
             r = \texttt{pair}^=(\texttt{ap}_{pr_1}(r), \texttt{ap}_{pr_2}(r)) \quad r : x =_{A \times B} y
             $$
+          </p>
+          <pre><code class="language-coq">Definition transport_prod {A : Type} {P Q : A -> Type} {a a' : A} (p : a = a')
+  (z : P a * Q a)
+  : transport (fun a => P a * Q a) p z  =  (p # (fst z), p # (snd z))
+  := match p with idpath => 1 end.</code></pre>
+          <pre><code class="language-coq">Definition functor_prod {A A' B B' : Type} (f : A -> A') (g : B -> B')
+  : A * B -> A' * B'
+  := fun z => (f (fst z), g (snd z)).</code></pre>
+          <h2 id="sigma-types">
+            $\Sigma$-types
+          </h2>
+          <p>
+            Suppose we have a path $p : w = w'$ in $\Sigma_{x : A} P(x)$. Then, we get $\texttt{pr}_1(p) : \texttt{pr}_1(w) = \texttt{pr}_1(w')$. However, we cannot ask if $\texttt{pr}_1(w)$ is identical to $\texttt{pr}_1(w')$, since they don't have the same type, but we can transport $\texttt{pr}_2(w)$ along the path $\texttt{pr}_1(p)$, and this gives us an element of the same type as $\texttt{pr}_2(w')$. By path induction, we obtain the path $\texttt{pr}_1(p)_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))$.
           </p>
         </article>
       </main>

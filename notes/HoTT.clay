@@ -490,3 +490,20 @@ For $p : \texttt{pr}_1 x = \texttt{pr}_1 y$ and $q : \texttt{pr}_2 x = \texttt{p
 $$
   r = \texttt{pair}^=(\texttt{ap}_{pr_1}(r), \texttt{ap}_{pr_2}(r)) \quad r : x =_{A \times B} y
 $$
+
+~~
+Definition transport_prod {A : Type} {P Q : A -> Type} {a a' : A} (p : a = a')
+  (z : P a * Q a)
+  : transport (fun a => P a * Q a) p z  =  (p # (fst z), p # (snd z))
+  := match p with idpath => 1 end.
+~~
+
+~~
+Definition functor_prod {A A' B B' : Type} (f : A -> A') (g : B -> B')
+  : A * B -> A' * B'
+  := fun z => (f (fst z), g (snd z)).
+~~
+
+# $\Sigma$-types
+
+Suppose we have a path $p : w = w'$ in $\Sigma_{x : A} P(x)$. Then, we get $\texttt{pr}_1(p) : \texttt{pr}_1(w) = \texttt{pr}_1(w')$. However, we cannot ask if $\texttt{pr}_1(w)$ is identical to $\texttt{pr}_1(w')$, since they don't have the same type, but we can transport $\texttt{pr}_2(w)$ along the path $\texttt{pr}_1(p)$, and this gives us an element of the same type as $\texttt{pr}_2(w')$. By path induction, we obtain the path $\texttt{pr}_1(p)_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))$.
