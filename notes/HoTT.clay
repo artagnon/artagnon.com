@@ -291,7 +291,7 @@ In English, it suffices to assume that $y$ is $x$, and $p$ is $\texttt{refl}_x$.
 By concatenating $\texttt{transportconst}$ and its inverse, we obtain:
 
 $$
-  f(x) = f(y) \rightarrow p_\star(f(x)) = f(y) \\
+  f(x) = f(y) \rightarrow p_\star(f(x) = f(y)) \\
   p_\star(f(x) = f(y)) \rightarrow f(x) = f(y)
 $$
 
@@ -481,7 +481,7 @@ $$
 It can be helpful view $\texttt{pair}^=$ as an `introduction rule` for $x = y$.  to The elimination rules can then be written out as:
 
 $$
-  \texttt{ap}_{pr_1} : (x = y) \rightarrow (\texttt{pr}_1(x) = \texttt{pr}_1(y))
+  \texttt{ap}_{pr_1} : (x = y) \rightarrow (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \\
   \texttt{ap}_{pr_2} : (x = y) \rightarrow (\texttt{pr}_2(x) = \texttt{pr}_2(y))
 $$
 
@@ -506,4 +506,44 @@ Definition functor_prod {A A' B B' : Type} (f : A -> A') (g : B -> B')
 
 # $\Sigma$-types
 
-Suppose we have a path $p : w = w'$ in $\Sigma_{x : A} P(x)$. Then, we get $\texttt{pr}_1(p) : \texttt{pr}_1(w) = \texttt{pr}_1(w')$. However, we cannot ask if $\texttt{pr}_1(w)$ is identical to $\texttt{pr}_1(w')$, since they don't have the same type, but we can transport $\texttt{pr}_2(w)$ along the path $\texttt{pr}_1(p)$, and this gives us an element of the same type as $\texttt{pr}_2(w')$. By path induction, we obtain the path $\texttt{pr}_1(p)_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))$.
+Suppose we have a path $p : w = w'$ in $\Sigma_{x : A} P(x)$. Then, we get $\texttt{pr}_1(p) : \texttt{pr}_1(w) = \texttt{pr}_1(w')$. However, we cannot ask if $\texttt{pr}_1(w)$ is identical to $\texttt{pr}_1(w')$, since they don't have the same type, but we can transport $\texttt{pr}_2(w)$ along the path $\texttt{pr}_1(p)$, and this gives us an element of the same type as $\texttt{pr}_2(w')$. By path induction, we obtain the path $\texttt{pr}_1(p)_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))$, which we can regard as the type of paths from $\texttt{pr}_2(w)$ to $\texttt{pr}_2(w')$.
+
+$$
+  (w = w') \simeq \Sigma_{p : \texttt{pr}_1(w) = \texttt{pr}_1(w')} p_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))
+$$
+
+We have already proved this [previously](#type-families-are-fibrations), in the path lifting property. As usual, let us also deduce a propositional uniqueness principle as a special case:
+
++ For $z : \Sigma_{x : A} P(x)$, we have $z = (\texttt{pr}_1(z), \texttt{pr}_2(z))$
+
+~~
+Definition eta_sigma `{P : A -> Type} (u : sigT P)
+  : (u.1; u.2) = u
+  := 1.
+~~
+
++ Suppose we have the type families $P : A \rightarrow \mathscr{U}$ and $Q : (\Sigma_{x : A} P(x)) \rightarrow \mathscr{U}$, then we can construct the type family over $A$ defined by:
+
+$$
+  x \mapsto \Sigma_{u : P(x)} Q(x, u)
+$$
+
+For any path $p : x = y$, we have $(u, z) : \Sigma_{u : P(x)} Q(x, u)$, we have
+
+$$
+  p_\star(u, z) = (p_\star(u), \texttt{pair}^=(p, \texttt{refl}_{p_\star(u)})(z))
+$$
+
+~~
+(** Dependent transport is the same as transport along a [path_sigma]. *)
+Definition transportD_is_transport
+           {A : Type} (B : A->Type) (C: sigT B -> Type)
+           (x1 x2 : A) (p : x1 = x2) (y : B x1) (z : C (x1 ; y))
+: transportD B (fun a b => C (a ; b)) p y z
+  = transport C (path_sigma' B p 1) z.
+Proof.
+  destruct p. reflexivity.
+Defined.
+~~
+
+# The unit type

@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 12:19:52 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 13:01:02 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -437,7 +437,7 @@ Defined.</code></pre>
           </p>
           <p class="mathjax">
             $$
-            f(x) = f(y) \rightarrow p_\star(f(x)) = f(y) \\
+            f(x) = f(y) \rightarrow p_\star(f(x) = f(y)) \\
               p_\star(f(x) = f(y)) \rightarrow f(x) = f(y)
             $$
           </p>
@@ -675,7 +675,7 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
           </p>
           <p class="mathjax">
             $$
-            \texttt{ap}_{pr_1} : (x = y) \rightarrow (\texttt{pr}_1(x) = \texttt{pr}_1(y))
+            \texttt{ap}_{pr_1} : (x = y) \rightarrow (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \\
               \texttt{ap}_{pr_2} : (x = y) \rightarrow (\texttt{pr}_2(x) = \texttt{pr}_2(y))
             $$
           </p>
@@ -698,8 +698,50 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
             $\Sigma$-types
           </h2>
           <p>
-            Suppose we have a path $p : w = w'$ in $\Sigma_{x : A} P(x)$. Then, we get $\texttt{pr}_1(p) : \texttt{pr}_1(w) = \texttt{pr}_1(w')$. However, we cannot ask if $\texttt{pr}_1(w)$ is identical to $\texttt{pr}_1(w')$, since they don't have the same type, but we can transport $\texttt{pr}_2(w)$ along the path $\texttt{pr}_1(p)$, and this gives us an element of the same type as $\texttt{pr}_2(w')$. By path induction, we obtain the path $\texttt{pr}_1(p)_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))$.
+            Suppose we have a path $p : w = w'$ in $\Sigma_{x : A} P(x)$. Then, we get $\texttt{pr}_1(p) : \texttt{pr}_1(w) = \texttt{pr}_1(w')$. However, we cannot ask if $\texttt{pr}_1(w)$ is identical to $\texttt{pr}_1(w')$, since they don't have the same type, but we can transport $\texttt{pr}_2(w)$ along the path $\texttt{pr}_1(p)$, and this gives us an element of the same type as $\texttt{pr}_2(w')$. By path induction, we obtain the path $\texttt{pr}_1(p)_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))$, which we can regard as the type of paths from $\texttt{pr}_2(w)$ to $\texttt{pr}_2(w')$.
           </p>
+          <p class="mathjax">
+            $$
+            (w = w') \simeq \Sigma_{p : \texttt{pr}_1(w) = \texttt{pr}_1(w')} p_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))
+            $$
+          </p>
+          <p>
+            We have already proved this [previously](#type-families-are-fibrations), in the path lifting property. As usual, let us also deduce a propositional uniqueness principle as a special case:
+          </p>
+          <p class="exercise">
+            For $z : \Sigma_{x : A} P(x)$, we have $z = (\texttt{pr}_1(z), \texttt{pr}_2(z))$
+          </p>
+          <pre><code class="language-coq">Definition eta_sigma `{P : A -> Type} (u : sigT P)
+  : (u.1; u.2) = u
+  := 1.</code></pre>
+          <p class="exercise">
+            Suppose we have the type families $P : A \rightarrow \mathscr{U}$ and $Q : (\Sigma_{x : A} P(x)) \rightarrow \mathscr{U}$, then we can construct the type family over $A$ defined by:
+          </p>
+          <p class="mathjax">
+            $$
+            x \mapsto \Sigma_{u : P(x)} Q(x, u)
+            $$
+          </p>
+          <p>
+            For any path $p : x = y$, we have $(u, z) : \Sigma_{u : P(x)} Q(x, u)$, we have
+          </p>
+          <p class="mathjax">
+            $$
+            p_\star(u, z) = (p_\star(u), \texttt{pair}^=(p, \texttt{refl}_{p_\star(u)})(z))
+            $$
+          </p>
+          <pre><code class="language-coq">(** Dependent transport is the same as transport along a [path_sigma]. *)
+Definition transportD_is_transport
+           {A : Type} (B : A->Type) (C: sigT B -> Type)
+           (x1 x2 : A) (p : x1 = x2) (y : B x1) (z : C (x1 ; y))
+: transportD B (fun a b => C (a ; b)) p y z
+  = transport C (path_sigma' B p 1) z.
+Proof.
+  destruct p. reflexivity.
+Defined.</code></pre>
+          <h2 id="the-unit-type">
+            The unit type
+          </h2>
         </article>
       </main>
       <nav>
