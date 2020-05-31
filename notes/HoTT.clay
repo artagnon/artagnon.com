@@ -581,3 +581,53 @@ Definition path_forall `{Funext} {A : Type} {P : A -> Type} (f g : forall x : A,
   :=
   (@apD10 A P f g)^-1.
 ~~
+
+From this point of view, $\texttt{happly}$ is an elimination rule, while the homotopies witnessing $\texttt{funext}$ as quasi-inverse to $\texttt{happly}$ become a propositional computation rule:
+
+$$
+  \texttt{happly}(\texttt{funext}(h), x) = h(x) \quad h : \Pi_{x : A} (f(x) = g(x))
+$$
+
+and a propositional uniqueness principle,
+
+$$
+  p = \texttt{funext}(x \mapsto \texttt{happly}(p, x)) \quad p : f = g
+$$
+
+We can also compute identity, inverses, and compositions in $\Pi$-types; they are simply given by pointwise operations:
+
+$$
+  \texttt{refl}_f = \texttt{funext}(x \mapsto \texttt{refl}_{f(x)}) \\
+  \alpha^{-1} = \texttt{funext}(x \mapsto \texttt{happly}(\alpha, x)^{-1}) \\
+  \alpha \circ \beta = \texttt{funext}(x \mapsto \texttt{happly}(\alpha, x) \circ \texttt{happly}(\beta, x))
+$$
+
+For the non-dependent function $A \rightarrow B$, a special case of the corresponding dependent function, the rules for transport are quite straightforward:
+
+$$
+  \texttt{transport}^{A \rightarrow B}(p, f) = (x \mapsto \texttt{transport}^B(p, f(\texttt{transport}^A(p^{-1}, x))))
+$$
+
++ Given type families $A, B : X \rightarrow \mathscr{U}$, $p : x =_X y$, $f : A(x) \rightarrow B(x)$, and $g : A(y) \rightarrow B(y)$, we have an equivalence:
+
+$$
+(p_\star(f) = g) \simeq \Pi_{x : A(x)} (p_\star(f(a)) = g(p_\star(a)))
+$$
+
+~~
+(** Usually, a dependent path over [p:x1=x2] in [P:A->Type] between [y1:P x1] and [y2:P x2]
+is a path [transport P p y1 = y2] in [P x2].  However, when [P] is a function space,
+these dependent paths have a more convenient description: rather than transporting
+the argument of [y1] forwards and backwards, we transport only forwards but on both sides
+of the equation, yielding a "naturality square". *)
+Definition dpath_arrow
+  {A:Type} (B C : A -> Type) {x1 x2 : A} (p : x1=x2)
+  (f : B x1 -> C x1) (g : B x2 -> C x2)
+  : (forall (y1 : B x1), transport C p (f y1) = g (transport B p y1))
+  <~>
+  (transport (fun x => B x -> C x) p f = g).
+Proof.
+  destruct p.
+  apply equiv_path_arrow.
+Defined.
+~~
