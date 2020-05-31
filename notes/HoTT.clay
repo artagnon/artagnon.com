@@ -547,3 +547,14 @@ Defined.
 ~~
 
 # The unit type
+
+Let us briefly discuss the type $\mathbb{1}$.
+
++ For $x, y : \mathbb{1}$, $(x = y) \simeq \mathbb{1}$.
+
+It's tempting to do this proof by $\mathbb{1}$-induction, but we'd get stuck and be unable to perform a path induction on $p : \star = \star$. A function $(x = y) \rightarrow \mathbb{1}$ is easy to define by sending everything to $\star$. We may assume, by path induction, that $x = y = \star$, in which case, we have $\texttt{refl}_\star : x = y$, yielding a constant function $\mathbb{1} \rightarrow (x = y)$. To show the inverses, consider an element $u : \mathbb{1}$, and safely assume that $u = \star$, but this is also the result of the composite $\mathbb{1} \rightarrow (x = y) \rightarrow \mathbb{1}$.
+
+~~
+Definition equiv_path_unit (z z' : Unit) : Unit <~> (z = z')
+  := Build_Equiv _ _ (path_unit_uncurried z z') _.
+~~

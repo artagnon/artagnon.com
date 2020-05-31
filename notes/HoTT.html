@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 13:01:02 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 13:23:35 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -742,6 +742,17 @@ Defined.</code></pre>
           <h2 id="the-unit-type">
             The unit type
           </h2>
+          <p>
+            Let us briefly discuss the type $\mathbb{1}$.
+          </p>
+          <p class="exercise">
+            For $x, y : \mathbb{1}$, $(x = y) \simeq \mathbb{1}$.
+          </p>
+          <p>
+            It's tempting to do this proof by $\mathbb{1}$-induction, but we'd get stuck and be unable to perform a path induction on $p : \star = \star$. A function $(x = y) \rightarrow \mathbb{1}$ is easy to define by sending everything to $\star$. We may assume, by path induction, that $x = y = \star$, in which case, we have $\texttt{refl}_\star : x = y$, yielding a constant function $\mathbb{1} \rightarrow (x = y)$. To show the inverses, consider an element $u : \mathbb{1}$, and safely assume that $u = \star$, but this is also the result of the composite $\mathbb{1} \rightarrow (x = y) \rightarrow \mathbb{1}$.
+          </p>
+          <pre><code class="language-coq">Definition equiv_path_unit (z z' : Unit) : Unit <~> (z = z')
+  := Build_Equiv _ _ (path_unit_uncurried z z') _.</code></pre>
         </article>
       </main>
       <nav>
