@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 14:41:58 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 16:10:03 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -836,6 +836,95 @@ Proof.
   destruct p.
   apply equiv_path_arrow.
 Defined.</code></pre>
+          <p>
+            Moreover, if $q : p_\star(f) = g$ corresponds under this equivalence to $\hat{q}$, then for $a : A(x)$, the path
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{happly}(q, p_\star(a)) : p_\star(f)(p_\star(a)) = g(p_\star(a))
+            $$
+          </p>
+          <p>
+            is equal to the composite:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align*}
+                (p_\star(f))(p_\star(a)) &= p_\star(f(p^{-1}_\star(p_\star(a)) & (\texttt{by transport lemma}) \\
+                                         &= p_\star(f(a)) & \\
+                                         &= g(p_\star(a)) & (\texttt{by } \hat{q})&
+              \end{align*}
+            $$
+          </p>
+          <h2 id="universes-and-the-univalence-axiom">
+            Universes and the univalence axiom
+          </h2>
+          <p class="exercise">
+            For types $A, B : \mathscr{U}$, there is a certain function
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{idtoequiv} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
+            $$
+          </p>
+          <p>
+            defined as follows.
+          </p>
+          <pre><code class="language-coq">Definition equiv_path (A B : Type) (p : A = B) : A <~> B
+  := Build_Equiv _ _ (transport (fun X:Type => X) p) _.</code></pre>
+          <p class="exercise">
+            The `univalence axiom` can be stated as the $\texttt{idtoequiv}$ being an equivalene.
+          </p>
+          <p class="mathjax">
+            $$
+            (A =_\mathscr{U} B) \simeq (A \simeq B)
+            $$
+          </p>
+          <pre><code class="language-coq">Definition equiv_equiv_path  (A B : Type) : (A = B) <~> (A <~> B)
+  := (equiv_path_universe A B)^-1%equiv.</code></pre>
+          <p>
+            As previously done, it is fruitful to break up this equivalence into:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              Introduction rule:
+            </li>
+          </ol>
+          <p class="mathjax">
+            $$
+            \texttt{ua} : (A \simeq B) \rightarrow (A =_\mathscr{U} B)
+            $$
+          </p>
+          <ol class="olitems" type="i" start="2">
+            <li>
+              Elimination rule:
+            </li>
+          </ol>
+          <p class="mathjax">
+            $$
+            \texttt{idtoequiv} \equiv \texttt{transport}^{X \rightarrow X} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
+            $$
+          </p>
+          <ol class="olitems" type="i" start="3">
+            <li>
+              Propositional computation rule:
+            </li>
+          </ol>
+          <p class="mathjax">
+            $$
+            \texttt{transport}^{X \rightarrow X}(\texttt{ua}(f), x) = f(x)
+            $$
+          </p>
+          <ol class="olitems" type="i" start="4">
+            <li>
+              Propositional equivalence principle, for any $p : A = B$
+            </li>
+          </ol>
+          <p class="mathjax">
+            $$
+            p = \texttt{ua}(\texttt{transport}^{X \rightarrow X}(p))
+            $$
+          </p>
         </article>
       </main>
       <nav>

@@ -631,3 +631,71 @@ Proof.
   apply equiv_path_arrow.
 Defined.
 ~~
+
+Moreover, if $q : p_\star(f) = g$ corresponds under this equivalence to $\hat{q}$, then for $a : A(x)$, the path
+
+$$
+  \texttt{happly}(q, p_\star(a)) : p_\star(f)(p_\star(a)) = g(p_\star(a))
+$$
+
+is equal to the composite:
+
+$$
+  \begin{align*}
+    (p_\star(f))(p_\star(a)) &= p_\star(f(p^{-1}_\star(p_\star(a)) & (\texttt{by transport lemma}) \\
+                             &= p_\star(f(a)) & \\
+                             &= g(p_\star(a)) & (\texttt{by } \hat{q})&
+  \end{align*}
+$$
+
+# Universes and the univalence axiom
+
++ For types $A, B : \mathscr{U}$, there is a certain function
+
+$$
+  \texttt{idtoequiv} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
+$$
+
+defined as follows.
+
+~~
+Definition equiv_path (A B : Type) (p : A = B) : A <~> B
+  := Build_Equiv _ _ (transport (fun X:Type => X) p) _.
+~~
+
++ The `univalence axiom` can be stated as the $\texttt{idtoequiv}$ being an equivalene.
+
+$$
+  (A =_\mathscr{U} B) \simeq (A \simeq B)
+$$
+
+~~
+Definition equiv_equiv_path  (A B : Type) : (A = B) <~> (A <~> B)
+  := (equiv_path_universe A B)^-1%equiv.
+~~
+
+As previously done, it is fruitful to break up this equivalence into:
+
+(i) Introduction rule:
+
+$$
+  \texttt{ua} : (A \simeq B) \rightarrow (A =_\mathscr{U} B)
+$$
+
+(ii) Elimination rule:
+
+$$
+  \texttt{idtoequiv} \equiv \texttt{transport}^{X \rightarrow X} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
+$$
+
+(iii) Propositional computation rule:
+
+$$
+  \texttt{transport}^{X \rightarrow X}(\texttt{ua}(f), x) = f(x)
+$$
+
+(iv) Propositional equivalence principle, for any $p : A = B$
+
+$$
+  p = \texttt{ua}(\texttt{transport}^{X \rightarrow X}(p))
+$$
