@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-01" class="end">Mon, 01 Jun 2020 05:54:01 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-01" class="end">Mon, 01 Jun 2020 06:03:38 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -949,6 +949,17 @@ Defined.</code></pre>
           <h2 id="identity-type">
             Identity type
           </h2>
+          <p>
+            Just as the type $a =_A a'$ is characterized upto isomorphism, with a separate definition for each $A$, there is no simple characterizion of the type $p =_{a =_A a'} q$ of paths between paths $p, q : a =_A a'$.
+          </p>
+          <p class="exercise">
+            If $f : A \rightarrow B$ is an equivalence, then for all $a, a' : A$ so is:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{ap}_f : (a =_A a') \rightarrow (f(a) =_B f(a'))
+            $$
+          </p>
         </article>
       </main>
       <nav>
