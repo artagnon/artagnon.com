@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-05-31" class="end">Sun, 31 May 2020 16:10:03 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-01" class="end">Mon, 01 Jun 2020 05:54:01 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -925,6 +925,30 @@ Defined.</code></pre>
             p = \texttt{ua}(\texttt{transport}^{X \rightarrow X}(p))
             $$
           </p>
+          <p>
+            We can also identify reflexvivity, concatenation, and inverses of equalities:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{refl}_A = \texttt{ua}(\texttt{id}_A) \\
+              \texttt{ua}(f) \circ \texttt{ua}(g) = \texttt{ua}(g \circ f) \\
+              \texttt{ua}(f)^{-1} = ua(f^{-1})
+            $$
+          </p>
+          <p class="exercise">
+            For any type family $B : A \rightarrow \mathscr{U}$ and $x, y : A$ with a path $p : x = y$ and $u : B(x)$, we have:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align*}
+              \texttt{transport}^P(p, u) &= \texttt{transport}^{X \rightarrow X}(\texttt{ap}_B(p), u) \\
+                                         &= \texttt{idtoequiv}(\texttt{ap}_B(p))(u)
+              \end{align*}
+            $$
+          </p>
+          <h2 id="identity-type">
+            Identity type
+          </h2>
         </article>
       </main>
       <nav>

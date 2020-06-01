@@ -699,3 +699,22 @@ $$
 $$
   p = \texttt{ua}(\texttt{transport}^{X \rightarrow X}(p))
 $$
+
+We can also identify reflexvivity, concatenation, and inverses of equalities:
+
+$$
+  \texttt{refl}_A = \texttt{ua}(\texttt{id}_A) \\
+  \texttt{ua}(f) \circ \texttt{ua}(g) = \texttt{ua}(g \circ f) \\
+  \texttt{ua}(f)^{-1} = ua(f^{-1})
+$$
+
++ For any type family $B : A \rightarrow \mathscr{U}$ and $x, y : A$ with a path $p : x = y$ and $u : B(x)$, we have:
+
+$$
+  \begin{align*}
+  \texttt{transport}^P(p, u) &= \texttt{transport}^{X \rightarrow X}(\texttt{ap}_B(p), u) \\
+                             &= \texttt{idtoequiv}(\texttt{ap}_B(p))(u)
+  \end{align*}
+$$
+
+# Identity type
