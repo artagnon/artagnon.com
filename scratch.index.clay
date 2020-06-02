@@ -1,7 +1,7 @@
 claytext demo
 
 ...
-Posts here have been ressurrected from several years ago
+Here, we discuss concepts from Ch.2 of the HoTT book
 ...
 
 <<
@@ -9,27 +9,19 @@ rM-reading.jpg
 rM-writing.jpg
 >>
 
++ To state our second lemma:
+
+$$
+  \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
+$$
+
 I have written a lot of [code](https://github.com/artagnon) in the past.
 
 # Functors
 
-For a fixed field $K$, consider the functors
-
-$$
-\begin{xy}
-\xymatrix{
-\textbf{Set}\ar@<.5ex>[r]^V & \textbf{Vct}_K\ar@<.5ex>[l]^U
-}
-\end{xy}
-$$
-
---
-
 ~~
-Theorem hPropEquality (P : hProp) (a b : P) : a = b.
-Proof.
-  by apply path_ishprop.
-Qed.
+Definition ap {A B : Type} (f : A -> B) {x y : A} (p : x = y) : f x = f y
+  := match p with idpath => idpath end.
 ~~
 
 (ii) Every element of $A$ is either unit or nilpotent.
@@ -38,5 +30,5 @@ Qed.
 1. The Merge dominates the Split, in which case, the Merge dominates everything lying on the outEdges of the Split leading to the Merge
 2. The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
 
-† Hat tip to [Sanjoy](http://playingwithpointers.com) for pointing out the fifth case.
-‡ You might want to merge loops that share a header in a post-pass.
+† Thanks to [Chaitanya Leena Subramanium](https://sites.google.com/view/chaitanyals) for suggesting the exercises and pushing for the use of natural deductions in the last exercise.
+‡ Thanks to [Hugo Herbelin](http://pauillac.inria.fr/~herbelin/) for patiently going through many proofs and pointing out the errors.
