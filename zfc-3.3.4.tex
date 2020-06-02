@@ -17,7 +17,6 @@
 \begin{mathpar}
   \inferrule*[right=\inferrule{}{\implies-elim}]{\inferrule*{}{\inferrule*[right=\inferrule{}{\forall-elim}]{\forall y, y' \in Y, g y = g y' \implies y = y'}{\Gamma \vdash g f x = g \tilde{f} x \implies f x = \tilde{f} x}} \\ \inferrule*{}{\inferrule*[right=\inferrule{}{\forall-elim}]{\forall x', g f x' = g \tilde{f} x'}{\Gamma \vdash g f x = g \tilde{f} x}}}{
   \inferrule*[right=\inferrule{}{\forall-intro, x \not\in \Gamma}]{\Gamma \vdash f x = \tilde{f} x}{
-  \inferrule*{\Gamma \vdash \forall x, f x = \tilde{f} x}{
-  {\Gamma = g \texttt{ is injective} \wedge g f  = g \tilde{f}}}}}
+  \inferrule*{\Gamma \vdash \forall x, f x = \tilde{f} x}{}}}
 \end{mathpar}
 \end{document}
