@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-03" class="end">Wed, 03 Jun 2020 10:01:32 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-03" class="end">Wed, 03 Jun 2020 10:06:07 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -691,9 +691,14 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
   (z : P a * Q a)
   : transport (fun a => P a * Q a) p z  =  (p # (fst z), p # (snd z))
   := match p with idpath => 1 end.</code></pre>
-          <pre><code class="language-coq">Definition functor_prod {A A' B B' : Type} (f : A -> A') (g : B -> B')
-  : A * B -> A' * B'
-  := fun z => (f (fst z), g (snd z)).</code></pre>
+          <pre><code class="language-coq">Definition ap_functor_prod {A A' B B' : Type} (f:A->A') (g:B->B')
+  (z z' : A * B) (p : fst z = fst z') (q : snd z = snd z')
+  : ap (functor_prod f g) (path_prod _ _ p q)
+  = path_prod (functor_prod f g z) (functor_prod f g z') (ap f p) (ap g q).
+Proof.
+  destruct z as [a b]; destruct z' as [a' b'].
+  simpl in p, q. destruct p, q. reflexivity.
+Defined.</code></pre>
           <h2 id="sigma-types">
             $\Sigma$-types
           </h2>

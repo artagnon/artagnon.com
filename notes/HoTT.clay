@@ -499,9 +499,14 @@ Definition transport_prod {A : Type} {P Q : A -> Type} {a a' : A} (p : a = a')
 ~~
 
 ~~
-Definition functor_prod {A A' B B' : Type} (f : A -> A') (g : B -> B')
-  : A * B -> A' * B'
-  := fun z => (f (fst z), g (snd z)).
+Definition ap_functor_prod {A A' B B' : Type} (f:A->A') (g:B->B')
+  (z z' : A * B) (p : fst z = fst z') (q : snd z = snd z')
+  : ap (functor_prod f g) (path_prod _ _ p q)
+  = path_prod (functor_prod f g z) (functor_prod f g z') (ap f p) (ap g q).
+Proof.
+  destruct z as [a b]; destruct z' as [a' b'].
+  simpl in p, q. destruct p, q. reflexivity.
+Defined.
 ~~
 
 # $\Sigma$-types
