@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-01" class="end">Mon, 01 Jun 2020 14:05:49 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-03" class="end">Wed, 03 Jun 2020 09:06:59 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -959,6 +959,38 @@ Defined.</code></pre>
             $$
             \texttt{ap}_f : (a =_A a') \rightarrow (f(a) =_B f(a'))
             $$
+          </p>
+          <p>
+            To prove this, let $f^{-1}$ be a quasi inverse of $f$ with the homotopies:
+          </p>
+          <p class="mathjax">
+            $$
+            \alpha : \Pi_{b : B} f(f^{-1}(b)) = b \\
+              \beta : \Pi_{a : A} f(f^{-1}(a)) = a
+            $$
+          </p>
+          <p>
+            The quasi-inverse of $ap_f$ is essentially:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{ap}_{f^{-1}} : (f(a) = f(a')) \rightarrow (f^{-1}(f(a)) = f^{-1}(f(a')))
+            $$
+          </p>
+          <p>
+            However, in order to obtain an element of $a =_A a'$ from $\texttt{ap}_{f^{-1}}(q)$ we must concatenate with $\beta_\alpha^{-1}$ and $\beta_{\alpha'}$ on either side. For $p : a =_A a'$ and $q : f(a) =_B f(a')$, we have:
+          </p>
+          <p class="mathjax">
+            $$
+            \beta_\alpha^{-1} \circ \texttt{ap}_f(\texttt{ap}_f(p)) \circ \beta_{\alpha'} = p \\
+              \texttt{ap}_f(\beta_\alpha^{-1} \circ \texttt{ap}_{f^-1}(a) \circ \beta_{\alpha'}) = q
+            $$
+          </p>
+          <p>
+            We can prove the latter by simply canceling inverse paths.
+          </p>
+          <p>
+            Thus, for some type $A$, we have a full characterizion of $a =_A a'$ and the type $p =_{a_{=A}} q$ is determined as well. For example:
           </p>
         </article>
       </main>
