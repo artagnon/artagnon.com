@@ -275,7 +275,7 @@ $$
   \texttt{transportconst}^B_P(b) : \texttt{transport}^P(p, b) = b
 $$
 
-The corresponding Coq \mathbb{code} looks like:
+The corresponding Coq \texttt{code} looks like:
 
 ~~
 (** Transporting in a constant fibration. *)
@@ -499,7 +499,7 @@ Definition transport_prod {A : Type} {P Q : A -> Type} {a a' : A} (p : a = a')
 ~~
 
 ~~
-Definition ap_functor_prod {A A' B B' : Type} (f:A->A') (g:B->B')
+Definition ap_functor_prod {A A' B B' : Type} (f : A -> A') (g : B -> B')
   (z z' : A * B) (p : fst z = fst z') (q : snd z = snd z')
   : ap (functor_prod f g) (path_prod _ _ p q)
   = path_prod (functor_prod f g z) (functor_prod f g z') (ap f p) (ap g q).
@@ -809,26 +809,26 @@ Defined.
 We will introduce an encode-decode method to define $\mathbb{N}$. The codes for identites are a type family:
 
 $$
-  \mathbb{code} : \mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathscr{U}
+  \texttt{code} : \mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathscr{U}
 $$
 
 defined by double recursion over $\mathbb{N}$ as follows:
 
 $$
-  \mathbb{code}(0, 0) :\equiv \mathbf{1} \\
-  \mathbb{code}(succ(m), 0) :\equiv \mathbf{0} \\
-  \mathbb{code}(0, succ(n)) :\equiv \mathbf{0} \\
-  \mathbb{code}(succ(m), succ(n)) :\equiv \mathbb{code}(m, n)
+  \texttt{code}(0, 0) :\equiv \mathbf{1} \\
+  \texttt{code}(\texttt{succ}(m), 0) :\equiv \mathbf{0} \\
+  \texttt{code}(0, \texttt{succ}(n)) :\equiv \mathbf{0} \\
+  \texttt{code}(\texttt{succ}(m), \texttt{succ}(n)) :\equiv \texttt{code}(m, n)
 $$
 
-We also define, by recursion, a dependent function $r : \Pi_{n : \mathbb{N}} \mathbb{code}(n, n)$ with
+We also define, by recursion, a dependent function $r : \Pi_{n : \mathbb{N}} \texttt{code}(n, n)$ with
 
 $$
   r(0) :\equiv \star \\
-  r(succ(n)) :\equiv r(n)
+  r(\texttt{succ}(n)) :\equiv r(n)
 $$
 
-+ For all $m, n : \mathbb{N}$, we have $(m = n) \simeq code(m, n)$
++ For all $m, n : \mathbb{N}$, we have $(m = n) \simeq \texttt{code}(m, n)$
 
 ~~
 Definition equiv_path_nat {n m} : (n =n m) <~> (n = m)

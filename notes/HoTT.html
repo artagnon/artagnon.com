@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-03" class="end">Wed, 03 Jun 2020 10:06:07 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-03" class="end">Wed, 03 Jun 2020 13:48:00 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -421,7 +421,7 @@ Definition apD {A : Type} {B : A->Type} (f : forall a: A, B a) {x y : A} (p : x=
             $$
           </p>
           <p>
-            The corresponding Coq \mathbb{code} looks like:
+            The corresponding Coq \texttt{code} looks like:
           </p>
           <pre><code class="language-coq">(** Transporting in a constant fibration. *)
 Definition transport_const {A B : Type} {x1 x2 : A} (p : x1 = x2) (y : B)
@@ -691,7 +691,7 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
   (z : P a * Q a)
   : transport (fun a => P a * Q a) p z  =  (p # (fst z), p # (snd z))
   := match p with idpath => 1 end.</code></pre>
-          <pre><code class="language-coq">Definition ap_functor_prod {A A' B B' : Type} (f:A->A') (g:B->B')
+          <pre><code class="language-coq">Definition ap_functor_prod {A A' B B' : Type} (f : A -> A') (g : B -> B')
   (z z' : A * B) (p : fst z = fst z') (q : snd z = snd z')
   : ap (functor_prod f g) (path_prod _ _ p q)
   = path_prod (functor_prod f g z) (functor_prod f g z') (ap f p) (ap g q).
@@ -1049,7 +1049,7 @@ Defined.</code></pre>
           </p>
           <p class="mathjax">
             $$
-            \mathbb{code} : \mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathscr{U}
+            \texttt{code} : \mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathscr{U}
             $$
           </p>
           <p>
@@ -1057,23 +1057,23 @@ Defined.</code></pre>
           </p>
           <p class="mathjax">
             $$
-            \mathbb{code}(0, 0) :\equiv \mathbf{1} \\
-              \mathbb{code}(succ(m), 0) :\equiv \mathbf{0} \\
-              \mathbb{code}(0, succ(n)) :\equiv \mathbf{0} \\
-              \mathbb{code}(succ(m), succ(n)) :\equiv \mathbb{code}(m, n)
+            \texttt{code}(0, 0) :\equiv \mathbf{1} \\
+              \texttt{code}(\texttt{succ}(m), 0) :\equiv \mathbf{0} \\
+              \texttt{code}(0, \texttt{succ}(n)) :\equiv \mathbf{0} \\
+              \texttt{code}(\texttt{succ}(m), \texttt{succ}(n)) :\equiv \texttt{code}(m, n)
             $$
           </p>
           <p>
-            We also define, by recursion, a dependent function $r : \Pi_{n : \mathbb{N}} \mathbb{code}(n, n)$ with
+            We also define, by recursion, a dependent function $r : \Pi_{n : \mathbb{N}} \texttt{code}(n, n)$ with
           </p>
           <p class="mathjax">
             $$
             r(0) :\equiv \star \\
-              r(succ(n)) :\equiv r(n)
+              r(\texttt{succ}(n)) :\equiv r(n)
             $$
           </p>
           <p class="exercise">
-            For all $m, n : \mathbb{N}$, we have $(m = n) \simeq code(m, n)$
+            For all $m, n : \mathbb{N}$, we have $(m = n) \simeq \texttt{code}(m, n)$
           </p>
           <pre><code class="language-coq">Definition equiv_path_nat {n m} : (n =n m) <~> (n = m)
   := Build_Equiv _ _ (@path_nat n m) _.</code></pre>
