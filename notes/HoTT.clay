@@ -749,4 +749,52 @@ $$
 
 We can prove the latter by simply canceling inverse paths.
 
-Thus, for some type $A$, we have a full characterizion of $a =_A a'$ and the type $p =_{a_{=A}} q$ is determined as well. For example:
+Thus, for some type $A$, we have a full characterizion of $a =_A a'$ and the type $p =_{a_{=A}} q$ is determined as well. For example, paths $p = q$ where $p, q : f =_{\Pi_{x : A} B(x)} g$ are equivalent to homotopies:
+
+$$
+  \Pi_{x : A} (happly(p)(x) =_{f(x) = g(x)} happly(q)(x)
+$$
+
+Next, we consider transport in families of paths; ie.e. transport in $C : A \rightarrow \mathscr{U}$ where each $C(x)$ is an identity type.
+
++ For any $A$ and $a : A$ with $p : x_1 = x_2$, we have
+
+$$
+  \texttt{transport}^{x \mapsto (a = x)}(p, q) = q \circ p \quad q : a = x_1 \\
+  \texttt{transport}^{x \mapsto (x = a)}(p, q) = p^{-1} \circ q \quad q : x_1 = a \\
+  \texttt{transport}^{x \mapsto (x = x)}(p, q = p^{-1} \circ q \circ p \quad q : x_1 = x_1
+$$
+
++ We now dump some lemmas for $\texttt{transport}$:
+
+~~
+Definition transport_paths_FlFr {A B : Type} {f g : A -> B} {x1 x2 : A}
+  (p : x1 = x2) (q : f x1 = g x1)
+  : transport (fun x => f x = g x) p q = (ap f p)^ @ q @ (ap g p).
+Proof.
+  destruct p; simpl.
+  exact ((concat_1p q)^ @ (concat_p1 (1 @ q))^).
+Defined.
+~~
+
+~~
+Definition transport_paths_FlFr_D {A : Type} {B : A -> Type}
+  {f g : forall a, B a} {x1 x2 : A} (p : x1 = x2) (q : f x1 = g x1)
+: transport (fun x => f x = g x) p q
+  = (apD f p)^ @ ap (transport B p) q @ (apD g p).
+Proof.
+  destruct p; simpl.
+  exact ((ap_idmap _)^ @ (concat_1p _)^ @ (concat_p1 _)^).
+Defined.
+~~
+
+~~
+Definition transport_paths_lr {A : Type} {x1 x2 : A} (p : x1 = x2) (q : x1 = x1)
+  : transport (fun x => x = x) p q = p^ @ q @ p.
+Proof.
+  destruct p; simpl.
+  exact ((concat_1p q)^ @ (concat_p1 (1 @ q))^).
+Defined.
+~~
+
+# Natural numbers

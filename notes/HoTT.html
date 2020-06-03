@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-03" class="end">Wed, 03 Jun 2020 09:06:59 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-03" class="end">Wed, 03 Jun 2020 09:21:34 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -990,8 +990,53 @@ Defined.</code></pre>
             We can prove the latter by simply canceling inverse paths.
           </p>
           <p>
-            Thus, for some type $A$, we have a full characterizion of $a =_A a'$ and the type $p =_{a_{=A}} q$ is determined as well. For example:
+            Thus, for some type $A$, we have a full characterizion of $a =_A a'$ and the type $p =_{a_{=A}} q$ is determined as well. For example, paths $p = q$ where $p, q : f =_{\Pi_{x : A} B(x)} g$ are equivalent to homotopies:
           </p>
+          <p class="mathjax">
+            $$
+            \Pi_{x : A} (happly(p)(x) =_{f(x) = g(x)} happly(q)(x)
+            $$
+          </p>
+          <p>
+            Next, we consider transport in families of paths; ie.e. transport in $C : A \rightarrow \mathscr{U}$ where each $C(x)$ is an identity type.
+          </p>
+          <p class="exercise">
+            For any $A$ and $a : A$ with $p : x_1 = x_2$, we have
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{transport}^{x \mapsto (a = x)}(p, q) = q \circ p \quad q : a = x_1 \\
+              \texttt{transport}^{x \mapsto (x = a)}(p, q) = p^{-1} \circ q \quad q : x_1 = a \\
+              \texttt{transport}^{x \mapsto (x = x)}(p, q = p^{-1} \circ q \circ p \quad q : x_1 = x_1
+            $$
+          </p>
+          <p class="exercise">
+            We now dump some lemmas for $\texttt{transport}$:
+          </p>
+          <pre><code class="language-coq">Definition transport_paths_FlFr {A B : Type} {f g : A -> B} {x1 x2 : A}
+  (p : x1 = x2) (q : f x1 = g x1)
+  : transport (fun x => f x = g x) p q = (ap f p)^ @ q @ (ap g p).
+Proof.
+  destruct p; simpl.
+  exact ((concat_1p q)^ @ (concat_p1 (1 @ q))^).
+Defined.</code></pre>
+          <pre><code class="language-coq">Definition transport_paths_FlFr_D {A : Type} {B : A -> Type}
+  {f g : forall a, B a} {x1 x2 : A} (p : x1 = x2) (q : f x1 = g x1)
+: transport (fun x => f x = g x) p q
+  = (apD f p)^ @ ap (transport B p) q @ (apD g p).
+Proof.
+  destruct p; simpl.
+  exact ((ap_idmap _)^ @ (concat_1p _)^ @ (concat_p1 _)^).
+Defined.</code></pre>
+          <pre><code class="language-coq">Definition transport_paths_lr {A : Type} {x1 x2 : A} (p : x1 = x2) (q : x1 = x1)
+  : transport (fun x => x = x) p q = p^ @ q @ p.
+Proof.
+  destruct p; simpl.
+  exact ((concat_1p q)^ @ (concat_p1 (1 @ q))^).
+Defined.</code></pre>
+          <h2 id="natural-numbers">
+            Natural numbers
+          </h2>
         </article>
       </main>
       <nav>
