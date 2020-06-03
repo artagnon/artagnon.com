@@ -275,7 +275,7 @@ $$
   \texttt{transportconst}^B_P(b) : \texttt{transport}^P(p, b) = b
 $$
 
-The corresponding Coq code looks like:
+The corresponding Coq \mathbb{code} looks like:
 
 ~~
 (** Transporting in a constant fibration. *)
@@ -800,3 +800,34 @@ Defined.
 ~~
 
 # Natural numbers
+
+We will introduce an encode-decode method to define $\mathbb{N}$. The codes for identites are a type family:
+
+$$
+  \mathbb{code} : \mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathscr{U}
+$$
+
+defined by double recursion over $\mathbb{N}$ as follows:
+
+$$
+  \mathbb{code}(0, 0) :\equiv \mathbf{1} \\
+  \mathbb{code}(succ(m), 0) :\equiv \mathbf{0} \\
+  \mathbb{code}(0, succ(n)) :\equiv \mathbf{0} \\
+  \mathbb{code}(succ(m), succ(n)) :\equiv \mathbb{code}(m, n)
+$$
+
+We also define, by recursion, a dependent function $r : \Pi_{n : \mathbb{N}} \mathbb{code}(n, n)$ with
+
+$$
+  r(0) :\equiv \star \\
+  r(succ(n)) :\equiv r(n)
+$$
+
++ For all $m, n : \mathbb{N}$, we have $(m = n) \simeq code(m, n)$
+
+~~
+Definition equiv_path_nat {n m} : (n =n m) <~> (n = m)
+  := Build_Equiv _ _ (@path_nat n m) _.
+~~
+
+# Universal properties
