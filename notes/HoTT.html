@@ -54,7 +54,7 @@
             Homotopy Type Theory: The essentials
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-03" class="end">Wed, 03 Jun 2020 14:45:00 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2020-06-03" class="end">Wed, 03 Jun 2020 16:05:04 +0200</time></span><br /><span id="locations"><address>Paris</address></span><span id="audience">Très niche</span>
           </div>
         </header>
         <article>
@@ -304,7 +304,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             Type families are fibrations
           </h2>
           <p>
-            If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingridient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as `indiscrenability of identicals` in our [previous note](HoTT-foundations#identity-types).
+            If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingredient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as `indiscrenability of identicals` in our [previous note](HoTT-foundations#identity-types).
           </p>
           <p class="exercise">
             `Transport lemma`. Suppose $P$ is a type family over $A$ and $p : x =_A y$, then there is a function $p_\star : P(x) \rightarrow P(y)$.
@@ -1122,6 +1122,39 @@ Definition prod_coind_uncurried `{A : X -> Type} `{B : X -> Type}
             $$
             (\Pi_{x : X} \Sigma_{x : A(x)} P(x, a)) \rightarrow (\Sigma_{g : \Pi_{x : A} A(x)} \Pi_{x : X} P(x, g(x)))
             $$
+          </p>
+          <p>
+            Note that $\Sigma_{g : \Pi_{x : X} A(x)} \Pi_{x : X} P(x, g(x))$ can be read as "there exists a choice function $g : \Pi_{x : X} A(x)$ such that for all $x : X$, we have $P(x, g(x))$". The classical mathemtician may find that the axiom of choice doesn't carry its usual meaning.
+          </p>
+          <p>
+            In the case of cartesian products, the non-dependent version simply expresses the `cartesian closure adjuction`:
+          </p>
+          <p class="mathjax">
+            $$
+            ((A \times B) \rightarrow C) \simeq (A \rightarrow (B \rightarrow C))
+            $$
+          </p>
+          <p>
+            Some other induction principles are also part of universal properties of this sort. For instance, path induction is the right-to-left direction of an equivalence as follows:
+          </p>
+          <p class="mathjax">
+            $$
+            (\Pi_{x : A}\Pi_{p : a = x} B(x, p)) \simeq B(a, \texttt{refl}_a)
+            $$
+          </p>
+          <p>
+            However, for inductive types with recursion, such as natural numbers, have more complicated universal properties, as we intend to describe later.
+          </p>
+          <p>
+            As such, we have described the usual universal property of a cartesian product, but the reader may wonder about `limits` and `colimits` of types. For `pullbacks`, the expected explicit construction works; given $f: A \rightarrow C$ and $g : B \rightarrow C$, we define:
+          </p>
+          <p class="mathjax">
+            $$
+            A \times_C B :\equiv \Sigma_{a : A}\Sigma_{b : B} (f(a) = g(b))
+            $$
+          </p>
+          <p>
+            For colimits, however, we need a new ingredient, which we will discuss later.
           </p>
         </article>
       </main>

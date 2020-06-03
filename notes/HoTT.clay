@@ -177,7 +177,7 @@ These are themselves paths, which have to satisfy coherence laws, as usual.
 
 # Type families are fibrations
 
-If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingridient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as `indiscrenability of identicals` in our [previous note](HoTT-foundations#identity-types).
+If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingredient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as `indiscrenability of identicals` in our [previous note](HoTT-foundations#identity-types).
 
 + `Transport lemma`. Suppose $P$ is a type family over $A$ and $p : x =_A y$, then there is a function $p_\star : P(x) \rightarrow P(y)$.
 
@@ -876,3 +876,27 @@ Since $\Sigma$ types are a generalization of cartesian product types, we can str
 $$
   (\Pi_{x : X} \Sigma_{x : A(x)} P(x, a)) \rightarrow (\Sigma_{g : \Pi_{x : A} A(x)} \Pi_{x : X} P(x, g(x)))
 $$
+
+Note that $\Sigma_{g : \Pi_{x : X} A(x)} \Pi_{x : X} P(x, g(x))$ can be read as "there exists a choice function $g : \Pi_{x : X} A(x)$ such that for all $x : X$, we have $P(x, g(x))$". The classical mathemtician may find that the axiom of choice doesn't carry its usual meaning.
+
+In the case of cartesian products, the non-dependent version simply expresses the `cartesian closure adjuction`:
+
+$$
+  ((A \times B) \rightarrow C) \simeq (A \rightarrow (B \rightarrow C))
+$$
+
+Some other induction principles are also part of universal properties of this sort. For instance, path induction is the right-to-left direction of an equivalence as follows:
+
+$$
+  (\Pi_{x : A}\Pi_{p : a = x} B(x, p)) \simeq B(a, \texttt{refl}_a)
+$$
+
+However, for inductive types with recursion, such as natural numbers, have more complicated universal properties, as we intend to describe later.
+
+As such, we have described the usual universal property of a cartesian product, but the reader may wonder about `limits` and `colimits` of types. For `pullbacks`, the expected explicit construction works; given $f: A \rightarrow C$ and $g : B \rightarrow C$, we define:
+
+$$
+  A \times_C B :\equiv \Sigma_{a : A}\Sigma_{b : B} (f(a) = g(b))
+$$
+
+For colimits, however, we need a new ingredient, which we will discuss later.
