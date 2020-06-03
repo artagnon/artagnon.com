@@ -836,3 +836,43 @@ Definition equiv_path_nat {n m} : (n =n m) <~> (n = m)
 ~~
 
 # Universal properties
+
+By combining the path computation rules described in the previous sections, we can show that various type forming operations satisfy the expected universal properties, interpreted in a homotopical way as equivalences.
+
+$$
+  (X \rightarrow A \times B) \rightarrow (X \rightarrow A) \times (X \rightarrow B)
+$$
+
+defined by $f \mapsto (\texttt{pr}_1 \circ f, \texttt{pr}_2 \circ f)$. To prove that this is an equivalence, given $f : X \rightarrow A \times B$, the round-trip composite yields the function:
+
+$$
+  \lambda x . (\texttt{pr}_1(f(x)), \texttt{pr}_2(f(x))) = f \quad \texttt{by functional extensionality}
+$$
+
+We also have a dependently typed version of this universal property:
+
+$$
+  (\Pi_{x : X} A(x) \times B(x)) \rightarrow (\Pi_{x : X} A(x)) \times (\Pi_{x : X} B(x))
+$$
+
+defined as before.
+
+~~
+(* First, a positive version of the universal property *)
+Definition equiv_prod_ind `(P : A * B -> Type)
+  : (forall (a : A) (b : B), P (a, b)) <~> (forall p : A * B, P p)
+  := Build_Equiv _ _ (prod_ind P) _.
+~~
+
+~~
+(* Now the negative universal property. *)
+Definition prod_coind_uncurried `{A : X -> Type} `{B : X -> Type}
+  : (forall x, A x) * (forall x, B x) -> (forall x, A x * B x)
+  := fun fg x => (fst fg x, snd fg x).
+~~
+
+Since $\Sigma$ types are a generalization of cartesian product types, we can straightaway jump to the dependently typed version; if we have a type $X$ and type families $A : A \rightarrow \mathscr{U}$ and $P : \Pi_{x : A} A(x) \rightarrow \mathscr{U}$, then we have:
+
+$$
+  (\Pi_{x : X} \Sigma_{x : A(x)} P(x, a)) \rightarrow (\Sigma_{g : \Pi_{x : A} A(x)} \Pi_{x : X} P(x, g(x)))
+$$
