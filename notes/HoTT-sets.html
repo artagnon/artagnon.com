@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 12:33:18 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 12:51:05 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -125,6 +125,35 @@ Proof.
   - apply contr_paths_contr.
   - apply IH, H.
 Qed.</code></pre>
+          <p>
+            Another fact to keep in mind is that this stratification of types is not degenerate; in particular, not all types are sets. For instance, universe $\mathscr{U}$ is not a set.
+          </p>
+          <pre><code class="language-coq">Definition not_hset_Type : ~ (IsHSet Type).
+Proof.
+  intro HT.
+  apply true_ne_false.
+  pose (r := path_ishprop (path_universe equiv_negb) 1).
+  refine (_ @ (ap (fun q => transport idmap q false) r)).
+  symmetry; apply transport_path_universe.
+Defined.</code></pre>
+          <h2 id="propositions-as-types">
+            Propositions as types?
+          </h2>
+          <p>
+            Our previous straightforward interpretation of "propositions as types" do not work anymore. The statements of `double negation` and `law of excluded middle` do not function as they do in classical type theory; in particular, they are incompatible with the univalence axiom.
+          </p>
+          <p class="exercise">
+            For $A : \mathscr{U}$, we do not have $\neg(\neg A) \rightarrow A$.
+          </p>
+          <p class="exercise">
+            For $A : \mathscr{U}$, we do not have $A + \neg A$.
+          </p>
+          <h2 id="mere-propositions">
+            Mere propositions
+          </h2>
+          <p class="exercise">
+            Type $P$ is a `mere proposition` if forall $x, y : P$, we have $x = y$.
+          </p>
         </article>
       </main>
       <nav>
