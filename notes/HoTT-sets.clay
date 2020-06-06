@@ -4,15 +4,23 @@ Homotopy Type Theory: Sets and Logic
 This note corresponds to Ch. 3 in the HoTT book
 ...
 
+This chapter is dedicated to the study of `HSet` (sets, the $0$-type), `HProp` (mere propositions, the $-1$-type), and `Contr` (contractible types, the $-2$-type):
+
+~~
+Notation Contr := (IsTrunc minus_two).
+Notation IsHProp := (IsTrunc minus_two.+1).
+Notation IsHSet := (IsTrunc minus_two.+2).
+~~
+
+focusing on the logic of mere propositions and the notion of `propositional truncation`.
+
+# Sets and $n$-types
+
 A type $A$ is a `set` if forall $x, y : A$ and $p, q : x = y$, we have $p = q$. The proposition $\texttt{isSet}(A)$ is defined to be the type:
 
 $$
   \texttt{isSet}(A) = \Pi_{x, y : A} \Pi_{p, q : x = y} (p = q)
 $$
-
-~~
-Notation IsHSet := (IsTrunc minus_two.+2).
-~~
 
 Sets in homotopy type theory are not like sets in ZF set theory, in that there is no global "membership predicate" $\in$. To provide some examples of sets, $\mathbb{1}$, $\mathbb{0}$ and $\mathbb{N}$ are sets.
 
