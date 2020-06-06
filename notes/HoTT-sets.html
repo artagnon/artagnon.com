@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 12:04:12 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 12:33:18 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -113,6 +113,18 @@ Defined.</code></pre>
           <p>
             A type $A$ is a $1$-type if for all $x, y : A$, and $p, q : x = y$, $r, s : p = q$, we have $r = s$. We can similarly define $2$-types, $3$-types, and so on.
           </p>
+          <p class="exercise">
+            If $A$ is a set, that is, $\texttt{isSet}(A)$ is inhabitated, then $A$ is a $1$-type.
+          </p>
+          <pre><code class="language-coq">(** Truncation levels are cumulative. *)
+Global Instance trunc_succ `{IsTrunc n A}
+  : IsTrunc n.+1 A | 1000.
+Proof.
+  generalize dependent A.
+  simple_induction n n IH; simpl; intros A H x y.
+  - apply contr_paths_contr.
+  - apply IH, H.
+Qed.</code></pre>
         </article>
       </main>
       <nav>

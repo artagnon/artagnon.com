@@ -58,3 +58,17 @@ Notation Is1Type := IsTrunc 1.
 ~~
 
 A type $A$ is a $1$-type if for all $x, y : A$, and $p, q : x = y$, $r, s : p = q$, we have $r = s$. We can similarly define $2$-types, $3$-types, and so on.
+
++ If $A$ is a set, that is, $\texttt{isSet}(A)$ is inhabitated, then $A$ is a $1$-type.
+
+~~
+(** Truncation levels are cumulative. *)
+Global Instance trunc_succ `{IsTrunc n A}
+  : IsTrunc n.+1 A | 1000.
+Proof.
+  generalize dependent A.
+  simple_induction n n IH; simpl; intros A H x y.
+  - apply contr_paths_contr.
+  - apply IH, H.
+Qed.
+~~
