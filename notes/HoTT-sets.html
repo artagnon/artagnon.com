@@ -54,12 +54,49 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 09:56:04 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 11:46:12 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
           <p class="blurb">
             This note corresponds to Ch. 3 in the HoTT book
+          </p>
+          <p>
+            A type $A$ is a `set` if forall $x, y : A$ and $p, q : x = y$, we have $p = q$. The proposition $\texttt{isSet}(A)$ is defined to be the type:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{isSet}(A) = \Pi_{x, y : A} \Pi_{p, q : x = y} (p = q)
+            $$
+          </p>
+          <pre><code class="language-coq">Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
+          <p>
+            Sets in homotopy type theory are not like sets in ZF set theory, in that there is no global "membership predicate" $\in$. To provide some examples of sets, $\mathbb{1}$, $\mathbb{0}$ and $\mathbb{N}$ are sets.
+          </p>
+          <p>
+            Moreover, if $A$ and $B$ are sets, then so is $A \times B$. For given $x, y : A \times B$ and $p, q : x = y$, we have $p = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(p), \texttt{ap}_{\texttt{pr}_2}(p))$ and $q = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(q), \texttt{ap}_{\texttt{pr}_2}(q))$. But $\texttt{ap}_{\texttt{pr}_1}(p) = \texttt{ap}_{\texttt{pr}_1}(q)$ since $A$ is a set, and $\texttt{ap}_{\texttt{pr}_2}(p) = \texttt{ap}_{\texttt{pr}_2}(q)$, since $B$ is a set; hence $p = q$.
+          </p>
+          <p>
+            Similarly, if $A$ is a set, and $B : A \rightarrow \mathscr{U}$ such that $B(x)$ is a set, then $\Sigma_{x : A} B(x)$ is a set
+          </p>
+          <p>
+            Given $B : A \rightarrow \mathscr{U}$, $\Pi_{x : A} B(x)$ is a set. For suppose $f, g : \Pi_{x : A} B(x)$ and for $p, q : f = g$. By functional extensionality,
+          </p>
+          <p class="mathjax">
+            $$
+            p = \texttt{funext}(x \mapsto \texttt{happly}(p, x)) \quad q = \texttt{funext}(x \mapsto \texttt{happly}(q, x))
+            $$
+          </p>
+          <p>
+            But for $x : A$, we have
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{happly}(p, x) : f(x) = g(x) \quad \texttt{happly}(q, x) : f(x) = g(x)
+            $$
+          </p>
+          <p>
+            So since $B(x)$ is a set, we have $\texttt{happly}(p, x) = \texttt{happly}(q, x)$. Now, using funext again, the dependent functions $(x \mapsto \texttt{happly}(p, x))$ and $(x \mapsto \texttt{happly}(q, x))$ are equal, and hence, applying $\texttt{ap}_\texttt{funext}$, so are $p$ and $q$.
           </p>
         </article>
       </main>

@@ -4,3 +4,32 @@ Homotopy Type Theory: Sets and Logic
 This note corresponds to Ch. 3 in the HoTT book
 ...
 
+A type $A$ is a `set` if forall $x, y : A$ and $p, q : x = y$, we have $p = q$. The proposition $\texttt{isSet}(A)$ is defined to be the type:
+
+$$
+  \texttt{isSet}(A) = \Pi_{x, y : A} \Pi_{p, q : x = y} (p = q)
+$$
+
+~~
+Notation IsHSet := (IsTrunc minus_two.+2).
+~~
+
+Sets in homotopy type theory are not like sets in ZF set theory, in that there is no global "membership predicate" $\in$. To provide some examples of sets, $\mathbb{1}$, $\mathbb{0}$ and $\mathbb{N}$ are sets.
+
+Moreover, if $A$ and $B$ are sets, then so is $A \times B$. For given $x, y : A \times B$ and $p, q : x = y$, we have $p = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(p), \texttt{ap}_{\texttt{pr}_2}(p))$ and $q = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(q), \texttt{ap}_{\texttt{pr}_2}(q))$. But $\texttt{ap}_{\texttt{pr}_1}(p) = \texttt{ap}_{\texttt{pr}_1}(q)$ since $A$ is a set, and $\texttt{ap}_{\texttt{pr}_2}(p) = \texttt{ap}_{\texttt{pr}_2}(q)$, since $B$ is a set; hence $p = q$.
+
+Similarly, if $A$ is a set, and $B : A \rightarrow \mathscr{U}$ such that $B(x)$ is a set, then $\Sigma_{x : A} B(x)$ is a set
+
+Given $B : A \rightarrow \mathscr{U}$, $\Pi_{x : A} B(x)$ is a set. For suppose $f, g : \Pi_{x : A} B(x)$ and for $p, q : f = g$. By functional extensionality,
+
+$$
+  p = \texttt{funext}(x \mapsto \texttt{happly}(p, x)) \quad q = \texttt{funext}(x \mapsto \texttt{happly}(q, x))
+$$
+
+But for $x : A$, we have
+
+$$
+  \texttt{happly}(p, x) : f(x) = g(x) \quad \texttt{happly}(q, x) : f(x) = g(x)
+$$
+
+So since $B(x)$ is a set, we have $\texttt{happly}(p, x) = \texttt{happly}(q, x)$. Now, using funext again, the dependent functions $(x \mapsto \texttt{happly}(p, x))$ and $(x \mapsto \texttt{happly}(q, x))$ are equal, and hence, applying $\texttt{ap}_\texttt{funext}$, so are $p$ and $q$.
