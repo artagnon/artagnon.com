@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 11:46:12 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 12:04:12 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -73,6 +73,12 @@
           <p>
             Sets in homotopy type theory are not like sets in ZF set theory, in that there is no global "membership predicate" $\in$. To provide some examples of sets, $\mathbb{1}$, $\mathbb{0}$ and $\mathbb{N}$ are sets.
           </p>
+          <pre><code class="language-coq">Global Instance hprop_Empty : IsHProp Empty.
+Proof. intro x. destruct x. Defined.</code></pre>
+          <pre><code class="language-coq">Corollary hset_nat : IsHSet nat.
+Proof.
+  exact _.
+Defined.</code></pre>
           <p>
             Moreover, if $A$ and $B$ are sets, then so is $A \times B$. For given $x, y : A \times B$ and $p, q : x = y$, we have $p = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(p), \texttt{ap}_{\texttt{pr}_2}(p))$ and $q = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(q), \texttt{ap}_{\texttt{pr}_2}(q))$. But $\texttt{ap}_{\texttt{pr}_1}(p) = \texttt{ap}_{\texttt{pr}_1}(q)$ since $A$ is a set, and $\texttt{ap}_{\texttt{pr}_2}(p) = \texttt{ap}_{\texttt{pr}_2}(q)$, since $B$ is a set; hence $p = q$.
           </p>
@@ -97,6 +103,15 @@
           </p>
           <p>
             So since $B(x)$ is a set, we have $\texttt{happly}(p, x) = \texttt{happly}(q, x)$. Now, using funext again, the dependent functions $(x \mapsto \texttt{happly}(p, x))$ and $(x \mapsto \texttt{happly}(q, x))$ are equal, and hence, applying $\texttt{ap}_\texttt{funext}$, so are $p$ and $q$.
+          </p>
+          <pre><code class="language-coq">Global Instance trunc_forall `{P : A -> Type} `{forall a, IsTrunc n (P a)}
+  : IsTrunc n (forall a, P a) | 100.</code></pre>
+          <p>
+            Sets are just the first rung of the ladder of $n$-types, and may also be called the $0$-type; its defining property is that it has no non-trivial paths. Similarly, the $1$-type can be has no non-trivial paths between paths.
+          </p>
+          <pre><code class="language-coq">Notation Is1Type := IsTrunc 1.</code></pre>
+          <p>
+            A type $A$ is a $1$-type if for all $x, y : A$, and $p, q : x = y$, $r, s : p = q$, we have $r = s$. We can similarly define $2$-types, $3$-types, and so on.
           </p>
         </article>
       </main>
