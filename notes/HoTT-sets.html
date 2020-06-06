@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 14:17:23 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 15:48:37 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -62,7 +62,7 @@
             This note corresponds to Ch. 3 in the HoTT book
           </p>
           <p>
-            This chapter is dedicated to the study of `HSet` (sets, the $0$-type), `HProp` (mere propositions, the $-1$-type), and `Contr` (contractible types, the $-2$-type):
+            This chapter is dedicated to the study of `HSet` (sets, the $0$-type), `HProp` (mere propositions, the $(-1)$-type), and `Contr` (contractible types, the $(-2)$-type):
           </p>
           <pre><code class="language-coq">Notation Contr := (IsTrunc minus_two).
 Notation IsHProp := (IsTrunc minus_two.+1).
@@ -193,6 +193,70 @@ Proof.
   - exact (fun _ => tt).
   - exact (fun _ => p).
 Defined.</code></pre>
+          <p class="exercise">
+            If $P$ and $Q$ are mere propositions such that $P \rightarrow Q$ and $Q \rightarrow P$, then $P \simeq Q$.
+          </p>
+          <pre><code class="language-coq">(** Two propositions are equivalent as soon as there are maps in both directions. *)
+Definition isequiv_iff_hprop `{IsHProp A} `{IsHProp B}
+  (f : A -> B) (g : B -> A)
+  : IsEquiv f.
+Proof.
+  apply (isequiv_adjointify f g);
+    intros ?; apply path_ishprop.
+Defined.</code></pre>
+          <p>
+            A space that is homotopy equivalent to $\mathbb{1}$ is said to be contractible. Thus, any mere proposition that is inhabitated is contractible. On the other hand, the uninhabited type $\mathbb{0}$ is also vacuously a mere proposition.
+          </p>
+          <p>
+            Note that a type $A$ is a set if and only if, for $x, y : A$, the identity type $x =_A y$ is a mere proposition.
+          </p>
+          <p class="exercise">
+            Every mere proposition is a set.
+          </p>
+          <p class="exercise">
+            For any type $A$, types $\texttt{isProp}(A)$ and $\texttt{isSet}(A)$ are mere propositions.
+          </p>
+          <pre><code class="language-coq">(** Truncatedness is an hprop. *)
+Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
+  : IsHProp (IsTrunc n A) | 0.</code></pre>
+          <h2 id="classical-versus-intuitionistic-logic">
+            Classical versus intuitionistic logic
+          </h2>
+          <p>
+            With the notion of mere proposition, we can now give a proper formulation of LEM and double negation:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{LEM} :\equiv \Pi_{A : \mathscr{U}} (\texttt{isProp}(A) \rightarrow (A + \neg A)) \\
+              \Pi_{A : \mathscr{U}} (\texttt{isProp}(A) \rightarrow (\neg\neg A \rightarrow A))
+            $$
+          </p>
+          <p>
+            These are seen as being logically equivalent to each other. Renaming for clarity:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{LEM}_\infty :\equiv \Pi_{A : \mathscr{U}} (A + \neg A)
+            $$
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              A type $A$ is `decidable` if $A + \neg A$.
+            </li>
+            <li>
+              A type family $B : A \rightarrow \mathscr{U}$ is decidable if $\Pi_{a : A}(B(a) + \neg B(a))$.
+            </li>
+            <li>
+              $A$ has decidable equality if $\Pi_{a, b : A} ((a = b) + \neg(a = b))$.
+            </li>
+          </ol>
+          <pre><code class="language-coq">Class Decidable (A : Type) :=
+  dec : A + (~ A).</code></pre>
+          <pre><code class="language-coq">Class DecidablePaths (A : Type) :=
+  dec_paths : forall (x y : A), Decidable (x = y).</code></pre>
+          <h2 id="subsets-and-propositional-resizing">
+            Subsets and propositional resizing
+          </h2>
         </article>
       </main>
       <nav>
