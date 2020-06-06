@@ -104,4 +104,29 @@ Our previous straightforward interpretation of "propositions as types" do not wo
 
 # Mere propositions
 
+Propositions-as-types have good and bad properties. Both have a common cause: when types are viewed as propositions, they contain more information than mere truth or falsity, and all "logical" constructions on them must respect this additional information. This suggests that we could obtain a more conventional logic by restricting attention to types that do not contain any more information than the truth value, and only regarding these as logical propositions.
+
+Indeed, if $A$ will be "true" if it is inhabitated, and false if its inhabit yields a contradiction (i.e. $A \rightarrow \mathbb{0}$). Now, for example, if we're given an element of $\mathbb{2}$, it contains one bit of additional information: which element of $\mathbb{2}$ we are given. By contrast, when we're given an element of $\mathbb{1}$ (i.e. $\star$), we receive no more information than the mere fact that $\mathbb{1}$ contains an element, since any two elements of $\mathbb{1}$ are equal to each other. This suggests the following definition:
+
 + Type $P$ is a `mere proposition` if forall $x, y : P$, we have $x = y$.
+
+For $P : \mathscr{U}$,
+
+$$
+  \texttt{isProp}(P) :\equiv \Pi_{x, y : P} x = y
+$$
+
+Thus, to assert that $P$ is a mere proposition means to exhibit an inhabitant of $\texttt{isProp}(P)$, which is a dependent function connecting any two elements of $P$ by a path. The continuity/naturality of this function impiles not only that any two elements of $P$ are equal, but also that $P$ contains no higher homotopies either.
+
++ If $P$ is a mere proposition, and $x_0 : P$, then $P \simeq \mathbb{1}$.
+
+~~
+(** If an hprop is inhabited, then it is equivalent to [Unit]. *)
+Lemma if_hprop_then_equiv_Unit (hprop : Type) `{IsHProp hprop} :  hprop -> hprop <~> Unit.
+Proof.
+  intro p.
+  apply equiv_iff_hprop.
+  - exact (fun _ => tt).
+  - exact (fun _ => p).
+Defined.
+~~

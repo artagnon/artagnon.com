@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 13:28:33 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-06" class="end">Sat, 06 Jun 2020 14:17:23 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -162,9 +162,37 @@ Defined.</code></pre>
           <h2 id="mere-propositions">
             Mere propositions
           </h2>
+          <p>
+            Propositions-as-types have good and bad properties. Both have a common cause: when types are viewed as propositions, they contain more information than mere truth or falsity, and all "logical" constructions on them must respect this additional information. This suggests that we could obtain a more conventional logic by restricting attention to types that do not contain any more information than the truth value, and only regarding these as logical propositions.
+          </p>
+          <p>
+            Indeed, if $A$ will be "true" if it is inhabitated, and false if its inhabit yields a contradiction (i.e. $A \rightarrow \mathbb{0}$). Now, for example, if we're given an element of $\mathbb{2}$, it contains one bit of additional information: which element of $\mathbb{2}$ we are given. By contrast, when we're given an element of $\mathbb{1}$ (i.e. $\star$), we receive no more information than the mere fact that $\mathbb{1}$ contains an element, since any two elements of $\mathbb{1}$ are equal to each other. This suggests the following definition:
+          </p>
           <p class="exercise">
             Type $P$ is a `mere proposition` if forall $x, y : P$, we have $x = y$.
           </p>
+          <p>
+            For $P : \mathscr{U}$,
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{isProp}(P) :\equiv \Pi_{x, y : P} x = y
+            $$
+          </p>
+          <p>
+            Thus, to assert that $P$ is a mere proposition means to exhibit an inhabitant of $\texttt{isProp}(P)$, which is a dependent function connecting any two elements of $P$ by a path. The continuity/naturality of this function impiles not only that any two elements of $P$ are equal, but also that $P$ contains no higher homotopies either.
+          </p>
+          <p class="exercise">
+            If $P$ is a mere proposition, and $x_0 : P$, then $P \simeq \mathbb{1}$.
+          </p>
+          <pre><code class="language-coq">(** If an hprop is inhabited, then it is equivalent to [Unit]. *)
+Lemma if_hprop_then_equiv_Unit (hprop : Type) `{IsHProp hprop} :  hprop -> hprop <~> Unit.
+Proof.
+  intro p.
+  apply equiv_iff_hprop.
+  - exact (fun _ => tt).
+  - exact (fun _ => p).
+Defined.</code></pre>
         </article>
       </main>
       <nav>
