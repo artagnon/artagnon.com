@@ -188,3 +188,33 @@ Class DecidablePaths (A : Type) :=
 ~~
 
 # Subsets and propositional resizing
+
+Suppose $P : A \rightarrow \mathscr{U}$  is a type family with each type $P(x)$ regarded as a proposition. Then $P$ itself is a predicate on $A$, or a property of elements of $A$. What we regard as $\{x \in A \mid P(x)\}$ in set theory can be regarded as $\Sigma_{x : A} P(x)$ in type theory. For a general element $P$, $P(a)$ has more than one distinct proof; but if $P$ is a mere proposition, this cannot happen.
+
++ Suppose $P : A \rightarrow \mathscr{U}$ is a type famiy such that $P(x)$ is a mere proposition for all $x : A$. If $u, v : \Sigma_{x : A} P(x)$ are such that $\texttt{pr}_1(u) = \texttt{pr}_1(v)$, then $u = v$.
+
+~~
+(** ** Subtypes (sigma types whose second components are hprops) *)
+
+(** To prove equality in a subtype, we only need equality of the first component. *)
+Definition path_sigma_hprop {A : Type} {P : A -> Type}
+           `{forall x, IsHProp (P x)}
+           (u v : sigT P)
+: u.1 = v.1 -> u = v
+  := path_sigma_uncurried P u v o pr1^-1.
+~~
+
+For instance, recall that we defined
+
+$$
+  A \simeq B :\equiv \Sigma_{f : A \rightarrow B} \texttt{isequiv}(f)
+$$
+
+where each type $\texttt{isequiv}(f)$ was supposed to be a mere proposition. It follows that if two equivalences have equal underlying functions, then they are equal as equivalences. In $\Sigma_{x : A} P(x)$, $P$ can be thought of as a `subtype` of $A$. We may write $a \in \{x : A \mid P(x)\}$ to refer to the mere proposition $P(a)$. If it holds, we say that $a$ is a `member` of $P$. Similarly, $P \subseteq Q$ can be written as $\Pi_{x : A} (P(x) \rightarrow Q(x))$.
+
+As further examples of subtypes, we may define the "subuniverses" of sets and propositions in $\mathscr{U}$:
+
+$$
+  \texttt{Set}_\mathscr{U} :\equiv \{A : \mathscr{U} \mid \texttt{isSet}(A)\} \\
+  \texttt{Prop}_\mathscr{U} :\equiv \{A : \mathscr{U} \mid \texttt{isProp}(A)\}
+$$
