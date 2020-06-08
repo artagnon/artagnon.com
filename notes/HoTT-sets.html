@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-08" class="end">Mon, 08 Jun 2020 15:03:32 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-08" class="end">Mon, 08 Jun 2020 15:41:36 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -291,6 +291,41 @@ Definition path_sigma_hprop {A : Type} {P : A -> Type}
               \texttt{Prop}_\mathscr{U} :\equiv \{A : \mathscr{U} \mid \texttt{isProp}(A)\}
             $$
           </p>
+          <p>
+            Recall that for any two universes $\mathscr{U}_i$ and $\mathscr{U}_{i + 1}$, if $A : \mathscr{U}_i$, then $A : \mathscr{U}_{i + 1}$. For sets and mere propositions, we therefore have maps:
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{Set}_{\mathscr{U}_i} \rightarrow \texttt{Set}_{\mathscr{U}_{i + 1}} \\
+              \texttt{Prop}_{\mathscr{U}_i} \rightarrow \texttt{Prop}_{\mathscr{U}_{i + 1}}
+            $$
+          </p>
+          <p>
+            However, the former cannot be an equivalence, as making it so would remind us of paradoxes in Cantorian set theory. However, the latter could be an equivalence, and we consier adding the `propositional resizing axiom`:
+          </p>
+          <p class="exercise">
+            The map $\texttt{Prop}_{\mathscr{U}_i} \rightarrow \texttt{Prop}_{\mathscr{U}_{i + 1}}$ is an equivalence.
+          </p>
+          <p>
+            It essentially says that any mere proposition in universe $\mathscr{U}_{i + 1}$ can be resized to an equivalent one in $\mathscr{U}_i$. It follows automatically if $\mathscr{U}_{i + 1}$ satisfies LEM. This is a form of `impredicativity` for mere propositions, and by avoiding its use, our type theory will remain predicative.
+          </p>
+          <p>
+            In practice, however, what we want is a slightly different statement, that a universe $\mathscr{U}$ under consideration contains a type which "classifies all mere propositions". In other words, we want a type $\Omega : \mathscr{U}$ together with an $\Omega$-indexed family of mere propositions, which contains every mere proposition, upto equivalence. This follows from the propositional resizing axiom, if $\mathscr{U}$ is not the smallest univese $\mathscr{U}_0$, then we can define $\Omega :\equiv \texttt{Prop}_{\mathscr{U}_0}$.
+          </p>
+          <p>
+            In the absence of propositional resizing, the definition of `power set` depends on the choice of $\mathscr{U}$. In its presence, however, one can define the power set to be:
+          </p>
+          <p class="mathjax">
+            $$
+            \mathscr{P}(A) :\equiv (A \rightarrow \Omega)_i
+            $$
+          </p>
+          <p>
+            which is then independent of $\mathscr{U}$.
+          </p>
+          <h2 id="the-logic-of-mere-propositions">
+            The logic of mere propositions
+          </h2>
         </article>
       </main>
       <nav>
