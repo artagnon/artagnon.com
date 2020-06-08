@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-08" class="end">Mon, 08 Jun 2020 15:41:36 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-08" class="end">Mon, 08 Jun 2020 16:00:18 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -326,6 +326,29 @@ Definition path_sigma_hprop {A : Type} {P : A -> Type}
           <h2 id="the-logic-of-mere-propositions">
             The logic of mere propositions
           </h2>
+          <p>
+            In many cases, logical connectives and quantifiers can be represented in this logic by simply restricting the type-former to mere propositions; this, of course, requires us to know whether the type former in question preserve mere propositions.
+          </p>
+          <p class="exercise">
+            If $A$ and $B$ are mere propositions, so is $A \times B$.
+          </p>
+          <p class="exercise">
+            If $B : A \rightarrow \mathscr{U}$ is such that for all $x : A$, B(x) is a mere proposition, then $\Pi_{x : A} B(x)$ is a mere proposition.
+          </p>
+          <pre><code class="language-coq">Definition PiType_isMereProp `{Funext} (A : Type) (B : A -> Type)
+  := trunc_forall _ A B (-1).</code></pre>
+          <p>
+            In particular, If $B$ is a mere proposition, then so is $A \rightarrow B$ regardless of what $A$ is. Since $\mathbb{0}$ is a mere proposition, so is $\neg A \equiv A \rightarrow \mathbb{0}$. Thus the connectives "implies", "not", and "forall" preserve mere propositions.
+          </p>
+          <p>
+            On the other hand, even if $A$ and $B$ are mere propositions, $A + B$ will not, in general, be one. For instance, $\mathbb{1}$ is a mere proposition, but $\mathbb{2} = \mathbb{1} + \mathbb{1}$ is not. Logically speaking, $A + B$ is a "purely constructive" sort of "or": a witness of it contains which disjunct is true. However, if we need a more classical sort of "or" that preserves mere propositions, we need a way to "truncate" this type into a mere proposition by forgetting the additional information. The same issue arises with $\Sigma_{x : A} P(x)$.
+          </p>
+          <h2 id="propositional-truncation">
+            Propositional truncation
+          </h2>
+          <p>
+            The `propositional truncation`, also called `$(-1)$-truncation`, `bracket type`, or `squash type`, is an additional type former wich "truncates" a type down to a mere proposition, forgetting all information contained in inhabitants of that type other than their existence.
+          </p>
         </article>
       </main>
       <nav>

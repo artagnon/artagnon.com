@@ -244,3 +244,21 @@ which is then independent of $\mathscr{U}$.
 
 # The logic of mere propositions
 
+In many cases, logical connectives and quantifiers can be represented in this logic by simply restricting the type-former to mere propositions; this, of course, requires us to know whether the type former in question preserve mere propositions.
+
++ If $A$ and $B$ are mere propositions, so is $A \times B$.
+
++ If $B : A \rightarrow \mathscr{U}$ is such that for all $x : A$, B(x) is a mere proposition, then $\Pi_{x : A} B(x)$ is a mere proposition.
+
+~~
+Definition PiType_isMereProp `{Funext} (A : Type) (B : A -> Type)
+  := trunc_forall _ A B (-1).
+~~
+
+In particular, If $B$ is a mere proposition, then so is $A \rightarrow B$ regardless of what $A$ is. Since $\mathbb{0}$ is a mere proposition, so is $\neg A \equiv A \rightarrow \mathbb{0}$. Thus the connectives "implies", "not", and "forall" preserve mere propositions.
+
+On the other hand, even if $A$ and $B$ are mere propositions, $A + B$ will not, in general, be one. For instance, $\mathbb{1}$ is a mere proposition, but $\mathbb{2} = \mathbb{1} + \mathbb{1}$ is not. Logically speaking, $A + B$ is a "purely constructive" sort of "or": a witness of it contains which disjunct is true. However, if we need a more classical sort of "or" that preserves mere propositions, we need a way to "truncate" this type into a mere proposition by forgetting the additional information. The same issue arises with $\Sigma_{x : A} P(x)$.
+
+# Propositional truncation
+
+The `propositional truncation`, also called `$(-1)$-truncation`, `bracket type`, or `squash type`, is an additional type former wich "truncates" a type down to a mere proposition, forgetting all information contained in inhabitants of that type other than their existence.
