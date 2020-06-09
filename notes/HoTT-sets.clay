@@ -262,3 +262,20 @@ On the other hand, even if $A$ and $B$ are mere propositions, $A + B$ will not, 
 # Propositional truncation
 
 The `propositional truncation`, also called `$(-1)$-truncation`, `bracket type`, or `squash type`, is an additional type former wich "truncates" a type down to a mere proposition, forgetting all information contained in inhabitants of that type other than their existence.
+
+More precisely, given type $A$, there is a type $||A||$ with two constructors:
+
+(i) For any $a : A$, we have $|a| : ||A||$.
+(ii) For any $x, y : ||A||$, we have $x = y$.
+
+The first constructor means that if $A$ is inhabitated, so is $||A||$. The second ensures that $||A||$ is a mere proposition; usually we leave the witness of this fact nameless.
+
+The recursion principle of $||A||$ says that: if $B$ is a mere proposition, and we have $f : A \rightarrow B$, then there is an induced $g : ||A|| \rightarrow B$ such that $g(|a|) = f(a)$ for all $a : A$.
+
+In other words, any mere proposition that follows from $A$ already follows from $||A||$. Thus, $||A||$, as a mere proposition, contains no more information than the inhabitatedness of $A$.
+
+With propositional truncation, we can extend the "logic of mere propositions" to cover disjunction and existential quantification. Specifically, $||A + B|||$ is a mere propositional version of "A or B", which does not remember which disjunct is true.
+
+The recursion principle of truncation implies that we can still do a case analysis on $||A + B||$ when attempting to prove a mere proposition. That is, suppose we have an assumption $u : ||A + B||$, and we are trying to prove a mere proposition $Q$. In other words, we are trying to define an element $||A + B|| \rightarrow Q$. Since $Q$ is a mere proposition, by recursion principle for propositional truncation, it suffices to construct a function $A + B \rightarrow Q$. But now we can do case analysis on $A + B$.
+
+Similarly, or a type family $P : A \rightarrow \mathscr{U}$, we can consider $||\Sigma_{x : A} P(x)||$ to be the mere propositional version of "there exists an $x : A$ such that $P(x)$". If we have an assumption of type $||\Sigma_{x : A} P(x)||$, we may introduce new assumptions $x : A$ and $y: P(x)$ when attempting to prove a mere proposition. In other words, if we know that there exists some $x : A$ such that $P(x)$, but we don't have a particular such $x$ at hand, then we are free to make use of such an $x$ as long as we aren't trying to construct anything which might depend on the particular value of $x$.
