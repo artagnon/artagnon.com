@@ -309,3 +309,35 @@ $$
 $$
 
 this corresponds to a well-known equivalent form of the classical AC, namely "the cartesian product of a family of nonempty sets is nonempty".
+
+These two statements of AC are not a consequence of out basic type theory, but they may be consistently assumed as axioms. Note that the latter can be shown equivalent to asking for an equivalence:
+
+$$
+  \Pi_{x : X}(||Y(x)||) \simeq ||\Pi_{x : X} Y(x)||
+$$
+
+This illustrates a common pitfall: although dependent function types preserve mere propositions, they do not commute with truncation. AC says that the equivalence holds for sets, but fails in general.
+
+# The principle of unique choice
+
++ If $P$ is a mere proposition, then $P \simeq ||P||$.
+
+~~
+Definition isequiv_to_O_inO (T : Type) `{In O T} : IsEquiv (to O T).
+Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).
+~~
+
+It has the following important consequence:
+
++ `Principle of unique choice`. Suppose $P : A \rightarrow \mathscr{U}$ such that:
+
+(i) For each $s$, the type $P(x)$ is a mere proposition.
+(ii) For each $x$ we have $||P(x)||$.
+
+Then we have $\Pi_{x : A} P(x)$.
+
+~~
+Lemma unique_choice {X Y} (R:X->Y->Type) :
+ (forall x y, IsHProp (R x y)) -> (forall x, (hunique (R x)))
+   -> {f : X -> Y & forall x, (R x (f x))}.
+~~
