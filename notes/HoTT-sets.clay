@@ -279,3 +279,33 @@ With propositional truncation, we can extend the "logic of mere propositions" to
 The recursion principle of truncation implies that we can still do a case analysis on $||A + B||$ when attempting to prove a mere proposition. That is, suppose we have an assumption $u : ||A + B||$, and we are trying to prove a mere proposition $Q$. In other words, we are trying to define an element $||A + B|| \rightarrow Q$. Since $Q$ is a mere proposition, by recursion principle for propositional truncation, it suffices to construct a function $A + B \rightarrow Q$. But now we can do case analysis on $A + B$.
 
 Similarly, or a type family $P : A \rightarrow \mathscr{U}$, we can consider $||\Sigma_{x : A} P(x)||$ to be the mere propositional version of "there exists an $x : A$ such that $P(x)$". If we have an assumption of type $||\Sigma_{x : A} P(x)||$, we may introduce new assumptions $x : A$ and $y: P(x)$ when attempting to prove a mere proposition. In other words, if we know that there exists some $x : A$ such that $P(x)$, but we don't have a particular such $x$ at hand, then we are free to make use of such an $x$ as long as we aren't trying to construct anything which might depend on the particular value of $x$.
+
+# The axiom of choice
+
+assume type $X$ and type families
+
+$$
+  A : X \rightarrow \mathscr{U} \\ P : \Pi_{x : X} A(x) \rightarrow \mathscr{U}
+$$
+
+and moreover that:
+
+(i) $X$ is a set.
+(ii) $A(x)$ is a set for all $x : X$.
+(iii) $P(x, a)$ is a mere proposition for all $x : X$ and $a : A(x)$.
+
+The `axiom of choice` asserts that under these assumptions,
+
+$$
+  \Pi_{x :A} (||\Sigma_{x : A(x)} P(x, a)||) \rightarrow ||\Sigma_{g : \Pi_{x : A} A(x)}\Pi_{x : A} P(x, g(x))||
+$$
+
+Note, in particular, that propositional truncation appears twice. The truncation in the domain means we assume that for every $x$, there exists some $a : A(x)$ such that $P(x, a)$, but that these values are not chosen or specified in any known way. The truncation in the codomain means we conclude that there exists some function $g$, but this function is not determined or specified in any known way.
+
++ AC is equivalent to the statement that for any set $X$ and map $Y : X \rightarrow \mathscr{U}$ such that each $Y(x)$ is a set, we have
+
+$$
+  \Pi_{x : X}(||Y(x)||) \rightarrow ||\Pi_{x : X} Y(x)||
+$$
+
+this corresponds to a well-known equivalent form of the classical AC, namely "the cartesian product of a family of nonempty sets is nonempty".

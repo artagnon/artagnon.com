@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-09" class="end">Tue, 09 Jun 2020 16:01:49 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-10" class="end">Wed, 10 Jun 2020 09:39:33 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -377,6 +377,53 @@ Definition path_sigma_hprop {A : Type} {P : A -> Type}
           </p>
           <p>
             Similarly, or a type family $P : A \rightarrow \mathscr{U}$, we can consider $||\Sigma_{x : A} P(x)||$ to be the mere propositional version of "there exists an $x : A$ such that $P(x)$". If we have an assumption of type $||\Sigma_{x : A} P(x)||$, we may introduce new assumptions $x : A$ and $y: P(x)$ when attempting to prove a mere proposition. In other words, if we know that there exists some $x : A$ such that $P(x)$, but we don't have a particular such $x$ at hand, then we are free to make use of such an $x$ as long as we aren't trying to construct anything which might depend on the particular value of $x$.
+          </p>
+          <h2 id="the-axiom-of-choice">
+            The axiom of choice
+          </h2>
+          <p>
+            assume type $X$ and type families
+          </p>
+          <p class="mathjax">
+            $$
+            A : X \rightarrow \mathscr{U} \\ P : \Pi_{x : X} A(x) \rightarrow \mathscr{U}
+            $$
+          </p>
+          <p>
+            and moreover that:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $X$ is a set.
+            </li>
+            <li>
+              $A(x)$ is a set for all $x : X$.
+            </li>
+            <li>
+              $P(x, a)$ is a mere proposition for all $x : X$ and $a : A(x)$.
+            </li>
+          </ol>
+          <p>
+            The `axiom of choice` asserts that under these assumptions,
+          </p>
+          <p class="mathjax">
+            $$
+            \Pi_{x :A} (||\Sigma_{x : A(x)} P(x, a)||) \rightarrow ||\Sigma_{g : \Pi_{x : A} A(x)}\Pi_{x : A} P(x, g(x))||
+            $$
+          </p>
+          <p>
+            Note, in particular, that propositional truncation appears twice. The truncation in the domain means we assume that for every $x$, there exists some $a : A(x)$ such that $P(x, a)$, but that these values are not chosen or specified in any known way. The truncation in the codomain means we conclude that there exists some function $g$, but this function is not determined or specified in any known way.
+          </p>
+          <p class="exercise">
+            AC is equivalent to the statement that for any set $X$ and map $Y : X \rightarrow \mathscr{U}$ such that each $Y(x)$ is a set, we have
+          </p>
+          <p class="mathjax">
+            $$
+            \Pi_{x : X}(||Y(x)||) \rightarrow ||\Pi_{x : X} Y(x)||
+            $$
+          </p>
+          <p>
+            this corresponds to a well-known equivalent form of the classical AC, namely "the cartesian product of a family of nonempty sets is nonempty".
           </p>
         </article>
       </main>
