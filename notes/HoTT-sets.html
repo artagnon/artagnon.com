@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-11" class="end">Thu, 11 Jun 2020 10:47:49 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-11" class="end">Thu, 11 Jun 2020 14:23:22 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -512,6 +512,55 @@ Global Instance contr_unit : Contr Unit | 0 := let x := {|
           </p>
           <pre><code class="language-coq">Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
   : IsHProp (IsTrunc n A) | 0.</code></pre>
+          <p class="exercise">
+            If $A$ is contractible, so is $\texttt{isContr}(A)$.
+          </p>
+          <pre><code class="language-coq">Global Instance contr_contr `{Funext} (A : Type) `{Contr A}
+  : Contr (Contr A) | 100.</code></pre>
+          <p class="exercise">
+            If $P : A \rightarrow \mathscr{U}$ is a type family such that $P(a)$ is contractible, then $\Pi_{x : A} P(x)$ is contractible.
+          </p>
+          <pre><code class="language-coq">Global Instance trunc_forall `{P : A -> Type} `{forall a, IsTrunc n (P a)}
+  : IsTrunc n (forall a, P a) | 100.</code></pre>
+          <p class="exercise">
+            If $B$ is a retract of $A$, and $A$ is contractible, then so is $B$.
+          </p>
+          <p class="exercise">
+            For any $A$ and any $a : A$, the type $\Sigma_{x : A} (x = a)$ is contractible.
+          </p>
+          <pre><code class="language-coq">Global Instance contr_basedpaths {X : Type} (x : X) : Contr {y : X & x = y} | 100.</code></pre>
+          <p class="exercise">
+            Let $P : A \rightarrow \mathscr{U}$ be a type family.
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              If each $P(x)$ is contractible, then $\Sigma_{x : A} P(x)$ is equivalent to $A$.
+            </li>
+            <li>
+              If $A$ is contractible with center $a$, then $\Sigma_{x : A} P(x)$ is equivalent to $P(a)$.
+            </li>
+          </ol>
+          <pre><code class="language-coq">Definition equiv_sigma_contr {A : Type} (P : A -> Type)
+           `{forall a, Contr (P a)}
+: sigT P <~> A
+  := Build_Equiv _ _ pr1 _.</code></pre>
+          <pre><code class="language-coq">Definition equiv_contr_sigma {A : Type} (P : A -> Type) `{Contr A}
+: { x : A & P x } <~> P (center A).</code></pre>
+          <p class="exercise">
+            Type $A$ is a mere proposition if and only if for all $x, y : A$, the type $x =_A y$ is contractible.
+          </p>
+          <pre><code class="language-coq">(** Any two points in an hprop are connected by a path. *)
+Theorem path_ishprop `{H : IsHProp A}
+  : forall x y : A, x = y.
+Proof.
+  apply H.
+Defined.</code></pre>
+          <pre><code class="language-coq">Theorem hprop_allpath (A : Type)
+  : (forall (x y : A), x = y) -> IsHProp A.
+  intros H x y.
+  pose (C := Build_Contr A x (H x)).
+  apply contr_paths_contr.
+Defined.</code></pre>
         </article>
       </main>
       <nav>

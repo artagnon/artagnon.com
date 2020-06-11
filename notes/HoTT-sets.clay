@@ -379,3 +379,62 @@ Global Instance contr_unit : Contr Unit | 0 := let x := {|
 Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
   : IsHProp (IsTrunc n A) | 0.
 ~~
+
++ If $A$ is contractible, so is $\texttt{isContr}(A)$.
+
+~~
+Global Instance contr_contr `{Funext} (A : Type) `{Contr A}
+  : Contr (Contr A) | 100.
+~~
+
++ If $P : A \rightarrow \mathscr{U}$ is a type family such that $P(a)$ is contractible, then $\Pi_{x : A} P(x)$ is contractible.
+
+~~
+Global Instance trunc_forall `{P : A -> Type} `{forall a, IsTrunc n (P a)}
+  : IsTrunc n (forall a, P a) | 100.
+~~
+
++ If $B$ is a retract of $A$, and $A$ is contractible, then so is $B$.
+
++ For any $A$ and any $a : A$, the type $\Sigma_{x : A} (x = a)$ is contractible.
+
+~~
+Global Instance contr_basedpaths {X : Type} (x : X) : Contr {y : X & x = y} | 100.
+~~
+
++ Let $P : A \rightarrow \mathscr{U}$ be a type family.
+
+(i) If each $P(x)$ is contractible, then $\Sigma_{x : A} P(x)$ is equivalent to $A$.
+(ii) If $A$ is contractible with center $a$, then $\Sigma_{x : A} P(x)$ is equivalent to $P(a)$.
+
+~~
+Definition equiv_sigma_contr {A : Type} (P : A -> Type)
+           `{forall a, Contr (P a)}
+: sigT P <~> A
+  := Build_Equiv _ _ pr1 _.
+~~
+
+~~
+Definition equiv_contr_sigma {A : Type} (P : A -> Type) `{Contr A}
+: { x : A & P x } <~> P (center A).
+~~
+
++ Type $A$ is a mere proposition if and only if for all $x, y : A$, the type $x =_A y$ is contractible.
+
+~~
+(** Any two points in an hprop are connected by a path. *)
+Theorem path_ishprop `{H : IsHProp A}
+  : forall x y : A, x = y.
+Proof.
+  apply H.
+Defined.
+~~
+
+~~
+Theorem hprop_allpath (A : Type)
+  : (forall (x y : A), x = y) -> IsHProp A.
+  intros H x y.
+  pose (C := Build_Contr A x (H x)).
+  apply contr_paths_contr.
+Defined.
+~~
