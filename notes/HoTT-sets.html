@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-11" class="end">Thu, 11 Jun 2020 10:24:16 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-11" class="end">Thu, 11 Jun 2020 10:47:49 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -485,8 +485,33 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
             $$
           </p>
           <p>
-            We can pronounce this as "$A$ contains an element, and every othe element of $A$ is equal to that element".
+            We can pronounce this as "$A$ contains an element, and every other element of $A$ is equal to that element". To the classical ear, this could sound as a definition of `connectedness`, rather than contractability.
           </p>
+          <p class="exercise">
+            For type $A$, the following are logically equivalent:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $A$ is contractible.
+            </li>
+            <li>
+              $A$ is a mere proposition, and there is a point $a : A$.
+            </li>
+            <li>
+              $A$ is equivalent to $\mathbb{1}$.
+            </li>
+          </ol>
+          <pre><code class="language-coq">(* The Unit type is contractible *)
+(** Because [Contr] is a notation, and [Contr_internal] is the record, we need to iota expand to fool Coq's typeclass machinery into accepting supposedly "mismatched" contexts. *)
+Global Instance contr_unit : Contr Unit | 0 := let x := {|
+  center := tt;
+  contr := fun t : Unit => match t with tt => 1 end
+|} in x.</code></pre>
+          <p class="exercise">
+            For any type $A$, the type $\texttt{isContr}(A)$ is a mere proposition.
+          </p>
+          <pre><code class="language-coq">Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
+  : IsHProp (IsTrunc n A) | 0.</code></pre>
         </article>
       </main>
       <nav>

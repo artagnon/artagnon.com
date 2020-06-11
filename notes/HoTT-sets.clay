@@ -356,4 +356,26 @@ $$
   \texttt{isContr}(A) :\equiv \Sigma_{a : A} \Pi_{x : A} (a = x)
 $$
 
-We can pronounce this as "$A$ contains an element, and every othe element of $A$ is equal to that element".
+We can pronounce this as "$A$ contains an element, and every other element of $A$ is equal to that element". To the classical ear, this could sound as a definition of `connectedness`, rather than contractability.
+
++ For type $A$, the following are logically equivalent:
+
+(i) $A$ is contractible.
+(ii) $A$ is a mere proposition, and there is a point $a : A$.
+(iii) $A$ is equivalent to $\mathbb{1}$.
+
+~~
+(* The Unit type is contractible *)
+(** Because [Contr] is a notation, and [Contr_internal] is the record, we need to iota expand to fool Coq's typeclass machinery into accepting supposedly "mismatched" contexts. *)
+Global Instance contr_unit : Contr Unit | 0 := let x := {|
+  center := tt;
+  contr := fun t : Unit => match t with tt => 1 end
+|} in x.
+~~
+
++ For any type $A$, the type $\texttt{isContr}(A)$ is a mere proposition.
+
+~~
+Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
+  : IsHProp (IsTrunc n A) | 0.
+~~
