@@ -54,7 +54,7 @@
             Homotopy Type Theory: Sets and Logic
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-10" class="end">Wed, 10 Jun 2020 10:48:31 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-06" class="begin">Sat, 06 Jun 2020 09:56:04 +0200</time><span class="to">↪</span><time datetime="2020-06-11" class="end">Thu, 11 Jun 2020 10:24:16 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -464,6 +464,29 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
           <pre><code class="language-coq">Lemma unique_choice {X Y} (R:X->Y->Type) :
  (forall x y, IsHProp (R x y)) -> (forall x, (hunique (R x)))
    -> {f : X -> Y & forall x, (R x (f x))}.</code></pre>
+          <h2 id="when-are-mere-propositions-truncated">
+            When are mere propositions truncated?
+          </h2>
+          <p>
+            In a nutshell, we shall use untruncated logic as the default convention, and qualify the truncated versions by "mere", for the following reason: mere propositions aren't a fundamental part of type theory; they are only the second rung on the $\infty$-ladder of types, and there are many other modalities not lying on this ladder at all.
+          </p>
+          <h2 id="contractability">
+            Contractability
+          </h2>
+          <p>
+            A mere proposition which is inhabited must be equivalent to $\mathbb{1}$, and the converse also holds. A type with this property is called `contractible`.
+          </p>
+          <p class="exercise">
+            Type `A` is contractible or a `singleton`, if there is an $a : A$, called the `center of contraction`, such tht $a = x$ for all $x : A$. We denote the specified path $a = x$ by $\texttt{contr}_x$. In other words,
+          </p>
+          <p class="mathjax">
+            $$
+            \texttt{isContr}(A) :\equiv \Sigma_{a : A} \Pi_{x : A} (a = x)
+            $$
+          </p>
+          <p>
+            We can pronounce this as "$A$ contains an element, and every othe element of $A$ is equal to that element".
+          </p>
         </article>
       </main>
       <nav>
