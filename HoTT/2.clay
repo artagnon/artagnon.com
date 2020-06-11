@@ -177,7 +177,7 @@ These are themselves paths, which have to satisfy coherence laws, as usual.
 
 # Type families are fibrations
 
-If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingredient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as `indiscrenability of identicals` in our [previous note](HoTT-foundations#identity-types).
+If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingredient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as `indiscrenability of identicals` in our [previous note](/HoTT/1#identity-types).
 
 + `Transport lemma`. Suppose $P$ is a type family over $A$ and $p : x =_A y$, then there is a function $p_\star : P(x) \rightarrow P(y)$.
 
@@ -440,7 +440,7 @@ $$
 
 # The higher groupoid structure of type formers
 
-The goal now is to form new types corresponding to the type theoretic ones from our [previous note](/notes/HoTT-foundations). For instance, a cartesian product $A = B \times C$, $x :\equiv (b, c)$, $y :\equiv (b', c')$, then we have:
+The goal now is to form new types corresponding to the type theoretic ones from our [previous note](/HoTT/1). For instance, a cartesian product $A = B \times C$, $x :\equiv (b, c)$, $y :\equiv (b', c')$, then we have:
 
 $$
   (b, c) = (b', c') \simeq (b = b') \times (c = c')
@@ -454,7 +454,7 @@ $$
 
 Finally, the type forming rules are also functorial, and if a function $f$ is built from this functorially, then the operations $\texttt{ap}_f$ and $\texttt{apd}_f$ can be computed based on the corresponding ones on the data going into into $f$. For instance, $g : B \rightarrow B'$ and $h : C \rightarrow C'$, and we define $f : B \times C \rightarrow B' \times C'$ by $f(b,c) :\equiv (g(b), h(c))$, then modulo equivalence, we can identify $\texttt{ap}_f$ with $(\texttt{ap}_g, \texttt{ap}_h)$.
 
-Since our philosophy states that identity types are defined uniformly for all types by their induction principle, so we cannot redefine them to be different for different types. The [previous note](/notes/HoTT-foundations) is insufficient to prove the desired theorems for two type formers: $\Pi$ types and universes. For $\Pi$ types, we use the axiom of `functional extensionality`, and for universes, we use the `univalence axiom`, which we will state shortly.
+Since our philosophy states that identity types are defined uniformly for all types by their induction principle, so we cannot redefine them to be different for different types. The [previous note](/HoTT/1) is insufficient to prove the desired theorems for two type formers: $\Pi$ types and universes. For $\Pi$ types, we use the axiom of `functional extensionality`, and for universes, we use the `univalence axiom`, which we will state shortly.
 
 It is, however, important to note that not all identity types can be determined by induction over the construction of types. Counterexamples include most non-trivial `higher inductive types` (HITs). For instance, calculating the identity types of types $\mathbb{S}^n$ is equivalent to calculating the higher homotopy groups of spheres, a field of research in algebraic topology.
 
