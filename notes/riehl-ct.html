@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ramkumar Ramachandra | artagnon.com</title>
+    <title>Category Theory in Context | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -51,24 +51,58 @@
       <main tabindex="0">
         <header>
           <h1>
-            Ramkumar Ramachandra
+            Category Theory in Context
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2013-02-12" class="begin">Tue, 12 Feb 2013 18:25:27 +0530</time><span class="to">↪</span><time datetime="2020-06-11" class="end">Thu, 11 Jun 2020 15:12:52 +0200</time></span><br /><span id="locations"><address>Paris, Paris, Chennai, Boston, NY</address></span>
+            <span id="timestamp"><time datetime="2020-06-18" class="begin">Thu, 18 Jun 2020 12:57:34 +0200</time><span class="to">↪</span><time datetime="2020-06-18" class="end">Thu, 18 Jun 2020 12:57:34 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
-          <p>
-            Budding mathematician in Paris, interested in foundations of mechanized mathematics. Also an expert engineer, with years of professional experience working on compilers written in C++, most prominently, the Matlab compiler. I used to write a lot of [code](https://github.com/artagnon) in the past, but of late, my hacking is limited to [clayoven](https://github.com/artagnon/clayoven) and writing Coq/LaTeX for artagnon.com.
+          <p class="blurb">
+            What follows is a bunch of exercises from Emily Riehl's book
+          </p>
+          <p class="exercise">
+            (1.1.i) Consider a morphism $f : x \rightarrow y$. Show that if there exists a pair of morphisms
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            g, h: & y\ar@<-.5ex>[r]\ar@<.5ex>[r] & x
+              }
+              \end{xy}
+            
+            $$
           </p>
           <p>
-            Some [human-readable notes](/notes) have emerged recently; the [HoTT](/HoTT) section of the site is also recent. Otherwise, unpolished mathematical notes from over a year ago make up the bulk of artagnon.com.
+            so that $gf = 1_x$ and $fh = 1_y$, then $g = h$ and $f$ is an isomorphism. Consequently, show that a morphism can have at most one inverse isomorphism.
           </p>
           <p>
-            I used to be a major contributor to git back in the day. If you use `git cherry-pick --continue` or `svnrdump`, you're using my code.
+            Solution: An isomorphism is defined by
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            x\ar@/^/[r]^f & y\ar@/^/[l]^{g}
+              }
+              \end{xy}
+            
+            $$
           </p>
           <p>
-            You can email me about anything. [artagnon@gmail.com](mailto:artagnon@gmail.com)
+            such that $gf = 1_x$ and $fg = 1_y$. But $fh = 1_y$ already, so our task reduces to showing that $h = g$; that is, inverse isomorphism is unique.
+          </p>
+          <p>
+            $\Box$
+          </p>
+          <p class="exercise">
+            (1.1.ii) Let $C$ be a category Show that the collection of isomorphisms in $C$ defines a subcategory, the `maximal groupoid` inside $C$.
+          </p>
+          <p class="exercise">
+            (1.1.iii) For any category $C$ and object $c \in C$, show that there is a category $c/C$ whose objects are the morphisms $f : c \rightarrow x$
           </p>
         </article>
       </main>
