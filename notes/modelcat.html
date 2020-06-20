@@ -54,12 +54,65 @@
             Model Categories
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-18" class="begin">Thu, 18 Jun 2020 20:11:11 +0200</time><span class="to">↪</span><time datetime="2020-06-18" class="end">Thu, 18 Jun 2020 20:11:11 +0200</time></span><br /><span id="locations"><address></address></span>
+            <span id="timestamp"><time datetime="2020-06-18" class="begin">Thu, 18 Jun 2020 20:11:20 +0200</time><span class="to">↪</span><time datetime="2020-06-20" class="end">Sat, 20 Jun 2020 14:12:23 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
           <p class="blurb">
             What follows is an accessible introduction to model categories
+          </p>
+          <p class="exercise">
+            $f$ is a `retract` of $g$ iff $pq = rs = 1$.
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            A\ar[r]^s\ar[d]^f & C\ar[r]^r\ar[d]^g & A\ar[d]^f \\
+              B\ar[r]^q & D\ar[r]^p & B
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p class="exercise">
+            A `functorial factorization` is an ordered pair $(\alpha, \beta)$ of functors $\texttt{Map } \mathscr{C} \rightarrow \texttt{Map } \mathscr{C}$ such that $f = \beta(f) \circ \alpha(f)$ for all $f \in \mathscr{C}$. In particular, the domain of $\alpha(f)$ is the domain of $f$, the codomain of $\alpha(f)$ is the domain of $\beta(f)$, and the codomain of $\beta(f)$ is the codomain of $f$.
+          </p>
+          <p class="exercise">
+            $i$ has `left-lifting property` with respect to $p$ if there is a lift $h : B \rightarrow X$ such that $hi = f$ and $ph = g$.
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            A\ar[r]^f\ar[d]^i & X\ar[d]^p \\
+              B\ar[r]^g\ar@{.>}[ru]^h & Y \\
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p class="exercise">
+            A `model structure` on $\mathscr{C}$ is three subcategories of $\mathscr{C}$ called weak equivalences, cofibrations, and fibrations, and two functorial factorizations $(\alpha, \beta)$ and $(\gamma, \delta)$ satisfying the following properties:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              (2-out-of-3) If $f$ and $g$ are morphisms of $\mathscr{C}$ such that $gf$ is defined, and two of $f$, $g$ and $gf$ are weak equivalences, then so is the third.
+            </li>
+            <li>
+              (Retracts) If $f$ and $g$ are morphisms of $\mathscr{C}$ such that $f$ is the retract of $g$, and $g$ is a weak equivalence, cofibration, or fibration, then so is $f$.
+            </li>
+            <li>
+              (Lifting) Define a map to be a `trivial fibration` if it is both a fibration and a weak equivalence; similarly, define `trivial cofibration`. Then, trivial cofibrations have left-lifting property with respect to fibrations, and cofibrations have left-lifting property with respect to trivial fibrations.
+            </li>
+            <li>
+              (Factorization) For any morphism $f$, $\alpha(f)$ is a cofibration, $\beta(f)$ is a trivial fibration, $\gamma(f)$ is a trivial cofibration, and $\delta(f)$ is a fibration.
+            </li>
+          </ol>
+          <p class="exercise">
+            A `model category` is a category $\mathscr{C}$ with all small limits and colimits together with a model structure on $\mathscr{C}$.
           </p>
         </article>
       </main>
