@@ -10,7 +10,7 @@ What follows is a bunch of exercises from Emily Riehl's book
   g, h: & y\ar@<-.5ex>[r]\ar@<.5ex>[r] & x
 }}
 
-so that $gf = 1_x$ and $fh = 1_y$, then $g = h$ and $f$ is an isomorphism. Consequently, show that a morphism can have at most one inverse isomorphism.
+- so that $gf = 1_x$ and $fh = 1_y$, then $g = h$ and $f$ is an isomorphism. Consequently, show that a morphism can have at most one inverse isomorphism.
 
 Solution: An isomorphism is defined by
 
@@ -20,8 +20,13 @@ Solution: An isomorphism is defined by
 
 such that $gf = 1_x$ and $fg = 1_y$. But $fh = 1_y$ already, so our task reduces to showing that $h = g$; that is, inverse isomorphism is unique.
 
-$\Box$
++ (1.1.ii) Show that the collection of isomorphisms in $C$ defines a subcategory, the `maximal groupoid` inside $C$.
 
-+ (1.1.ii) Let $C$ be a category Show that the collection of isomorphisms in $C$ defines a subcategory, the `maximal groupoid` inside $C$.
+Solution:
 
-+ (1.1.iii) For any category $C$ and object $c \in C$, show that there is a category $c/C$ whose objects are the morphisms $f : c \rightarrow x$
++ (1.1.iii.i) For any category $C$ and object $c \in C$, show that there is a category $c/C$ whose objects are the morphisms $f : c \rightarrow x$ with domain $c$ and in which a morphism from $f : c \rightarrow x$ to $g : c \rightarrow y$ is a map $h : x \rightarrow y$ between the codomains in the triangle commutes; i.e. $g = hf$.
+
+{{
+  & c\ar[dl]_f\ar[dr]^g & \\
+  x\ar[rr]_h & & y
+}}

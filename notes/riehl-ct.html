@@ -54,7 +54,7 @@
             Category Theory in Context
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-06-18" class="begin">Thu, 18 Jun 2020 12:57:34 +0200</time><span class="to">↪</span><time datetime="2020-06-18" class="end">Thu, 18 Jun 2020 12:57:34 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-06-18" class="begin">Thu, 18 Jun 2020 12:57:34 +0200</time><span class="to">↪</span><time datetime="2020-06-20" class="end">Sat, 20 Jun 2020 15:14:16 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -75,7 +75,7 @@
             
             $$
           </p>
-          <p>
+          <p class="indent">
             so that $gf = 1_x$ and $fh = 1_y$, then $g = h$ and $f$ is an isomorphism. Consequently, show that a morphism can have at most one inverse isomorphism.
           </p>
           <p>
@@ -95,14 +95,26 @@
           <p>
             such that $gf = 1_x$ and $fg = 1_y$. But $fh = 1_y$ already, so our task reduces to showing that $h = g$; that is, inverse isomorphism is unique.
           </p>
+          <p class="exercise">
+            (1.1.ii) Show that the collection of isomorphisms in $C$ defines a subcategory, the `maximal groupoid` inside $C$.
+          </p>
           <p>
-            $\Box$
+            Solution:
           </p>
           <p class="exercise">
-            (1.1.ii) Let $C$ be a category Show that the collection of isomorphisms in $C$ defines a subcategory, the `maximal groupoid` inside $C$.
+            (1.1.iii.i) For any category $C$ and object $c \in C$, show that there is a category $c/C$ whose objects are the morphisms $f : c \rightarrow x$ with domain $c$ and in which a morphism from $f : c \rightarrow x$ to $g : c \rightarrow y$ is a map $h : x \rightarrow y$ between the codomains in the triangle commutes; i.e. $g = hf$.
           </p>
-          <p class="exercise">
-            (1.1.iii) For any category $C$ and object $c \in C$, show that there is a category $c/C$ whose objects are the morphisms $f : c \rightarrow x$
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            & c\ar[dl]_f\ar[dr]^g & \\
+              x\ar[rr]_h & & y
+              }
+              \end{xy}
+            
+            $$
           </p>
         </article>
       </main>
