@@ -2,25 +2,25 @@
 
 # Natural transforms, products
 
-Find two different functors $T : \textbf{Grp} \rightarrow \textbf{Grp}$ with the object function $T(G) = G$, the identity for every group $G$.
++ Find two different functors $T : \textbf{Grp} \rightarrow \textbf{Grp}$ with the object function $T(G) = G$, the identity for every group $G$.
 
 Solution: In other words, we need to find morphisms $f, g$, such that the corresponding morphisms $T f, T g$ are present in the image of the $T$. The two required morphisms are, given $x \in G$, $f(x) = x$, the identity morphism, and $g(x) = 1$, the zero morphism. Indeed, the functor carries identity to identity, and $T(f \circ g) = Tf \circ Tg$ $\Box$
 
 --
 
-Show how the field of quotients in an integral domain can be regarded as a functor.
++ Show how the field of quotients in an integral domain can be regarded as a functor.
 
 Solution: An integral domain $G$ is defined as having no zero-divisors other than $0$. The field of quotients is a subgroup of this integral domain, where every element has an inverse. Indeed, we can define the functor $T : G \rightarrow Q$ to be the forgetful functor, which maps only units in $G$ to elements in $Q$. Let $f, g$ be two morphisms in $G$ for which $f \circ g$ is defined. Then, $T(1) = 1, T(f \circ g) = Tf \circ Tg$ $\Box$
 
 --
 
-Prove that there is no functor $T : \textbf{Grp} \rightarrow \textbf{Ab}$ sending each element of group $G$ to its `center`.
++ Prove that there is no functor $T : \textbf{Grp} \rightarrow \textbf{Ab}$ sending each element of group $G$ to its `center`.
 
 Proof: We have $a \in G$, and the object function $T(a) = bab^{-1}, b \in G$. Then, the object function takes identity to identity: $T(1) = bb^{-1} = 1$. But there is a problem with the arrow function: take $f = g = \text{id}$, so that $f \circ g = \text{id}$. Then, $(Tf \circ Tg)(a) = cbab^{-1}c^{-1} \neq T(f \circ g)(a) = bab^{-1}$ $\Box$
 
 --
 
-Let $S$ be a fixed set, and $X^S$ all functions $h : S \rightarrow X$. Show that $X \mapsto X^S$ is the object function of functor $\textbf{Set} \rightarrow \textbf{Set}$, and that evaluation $e_X : X^S \times X \overset{\bullet}{\rightarrow} X$ defined by $e(h, s) = h(s)$, the value of the function $h$ at $s \in S$, is an NT.
++ Let $S$ be a fixed set, and $X^S$ all functions $h : S \rightarrow X$. Show that $X \mapsto X^S$ is the object function of functor $\textbf{Set} \rightarrow \textbf{Set}$, and that evaluation $e_X : X^S \times X \overset{\bullet}{\rightarrow} X$ defined by $e(h, s) = h(s)$, the value of the function $h$ at $s \in S$, is an NT.
 
 Proof: From the information given, we can conclude that $\mathscr{P} : X \mapsto X^S$ is the power-set functor, mapping every object $X \in \textbf{Set}$ to its power-set $\mathscr{P}X$. This is a functor, as identity maps to identity, and $\mathscr{P}(f \circ g) = \mathscr{P}f \circ \mathscr{P}g$ for any two morphisms $f, g \in \textbf{Set}$.
 
@@ -39,7 +39,7 @@ commutes, for $b, b' \in X$ $\Box$
 
 --
 
-For a fixed group $H$, show that $G \mapsto H \times G$ defines a functor $H \times - : \textbf{Grp} \rightarrow \textbf{Grp}$, and that each morphism of groups $f : H \rightarrow K$ defines an NT $H \times - \overset{\bullet}{\rightarrow} K \times -$.
++ For a fixed group $H$, show that $G \mapsto H \times G$ defines a functor $H \times - : \textbf{Grp} \rightarrow \textbf{Grp}$, and that each morphism of groups $f : H \rightarrow K$ defines an NT $H \times - \overset{\bullet}{\rightarrow} K \times -$.
 
 Proof: For the NT, the following diagram:
 
@@ -56,29 +56,29 @@ commutes, for $b, b' \in X$.
 
 --
 
-Let $B, C$ be groups, and $S, T : B \rightarrow C$ functors (group homomorphisms). Then, show that an NT $S \overset{\bullet}{\rightarrow} T$ exists only if $S, T$ are `conjugate`; i.e. there is an element $h \in C$ such that $Tg = h(Sg)h^{-1}$, for all $g \in B$.
++ Let $B, C$ be groups, and $S, T : B \rightarrow C$ functors (group homomorphisms). Then, show that an NT $S \overset{\bullet}{\rightarrow} T$ exists only if $S, T$ are `conjugate`; i.e. there is an element $h \in C$ such that $Tg = h(Sg)h^{-1}$, for all $g \in B$.
 
 --
 
-Find a category with an arrow that is both epi and monic, but not invertible.
++ Find a category with an arrow that is both epi and monic, but not invertible.
 
 Solution: $m : a \rightarrow b$ is such that $a \circ m = b \circ m \implies a = b$ and $m \circ a = m \circ b \implies a = b$, but $\exists$ no $m^{-1}$. This is true of an integral domain $\Box$
 
 --
 
-If $f \circ g$ is monic, so is $g$. Is it true of $f$?
++ If $f \circ g$ is monic, so is $g$. Is it true of $f$?
 
 Solution: The condition that $f \circ g$ is monic can be written as $(f \circ g) \circ a = (f \circ g) \circ b \implies a = b$, by cancelation of $f \circ g$. We know that $g$ is also monic, and this can be written as $g \circ a = g \circ b \implies a = b$. By comparing with the previous condition, we see that $f$ is also monic $\Box$
 
 --
 
-Prove that composites of monics is monic, and that of epis is epi.
++ Prove that composites of monics is monic, and that of epis is epi.
 
 Proof: This follows immediately from the previous problem $\Box$
 
 --
 
-Show that the product category includes the following special cases: product of monoids, groups, and sets.
++ Show that the product category includes the following special cases: product of monoids, groups, and sets.
 
 Proof: A monoid is defined as set $M$ equipped with $\mu : M \times M \rightarrow M$ and $\eta : 1 \rightarrow M$, such that the following diagrams commute:
 
@@ -119,7 +119,7 @@ $\textbf{Set}$ is simply a discrete category (category with one object), so the 
 
 --
 
-Show that the product of two preorders is a preorder.
++ Show that the product of two preorders is a preorder.
 
 Proof: A preorder is defined by reflexivity $a \leq a$, and transitivity $a \leq b \wedge b \leq c \implies a \leq c$. Let $a, b$ be objects and $f, g$ be arrows in the preorder category $C$. Then, $C \times C$ is defined as the category with objects as pairs $\langle a, b \rangle$ and arrows as pairs $\langle f, g \rangle$, where $f : a \rightarrow a', g : b \rightarrow b'$, such that:
 
@@ -129,7 +129,7 @@ along with the usual product structure. Since $f, g$ act on $a, b$ independently
 
 --
 
-Describe the opposite of the category $\textbf{Matr}_K$.
++ Describe the opposite of the category $\textbf{Matr}_K$.
 
 Solution: $\textbf{Matr}_K$ is the category of rectangular matrices of dimension $m \times n$ with entries in the commutative ring $K$. The objects are positive integers $m, n, \ldots$, and each $m \times n$ matrix $A$ is regarded as an arrow $A : n \rightarrow m$. The opposite category is a category with the same objects and direction of arrows reversed, i.e. the arrows are $A^{\text{op}} : m \rightarrow n$ $\Box$
 
@@ -137,19 +137,19 @@ Solution: $\textbf{Matr}_K$ is the category of rectangular matrices of dimension
 
 # Functor categories, comma categories, free categories
 
-Describe $B^X$, for $X$ a finite set.
++ Describe $B^X$, for $X$ a finite set.
 
 Solution: $B^X$ is a category with objects the functors $T : \textbf{Set} \rightarrow B$, and arrows the morphisms between these functors. We can think of $T$ as functors that endow additional structure to the $\textbf{Set}$. Contained in $T$ is also the identity functor that identifies each element in $\textbf{Set}$ to a corresponding element in the richer category $B$ $\Box$
 
 --
 
-If $P, Q$ are preorders, describe $P^Q$, and show that it is a preorder.
++ If $P, Q$ are preorders, describe $P^Q$, and show that it is a preorder.
 
 Proof: The functor category may be written as $P^Q = \text{Funct}(Q, P)$, with objects the functors $T : Q \rightarrow P$, and morphisms the NTs between two such functors. A preorder is defined by reflexivity $a \leq a$ and transitivity $a \leq b \wedge b \leq c \implies a \leq c$; we need to show that $P^Q$ preserves this property.
 
 --
 
-Given categories $B, C$, and functor category $B^2$, show that each functor $H : C \rightarrow B^2$ determines the functors $S, T : C \rightarrow B$, and an NT $\tau : S \overset{\bullet}{\rightarrow} T$, and show that the assignment $H \mapsto \langle S, T, \tau \rangle$ is bijective.
++ Given categories $B, C$, and functor category $B^2$, show that each functor $H : C \rightarrow B^2$ determines the functors $S, T : C \rightarrow B$, and an NT $\tau : S \overset{\bullet}{\rightarrow} T$, and show that the assignment $H \mapsto \langle S, T, \tau \rangle$ is bijective.
 
 Proof: $B^2$ is the category whose objects are arrows $f : a \rightarrow b \in B$, and whose arrows $f \rightarrow f'$ are those that, along with pair $\langle h, k \rangle$, make the following diagram commute:
 
@@ -164,26 +164,28 @@ $$
 
 --
 
-For small categories $A, B, C$, establish the bijection:
++ For small categories $A, B, C$, establish the bijection:
+
 $$\textbf{Cat}(A \times B, C) \cong \textbf{Cat}(A, C^B)$$
 
-and show that it is natural in $A, B, C$.
+- and show that it is natural in $A, B, C$.
 
 --
 
-Show that the horizontal composition $\circ$ is a functor:
-$$\circ : A^B \times B^C \rightarrow A^C$$
++ Show that the horizontal composition $\circ$ is a functor:
+
+$$
+  \circ : A^B \times B^C \rightarrow A^C
+$$
 
 --
 
-Let $S$ be a set with two everywhere-defined binary operations $\bullet : S \times S \rightarrow S$ and $\circ : S \times S \rightarrow S$, such that both have the same two-sided identity element $e$, and satisfy the interchange law:
++ Let $S$ be a set with two everywhere-defined binary operations $\bullet : S \times S \rightarrow S$ and $\circ : S \times S \rightarrow S$, such that both have the same two-sided identity element $e$, and satisfy the interchange law:
 
 $$(\tau' \bullet \sigma') \circ (\tau \bullet \sigma) = (\tau \circ \tau') \bullet (\sigma \circ \sigma')$$
 
-Prove that $\circ$ and $\bullet$ are equal, and that each is commutative.
+- Prove that $\circ$ and $\bullet$ are equal, and that each is commutative.
 
 --
 
-If $K$ is a commutative ring, show that the [comma category](/category/1#comma-category) $(K \downarrow \textbf{CRng})$ is the category of small commutative [$K$-algebras](/ac/1#algebras).
-
-Solution:
++ If $K$ is a commutative ring, show that the [comma category](/category/1#comma-category) $(K \downarrow \textbf{CRng})$ is the category of small commutative [$K$-algebras](/ac/1#algebras).
