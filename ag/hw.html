@@ -54,7 +54,7 @@
             [ag/hw] Homework
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2019-02-26" class="begin">Tue, 26 Feb 2019 11:11:27 +0530</time><span class="to">↪</span><time datetime="2019-12-09" class="end">Mon, 09 Dec 2019 11:44:19 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+            <span id="timestamp"><time datetime="2019-02-26" class="begin">Tue, 26 Feb 2019 11:11:27 +0530</time><span class="to">↪</span><time datetime="2020-06-20" class="end">Sat, 20 Jun 2020 14:36:37 +0200</time></span><br /><span id="locations"><address>Paris, Paris, Chennai</address></span>
           </div>
         </header>
         <article>
@@ -453,11 +453,14 @@
           </p>
           <p>
             Proof: Let $\text{Spec } A = \bigcup_{\lambda \in \Lambda} U_\lambda$ be an open cover, with $U_\lambda = \text{Spec } A \backslash V(I_\lambda)$. Now,
-            $$\begin{align*}
-            \text{Spec } A &amp;= \bigcup_{\lambda \in \Lambda} (\text{Spec } A \backslash V(I_\lambda)) \\
-            &amp;= \text{Spec } A \backslash \bigcap_{\lambda \in \Lambda} V(I_\lambda) \\
-            &amp;= \text{Spec } A \backslash V(\sum_{\lambda \in \Lambda} I_\lambda)
-            \end{align*}
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align*}
+              \text{Spec } A &= \bigcup_{\lambda \in \Lambda} (\text{Spec } A \backslash V(I_\lambda)) \\
+              &= \text{Spec } A \backslash \bigcap_{\lambda \in \Lambda} V(I_\lambda) \\
+              &= \text{Spec } A \backslash V(\sum_{\lambda \in \Lambda} I_\lambda)
+              \end{align*}
             $$
           </p>
           <p>
@@ -607,7 +610,7 @@
           <p>
             Show that it is possible to glue an arbitarary collection of schemes together. Given:
           </p>
-          <ul class="ulitems">
+          <ol class="olitems" type="i" start="1">
             <li>
               Schemes $X_i$.
             </li>
@@ -617,7 +620,7 @@
             <li>
               Isomorphisms $f_{ij} : X_{ij} \rightarrow X_{ji}$, with $f_{ii}$ identity.
             </li>
-          </ul>
+          </ol>
           <p>
             Such that the cocycle condition is satisfied. That is, isomorphisms agree on triple intersections; i.e. $f_{ik}|_{X_{ij} \cap X_{ik}} = f_{jk}|_{X_{ji} \cap X_{jk}} \circ f_{ij}|_{X_{ij} \cap X_{ik}}$. The cocycle condition ensures that $f_{ij}, f_{ji}$ are inverses. Show that there is a unique scheme $X$ along with open subsets $X_i$ respecting the gluing data in the obvious sense.
           </p>

@@ -85,10 +85,6 @@ html
                 ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.olstart}"
                   - for item in paragraph.split "\n"
                     li == item
-              - when :ulitems
-                ul class="ulitems"
-                  - for item in paragraph.split "\n"
-                    li == item
               - when :subheading
                 h2 id="#{paragraph.bookmark}" = paragraph.to_s
               - when :footer
@@ -118,6 +114,8 @@ html
                 p class="mathjax" == paragraph.to_s
               - when :exercise
                 p class="exercise" == paragraph.to_s
+              - when :indent
+                p class="indent" == paragraph.to_s
           - if indexfill && indexfill.any?
             ul id="indexfill"
               - indexfill.each do |page|
