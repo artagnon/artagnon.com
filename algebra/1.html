@@ -54,7 +54,7 @@
             [ac/1] Ideals, Modules, Tensor products
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2018-09-23" class="begin">Sun, 23 Sep 2018 07:05:52 +0530</time><span class="to">↪</span><time datetime="2020-06-12" class="end">Fri, 12 Jun 2020 13:36:14 +0200</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+            <span id="timestamp"><time datetime="2018-09-23" class="begin">Sun, 23 Sep 2018 07:05:52 +0530</time><span class="to">↪</span><time datetime="2020-06-21" class="end">Sun, 21 Jun 2020 14:40:54 +0200</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
           </div>
         </header>
         <article>
@@ -318,10 +318,10 @@
             Modules
           </h2>
           <p>
-            Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there's no need to look further than matrices over $\mathbb{R}$, the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise. The ideal $I$ and quotient ring $A/I$ are both examples of modules.
+            Modules let us do linear algebra on general rings, even non-commutative ones. For instances of non-commutative rings, there's no need to look further than matrices over $\mathbb{R}$, the field of real numbers. Another instance of non-commutative algebra can be found in Quaternions, that have different properties when cycling clockwise and counter-clockwise. The ideal $I$ and quotient ring $A/I$ are both examples of modules, and can hence, to a certain extent, be treated on an equal footing.
           </p>
           <p>
-            A module $M$ over ring $A$ is formally defined as the multiplication map $A \times M \rightarrow AM$, or $(f, m) \mapsto fm$ satisfying the following axioms:
+            A module $M$ over ring $A$ is formally defined as the multiplication map $\mu : A \times M \rightarrow M$ satisfying the following axioms:
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
@@ -338,10 +338,7 @@
             </li>
           </ol>
           <p>
-            Theory of modules $\leftrightarrow$ Theory of linear algebra over $A$.
-          </p>
-          <p>
-            Examples:
+            where $f, g \in A$ and $m, n \in M$. What follows is a bunch of examples:
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
@@ -358,11 +355,25 @@
             </li>
           </ol>
           <p>
-            Let $M, N$ be $A$-modules, and $f : M \rightarrow N$ be an $A$-module homomorphism, or $A$-linear. Then, $f(x + y) = f(x) + f(y)$, and $f(ax) = a . f(x)$, for all $a \in A; x, y \in M$. If $A$ is a field, then an $A$-module homomorphism is the same thing as linear transformation over vector spaces.
+            Let $M, N$ be $A$-modules, and $f : M \rightarrow N$ be an `$A$-module homomorphism`, or `$A$-linear`. Then,
+          </p>
+          <p class="mathjax">
+            $$
+            f(x + y) = f(x) + f(y) \\
+              f(ax) = a . f(x)
+            $$
+          </p>
+          <p>
+            for all $a \in A; x, y \in M$. If $A$ is a field, then an $A$-module homomorphism is the same thing as linear transformation over vector spaces.
           </p>
           <p>
             The composition of any two $A$-module homomorphisms is again an $A$-module homomorphism. The set of all $A$-module homomorphisms from $M$ to $N$ can be turned into an $A$-module with the axioms:
-            $$(f + g)(x) = f(x) + g(x) \quad (af)(x) = a . f(x)$$
+          </p>
+          <p class="mathjax">
+            $$
+            (f + g)(x) = f(x) + g(x) \\
+              (af)(x) = a . f(x)
+            $$
           </p>
           <p>
             This $A$-module is denoted by $\text{Hom}(M, N)$. Homomorphisms $u : M' \rightarrow M$ and $v : N \rightarrow N''$ induce the homomorphisms:
@@ -370,12 +381,16 @@
           <p class="mathjax">
             $$
             \bar{u} : \text{Hom}(M, N) \rightarrow \text{Hom}(M', N) \\
-            \bar{v} : \text{Hom}(M, N) \rightarrow \text{Hom}(M, N'')
+              \bar{v} : \text{Hom}(M, N) \rightarrow \text{Hom}(M, N'')
             $$
           </p>
           <p>
             where:
-            $$\bar{u}(f) = u \circ f \quad \bar{v}(f) = f \circ v$$
+          </p>
+          <p class="mathjax">
+            $$
+            \bar{u}(f) = u \circ f \quad \bar{v}(f) = f \circ v
+            $$
           </p>
           <p>
             For any module $M$, there is the natural isomorphism $\text{Hom}(A, M) \cong M$: any $A$-module homomorphism $f : A \rightarrow M$ is determined uniquely determined by $f(1)$, which can be any element of $M$.
