@@ -62,16 +62,16 @@
             Rings of fractions
           </h2>
           <p>
-            Rings of fractions, and the associated localization process, correspond to the [algebro-geometric picture](/ag) of studying behavior of an open set or near a point. Using the way we construct $\mathbb{Q}$ from $\mathbb{Z}$, we can construct equivalence classes of $a, s$, where $(a, s) \in A, s \neq 0$, defined as follows:
+            Rings of fractions, and the associated localization process, correspond to the [algebro-geometric picture](/ag) of studying behavior of an open set or near a point. Using the way we construct $\mathbb{Q}$ from $\mathbb{Z}$, we can construct equivalence classes of $a, s$, where $(a, s) \in A, s \neq 0$, defined as follows:<br/>
             $$(a, s) \equiv (b, t) \iff at - bs = 0$$
           </p>
           <p>
-            but this definition only works if $A$ is an integral domain. A more general definition of equivalence involves using a `multiplicative subset` $S$ of $A$ and defining $\equiv$ over $A \times S$:
+            but this definition only works if $A$ is an integral domain. A more general definition of equivalence involves using a `multiplicative subset` $S$ of $A$ and defining $\equiv$ over $A \times S$:<br/>
             $$(a, s) \equiv (b, t) \iff \exists u \in S : u(at - bs) = 0$$
           </p>
           <p>
-            Let $a/s$ denote the equivalence class of $(a, s)$ and $S^{-1} A$ the set of all equivalence classes. We can endow $S^{-1} A$ with a ring structure by defining addition and multiplication as operations on fractions, as in elementry algebra:
-            $$a/s + b/t = (at + bs)/st$$
+            Let $a/s$ denote the equivalence class of $(a, s)$ and $S^{-1} A$ the set of all equivalence classes. We can endow $S^{-1} A$ with a ring structure by defining addition and multiplication as operations on fractions, as in elementry algebra:<br/>
+            $$a/s + b/t = (at + bs)/st$$<br/>
             $$(a/s)(b/t) = ab/st$$
           </p>
           <p>
@@ -121,11 +121,11 @@
             The same construction involving $S^{-1}$ can be carried out in modules instead of rings. Let $u : M \rightarrow N$ be an $A$-module homomorphism. This gives rise to an $S^{-1} A$-module homomorphism $S^{-1} M \rightarrow S^{-1} N$, such that $S^{-1} u$ maps $m/s$ to $u(m)/s$. We have $S^{-1} (v \circ u) = S^{-1}v \circ S^{-1}u$.
           </p>
           <p>
-            $S^{-1}$ preserves exactness, in that if the following sequence is exact at $M$:
+            $S^{-1}$ preserves exactness, in that if the following sequence is exact at $M$:<br/>
             $$L \xrightarrow{f} M \xrightarrow{g} N$$
           </p>
           <p>
-            then, this sequence is exact at $S^{-1} M$:
+            then, this sequence is exact at $S^{-1} M$:<br/>
             $$S^{-1} L \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} N$$
           </p>
           <p>
@@ -155,15 +155,15 @@
             To prove (iii), apply $S^{-1}$ to the exact sequence $0 \rightarrow M \rightarrow N \rightarrow M/N \rightarrow 0$.
           </p>
           <p>
-            Let $M$ be an $A$-module. Then, there exists a unique isomorphism $f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$ such that:
+            Let $M$ be an $A$-module. Then, there exists a unique isomorphism $f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$ such that:<br/>
             $$f((a/s) \otimes m) = am/s \quad \forall a \in A, m \in M, s \in S$$
           </p>
           <p>
-            To prove this, notice that the mapping $S^{-1} A \rightarrow S^{-1} M$ given by $(a/s, m) \mapsto am/s$ is $A$-bilinear, and by universal property of the tensor product, induces the $A$-homomorphism:
+            To prove this, notice that the mapping $S^{-1} A \rightarrow S^{-1} M$ given by $(a/s, m) \mapsto am/s$ is $A$-bilinear, and by universal property of the tensor product, induces the $A$-homomorphism:<br/>
             $$f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$$
           </p>
           <p>
-            $f$ is clearly surjective, and it remains to be proved that it is injective as well. Notice that every element of $S^{-1} A \otimes M$ is of the form $(1/s) \otimes m$. Suppose that $(1/s) \otimes m = 0$, then $m/s = 0$ and hence $\exists t : tm = 0$. Therefore:
+            $f$ is clearly surjective, and it remains to be proved that it is injective as well. Notice that every element of $S^{-1} A \otimes M$ is of the form $(1/s) \otimes m$. Suppose that $(1/s) \otimes m = 0$, then $m/s = 0$ and hence $\exists t : tm = 0$. Therefore:<br/>
             $$\frac{1}{s} \otimes m = \frac{t}{ts} \otimes m = \frac{1}{s} \otimes tm = 0$$
           </p>
           <p>
@@ -173,11 +173,11 @@
             $S^{-1} A$ is a [flat](/ac/1#exactness-of-the-tensor-product) $A$-module, and this is immediately obvious.
           </p>
           <p>
-            If $M, N$ are $A$-modules, there is an isomorphism of $S^{-1} A$-modules $f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)$ such that:
+            If $M, N$ are $A$-modules, there is an isomorphism of $S^{-1} A$-modules $f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)$ such that:<br/>
             $$f((m/s) \otimes (n/t)) = (m \otimes n)/st$$
           </p>
           <p>
-            In particular, if $\mathfrak{p}$ is a prime ideal:
+            In particular, if $\mathfrak{p}$ is a prime ideal:<br/>
             $$M_\mathfrak{p} \otimes_{A_\mathfrak{p}} N_\mathfrak{p} \cong (M \otimes_A N)_\mathfrak{p}$$
           </p>
           <h2 id="local-properties">
@@ -232,11 +232,11 @@
             Primary decomposition
           </h2>
           <p>
-            Just as prime ideals are generalizations of primes in $\mathbb{Z}$, in some sense, powers of primes can be generalized to primary ideals: ideal $Q$ of $A$ is primary if $Q \neq A$ and
+            Just as prime ideals are generalizations of primes in $\mathbb{Z}$, in some sense, powers of primes can be generalized to primary ideals: ideal $Q$ of $A$ is primary if $Q \neq A$ and<br/>
             $$fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n &gt; 0$$
           </p>
           <p>
-            In other words, for $Q$ to be primary,
+            In other words, for $Q$ to be primary,<br/>
             $$A/Q \neq 0 \text{, and every zerodivisor in } A/Q \text{ is nilpotent}$$
           </p>
           <p>
@@ -283,7 +283,7 @@
             Let us prove (iii), since (i) and (ii) are obvious. Let $y \in (Q : x)$ and $xy \in Q$, and hence, since $x \notin Q$, $y \in P$. Hence, $Q \subseteq (Q : x) \subseteq P$; taking radicals, we get $\sqrt{(Q : x)} = P$. Let $yz \in (Q : x)$ so that $y \notin P$; then $xyz \in Q$, hence $xz \in Q$ and $z \in (Q : x)$.
           </p>
           <p>
-            The `primary decomposition` of ideal $I$ is given by finite intersection of primary ideals:
+            The `primary decomposition` of ideal $I$ is given by finite intersection of primary ideals:<br/>
             $$I = \bigcap_i Q_i$$
           </p>
           <p>
@@ -296,7 +296,7 @@
             Let $I$ be a decomposable ideal. Then, any prime ideal $P \supseteq I$ contains a minimal prime ideal belonging to $I$, and thus the minimal prime ideals of $I$ are exactly the minimal elements in the set of all prime ideals containing $I$.
           </p>
           <p>
-            Let $I = \bigcap_i Q_i$ be a minimal primary primary decomposition, and $\sqrt{Q_i} = P_i$. Then,
+            Let $I = \bigcap_i Q_i$ be a minimal primary primary decomposition, and $\sqrt{Q_i} = P_i$. Then,<br/>
             $$\bigcup_i P_i = \{x \in A \mid (I : x) \neq I\}$$
           </p>
           <p>
@@ -314,7 +314,7 @@
             </li>
           </ol>
           <p>
-            Let $S$ be a multiplicatively closed subset of $A$, and $I = \bigcap_i Q_i$ be the minimal primary decomposition of $I$ in $A$. Let $P_i = \sqrt{Q_i}$, and suppose $Q_i$ is numbered so that $S$ meets $P_{m + 1} \ldots P_n$, but not $P_1 \ldots P_m$. Then:
+            Let $S$ be a multiplicatively closed subset of $A$, and $I = \bigcap_i Q_i$ be the minimal primary decomposition of $I$ in $A$. Let $P_i = \sqrt{Q_i}$, and suppose $Q_i$ is numbered so that $S$ meets $P_{m + 1} \ldots P_n$, but not $P_1 \ldots P_m$. Then:<br/>
             $$S^{-1} I = \bigcap_{i = 1}^m S^{-1} Q_i, \quad S(I) = \bigcap_{i = 1}^m Q_i$$
           </p>
           <p>
@@ -330,11 +330,11 @@
             Integral dependence
           </h2>
           <p>
-            Let $B$ be a ring, and $A$ a subring of $B$. Then, element $x$ of $B$ is said to be `integral over $A$` if $x$ is the root of the polynomial with coefficients in $A$, that is, if $x$ satisfies:
+            Let $B$ be a ring, and $A$ a subring of $B$. Then, element $x$ of $B$ is said to be `integral over $A$` if $x$ is the root of the polynomial with coefficients in $A$, that is, if $x$ satisfies:<br/>
             $$x^n + a_1 x^{n - 1} + \ldots + a_n = 0$$
           </p>
           <p>
-            Let $A = \mathbb{Z}, B = \mathbb{Q}$. If a rational number $x = r/s$ is integral over $\mathbb{Z}$, where $r, s$ have no common factor, we have:
+            Let $A = \mathbb{Z}, B = \mathbb{Q}$. If a rational number $x = r/s$ is integral over $\mathbb{Z}$, where $r, s$ have no common factor, we have:<br/>
             $$r^n + a_1 r^{n - 1} s + \ldots + a_n s^n = 0$$
           </p>
           <p>
@@ -358,7 +358,7 @@
             </li>
           </ol>
           <p>
-            To prove (i) $\implies$ (ii), we have:
+            To prove (i) $\implies$ (ii), we have:<br/>
             $$x^{n + r} = -(a_1 x^{n + r - 1} + \ldots + a_n x^n)$$
           </p>
           <p>
@@ -412,7 +412,7 @@
             Valuation ring of a discrete valuation $v$ is given by $A = \{x \in K \mid v(x) \geq 0\}$.
           </p>
           <p>
-            For valuation ring $A$:
+            For valuation ring $A$:<br/>
             $$A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}$$
           </p>
           <h2 id="dedekind-domains">
@@ -454,8 +454,8 @@
             $J(X) = J(X_1) \cup J(X_2) \Rightarrow X = X_1 \text{ or } X_2$; $X$ is a prime ideal.
           </p>
           <p>
-            The following reverse-inclusions are obvious:
-            $$X \subset Y \Rightarrow I(X) \supset I(Y)$$
+            The following reverse-inclusions are obvious:<br/>
+            $$X \subset Y \Rightarrow I(X) \supset I(Y)$$<br/>
             $$I \subset J \Rightarrow V(I) \supset V(J)$$
           </p>
           <h2 id="zariski-topology">
@@ -470,7 +470,7 @@
             $$
           </p>
           <p>
-            corresponds exactly to the Zariski topology on $\text{Spec } A$, $\mathcal{V}(I)$:
+            corresponds exactly to the Zariski topology on $\text{Spec } A$, $\mathcal{V}(I)$:<br/>
             $$\mathcal{V}(I) \cup \mathcal{V}(J) = \mathcal{V}(I \cap J) = \mathcal{V}(IJ)$$
           </p>
           <p>

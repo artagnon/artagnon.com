@@ -81,7 +81,7 @@
             Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend `%RAX` into `%RDX` (not any other register) for use in a later `IDIV`. Remember that `IDIV` operates on `%RDX:%RAX` as the numerator, and writes the quotient in `%RAX`, reminder in `%RDX`.
           </p>
           <p>
-            The instruction is modeled as `MachineInstr`, and the operands as `MachineOperand`. Note that a `MO` doesn't have to be a register: it could also be an immediate value; we use `MO.isReg()` to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, `MO` can also be `EarlyClobber`, `Dead`, or `Undef`. A Dead `MO` implies Def, and
+            The instruction is modeled as `MachineInstr`, and the operands as `MachineOperand`. Note that a `MO` doesn't have to be a register: it could also be an immediate value; we use `MO.isReg()` to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, `MO` can also be `EarlyClobber`, `Dead`, or `Undef`. A Dead `MO` implies Def, and<br/>
             indicates that the value defined is used no longer.
           </p>
           <p>
@@ -92,7 +92,7 @@
             Now, if `%RAX` were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as `regFree`, and move on: we have done our part by completing the use of the register that was reserved earlier.
           </p>
           <p>
-            The second scan operates only on virtual register Uses. We add the register to `LiveVirtRegs`, via `reloadVirtReg`. If it didn't already exist in the map, we `allocVirtReg` it, which essentially gets the first `regFree` register not used in an instruction, and calls `assignVirtToPhysReg` on it. `assignVirtToPhysReg` is very simple: it just updates the `PhysRegState` mapping. Finally,
+            The second scan operates only on virtual register Uses. We add the register to `LiveVirtRegs`, via `reloadVirtReg`. If it didn't already exist in the map, we `allocVirtReg` it, which essentially gets the first `regFree` register not used in an instruction, and calls `assignVirtToPhysReg` on it. `assignVirtToPhysReg` is very simple: it just updates the `PhysRegState` mapping. Finally,<br/>
             `reloadVirtReg` updates the `UsedInInstr` map.
           </p>
           <p>
@@ -103,7 +103,7 @@
           </p>
           <pre><code class="language-cpp">%RAX<def> = COPY %vreg342</code></pre>
           <p>
-            we should always `regReserve` `%RAX`, right? Except if `%RAX` is dead. What
+            we should always `regReserve` `%RAX`, right? Except if `%RAX` is dead. What<br/>
             about if it's an `&lt;imp-def&gt;`?
           </p>
           <pre><code class="language-cpp">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>

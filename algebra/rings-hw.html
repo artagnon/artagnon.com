@@ -65,11 +65,11 @@
             Proof: Let us use the reductio ad absurdum technique, and assume that $(x) \neq I \wedge I \neq R[x]$. Then, $f(x) \in I, f(x) \notin (x), f(x) \notin R[x]$.
           </p>
           <p>
-            Since $f(x)$ is a general polynomial, we can use the remainder theorem to obtain:
+            Since $f(x)$ is a general polynomial, we can use the remainder theorem to obtain:<br/>
             $$f(x) = g(x)q(x) + r(x)$$
           </p>
           <p>
-            Now, since we're free to choose $g$, choose $g(x) = x$. Then $r(x)$ must be of a lower degree, and hence a constant $c$.
+            Now, since we're free to choose $g$, choose $g(x) = x$. Then $r(x)$ must be of a lower degree, and hence a constant $c$.<br/>
             $$f(x) = x . q(x) + c$$
           </p>
           <p>
@@ -83,20 +83,20 @@
             Proof: Let us again use proof by contradiction, and assume that $(x^2 + 1) \neq I \wedge I \neq R[x]$. Then, $f(x) \in I, f(x) \notin (x^2 + 1), f(x) \notin R[x]$.
           </p>
           <p>
-            Since $f(x)$ is a general polynomial, we can use the remainder theorem to obtain:
+            Since $f(x)$ is a general polynomial, we can use the remainder theorem to obtain:<br/>
             $$f(x) = g(x)q(x) + r(x)$$
           </p>
           <p>
-            Now, choose $g(x) = x + \alpha$; $r(x)$ can only be a zero, because if it were a nonzero constant, $f(x)$ would contain $1$, and hence $f(x) \in R[x]$ otherwise:
+            Now, choose $g(x) = x + \alpha$; $r(x)$ can only be a zero, because if it were a nonzero constant, $f(x)$ would contain $1$, and hence $f(x) \in R[x]$ otherwise:<br/>
             $$f(x) = (x + \alpha)q(x)$$
           </p>
           <p>
-            Since $f(x) \in I$ from our assumption, we get $I = (x + \alpha)$. Note that $x^2 + 1 \in I$, from our hypothesis:
+            Since $f(x) \in I$ from our assumption, we get $I = (x + \alpha)$. Note that $x^2 + 1 \in I$, from our hypothesis:<br/>
             $$x^2 + 1 = (x + \alpha)h(x)$$
           </p>
           <p>
-            But $x^2 + 1$ is irreducible in $R[x]$; assume that it factors:
-            $$x^2 + 1 = (x - a)(x - b) = x^2 - (a + b) . x + ab$$
+            But $x^2 + 1$ is irreducible in $R[x]$; assume that it factors:<br/>
+            $$x^2 + 1 = (x - a)(x - b) = x^2 - (a + b) . x + ab$$<br/>
             $$\implies a + b = 0 \wedge ab = 1 \implies a^2 = -1$$
           </p>
           <p>
@@ -110,7 +110,7 @@
             Solution: Consider the ring of Gauss integers $\mathbb{Z}[\sqrt{-5}]$. Then $6 = 2 . 3 = (1 + \sqrt{-5}) (1 + \sqrt{-5})$, and this ring is not a unique factorization domain. Let us inspect $2$: it belongs to the multiplicative set containing $2 . 3$, but it does not divide either $1 + \sqrt{-5}$ or $1 - \sqrt{-5}$.
           </p>
           <p>
-            Prime ideals are defined as $A \backslash S$, where $S$ is a multiplicative set such that:
+            Prime ideals are defined as $A \backslash S$, where $S$ is a multiplicative set such that:<br/>
             $$fg \in S \implies f \in S \wedge g \in S$$
           </p>
           <p>
@@ -128,19 +128,19 @@
             Prove that every maximal ideal is a prime ideal in ring $A$.
           </p>
           <p>
-            Proof: The definition of a prime ideal $P$ is:
+            Proof: The definition of a prime ideal $P$ is:<br/>
             $$fg \in P \implies f \in P \vee g \in P$$
           </p>
           <p>
-            The definition of a maximal ideal is:
+            The definition of a maximal ideal is:<br/>
             $$\not\exists I : M \subset I \subset A$$
           </p>
           <p>
-            From this definition, it should be clear that maximal ideals can never be the product of two different maximal ideals $J$ and $K$, for if it were, then
+            From this definition, it should be clear that maximal ideals can never be the product of two different maximal ideals $J$ and $K$, for if it were, then<br/>
             $$J \subset JK \subset A \text{ or } K \subset JK \subset A$$
           </p>
           <p>
-            contradicting the definition of a maximal ideal. i.e. for $j \in J, k \in K$
+            contradicting the definition of a maximal ideal. i.e. for $j \in J, k \in K$<br/>
             $$jk \in M \implies j \in M \vee k \in M$$
           </p>
           <p>
@@ -168,21 +168,21 @@
             An integral domain is defined by $pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/P$.
           </p>
           <p>
-            Proof: Given that $A/P$ is an integral domain, show that $P$ is prime. Consider elements $a, b \in A$. Elements of $A/P$ are then of the form $a + P, b + P$. Now, use the definition of an integral domain to write:
-            $$(a + P)(b + P) = 0 + P \implies a + P = 0 + P \vee b + P = 0 + P$$
-            $$ab + P = 0 + P \implies a - 0 \in P \vee b - 0 \in P$$
+            Proof: Given that $A/P$ is an integral domain, show that $P$ is prime. Consider elements $a, b \in A$. Elements of $A/P$ are then of the form $a + P, b + P$. Now, use the definition of an integral domain to write:<br/>
+            $$(a + P)(b + P) = 0 + P \implies a + P = 0 + P \vee b + P = 0 + P$$<br/>
+            $$ab + P = 0 + P \implies a - 0 \in P \vee b - 0 \in P$$<br/>
             $$ab \in P \implies a \in P \vee b \in P$$
           </p>
           <p>
             This is exactly the definition of a prime ideal, as required.
           </p>
           <p>
-            Proof, the other way: To show $A/P$ is an integral domain, given that $P$ is a prime ideal. First, consider the surjective homomorphism
+            Proof, the other way: To show $A/P$ is an integral domain, given that $P$ is a prime ideal. First, consider the surjective homomorphism<br/>
             $$A \xrightarrow[]{\varphi} A/P$$
           </p>
           <p>
-            From isomorphism theorem, $\text{ker}(\varphi) = P = \{a \mid \varphi(a) = 0\}$. We know that:
-            $$pq \in P \implies p \in P \vee q \in P$$
+            From isomorphism theorem, $\text{ker}(\varphi) = P = \{a \mid \varphi(a) = 0\}$. We know that:<br/>
+            $$pq \in P \implies p \in P \vee q \in P$$<br/>
             $$\varphi(p)\varphi(q) \in (0) \implies \varphi(p) \in (0) \vee \varphi(q) \in (0)$$
           </p>
           <p>
@@ -196,20 +196,20 @@
             A field is defined by $pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/M$ and $\exists v^{-1}: v^{-1}v = vv^{-1} = 1 \mid v \in A/M$.
           </p>
           <p>
-            Proof:  To show that $M$ is maximal given that $A/M$ is a field. For the zerodivisor proof, follow exactly. For the next part, assume $w \in A$:
-            $$(v + M)(w + M) = 1 + M$$
+            Proof:  To show that $M$ is maximal given that $A/M$ is a field. For the zerodivisor proof, follow exactly. For the next part, assume $w \in A$:<br/>
+            $$(v + M)(w + M) = 1 + M$$<br/>
             $$vw - 1 \in M \implies vw \in 1 + M = (1)$$
           </p>
           <p>
             hence $vw$ is unit, which implies that $w = v^{-1}$ as required.
           </p>
           <p>
-            Proof, the other way: To show that $A/M$ is a field, given $M$ is maximal. Consider the surjective homomorphism:
+            Proof, the other way: To show that $A/M$ is a field, given $M$ is maximal. Consider the surjective homomorphism:<br/>
             $$A \xrightarrow[]{\varphi} A/M$$
           </p>
           <p>
-            Now, since $A/M$ is a field, the only ideals are $(0)$ and $(1)$; by isomorphism theorem, there is a bijective correspondence between ideals of $A$ containing $M$ and those of $A/M$.
-            $$\varphi^{-1}(0) = ker(\varphi) = (0)$$
+            Now, since $A/M$ is a field, the only ideals are $(0)$ and $(1)$; by isomorphism theorem, there is a bijective correspondence between ideals of $A$ containing $M$ and those of $A/M$.<br/>
+            $$\varphi^{-1}(0) = ker(\varphi) = (0)$$<br/>
             $$\varphi^{-1}(1) = A \backslash (0) = M$$
           </p>
           <p>
@@ -220,8 +220,8 @@
             For ideals $P$ and $Q$, show that $PQ$ is contained within $P \cap Q$.
           </p>
           <p>
-            Proof: From isomorphism theorem,
-            $$(P + Q)/Q \cong P/(P \cap Q)$$
+            Proof: From isomorphism theorem,<br/>
+            $$(P + Q)/Q \cong P/(P \cap Q)$$<br/>
             $$PQ/(P + Q) = P \cap Q$$
           </p>
           <p>

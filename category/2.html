@@ -126,7 +126,7 @@
             The concept of universality can be formulated in terms of [hom-sets](/category/1#hom-sets) as follows. Given functor $S: A \rightarrow B$, the pair $\langle r, u : b \rightarrow Sr \rangle$ for $r \in A$ is universal if and only if the function $g : r \rightarrow a$ and the composition $Sg \circ u : b \rightarrow Sa$ satisfies the bijection of hom-sets $A(r, a) \cong B(b, Sa)$. This is natural in $A$. If $A, B$ have small hom-sets, then the functor $B(b, S-)$ to $\textbf{Set}$ is isomorphic to the covariant hom-functor $A(r, -)$. Such isomorphisms are called `representations`.
           </p>
           <p>
-            Let $D$ be a category with small hom-sets. Then, `representation` of functor $K : D \rightarrow \textbf{Set}$, given $r \in D$, is the pair $\langle r, \psi \rangle$ such that:
+            Let $D$ be a category with small hom-sets. Then, `representation` of functor $K : D \rightarrow \textbf{Set}$, given $r \in D$, is the pair $\langle r, \psi \rangle$ such that:<br/>
             $$\psi : D(r, -) \cong K$$
           </p>
           <p>
@@ -139,7 +139,7 @@
             A universal arrow from $b$ to $S : A \rightarrow B$ can be written as the natural isomorphism $A(r, a) \cong B(b, Sa)$, or equivalently as representation of the functor $B(b, S-) : A \rightarrow \textbf{Set}$, or equally well as the universal element of the same functor.
           </p>
           <p>
-            Informally speaking, the `Yoneda lemma` states that an object can be recovered by knowing the maps into it. Formally, given category $D$ with small hom-sets, $r \in D$, functor $K : D \rightarrow \textbf{Set}$, there is a bijection:
+            Informally speaking, the `Yoneda lemma` states that an object can be recovered by knowing the maps into it. Formally, given category $D$ with small hom-sets, $r \in D$, functor $K : D \rightarrow \textbf{Set}$, there is a bijection:<br/>
             $$\text{Nat}(D(r, -), K) \cong Kr$$
           </p>
           <p>
@@ -156,7 +156,7 @@
             $$
           </p>
           <p>
-            The bijection $y : \text{Nat}(D(r, -), K) \cong Kr$ is the natural isomorphism $N \overset{\bullet}{\rightarrow} E : \textbf{Set}^D \times D \rightarrow \textbf{Set}$. The object function $r \mapsto D(r, -)$ and the arrow function:
+            The bijection $y : \text{Nat}(D(r, -), K) \cong Kr$ is the natural isomorphism $N \overset{\bullet}{\rightarrow} E : \textbf{Set}^D \times D \rightarrow \textbf{Set}$. The object function $r \mapsto D(r, -)$ and the arrow function:<br/>
             $$(f : s \rightarrow r) \mapsto D(f, -) : D(r, -) \mapsto D(s, -)$$
           </p>
           <p>
@@ -179,18 +179,18 @@
             $$
           </p>
           <p>
-            The assignment $\langle f, g \rangle \mapsto h$ is a bijection that is natural in $d$:
+            The assignment $\langle f, g \rangle \mapsto h$ is a bijection that is natural in $d$:<br/>
             $$C(a, d) \times C(b, d) \cong C(a \sqcup b, d)$$
           </p>
           <p>
             Examples include the disjoint union in $\textbf{Set}$, wedge product in $\textbf{Top}_*$, and the tensor product in $\textbf{CRng}$.
           </p>
           <p>
-            For `infinite coproducts`, replace $C^2$ with $C^X$, for any set $X$:
+            For `infinite coproducts`, replace $C^2$ with $C^X$, for any set $X$:<br/>
             $$C(\sqcup_x a_x, c) \cong \prod_x C(a_x, c)$$
           </p>
           <p>
-            If $a_x = b$ for all x, `copower` $\sqcup_X b$ is written as $X \bullet b$:
+            If $a_x = b$ for all x, `copower` $\sqcup_X b$ is written as $X \bullet b$:<br/>
             $$C(X \bullet b, c) \cong C(b, c)^X$$
           </p>
           <p>
@@ -265,7 +265,7 @@
             $$
           </p>
           <p>
-            The `coproduct over $a$`, also called `cocartesian square` or `fibered sum` is written as:
+            The `coproduct over $a$`, also called `cocartesian square` or `fibered sum` is written as:<br/>
             $$r = b \sqcup_a c = b \sqcup_{\langle f, g \rangle} c$$
           </p>
           <p>
@@ -285,7 +285,7 @@
             $$
           </p>
           <p>
-            Let $C$ be a category, and $J$ be an index category. The diagonal functor
+            Let $C$ be a category, and $J$ be an index category. The diagonal functor<br/>
             $$\Delta : C \rightarrow C^J$$
           </p>
           <p>
@@ -350,25 +350,25 @@
             $$
           </p>
           <p>
-            For a discrete category $J = \{1, 2\}$ and category $C$, limit of functor $F : \{1, 2\} \rightarrow C$ consisting of pairs $\langle a, b \rangle$, is called `product` of $a, b$ and written as $a \times b$. Then, we have projections $p, q$ defined as:
+            For a discrete category $J = \{1, 2\}$ and category $C$, limit of functor $F : \{1, 2\} \rightarrow C$ consisting of pairs $\langle a, b \rangle$, is called `product` of $a, b$ and written as $a \times b$. Then, we have projections $p, q$ defined as:<br/>
             $$a \xleftarrow{p} a \times b \xrightarrow{q} b$$
           </p>
           <p>
-            They form a cone with vertex $a \times b$, and we have the bijection of sets natural in $c$:
+            They form a cone with vertex $a \times b$, and we have the bijection of sets natural in $c$:<br/>
             $$C(c, a \times b) \cong C(c, a) \times C(c, b)$$
           </p>
           <p>
             We then define $h = (f, g) : c \rightarrow a \times b$, and $f, g$ are called the `components` of $h$. In $\textbf{Cat}, \textbf{Grp}, \textbf{Top}$, this corresponds to direct product.
           </p>
           <p>
-            `Infinite products`. When $J$ is a set (= discrete category, category with all arrows identities), $F : J \rightarrow C$ is simply a $J$-indexed family of objects $a_i \in C$, while cone with vertex $c$ and base $a_j$ is a $J$-indexed family of arrows $f_j : c \rightarrow a_j$. We have $f : c \rightarrow \prod_j a_j$ and the following bijection of sets natural in $c$:
+            `Infinite products`. When $J$ is a set (= discrete category, category with all arrows identities), $F : J \rightarrow C$ is simply a $J$-indexed family of objects $a_i \in C$, while cone with vertex $c$ and base $a_j$ is a $J$-indexed family of arrows $f_j : c \rightarrow a_j$. We have $f : c \rightarrow \prod_j a_j$ and the following bijection of sets natural in $c$:<br/>
             $$\prod_j C(c, a_j) \cong C(c, \prod_j a_j)$$
           </p>
           <p>
             Products over any small set exist in $\textbf{Set}$, $\textbf{Grp}$, and $\textbf{Top}$; they are simply cartesian products.
           </p>
           <p>
-            If factors in a product are all equal, $a_j = b$ for all $j$, then $\prod_j a_j = \prod_j b$ is called `power`, and is written as $\prod_j b = b^J$. The following bijection of sets is natural in $c$:
+            If factors in a product are all equal, $a_j = b$ for all $j$, then $\prod_j a_j = \prod_j b$ is called `power`, and is written as $\prod_j b = b^J$. The following bijection of sets is natural in $c$:<br/>
             $$C(c, b)^J \cong C(c, b^J)$$
           </p>
           <p>
@@ -413,11 +413,11 @@
             A category is said to have finite products if, for any finite number of objects $c_1, c_2, \ldots c_n$, there exists a product object $c_1 \times c_2 \times \ldots c_n$ and projections $p_i : c_1 \times c_2 \times \ldots c_n \rightarrow c_i$ for $i = 1 \ldots n$, with the usual universal property.
           </p>
           <p>
-            If $C$ has a terminal object $t$ and products $a \leftarrow a \times b \rightarrow b$ for any two objects $a, b$, then $C$ has all finite products. The products provide, by $\langle a, b \rangle \mapsto a \times b$, the bifunctor $C \times C \rightarrow C$. For any three objects, we have the isomorphism natural in $a, b, c$:
+            If $C$ has a terminal object $t$ and products $a \leftarrow a \times b \rightarrow b$ for any two objects $a, b$, then $C$ has all finite products. The products provide, by $\langle a, b \rangle \mapsto a \times b$, the bifunctor $C \times C \rightarrow C$. For any three objects, we have the isomorphism natural in $a, b, c$:<br/>
             $$\alpha = \alpha_{a, b, c} : (a \times b) \times c \cong a \times (b \times c)$$
           </p>
           <p>
-            For any object $a$, there are isomorphisms natural in $c$:
+            For any object $a$, there are isomorphisms natural in $c$:<br/>
             $$\rho_a = \rho : t \times a \cong a \quad \lambda_a = \lambda : a \times t \cong a$$
           </p>
           <p>
@@ -435,11 +435,11 @@
             $$
           </p>
           <p>
-            The dual result holds for a coproduct. A coproduct diagram consists of $m$ injections $i_j : a_j \rightarrow a_1 \sqcup a_2 \sqcup \ldots \sqcup a_m$ and a map $f: a_1 \sqcup a_2 \sqcup \ldots \sqcup a_n \rightarrow c$ determined by its $m$ cocomponents $f \circ i_j : f_j = a_j \rightarrow c$ for $j = 1, 2, \ldots m$. If $C$ has both finite products and finite coproducts, the arrows
+            The dual result holds for a coproduct. A coproduct diagram consists of $m$ injections $i_j : a_j \rightarrow a_1 \sqcup a_2 \sqcup \ldots \sqcup a_m$ and a map $f: a_1 \sqcup a_2 \sqcup \ldots \sqcup a_n \rightarrow c$ determined by its $m$ cocomponents $f \circ i_j : f_j = a_j \rightarrow c$ for $j = 1, 2, \ldots m$. If $C$ has both finite products and finite coproducts, the arrows<br/>
             $$a_1 \sqcup \ldots \sqcup a_m \rightarrow b_1 \times \ldots \times b_n$$
           </p>
           <p>
-            from coproducts to products is determined uniquely by an $m \times n$ matrix of arrows $f_{jk} = p_k f i_j : a_j \rightarrow b_k$. In any category with a null object $z$ and the zero arrow $a \rightarrow b$ through $z$, finite coproducts, and finite products, there is a canonical arrow of the coproduct to the product:
+            from coproducts to products is determined uniquely by an $m \times n$ matrix of arrows $f_{jk} = p_k f i_j : a_j \rightarrow b_k$. In any category with a null object $z$ and the zero arrow $a \rightarrow b$ through $z$, finite coproducts, and finite products, there is a canonical arrow of the coproduct to the product:<br/>
             $$a_1 \sqcup \ldots \sqcup a_n \rightarrow a_1 \times \ldots \times a_n$$
           </p>
           <p>
@@ -502,11 +502,11 @@
             Colimits of representatable functors
           </h2>
           <p>
-            Any functor $K : D \rightarrow \textbf{Sets}$, from a small category $D$ to the category of Sets, can be represented, in a canoical way, by the colimit of a diagram of representable functors $\text{hom}(d, -)$, where $d \in D$. First, given $K$, we construct a diagram category for the colimit $J$, the "category of elements" of $K$; that is the comma category $1 \downarrow K$ of object pairs $(d, x)$, with $d \in D, x \in K(d)$ as objects, and arrows $f : (d, x) \rightarrow (d', x')$, those arrows $f: d \rightarrow d'$ for which $K(f)x = x'$. Then, $K$ is the colimit of the diagram on $1 \downarrow K$ given by the functor
+            Any functor $K : D \rightarrow \textbf{Sets}$, from a small category $D$ to the category of Sets, can be represented, in a canoical way, by the colimit of a diagram of representable functors $\text{hom}(d, -)$, where $d \in D$. First, given $K$, we construct a diagram category for the colimit $J$, the "category of elements" of $K$; that is the comma category $1 \downarrow K$ of object pairs $(d, x)$, with $d \in D, x \in K(d)$ as objects, and arrows $f : (d, x) \rightarrow (d', x')$, those arrows $f: d \rightarrow d'$ for which $K(f)x = x'$. Then, $K$ is the colimit of the diagram on $1 \downarrow K$ given by the functor<br/>
             $$M : J^D \rightarrow \textbf{Sets}^D$$
           </p>
           <p>
-            which sends each object $(d, x)$ to the hom-functor $D(d, -)$, and each arrow $f$ to the induced NT $f_* : D(d', -) \rightarrow D(d, -)$. Then, the Yoneda isomorphism on $\textbf{Sets}^D$ yields a cone over base $M$ to $K$:
+            which sends each object $(d, x)$ to the hom-functor $D(d, -)$, and each arrow $f$ to the induced NT $f_* : D(d', -) \rightarrow D(d, -)$. Then, the Yoneda isomorphism on $\textbf{Sets}^D$ yields a cone over base $M$ to $K$:<br/>
             $$y^{-1} : K(D) \rightarrow \text{Nat}(D(d, -), K)$$
           </p>
           <p>

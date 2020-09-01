@@ -103,7 +103,7 @@ FORCEINLINE T operator()(T a, T b) const
    0x108d1ac1d:  popq   %rbp
    0x108d1ac1e:  retq</code></pre>
           <p>
-            So, it's comparing the extended registers, but cmpl/cmpw difference is
+            So, it's comparing the extended registers, but cmpl/cmpw difference is<br/>
             messing up somehow.
           </p>
           <p>
@@ -145,7 +145,7 @@ FORCEINLINE T operator()(T a, T b) const
 (lldb) register read --format int16_t[] esi
      esi = {34 0}</code></pre>
           <p>
-            In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when
+            In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when<br/>
             calling a function with a word-sized register.
           </p>
           <p>

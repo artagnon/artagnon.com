@@ -76,7 +76,7 @@
             In the key example of affine complex variety (roughly, things cut out in $\mathbb{C}^n$ by polynomials), the set is the set of "traditional points" that are n-tuples of complex numbers, plus some handy additional points. For the topology, we will require that the "subset of points where the function vanishes" to be closed. For the structure sheaf, we have algebraic functions on the open space consisting of points where the denominator does not vanish.
           </p>
           <p>
-            As a first example, consider differentiable manifolds. Taking $X$ to be a differentiable manifold, we see that it has a topology, and a sheaf of differentiable functions $\mathscr{O}_X$. This gives $\mathscr{O}_X$ the structure of a ringed space. Evaluation at a point $p$ gives a surjective map from the stalk to $\mathbb{R}$:
+            As a first example, consider differentiable manifolds. Taking $X$ to be a differentiable manifold, we see that it has a topology, and a sheaf of differentiable functions $\mathscr{O}_X$. This gives $\mathscr{O}_X$ the structure of a ringed space. Evaluation at a point $p$ gives a surjective map from the stalk to $\mathbb{R}$:<br/>
             $$\mathscr{O}_{X, p} \twoheadrightarrow \mathbb{R}$$
           </p>
           <p>
@@ -206,7 +206,7 @@
             Underlying topological space of an affine scheme
           </h2>
           <p>
-            The locus where a polynomial vanishes should be a closed set. The `Zariski topology` says that the only closed sets we should consider are these sets, and other sets that are forced to be closed by these; in other words, it is the coarsest topology in which the locus where a polynomial vanishes is a closed set. We define the `vanishing set` of $S$ by:
+            The locus where a polynomial vanishes should be a closed set. The `Zariski topology` says that the only closed sets we should consider are these sets, and other sets that are forced to be closed by these; in other words, it is the coarsest topology in which the locus where a polynomial vanishes is a closed set. We define the `vanishing set` of $S$ by:<br/>
             $$V(S) = \{[\mathfrak{p}] \in \text{Spec } A : S \subset \mathfrak{p}\}$$
           </p>
           <p>
@@ -288,7 +288,7 @@
             Spaces can be broken up into a finite number of irreducible components. For example, in the locus of $xy = 0 \in \mathbb{A}_\mathbb{C}^2$, we think of the space as having two "pieces": the $x$ and $y$ axes. The reason for this is that the underlying topological space is `Noetherian`. In particular a topological space is said to be Noetherian if it satisfies the `descending chain condition` for closed subsets.
           </p>
           <p>
-            If $X$ is a Noetherian topological space, then every nonempty subset $Z$ can be expressed as a finite union of irreducible subsets: $Z = Z_1 \cup \ldots \cup Z_n$, none contained in the other. To prove this, we will use the technique of `Noetherian induction`. Consider the collection of closed subsets of $X$ which cannot be expressed as a finite union of irreducible closed subsets. Let $Y_1$ be one such, and let it contain another such, call it $Y_2$. If $Y_2$ contains another such, call it $Y_3$, and so on. By the d.c.c, this sequence must eventually stop, so let it stop at some $Y_r$, which cannot be written as a finite union of irreducible closed sets; moreover, every closed subset contained in it can be so written. But $Y_r$ is not irreducible, so we can write $Y_r = Y' \cup Y''$, where $Y', Y''$ are proper closed subsets. By hypothesis, both of these can be written as a finite union of closed irreducible sets, and hence so can $Y_r$, leading to a contradiction. Next we show uniqueness; let:
+            If $X$ is a Noetherian topological space, then every nonempty subset $Z$ can be expressed as a finite union of irreducible subsets: $Z = Z_1 \cup \ldots \cup Z_n$, none contained in the other. To prove this, we will use the technique of `Noetherian induction`. Consider the collection of closed subsets of $X$ which cannot be expressed as a finite union of irreducible closed subsets. Let $Y_1$ be one such, and let it contain another such, call it $Y_2$. If $Y_2$ contains another such, call it $Y_3$, and so on. By the d.c.c, this sequence must eventually stop, so let it stop at some $Y_r$, which cannot be written as a finite union of irreducible closed sets; moreover, every closed subset contained in it can be so written. But $Y_r$ is not irreducible, so we can write $Y_r = Y' \cup Y''$, where $Y', Y''$ are proper closed subsets. By hypothesis, both of these can be written as a finite union of closed irreducible sets, and hence so can $Y_r$, leading to a contradiction. Next we show uniqueness; let:<br/>
             $$Z = Z_1 \cup \ldots \cup Z_r = Z'_1 \cup \ldots \cup Z'_s$$
           </p>
           <p>
@@ -312,7 +312,7 @@
             Hence, any finitely generated algebra over $k$ or $\mathbb{Z}$ is Noetherian. Example of a non-Noetherian ring: $k[x_1, x_2, \ldots]$, since the sequence of ideals does not terminate.
           </p>
           <p>
-            `Hilbert's Basis Theorem`: If $A$ is Noetherian, so is $A[x]$. To prove this, we show that any ideal $I \subset A[x]$ is finitely-generated. We inductively produce a set of generators $f_1, \ldots$ as follows. For $n \gt 0$ if $I \neq (f_1, \ldots, f_{n - 1})$, let $f_n = I - (f_1, \ldots, f_{n - 1})$ be a nonzero element of lowest degree. Thus, $f_1$ is an element of $I$ of lowest degree, assuming $I \neq (0)$. If this procedure terminates, then we are done. Otherwise, let $a_n \in A$ be an initial coefficient of $f_n$ for $n \gt 0$. Then, as $A$ is Noetherian, $(a_1, a_2, \ldots) = (a_1, \ldots, a_N)$ for some $N$. Let $a_{N + 1} = \sum_{i = 1}^N b_i a_i$. Then,
+            `Hilbert's Basis Theorem`: If $A$ is Noetherian, so is $A[x]$. To prove this, we show that any ideal $I \subset A[x]$ is finitely-generated. We inductively produce a set of generators $f_1, \ldots$ as follows. For $n \gt 0$ if $I \neq (f_1, \ldots, f_{n - 1})$, let $f_n = I - (f_1, \ldots, f_{n - 1})$ be a nonzero element of lowest degree. Thus, $f_1$ is an element of $I$ of lowest degree, assuming $I \neq (0)$. If this procedure terminates, then we are done. Otherwise, let $a_n \in A$ be an initial coefficient of $f_n$ for $n \gt 0$. Then, as $A$ is Noetherian, $(a_1, a_2, \ldots) = (a_1, \ldots, a_N)$ for some $N$. Let $a_{N + 1} = \sum_{i = 1}^N b_i a_i$. Then,<br/>
             $$f_{N + 1} - \sum_{i = 1}^N b_i f_i x^{\text{deg } f_{N + 1} - \text{deg } f_i}$$
           </p>
           <p>
