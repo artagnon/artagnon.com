@@ -8,4 +8,4 @@ aggressive:
 
 deploy:
 	@git push
-	@rsync -a --delete * .htaccess nfsn:/home/public
+	@rsync -P -az --delete * .htaccess nfsn:/home/public
