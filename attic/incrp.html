@@ -63,22 +63,22 @@
           </p>
           <ol class="olitems" type="none" start="1">
             <li>
-              BasicBlockRegion<br/>
+              BasicBlockRegion
             </li>
             <li>
-              ChainRegion<br/>
+              ChainRegion
             </li>
             <li>
-              IfRegion<br/>
+              IfRegion
             </li>
             <li>
-              SwitchRegion<br/>
+              SwitchRegion
             </li>
             <li>
-              ForLoopRegion<br/>
+              ForLoopRegion
             </li>
             <li>
-              WhileLoopRegion<br/>
+              WhileLoopRegion
             </li>
             <li>
               UnstructuredRegion
@@ -118,16 +118,16 @@
           </p>
           <ol class="olitems" type="none" start="1">
             <li>
-              Either the predecessor or the successor says that they're part of a BasicBlockRegion. Solution: absorb into the that Region.<br/>
+              Either the predecessor or the successor says that they're part of a BasicBlockRegion. Solution: absorb into the that Region.
             </li>
             <li>
-              Both the predecessor and successor say that they're part of an UnstructuredRegion. This means that our Sese is floating in the middle of some unstructured control flow. Solution: create a new BasicBlockRegion with just this Sese. We can't just <mark>insertAfterChild</mark>, because "before" and "after" in an UnstructuredRegion isn't as simple as walking the CFG back/forward. Let's say they're DFS-ordered. So, do a depth-first-search of all the statements, and ask them what Regions they belong to. We now have a DFS listing of all the Regions within the UnstructuredRegion. We simply nuke the children, and replace it with this DFS listing (which now contains the new BasicBlockRegion we created).<br/>
+              Both the predecessor and successor say that they're part of an UnstructuredRegion. This means that our Sese is floating in the middle of some unstructured control flow. Solution: create a new BasicBlockRegion with just this Sese. We can't just <mark>insertAfterChild</mark>, because "before" and "after" in an UnstructuredRegion isn't as simple as walking the CFG back/forward. Let's say they're DFS-ordered. So, do a depth-first-search of all the statements, and ask them what Regions they belong to. We now have a DFS listing of all the Regions within the UnstructuredRegion. We simply nuke the children, and replace it with this DFS listing (which now contains the new BasicBlockRegion we created).
             </li>
             <li>
-              Parent of the predecessor or parent of the successor is a ChainRegion. Solution: create a new BasicBlockRegion, and insert it into the ChainRegion at the correct position (using an <mark>insertAfterChild</mark> API).<br/>
+              Parent of the predecessor or parent of the successor is a ChainRegion. Solution: create a new BasicBlockRegion, and insert it into the ChainRegion at the correct position (using an <mark>insertAfterChild</mark> API).
             </li>
             <li>
-              Now we get to the case where there's only one predecessor or one successor. Other cases would have already been trapped by checking if the predParent/succParent is a ChainRegion. Solution: create a new BasicBlockRegion, a new ChainRegion, and chain the existing predecessor/successor along with the new BasicBlockRegion.<br/>
+              Now we get to the case where there's only one predecessor or one successor. Other cases would have already been trapped by checking if the predParent/succParent is a ChainRegion. Solution: create a new BasicBlockRegion, a new ChainRegion, and chain the existing predecessor/successor along with the new BasicBlockRegion.
             </li>
             <li>
               Finally, if the predecessor/successor both point to the parent loop, simply create a new BasicBlockRegion, and insert it into the empty loop.
