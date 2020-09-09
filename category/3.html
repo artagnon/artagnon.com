@@ -91,7 +91,7 @@
             $$
           </p>
           <p>
-            As another example, consider the [free category](/category/1#graphs-and-free-categories) over a small graph $G$, $C = FG$, and $D : \textbf{Grph} \rightarrow \textbf{Cat}$ given by; it is related to the forgetful functor $U : \textbf{Cat} \rightarrow \textbf{Grph}$ since $D : G \rightarrow UB$ extends to $D' : FG \rightarrow B$. Moreover $D \mapsto D'$ is a natural isomorphism:<br/>
+            As another example, consider the <a href="/category/1#graphs-and-free-categories">free category</a> over a small graph $G$, $C = FG$, and $D : \textbf{Grph} \rightarrow \textbf{Cat}$ given by; it is related to the forgetful functor $U : \textbf{Cat} \rightarrow \textbf{Grph}$ since $D : G \rightarrow UB$ extends to $D' : FG \rightarrow B$. Moreover $D \mapsto D'$ is a natural isomorphism:<br/>
             $$\textbf{Cat}(FG, B) \cong \textbf{Grph}(G, UB)$$
           </p>
           <p>
@@ -103,7 +103,7 @@
             $$\text{Hom}(A \otimes_K B, C) \cong \text{Hom}(A, \text{Hom}_K(B, C))$$
           </p>
           <p>
-            The `adjuction` from category $X$ to category $A$, where $F, G$ are functors, is given by the triple $\langle F, G, \varphi \rangle : X \rightharpoonup A$
+            The <mark>adjuction</mark> from category $X$ to category $A$, where $F, G$ are functors, is given by the triple $\langle F, G, \varphi \rangle : X \rightharpoonup A$
           </p>
           <p class="mathjax">
             $$
@@ -149,14 +149,14 @@
             Here, $h^* = X(h, Ga), k_* = A(Fx, k)$.
           </p>
           <p>
-            An adjunction can also be described without talking about hom-sets, directly in terms of arrows. There is a bijection which assigns to each of the arrows $f : Fx \rightarrow a$ arrows $\varphi f = \text{rad } f : x \rightarrow Ga$, the `right adjunct` of $f$, in such a way that the natural compositions hold:<br/>
+            An adjunction can also be described without talking about hom-sets, directly in terms of arrows. There is a bijection which assigns to each of the arrows $f : Fx \rightarrow a$ arrows $\varphi f = \text{rad } f : x \rightarrow Ga$, the <mark>right adjunct</mark> of $f$, in such a way that the natural compositions hold:<br/>
             $$\varphi(k \circ f) = Gk \circ \varphi f \quad \varphi(f \circ Fh) = \varphi f \circ h$$
           </p>
           <p>
-            $F$ is said to be `right adjoint` for $G$, and $G$ is the `left adjoint` for $F$.
+            $F$ is said to be <mark>right adjoint</mark> for $G$, and $G$ is the <mark>left adjoint</mark> for $F$.
           </p>
           <p>
-            Every adjunction yields a universal arrow. Call the hom-set that contains the identity $1 : Fx \rightarrow Fx$ the $\varphi$-image of $\eta_x$. $\eta_x$ is a universal arrow by [Yoneda's proposition](/category/2#yoneda-lemma):<br/>
+            Every adjunction yields a universal arrow. Call the hom-set that contains the identity $1 : Fx \rightarrow Fx$ the $\varphi$-image of $\eta_x$. $\eta_x$ is a universal arrow by <a href="/category/2#yoneda-lemma">Yoneda's proposition</a>:<br/>
             $$\eta_x : x \rightarrow GFx \quad \eta_x = \varphi(1_{Fx})$$
           </p>
           <p>
@@ -213,7 +213,7 @@
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              A natural transform $\eta : I_x \overset{\bullet}{\rightarrow} GF$ such that for each object $x$, the arrow $\eta_x$ is universal from $x$ to $G$, and right adjunct $f : Fx \rightarrow a$ is detemined by $\varphi f = Gf \circ \eta_x : x \rightarrow Ga$
+              A natural transform $\eta : I_x \overset{\bullet}{\rightarrow} GF$ such that for each object $x$, the arrow $\eta_x$ is universal from $x$ to $G$, and right adjunct $f : Fx \rightarrow a$ is detemined by $\varphi f = Gf \circ \eta_x : x \rightarrow Ga$<br/>
             </li>
             <li>
               Dually, another natural transform $\epsilon : FG \overset{\bullet}{\rightarrow} I_x$ such that every arrow $\epsilon_a$ is universal from $G$ to $a$, and left adjunct $g : x \rightarrow Ga$ is determined by $\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a$
@@ -224,23 +224,23 @@
             $$G \xrightarrow{\eta G} GFG \xrightarrow{G \epsilon} G \quad F \xrightarrow{F \eta} FGF \xrightarrow{\epsilon F} F$$
           </p>
           <p>
-            $\eta$ is termed `unit` and $\epsilon$ is termed `counit` of the adjunction.
+            $\eta$ is termed <mark>unit</mark> and $\epsilon$ is termed <mark>counit</mark> of the adjunction.
           </p>
           <p>
             The adjunct is completely determined by one of the following items:
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              Functors $F, G$ and NT $\eta : 1_x \overset{\bullet}{\rightarrow} GF$ such that every $\eta_x : x \rightarrow GFx$ is universal. Then, $\varphi f = Gf \circ \eta_x : x \rightarrow Ga$.
+              Functors $F, G$ and NT $\eta : 1_x \overset{\bullet}{\rightarrow} GF$ such that every $\eta_x : x \rightarrow GFx$ is universal. Then, $\varphi f = Gf \circ \eta_x : x \rightarrow Ga$.<br/>
             </li>
             <li>
-              Functor $G : A \rightarrow X$, object $F_0 x \in A$, and universal arrow $\eta_x : x \rightarrow GF_0 x$, from $x$ to $G$. Then, functor $F$ has object function $F_0$ and, on arrow $h : x \rightarrow x'$, by $GFh \circ \eta_x \rightarrow \eta_{x'}$.
+              Functor $G : A \rightarrow X$, object $F_0 x \in A$, and universal arrow $\eta_x : x \rightarrow GF_0 x$, from $x$ to $G$. Then, functor $F$ has object function $F_0$ and, on arrow $h : x \rightarrow x'$, by $GFh \circ \eta_x \rightarrow \eta_{x'}$.<br/>
             </li>
             <li>
-              Functors $F, G$, and NT $\epsilon : FG \overset{\bullet}{\rightarrow} I_A$ such that every $\epsilon_a : FGa \rightarrow a$ is universal. Then, $\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a$.
+              Functors $F, G$, and NT $\epsilon : FG \overset{\bullet}{\rightarrow} I_A$ such that every $\epsilon_a : FGa \rightarrow a$ is universal. Then, $\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a$.<br/>
             </li>
             <li>
-              Functor $F : X \rightarrow A$, object $G_0 \in X$, and universal arrow $\epsilon_a : FG_0 a \rightarrow a$, from $F$ to $a$.
+              Functor $F : X \rightarrow A$, object $G_0 \in X$, and universal arrow $\epsilon_a : FG_0 a \rightarrow a$, from $F$ to $a$.<br/>
             </li>
             <li>
               Functors $F, G$ and NTs $\eta : I_X \overset{\bullet}{\rightarrow} GF$ and $\epsilon : FG \overset{\bullet}{\rightarrow} I_A$.
@@ -370,14 +370,14 @@
             For an adjunction $\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A$, $G$ is faithful iff every component $\epsilon_a$ of the counit $\epsilon$ is epi, and $G$ is full iff every $\epsilon_a$ is split monic. Hence, $G$ is full and faithful iff each $\epsilon_a$ is an isomorphism $FGa \cong a$. This follows immediately from the last result.
           </p>
           <p>
-            A subcategory $A$ of $B$ is `reflective` in $B$ when the inclusion function $K : A \rightarrow B$ has left adjoint $F : B \rightarrow A$. The functor $F$ may be called a `reflector`, and the adjunction $\langle F, K, \varphi \rangle = \langle F, \varphi \rangle : B \rightharpoonup A$ a `reflection` of $B$ in subcategory $A$. Since the inclusion functor $K$ is always faithful, the counit $\epsilon$ of the reflection is always epi. A reflection can be described in terms of the composite functor $R = KF : b \rightarrow b$; indeed $A \subset B$ is reflective in $B$ iff there is a functor $R : B \rightarrow B$ with values in the subcategory $A$ and a bijection of sets:<br/>
+            A subcategory $A$ of $B$ is <mark>reflective</mark> in $B$ when the inclusion function $K : A \rightarrow B$ has left adjoint $F : B \rightarrow A$. The functor $F$ may be called a <mark>reflector</mark>, and the adjunction $\langle F, K, \varphi \rangle = \langle F, \varphi \rangle : B \rightharpoonup A$ a <mark>reflection</mark> of $B$ in subcategory $A$. Since the inclusion functor $K$ is always faithful, the counit $\epsilon$ of the reflection is always epi. A reflection can be described in terms of the composite functor $R = KF : b \rightarrow b$; indeed $A \subset B$ is reflective in $B$ iff there is a functor $R : B \rightarrow B$ with values in the subcategory $A$ and a bijection of sets:<br/>
             $$A(Rb, a) \cong B(b, a)$$
           </p>
           <p>
-            natural in $b \in B, a \in A$. A reflection can also be described in terms of universal arrows: $A \subset B$ is reflective iff to each $b \in B$, there is an object $Rb$ of the subcategory $A$, and the arrow $\eta_b : b \rightarrow Rb$ such that every arrow $g : b \rightarrow a \in A$ has the form $g = f \circ \eta_b$ for $f : Rb \rightarrow a$ of $A$. $R$ is then the object function of a functor $B \rightarrow B$ with values in $A$. If a full subcategory $A \subset B$ is reflective in $B$, then each object $a \in A$ is isommorphic to $FKa$, and hence $Ra \cong a$ for all $a$. Dually, $A \subset B$ is `coreflective` in $B$ when the inclusion functor $A \rightarrow B$ has right adjoint.
+            natural in $b \in B, a \in A$. A reflection can also be described in terms of universal arrows: $A \subset B$ is reflective iff to each $b \in B$, there is an object $Rb$ of the subcategory $A$, and the arrow $\eta_b : b \rightarrow Rb$ such that every arrow $g : b \rightarrow a \in A$ has the form $g = f \circ \eta_b$ for $f : Rb \rightarrow a$ of $A$. $R$ is then the object function of a functor $B \rightarrow B$ with values in $A$. If a full subcategory $A \subset B$ is reflective in $B$, then each object $a \in A$ is isommorphic to $FKa$, and hence $Ra \cong a$ for all $a$. Dually, $A \subset B$ is <mark>coreflective</mark> in $B$ when the inclusion functor $A \rightarrow B$ has right adjoint.
           </p>
           <p>
-            As an example, $\textbf{Ab}$ is reflective in $\textbf{Grp}$, for if $G/[G, G]$ is the usual factor-commutator group of group $G$, then $\text{Hom}(G/[G, G], A) \cong \text{Hom}(G, A)$ for $A$ abelian, and $\textbf{Ab}$ is full in $\textbf{Grp}$. As another example, consider the category of metric spaces $X$ with arrows uniformly continuous functions. The full subcategory of complete metric spaces is reflective; the reflector sends each metric space to its completion. As a third example, consider the category of all completely regular Hausdorff spaces with arrows continuous functions. The full subcategory of this category is reflective; the reflector sends each completely regular space to its `Stone-Čech compatification`.
+            As an example, $\textbf{Ab}$ is reflective in $\textbf{Grp}$, for if $G/[G, G]$ is the usual factor-commutator group of group $G$, then $\text{Hom}(G/[G, G], A) \cong \text{Hom}(G, A)$ for $A$ abelian, and $\textbf{Ab}$ is full in $\textbf{Grp}$. As another example, consider the category of metric spaces $X$ with arrows uniformly continuous functions. The full subcategory of complete metric spaces is reflective; the reflector sends each metric space to its completion. As a third example, consider the category of all completely regular Hausdorff spaces with arrows continuous functions. The full subcategory of this category is reflective; the reflector sends each completely regular space to its <mark>Stone-Čech compatification</mark>.
           </p>
           <p>
             A coreflective subcategory of $\textbf{Ab}$ is the full subcategory of all torsion abelian groups; the coreflector sends each abelian group $A$ to the subgroup $TA$ of all elements of finite order in $A$.
@@ -389,20 +389,20 @@
             A functor $S : A \rightarrow C$ is an isomorphism of categories when there is a functor $T : C \rightarrow A$ such that $ST = I : C \rightarrow C$ and $TS = I : A \rightarrow A$. In this case, the identity NTs $\eta : I \overset{\bullet}{\rightarrow} ST$ and $\epsilon : TS \overset{\bullet}{\rightarrow} I$ make $\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$ into an adjunction. In other words, the two-sided inverse $T$ of a functor $S$ is a left-adjoint of $S$; $T$ is also a right-adjoint of $S$.
           </p>
           <p>
-            In any category $C$, the `skeleton` of $C$ is any full subcategory $A$, such that every object of $C$ is isomorphic to exactly one object in $A$. Then $A$ is equivalent to $C$, and any functor $K : A \rightarrow C$ is an equivalence of categories, for we can select to each $c \in C$ an isomorphism $\theta_c : c \cong Tc$, with $Tc$ an object of $A$. We can then make $T : C \rightarrow A$ a functor in exactly one way, so that $\theta$ will become a natural isomorphism $\theta : I \cong KT$. Moreover, $TK \cong I$, so $K$ is indeed an equivalence. This discussion can be summarized as: A category is equivalent to any of its skeletons. As an example, the category of all finite sets has as a skeleton the full subcategory with objects all finite ordinals. A category is called `skeletal` when any two isomorphic objects are identical; i.e. when a category is its own skeleton.
+            In any category $C$, the <mark>skeleton</mark> of $C$ is any full subcategory $A$, such that every object of $C$ is isomorphic to exactly one object in $A$. Then $A$ is equivalent to $C$, and any functor $K : A \rightarrow C$ is an equivalence of categories, for we can select to each $c \in C$ an isomorphism $\theta_c : c \cong Tc$, with $Tc$ an object of $A$. We can then make $T : C \rightarrow A$ a functor in exactly one way, so that $\theta$ will become a natural isomorphism $\theta : I \cong KT$. Moreover, $TK \cong I$, so $K$ is indeed an equivalence. This discussion can be summarized as: A category is equivalent to any of its skeletons. As an example, the category of all finite sets has as a skeleton the full subcategory with objects all finite ordinals. A category is called <mark>skeletal</mark> when any two isomorphic objects are identical; i.e. when a category is its own skeleton.
           </p>
           <p>
-            An `adjoint equivalence` of categories is an adjoint $\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$ such that both units $\eta : I \overset{\bullet}{\rightarrow} ST$ and counits $\epsilon : TS \overset{\bullet}{\rightarrow} I$ are the natural isomorphisms $I \cong ST, TS \cong I$. Then $\eta^{-1}, \epsilon^{-1}$ are also identities, and the triangular identities $\epsilon T \bullet T \eta = 1$ and $S \epsilon \bullet \eta S = 1$ can be written as $T \epsilon^{-1} \bullet \eta^{-1} T = 1$ and $\epsilon^{-1} S \bullet S \eta^{-1} = 1$. These state that $\langle T, S, \epsilon^{-1}, \eta^{-1} \rangle : A \rightharpoonup C$ are adjunctions with unit $\epsilon^{-1} : I \overset{\bullet}{\rightarrow} TS$ and counit $\eta^{-1} : ST \overset{\bullet}{\rightarrow} I$. Thus, in an adjoint equivalence $\langle T, S, -, - \rangle$, the functor $T : C \rightarrow A$ is left adjoint of $S : A \rightarrow C$ with unit $\eta$, and $T$ is right adjoint of $S$ at the same time, with unit $\epsilon^{-1}$.
+            An <mark>adjoint equivalence</mark> of categories is an adjoint $\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$ such that both units $\eta : I \overset{\bullet}{\rightarrow} ST$ and counits $\epsilon : TS \overset{\bullet}{\rightarrow} I$ are the natural isomorphisms $I \cong ST, TS \cong I$. Then $\eta^{-1}, \epsilon^{-1}$ are also identities, and the triangular identities $\epsilon T \bullet T \eta = 1$ and $S \epsilon \bullet \eta S = 1$ can be written as $T \epsilon^{-1} \bullet \eta^{-1} T = 1$ and $\epsilon^{-1} S \bullet S \eta^{-1} = 1$. These state that $\langle T, S, \epsilon^{-1}, \eta^{-1} \rangle : A \rightharpoonup C$ are adjunctions with unit $\epsilon^{-1} : I \overset{\bullet}{\rightarrow} TS$ and counit $\eta^{-1} : ST \overset{\bullet}{\rightarrow} I$. Thus, in an adjoint equivalence $\langle T, S, -, - \rangle$, the functor $T : C \rightarrow A$ is left adjoint of $S : A \rightarrow C$ with unit $\eta$, and $T$ is right adjoint of $S$ at the same time, with unit $\epsilon^{-1}$.
           </p>
           <p>
             The following properties about functor $S : A \rightarrow C$ are equivalent:
           </p>
           <ol class="olitems" type="a" start="1">
             <li>
-              $S$ is an equivalence of categories.
+              $S$ is an equivalence of categories.<br/>
             </li>
             <li>
-              $S$ is part of the adjoint equivalence $\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$.
+              $S$ is part of the adjoint equivalence $\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$.<br/>
             </li>
             <li>
               $S$ is full and faithful, and each object $c \in C$ is isomorphic to $Sa$ for some object $a \in A$.
@@ -441,7 +441,7 @@
             If $A$ is a full subcategory of $C$ and every $c \in C$ is isomorphic to some object of $A$, then the insertion $K : A \rightarrow C$ is an equivalence and is part of the adjoint equivalence $\langle T, K, \eta, 1 \rangle : C \rightharpoonup A$ with counit identity. Therefore $A$ is reflective in $C$. To show this, in the previous result, let $A$ be a full subcategory of $C$ and $S = K : A \rightarrow C$ is the insertion. For objects $a \in A \subset C$, we can choose $a_0 = a = Ka$, and $\eta_{Ka}$ the identity. Then $K \epsilon_a = 1$ and hence $\epsilon_a = 1$ for all $a$, completing the proof.
           </p>
           <p>
-            Duality theorems in functional analysis are often instances of equivalences. For example, let $\textbf{CAb}$ be the category of compact topological abelian groups, and let $P$ assign to every such group $G$ its character group $PG$, consisting of all continuous homomorphisms $G \rightarrow \textbf{R}/\mathbb{Z}$. The `Pontrjagin duality theorem` asserts that $P : \textbf{CAb} \rightarrow \textbf{Ab}^{op}$ is an equivalence of categories. Similarly, the `Gelfand-Naimark theorem` states that the functor $C$ that assigns to each compact Hausdorff space $X$ its abelian $C^*$-algebra of continuous complex-valued functions is an equivalence of categories.
+            Duality theorems in functional analysis are often instances of equivalences. For example, let $\textbf{CAb}$ be the category of compact topological abelian groups, and let $P$ assign to every such group $G$ its character group $PG$, consisting of all continuous homomorphisms $G \rightarrow \textbf{R}/\mathbb{Z}$. The <mark>Pontrjagin duality theorem</mark> asserts that $P : \textbf{CAb} \rightarrow \textbf{Ab}^{op}$ is an equivalence of categories. Similarly, the <mark>Gelfand-Naimark theorem</mark> states that the functor $C$ that assigns to each compact Hausdorff space $X$ its abelian $C^*$-algebra of continuous complex-valued functions is an equivalence of categories.
           </p>
           <h2 id="adjunctions-for-preorders">
             Adjunctions for preorders
@@ -454,7 +454,7 @@
             $$Lp \geq q \text{ in Q } \iff p \leq Rq \text{ in P}$$
           </p>
           <p>
-            A pair of order-preserving functions $L, R$ satisfying this is called the `Galios connection` from $P$ to $Q$. When this is the case, there is exactly one adjunction $\varphi$ making $L$ the left adjoint of $R$. For all $p, q$, $p \leq RLp$ and $LRq \geq q$; hence also:<br/>
+            A pair of order-preserving functions $L, R$ satisfying this is called the <mark>Galios connection</mark> from $P$ to $Q$. When this is the case, there is exactly one adjunction $\varphi$ making $L$ the left adjoint of $R$. For all $p, q$, $p \leq RLp$ and $LRq \geq q$; hence also:<br/>
             $$Lp \geq LRLp \geq Lp \quad Rq \leq RLRq \leq Rq$$
           </p>
           <p>
@@ -489,7 +489,7 @@
             To assert that a category has finite products and coproducts is to say that the category has products, terminal, initial, and coproducts; thus the functors $C \rightarrow \textbf{1}$ and $\Delta: C \rightarrow C \times C$ have both left and right adjoints. Indeed, left adjoints give initial object and coproduct, while right adjoints give terminal object and product.
           </p>
           <p>
-            A category is termed `cartesian closed` if the following functors have specified right adjoints:
+            A category is termed <mark>cartesian closed</mark> if the following functors have specified right adjoints:
           </p>
           <p class="mathjax">
             $$
@@ -510,15 +510,15 @@
             $$\text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)$$
           </p>
           <p>
-            natural in $a$ and $c$. By the `parameter theorem`, $\langle b, c \rangle \rightarrow c^b$ is the object functor of bifunctor $C^{op} \times C \rightarrow C$. Specifying the adjunction amounts to specifying specifying for all $c, b$, the arrow:<br/>
+            natural in $a$ and $c$. By the <mark>parameter theorem</mark>, $\langle b, c \rangle \rightarrow c^b$ is the object functor of bifunctor $C^{op} \times C \rightarrow C$. Specifying the adjunction amounts to specifying specifying for all $c, b$, the arrow:<br/>
             $$e : c^b \times b \rightarrow c$$
           </p>
           <p>
-            which is natural in $c$, and universal from $- \times b$ to $c$. We call this $e = e_{c, b}$ the `evaluation map`. It amounts to ordinary evaluation $\langle f, x \rangle \mapsto fx$ in the following cases:
+            which is natural in $c$, and universal from $- \times b$ to $c$. We call this $e = e_{c, b}$ the <mark>evaluation map</mark>. It amounts to ordinary evaluation $\langle f, x \rangle \mapsto fx$ in the following cases:
           </p>
           <ol class="olitems" type="a" start="1">
             <li>
-              $\textbf{Set}$ is a cartesian closed category with $b^c = \text{Hom}(b, c)$.
+              $\textbf{Set}$ is a cartesian closed category with $b^c = \text{Hom}(b, c)$.<br/>
             </li>
             <li>
               $\textbf{Cat}$ is a cartesian closed category with $B^C$ the functor category.
@@ -593,7 +593,7 @@
             $$
           </p>
           <p>
-            The following two NTs are said to be `conjugate` when the diagram commutes for every pair of objects $x \in X, a \in A$:
+            The following two NTs are said to be <mark>conjugate</mark> when the diagram commutes for every pair of objects $x \in X, a \in A$:
           </p>
           <p class="mathjax">
             $$
@@ -606,7 +606,7 @@
             $$
           </p>
           <p>
-            Given the above two adjunctions, the NTs $\sigma, \tau$ are said to be `conjugate` iff the following diagrams commute:
+            Given the above two adjunctions, the NTs $\sigma, \tau$ are said to be <mark>conjugate</mark> iff the following diagrams commute:
           </p>
           <p class="mathjax">
             $$
@@ -694,7 +694,7 @@
             are given by $\langle \sigma, \tau \rangle \circ \langle \sigma', \tau' \rangle = \langle \sigma \bullet \sigma', \tau \bullet \tau' \rangle$
           </p>
           <p>
-            For two given categories $X, A$, we have a new category $A^{(\text(adj)X)}$, the `category of adjunctions` from $X$ to $A$; its objects are adjunctions $\langle F, G, \eta, \epsilon \rangle$ and arrows are conjugate pairs $\langle \sigma, \tau \rangle$ with composition just noted. There are also two forgetful functors to the ordinary functor categories:
+            For two given categories $X, A$, we have a new category $A^{(\text(adj)X)}$, the <mark>category of adjunctions</mark> from $X$ to $A$; its objects are adjunctions $\langle F, G, \eta, \epsilon \rangle$ and arrows are conjugate pairs $\langle \sigma, \tau \rangle$ with composition just noted. There are also two forgetful functors to the ordinary functor categories:
           </p>
           <p class="mathjax">
             $$
@@ -712,7 +712,7 @@
             $$\text{Hom}(S \times T, R) \cong \text{Hom}(S, \text{Hom}(T, R))$$
           </p>
           <p>
-            If $t : T \rightarrow T'$ is a function between the two sets, then $- \times t$ is a NT of functors $- \times T \overset{\bullet}{\rightarrow} T'$. Its conjugate is the NT $\text{Hom}(t \times -) : \text{Hom}(T', -) \rightarrow \text{Hom}(T, -)$; this is in the reverse direction as $S \times T$ is covariant in $\text{Hom}(T, R)$ and contravariant in $T$. We may call the above an `adjuction with parameter` $T \in \textbf{Set}$.
+            If $t : T \rightarrow T'$ is a function between the two sets, then $- \times t$ is a NT of functors $- \times T \overset{\bullet}{\rightarrow} T'$. Its conjugate is the NT $\text{Hom}(t \times -) : \text{Hom}(T', -) \rightarrow \text{Hom}(T, -)$; this is in the reverse direction as $S \times T$ is covariant in $\text{Hom}(T, R)$ and contravariant in $T$. We may call the above an <mark>adjuction with parameter</mark> $T \in \textbf{Set}$.
           </p>
           <p>
             Given a bifunctor $F : X \times P \rightarrow A$, assume for each $p \in P$, that $F(-, p) : X \rightarrow A$ has a right adjoint $G(p, -) : A \rightarrow X$ via the adjunction:<br/>
@@ -787,7 +787,7 @@
             $$\textbf{Adj}(A, D) \times \textbf{Adj}(X, A) \cong \textbf{Adj}(X, D)$$
           </p>
           <p>
-            This means that $\textbf{Adj}$ is a `two-dimensional category` as is $\textbf{Cat}$.
+            This means that $\textbf{Adj}$ is a <mark>two-dimensional category</mark> as is $\textbf{Cat}$.
           </p>
           <h2 id="subsets-and-characteristic-functions">
             Subsets and characteristic functions
@@ -810,7 +810,7 @@
             $$
           </p>
           <p>
-            These appear in probability theory; in logic, $\{0, 1\}$ are "truth values", and "truth" is represented by $\{0\}$. The monomorphism $t : \{0\} \rightarrow \{0, 1\}$ is termed `subobject classifier` for the category of sets. A subobject classifier for the category $C$ with terminal object $1$ is defined to be $t : 1 \rightarrow \Omega$, such that every monomorphism $m$ in $C$ is a pullback of $t$ in a unique way. In other words, for each $m$, there exists a pullback square:
+            These appear in probability theory; in logic, $\{0, 1\}$ are "truth values", and "truth" is represented by $\{0\}$. The monomorphism $t : \{0\} \rightarrow \{0, 1\}$ is termed <mark>subobject classifier</mark> for the category of sets. A subobject classifier for the category $C$ with terminal object $1$ is defined to be $t : 1 \rightarrow \Omega$, such that every monomorphism $m$ in $C$ is a pullback of $t$ in a unique way. In other words, for each $m$, there exists a pullback square:
           </p>
           <p class="mathjax">
             $$
@@ -824,7 +824,7 @@
             $$
           </p>
           <p>
-            The top horizontal arrow is the unique map to terminal object $1$, and the lower horizontal arrow acts as the `characteristic function` of subobject $S$, while the universal morphism $t : 1 \rightarrow \Omega$ may be called "truth".
+            The top horizontal arrow is the unique map to terminal object $1$, and the lower horizontal arrow acts as the <mark>characteristic function</mark> of subobject $S$, while the universal morphism $t : 1 \rightarrow \Omega$ may be called "truth".
           </p>
           <p>
             For example, take $C$ to be a category of functions $f : X \rightarrow Y$. Here a monomorphism $g \rightarrowtail f$ is a function $S \rightarrow T$ between a pair of subsets $S \subset X$ and $T \subset Y$, such that $g(s) = f(s)$ for all $s \in S$. This means that the following diagram commutes:
@@ -872,14 +872,14 @@
             Categories like sets
           </h2>
           <p>
-            An elementary `topos` is defined to be a category $E$ with the following properties:
+            An elementary <mark>topos</mark> is defined to be a category $E$ with the following properties:
           </p>
           <ol class="olitems" type="a" start="1">
             <li>
-              $E$ has all finite limits.
+              $E$ has all finite limits.<br/>
             </li>
             <li>
-              $E$ has a subobject classifier.
+              $E$ has a subobject classifier.<br/>
             </li>
             <li>
               $E$ is cartesian closed.
@@ -893,7 +893,7 @@
             In other words, $E$ has exponentials.
           </p>
           <p>
-            The category $\text{Sets}$ of all small sets is a topos, as is $\textbf{Sets}^{C^\text{op}}$, the set of all contravariant functors on small category $C$. Such a functor $F : C^{\text{op}} \rightarrow \textbf{Sets}$ is called a [presheaf](/ag/1#definition-of-presheaf-and-sheaf). This is a reference to topology where $C$ is the set of all open subsets $U$ of topological space $X$; in this case, presheaf $F$ assigns to each $U$ a set $F(U)$, with functorial properties for continuous maps $U \rightarrow V$. If $F$ is the set of continuous real-valued functions on $U$, it is said to be a [sheaf](/ag/1#definition-of-presheaf-and-sheaf). A topological structure is essentially described by its topos of sheaves of $\textbf{Sets}$. Various logical properties are reflected in subobject classifiers $\Omega$ of a topos. Suitable toposes can replace the category of sets as a foundation for mathematics.
+            The category $\text{Sets}$ of all small sets is a topos, as is $\textbf{Sets}^{C^\text{op}}$, the set of all contravariant functors on small category $C$. Such a functor $F : C^{\text{op}} \rightarrow \textbf{Sets}$ is called a <a href="/ag/1#definition-of-presheaf-and-sheaf">presheaf</a>. This is a reference to topology where $C$ is the set of all open subsets $U$ of topological space $X$; in this case, presheaf $F$ assigns to each $U$ a set $F(U)$, with functorial properties for continuous maps $U \rightarrow V$. If $F$ is the set of continuous real-valued functions on $U$, it is said to be a <a href="/ag/1#definition-of-presheaf-and-sheaf">sheaf</a>. A topological structure is essentially described by its topos of sheaves of $\textbf{Sets}$. Various logical properties are reflected in subobject classifiers $\Omega$ of a topos. Suitable toposes can replace the category of sets as a foundation for mathematics.
           </p>
         </article>
       </main>

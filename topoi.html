@@ -65,10 +65,10 @@
             Some set theoretic foundations
           </h2>
           <p>
-            The study of set theory starts with the study of `Russell's paradox`, and axiomatization into `Zermelo-Frankel set theory` with no paradoxes. To understand Russell's paradox, we first introduce the `principle of comprehension`: $\{x : \varphi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\varphi(x)$. Now, we construct the `Russell set` $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, yielding $R \in R$; if $R \in R$, then its elements belong to a set satisfying the predicate $x \not\in x$, yielding $R \not\in R$. This leads to a contradictory conclusion.
+            The study of set theory starts with the study of <mark>Russell's paradox</mark>, and axiomatization into <mark>Zermelo-Frankel set theory</mark> with no paradoxes. To understand Russell's paradox, we first introduce the <mark>principle of comprehension</mark>: $\{x : \varphi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\varphi(x)$. Now, we construct the <mark>Russell set</mark> $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, yielding $R \in R$; if $R \in R$, then its elements belong to a set satisfying the predicate $x \not\in x$, yielding $R \not\in R$. This leads to a contradictory conclusion.
           </p>
           <p>
-            In ZF set theory, we say that a set can only be built up from another set using logical connectives like $\cup$, $\cap$, and $-$. The axioms can only be applied to a set and the result is always a set. The comprehension principle is replaced by a `separation principle`: Given a set $A$, and a predicate $\varphi(x)$, there exists a set whose members are precisely the members of $A$ that satisfy the predicate. $R$ isn't admitted as a set in this theory, thus resolving the contradiction.
+            In ZF set theory, we say that a set can only be built up from another set using logical connectives like $\cup$, $\cap$, and $-$. The axioms can only be applied to a set and the result is always a set. The comprehension principle is replaced by a <mark>separation principle</mark>: Given a set $A$, and a predicate $\varphi(x)$, there exists a set whose members are precisely the members of $A$ that satisfy the predicate. $R$ isn't admitted as a set in this theory, thus resolving the contradiction.
           </p>
           <p>
             In category theory, the central concept of membership of an element in a set is replaced by the concept of a morphism between objects whose internal structures (elements) are opaque.
@@ -98,11 +98,11 @@
             $$
           </p>
           <p>
-            A `pre-order` is defined as a category in which there is at most one arrow, $\langle p, q\rangle$, between any two objects $p$ and $q$. In this kind of category, called there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
+            A <mark>pre-order</mark> is defined as a category in which there is at most one arrow, $\langle p, q\rangle$, between any two objects $p$ and $q$. In this kind of category, called there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
           </p>
           <ol class="olitems" type="none" start="1">
             <li>
-              Reflexivity: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.
+              Reflexivity: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.<br/>
             </li>
             <li>
               Transitivity: whenever $pRq$ and $qRs$, we have $pRs$.
@@ -125,7 +125,7 @@
             $$
           </p>
           <p>
-            With one additional property described below, a `pre-order` becomes a `partial ordering`:
+            With one additional property described below, a <mark>pre-order</mark> becomes a <mark>partial ordering</mark>:
           </p>
           <ol class="olitems" type="none" start="3">
             <li>
@@ -146,25 +146,25 @@
             $$
           </p>
           <p>
-            A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsubseteq \rangle$, is called a `poset`. The specific category we have used to encode $\mathbb{N}$ above is called `$\textbf{Finord}$`, the category of finite ordinals. In $\textbf{Finord}$, these three statements are equivalent:
+            A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsubseteq \rangle$, is called a <mark>poset</mark>. The specific category we have used to encode $\mathbb{N}$ above is called <mark>$\textbf{Finord}$</mark>, the category of finite ordinals. In $\textbf{Finord}$, these three statements are equivalent:
           </p>
           <ol class="olitems" type="a" start="1">
             <li>
-              $m \lt n$
+              $m \lt n$<br/>
             </li>
             <li>
-              $m \subset n$
+              $m \subset n$<br/>
             </li>
             <li>
               $m \in n$
             </li>
           </ol>
           <p>
-            With one additional property, a `partial ordering` becomes a `total ordering`:
+            With one additional property, a <mark>partial ordering</mark> becomes a <mark>total ordering</mark>:
           </p>
           <ol class="olitems" type="none" start="4">
             <li>
-              Connexity: For all $p$, $q \in \mathcal{C}$, `pRq` or `qRp`.
+              Connexity: For all $p$, $q \in \mathcal{C}$, <mark>pRq</mark> or <mark>qRp</mark>.
             </li>
           </ol>
           <p class="mathjax">
@@ -196,7 +196,7 @@
             This is a total order.
           </p>
           <p>
-            Let us now consider categories with more than one arrow between two objects. A `monoid` is defined as an algebraic structure $(M, \circ, \mathbb{1})$ where $\circ$ is a function from $M \times M \rightarrow M$. A monoid naturally gives rise to a category with just one object: $M$. We can instantiate it with $M = \mathbb{N}$, $\circ = +$, and $\mathbb{1} = 0$ to obtain the familiar notion of addition of natural numbers:
+            Let us now consider categories with more than one arrow between two objects. A <mark>monoid</mark> is defined as an algebraic structure $(M, \circ, \mathbb{1})$ where $\circ$ is a function from $M \times M \rightarrow M$. A monoid naturally gives rise to a category with just one object: $M$. We can instantiate it with $M = \mathbb{N}$, $\circ = +$, and $\mathbb{1} = 0$ to obtain the familiar notion of addition of natural numbers:
           </p>
           <p class="mathjax">
             $$
@@ -223,21 +223,21 @@
             $$
           </p>
           <p>
-            If $a, b \in \mathcal{C}$, then we use $\mathcal{C}(a, b)$ to denote the set of arrows from $a$ to $b$. A `subcategory` $\mathcal{C} \subseteq \mathcal{D}$ is defined as:
+            If $a, b \in \mathcal{C}$, then we use $\mathcal{C}(a, b)$ to denote the set of arrows from $a$ to $b$. A <mark>subcategory</mark> $\mathcal{C} \subseteq \mathcal{D}$ is defined as:
           </p>
           <ol class="olitems" type="a" start="1">
             <li>
-              All objects of $\mathcal{C}$ are objects of $\mathcal{D}$.
+              All objects of $\mathcal{C}$ are objects of $\mathcal{D}$.<br/>
             </li>
             <li>
               $\mathcal{C}(a ,b) \subseteq \mathcal{D}(a, b)$; all arrows of $\mathcal{C}$ are present in $\mathcal{D}$.
             </li>
           </ol>
           <p>
-            A `full subcategory` $\mathcal{C}$ of $\mathcal{D}$ is defined as $\mathcal{C} \subseteq \mathcal{D}$ such that $\mathcal{C}(a, b) = \mathcal{D}(a, b)$; in other words, $\mathcal{D}$ has no arrows $a \rightarrow b$ other than the ones already present in $\mathcal{C}$. $\textbf{Finord}$ is a full subcategory of $\textbf{Finset}$, the category of finite sets.
+            A <mark>full subcategory</mark> $\mathcal{C}$ of $\mathcal{D}$ is defined as $\mathcal{C} \subseteq \mathcal{D}$ such that $\mathcal{C}(a, b) = \mathcal{D}(a, b)$; in other words, $\mathcal{D}$ has no arrows $a \rightarrow b$ other than the ones already present in $\mathcal{C}$. $\textbf{Finord}$ is a full subcategory of $\textbf{Finset}$, the category of finite sets.
           </p>
           <p>
-            Before introducing comma categories, let us briefly introduce arrow categories as a prerequisite. An `arrow category` $\textbf{Set}^\rightarrow$ has as objects, the functions $f : A \rightarrow B$, and arrows between objects $f : A \rightarrow B$ and $g : C \rightarrow D$, the pair of arrows $\langle h, k\rangle$ such that the following diagram commutes:
+            Before introducing comma categories, let us briefly introduce arrow categories as a prerequisite. An <mark>arrow category</mark> $\textbf{Set}^\rightarrow$ has as objects, the functions $f : A \rightarrow B$, and arrows between objects $f : A \rightarrow B$ and $g : C \rightarrow D$, the pair of arrows $\langle h, k\rangle$ such that the following diagram commutes:
           </p>
           <p class="mathjax">
             $$
@@ -252,7 +252,7 @@
             $$
           </p>
           <p>
-            A `comma category` can be viewed as a special case of an arrow categories with fixed domain or codomain. $\textbf{Set} \downarrow \mathbb{R}$ is the category of real-valued functions; the codomain of the category is fixed to $\mathbb{R}$. An arrow from $f: A \rightarrow \mathbb{R}$ to $g: B \rightarrow \mathbb{R}$ is the arrow $k: A \rightarrow B$ that makes the following commute:
+            A <mark>comma category</mark> can be viewed as a special case of an arrow categories with fixed domain or codomain. $\textbf{Set} \downarrow \mathbb{R}$ is the category of real-valued functions; the codomain of the category is fixed to $\mathbb{R}$. An arrow from $f: A \rightarrow \mathbb{R}$ to $g: B \rightarrow \mathbb{R}$ is the arrow $k: A \rightarrow B$ that makes the following commute:
           </p>
           <p class="mathjax">
             $$
@@ -300,7 +300,7 @@
             Set membership, categorically
           </h2>
           <p>
-            To work our way up to `subobject classifiers`, we need to build some prerequisite material. First, let us introduce the notion of `monic` and `epic` arrows, corresponding to injective and surjective functions in $\textbf{Set}$. $f$ is injective if $f(x) = f(y) \implies x = y$, and surjective if $\forall y, \exists x : y = f(x)$.
+            To work our way up to <mark>subobject classifiers</mark>, we need to build some prerequisite material. First, let us introduce the notion of <mark>monic</mark> and <mark>epic</mark> arrows, corresponding to injective and surjective functions in $\textbf{Set}$. $f$ is injective if $f(x) = f(y) \implies x = y$, and surjective if $\forall y, \exists x : y = f(x)$.
           </p>
           <p class="mathjax">
             $$
@@ -315,7 +315,7 @@
             $$
           </p>
           <p>
-            If $f$ is monic, indicated as $f : b \rightarrowtail c$, the diagram above commutes, and $(f \circ g)(x) = (f \circ h)(x) = f(g(x)) = f(h(x)) \implies g = h$. In other words, a monic is said to be `left-cancelable`.
+            If $f$ is monic, indicated as $f : b \rightarrowtail c$, the diagram above commutes, and $(f \circ g)(x) = (f \circ h)(x) = f(g(x)) = f(h(x)) \implies g = h$. In other words, a monic is said to be <mark>left-cancelable</mark>.
           </p>
           <p class="mathjax">
             $$
@@ -347,10 +347,10 @@
           </p>
           <hr class="horizrule" />
           <p>
-            If $f$ is epic, indicated as $f : a \twoheadrightarrow b$, the diagram above commutes, and $(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$. In other words, an epic is said to be `right-cancelable`.
+            If $f$ is epic, indicated as $f : a \twoheadrightarrow b$, the diagram above commutes, and $(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$. In other words, an epic is said to be <mark>right-cancelable</mark>.
           </p>
           <p>
-            An `iso` arrow, indicated as $f : a \rightarrowtail\mathrel{\mspace{-11mu}}\twoheadrightarrow b$, corresponds to a bijective function in $\textbf{Set}$. It is invertible, and its action can be thought of as a "relabeling"; as an example, $A \times \{0\}$ attaches $0$ to every element of $A$.
+            An <mark>iso</mark> arrow, indicated as $f : a \rightarrowtail\mathrel{\mspace{-11mu}}\twoheadrightarrow b$, corresponds to a bijective function in $\textbf{Set}$. It is invertible, and its action can be thought of as a "relabeling"; as an example, $A \times \{0\}$ attaches $0$ to every element of $A$.
           </p>
           <p>
             Every iso is both monic and epic, but "iso" isn't equivalent to "monic and epic".  Consider $(\mathbb{N}, +, 0)$ in which all arrows are monic and epic, but the only iso arrows are the identities, since no natural number has an additive inverse.
@@ -373,7 +373,7 @@
           </p>
           <hr class="horizrule" />
           <p>
-            An `initial object` $\mathbb{0}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $\mathbb{0} \rightarrow a$, and a `terminal object` $\mathbb{1}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $a \rightarrow \mathbb{1}$. In $\textbf{Set}$, $\phi$ is distinguished to be the initial object because there exists only one function from $\phi$ to every other element in the category, namely $\phi$, the empty function; the graph of $\phi \times a$ is empty; and $\{e\}$, the singleton set is distinguished to be the terminal object.
+            An <mark>initial object</mark> $\mathbb{0}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $\mathbb{0} \rightarrow a$, and a <mark>terminal object</mark> $\mathbb{1}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $a \rightarrow \mathbb{1}$. In $\textbf{Set}$, $\phi$ is distinguished to be the initial object because there exists only one function from $\phi$ to every other element in the category, namely $\phi$, the empty function; the graph of $\phi \times a$ is empty; and $\{e\}$, the singleton set is distinguished to be the terminal object.
           </p>
           <hr class="horizrule" />
           <p class="exercise">

@@ -65,22 +65,22 @@
             Equality in Mathematics
           </h2>
           <p>
-            In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B \simeq B \oplus A$, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a $\mathrm{1}$-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" almost fully replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
+            In <a href="/zfc">zfc-based mathematics</a>, say in abelian groups, $A \oplus B \simeq B \oplus A$, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a $\mathrm{1}$-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" almost fully replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
           </p>
           <h2 id="universes-in-coq">
             Universes in Coq
           </h2>
           <p>
-            First, let us briefly talk about the cumulative universe of Coq. `Prop` is a `Set` that can be promoted to `Type` seamlessly. The reason for the distinction between `Prop` and `Set` is an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
+            First, let us briefly talk about the cumulative universe of Coq. <mark>Prop</mark> is a <mark>Set</mark> that can be promoted to <mark>Type</mark> seamlessly. The reason for the distinction between <mark>Prop</mark> and <mark>Set</mark> is an engineering one: <mark>Prop</mark> is impredicative, while <mark>Set</mark> is not, and proofs are erased during extraction.
           </p>
           <pre><code class="language-coq">Definition SetTypeIncl (A : Set) : Type := A.
 Definition PropTypeIncl (A : Prop) : Type := A.
 Definition PropSetIncl (A : Prop) : Set := A.</code></pre>
           <p>
-            There is an $\infty$ hierarchy within the `Type` universe, and types of Types are Types themselves.
+            There is an $\infty$ hierarchy within the <mark>Type</mark> universe, and types of Types are Types themselves.
           </p>
           <p>
-            Inhabitants of a `Set` are sets of primitive things like $\mathbb{N}$ and $\mathbb{R}$, while inhabitants of a `Prop` are propositions, which could be $\top$, $\bot$, or some arbitrary term, the inhabitant of which acts as the proof.
+            Inhabitants of a <mark>Set</mark> are sets of primitive things like $\mathbb{N}$ and $\mathbb{R}$, while inhabitants of a <mark>Prop</mark> are propositions, which could be $\top$, $\bot$, or some arbitrary term, the inhabitant of which acts as the proof.
           </p>
           <h2 id="propositions">
             Propositions
@@ -97,14 +97,14 @@ Proof.
   by apply PropositionalProofIrrelevance.
 Qed.</code></pre>
           <p>
-            In the general case, two different inhabitants of `Prop` are unequal. There is, however, a propositional equality existing between two equal propositions:
+            In the general case, two different inhabitants of <mark>Prop</mark> are unequal. There is, however, a propositional equality existing between two equal propositions:
           </p>
           <pre><code class="language-coq">Theorem PropRefl (P : Prop) (x : P): x = x.
 Proof.
   exact eq_refl.
 Qed.</code></pre>
           <p>
-            where `eq_refl` is simply the sole inhabitant of an Inductive:
+            where <mark>eq_refl</mark> is simply the sole inhabitant of an Inductive:
           </p>
           <pre><code class="language-coq">Inductive eq (A : Type) (x : A) : A -> Prop :=
   eq_refl : eq A x x.</code></pre>
@@ -112,10 +112,10 @@ Qed.</code></pre>
             The proof-irrelevant SProp
           </h2>
           <p>
-            There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sProposition` trivially inter-convertible.
+            There are three inhabitants of <a href="https://coq.inria.fr/refman/addendum/sprop.html">SProp</a>: <mark>sUnit</mark> corresponding to $\top$, <mark>sEmpty</mark> corresponding to $\bot$, and <mark>sProposition</mark> corresponding to a definitionally proof-irrelevant term. The way <mark>SProp</mark> implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of <mark>sProposition</mark> trivially inter-convertible.
           </p>
           <p>
-            Unfortunately, `=` doesn't work as expected:
+            Unfortunately, <mark>=</mark> doesn't work as expected:
           </p>
           <pre><code class="language-coq">Theorem SPropIrr (P : SProp) (x y : P) : x = y.
 Proof.
@@ -123,7 +123,7 @@ Proof.
 Abort. (* Type-check fails at Qed.
         * (=) : ∀ A, A -> A -> Prop, but we want to return an SProp. *)</code></pre>
           <p>
-            This is because the `SProp` universe is disjoint from the `Prop` universe:
+            This is because the <mark>SProp</mark> universe is disjoint from the <mark>Prop</mark> universe:
           </p>
           <pre><code class="language-coq">Theorem SPropToProp : SProp -> Prop.
 Proof.
@@ -137,17 +137,17 @@ Abort. (* Type-check fails at Qed.
             Mere propositions in homotopy type theory
           </h2>
           <p>
-            In [HoTT](https://github.com/HoTT/HoTT), there is just one $\infty$-ladder:
+            In <a href="https://github.com/HoTT/HoTT">HoTT</a>, there is just one $\infty$-ladder:
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              $\mathbb{1}$, and anything that's contractible to it, is the ($\mathrm{-2}$)-truncated Type.
+              $\mathbb{1}$, and anything that's contractible to it, is the ($\mathrm{-2}$)-truncated Type.<br/>
             </li>
             <li>
-              A "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type.
+              A "mere proposition", an inhabitant of <mark>hProp</mark>, is simply a ($\mathrm{-1}$)-truncated Type.<br/>
             </li>
             <li>
-              `hSet` is the $\mathrm{0}$-truncated Type.
+              <mark>hSet</mark> is the $\mathrm{0}$-truncated Type.
             </li>
           </ol>
           <pre><code class="language-coq">Notation Contr := (IsTrunc minus_two).
@@ -161,7 +161,7 @@ Proof.
   by apply path_ishprop.
 Qed.</code></pre>
           <p>
-            Conceptually, this is as simple and elegant as `PropEquality`.
+            Conceptually, this is as simple and elegant as <mark>PropEquality</mark>.
           </p>
           <footer>
             <p>

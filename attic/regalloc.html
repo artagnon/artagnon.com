@@ -59,10 +59,10 @@
         </header>
         <article>
           <p>
-            We are going to be discussing LLVM's Fast Register Allocator: you might like to open [RegAllocFast.cpp](https://github.com/llvm-mirror/llvm/blob/master/lib/CodeGen/RegAllocFast.cpp) and refer to it as we go through the article.
+            We are going to be discussing LLVM's Fast Register Allocator: you might like to open <a href="https://github.com/llvm-mirror/llvm/blob/master/lib/CodeGen/RegAllocFast.cpp">RegAllocFast.cpp</a> and refer to it as we go through the article.
           </p>
           <p>
-            FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses `PhysRegState` to keep track of the state of various physical registers: they can be 0 (`regDisabled`), 1 (`regFree`), 2 (`regReserved`), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like `LR.LastUse`); a register can either be a `&lt;def&gt;` or a use. If `IsImplicit` is flipped, it could also be a implicit-def (`&lt;imp-def&gt;`) or implicit-use (`&lt;imp-use&gt;`).
+            FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses <mark>PhysRegState</mark> to keep track of the state of various physical registers: they can be 0 (<mark>regDisabled</mark>), 1 (<mark>regFree</mark>), 2 (<mark>regReserved</mark>), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like <mark>LR.LastUse</mark>); a register can either be a <mark>&lt;def&gt;</mark> or a use. If <mark>IsImplicit</mark> is flipped, it could also be a implicit-def (<mark>&lt;imp-def&gt;</mark>) or implicit-use (<mark>&lt;imp-use&gt;</mark>).
           </p>
           <pre><code class="language-cpp">%vreg349<def> = MOVZX32rm8 %vreg351, 1, %noreg, 0, %noreg</code></pre>
           <p>
@@ -70,7 +70,7 @@
           </p>
           <pre><code class="language-cpp">%ESI<def> = MOVZX32rm8 %RDX<kill>, 1, %noreg, 0, %noreg</code></pre>
           <p>
-            after allocation. The `&lt;kill&gt;` indicates that the instruction is the last use of `%RDX`. In another example,
+            after allocation. The <mark>&lt;kill&gt;</mark> indicates that the instruction is the last use of <mark>%RDX</mark>. In another example,
           </p>
           <pre><code class="language-cpp">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>
           <p>
@@ -78,43 +78,43 @@
           </p>
           <pre><code class="language-cpp">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use,kill></code></pre>
           <p>
-            Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend `%RAX` into `%RDX` (not any other register) for use in a later `IDIV`. Remember that `IDIV` operates on `%RDX:%RAX` as the numerator, and writes the quotient in `%RAX`, reminder in `%RDX`.
+            Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend <mark>%RAX</mark> into <mark>%RDX</mark> (not any other register) for use in a later <mark>IDIV</mark>. Remember that <mark>IDIV</mark> operates on <mark>%RDX:%RAX</mark> as the numerator, and writes the quotient in <mark>%RAX</mark>, reminder in <mark>%RDX</mark>.
           </p>
           <p>
-            The instruction is modeled as `MachineInstr`, and the operands as `MachineOperand`. Note that a `MO` doesn't have to be a register: it could also be an immediate value; we use `MO.isReg()` to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, `MO` can also be `EarlyClobber`, `Dead`, or `Undef`. A Dead `MO` implies Def, and<br/>
+            The instruction is modeled as <mark>MachineInstr</mark>, and the operands as <mark>MachineOperand</mark>. Note that a <mark>MO</mark> doesn't have to be a register: it could also be an immediate value; we use <mark>MO.isReg()</mark> to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, <mark>MO</mark> can also be <mark>EarlyClobber</mark>, <mark>Dead</mark>, or <mark>Undef</mark>. A Dead <mark>MO</mark> implies Def, and<br/>
             indicates that the value defined is used no longer.
           </p>
           <p>
-            `AllocateBasicBlock`, which operates on `MachineBasicBlock`, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the `LiveIns` (registers coming in live from the previous `MBB`) as `regReserved` so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls `usePhysReg` on them. At this stage, the physical register must be either `regDisabled`, `regReserved`, or `regFree`. It cannot be allocated to a virtual register. Why? Imagine you see:
+            <mark>AllocateBasicBlock</mark>, which operates on <mark>MachineBasicBlock</mark>, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the <mark>LiveIns</mark> (registers coming in live from the previous <mark>MBB</mark>) as <mark>regReserved</mark> so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls <mark>usePhysReg</mark> on them. At this stage, the physical register must be either <mark>regDisabled</mark>, <mark>regReserved</mark>, or <mark>regFree</mark>. It cannot be allocated to a virtual register. Why? Imagine you see:
           </p>
           <pre><code class="language-cpp">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>
           <p>
-            Now, if `%RAX` were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as `regFree`, and move on: we have done our part by completing the use of the register that was reserved earlier.
+            Now, if <mark>%RAX</mark> were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as <mark>regFree</mark>, and move on: we have done our part by completing the use of the register that was reserved earlier.
           </p>
           <p>
-            The second scan operates only on virtual register Uses. We add the register to `LiveVirtRegs`, via `reloadVirtReg`. If it didn't already exist in the map, we `allocVirtReg` it, which essentially gets the first `regFree` register not used in an instruction, and calls `assignVirtToPhysReg` on it. `assignVirtToPhysReg` is very simple: it just updates the `PhysRegState` mapping. Finally,<br/>
-            `reloadVirtReg` updates the `UsedInInstr` map.
+            The second scan operates only on virtual register Uses. We add the register to <mark>LiveVirtRegs</mark>, via <mark>reloadVirtReg</mark>. If it didn't already exist in the map, we <mark>allocVirtReg</mark> it, which essentially gets the first <mark>regFree</mark> register not used in an instruction, and calls <mark>assignVirtToPhysReg</mark> on it. <mark>assignVirtToPhysReg</mark> is very simple: it just updates the <mark>PhysRegState</mark> mapping. Finally,<br/>
+            <mark>reloadVirtReg</mark> updates the <mark>UsedInInstr</mark> map.
           </p>
           <p>
-            The third scan operates on physical and virtual registers that are Defs. If the register is a physical register, it does `definePhysReg` with `regReserved` unless `MO.isDead()`, in which case it's regFree. `definePhysReg` is very simple: it just puts the register in the state that was requested (`regReserved` or `regFree`, in this case).
+            The third scan operates on physical and virtual registers that are Defs. If the register is a physical register, it does <mark>definePhysReg</mark> with <mark>regReserved</mark> unless <mark>MO.isDead()</mark>, in which case it's regFree. <mark>definePhysReg</mark> is very simple: it just puts the register in the state that was requested (<mark>regReserved</mark> or <mark>regFree</mark>, in this case).
           </p>
           <p>
             To think about the problem, if we have,
           </p>
           <pre><code class="language-cpp">%RAX<def> = COPY %vreg342</code></pre>
           <p>
-            we should always `regReserve` `%RAX`, right? Except if `%RAX` is dead. What<br/>
-            about if it's an `&lt;imp-def&gt;`?
+            we should always <mark>regReserve</mark> <mark>%RAX</mark>, right? Except if <mark>%RAX</mark> is dead. What<br/>
+            about if it's an <mark>&lt;imp-def&gt;</mark>?
           </p>
           <pre><code class="language-cpp">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></code></pre>
           <p>
-            We didn't pass `CQO` `%RAX` explicitly, but that doesn't mean that a later instruction (for instance, `IDIV`) is not relying on this register's value. If we have an instruction between `CQO` and `IDIV`, that can potentially clobber `%RAX`, leading to a regalloc crash. Hence, we `regReserve` even if `MO.isImplicit()`.
+            We didn't pass <mark>CQO</mark> <mark>%RAX</mark> explicitly, but that doesn't mean that a later instruction (for instance, <mark>IDIV</mark>) is not relying on this register's value. If we have an instruction between <mark>CQO</mark> and <mark>IDIV</mark>, that can potentially clobber <mark>%RAX</mark>, leading to a regalloc crash. Hence, we <mark>regReserve</mark> even if <mark>MO.isImplicit()</mark>.
           </p>
           <p>
-            The third scan does `defineVirtReg` on virtual registers, to grab the first free physical register for the virtual register.
+            The third scan does <mark>defineVirtReg</mark> on virtual registers, to grab the first free physical register for the virtual register.
           </p>
           <p>
-            Note: the "pretty-prints" are generated by setting a breakpoint in `AllocateBasicBlock` and executing `p MBB-&gt;dump()`.
+            Note: the "pretty-prints" are generated by setting a breakpoint in <mark>AllocateBasicBlock</mark> and executing <mark>p MBB-&gt;dump()</mark>.
           </p>
         </article>
       </main>

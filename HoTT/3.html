@@ -62,19 +62,19 @@
             This note corresponds to Ch. 3 in the HoTT book
           </p>
           <p>
-            This chapter is dedicated to the study of `HSet` (sets, the $0$-type), `HProp` (mere propositions, the $(-1)$-type), and `Contr` (contractible types, the $(-2)$-type):
+            This chapter is dedicated to the study of <mark>HSet</mark> (sets, the $0$-type), <mark>HProp</mark> (mere propositions, the $(-1)$-type), and <mark>Contr</mark> (contractible types, the $(-2)$-type):
           </p>
           <pre><code class="language-coq">Notation Contr := (IsTrunc minus_two).
 Notation IsHProp := (IsTrunc minus_two.+1).
 Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
           <p>
-            focusing on the logic of mere propositions and the notion of `propositional truncation`.
+            focusing on the logic of mere propositions and the notion of <mark>propositional truncation</mark>.
           </p>
           <h2 id="sets-and-n-types">
             Sets and $n$-types
           </h2>
           <p>
-            A type $A$ is a `set` if forall $x, y : A$ and $p, q : x = y$, we have $p = q$. The proposition $\texttt{isSet}(A)$ is defined to be the type:
+            A type $A$ is a <mark>set</mark> if forall $x, y : A$ and $p, q : x = y$, we have $p = q$. The proposition $\texttt{isSet}(A)$ is defined to be the type:
           </p>
           <p class="mathjax">
             $$
@@ -151,7 +151,7 @@ Defined.</code></pre>
             Propositions as types?
           </h2>
           <p>
-            Our previous straightforward interpretation of "propositions as types" do not work anymore. The statements of `double negation` and `law of excluded middle` do not function as they do in classical type theory; in particular, they are incompatible with the univalence axiom.
+            Our previous straightforward interpretation of "propositions as types" do not work anymore. The statements of <mark>double negation</mark> and <mark>law of excluded middle</mark> do not function as they do in classical type theory; in particular, they are incompatible with the univalence axiom.
           </p>
           <p class="exercise">
             For $A : \mathscr{U}$, we do not have $\neg(\neg A) \rightarrow A$.
@@ -241,10 +241,10 @@ Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              A type $A$ is `decidable` if $A + \neg A$.
+              A type $A$ is <mark>decidable</mark> if $A + \neg A$.<br/>
             </li>
             <li>
-              A type family $B : A \rightarrow \mathscr{U}$ is decidable if $\Pi_{a : A}(B(a) + \neg B(a))$.
+              A type family $B : A \rightarrow \mathscr{U}$ is decidable if $\Pi_{a : A}(B(a) + \neg B(a))$.<br/>
             </li>
             <li>
               $A$ has decidable equality if $\Pi_{a, b : A} ((a = b) + \neg(a = b))$.
@@ -280,7 +280,7 @@ Definition path_sigma_hprop {A : Type} {P : A -> Type}
             $$
           </p>
           <p>
-            where each type $\texttt{isequiv}(f)$ was supposed to be a mere proposition. It follows that if two equivalences have equal underlying functions, then they are equal as equivalences. In $\Sigma_{x : A} P(x)$, $P$ can be thought of as a `subtype` of $A$. We may write $a \in \{x : A \mid P(x)\}$ to refer to the mere proposition $P(a)$. If it holds, we say that $a$ is a `member` of $P$. Similarly, $P \subseteq Q$ can be written as $\Pi_{x : A} (P(x) \rightarrow Q(x))$.
+            where each type $\texttt{isequiv}(f)$ was supposed to be a mere proposition. It follows that if two equivalences have equal underlying functions, then they are equal as equivalences. In $\Sigma_{x : A} P(x)$, $P$ can be thought of as a <mark>subtype</mark> of $A$. We may write $a \in \{x : A \mid P(x)\}$ to refer to the mere proposition $P(a)$. If it holds, we say that $a$ is a <mark>member</mark> of $P$. Similarly, $P \subseteq Q$ can be written as $\Pi_{x : A} (P(x) \rightarrow Q(x))$.
           </p>
           <p>
             As further examples of subtypes, we may define the "subuniverses" of sets and propositions in $\mathscr{U}$:
@@ -301,19 +301,19 @@ Definition path_sigma_hprop {A : Type} {P : A -> Type}
             $$
           </p>
           <p>
-            However, the former cannot be an equivalence, as making it so would remind us of paradoxes in Cantorian set theory. However, the latter could be an equivalence, and we consier adding the `propositional resizing axiom`:
+            However, the former cannot be an equivalence, as making it so would remind us of paradoxes in Cantorian set theory. However, the latter could be an equivalence, and we consier adding the <mark>propositional resizing axiom</mark>:
           </p>
           <p class="exercise">
             The map $\texttt{Prop}_{\mathscr{U}_i} \rightarrow \texttt{Prop}_{\mathscr{U}_{i + 1}}$ is an equivalence.
           </p>
           <p>
-            It essentially says that any mere proposition in universe $\mathscr{U}_{i + 1}$ can be resized to an equivalent one in $\mathscr{U}_i$. It follows automatically if $\mathscr{U}_{i + 1}$ satisfies LEM. This is a form of `impredicativity` for mere propositions, and by avoiding its use, our type theory will remain predicative.
+            It essentially says that any mere proposition in universe $\mathscr{U}_{i + 1}$ can be resized to an equivalent one in $\mathscr{U}_i$. It follows automatically if $\mathscr{U}_{i + 1}$ satisfies LEM. This is a form of <mark>impredicativity</mark> for mere propositions, and by avoiding its use, our type theory will remain predicative.
           </p>
           <p>
             In practice, however, what we want is a slightly different statement, that a universe $\mathscr{U}$ under consideration contains a type which "classifies all mere propositions". In other words, we want a type $\Omega : \mathscr{U}$ together with an $\Omega$-indexed family of mere propositions, which contains every mere proposition, upto equivalence. This follows from the propositional resizing axiom, if $\mathscr{U}$ is not the smallest univese $\mathscr{U}_0$, then we can define $\Omega :\equiv \texttt{Prop}_{\mathscr{U}_0}$.
           </p>
           <p>
-            In the absence of propositional resizing, the definition of `power set` depends on the choice of $\mathscr{U}$. In its presence, however, one can define the power set to be:
+            In the absence of propositional resizing, the definition of <mark>power set</mark> depends on the choice of $\mathscr{U}$. In its presence, however, one can define the power set to be:
           </p>
           <p class="mathjax">
             $$
@@ -347,14 +347,14 @@ Definition path_sigma_hprop {A : Type} {P : A -> Type}
             Propositional truncation
           </h2>
           <p>
-            The `propositional truncation`, also called `$(-1)$-truncation`, `bracket type`, or `squash type`, is an additional type former wich "truncates" a type down to a mere proposition, forgetting all information contained in inhabitants of that type other than their existence.
+            The <mark>propositional truncation</mark>, also called <mark>$(-1)$-truncation</mark>, <mark>bracket type</mark>, or <mark>squash type</mark>, is an additional type former wich "truncates" a type down to a mere proposition, forgetting all information contained in inhabitants of that type other than their existence.
           </p>
           <p>
             More precisely, given type $A$, there is a type $||A||$ with two constructors:
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              For any $a : A$, we have $|a| : ||A||$.
+              For any $a : A$, we have $|a| : ||A||$.<br/>
             </li>
             <li>
               For any $x, y : ||A||$, we have $x = y$.
@@ -394,17 +394,17 @@ Definition path_sigma_hprop {A : Type} {P : A -> Type}
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              $X$ is a set.
+              $X$ is a set.<br/>
             </li>
             <li>
-              $A(x)$ is a set for all $x : X$.
+              $A(x)$ is a set for all $x : X$.<br/>
             </li>
             <li>
               $P(x, a)$ is a mere proposition for all $x : X$ and $a : A(x)$.
             </li>
           </ol>
           <p>
-            The `axiom of choice` asserts that under these assumptions,
+            The <mark>axiom of choice</mark> asserts that under these assumptions,
           </p>
           <p class="mathjax">
             $$
@@ -452,7 +452,7 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              For each $s$, the type $P(x)$ is a mere proposition.
+              For each $s$, the type $P(x)$ is a mere proposition.<br/>
             </li>
             <li>
               For each $x$ we have $||P(x)||$.
@@ -474,7 +474,7 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
             Contractability
           </h2>
           <p>
-            A mere proposition which is inhabited must be equivalent to $\mathbb{1}$, and the converse also holds. A type with this property is called `contractible`.
+            A mere proposition which is inhabited must be equivalent to $\mathbb{1}$, and the converse also holds. A type with this property is called <mark>contractible</mark>.
           </p>
           <p class="exercise">
             Type `A` is contractible or a `singleton`, if there is an $a : A$, called the `center of contraction`, such tht $a = x$ for all $x : A$. We denote the specified path $a = x$ by $\texttt{contr}_x$. In other words,
@@ -485,17 +485,17 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
             $$
           </p>
           <p>
-            We can pronounce this as "$A$ contains an element, and every other element of $A$ is equal to that element". To the classical ear, this could sound as a definition of `connectedness`, rather than contractability.
+            We can pronounce this as "$A$ contains an element, and every other element of $A$ is equal to that element". To the classical ear, this could sound as a definition of <mark>connectedness</mark>, rather than contractability.
           </p>
           <p class="exercise">
             For type $A$, the following are logically equivalent:
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              $A$ is contractible.
+              $A$ is contractible.<br/>
             </li>
             <li>
-              $A$ is a mere proposition, and there is a point $a : A$.
+              $A$ is a mere proposition, and there is a point $a : A$.<br/>
             </li>
             <li>
               $A$ is equivalent to $\mathbb{1}$.
@@ -534,7 +534,7 @@ Global Instance contr_unit : Contr Unit | 0 := let x := {|
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              If each $P(x)$ is contractible, then $\Sigma_{x : A} P(x)$ is equivalent to $A$.
+              If each $P(x)$ is contractible, then $\Sigma_{x : A} P(x)$ is equivalent to $A$.<br/>
             </li>
             <li>
               If $A$ is contractible with center $a$, then $\Sigma_{x : A} P(x)$ is equivalent to $P(a)$.

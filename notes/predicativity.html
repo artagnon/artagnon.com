@@ -62,7 +62,7 @@
             Today, we write a quick specialized note on what impredicativity exactly means, for those reasonably familiar with the Coq syntax.
           </p>
           <p>
-            Historically speaking, Coq started out with making `Set` predicative and they still carry around the flag `--set-impredicative` to maintain impredicativity in Sets. Let's check it quickly:
+            Historically speaking, Coq started out with making <mark>Set</mark> predicative and they still carry around the flag <mark>--set-impredicative</mark> to maintain impredicativity in Sets. Let's check it quickly:
           </p>
           <pre><code class="language-coq">(* Set is predicative. *)
 Fail Definition SetPred := (forall X : Set, X) : Set.</code></pre>
@@ -72,12 +72,12 @@ Fail Definition SetPred := (forall X : Set, X) : Set.</code></pre>
           <pre><code class="language-coq">(* Checks that all inhabitants of U are of type V. *)
 Notation "'check' U V" := ((forall X : U, X) : V) (at level 0, U, V at level 0).</code></pre>
           <p>
-            All inhabitants of `Prop` are of type Prop, for good reason.
+            All inhabitants of <mark>Prop</mark> are of type Prop, for good reason.
           </p>
           <pre><code class="language-coq">(* Prop is impredicative. *)
 Definition PropImpr := check Prop Prop.</code></pre>
           <p>
-            Attempt to check the predicativity of `Type` naïvely:
+            Attempt to check the predicativity of <mark>Type</mark> naïvely:
           </p>
           <pre><code class="language-coq">(* Is Type impredicative? This is misleading. *)
 Definition TypeNaive := (forall X : Type, X) : Type.</code></pre>

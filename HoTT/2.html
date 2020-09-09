@@ -62,17 +62,17 @@
             Here, we discuss concepts from Ch.2 of the HoTT book
           </p>
           <p>
-            The central idea is that types can be interpreted as higher-dimensional groupoids in category theory, or spaces in homotopy theory. Space $X$ is a set of points equipped with a topology, and a path betwen points $x$ and $y$ is represented by a continuous map $p : [0, 1] \rightarrow X$ where $p(0) = x, p(1) = y$. The function can be thought of as giving a point $x$ at each moment in time. A `homotopy` between a pair of continuous maps $H : X_1 \times [0, 1] \rightarrow X_2$, so that $H(s, 0) = p(s)$ and $H(s, 1) = q(s)$, can be thought of as a continuous deformation from $p$ to $q$.
+            The central idea is that types can be interpreted as higher-dimensional groupoids in category theory, or spaces in homotopy theory. Space $X$ is a set of points equipped with a topology, and a path betwen points $x$ and $y$ is represented by a continuous map $p : [0, 1] \rightarrow X$ where $p(0) = x, p(1) = y$. The function can be thought of as giving a point $x$ at each moment in time. A <mark>homotopy</mark> between a pair of continuous maps $H : X_1 \times [0, 1] \rightarrow X_2$, so that $H(s, 0) = p(s)$ and $H(s, 1) = q(s)$, can be thought of as a continuous deformation from $p$ to $q$.
           </p>
           <p>
-            The `fundamental group` of a fundamental $\infty$-groupoid of a space will agree with the classical definition of a fundamental group of the space: this correspondence illustrates how homotopy theory and higher-dimensional category theory are intimately related.
+            The <mark>fundamental group</mark> of a fundamental $\infty$-groupoid of a space will agree with the classical definition of a fundamental group of the space: this correspondence illustrates how homotopy theory and higher-dimensional category theory are intimately related.
           </p>
           <p>
-            We will refer to $x =_A y$ as a path between the `start point` $x$ and `endpoint` $y$. $r : p =_{x =_A y} q$ can be thought of as a homotopy or a 2-path or 2-dimensional path. All of the basic constructions and axoims arises automatically from the induction principle for identity types. In other words, given the dependent funtions:
+            We will refer to $x =_A y$ as a path between the <mark>start point</mark> $x$ and <mark>endpoint</mark> $y$. $r : p =_{x =_A y} q$ can be thought of as a homotopy or a 2-path or 2-dimensional path. All of the basic constructions and axoims arises automatically from the induction principle for identity types. In other words, given the dependent funtions:
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$
+              $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$<br/>
             </li>
             <li>
               $d : \Pi_{a : A} D(a, a, \texttt{refl}_a)$
@@ -133,13 +133,13 @@
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              $p = p \circ \texttt{refl}_y$ and $p = \texttt{refl}_x \circ p$
+              $p = p \circ \texttt{refl}_y$ and $p = \texttt{refl}_x \circ p$<br/>
             </li>
             <li>
-              $p^{-1} \circ p = \texttt{refl}_y$ and $p \circ p^{-1} = \texttt{refl}_x$
+              $p^{-1} \circ p = \texttt{refl}_y$ and $p \circ p^{-1} = \texttt{refl}_x$<br/>
             </li>
             <li>
-              $(p^{-1})^{-1} = p$
+              $(p^{-1})^{-1} = p$<br/>
             </li>
             <li>
               $(p \circ q) \circ r = p \circ (q \circ r)$
@@ -201,7 +201,7 @@
             $$
           </p>
           <p>
-            where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called `whiskering`.
+            where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called <mark>whiskering</mark>.
           </p>
           <pre><code class="language-coq">Definition whiskerL {A : Type} {x y z : A} (p : x = y)
   {q r : y = z} (h : q = r) : p @ q = p @ r
@@ -227,7 +227,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             $$
           </p>
           <p>
-            The foregoing fact, known as the `Eckmann-Hilton argument` comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
+            The foregoing fact, known as the <mark>Eckmann-Hilton argument</mark> comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
           </p>
           <pre><code class="language-coq">Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :> (x = x)) : p @ q = q @ p :=
   (whiskerR_p1 p @@ whiskerL_1p q)^
@@ -238,10 +238,10 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
   @ (concat_p1 _ @@ concat_p1 _)^
   @ (whiskerL_1p q @@ whiskerR_p1 p).</code></pre>
           <p>
-            A `pointed type` $(A, a)$ is a type $A : \mathscr{U}$ together with a point $a : A$ called its `basepoint`. We write $\mathscr{U}_\bullet :\equiv \Sigma_{A : \mathscr{U}}$ for the type of pointed types in universe $\mathscr{U}$.
+            A <mark>pointed type</mark> $(A, a)$ is a type $A : \mathscr{U}$ together with a point $a : A$ called its <mark>basepoint</mark>. We write $\mathscr{U}_\bullet :\equiv \Sigma_{A : \mathscr{U}}$ for the type of pointed types in universe $\mathscr{U}$.
           </p>
           <p>
-            Given a pointed type $(A, a)$, we can define the `loop space` of $(A, a)$ to be the following pointed type:
+            Given a pointed type $(A, a)$, we can define the <mark>loop space</mark> of $(A, a)$ to be the following pointed type:
           </p>
           <p class="mathjax">
             $$
@@ -249,7 +249,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             $$
           </p>
           <p>
-            An element of it will be called a `loop` at a. For $n : \mathbb{N}$, the `n-fold iterated loop space` $\Omega^n(A, a)$ of a pointed type $(A, a)$ is defined recursively by:
+            An element of it will be called a <mark>loop</mark> at a. For $n : \mathbb{N}$, the <mark>n-fold iterated loop space</mark> $\Omega^n(A, a)$ of a pointed type $(A, a)$ is defined recursively by:
           </p>
           <p class="mathjax">
             $$
@@ -258,7 +258,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             $$
           </p>
           <p>
-            An element of it will be called an `n-loop` at $a$.
+            An element of it will be called an <mark>n-loop</mark> at $a$.
           </p>
           <h2 id="functions-are-functors">
             Functions are functors
@@ -287,13 +287,13 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              $\texttt{ap}_f(p \circ q) = \texttt{ap}_f(p) \circ \texttt{ap}_f(q)$
+              $\texttt{ap}_f(p \circ q) = \texttt{ap}_f(p) \circ \texttt{ap}_f(q)$<br/>
             </li>
             <li>
-              $\texttt{ap}_f(p^{-1}) = \texttt{ap}_f(p)^{-1}$
+              $\texttt{ap}_f(p^{-1}) = \texttt{ap}_f(p)^{-1}$<br/>
             </li>
             <li>
-              $\texttt{ap}_g(\texttt{ap}_f(p)) = \texttt{ap}_{g \circ f}(p)$
+              $\texttt{ap}_g(\texttt{ap}_f(p)) = \texttt{ap}_{g \circ f}(p)$<br/>
             </li>
             <li>
               $\texttt{ap}_{\texttt{id}_A} = p$
@@ -306,7 +306,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             Type families are fibrations
           </h2>
           <p>
-            If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingredient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as `indiscrenability of identicals` in our [previous note](/HoTT/1#identity-types).
+            If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingredient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as <mark>indiscrenability of identicals</mark> in our <a href="/HoTT/1#identity-types">previous note</a>.
           </p>
           <p class="exercise">
             `Transport lemma`. Suppose $P$ is a type family over $A$ and $p : x =_A y$, then there is a function $p_\star : P(x) \rightarrow P(y)$.
@@ -339,7 +339,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             $$
           </p>
           <p>
-            Topologically, the transport lemma can be viewed as a "path lifting" operation on a fibration. We think of a type famiy $P : A \rightarrow \mathscr{U}$ as a fibration with base space $A$, with $P(x)$ being the fiber over $x$, and with $\Sigma_{x : A} P(x)$ being the `total space` of the fibration, with first projection $\Sigma_{x : A} P(x) \rightarrow A$.
+            Topologically, the transport lemma can be viewed as a "path lifting" operation on a fibration. We think of a type famiy $P : A \rightarrow \mathscr{U}$ as a fibration with base space $A$, with $P(x)$ being the fiber over $x$, and with $\Sigma_{x : A} P(x)$ being the <mark>total space</mark> of the fibration, with first projection $\Sigma_{x : A} P(x) \rightarrow A$.
           </p>
           <p>
             The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path.
@@ -364,7 +364,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             In classical homotopy theory, a fibration is defined as a map for which there exist liftings of paths, while in contrast, we have shown that in type theory, every type family comes with a specified "lifting function".
           </p>
           <p>
-            When the type family $P : A \rightarrow \mathscr{U}$ is regarded as a fibration, the base is $A$, and the total space is $\Sigma_{x : A} P(x)$. We may also refer to the dependent function $\Pi_{x : A} P(x)$ as the `section` of the fibration $P$, and we may say that something happens `fiberwise` if it happens for each $P(x)$. For instance, a section $f : \Pi_{x : A} P(x)$ shows that $P$ is "fiberwise inhabited".
+            When the type family $P : A \rightarrow \mathscr{U}$ is regarded as a fibration, the base is $A$, and the total space is $\Sigma_{x : A} P(x)$. We may also refer to the dependent function $\Pi_{x : A} P(x)$ as the <mark>section</mark> of the fibration $P$, and we may say that something happens <mark>fiberwise</mark> if it happens for each $P(x)$. For instance, a section $f : \Pi_{x : A} P(x)$ shows that $P$ is "fiberwise inhabited".
           </p>
           <p>
             We can now prove a dependent version of the lemma $\texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(b))$ as follows. Given $\Pi_{x : A} P(x)$, we can define a non-dependent version of the function $f' : A \rightarrow \Sigma_{x : A} P(x)$ by setting $f'(x) :\equiv (x, f(x))$ and consider $f'(p) : f'(x) = f'(y)$. Since $\texttt{pr}_1 \circ f' \equiv \texttt{id}_A$, we have $\texttt{pr}_1(f'(p)) \equiv p$; thus $f'(p)$ does "lie over" $p$ in this sense. However, it is not obvious from the type of $f'(p)$ that it lies over any specific path in $A$ (in this case $p$), which is sometimes important.
@@ -412,7 +412,7 @@ Definition apD {A : Type} {B : A->Type} (f : forall a: A, B a) {x y : A} (p : x=
             and now, path induction gives us $\texttt{apd}_f(p) : p_\star(f(x)) = f(y)$ for each $p : x = y$.
           </p>
           <p>
-            We will refer generally to paths which "lie over paths" in this sense as `dependent paths`. Since a non-dependently typed function is a special case of a dependently typed function, we have the following relation between $\texttt{apd}_f$ and $\texttt{ap}_f$:
+            We will refer generally to paths which "lie over paths" in this sense as <mark>dependent paths</mark>. Since a non-dependently typed function is a special case of a dependently typed function, we have the following relation between $\texttt{apd}_f$ and $\texttt{ap}_f$:
           </p>
           <p class="exercise">
             If $P : A \rightarrow \mathscr{U}$ is defined by $P(x) :\equiv B$ for a fixed $B : \mathscr{U}$, then for any $x, y : A$, $p : x = y$, and $b : B$, we have a path:
@@ -565,7 +565,7 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
     | idpath => concat_1p _ @ ((concat_p1 _) ^)
   end.</code></pre>
           <p>
-            Moving onto types from a traditional perspective, one may say that a function $f : A \rightarrow B$ is an `isomorphism` if there is a function $g : B \rightarrow A$ such that composites $f \circ g \sim \texttt{id}_B$ and $g \circ f \sim \texttt{id}_A$. A homotopical perspective suggests that this should be called a homotopy equivalence, and equivalence of higher groupoids from a category theoretic perspective. However, the type
+            Moving onto types from a traditional perspective, one may say that a function $f : A \rightarrow B$ is an <mark>isomorphism</mark> if there is a function $g : B \rightarrow A$ such that composites $f \circ g \sim \texttt{id}_B$ and $g \circ f \sim \texttt{id}_A$. A homotopical perspective suggests that this should be called a homotopy equivalence, and equivalence of higher groupoids from a category theoretic perspective. However, the type
           </p>
           <p class="mathjax">
             $$
@@ -573,20 +573,20 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
             $$
           </p>
           <p>
-            is poorly behaved. For instance, a single function $f : A \rightarrow B$, there may be multiple unequal multiple inhabitants. This is closely related to the observation in higher category theory that one often needs to consider `adjoint equivalences`. Let us instead do the following:
+            is poorly behaved. For instance, a single function $f : A \rightarrow B$, there may be multiple unequal multiple inhabitants. This is closely related to the observation in higher category theory that one often needs to consider <mark>adjoint equivalences</mark>. Let us instead do the following:
           </p>
           <p>
             Given $f : A \rightarrow B$, a quasi-inverse of $f$ is a triple $(g, \alpha, \beta)$ consisting of a function $g : B \rightarrow A$ and homotopies $\alpha : f \circ g \sim \texttt{id}_B$ and $\beta : g \circ f \sim \texttt{id}_A$. The quasi-inverse of $f$ is denoted $\texttt{qinv}(f)$.
           </p>
           <p>
-            In general, we will reserve the use of the term isomorphism in the special case when $A$ and $B$ behave like sets, where it is unproblematic. Let us define `equivalence` for an improved notation $isequiv(f)$ with the following properties:
+            In general, we will reserve the use of the term isomorphism in the special case when $A$ and $B$ behave like sets, where it is unproblematic. Let us define <mark>equivalence</mark> for an improved notation $isequiv(f)$ with the following properties:
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              For each $f: A \rightarrow B$, there is a function $\texttt{qinv}(f) \rightarrow \texttt{isequiv}(f)$
+              For each $f: A \rightarrow B$, there is a function $\texttt{qinv}(f) \rightarrow \texttt{isequiv}(f)$<br/>
             </li>
             <li>
-              Similarly, for each $f$, we have $\texttt{isequiv}(f) \rightarrow \texttt{qinv}$
+              Similarly, for each $f$, we have $\texttt{isequiv}(f) \rightarrow \texttt{qinv}$<br/>
             </li>
             <li>
               For any two inhabitants $e_1, e_2 : \texttt{isequiv}(f)$, we have $e_1 = e_2$
@@ -613,10 +613,10 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
           </p>
           <ol class="olitems" type="i" start="1">
             <li>
-              For any $A$, the identity fuction $\texttt{id}_A$ is an equivalence; $A \simeq A$
+              For any $A$, the identity fuction $\texttt{id}_A$ is an equivalence; $A \simeq A$<br/>
             </li>
             <li>
-              For any $f : A \simeq B$, we have an equivalence $f^{-1} : B \simeq A$
+              For any $f : A \simeq B$, we have an equivalence $f^{-1} : B \simeq A$<br/>
             </li>
             <li>
               For any $f : A \simeq B$, $g : B \simeq C$, we have $g \circ f : A \simeq C$
@@ -626,7 +626,7 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
             The higher groupoid structure of type formers
           </h2>
           <p>
-            The goal now is to form new types corresponding to the type theoretic ones from our [previous note](/HoTT/1). For instance, a cartesian product $A = B \times C$, $x :\equiv (b, c)$, $y :\equiv (b', c')$, then we have:
+            The goal now is to form new types corresponding to the type theoretic ones from our <a href="/HoTT/1">previous note</a>. For instance, a cartesian product $A = B \times C$, $x :\equiv (b, c)$, $y :\equiv (b', c')$, then we have:
           </p>
           <p class="mathjax">
             $$
@@ -645,10 +645,10 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
             Finally, the type forming rules are also functorial, and if a function $f$ is built from this functorially, then the operations $\texttt{ap}_f$ and $\texttt{apd}_f$ can be computed based on the corresponding ones on the data going into into $f$. For instance, $g : B \rightarrow B'$ and $h : C \rightarrow C'$, and we define $f : B \times C \rightarrow B' \times C'$ by $f(b,c) :\equiv (g(b), h(c))$, then modulo equivalence, we can identify $\texttt{ap}_f$ with $(\texttt{ap}_g, \texttt{ap}_h)$.
           </p>
           <p>
-            Since our philosophy states that identity types are defined uniformly for all types by their induction principle, so we cannot redefine them to be different for different types. The [previous note](/HoTT/1) is insufficient to prove the desired theorems for two type formers: $\Pi$ types and universes. For $\Pi$ types, we use the axiom of `functional extensionality`, and for universes, we use the `univalence axiom`, which we will state shortly.
+            Since our philosophy states that identity types are defined uniformly for all types by their induction principle, so we cannot redefine them to be different for different types. The <a href="/HoTT/1">previous note</a> is insufficient to prove the desired theorems for two type formers: $\Pi$ types and universes. For $\Pi$ types, we use the axiom of <mark>functional extensionality</mark>, and for universes, we use the <mark>univalence axiom</mark>, which we will state shortly.
           </p>
           <p>
-            It is, however, important to note that not all identity types can be determined by induction over the construction of types. Counterexamples include most non-trivial `higher inductive types` (HITs). For instance, calculating the identity types of types $\mathbb{S}^n$ is equivalent to calculating the higher homotopy groups of spheres, a field of research in algebraic topology.
+            It is, however, important to note that not all identity types can be determined by induction over the construction of types. Counterexamples include most non-trivial <mark>higher inductive types</mark> (HITs). For instance, calculating the identity types of types $\mathbb{S}^n$ is equivalent to calculating the higher homotopy groups of spheres, a field of research in algebraic topology.
           </p>
           <h2 id="cartesian-product-types">
             Cartesian product types
@@ -673,7 +673,7 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
             $$
           </p>
           <p>
-            It can be helpful view $\texttt{pair}^=$ as an `introduction rule` for $x = y$.  to The elimination rules can then be written out as:
+            It can be helpful view $\texttt{pair}^=$ as an <mark>introduction rule</mark> for $x = y$.  to The elimination rules can then be written out as:
           </p>
           <p class="mathjax">
             $$
@@ -682,7 +682,7 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
             $$
           </p>
           <p>
-            For $p : \texttt{pr}_1 x = \texttt{pr}_1 y$ and $q : \texttt{pr}_2 x = \texttt{pr}_2 y$, we get the following `propositional uniqueness principle`:
+            For $p : \texttt{pr}_1 x = \texttt{pr}_1 y$ and $q : \texttt{pr}_2 x = \texttt{pr}_2 y$, we get the following <mark>propositional uniqueness principle</mark>:
           </p>
           <p class="mathjax">
             $$
@@ -713,7 +713,7 @@ Defined.</code></pre>
             $$
           </p>
           <p>
-            We have already proved this [previously](#type-families-are-fibrations), in the path lifting property. As usual, let us also deduce a propositional uniqueness principle as a special case:
+            We have already proved this <a href="#type-families-are-fibrations">previously</a>, in the path lifting property. As usual, let us also deduce a propositional uniqueness principle as a special case:
           </p>
           <p class="exercise">
             For $z : \Sigma_{x : A} P(x)$, we have $z = (\texttt{pr}_1(z), \texttt{pr}_2(z))$
@@ -772,7 +772,7 @@ Defined.</code></pre>
             $$
           </p>
           <p>
-            The `functional extensionality` axiom says that the above relation is an equivalence. This implies that there is a quasi-inverse:
+            The <mark>functional extensionality</mark> axiom says that the above relation is an equivalence. This implies that there is a quasi-inverse:
           </p>
           <p class="mathjax">
             $$
@@ -1129,7 +1129,7 @@ Definition prod_coind_uncurried `{A : X -> Type} `{B : X -> Type}
             Note that $\Sigma_{g : \Pi_{x : X} A(x)} \Pi_{x : X} P(x, g(x))$ can be read as "there exists a choice function $g : \Pi_{x : X} A(x)$ such that for all $x : X$, we have $P(x, g(x))$". The classical mathemtician may find that the axiom of choice doesn't carry its usual meaning.
           </p>
           <p>
-            In the case of cartesian products, the non-dependent version simply expresses the `cartesian closure adjuction`:
+            In the case of cartesian products, the non-dependent version simply expresses the <mark>cartesian closure adjuction</mark>:
           </p>
           <p class="mathjax">
             $$
@@ -1148,7 +1148,7 @@ Definition prod_coind_uncurried `{A : X -> Type} `{B : X -> Type}
             However, for inductive types with recursion, such as natural numbers, have more complicated universal properties, as we intend to describe later.
           </p>
           <p>
-            As such, we have described the usual universal property of a cartesian product, but the reader may wonder about `limits` and `colimits` of types. For `pullbacks`, the expected explicit construction works; given $f: A \rightarrow C$ and $g : B \rightarrow C$, we define:
+            As such, we have described the usual universal property of a cartesian product, but the reader may wonder about <mark>limits</mark> and <mark>colimits</mark> of types. For <mark>pullbacks</mark>, the expected explicit construction works; given $f: A \rightarrow C$ and $g : B \rightarrow C$, we define:
           </p>
           <p class="mathjax">
             $$
