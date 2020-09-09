@@ -16,9 +16,9 @@ $(() => {
   }
 
   // humanize timestamp
+  dayjs.extend(window.dayjs_plugin_relativeTime);
   for (el of $("#timestamp time")) {
-    // plain js
-    el.textContent = moment(el.textContent).fromNow();
+    el.textContent = dayjs(el.textContent).fromNow();
   }
 
   // syntax-highlight coq and cpp

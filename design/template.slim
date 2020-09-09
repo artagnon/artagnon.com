@@ -25,9 +25,10 @@ html
         }
       });
 
-    // cash, moment, mathjax, xypic
+    // cash, dayjs, mathjax, xypic
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"
     script type="text/x-mathjax-config" MathJax.Hub.Config({
       extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"],
@@ -35,7 +36,7 @@ html
       tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
       TeX: {extensions: ["/dist/xypic.min.js","AMSmath.js","AMSsymbols.js"]} });
 
-    // preload hljs css, since solarized-dark is heavy
+    // preload hljs css, since solarized-light is heavy
     link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"
     noscript
       link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-light.min.css"
