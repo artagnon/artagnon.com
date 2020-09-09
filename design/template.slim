@@ -16,14 +16,19 @@ html
     // synchronously load our stylesheet, compiled from various css files in design/
     link rel="stylesheet" href="/dist/style.min.css"
 
-    // load google fonts using Web Font Loader; the Loader itself is downloaded synchronously to avoid FOUT
-    script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+    // Web Font Loader; async
     javascript:
-      WebFont.load({
+      WebFontConfig = {
         google: {
           families: ['Josefin Sans', 'Roboto Mono']
         }
-      });
+      };
+      (function(d) {
+          var wf = d.createElement('script'), s = d.scripts[0];
+          wf.src = '//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+          wf.async = true;
+          s.parentNode.insertBefore(wf, s);
+      })(document);
 
     // cash, dayjs, mathjax, xypic
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"

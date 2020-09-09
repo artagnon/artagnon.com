@@ -13,13 +13,18 @@
     <meta name="robots" content="index,follow" />
     <link rel="icon" href="/dist/favicon.ico" />
     <link rel="stylesheet" href="/dist/style.min.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script>
-      WebFont.load({
+      WebFontConfig = {
         google: {
           families: ['Josefin Sans', 'Roboto Mono']
         }
-      });
+      };
+      (function(d) {
+          var wf = d.createElement('script'), s = d.scripts[0];
+          wf.src = '//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+          wf.async = true;
+          s.parentNode.insertBefore(wf, s);
+      })(document);
     </script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
@@ -49,12 +54,12 @@
             Ramkumar Ramachandra
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2013-02-12" class="begin">Tue, 12 Feb 2013 18:25:27 +0530</time><span class="to">↪</span><time datetime="2020-09-09" class="end">Wed, 09 Sep 2020 12:24:58 +0200</time></span><br /><span id="locations"><address>Paris, Chennai, Boston, NY</address></span>
+            <span id="timestamp"><time datetime="2013-02-12" class="begin">Tue, 12 Feb 2013 18:25:27 +0530</time><span class="to">↪</span><time datetime="2020-09-09" class="end">Wed, 09 Sep 2020 18:06:07 +0200</time></span><br /><span id="locations"><address>Paris, Chennai, Boston, NY</address></span>
           </div>
         </header>
         <article>
           <p>
-            Masters student at Université de Paris, working towards higher categories.
+            Masters student at Université de Paris, working towards $\infty$-categories.
           </p>
           <p>
             If this is your first visit, head over to the [notes](/notes) section. The unpolished mathematical notes that make up the bulk of this site might not be of immediate interest.
