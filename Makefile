@@ -1,4 +1,4 @@
-SHELL=/bin/zsh
+SHELL=/usr/local/bin/fish
 
 all:
 	@clayoven
