@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Why HoTT? | artagnon.com</title>
+    <title>Why dependently type? | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="language" content="english" />
     <meta name="author" content="Ramkumar Ramachandra" />
@@ -35,33 +35,6 @@
   </head>
   <body>
     <div id="wrapper">
-      <main tabindex="0">
-        <header>
-          <h1>
-            Why HoTT?
-          </h1>
-          <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-26" class="begin">Sat, 26 Sep 2020 18:55:09 +0200</time><span class="to">↪</span><time datetime="2020-09-26" class="end">Sat, 26 Sep 2020 18:56:56 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
-          </div>
-        </header>
-        <article>
-          <p>
-            Given: {A, B : Type}, {x, y : A} {P, Q : Prop}, {f, g : A -&gt; B}, {P f g}, {Q x y}.<br/>
-            To find: Relationship between f(x) and g(y), or R in R {f(x) g(y)}.
-          </p>
-          <p>
-            Simple case: P, Q = refl -&gt; R = refl.
-          </p>
-          <p>
-            Types are topological spaces. Inhabitants are points, with AUFI, which are also topological spaces.<br/>
-            A function is a homotopy between topological spaces.<br/>
-            A homotopy between spaces maps points in one space to points in another space.<br/>
-            Consider two functions (or homotopies) f and g. To say that they're homotopy equivalent means that they have the same start and end spaces: f ~ g.<br/>
-            Homotopy equivalence is a proof, which is also a homotopy between inhabitants.<br/>
-            Consider a proof that two inhabitants are equal. This is also a homotopy.
-          </p>
-        </article>
-      </main>
       <nav>
         <ul>
           <li>
@@ -93,6 +66,47 @@
           </li>
         </ul>
       </nav>
+      <main>
+        <header>
+          <h1>
+            Why dependently type?
+          </h1>
+          <div id="metadata">
+            <span id="timestamp"><time datetime="2020-09-26" class="begin">Sat, 26 Sep 2020 18:55:09 +0200</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 00:17:19 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+          </div>
+        </header>
+        <article>
+          <footer>
+          </footer>
+          <hr class="horizrule" />
+          <p>
+            We'll take the high-road and explain type-hierarchy in the post-HoTT world, where there is simply one $\infty$-ladder of types.
+          </p>
+          <hr class="horizrule" />
+          <p>
+            Definition: a typing discipline built upon $\Sigma$-types and $\Pi$-types as primitives. $\Sigma$ types can be used to build dependent pairs: $(x, E)$, where $E$ is some kind of type that depends
+          </p>
+          <hr class="horizrule" />
+          <p>
+            In Coq,
+          </p>
+          <p>
+            Given: {A, B : Type}, {x, y : A} {P, Q : Prop}, {f, g : A -&gt; B}, {P f g}, {Q x y}.<br/>
+            To find: Relationship between f(x) and g(y), or R in R {f(x) g(y)}.
+          </p>
+          <p>
+            Simple case: P, Q = refl -&gt; R = refl.
+          </p>
+          <p>
+            Types are topological spaces. Inhabitants are points, with AUFI, which are also topological spaces.<br/>
+            A function is a homotopy between topological spaces.<br/>
+            A homotopy between spaces maps points in one space to points in another space.<br/>
+            Consider two functions (or homotopies) f and g. To say that they're homotopy equivalent means that they have the same start and end spaces: f ~ g.<br/>
+            Homotopy equivalence is a proof, which is also a homotopy between inhabitants.<br/>
+            Consider a proof that two inhabitants are equal. This is also a homotopy.
+          </p>
+        </article>
+      </main>
     </div>
   </body>
 </html>

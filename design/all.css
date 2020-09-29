@@ -38,8 +38,11 @@ a:visited {
 
 div#wrapper {
   margin: 0;
-  padding: 0 20% 0 0;
-  overflow: hidden;
+  height: 100vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-bottom: 5vw;
+  background-color: lavenderblush;
 }
 
 ul#indexfill {
@@ -56,21 +59,74 @@ ul#indexfill li::before {
   -webkit-user-select: none;
 }
 
+nav,
+main {
+  float: none;
+  clear: both;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 main {
   display: block;
-  padding-left: 10%;
-  padding-right: 5%;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: lavenderblush;
+  padding-bottom: 1.5vw;
 }
 
 nav {
-  background-color: antiquewhite;
+  background-color: #eee0e5;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 nav ul {
-  padding-inline-start: 10%;
+  column-count: 5;
+  -moz-column-count: 5;
+  -webkit-column-count: 5;
+
+  margin: 0;
+  padding-left: 7vw;
+  padding-right: 7vw;
+  padding-bottom: 8px;
+  list-style: none;
+}
+
+@media only screen and (max-width: 1000px) {
+  nav ul {
+    column-count: 4;
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  nav ul {
+    column-count: 3;
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  nav ul {
+    column-count: 2;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+  }
+}
+
+nav li {
+  padding-bottom: 8px;
+}
+
+nav ul li:first-child {
+  margin-top: 4px;
+}
+
+nav li a {
+  display: block;
 }
 
 #metadata {
@@ -193,7 +249,8 @@ div.imgrow::after {
 }
 
 .mathjax {
-  overflow-x: scroll;
+  font-size: 0.7em;
+  overflow-x: hidden;
   overflow-y: hidden;
 }
 

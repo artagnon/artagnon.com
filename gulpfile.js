@@ -6,8 +6,6 @@ const minify = require("gulp-minify");
 function css() {
   return src([
     "design/all.css",
-    "design/screen.css",
-    "design/mobile.css",
     "design/print.css"
   ])
     .pipe(cleanCSS())
