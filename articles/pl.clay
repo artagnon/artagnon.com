@@ -24,6 +24,8 @@ $$
   \end{matrix}
 $$
 
+--
+
 An FAQ follows.
 
 § Why would someone pick C++ over Rust today?
@@ -76,4 +78,10 @@ Another more recent reason is the fact that every `.hs` file in a modern Haskell
 
 The reason GHC didn't just turn on all flags by default is that many of them are mutually incompatible, so your individual `.hs` file has to pick a compatible set of language features it wants to work with.
 
-Idris has One True Way of implementing many language features, and people who just want to play with language features without doing any serious work would bet on Idris. Incidentally, that's the reason this toy language has been included with the more mature languages.
+§ Was Haskell influenced by Coq?
+
+The diagram only shows influences in the original language design, not influences absorbed through the evolution of the language. The prime example of an older language being influenced by a newer one is the fact that today's Coq is implemented in OCaml. And no, the core of Haskell was essentially a re-skinning of Miranda, with no ambitions to be dependently typing. This historical short-sightedness, one could argue, was one of the reasons for its downfall.
+
+§ Doesn't Go feature a solid compiler/runtime?
+
+It does, but the author didn't feel that it was worthy of an asterisk, because the compiler is working with a really dumb langauge. Nevertheless, the gc and sheduler are praise-worthy, as is the overall experience with ultra-low compile-times.

@@ -73,7 +73,7 @@
             An opinionated history of programming languages
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 12:43:32 +0200</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 19:24:14 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 12:43:32 +0200</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 21:15:08 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -109,6 +109,7 @@
               \end{matrix}
             $$
           </p>
+          <hr class="horizrule" />
           <p>
             An FAQ follows.
           </p>
@@ -162,8 +163,17 @@ void recurseFillChildren(CurTy &amp;E)
           <p>
             The reason GHC didn't just turn on all flags by default is that many of them are mutually incompatible, so your individual <mark>.hs</mark> file has to pick a compatible set of language features it wants to work with.
           </p>
+          <p class="exercise">
+            Was Haskell influenced by Coq?
+          </p>
           <p>
-            Idris has One True Way of implementing many language features, and people who just want to play with language features without doing any serious work would bet on Idris. Incidentally, that's the reason this toy language has been included with the more mature languages.
+            The diagram only shows influences in the original language design, not influences absorbed through the evolution of the language. The prime example of an older language being influenced by a newer one is the fact that today's Coq is implemented in OCaml. And no, the core of Haskell was essentially a re-skinning of Miranda, with no ambitions to be dependently typing. This historical short-sightedness, one could argue, was one of the reasons for its downfall.
+          </p>
+          <p class="exercise">
+            Doesn't Go feature a solid compiler/runtime?
+          </p>
+          <p>
+            It does, but the author didn't feel that it was worthy of an asterisk, because the compiler is working with a really dumb langauge. Nevertheless, the gc and sheduler are praise-worthy, as is the overall experience with ultra-low compile-times.
           </p>
         </article>
       </main>
