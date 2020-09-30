@@ -1,10 +1,10 @@
 An opinionated history of programming languages
 
 {{
-  \color{red}{\textbf{Fortran (1957)}} & \textbf{Lisp (1958)}\ar[dddl]\ar[dddr] \\
+  \color{red}{\textbf{FORTRAN (1957)}}^{*} & \textbf{LISP (1958)}\ar[dddl]\ar[dddr] \\
   \textbf{Smalltalk (1972)}\ar@{-->}[ddrr]\ar@{-->}@/_2pc/[ddddrr]\ar@{-->}@/^1.6pc/[ddddrrrr]\ar@{-->}[ddddrrr] & \textbf{C (1972)}^{*}\ar@{.>}[dd]\ar@{.>}[ddrr]\ar@{.>}[ddddl]\ar@{.>}@/_3pc/[ddddddrrr] & \textbf{ML (1973)}\ar@{~~>}[ddddl]\ar@{~~>}[ddddrrr] & \color{red}{\textbf{Bourne Shell (1978)}}\ar[dd] \\
   \\
-  \texttt{Common Lisp (1984)}\ar@/_2pc/[ddddrr] & \color{green}{\texttt{C++ (1985)}}^{*}\ar[ddrr]\ar[ddddddl] & \texttt{Erlang (1986)}^{*}\ar@/_2pc/[ddddll] & \texttt{Perl (1987)}\ar[ddlll]\ar[ddl] & \color{green}{\textbf{Coq (1989)}}^{*}\ar@{~>}@/_0.5pc/[ddddlll]\ar@{~>}[ddddl] \\
+  \texttt{Common Lisp (1984)}\ar@/_2pc/[ddddrr] & \color{green}{\texttt{C++ (1985)}}^{*}\ar[ddrr]\ar[ddddddl] & \texttt{Erlang (1986)}^{*}\ar@/_2pc/[ddddll] & \texttt{Perl (1987)}\ar[ddlll]\ar[ddl] & \color{green}{\textbf{Coq (1989)}}\ar@{~>}@/_0.5pc/[ddddlll]\ar@{~>}[ddddl] \\
   \\
   \texttt{Python (1990)} & \color{brown}{\texttt{Haskell (1990)}}\ar[dd]\ar[ddl]\ar[ddrr] & \color{brown}{\texttt{Ruby (1995)}} & \color{red}{\texttt{Java (1995)}}^{*}\ar[ddl]|{*}\ar[ddlll]|{*} & \color{red}{\texttt{Javascript (1995)}}^{*} & \texttt{OCaml (1996)}\ar@/^0.1pc/[ddddlllll] \\
   \\
@@ -17,9 +17,63 @@ $$
   \begin{matrix}
     \textbf{•} & \textrm{A root language: significantly novel, with no predecessor} \\
     \color{red}{\bullet} & \textrm{Unlikely to influence anything in the future, due to remarkably poor design} \\
-    \color{green}{\bullet} & \textrm{Candidates for designing a future language} \\
-    \color{brown}{\bullet} & \textrm{Dying language} \\
+    \color{brown}{\bullet} & \textrm{Dying language, for varied reasons} \\
     \color{blue}{\bullet} & \textrm{Toy language} \\
-    {}^{*} & \textrm{Mature high-performance compiler/runtime}
+    \color{green}{\bullet} & \textrm{Candidates for designing a future language} \\
+    {}^{*} & \textrm{Mature high-performance high-complexity compiler/runtime}
   \end{matrix}
 $$
+
+An FAQ follows.
+
+§ Why would someone pick C++ over Rust today?
+
+C++ templates are incredibly powerful, and with the introduction of compile-time expressions, the vast majority of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:
+
+```cpp
+template <size_t i, typename... Ts, typename CurTy>
+void recurseFillChildren(CurTy &E)
+{
+  using PackTy = std::variant<Ts...>;
+  using TyL = std::variant_alternative_t<i - 1, PackTy>;
+  static_assert(std::is_same_v<CurTy, TyL>);
+  using TyR = std::variant_alternative_t<i, PackTy>;
+
+  for (i32 j = 0; j < E.NChildren; ++j)
+  {
+    E.Children.push_back(miniParser<TyR>());
+    if constexpr (i + 1 < sizeof...(Ts))
+      recurseFillChildren<i + 1, Ts...>(E.Children.back());
+  }
+};
+```
+
+§ Is there anything that Rust can do that C++ can't?
+
+Rust didn't restrict what macros can do as much as C++ did. As a result, it's possible to do more with them. The particular example of the Pest parser is especially enlightening:
+
+```rs
+#[derive(Parser)]
+#[grammar = "grammar.pest"]
+```
+
+Essentially, "grammar.pest" is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust's macros are very slow, and your compile-times blow up if you have recursive macros. `std::embed` in C++23 will probably do it right.
+
+§ Why did Haskell's popularity wane so sharply?
+
+Laziness introduces two major problems: first, debugging line-by-line is impossible, because they're not executed in order. And second, when done wrong, it can be a source of major memory leaks that can be very hard to debug in large Haskell projects.
+
+Another more recent reason is the fact that every `.hs` file in a modern Haskell project begins with a different set of flags on top:
+
+```hs
+{-# language DeriveDataTypeable    #-}
+{-# language DeriveGeneric         #-}
+{-# language FlexibleInstances     #-}
+{-# language MultiParamTypeClasses #-}
+{-# language TemplateHaskell       #-}
+{-# language TypeSynonymInstances  #-}
+```
+
+The reason GHC didn't just turn on all flags by default is that many of them are mutually incompatible, so your individual `.hs` file has to pick a compatible set of language features it wants to work with.
+
+Idris has One True Way of implementing many language features, and people who just want to play with language features without doing any serious work would bet on Idris. Incidentally, that's the reason this toy language has been included with the more mature languages.

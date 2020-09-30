@@ -55,13 +55,18 @@ The sum of two ideals $I, J$, denoted $I + J$, is the smallest set, $x + y, x \i
 
 In $A = k[x_0, \ldots, x_n]$, we have the distributive law $I (J + K) = IJ + IK$ as in the case of $\mathbb{Z}$. However, unlike the $\mathbb{Z}$ case,
 
-$$I \cap (J + K) = I \cap J + I \cap K \quad \text{if } J \subseteq I \vee K \subseteq I$$
-$$I \cap J = IJ \quad \text{if } I + J = (1)$$
+$$
+  I \cap (J + K) = I \cap J + I \cap K \quad \text{if } J \subseteq I \vee K \subseteq I
+  I \cap J = IJ \quad \text{if } I + J = (1)
+$$
 
 Ideals $I, J$ are said to be `coprime` if $I + J = (1)$.
 
 Define the following homomorphism on direct products of ideals:
-$$\varphi : A \rightarrow \prod_q (A/I_q)$$
+
+$$
+  \varphi : A \rightarrow \prod_q (A/I_q)
+$$
 
 by the rule $\varphi(x) = (x + I_1, \ldots, x + I_n)$. Then:
 
@@ -76,14 +81,19 @@ In the ring $A$:
 
 To prove (i), use induction of the form:
 
-$$I \not\subseteq P_q (1 \leq q \leq n) \implies I \not\subseteq \bigcup_q P_q$$
+$$
+  I \not\subseteq P_q (1 \leq q \leq n) \implies I \not\subseteq \bigcup_q P_q
+$$
 
 Certainly, this is true for $n = 1$. It holds for $n \gt 1$, if it holds for $n - 1$. Let $x_i \in I$ such that $x_i \notin P_j, i \neq j$. If $x_i \notin P_i$, we are done. Otherwise, $x_i \in P_i$ for all $i$. Consider an element $y \in I_q$ such that $y \notin P_q$. Hence, we have  $I \not\subseteq P_q$.
 
 To prove (ii), let $I_q \not\subseteq P \, \forall q$, and $\exists x_q : x_q \in I_q, x_i \notin P$. Then, $x_q \subseteq \bigcap I_q$. But $\prod_q x_q \notin P$, since $P$ is prime. Hence, $I_q \subseteq P$. Finally, if $P = \bigcap_q I_q$, then $P \subseteq I_q$, and hence $P = I_q$, for some $q$.
 
 If $I, J$ are ideals on ring $A$, the `ideal quotient` is defined as:
-$$(I : J) = \{x \in A : xJ \subseteq I\}$$
+
+$$
+  (I : J) = \{x \in A : xJ \subseteq I\}
+$$
 
 which is an ideal in itself. In particular $(0 : J)$ is called the `annihilator` of $J$, also written as $Ann(J)$.
 

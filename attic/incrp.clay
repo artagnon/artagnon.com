@@ -12,7 +12,7 @@ In this flavor of Program Structure Tree, we have seven types of Regions:
 
 Most cases, we want to edit the program using the PST (and keeping the CFG up-to-date as a side-effect). However, let's consider the interesting case of moving Sese (single-entry single-exit) statements out of a BasicBlockRegion to arbitrary edge inside a loop in the CFG. How do we avoid recomputing the PST now?
 
-[[
+```cpp
 /// Some cases:
 ///
 /// for (i = 1:1:4) {
@@ -39,7 +39,7 @@ Most cases, we want to edit the program using the PST (and keeping the CFG up-to
 /// other types of regions that can succeed, making a total of 49
 /// cases.
 ///
-]]
+```
 
 It turns out that there are just five cases to handle:
 

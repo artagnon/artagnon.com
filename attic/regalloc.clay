@@ -4,27 +4,27 @@ We are going to be discussing LLVM's Fast Register Allocator: you might like to 
 
 FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses `PhysRegState` to keep track of the state of various physical registers: they can be 0 (`regDisabled`), 1 (`regFree`), 2 (`regReserved`), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like `LR.LastUse`); a register can either be a `<def>` or a use. If `IsImplicit` is flipped, it could also be a implicit-def (`<imp-def>`) or implicit-use (`<imp-use>`).
 
-[[
+```cpp
 %vreg349<def> = MOVZX32rm8 %vreg351, 1, %noreg, 0, %noreg
-]]
+```
 
 turns into
 
-[[
+```cpp
 %ESI<def> = MOVZX32rm8 %RDX<kill>, 1, %noreg, 0, %noreg
-]]
+```
 
 after allocation. The `<kill>` indicates that the instruction is the last use of `%RDX`. In another example,
 
-[[
+```cpp
 CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use>
-]]
+```
 
 turns into
 
-[[
+```cpp
 CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use,kill>
-]]
+```
 
 Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend `%RAX` into `%RDX` (not any other register) for use in a later `IDIV`. Remember that `IDIV` operates on `%RDX:%RAX` as the numerator, and writes the quotient in `%RAX`, reminder in `%RDX`.
 
@@ -33,9 +33,9 @@ indicates that the value defined is used no longer.
 
 `AllocateBasicBlock`, which operates on `MachineBasicBlock`, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the `LiveIns` (registers coming in live from the previous `MBB`) as `regReserved` so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls `usePhysReg` on them. At this stage, the physical register must be either `regDisabled`, `regReserved`, or `regFree`. It cannot be allocated to a virtual register. Why? Imagine you see:
 
-[[
+```cpp
 CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use>
-]]
+```
 
 Now, if `%RAX` were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as `regFree`, and move on: we have done our part by completing the use of the register that was reserved earlier.
 
@@ -46,16 +46,16 @@ The third scan operates on physical and virtual registers that are Defs. If the 
 
 To think about the problem, if we have,
 
-[[
+```cpp
 %RAX<def> = COPY %vreg342
-]]
+```
 
 we should always `regReserve` `%RAX`, right? Except if `%RAX` is dead. What
 about if it's an `<imp-def>`?
 
-[[
+```cpp
 CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use>
-]]
+```
 
 We didn't pass `CQO` `%RAX` explicitly, but that doesn't mean that a later instruction (for instance, `IDIV`) is not relying on this register's value. If we have an instruction between `CQO` and `IDIV`, that can potentially clobber `%RAX`, leading to a regalloc crash. Hence, we `regReserve` even if `MO.isImplicit()`.
 
