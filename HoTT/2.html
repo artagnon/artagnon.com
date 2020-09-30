@@ -327,7 +327,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingredient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as <mark>indiscrenability of identicals</mark> in our <a href="/HoTT/1#identity-types">previous note</a>.
           </p>
           <p class="exercise">
-            `Transport lemma`. Suppose $P$ is a type family over $A$ and $p : x =_A y$, then there is a function $p_\star : P(x) \rightarrow P(y)$.
+            <mark>Transport lemma</mark>. Suppose $P$ is a type family over $A$ and $p : x =_A y$, then there is a function $p_\star : P(x) \rightarrow P(y)$.
           </p>
           <p>
             Let $D : \Pi_{x, y : A}(x = y) \rightarrow \mathscr{U}$ be the type family defined by:
@@ -365,7 +365,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <pre><code class="language-coq">Definition transport {A : Type} (P : A -> Type) {x y : A} (p : x = y) (u : P x) : P y :=
   match p with idpath => u end.</code></pre>
           <p class="exercise">
-            We now state `path lifting property` without proof. Let $P : A \rightarrow \mathscr{U}$ be a type family over $A$, and assume we have $u : P(x)$ for some $x : A$. Then, for $p : x = y$, we have:
+            We now state <mark>path lifting property</mark> without proof. Let $P : A \rightarrow \mathscr{U}$ be a type family over $A$, and assume we have $u : P(x)$ for some $x : A$. Then, for $p : x = y$, we have:
           </p>
           <p class="mathjax">
             $$
@@ -391,7 +391,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             The solution is to use the transport lemma; we have a canonical path $\texttt{lift}(u, p)$ from $(x, u)$ to $(u, p_\star(u))$, which lies over $p$. Thus, any path from $u : P(x)$ to $v : P(y)$ lying over $p$ should factor through $\texttt{lift}(u, p)$.
           </p>
           <p class="exercise">
-            `Dependent map`. Suppose $f : \Pi_{x : A} P(x)$, we have a map
+            <mark>Dependent map</mark>. Suppose $f : \Pi_{x : A} P(x)$, we have a map
           </p>
           <p class="mathjax">
             $$
@@ -898,7 +898,7 @@ Defined.</code></pre>
           <pre><code class="language-coq">Definition equiv_path (A B : Type) (p : A = B) : A <~> B
   := Build_Equiv _ _ (transport (fun X:Type => X) p) _.</code></pre>
           <p class="exercise">
-            The `univalence axiom` can be stated as the $\texttt{idtoequiv}$ being an equivalene.
+            The <mark>univalence axiom</mark> can be stated as the $\texttt{idtoequiv}$ being an equivalene.
           </p>
           <p class="mathjax">
             $$
