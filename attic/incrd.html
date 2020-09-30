@@ -135,12 +135,12 @@
           <p>
             This is a Region:
           </p>
-          <pre><code class="language-cpp">for (i : Vec)
+          <pre><code class="cpp">for (i : Vec)
   A = i;</code></pre>
           <p>
             This is a ChainRegion comprising of an IfRegion and a BasicBlockRegion:
           </p>
-          <pre><code class="language-cpp">if (foo)
+          <pre><code class="cpp">if (foo)
   A = 15;
 else
   A = 21;
@@ -148,7 +148,7 @@ quux();</code></pre>
           <p>
             This is an UnstructuredRegion, but it is very much SESE:
           </p>
-          <pre><code class="language-cpp">jump:
+          <pre><code class="cpp">jump:
   A = 18;
 if (A < 17)
   A = A + 3;
@@ -241,7 +241,7 @@ void DFS(Node *v) {
           <p>
             Our API looks like:
           </p>
-          <pre><code class="language-cpp">void assignHeads(std::vector<Statement*> branchHeads,
+          <pre><code class="cpp">void assignHeads(std::vector<Statement*> branchHeads,
                  std::vector<Statement*> headsToStaggerWith,
                  Statement* nestWithin, Statement* toEnclose);</code></pre>
           <p>

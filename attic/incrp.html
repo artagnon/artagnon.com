@@ -105,7 +105,7 @@
           <p>
             Most cases, we want to edit the program using the PST (and keeping the CFG up-to-date as a side-effect). However, let's consider the interesting case of moving Sese (single-entry single-exit) statements out of a BasicBlockRegion to arbitrary edge inside a loop in the CFG. How do we avoid recomputing the PST now?
           </p>
-          <pre><code class="language-cpp">/// Some cases:
+          <pre><code class="cpp">/// Some cases:
 ///
 /// for (i = 1:1:4) {
 ///      A = 2;               /// >> BasicBlockRegion >>

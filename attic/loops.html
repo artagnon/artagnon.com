@@ -139,7 +139,7 @@
           <p>
             Now, let's employ a simple DFS:
           </p>
-          <pre><code class="language-cpp">void DFS(Node *v) {
+          <pre><code class="cpp">void DFS(Node *v) {
   assign_start_time(v); // increment a clock as you assign
   for (auto u : v->outEdges()) {
     if (start_time_not_assigned(v)) DFS(v);

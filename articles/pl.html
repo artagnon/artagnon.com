@@ -72,7 +72,7 @@
             An opinionated history of programming languages
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 12:43:32 +0200</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 18:31:54 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 12:43:32 +0200</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 19:23:36 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -117,7 +117,7 @@
           <p>
             C++ templates are incredibly powerful, and with the introduction of compile-time expressions, the vast majority of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:
           </p>
-          <pre><code class="language-cpp">template <size_t i, typename... Ts, typename CurTy>
+          <pre><code class="cpp">template <size_t i, typename... Ts, typename CurTy>
 void recurseFillChildren(CurTy &E)
 {
   using PackTy = std::variant<Ts...>;
@@ -138,7 +138,7 @@ void recurseFillChildren(CurTy &E)
           <p>
             Rust didn't restrict what macros can do as much as C++ did. As a result, it's possible to do more with them. The particular example of the Pest parser is especially enlightening:
           </p>
-          <pre><code class="language-cpp">#[derive(Parser)]
+          <pre><code class="rs">#[derive(Parser)]
 #[grammar = "grammar.pest"]</code></pre>
           <p>
             Essentially, "grammar.pest" is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust's macros are very slow, and your compile-times blow up if you have recursive macros. <mark>std::embed</mark> in C++23 will probably do it right.
@@ -152,7 +152,7 @@ void recurseFillChildren(CurTy &E)
           <p>
             Another more recent reason is the fact that every <mark>.hs</mark> file in a modern Haskell project begins with a different set of flags on top:
           </p>
-          <pre><code class="language-cpp">{-# language DeriveDataTypeable    #-}
+          <pre><code class="haskell">{-# language DeriveDataTypeable    #-}
 {-# language DeriveGeneric         #-}
 {-# language FlexibleInstances     #-}
 {-# language MultiParamTypeClasses #-}
