@@ -72,7 +72,7 @@
             An opinionated history of programming languages
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 00:17:19 +0200</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 00:17:19 +0200</time></span><br /><span id="locations"><address></address></span>
+            <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 01:59:14 +0200</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 01:59:14 +0200</time></span><br /><span id="locations"><address></address></span>
           </div>
         </header>
         <article>
@@ -81,31 +81,30 @@
               \begin{xy}
               \xymatrix{
             
-            \color{red}{\texttt{Fortran (1957)}} & \textbf{Lisp (1958)}\ar[ddl]\ar[ddr] \\
-              \textbf{Smalltalk (1972)}\ar[drr]\ar[dddrr]\ar@/^/[dddrrrr] & \textbf{C (1972)}\ar[d]\ar[drr]\ar[dddl]\ar@/^1pc/[dddddrr] & \textbf{ML (1973)}\ar[dddl]\ar@/^1pc/[dddrrr] & \textbf{sh (1978)}\ar[d] \\
-              \texttt{Common Lisp (1984)} & \texttt{C++ (1985)}\ar[ddrr]\ar[ddddddl] & \texttt{Erlang (1986)}\ar[ddddl] & \texttt{Perl (1987)}\ar[ddlll]\ar[ddl] & \textbf{Coq (1989)}\ar@/_1pc/[ddddllll]\ar@/^1pc/[ddddll] \\
+            \color{red}{\textbf{Fortran (1957)}} & \textbf{Lisp (1958)}\ar[dddl]\ar[dddr] \\
+              \textbf{Smalltalk (1972)}\ar@{-->}[ddrr]\ar@{-->}@/_2pc/[ddddrr]\ar@{-->}@/^1.6pc/[ddddrrrr]\ar@{-->}[ddddrrr] & \textbf{C (1972)}\ar@{.>}[dd]\ar@{.>}[ddrr]\ar@{.>}[ddddl]\ar@{.>}@/_3pc/[ddddddrrr] & \textbf{ML (1973)}\ar@{~~>}@/_1pc/[ddddl]\ar@{~~>}[ddddrrr] & \textbf{Bourne Shell (1978)}\ar[dd] \\
               \\
-              \texttt{Python (1990)}\ar[ddddr] & \texttt{Haskell (1990)}\ar[ddl] & \texttt{Ruby (1995)}\ar[ddddl]\ar[ddl] & \texttt{Java (1995)}\ar[ddll] & \texttt{Javascript (1995)} & \texttt{OCaml (1996)} \\
+              \texttt{Common Lisp (1984)}\ar@/_2pc/[ddddrr] & \color{green}{\texttt{C++ (1985)}}\ar[ddrr]\ar[ddddddl] & \texttt{Erlang (1986)}\ar@/_3pc/[ddddll]\ar@/^0.6pc/[ddddddll] & \texttt{Perl (1987)}\ar[ddlll]\ar[ddl] & \color{green}{\textbf{Coq (1989)}}\ar@{~>}[ddddlll]\ar@{~>}[ddddl] \\
               \\
-              \texttt{Agda (2007)}\ar@/_2pc/[rr] & \texttt{Clojure (2007)} & \texttt{Idris (2007)} & \texttt{Go (2009)} \\
+              \texttt{Python (1990)} & \texttt{Haskell (1990)}\ar[dd]\ar[ddl] & \texttt{Ruby (1995)} & \color{brown}{\texttt{Java (1995)}}\ar[ddl]\ar[ddlll] & \color{brown}{\texttt{Javascript (1995)}} & \texttt{OCaml (1996)}\ar@/^0.1pc/[ddddlllll] \\
               \\
-              \texttt{Rust (2010)} & \texttt{Julia (2012)}
+              \texttt{Scala (2004)} & \texttt{Agda (2007)}\ar@/_2pc/[rr] & \texttt{Clojure (2007)} & \texttt{Idris (2007)} & \color{red}{\texttt{Go (2009)}} \\
+              \\
+              \texttt{Rust (2010)}
               }
               \end{xy}
             
             $$
           </p>
-          <p>
-            are all based on distinctly different strong foundational ideas. All programming languages today can be thought of as a rehash of these ideas, with some embellishments.
-          </p>
-          <p>
-            The C lineage spawned C++, Go, and Rust. With its template system, C++ is easily the most powerful langauge from the C lineage, and gcc/clang have been optimized to death. Go is probably one of the worst languages every invented, with its poverty of features, and misleading simplicity in concurrency leading to runtime races.
-          </p>
-          <p>
-            The Lisp lineage spawned Common Lisp, Clojure, and the Scheme lineage. With its reader-macros, you can design practically any language in Common Lisp, and leverage the power of the SBCL parser to do everything. Unfortunately, it's fallen out of fashion due to the complexity of the Common Lisp spec, and SBCL hasn't aged well. The more modern ones are dumb-downs of Common Lisp, and are just toys.
-          </p>
-          <p>
-            Fortran is strong within the high-performance computing community, because gfortran
+          <p class="mathjax">
+            $$
+            \begin{matrix}
+                \textbf{•} & \textrm{A root language: significantly novel, with no predecessor} \\
+                \color{red}{\bullet} & \textrm{Unlikely to influence anything, due to remarkably poor design} \\
+                \color{brown}{\bullet} & \textrm{Unlikely to influence anything, except for the purpose of interop with code in this langauge} \\
+                \color{green}{\bullet} & \textrm{Candidates for designing a future language}
+              \end{matrix}
+            $$
           </p>
         </article>
       </main>
