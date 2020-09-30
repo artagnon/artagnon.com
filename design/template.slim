@@ -45,7 +45,7 @@ html
         ul
           - topics.each do |topic|
             li
-              a href="/#{topic}" = topic
+              a href="/#{topic}" = (if topic == "index" then "home" else topic end)
       main
         header
           h1 == title
