@@ -96,16 +96,16 @@
           <p>
             The corresponding C++ code (is actually specialized with short) is:
           </p>
-          <pre><code class="cpp">template <typename T>
+          <pre><code class="cpp">template &lt;typename T&gt;
 FORCEINLINE T operator()(T a, T b) const
 {
-   return (a >= b ? a : b);
+   return (a &gt;= b ? a : b);
 }</code></pre>
           <p>
             While in lldb, the assembly instructions look like:
           </p>
           <pre><code class="cpp">--------------- [XCode 5]
--> 0x108af1930:  pushq  %rbp
+-&gt; 0x108af1930:  pushq  %rbp
    0x108af1931:  movq   %rsp, %rbp
    0x108af1934:  cmpw   %si, %di
    0x108af1937:  cmovgew %di, %si
@@ -113,7 +113,7 @@ FORCEINLINE T operator()(T a, T b) const
    0x108af193e:  popq   %rbp
    0x108af193f:  retq</code></pre>
           <pre><code class="cpp">--------------- [XCode 6]
--> 0x108d1ac10:  pushq  %rbp
+-&gt; 0x108d1ac10:  pushq  %rbp
    0x108d1ac11:  movq   %rsp, %rbp
    0x108d1ac14:  cmpl   %esi, %edi
    0x108d1ac16:  cmovgew %di, %si

@@ -108,23 +108,23 @@
           <pre><code class="cpp">/// Some cases:
 ///
 /// for (i = 1:1:4) {
-///      A = 2;               /// >> BasicBlockRegion >>
-///      B = 3;               /// << inserted         >> ChainRegion
-///      for (j = 1:1:6) {    /// >> ForLoopRegion    >>
-///      }                    /// >>
+///      A = 2;               /// &gt;&gt; BasicBlockRegion &gt;&gt;
+///      B = 3;               /// &lt;&lt; inserted         &gt;&gt; ChainRegion
+///      for (j = 1:1:6) {    /// &gt;&gt; ForLoopRegion    &gt;&gt;
+///      }                    /// &gt;&gt;
 /// }
 ///
 /// for (i = 1:1:4) {
-///      B = 3;                /// << inserted
-///      for (j = 1:1:6) {     /// >> ForLoopRegion      >>
-///      }                     /// >>                    >> ChainRegion
-///      A = 2;                /// >> BasicBlockRegion   >>
+///      B = 3;                /// &lt;&lt; inserted
+///      for (j = 1:1:6) {     /// &gt;&gt; ForLoopRegion      &gt;&gt;
+///      }                     /// &gt;&gt;                    &gt;&gt; ChainRegion
+///      A = 2;                /// &gt;&gt; BasicBlockRegion   &gt;&gt;
 /// }
 ///
 /// for (i = 1:1:4) {
-///      B = 3;                 /// << inserted
-///      for (j = 1:1:6) {      /// >> ForLoopRegion
-///      }                      /// >>
+///      B = 3;                 /// &lt;&lt; inserted
+///      for (j = 1:1:6) {      /// &gt;&gt; ForLoopRegion
+///      }                      /// &gt;&gt;
 /// }
 ///
 /// In general, there are 7 types of regions that can precede and 7

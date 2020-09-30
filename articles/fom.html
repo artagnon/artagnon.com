@@ -100,7 +100,7 @@
           <p>
             What the following proposition says, is that, for every inhabitant of $\mathbb{N}$ that you supply, $f$ will supply an inhabitant of $\mathbb{1}$:
           </p>
-          <pre><code class="coq">Theorem f : nat -> unit.
+          <pre><code class="coq">Theorem f : nat -&gt; unit.
 Proof.
   intros x.
   exact tt.
@@ -108,7 +108,7 @@ Qed.</code></pre>
           <p>
             The proof is witness that we can always supply an inhabitant of the type $\mathbb{N} \rightarrow \mathbb{1}$. By Curry-Howard isomorphism:
           </p>
-          <pre><code class="coq">Definition f' : nat -> unit := fun _ => tt.</code></pre>
+          <pre><code class="coq">Definition f' : nat -&gt; unit := fun _ =&gt; tt.</code></pre>
           <p>
             In type theory, a function is just a non-dependent version of the $\Pi$ type, where the codomain $B$ is fixed:
           </p>
@@ -153,10 +153,10 @@ Qed.</code></pre>
           <p>
             To understand this better, let us take the example of the constructive equivalent of $\mathbb{0} \Rightarrow \textrm {anything}$ in classical mathematics:
           </p>
-          <pre><code class="coq">Theorem FalseImpliesAnything : forall A, False -> A.
+          <pre><code class="coq">Theorem FalseImpliesAnything : forall A, False -&gt; A.
 Proof.
   intros A.
-  exact (fun x : False => match x with end).
+  exact (fun x : False =&gt; match x with end).
 Qed.</code></pre>
           <p>
             Since $\mathbb{0}$ has no inhabitants, the construction of any inhabitant of any type can be proved from it.
@@ -164,7 +164,7 @@ Qed.</code></pre>
           <p>
             It is perhaps prudent to supply another example of a classical statement to illustrate Coq's typechecker:
           </p>
-          <pre><code class="coq">Theorem TrueDoesNotImplyFalse : True -> False.
+          <pre><code class="coq">Theorem TrueDoesNotImplyFalse : True -&gt; False.
 Proof.
   (* Due to enforced exhaustive pattern-matching on inhabitants of the LHS,
    * we'd need to match up an inhabitant of True (there is only I)

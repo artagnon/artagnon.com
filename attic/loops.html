@@ -141,7 +141,7 @@
           </p>
           <pre><code class="cpp">void DFS(Node *v) {
   assign_start_time(v); // increment a clock as you assign
-  for (auto u : v->outEdges()) {
+  for (auto u : v-&gt;outEdges()) {
     if (start_time_not_assigned(v)) DFS(v);
   }
   assign_end_time(v); // increment a clock as you assign

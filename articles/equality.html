@@ -124,7 +124,7 @@ Qed.</code></pre>
           <p>
             where <mark>eq_refl</mark> is simply the sole inhabitant of an Inductive:
           </p>
-          <pre><code class="coq">Inductive eq (A : Type) (x : A) : A -> Prop :=
+          <pre><code class="coq">Inductive eq (A : Type) (x : A) : A -&gt; Prop :=
   eq_refl : eq A x x.</code></pre>
           <h2 id="the-proof-irrelevant-sprop">
             The proof-irrelevant SProp
@@ -139,11 +139,11 @@ Qed.</code></pre>
 Proof.
   by reflexivity.
 Abort. (* Type-check fails at Qed.
-        * (=) : ∀ A, A -> A -> Prop, but we want to return an SProp. *)</code></pre>
+        * (=) : ∀ A, A -&gt; A -&gt; Prop, but we want to return an SProp. *)</code></pre>
           <p>
             This is because the <mark>SProp</mark> universe is disjoint from the <mark>Prop</mark> universe:
           </p>
-          <pre><code class="coq">Theorem SPropToProp : SProp -> Prop.
+          <pre><code class="coq">Theorem SPropToProp : SProp -&gt; Prop.
 Proof.
   by intros x; exact x.
 Abort. (* Type-check fails at Qed.

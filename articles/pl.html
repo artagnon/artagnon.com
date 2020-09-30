@@ -72,7 +72,7 @@
             An opinionated history of programming languages
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 12:43:32 +0200</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 19:23:36 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 12:43:32 +0200</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 19:24:14 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -117,19 +117,19 @@
           <p>
             C++ templates are incredibly powerful, and with the introduction of compile-time expressions, the vast majority of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:
           </p>
-          <pre><code class="cpp">template <size_t i, typename... Ts, typename CurTy>
-void recurseFillChildren(CurTy &E)
+          <pre><code class="cpp">template &lt;size_t i, typename... Ts, typename CurTy&gt;
+void recurseFillChildren(CurTy &amp;E)
 {
-  using PackTy = std::variant<Ts...>;
-  using TyL = std::variant_alternative_t<i - 1, PackTy>;
-  static_assert(std::is_same_v<CurTy, TyL>);
-  using TyR = std::variant_alternative_t<i, PackTy>;
+  using PackTy = std::variant&lt;Ts...&gt;;
+  using TyL = std::variant_alternative_t&lt;i - 1, PackTy&gt;;
+  static_assert(std::is_same_v&lt;CurTy, TyL&gt;);
+  using TyR = std::variant_alternative_t&lt;i, PackTy&gt;;
 
-  for (i32 j = 0; j < E.NChildren; ++j)
+  for (i32 j = 0; j &lt; E.NChildren; ++j)
   {
-    E.Children.push_back(miniParser<TyR>());
-    if constexpr (i + 1 < sizeof...(Ts))
-      recurseFillChildren<i + 1, Ts...>(E.Children.back());
+    E.Children.push_back(miniParser&lt;TyR&gt;());
+    if constexpr (i + 1 &lt; sizeof...(Ts))
+      recurseFillChildren&lt;i + 1, Ts...&gt;(E.Children.back());
   }
 };</code></pre>
           <p class="exercise">
