@@ -1,0 +1,84 @@
+Dependent types in everyday programming
+
+Chances are you've seen a non-trivial proof of `x + y = y + x`, and turned off by the fact that real-world programs don't care for such trivialities. Yes, it is true that dependent type systems are in their infancy, and they're mostly used in proof assistants, not in everyday programming. In this article, we argue that everday programming can benefit greatly from such a type system.
+
+Let's start with a pedestrian example, and say you've written a complex serialization routine, and want to check that it does the right thing:
+
+```hs
+serialize :: Bytes -> Bytes
+deserialize :: Bytes -> Bytes
+test_ser :: Bytes -> Bool
+  deserialize . serialize $ x == x
+```
+
+There are several problems with this code. First, the types are wrong: a serializable type isn't a deserializable type. Second, `test_ser` only checks the composition of `deserialize` with `serialize`, not the other way around. Third, you can never really be guaranteed that `test_ser` works: the best you can do is to write some more code to craft `x`, hope that it's correct, and run QuickCheck with a large number of times, and hope that you've covered everything. Let's try improving upon this:
+
+```hs
+serialize :: (Serializable a, Deserializable b) => a -> b
+deserialize :: (Serializable a, Deserializable b) => b -> a
+test_ser :: (Serializable a) => a -> Bool
+  deserialize . serialize $ x == x
+test_deser :: (Deserializable a) => a -> Bool
+  deserialize . serialize $ x == x
+```
+
+You now have to write the `Serializable` and `Deserializable` typeclasses, and an additional QuickCheck input for deserializable types. This is classic code-bloat, and you're still not guaranteed that it works. What you really want is:
+
+~~
+Definition serialize : `{Serlializable a} (a : Bytes) : Bytes.
+Instance isequiv_serialize : IsEquiv serialize.
+Definition deserialize := serialize ^-1.
+~~
+
+Correct by definition, and there's one typeclass `Serlializable` and one proof we need to write about the invertibility of `serialize`. There's a lot of machinery that we need to study before we can make this work, and a dependent type system is a really basic requirement.
+
+# A HoTT primer
+
+Given:
+
+~~
+{A, B : Type}
+{x, y : A}
+{P, Q : Prop}
+{f, g : A -> B}
+{P f g}
+{Q x y}
+~~
+
+Simple case:
+
+~~
+Theorem refl_refl : P = refl /\ Q = refl -> R = refl.
+~~
+
+You'd write a proof for this, but let's consider the more general case when `P` and `Q` are complicated propositions, and you don't want to spend time constructing `R` and proving it, but rather, you want some general relationship between `f(x)` and `g(y)`.
+
+Types are topological spaces. Inhabitants are points, with AUFI, which are also topological spaces.
+A function is a homotopy between topological spaces.
+A homotopy between spaces maps points in one space to points in another space.
+Consider two functions (or homotopies) f and g. To say that they're homotopy equivalent means that they have the same start and end spaces: f ~ g.
+Homotopy equivalence is a proof, which is also a homotopy between inhabitants.
+Consider a proof that two inhabitants are equal. This is also a homotopy.
+
+
+# Propositions as the bread-and-butter of programs
+
+
+
+~~
+Record Parser :=
+{
+  f1 : Bytes;
+  f2 : Bytes;
+
+}.
+~~
+
+~~
+Record Cubical {n : nat} :=
+{
+  csp {n'} (Hn' : n' <= n) : Type@{l'} ;
+  hd {n'} {Hn' : S n' <= n} : csp Hn' -> csp (⇓ Hn') ;
+  box {n' p} {Hn' : n' <= n} (Hp : p <= n') : csp Hn' -> Type@{l} ;
+}
+~~

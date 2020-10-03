@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dependent types in everyday programming | artagnon.com</title>
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
+    <meta name="author" content="Ramkumar Ramachandra" />
+    <meta name="city" content="Paris" />
+    <meta name="country" content="France" />
+    <meta name="keywords" content="mathematics, mathematical notes, study notes, programming, blog, personal website" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="/dist/favicon.ico" />
+    <link rel="stylesheet" href="/dist/style.min.css" />
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"],
+      "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} },
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+      TeX: {extensions: ["/dist/xypic.min.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel=&#39;stylesheet&#39;" />
+    <noscript>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" />
+    </noscript>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"></script>
+    <script defer="" src="/dist/script.min.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <nav>
+        <ul>
+          <li>
+            <a href="/index">home</a>
+          </li>
+          <li>
+            <a href="/HoTT">HoTT</a>
+          </li>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/algebra">algebra</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/category">category</a>
+          </li>
+          <li>
+            <a href="/topoi">topoi</a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <header>
+          <h1>
+            Dependent types in everyday programming
+          </h1>
+          <div id="metadata">
+            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:22 +0200</time><span class="to">↪</span><time datetime="2020-10-04" class="end">Sun, 04 Oct 2020 00:29:22 +0200</time></span><br /><span id="locations"><address></address></span>
+          </div>
+        </header>
+        <article>
+          <p>
+            Chances are you've seen a non-trivial proof of <mark>x + y = y + x</mark>, and turned off by the fact that real-world programs don't care for such trivialities. Yes, it is true that dependent type systems are in their infancy, and they're mostly used in proof assistants, not in everyday programming. In this article, we argue that everday programming can benefit greatly from such a type system.
+          </p>
+          <p>
+            Let's start with a pedestrian example, and say you've written a complex serialization routine, and want to check that it does the right thing:
+          </p>
+          <pre><code class="hs">serialize :: Bytes -&gt; Bytes
+deserialize :: Bytes -&gt; Bytes
+test_ser :: Bytes -&gt; Bool
+  deserialize . serialize $ x == x</code></pre>
+          <p>
+            There are several problems with this code. First, the types are wrong: a serializable type isn't a deserializable type. Second, <mark>test_ser</mark> only checks the composition of <mark>deserialize</mark> with <mark>serialize</mark>, not the other way around. Third, you can never really be guaranteed that <mark>test_ser</mark> works: the best you can do is to write some more code to craft <mark>x</mark>, hope that it's correct, and run QuickCheck with a large number of times, and hope that you've covered everything. Let's try improving upon this:
+          </p>
+          <pre><code class="hs">serialize :: (Serializable a, Deserializable b) =&gt; a -&gt; b
+deserialize :: (Serializable a, Deserializable b) =&gt; b -&gt; a
+test_ser :: (Serializable a) =&gt; a -&gt; Bool
+  deserialize . serialize $ x == x
+test_deser :: (Deserializable a) =&gt; a -&gt; Bool
+  deserialize . serialize $ x == x</code></pre>
+          <p>
+            You now have to write the <mark>Serializable</mark> and <mark>Deserializable</mark> typeclasses, and an additional QuickCheck input for deserializable types. This is classic code-bloat, and you're still not guaranteed that it works. What you really want is:
+          </p>
+          <pre><code class="coq">Definition serialize : `{Serlializable a} (a : Bytes) : Bytes.
+Instance isequiv_serialize : IsEquiv serialize.
+Definition deserialize := serialize ^-1.</code></pre>
+          <p>
+            Correct by definition, and there's one typeclass <mark>Serlializable</mark> and one proof we need to write about the invertibility of <mark>serialize</mark>. There's a lot of machinery that we need to study before we can make this work, and a dependent type system is a really basic requirement.
+          </p>
+          <h2 id="a-hott-primer">
+            A HoTT primer
+          </h2>
+          <p>
+            Given:
+          </p>
+          <pre><code class="coq">{A, B : Type}
+{x, y : A}
+{P, Q : Prop}
+{f, g : A -&gt; B}
+{P f g}
+{Q x y}</code></pre>
+          <p>
+            Simple case:
+          </p>
+          <pre><code class="coq">Theorem refl_refl : P = refl /\ Q = refl -&gt; R = refl.</code></pre>
+          <p>
+            You'd write a proof for this, but let's consider the more general case when <mark>P</mark> and <mark>Q</mark> are complicated propositions, and you don't want to spend time constructing <mark>R</mark> and proving it, but rather, you want some general relationship between <mark>f(x)</mark> and <mark>g(y)</mark>.
+          </p>
+          <p>
+            Types are topological spaces. Inhabitants are points, with AUFI, which are also topological spaces.<br/>
+            A function is a homotopy between topological spaces.<br/>
+            A homotopy between spaces maps points in one space to points in another space.<br/>
+            Consider two functions (or homotopies) f and g. To say that they're homotopy equivalent means that they have the same start and end spaces: f ~ g.<br/>
+            Homotopy equivalence is a proof, which is also a homotopy between inhabitants.<br/>
+            Consider a proof that two inhabitants are equal. This is also a homotopy.
+          </p>
+          <p>
+            <br/>
+            # Propositions as the bread-and-butter of programs
+          </p>
+          <footer>
+          </footer>
+          <pre><code class="coq">Record Parser :=
+{
+  f1 : Bytes;
+  f2 : Bytes;
+
+}.</code></pre>
+          <pre><code class="coq">Record Cubical {n : nat} :=
+{
+  csp {n'} (Hn' : n' &lt;= n) : Type@{l'} ;
+  hd {n'} {Hn' : S n' &lt;= n} : csp Hn' -&gt; csp (⇓ Hn') ;
+  box {n' p} {Hn' : n' &lt;= n} (Hp : p &lt;= n') : csp Hn' -&gt; Type@{l} ;
+}</code></pre>
+        </article>
+      </main>
+    </div>
+  </body>
+</html>
