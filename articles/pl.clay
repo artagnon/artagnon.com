@@ -61,26 +61,65 @@ Rust didn't restrict what macros can do as much as C++ did. As a result, it's po
 
 Essentially, "grammar.pest" is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust's macros are very slow, and your compile-times blow up if you have recursive macros. `std::embed` in C++23 will probably do it right.
 
-§ Why did Haskell's popularity wane so sharply?
+§ Why is Haskell classified as a dying language?
 
-Laziness introduces two major problems: first, debugging line-by-line is impossible, because they're not executed in order. And second, when done wrong, it can be a source of major memory leaks that can be very hard to debug in large Haskell projects.
+Haskell is pleasant to get started with, and write relatively simple programs in. In the 2010-2015 period, there was a lot of intellectual discourse and PL research around it. The high-brow crowd was obssessed with transactional memory, parser combinators, and lenses. Online resources were exploding: LYAH and CatProg enjoyed their bouts of popularity. Several people and companies invested in Haskell heavily in that period. The language is easy to get started with, and has a pleasant development experience for relatively simple programs. The problems started when codebases started growing in size and complexity.
 
-Another more recent reason is the fact that every `.hs` file in a modern Haskell project begins with a different set of flags on top:
+You either need to be able to interactively debug your program or prove that it is correct: in Haskell, you can't do either; the best you can do is to write some QuickCheck tests. Then there's Liquid Haskell that allows you to pepper your Haskell code with invariants that it will check using Z3. Unfortunately, it is very limited in what it can do: good luck checking your monadic combinator library with LH. Moreover, there are no tools to help you debug the most nototious kind of bug seen in a complicated codebase: memory blowups caused by laziness. It suffices to say that tooling is weak. In Atom, the Haskell addon was terrible, and even today, in VSCode, the Haskell extension is among the most buggy language plugins.
+
+There are [over 120](https://gitlab.haskell.org/ghc/ghc/-/blob/a1f34d37b47826e86343e368a5c00f1a4b1f2bce/compiler/GHC/Driver/Session.hs#L3729-3876) language extensions, which can be turned on/off in each `.hs` file. The issue is that different extensions interact in subtle ways to produce bugs, and it's very difficult to tell if a new language extension will play well with the others (it often doesn't, until all the bugs are squashed, which can take a few years). The best case scenario plays out like this: GHC rejects your program, and suggests that you turn on some other language extensions; you turn them on, and you're left with a cryptic error message coming from a language extension you're not as familiar with; you spend the next N hours reading whatever little information is available about the more recent language extension, and decide to throw in the towel. The worst case plays out as follows: the typechecker hangs or crashes, and you're on the issue tracker searching for the issue; if you're lucky, you'll find a bug filed using 50~60% of the language extensions you used in your program, and you're not sure if it's the same issue; you file a new issue. In either case, your work has been halted.
+
+There is almost zero documentation on language extensions. Hell, you can't even find the list of available language extensions with some description on any wiki. Looking at the big picture: first, this is a poor way to do software development; as the number of language extensions increase, your testing burden increases exponentially. Second, the problem of having a good type system is already solved by a simple dependent type theory; you study the core, and every new feature is just a small delta that fits in nicely with the overall model. As opposed to having to read detailed papers on each new language extension. And yes, there's a good chance that very few people will be able to understand your code if you're using some esoteric extensions. In summary, language extensions are complicated hacks to compensate for the poverty of Haskell's type system.
+
+In practice, you'll be familar with ~20 language extensions, and use various combinations of them over and over again, so the problem might not seem as acute as a regular Haskell programmer. However, PL research has shifted away from Haskell for the most part, and the little that happens tends to be [unnecessarily complex nonsense](https://www.microsoft.com/en-us/research/uploads/prod/2019/03/ho-haskell-5c8bb4918a4de.pdf) that never sees the light of day.
+
+Here's a sample of some simple Haskell code pieced together. I've intentionally left out examples using `LinearTypes`, because it's unfair to find faults with such a recent language feature.
+
+1. What does the code mean? What is the intent?
+2. Can you specifically tell how each language extension was useful in the snippet?
+3. Guess what the code will do on GHC 8.10.1. What will an older version of GHC do?
+4. How many more language features are missing?
 
 ```hs
-{-# language DeriveDataTypeable    #-}
-{-# language DeriveGeneric         #-}
-{-# language FlexibleInstances     #-}
-{-# language MultiParamTypeClasses #-}
-{-# language TemplateHaskell       #-}
-{-# language TypeSynonymInstances  #-}
+{-# LANGUAGE MagicHash #-}
+{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE TypeInType #-}
+
+import GHC.Exts
+
+type family MatchInt (f :: Int) :: () where
+  MatchInt ('I# _) = '()
 ```
 
-The reason GHC didn't just turn on all flags by default is that many of them are mutually incompatible, so your individual `.hs` file has to pick a compatible set of language features it wants to work with.
+```hs
+{-# LANGUAGE PolyKinds #-}
+{-# LANGUAGE RankNTypes #-}
 
-§ Was Haskell influenced by Coq?
+f = undefined :: (forall (a :: k) m. m a -> Int) -> Int
+```
 
-The diagram only shows influences in the original language design, not influences absorbed through the evolution of the language. The prime example of an older language being influenced by a newer one is the fact that today's Coq is implemented in OCaml. And no, the core of Haskell was essentially a re-skinning of Miranda, with no ambitions to be dependently typed. This historical short-sightedness, one could argue, was one of the reasons for its downfall.
+```hs
+{-# LANGUAGE PolyKinds #-}
+
+data Proxy a = Proxy
+
+class Foo (t :: k) where foo :: Proxy (a :: t)
+```
+
+```hs
+{-# LANGUAGE DataKinds              #-}
+{-# LANGUAGE FlexibleContexts       #-}
+{-# LANGUAGE PolyKinds              #-}
+{-# LANGUAGE TypeFamilyDependencies #-}
+{-# LANGUAGE TypeOperators, AllowAmbiguousTypes          #-}
+
+type family Dim v
+
+type family v `OfDim` (n :: Dim v) = r | r -> n
+
+(!*^) :: Dim m `OfDim` j -> Dim m `OfDim` i
+(!*^) = undefined
+```
 
 § Doesn't Go feature a solid compiler/runtime?
 

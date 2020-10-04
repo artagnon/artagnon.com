@@ -31,6 +31,7 @@
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/haskell.min.js"></script>
     <script defer="" src="/dist/script.min.js"></script>
   </head>
   <body>
@@ -72,12 +73,12 @@
             Dependent types in everyday programming
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:22 +0200</time><span class="to">↪</span><time datetime="2020-10-04" class="end">Sun, 04 Oct 2020 00:29:22 +0200</time></span><br /><span id="locations"><address></address></span>
+            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:33 +0200</time><span class="to">↪</span><time datetime="2020-10-04" class="end">Sun, 04 Oct 2020 11:30:13 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
           <p>
-            Chances are you've seen a non-trivial proof of <mark>x + y = y + x</mark>, and turned off by the fact that real-world programs don't care for such trivialities. Yes, it is true that dependent type systems are in their infancy, and they're mostly used in proof assistants, not in everyday programming. In this article, we argue that everday programming can benefit greatly from such a type system.
+            Chances are you've seen a non-trivial proof of <mark>x + y = y + x</mark>, and turned off by the fact that real-world programs don't care for such trivialities. Yes, it is true that dependent type systems are in their infancy, and are, for the most part, used just in proof assistants. In this article, we argue that everday programming can benefit greatly from a sophisticated type system.
           </p>
           <p>
             Let's start with a pedestrian example, and say you've written a complex serialization routine, and want to check that it does the right thing:
@@ -135,8 +136,6 @@ Definition deserialize := serialize ^-1.</code></pre>
             <br/>
             # Propositions as the bread-and-butter of programs
           </p>
-          <footer>
-          </footer>
           <pre><code class="coq">Record Parser :=
 {
   f1 : Bytes;
