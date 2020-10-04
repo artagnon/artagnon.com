@@ -65,12 +65,11 @@ Theorem refl_refl : P = refl /\ Q = refl -> R = refl.
 
 You'd write a proof for this, but let's consider the more general case when `P` and `Q` are complicated propositions, and you don't want to spend time constructing `R` and proving it, but rather, you want some general relationship between `f(x)` and `g(y)`. Without looking inside `P` and `Q`, this would be impossible.
 
-(a) Types are topological spaces. Thinking in terms of point-set topology, inhabitants of types are subspaces of the topological space, which are also topological spaces; in the degenerate case, they could just be points like `True` and `False` in the type `Bool`.
+(a) Types are topological spaces. Thinking in terms of point-set topology, inhabitants of types are subspaces of the topological space, which are also topological spaces; in the degenerate case, they could just be points like `True` and `False` in $\mathbb{B}$.
 (b) A function is a homotopy between topological spaces. For instance, a function could take a `List` and construct a `BTree` out of it. The underlying inhabitants at the very bottom are the same: a set of natural numbers.
 (c) A homotopy between spaces maps one topological space to another topological space. Say the topological space $\mathbb{Z}$ to the topological space $\mathbb{N}$.
-(d) Consider two functions (or homotopies) `f` and `g`. To say that they're homotopy equivalent means that they have the same start and end points: $f \sim g$. The path that `f` traverses in space from the starting point to the end point can be continuously deformed to the path that `g` traverses. The "points" could simply be sets, but they could also be higher homotopies.
+(d) Consider two functions (or homotopies) $f$ and $g$. To say that they're homotopy equivalent means that they have the same start and end points: $f \sim g$. The path that `f` traverses in space from the starting point to the end point can be continuously deformed to the path that $g$ traverses. The "points" could simply be sets, but they could also be higher homotopies.
 (e) Homotopy equivalence is a proof, which is also a homotopy between inhabitants.
-(f) Consider a proof that two inhabitants are equal. This is also a homotopy.
 
 # A cubical solver
 

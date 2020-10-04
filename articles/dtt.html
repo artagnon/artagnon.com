@@ -73,7 +73,7 @@
             Dependent types in everyday programming
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:33 +0200</time><span class="to">↪</span><time datetime="2020-10-04" class="end">Sun, 04 Oct 2020 14:25:11 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:33 +0200</time><span class="to">↪</span><time datetime="2020-10-04" class="end">Sun, 04 Oct 2020 14:54:48 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -137,7 +137,7 @@ Definition deserialize := serialize ^-1.</code></pre>
           </p>
           <ol class="olitems" type="a" start="1">
             <li>
-              Types are topological spaces. Thinking in terms of point-set topology, inhabitants of types are subspaces of the topological space, which are also topological spaces; in the degenerate case, they could just be points like <mark>True</mark> and <mark>False</mark> in the type <mark>Bool</mark>.
+              Types are topological spaces. Thinking in terms of point-set topology, inhabitants of types are subspaces of the topological space, which are also topological spaces; in the degenerate case, they could just be points like <mark>True</mark> and <mark>False</mark> in $\mathbb{B}$.
             </li>
             <li>
               A function is a homotopy between topological spaces. For instance, a function could take a <mark>List</mark> and construct a <mark>BTree</mark> out of it. The underlying inhabitants at the very bottom are the same: a set of natural numbers.
@@ -146,13 +146,10 @@ Definition deserialize := serialize ^-1.</code></pre>
               A homotopy between spaces maps one topological space to another topological space. Say the topological space $\mathbb{Z}$ to the topological space $\mathbb{N}$.
             </li>
             <li>
-              Consider two functions (or homotopies) <mark>f</mark> and <mark>g</mark>. To say that they're homotopy equivalent means that they have the same start and end points: $f \sim g$. The path that <mark>f</mark> traverses in space from the starting point to the end point can be continuously deformed to the path that <mark>g</mark> traverses. The "points" could simply be sets, but they could also be higher homotopies.
+              Consider two functions (or homotopies) $f$ and $g$. To say that they're homotopy equivalent means that they have the same start and end points: $f \sim g$. The path that <mark>f</mark> traverses in space from the starting point to the end point can be continuously deformed to the path that $g$ traverses. The "points" could simply be sets, but they could also be higher homotopies.
             </li>
             <li>
               Homotopy equivalence is a proof, which is also a homotopy between inhabitants.
-            </li>
-            <li>
-              Consider a proof that two inhabitants are equal. This is also a homotopy.
             </li>
           </ol>
           <h2 id="a-cubical-solver">
