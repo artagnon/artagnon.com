@@ -1,7 +1,7 @@
-import { src, dest, parallel } from "gulp";
-import concat from "gulp-concat";
-import cleanCSS from "gulp-clean-css";
-import minify from "gulp-minify";
+const { src, dest, parallel } = require("gulp");
+const concat = require("gulp-concat");
+const cleanCSS = require("gulp-clean-css");
+const minify = require("gulp-minify");
 
 function css() {
   return src([
@@ -20,9 +20,6 @@ function js() {
     .pipe(dest("dist"));
 }
 
-const _js = js;
-export { _js as js };
-const _css = css;
-export { _css as css };
-const _default = parallel(js, css);
-export { _default as default };
+exports.js = js;
+exports.css = css;
+exports.default = parallel(js, css);
