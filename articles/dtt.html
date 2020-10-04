@@ -73,15 +73,18 @@
             Dependent types in everyday programming
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:33 +0200</time><span class="to">↪</span><time datetime="2020-10-04" class="end">Sun, 04 Oct 2020 11:30:13 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:33 +0200</time><span class="to">↪</span><time datetime="2020-10-04" class="end">Sun, 04 Oct 2020 14:25:11 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
           <p>
-            Chances are you've seen a non-trivial proof of <mark>x + y = y + x</mark>, and turned off by the fact that real-world programs don't care for such trivialities. Yes, it is true that dependent type systems are in their infancy, and are, for the most part, used just in proof assistants. In this article, we argue that everday programming can benefit greatly from a sophisticated type system.
+            Chances are you've seen a non-trivial proof of <mark>x + y = y + x</mark>, and turned off by the fact that real-world programs don't care for such trivialities. Yes, it is true that dependent type systems are in their infancy, and are, for the most part, used just in proof assistants. In this article, we argue that everday programming can benefit greatly from a sophisticated type system derived simple underlying principles. We'll start with some motivating examples, introduce homotopy type theory (HoTT), and end with future directions.
           </p>
+          <h2 id="a-pedestrian-example">
+            A pedestrian example
+          </h2>
           <p>
-            Let's start with a pedestrian example, and say you've written a complex serialization routine, and want to check that it does the right thing:
+            Let's say you've written a complex serialization routine, and want to check that it does the right thing:
           </p>
           <pre><code class="hs">serialize :: Bytes -&gt; Bytes
 deserialize :: Bytes -&gt; Bytes
@@ -105,11 +108,19 @@ Definition deserialize := serialize ^-1.</code></pre>
           <p>
             Correct by definition, and there's one typeclass <mark>Serlializable</mark> and one proof we need to write about the invertibility of <mark>serialize</mark>. There's a lot of machinery that we need to study before we can make this work, and a dependent type system is a really basic requirement.
           </p>
+          <h2 id="a-second-example">
+            A second example
+          </h2>
+          <pre><code class="coq">Record Parser :=
+{
+  f1 : Bytes;
+  f2 : Bytes;
+}.</code></pre>
           <h2 id="a-hott-primer">
             A HoTT primer
           </h2>
           <p>
-            Given:
+            Let's start again with a simple motivating example:
           </p>
           <pre><code class="coq">{A, B : Type}
 {x, y : A}
@@ -122,32 +133,43 @@ Definition deserialize := serialize ^-1.</code></pre>
           </p>
           <pre><code class="coq">Theorem refl_refl : P = refl /\ Q = refl -&gt; R = refl.</code></pre>
           <p>
-            You'd write a proof for this, but let's consider the more general case when <mark>P</mark> and <mark>Q</mark> are complicated propositions, and you don't want to spend time constructing <mark>R</mark> and proving it, but rather, you want some general relationship between <mark>f(x)</mark> and <mark>g(y)</mark>.
+            You'd write a proof for this, but let's consider the more general case when <mark>P</mark> and <mark>Q</mark> are complicated propositions, and you don't want to spend time constructing <mark>R</mark> and proving it, but rather, you want some general relationship between <mark>f(x)</mark> and <mark>g(y)</mark>. Without looking inside <mark>P</mark> and <mark>Q</mark>, this would be impossible.
           </p>
-          <p>
-            Types are topological spaces. Inhabitants are points, with AUFI, which are also topological spaces.<br/>
-            A function is a homotopy between topological spaces.<br/>
-            A homotopy between spaces maps points in one space to points in another space.<br/>
-            Consider two functions (or homotopies) f and g. To say that they're homotopy equivalent means that they have the same start and end spaces: f ~ g.<br/>
-            Homotopy equivalence is a proof, which is also a homotopy between inhabitants.<br/>
-            Consider a proof that two inhabitants are equal. This is also a homotopy.
-          </p>
-          <p>
-            <br/>
-            # Propositions as the bread-and-butter of programs
-          </p>
-          <pre><code class="coq">Record Parser :=
-{
-  f1 : Bytes;
-  f2 : Bytes;
-
-}.</code></pre>
+          <ol class="olitems" type="a" start="1">
+            <li>
+              Types are topological spaces. Thinking in terms of point-set topology, inhabitants of types are subspaces of the topological space, which are also topological spaces; in the degenerate case, they could just be points like <mark>True</mark> and <mark>False</mark> in the type <mark>Bool</mark>.
+            </li>
+            <li>
+              A function is a homotopy between topological spaces. For instance, a function could take a <mark>List</mark> and construct a <mark>BTree</mark> out of it. The underlying inhabitants at the very bottom are the same: a set of natural numbers.
+            </li>
+            <li>
+              A homotopy between spaces maps one topological space to another topological space. Say the topological space $\mathbb{Z}$ to the topological space $\mathbb{N}$.
+            </li>
+            <li>
+              Consider two functions (or homotopies) <mark>f</mark> and <mark>g</mark>. To say that they're homotopy equivalent means that they have the same start and end points: $f \sim g$. The path that <mark>f</mark> traverses in space from the starting point to the end point can be continuously deformed to the path that <mark>g</mark> traverses. The "points" could simply be sets, but they could also be higher homotopies.
+            </li>
+            <li>
+              Homotopy equivalence is a proof, which is also a homotopy between inhabitants.
+            </li>
+            <li>
+              Consider a proof that two inhabitants are equal. This is also a homotopy.
+            </li>
+          </ol>
+          <h2 id="a-cubical-solver">
+            A cubical solver
+          </h2>
           <pre><code class="coq">Record Cubical {n : nat} :=
 {
   csp {n'} (Hn' : n' &lt;= n) : Type@{l'} ;
   hd {n'} {Hn' : S n' &lt;= n} : csp Hn' -&gt; csp (⇓ Hn') ;
   box {n' p} {Hn' : n' &lt;= n} (Hp : p &lt;= n') : csp Hn' -&gt; Type@{l} ;
-}</code></pre>
+}.</code></pre>
+          <h2 id="propositions-as-the-bread-and-butter-of-programs">
+            Propositions as the bread-and-butter of programs
+          </h2>
+          <h2 id="conclusions">
+            Conclusions
+          </h2>
         </article>
       </main>
     </div>

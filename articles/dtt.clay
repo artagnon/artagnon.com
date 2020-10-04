@@ -1,8 +1,10 @@
 Dependent types in everyday programming
 
-Chances are you've seen a non-trivial proof of `x + y = y + x`, and turned off by the fact that real-world programs don't care for such trivialities. Yes, it is true that dependent type systems are in their infancy, and are, for the most part, used just in proof assistants. In this article, we argue that everday programming can benefit greatly from a sophisticated type system.
+Chances are you've seen a non-trivial proof of `x + y = y + x`, and turned off by the fact that real-world programs don't care for such trivialities. Yes, it is true that dependent type systems are in their infancy, and are, for the most part, used just in proof assistants. In this article, we argue that everday programming can benefit greatly from a sophisticated type system derived simple underlying principles. We'll start with some motivating examples, introduce homotopy type theory (HoTT), and end with future directions.
 
-Let's start with a pedestrian example, and say you've written a complex serialization routine, and want to check that it does the right thing:
+# A pedestrian example
+
+Let's say you've written a complex serialization routine, and want to check that it does the right thing:
 
 ```hs
 serialize :: Bytes -> Bytes
@@ -32,9 +34,19 @@ Definition deserialize := serialize ^-1.
 
 Correct by definition, and there's one typeclass `Serlializable` and one proof we need to write about the invertibility of `serialize`. There's a lot of machinery that we need to study before we can make this work, and a dependent type system is a really basic requirement.
 
+# A second example
+
+~~
+Record Parser :=
+{
+  f1 : Bytes;
+  f2 : Bytes;
+}.
+~~
+
 # A HoTT primer
 
-Given:
+Let's start again with a simple motivating example:
 
 ~~
 {A, B : Type}
@@ -51,26 +63,16 @@ Simple case:
 Theorem refl_refl : P = refl /\ Q = refl -> R = refl.
 ~~
 
-You'd write a proof for this, but let's consider the more general case when `P` and `Q` are complicated propositions, and you don't want to spend time constructing `R` and proving it, but rather, you want some general relationship between `f(x)` and `g(y)`.
+You'd write a proof for this, but let's consider the more general case when `P` and `Q` are complicated propositions, and you don't want to spend time constructing `R` and proving it, but rather, you want some general relationship between `f(x)` and `g(y)`. Without looking inside `P` and `Q`, this would be impossible.
 
-Types are topological spaces. Inhabitants are points, with AUFI, which are also topological spaces.
-A function is a homotopy between topological spaces.
-A homotopy between spaces maps points in one space to points in another space.
-Consider two functions (or homotopies) f and g. To say that they're homotopy equivalent means that they have the same start and end spaces: f ~ g.
-Homotopy equivalence is a proof, which is also a homotopy between inhabitants.
-Consider a proof that two inhabitants are equal. This is also a homotopy.
+(a) Types are topological spaces. Thinking in terms of point-set topology, inhabitants of types are subspaces of the topological space, which are also topological spaces; in the degenerate case, they could just be points like `True` and `False` in the type `Bool`.
+(b) A function is a homotopy between topological spaces. For instance, a function could take a `List` and construct a `BTree` out of it. The underlying inhabitants at the very bottom are the same: a set of natural numbers.
+(c) A homotopy between spaces maps one topological space to another topological space. Say the topological space $\mathbb{Z}$ to the topological space $\mathbb{N}$.
+(d) Consider two functions (or homotopies) `f` and `g`. To say that they're homotopy equivalent means that they have the same start and end points: $f \sim g$. The path that `f` traverses in space from the starting point to the end point can be continuously deformed to the path that `g` traverses. The "points" could simply be sets, but they could also be higher homotopies.
+(e) Homotopy equivalence is a proof, which is also a homotopy between inhabitants.
+(f) Consider a proof that two inhabitants are equal. This is also a homotopy.
 
-
-# Propositions as the bread-and-butter of programs
-
-~~
-Record Parser :=
-{
-  f1 : Bytes;
-  f2 : Bytes;
-
-}.
-~~
+# A cubical solver
 
 ~~
 Record Cubical {n : nat} :=
@@ -78,5 +80,9 @@ Record Cubical {n : nat} :=
   csp {n'} (Hn' : n' <= n) : Type@{l'} ;
   hd {n'} {Hn' : S n' <= n} : csp Hn' -> csp (⇓ Hn') ;
   box {n' p} {Hn' : n' <= n} (Hp : p <= n') : csp Hn' -> Type@{l} ;
-}
+}.
 ~~
+
+# Propositions as the bread-and-butter of programs
+
+# Conclusions
