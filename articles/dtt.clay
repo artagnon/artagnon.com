@@ -34,7 +34,7 @@ Definition deserialize := serialize ^-1.
 
 Correct by definition, and there's one typeclass `Serlializable` and one proof we need to write about the invertibility of `serialize`. There's a lot of machinery that we need to study before we can make this work, and a dependent type system is a really basic requirement.
 
-# A second example
+# Propositions as the bread-and-butter of programs
 
 ~~
 Record Parser :=
@@ -83,7 +83,5 @@ Record Cubical {n : nat} :=
   box {n' p} {Hn' : n' <= n} (Hp : p <= n') : csp Hn' -> Type@{l} ;
 }.
 ~~
-
-# Propositions as the bread-and-butter of programs
 
 # Conclusions

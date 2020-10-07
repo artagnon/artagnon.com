@@ -73,7 +73,7 @@
             Dependent types in everyday programming
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:33 +0200</time><span class="to">↪</span><time datetime="2020-10-04" class="end">Sun, 04 Oct 2020 15:05:55 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:33 +0200</time><span class="to">↪</span><time datetime="2020-10-07" class="end">Wed, 07 Oct 2020 14:52:17 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -108,8 +108,8 @@ Definition deserialize := serialize ^-1.</code></pre>
           <p>
             Correct by definition, and there's one typeclass <mark>Serlializable</mark> and one proof we need to write about the invertibility of <mark>serialize</mark>. There's a lot of machinery that we need to study before we can make this work, and a dependent type system is a really basic requirement.
           </p>
-          <h2 id="a-second-example">
-            A second example
+          <h2 id="propositions-as-the-bread-and-butter-of-programs">
+            Propositions as the bread-and-butter of programs
           </h2>
           <pre><code class="coq">Record Parser :=
 {
@@ -164,9 +164,6 @@ Definition deserialize := serialize ^-1.</code></pre>
   hd {n'} {Hn' : S n' &lt;= n} : csp Hn' -&gt; csp (⇓ Hn') ;
   box {n' p} {Hn' : n' &lt;= n} (Hp : p &lt;= n') : csp Hn' -&gt; Type@{l} ;
 }.</code></pre>
-          <h2 id="propositions-as-the-bread-and-butter-of-programs">
-            Propositions as the bread-and-butter of programs
-          </h2>
           <h2 id="conclusions">
             Conclusions
           </h2>
