@@ -76,7 +76,7 @@
             An outline for studying higher category theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-09" class="begin">Wed, 09 Sep 2020 21:57:03 +0200</time><span class="to">↪</span><time datetime="2020-10-08" class="end">Thu, 08 Oct 2020 22:00:52 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-09-09" class="begin">Wed, 09 Sep 2020 21:57:03 +0200</time><span class="to">↪</span><time datetime="2020-10-08" class="end">Thu, 08 Oct 2020 22:33:57 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -143,7 +143,7 @@
             $$
           </p>
           <p>
-            This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module. We will be working with bimodules for the most part.
+            This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $\lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module. We will be working with bimodules for the most part.
           </p>
           <p>
             Ideals are the prime examples of submodules. A submodule $J$ of an $R$-module a subset of $R$, which is closed under multiplication with an element of the ring:
@@ -305,6 +305,21 @@
             $$
           </p>
           <p>
+            Any two projective resolutions of a module are isomorphic:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            \ldots\ar[r] & P_2\ar[r]\ar[d] & P_1\ar[r]\ar[d] & P_0\ar[r]\ar[d] & M\ar[r]\ar@{=}[d] & 0 \\
+              \ldots\ar[r] & P_2'\ar[r] & P_1'\ar[r] & P_0'\ar[r] & M\ar[r] & 0
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
             Dually, we can form an injective coresolution of a module using injectives:
           </p>
           <p class="mathjax">
@@ -318,8 +333,23 @@
             
             $$
           </p>
-          <h3 id="4.-derived-functors-tor-and-ext">
-            4. Derived functors, Tor and Ext
+          <p>
+            Any two injective coresolutions of a module are isomorphic:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            0 & M\ar[l]\ar@{=}[d] & I^0\ar[l]\ar[d] & I^1\ar[l]\ar[d] & I^2\ar[l]\ar[d] & \ldots\ar[l] \\
+              0 & M\ar[l] & I'^0 \ar[l] & I'^1\ar[l] & I'^2\ar[l] & \ldots\ar[l]
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <h3 id="4.-derived-functors">
+            4. Derived functors
           </h3>
           <p>
             Given either right-exact or left-exact functor $\mathscr{F}$, we can define left or right derived functors as (co)homology groups of $\mathscr{F}$ lifting a projective or injective (co)chain.

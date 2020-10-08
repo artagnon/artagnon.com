@@ -33,7 +33,7 @@ $$
   \end{align}
 $$
 
-This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module. We will be working with bimodules for the most part.
+This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $\lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module. We will be working with bimodules for the most part.
 
 Ideals are the prime examples of submodules. A submodule $J$ of an $R$-module a subset of $R$, which is closed under multiplication with an element of the ring:
 
@@ -119,13 +119,27 @@ The free resolution is a prime example of a projective resolution, since every f
   \ldots\ar[r] & P_2\ar[r] & P_1\ar[r] & P_0\ar[r] & M\ar[r] & 0
 }}
 
+Any two projective resolutions of a module are isomorphic:
+
+{{
+  \ldots\ar[r] & P_2\ar[r]\ar[d] & P_1\ar[r]\ar[d] & P_0\ar[r]\ar[d] & M\ar[r]\ar@{=}[d] & 0 \\
+  \ldots\ar[r] & P_2'\ar[r] & P_1'\ar[r] & P_0'\ar[r] & M\ar[r] & 0
+}}
+
 Dually, we can form an injective coresolution of a module using injectives:
 
 {{
   0 & M\ar[l] & I^0\ar[l] & I^1\ar[l] & I^2\ar[l] & \ldots\ar[l]
 }}
 
-## 4. Derived functors, Tor and Ext
+Any two injective coresolutions of a module are isomorphic:
+
+{{
+  0 & M\ar[l]\ar@{=}[d] & I^0\ar[l]\ar[d] & I^1\ar[l]\ar[d] & I^2\ar[l]\ar[d] & \ldots\ar[l] \\
+  0 & M\ar[l] & I'^0 \ar[l] & I'^1\ar[l] & I'^2\ar[l] & \ldots\ar[l]
+}}
+
+## 4. Derived functors
 
 Given either right-exact or left-exact functor $\mathscr{F}$, we can define left or right derived functors as (co)homology groups of $\mathscr{F}$ lifting a projective or injective (co)chain.
 
