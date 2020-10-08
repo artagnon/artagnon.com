@@ -1,6 +1,6 @@
 An outline for studying higher category theory
 
-0. Overture
+# Overture
 
 The aim of this article is to provide a mathematics student an outline for studying various textbooks, leading up to research in $\infty$-categories. It is divided into four modules, and each module is a 6-week period of intense study. The approach we've taken is to introduce homological algebra in the first module, so the student is at ease with much of the machinery required for the following three modules.
 
@@ -8,7 +8,7 @@ Prerequisites:
 
 (a) Basics of mathematical reasoning. Tao's Analaysis I; chapter 12: appendix on the basics of mathematical logic.
 (b) Set theory. Johnstone's Notes on Set Theory and Logic, in its entirety.
-(c) Groups. Artin's Algebra; chapters on group theory built up using linear algebra.
+(c) Groups. Artin's Algebra; chapters on group theory taught from a linear algebra perspective.
 (d) Rings and Ideals. Reid's Undergraduate Commutative Algebra, in its entirety.
 (e) Modules. Atiyah and MacDonald's Commutative Algebra; Artin rings and chapters following it may be omitted.
 (f) Abelian categories. Mac Lane's Categories for the Working Mathematician, in its entirety.
@@ -20,7 +20,7 @@ Prerequisites:
 (a) Mac Lane's Homology.
 (b) Weibel's Homological Algebra.
 
-1. Algebra of $R$-modules
+## 1. Algebra of $R$-modules
 
 $R$-modules are abelian groups associated with the ring $R$. Let $M$ be one such abelian group. Then, the following axioms are satisfied for $r \in R$, $\lambda \in M$:
 
@@ -65,7 +65,7 @@ Broadly speaking, there are three operations on modules:
 (b) Tensor product, $M_1 \otimes M_2$, yields a third module. $- \otimes D$ and $D \otimes -$ are a covariant right-exact functors in the general case, and if $D$ is a flat module, tensoring with it preserves exactness.
 (c) Hom functor, $\textrm{Hom}(M_1, M_2)$, yields a third module. $Hom(-, D)$ and $Hom(D, -)$ are left-exact functors, for fixed module $D$. $\textrm{Hom}(D, -)$ is a covariant functor and $\textrm{Hom}(-, D)$ is a contravariant functor.
 
-2. Calculus of chain complexes
+## 2. Calculus of chain complexes
 
 A category with modules as objects and module morphisms as morphisms turns into an abelian category, in which every morphism admits a kernel and cokernel, every monic is a kernel, and every epi is a cokernel. A chain complex is defined as a sequence of morphisms satisfying the condition $\partial_n \partial_{n + 1} = 0, \forall n$, often abbreviated as $\partial^2 = 0$:
 
@@ -78,7 +78,7 @@ Equivalently, $\textrm{im}(\partial_{n + 1}) \subset \textrm{ker}(\partial_n)$. 
 The chain is said to be exact at $C_n$ if $\textrm{ker}(\partial_n) = \textrm{im}(\partial_{n + 1})$. A long exact sequence is exact at every $n$:
 
 {{
-  0 \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots\ar[r] 0
+  0 & \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots\ar[r] & 0
 }}
 
 To make them easier to work with, every l.e.s. can be broken up into short exact sequences:
@@ -87,11 +87,9 @@ To make them easier to work with, every l.e.s. can be broken up into short exact
   0\ar[r] & A\ar@{^{(}->}[r]^f & B\ar@{->>}[r]^g & C\ar[r]^h & 0
 }}
 
-Neither $Hom(-, D)$ nor $Hom(D, -)$ preserve exactness, and this obstruction to the exactness is measured by the $Ext$ functor. Similarly,
+Neither $Hom(-, D)$ nor $Hom(D, -)$ preserve exactness, and this obstruction to the exactness is measured by the $Ext$ functor.
 
-Exactness at $B$ is defined as $ker g = im f$.
-
-3. Resolutions
+## 3. Resolutions
 
 A module $P$ is defined to be projective if:
 
@@ -107,5 +105,6 @@ A module $I$ is defined to be injective if:
   I
 }}
 
-4. Derived functors, Tor and Ext
-5. Singular homology
+## 4. Derived functors, Tor and Ext
+
+## 5. Singular homology

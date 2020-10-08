@@ -70,7 +70,12 @@ html
                   - for item in paragraph.split "\n"
                     li == item
               - when :subheading
-                h2 id="#{paragraph.bookmark}" = paragraph.to_s
+                - if paragraph.prop == 1
+                  h2 id="#{paragraph.bookmark}" = paragraph.to_s
+                - elsif paragraph.prop == 2
+                  h3 id="#{paragraph.bookmark}" = paragraph.to_s
+                - else
+                  h4 id="#{paragraph.bookmark}" = paragraph.to_s
               - when :footer
                 footer
                   - for item in paragraph.split "\n"
