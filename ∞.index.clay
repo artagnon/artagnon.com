@@ -78,7 +78,7 @@ Equivalently, $\textrm{im}(\partial_{n + 1}) \subset \textrm{ker}(\partial_n)$. 
 The chain is said to be exact at $C_n$ if $\textrm{ker}(\partial_n) = \textrm{im}(\partial_{n + 1})$. A long exact sequence is exact at every $n$:
 
 {{
-  0 & \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots\ar[r] & 0
+  0\ar[r] & \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots\ar[r] & 0
 }}
 
 To make them easier to work with, every l.e.s. can be broken up into short exact sequences:
@@ -87,24 +87,53 @@ To make them easier to work with, every l.e.s. can be broken up into short exact
   0\ar[r] & A\ar@{^{(}->}[r]^f & B\ar@{->>}[r]^g & C\ar[r]^h & 0
 }}
 
-Neither $Hom(-, D)$ nor $Hom(D, -)$ preserve exactness, and this obstruction to the exactness is measured by the $Ext$ functor.
+Neither $\textrm{Hom}(-, D)$ nor $\textrm{Hom}(D, -)$ preserve exactness, and this obstruction to the exactness is measured by the $\textrm{Ext}$ functor.
 
 ## 3. Resolutions
+
+Resolutions are exact sequences that turn modules into complexes.
 
 A module $P$ is defined to be projective if:
 
 {{
   P\ar[d]\ar@{.>}[dr]|{\exists!} \\
-  A\ar[r] & B \\
+  \bullet\ar@{->>}[r] & \bullet\ar[r] & 0 \\
 }}
 
 A module $I$ is defined to be injective if:
 
 {{
-  A\ar[r]\ar[d] & B\ar@{.>}[dl]|{\exists!} \\
-  I
+  0\ar[r] & \bullet\ar@{^{(}->}[r]\ar[d] & \bullet\ar@{.>}[dl]|{\exists!} \\
+  & I
+}}
+
+A free $R$-module is one that can be written as a direct sum of isomorphic copies of $R$. A free resolution of module $M$ is the following exact sequence:
+
+{{
+  \ldots\ar[r] & F_2\ar[r] & F_1\ar[r] & F_0\ar[r] & M\ar[r] & 0
+}}
+
+The free resolution is a prime example of a projective resolution, since every free module is projective.
+
+{{
+  \ldots\ar[r] & P_2\ar[r] & P_1\ar[r] & P_0\ar[r] & M\ar[r] & 0
+}}
+
+Dually, we can form an injective coresolution of a module using injectives:
+
+{{
+  0 & M\ar[l] & I^0\ar[l] & I^1\ar[l] & I^2\ar[l] & \ldots\ar[l]
 }}
 
 ## 4. Derived functors, Tor and Ext
 
-## 5. Singular homology
+Given either right-exact or left-exact functor $\mathscr{F}$, we can define left or right derived functors as (co)homology groups of $\mathscr{F}$ lifting a projective or injective (co)chain.
+
+$$
+  \begin{align}
+    L_i \mathscr{F}(X) = H_i \mathscr{F}(P_\bullet) & \tag{left derived functor} \\
+    R^i \mathscr{F}(X) = H^i \mathscr{F}(I^\bullet) & \tag{right derived functor}
+  \end{align}
+$$
+
+$\textrm{Tor}$ is the prime example of a left derived functor, obtained by setting $\mathscr{F} = \otimes$, and $\textrm{Ext}$ is the prime example of a right derived functor, obtained by setting $\mathscr{F}= \textrm{Hom}$.

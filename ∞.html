@@ -76,7 +76,7 @@
             An outline for studying higher category theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-09" class="begin">Wed, 09 Sep 2020 21:57:03 +0200</time><span class="to">↪</span><time datetime="2020-10-08" class="end">Thu, 08 Oct 2020 21:14:14 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-09-09" class="begin">Wed, 09 Sep 2020 21:57:03 +0200</time><span class="to">↪</span><time datetime="2020-10-08" class="end">Thu, 08 Oct 2020 21:57:45 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -217,7 +217,7 @@
               \begin{xy}
               \xymatrix{
             
-            0 & \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots\ar[r] & 0
+            0\ar[r] & \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots\ar[r] & 0
               }
               \end{xy}
             
@@ -238,11 +238,14 @@
             $$
           </p>
           <p>
-            Neither $Hom(-, D)$ nor $Hom(D, -)$ preserve exactness, and this obstruction to the exactness is measured by the $Ext$ functor.
+            Neither $\textrm{Hom}(-, D)$ nor $\textrm{Hom}(D, -)$ preserve exactness, and this obstruction to the exactness is measured by the $\textrm{Ext}$ functor.
           </p>
           <h3 id="3.-resolutions">
             3. Resolutions
           </h3>
+          <p>
+            Resolutions are exact sequences that turn modules into complexes.
+          </p>
           <p>
             A module $P$ is defined to be projective if:
           </p>
@@ -252,7 +255,7 @@
               \xymatrix{
             
             P\ar[d]\ar@{.>}[dr]|{\exists!} \\
-              A\ar[r] & B \\
+              \bullet\ar@{->>}[r] & \bullet\ar[r] & 0 \\
               }
               \end{xy}
             
@@ -266,18 +269,72 @@
               \begin{xy}
               \xymatrix{
             
-            A\ar[r]\ar[d] & B\ar@{.>}[dl]|{\exists!} \\
-              I
+            0\ar[r] & \bullet\ar@{^{(}->}[r]\ar[d] & \bullet\ar@{.>}[dl]|{\exists!} \\
+              & I
               }
               \end{xy}
             
             $$
           </p>
-          <h3 id="4.-derived-functors-tor-and-ext
-5.-singular-homology">
+          <p>
+            A free $R$-module is one that can be written as a direct sum of isomorphic copies of $R$. A free resolution of module $M$ is the following exact sequence:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            \ldots\ar[r] & F_2\ar[r] & F_1\ar[r] & F_0\ar[r] & M\ar[r] & 0
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            The free resolution is a prime example of a projective resolution, since every free module is projective.
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            \ldots\ar[r] & P_2\ar[r] & P_1\ar[r] & P_0\ar[r] & M\ar[r] & 0
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            Dually, we can form an injective coresolution of a module using injectives:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            0 & M\ar[l] & I^0\ar[l] & I^1\ar[l] & I^2\ar[l] & \ldots\ar[l]
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <h3 id="4.-derived-functors-tor-and-ext">
             4. Derived functors, Tor and Ext
-            5. Singular homology
           </h3>
+          <p>
+            Given either right-exact or left-exact functor $\mathscr{F}$, we can define left or right derived functors as (co)homology groups of $\mathscr{F}$ lifting a projective or injective (co)chain.
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{align}
+                L_i \mathscr{F}(X) = H_i \mathscr{F}(P_\bullet) & \tag{left derived functor} \\
+                R^i \mathscr{F}(X) = H^i \mathscr{F}(I^\bullet) & \tag{right derived functor}
+              \end{align}
+            $$
+          </p>
+          <p>
+            $\textrm{Tor}$ is the prime example of a left derived functor, obtained by setting $\mathscr{F} = \otimes$, and $\textrm{Ext}$ is the prime example of a right derived functor, obtained by setting $\mathscr{F}= \textrm{Hom}$.
+          </p>
         </article>
       </main>
     </div>
