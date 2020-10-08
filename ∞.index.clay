@@ -1,11 +1,107 @@
-A course on higher category theory
+An outline for studying higher category theory
 
-0. Raison d'être
+0. Overture
+
+The aim of this article is to provide an outline for studying textbooks and working out problems, with the aim of understanding higher categories. It is divided into four modules, of which the first, homological algebra, sets up the machinery required for the three main modules. The final module is the study of third module sets the stage with the study of model categories and rational homotopy, and the second module sets the stage for that with the study of the homotopy of simplicial sets. Much of the machinery required throughout the three modules will be studied in the first module: homological algebra.
+
+Prereqisites:
+
+(a) Set theory.
+(b) Groups. Artin's Algebra; chapters on group theory built up using linear algebra.
+(c) Rings and Ideals. Reid's Undergraduate Commutative Algebra, in its entirety.
+(d) Modules. Atiyah and MacDonald's Commutative Algebra; Artin rings and chapters following it may be omitted.
+(e) Abelian categories. Mac Lane's Categories for the Working Mathematician, in its entirety.
+(f) Basic notions of point-set topology. Munkres' Topology, chapters 2-4.
+(g) Basic notions of algebraic topology. A light reading of Hatcher's Algebraic Topology, in its entirety.
 
 # Module I: Homological Algebra
 
+References:
+(a)
+(b) Weibel's Homological Algebra
+
 1. Algebra of R-modules
+
+$R$-modules are abelian groups associated with the ring $R$. Let $M$ be one such abelian group. Then, the following axioms are satisfied for $r \in R$, $\lambda \in M$:
+
+$$
+  \begin{align}
+    r 1 = r & \tag{identity} \\
+    (r_1 r_2) \lambda = r_1 (r_2 \lambda) & \tag{associativity of product} \\
+    (r_1 + r_2) \lambda = r_1 \lambda + r_2 \lambda & \tag{distributivity over ring} \\
+    r (\lambda_1 + \lambda_2) = r \lambda_1 + r \lambda_2 & \tag{distributivity over abelian group} \\
+  \end{align}
+$$
+
+This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module. We will be working with bimodules for the most part.
+
+Ideals are the prime examples of submodules. A submodule $J$ of an $R$-module a subset of $R$, which is closed under multiplication with an element of the ring:
+
+$$
+  \begin{align}
+    rJ \in J & \tag{closure}
+  \end{align}
+$$
+
+A module can be quotiented with a submodule to obtain a quotient module. Quotienting with submodules works exactly like quotienting with ideals:
+
+$$
+  \begin{align}
+    R/J = r + J & \tag{quotient module, or coset} \\
+    (r_1 + J) + (r_2 + J) = (r_1 + r_2) + J \tag{addition of cosets} \\
+    (r_1 + J) (r_2 + J) = r_1 r_2 + J & \tag{multiplication of cosets} \\
+  \end{align}
+$$
+
+It is trivial to verify that $R/J$ is a module:
+
+$$
+  r' ((r_1 + J) + (r_2 + J)) = (r' r_1 + J) + (r' r_2 J) = r' (r_1 + r_2) + J
+$$
+
+Broadly speaking, there are three operations on modules:
+
+(a) Direct sum and direct product, $\oplus_i M_i$ and $\Pi_i M_i$, coincide when the sum or product is finite. Direct sums of modules yield free modules, and these are used to build free resolutions.
+(b) Tensor product, $M_1 \otimes M_2$, yields a third module. $- \otimes D$ and $D \otimes -$ are a covariant right-exact functors in the general case, and if $D$ is a flat module, tensoring with it preserves exactness.
+(c) Hom functor, $\textrm{Hom}(M_1, M_2)$, yields a third module. $Hom(-, D)$ and $Hom(D, -)$ are left-exact functors, for fixed module $D$. $\textrm{Hom}(D, -)$ is a covariant functor and $\textrm{Hom}(-, D)$ is a contravariant functor.
+
 2. Calculus of chain complexes
+
+A category with modules as objects and module morphisms as morphisms turns into an abelian category, in which every morphism admits a kernel and cokernel, every monic is a kernel, and every epi is a cokernel. A chain complex is defined as a sequence of morphisms satisfying the condition $\partial_n \partial_{n + 1} = 0, \forall n$, often abbreviated as $\partial^2 = 0$:
+
+{{
+  \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots
+}}
+
+Equivalently, $\textrm{im}(\partial_{n + 1}) \subset \textrm{ker}(\partial_n)$. With this condition, it is possible to define the $n^\textrm{th}$ homology group $H_n = \textrm{ker}(\partial_n)/\textrm{im}(\partial_{n + 1})$.
+
+The chain is said to be exact at $C_n$ if $\textrm{ker}(\partial_n) = \textrm{im}(\partial_{n + 1})$. A long exact sequence is exact at every $n$:
+
+{{
+  0 \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots\ar[r] 0
+}}
+
+To make them easier to work with, every l.e.s. can be broken up into short exact sequences:
+
+{{
+  0\ar[r] & A\ar@{^{(}->}[r]^f & B\ar@{->>}[r]^g & C\ar[r]^h & 0
+}}
+
+Neither $Hom(-, D)$ nor $Hom(D, -)$ preserve exactness, and this obstruction to the exactness is measured by the $Ext$ functor. Similarly,
+
+Exactness at $B$ is defined as $ker g = im f$.
+
 3. Projectives, injectives, and resolutions
+
+A module $P$ is defined to be projective if:
+
+$$
+$$
+
+A module $I$ is defined to be injective if:
+
+$$
+$$
+
 4. Derived functors, Tor and Ext
 5. Singular homology
