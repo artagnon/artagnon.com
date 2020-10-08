@@ -2,25 +2,25 @@ An outline for studying higher category theory
 
 0. Overture
 
-The aim of this article is to provide an outline for studying textbooks and working out problems, with the aim of understanding higher categories. It is divided into four modules, of which the first, homological algebra, sets up the machinery required for the three main modules. The final module is the study of third module sets the stage with the study of model categories and rational homotopy, and the second module sets the stage for that with the study of the homotopy of simplicial sets. Much of the machinery required throughout the three modules will be studied in the first module: homological algebra.
+The aim of this article is to provide a mathematics student an outline for studying various textbooks, leading up to research in $\infty$-categories. It is divided into four modules, and each module is a 6-week period of intense study. The approach we've taken is to introduce homological algebra in the first module, so the student is at ease with much of the machinery required for the following three modules.
 
-Prereqisites:
+Prerequisites:
 
-(a) Set theory.
-(b) Groups. Artin's Algebra; chapters on group theory built up using linear algebra.
-(c) Rings and Ideals. Reid's Undergraduate Commutative Algebra, in its entirety.
-(d) Modules. Atiyah and MacDonald's Commutative Algebra; Artin rings and chapters following it may be omitted.
-(e) Abelian categories. Mac Lane's Categories for the Working Mathematician, in its entirety.
-(f) Basic notions of point-set topology. Munkres' Topology, chapters 2-4.
-(g) Basic notions of algebraic topology. A light reading of Hatcher's Algebraic Topology, in its entirety.
+(a) Basics of mathematical reasoning. Tao's Analaysis I; chapter 12: appendix on the basics of mathematical logic.
+(b) Set theory. Johnstone's Notes on Set Theory and Logic, in its entirety.
+(c) Groups. Artin's Algebra; chapters on group theory built up using linear algebra.
+(d) Rings and Ideals. Reid's Undergraduate Commutative Algebra, in its entirety.
+(e) Modules. Atiyah and MacDonald's Commutative Algebra; Artin rings and chapters following it may be omitted.
+(f) Abelian categories. Mac Lane's Categories for the Working Mathematician, in its entirety.
+(g) Basic notions of point-set topology. Munkres' Topology, chapters 2-4.
+(h) Basic notions in classical algebraic topology. A light reading of Hatcher's Algebraic Topology, in its entirety.
 
 # Module I: Homological Algebra
 
-References:
-(a)
-(b) Weibel's Homological Algebra
+(a) Mac Lane's Homology.
+(b) Weibel's Homological Algebra.
 
-1. Algebra of R-modules
+1. Algebra of $R$-modules
 
 $R$-modules are abelian groups associated with the ring $R$. Let $M$ be one such abelian group. Then, the following axioms are satisfied for $r \in R$, $\lambda \in M$:
 
@@ -91,17 +91,21 @@ Neither $Hom(-, D)$ nor $Hom(D, -)$ preserve exactness, and this obstruction to 
 
 Exactness at $B$ is defined as $ker g = im f$.
 
-3. Projectives, injectives, and resolutions
+3. Resolutions
 
 A module $P$ is defined to be projective if:
 
-$$
-$$
+{{
+  P\ar[d]\ar@{.>}[dr]|{\exists!} \\
+  A\ar[r] & B \\
+}}
 
 A module $I$ is defined to be injective if:
 
-$$
-$$
+{{
+  A\ar[r]\ar[d] & B\ar@{.>}[dl]|{\exists!} \\
+  I
+}}
 
 4. Derived functors, Tor and Ext
 5. Singular homology
