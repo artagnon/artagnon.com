@@ -91,7 +91,6 @@ After execution of the cmpl/cmpw:
      esi = {34 0}
 ```
 
-In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when
-calling a function with a word-sized register.
+In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when calling a function with a word-sized register.
 
 The SysV ABI does not guarantee that the i16 will be sext'ed to i32. Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5 doesn't know about this.

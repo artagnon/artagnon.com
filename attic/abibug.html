@@ -76,7 +76,7 @@
             An ABI-mismatch bug
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2015-08-23" class="begin">Sun, 23 Aug 2015 16:25:56 -0500</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 18:31:54 +0200</time></span><br /><span id="locations"><address>Paris, Chennai, Boston</address></span>
+            <span id="timestamp"><time datetime="2015-08-23" class="begin">Sun, 23 Aug 2015 16:25:56 -0500</time><span class="to">↪</span><time datetime="2020-10-08" class="end">Thu, 08 Oct 2020 23:21:05 +0200</time></span><br /><span id="locations"><address>Paris, Chennai, Boston</address></span>
           </div>
         </header>
         <article>
@@ -167,8 +167,7 @@ FORCEINLINE T operator()(T a, T b) const
 (lldb) register read --format int16_t[] esi
      esi = {34 0}</code></pre>
           <p>
-            In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when<br/>
-            calling a function with a word-sized register.
+            In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when calling a function with a word-sized register.
           </p>
           <p>
             The SysV ABI does not guarantee that the i16 will be sext'ed to i32. Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5 doesn't know about this.
