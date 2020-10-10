@@ -1,87 +1,83 @@
-Dependent types in everyday programming
+The structure of Types
 
-Chances are you've seen a non-trivial proof of `x + y = y + x`, and turned off by the fact that real-world programs don't care for such trivialities. Yes, it is true that dependent type systems are in their infancy, and are, for the most part, used just in proof assistants. In this article, we argue that everday programming can benefit greatly from a sophisticated type system derived simple underlying principles. We'll start with some motivating examples, introduce homotopy type theory (HoTT), and end with future directions.
+...
+In this article, we ask fundamental questions about type systems, using an imaginary programming language syntax similar to Coq, and standard mathematical notation. The type system in question is an imaginary variant of HoTT.
+...
 
-# A pedestrian example
-
-Let's say you've written a complex serialization routine, and want to check that it does the right thing:
-
-```hs
-serialize :: Bytes -> Bytes
-deserialize :: Bytes -> Bytes
-test_ser :: Bytes -> Bool
-  deserialize . serialize $ x == x
-```
-
-There are several problems with this code. First, the types are wrong: a serializable type isn't a deserializable type. Second, `test_ser` only checks the composition of `deserialize` with `serialize`, not the other way around. Third, you can never really be guaranteed that `test_ser` works: the best you can do is to write some more code to craft `x`, hope that it's correct, and run QuickCheck with a large number of times, and hope that you've covered everything. Let's try improving upon this:
-
-```hs
-serialize :: (Serializable a, Deserializable b) => a -> b
-deserialize :: (Serializable a, Deserializable b) => b -> a
-test_ser :: (Serializable a) => a -> Bool
-  deserialize . serialize $ x == x
-test_deser :: (Deserializable a) => a -> Bool
-  deserialize . serialize $ x == x
-```
-
-You now have to write the `Serializable` and `Deserializable` typeclasses, and an additional QuickCheck input for deserializable types. This is classic code-bloat, and you're still not guaranteed that it works. What you really want is:
+A type is a $\textbf{Set}$ of inhabitants and a proposition relating the inhabitants. Propositions are types themselves, while inhabitants could be types or, in the degenerate case, a $\textbf{Set}$ of inhabitants. We define it this way to disallow nonsensical definitions like $0 : \textbf{Type}$ and $0 : \textbf{Prop}$. In
 
 ~~
-Definition serialize : `{Serlializable a} (a : Bytes) : Bytes.
-Instance isequiv_serialize : IsEquiv serialize.
-Definition deserialize := serialize ^-1.
+x : Set.
 ~~
 
-Correct by definition, and there's one typeclass `Serlializable` and one proof we need to write about the invertibility of `serialize`. There's a lot of machinery that we need to study before we can make this work, and a dependent type system is a really basic requirement.
+$\textbf{Set}$ is a type that contains its inhabitants, with no proposition between the inhabitants. Think of it as a bag of scrabble pieces, such that there is no relationship between the pieces. One can, of course, build multiple types from the same $\textbf{Set}$ by imposing different structures on the inhabitats; for instance, $\mathbb{Z}$ could have a group structure, a ring structure, or even a simple poset structure:
 
-# Propositions as the bread-and-butter of programs
+{{
+  \ldots\ar[r]^{<} & -2\ar[r]^{<} & -1\ar[r]^{<} & 0 \ar[r]^{<} & 1 \ar[r]^{<} & 2 \ar[r]^{<} & \ldots
+}}
 
-~~
-Record Parser :=
-{
-  f1 : Bytes;
-  f2 : Bytes;
-}.
-~~
+$\Sigma a. \Sigma b. a < b$ has two inhabitants $a$ and $b$, along with a proposition relating the two inhabitants. In general, it is impossible to say if a proposition is inhabitable, as it is equivalent to asking the question if a certain lemma can be proved: the only way to find out is to try and construct a proof.
 
-# A HoTT primer
-
-HoTT is based on a solid mathematical foundation, but a simple abbreviated version will do for our purposes. See [this](/HoTT) for a slightly deeper look.
-
-Let's start again with a simple motivating example:
+Now consider $\mathbb{N} \rightarrow \mathbb{R}$, a function from a type of lower cardinality to a type of higher cardinality; this function type is nonsensical, or uninhabited. To build binary functions like `+`, we simply desugar:
 
 ~~
-{A, B : Type}
-{x, y : A}
-{P, Q : Prop}
-{f, g : A -> B}
-{P f g}
-{Q x y}
++ : nat -> nat -> nat.
++ : nat * nat -> nat.
 ~~
 
-Simple case:
+Raising the level of abstraction, the following is also a function type:
 
 ~~
-Theorem refl_refl : P = refl /\ Q = refl -> R = refl.
+trans< : forall {a b c}, a < b -> b < c -> a < c.
 ~~
 
-You'd write a proof for this, but let's consider the more general case when `P` and `Q` are complicated propositions, and you don't want to spend time constructing `R` and proving it, but rather, you want some general relationship between `f(x)` and `g(y)`. Without looking inside `P` and `Q`, this would be impossible.
+Now, we investigate the question of constructing new types from old ones; we have already seen $\Sigma$ and $\Pi$ types. Generally speaking, the operations available for constructing target types depends on the source types. In the case of rings and prime ideals, $\mathbb{Z}_p := \mathbb{Z}/\mathbb{Z} p$. This is an abelian group inhabitated by a poset, with the following additional propositions imposed, where $\circ$ is $+$, and $e$ is $0$:
 
-(a) Types are topological spaces. Thinking in terms of point-set topology, inhabitants of types are subspaces of the topological space, which are also topological spaces; in the degenerate case, they could just be points like `True` and `False` in $\mathbb{B}$.
-(b) A function is a homotopy between topological spaces. For instance, a function could take a `List` and construct a `BTree` out of it. The underlying inhabitants at the very bottom are the same: a set of natural numbers.
-(c) A homotopy between spaces maps one topological space to another topological space. Say the topological space $\mathbb{Z}$ to the topological space $\mathbb{N}$.
-(d) Consider two functions (or homotopies) $f$ and $g$. To say that they're homotopy equivalent means that they have the same start and end points: $f \sim g$. The path that `f` traverses in space from the starting point to the end point can be continuously deformed to the path that $g$ traverses. The "points" could simply be sets, but they could also be higher homotopies.
-(e) Homotopy equivalence is a proof, which is also a homotopy between inhabitants.
+$$
+  \forall a, a \circ e = e \circ a = a \\
+  \forall a, \exists a^{-1}, a \circ a^{-1} = a^{-1} \circ a = e \\
+  \forall a b, a \circ b = b \circ a
+$$
 
-# A cubical solver
+Indeed, $/$ is a function: $/ : \textbf{Rng} \rightarrow \textbf{Ideal} \rightarrow \textbf{Ab}$. It erases some of the structure in the ring in a precise way. Another example of a function that systematically erases structure is the forgetful functor $\mathfrak{F} : \textbf{Top} \rightarrow \textbf{Set}$.
+
+Now, consider a chaotic type like $\{n : \mathbb{Z}_p \mid n > 1\}$; this is a "subtype" of $\mathbb{Z}_p$, but we have erased the identity element, and there is no systematic way of saying what structure is preserved in the destination type. Therefore, in the general case, this would be desugared to:
+
+$$
+  \textrm{trunc} : \textbf{Type} \rightarrow \textbf{Set}. \\
+  \{n : \mathbb{Z}_p \mid n > 1\} := \{n : \textrm{trunc} (\mathbb{Z}_p) \mid n > 1\}.
+$$
+
+Since there is only one possible definition of `trunc`, the above definition is complete. In the same spirit of ad-hoc types, we could accomodate $\textbf{Set} + \textbf{Empty}$, a desugaring of the "option" type.
+
+Let us now investigate partial applications of functions, or "currying":
 
 ~~
-Record Cubical {n : nat} :=
-{
-  csp {n'} (Hn' : n' <= n) : Type@{l'} ;
-  hd {n'} {Hn' : S n' <= n} : csp Hn' -> csp (⇓ Hn') ;
-  box {n' p} {Hn' : n' <= n} (Hp : p <= n') : csp Hn' -> Type@{l} ;
-}.
++ : nat -> nat -> nat.
++a {a} := + a.
 ~~
 
-# Conclusions
+The desugaring of `+` we showed earlier would not work. Let us compare the two desugarings:
+
+~~
++ : (nat * nat) -> nat.
++ : nat -> (nat -> nat).
+~~
+
+It raises the question of whether the second definition makes any sense. Let us compare the two definitions:
+
+{{
+  a\ar[r]^{\iota_1}\ar[rd] & a \times b\ar@{.>}[d]|{\exists! e} & b\ar[l]_{\iota_2}\ar[ld] \\
+  & p\ar[d]|{+} \\
+  & r
+}}
+
+{{
+  b\ar[r]^{+a} & r
+}}
+
+It is clearly nonsensical, as the morphism has no way of pulling out an inhabitant of the first $\textbf{Set}$. The first definition is straightforward enough, so we reject currying.
+
+~~
++ p := p.1 + p.2.
+~~
