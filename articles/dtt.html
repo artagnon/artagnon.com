@@ -76,7 +76,7 @@
             The structure of Types
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:33 +0200</time><span class="to">↪</span><time datetime="2020-10-11" class="end">Sun, 11 Oct 2020 00:15:13 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-10-04" class="begin">Sun, 04 Oct 2020 00:29:33 +0200</time><span class="to">↪</span><time datetime="2020-10-11" class="end">Sun, 11 Oct 2020 15:03:21 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -88,7 +88,7 @@
           </p>
           <pre><code class="coq">x : Set.</code></pre>
           <p>
-            $\textbf{Set}$ is a type that contains its inhabitants, with no proposition between the inhabitants. Think of it as a bag of scrabble pieces, such that there is no relationship between the pieces. One can, of course, build multiple types from the same $\textbf{Set}$ by imposing different structures on the inhabitats; for instance, $\mathbb{Z}$ could have a group structure, a ring structure, or even a simple poset structure:
+            $\textbf{Set}$ is a type that contains its inhabitants, with no proposition between the inhabitants. Think of it as a bag of scrabble pieces, such that there is no relationship between the pieces. One can, of course, build multiple types from the same $\textbf{Set}$ by imposing different structures on the inhabitats; for instance, $\mathbb{Z}$ could have a group structure, a ring structure, or even a simple total order:
           </p>
           <p class="mathjax">
             $$
@@ -102,15 +102,39 @@
             $$
           </p>
           <p>
-            $\Sigma a. \Sigma b. a &lt; b$ has two inhabitants $a$ and $b$, along with a proposition relating the two inhabitants. In general, it is impossible to say if a proposition is inhabitable, as it is equivalent to asking the question if a certain lemma can be proved: the only way to find out is to try and construct a proof.
+            This can be formalized as $\Pi a. \Sigma b. a &lt; b$ or $\forall a, \exists b, a &lt; b$, which has two inhabitants $a$ and $b$, along with a proposition relating the two inhabitants. In general, it is impossible to say if a proposition is inhabitable, as it is equivalent to asking the question if a certain lemma can be proved: the only way to find out is to try and construct a proof.
           </p>
           <p>
-            Now consider $\mathbb{N} \rightarrow \mathbb{R}$, a function from a type of lower cardinality to a type of higher cardinality; this function type is nonsensical, or uninhabited. To build binary functions like <mark>+</mark>, we simply desugar:
+            Let us now investigate functions. $\mathbb{N} \twoheadrightarrow \mathbb{R}$ is an epic function from a type of lower cardinality to a type of higher cardinality; this function type is nonsensical, or uninhabited. Any function is simply a desugaring of a $\Pi$ type; for instance <mark>+</mark> is:
           </p>
           <pre><code class="coq">+ : nat -&gt; nat -&gt; nat.
-+ : nat * nat -&gt; nat.</code></pre>
++ : forall nat, nat -&gt; nat.
++ : forall nat, forall nat, nat.</code></pre>
           <p>
-            Raising the level of abstraction, the following is also a function type:
+            To understand this better, let us use the following equivalent definition, which works only because the second argument is independent of the first:
+          </p>
+          <pre><code class="coq">+ : forall nat * nat : nat.</code></pre>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            a\ar[r]^{\iota_1}\ar[rd] & a \times b\ar@{.>}[d]|{\exists! e} & b\ar[l]_{\iota_2}\ar[ld] \\
+              & p\ar[d]|{+} \\
+              & r
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            Non-dependent $\Pi$ types are easy to understand, but raises the question about how $\Sigma$ and $\Pi$ are actually defined:
+          </p>
+          <p>
+            TODO
+          </p>
+          <p>
+            Raising the level of abstraction, the following is also a function type, which one would think of as a proposition:
           </p>
           <pre><code class="coq">trans&lt; : forall {a b c}, a &lt; b -&gt; b &lt; c -&gt; a &lt; c.</code></pre>
           <p>
@@ -131,7 +155,7 @@
           </p>
           <p class="mathjax">
             $$
-            \textrm{trunc} : \textbf{Type} \rightarrow \textbf{Set}. \\
+            \textrm{trunc} : \textbf{Type} \hookrightarrow \textbf{Set}. \\
               \{n : \mathbb{Z}_p \mid n > 1\} := \{n : \textrm{trunc} (\mathbb{Z}_p) \mid n > 1\}.
             $$
           </p>
@@ -139,46 +163,14 @@
             Since there is only one possible definition of <mark>trunc</mark>, the above definition is complete. In the same spirit of ad-hoc types, we could accomodate $\textbf{Set} + \textbf{Empty}$, a desugaring of the "option" type.
           </p>
           <p>
-            Let us now investigate partial applications of functions, or "currying":
+            To investigate partial applications of functions, or "currying":
           </p>
           <pre><code class="coq">+ : nat -&gt; nat -&gt; nat.
-+a {a} := + a.</code></pre>
++a {a} : nat -&gt; nat := + a.</code></pre>
           <p>
-            The desugaring of <mark>+</mark> we showed earlier would not work. Let us compare the two desugarings:
+            First, desugar:
           </p>
-          <pre><code class="coq">+ : (nat * nat) -&gt; nat.
-+ : nat -&gt; (nat -&gt; nat).</code></pre>
-          <p>
-            It raises the question of whether the second definition makes any sense. Let us compare the two definitions:
-          </p>
-          <p class="mathjax">
-            $$
-              \begin{xy}
-              \xymatrix{
-            
-            a\ar[r]^{\iota_1}\ar[rd] & a \times b\ar@{.>}[d]|{\exists! e} & b\ar[l]_{\iota_2}\ar[ld] \\
-              & p\ar[d]|{+} \\
-              & r
-              }
-              \end{xy}
-            
-            $$
-          </p>
-          <p class="mathjax">
-            $$
-              \begin{xy}
-              \xymatrix{
-            
-            b\ar[r]^{+a} & r
-              }
-              \end{xy}
-            
-            $$
-          </p>
-          <p>
-            It is clearly nonsensical, as the morphism has no way of pulling out an inhabitant of the first $\textbf{Set}$. The first definition is straightforward enough, so we reject currying.
-          </p>
-          <pre><code class="coq">+ p := p.1 + p.2.</code></pre>
+          <pre><code class="coq">+ : forall nat . nat -&gt; nat.</code></pre>
         </article>
       </main>
     </div>
