@@ -13,12 +13,13 @@ Prerequisites:
 (e) Modules. Atiyah and MacDonald's Commutative Algebra; Artin rings and chapters following it may be omitted.
 (f) Abelian categories. Mac Lane's Categories for the Working Mathematician, in its entirety.
 (g) Basic notions of point-set topology. Munkres' Topology, chapters 2-4.
-(h) Basic notions in classical algebraic topology. A light reading of Hatcher's Algebraic Topology, in its entirety.
+(h) Basic notions in classical algebraic topology, chapters 0 and 1.
 
 # Module I: Homological Algebra
 
 (a) Mac Lane's Homology.
 (b) Weibel's Homological Algebra.
+(c) Hatcher's Algebraic Topology. Chapter 2: singular and cellular homology.
 
 ## 1. Algebra of $R$-modules
 
@@ -33,7 +34,7 @@ $$
   \end{align}
 $$
 
-This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $\lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module. We will be working with bimodules for the most part.
+This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $\lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module.
 
 Ideals are the prime examples of submodules. A submodule $J$ of an $R$-module a subset of $R$, which is closed under multiplication with an element of the ring:
 
@@ -88,8 +89,6 @@ To make them easier to work with, every l.e.s. can be broken up into short exact
 {{
   0\ar[r] & \bullet\ar@{^{(}->}[r] & \bullet\ar@{->>}[r] & \bullet\ar[r] & 0
 }}
-
-Neither $\textrm{Hom}(-, D)$ nor $\textrm{Hom}(D, -)$ preserve exactness, and this obstruction to the exactness is measured by the $\textrm{Ext}$ functor.
 
 ## 3. Resolutions
 
@@ -153,3 +152,32 @@ $$
 $$
 
 $\textrm{Tor}$ is the prime example of a left derived functor, obtained by setting $\mathscr{F} = \otimes$, and $\textrm{Ext}$ is the prime example of a right derived functor, obtained by setting $\mathscr{F}= \textrm{Hom}$.
+
+## 5. Homology of abelian groups
+
+First, note that $\mathbb{Z}$ can be viewed as a $\mathbb{Z}-\mathbb{Z}G$ bimodule.
+
+To compute $\textrm{Tor}$ and $\textrm{Ext}$ for some simple cases, consider the standard projective resolution of $\mathbb{Z}$:
+
+{{
+  0 \ar[r] & \mathbb{Z} \ar[r]^p & \mathbb{Z} \ar[r] & \mathbb{Z}/p \ar[r] & 0
+}}
+
+Now, to compute $\textrm{Tor}^n(\mathbb{Z}/p, B)$, with $B$ an abelian group, tensor with $B$ to obtain the following projective chain:
+
+{{
+  0 \ar[r] & B \ar[r]^p & B \ar[r] & 0
+}}
+
+Hence, $\textrm{Tor}^0(\mathbb{Z}/p, B) = B/Bp$, $\textrm{Tor}^1(\mathbb{Z}/p, B) = {}_pB$, with $\textrm{Tor}$ vanishing for all higher $n$. Flipping arrows, we obtain the injective resolution, and applying functor $\textrm{Hom}(B, -)$, we obtain $\textrm{Ext}^0(\mathbb{Z}/p, B) = {}_pB$ and $\textrm{Ext}^1(\mathbb{Z}/p, B) = B/Bp$, similarly vanishing for all higher $n$.
+
+An extension $\epsilon$ of $B$ by $A$ is defined to be:
+
+{{
+  A\ar[r] & E\ar[r] & B
+}}
+
+We write $H^n(G; B)$ to mean "homology of group G, with coefficients in B", and it is defined to be $\textrm{Tor}^n_{\mathbb{Z}G}(\mathbb{Z}, B)$. Cohomology of groups can be defined similarly, in terms of $\textrm{Ext}$.
+
+## 6. Cellular homology
+

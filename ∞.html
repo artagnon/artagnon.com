@@ -72,7 +72,7 @@
             An outline for studying higher category theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-09" class="begin">Wed, 09 Sep 2020 21:57:03 +0200</time><span class="to">↪</span><time datetime="2020-10-20" class="end">Tue, 20 Oct 2020 01:22:50 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-09-09" class="begin">Wed, 09 Sep 2020 21:57:03 +0200</time><span class="to">↪</span><time datetime="2020-10-21" class="end">Wed, 21 Oct 2020 08:00:42 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -108,7 +108,7 @@
               Basic notions of point-set topology. Munkres' Topology, chapters 2-4.
             </li>
             <li>
-              Basic notions in classical algebraic topology. A light reading of Hatcher's Algebraic Topology, in its entirety.
+              Basic notions in classical algebraic topology, chapters 0 and 1.
             </li>
           </ol>
           <h2 id="module-i-homological-algebra">
@@ -120,6 +120,9 @@
             </li>
             <li>
               Weibel's Homological Algebra.
+            </li>
+            <li>
+              Hatcher's Algebraic Topology. Chapter 2: singular and cellular homology.
             </li>
           </ol>
           <h3 id="1.-algebra-of-r-modules">
@@ -139,7 +142,7 @@
             $$
           </p>
           <p>
-            This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $\lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module. We will be working with bimodules for the most part.
+            This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $\lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module.
           </p>
           <p>
             Ideals are the prime examples of submodules. A submodule $J$ of an $R$-module a subset of $R$, which is closed under multiplication with an element of the ring:
@@ -235,9 +238,6 @@
               \end{xy}
             
             $$
-          </p>
-          <p>
-            Neither $\textrm{Hom}(-, D)$ nor $\textrm{Hom}(D, -)$ preserve exactness, and this obstruction to the exactness is measured by the $\textrm{Ext}$ functor.
           </p>
           <h3 id="3.-resolutions">
             3. Resolutions
@@ -364,6 +364,63 @@
           <p>
             $\textrm{Tor}$ is the prime example of a left derived functor, obtained by setting $\mathscr{F} = \otimes$, and $\textrm{Ext}$ is the prime example of a right derived functor, obtained by setting $\mathscr{F}= \textrm{Hom}$.
           </p>
+          <h3 id="5.-homology-of-abelian-groups">
+            5. Homology of abelian groups
+          </h3>
+          <p>
+            First, note that $\mathbb{Z}$ can be viewed as a $\mathbb{Z}-\mathbb{Z}G$ bimodule.
+          </p>
+          <p>
+            To compute $\textrm{Tor}$ and $\textrm{Ext}$ for some simple cases, consider the standard projective resolution of $\mathbb{Z}$:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            0 \ar[r] & \mathbb{Z} \ar[r]^p & \mathbb{Z} \ar[r] & \mathbb{Z}/p \ar[r] & 0
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            Now, to compute $\textrm{Tor}^n(\mathbb{Z}/p, B)$, with $B$ an abelian group, tensor with $B$ to obtain the following projective chain:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            0 \ar[r] & B \ar[r]^p & B \ar[r] & 0
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            Hence, $\textrm{Tor}^0(\mathbb{Z}/p, B) = B/Bp$, $\textrm{Tor}^1(\mathbb{Z}/p, B) = {}_pB$, with $\textrm{Tor}$ vanishing for all higher $n$. Flipping arrows, we obtain the injective resolution, and applying functor $\textrm{Hom}(B, -)$, we obtain $\textrm{Ext}^0(\mathbb{Z}/p, B) = {}_pB$ and $\textrm{Ext}^1(\mathbb{Z}/p, B) = B/Bp$, similarly vanishing for all higher $n$.
+          </p>
+          <p>
+            An extension $\epsilon$ of $B$ by $A$ is defined to be:
+          </p>
+          <p class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            A\ar[r] & E\ar[r] & B
+              }
+              \end{xy}
+            
+            $$
+          </p>
+          <p>
+            We write $H^n(G; B)$ to mean "homology of group G, with coefficients in B", and it is defined to be $\textrm{Tor}^n_{\mathbb{Z}G}(\mathbb{Z}, B)$. Cohomology of groups can be defined similarly, in terms of $\textrm{Ext}$.
+          </p>
+          <h3 id="6.-cellular-homology">
+            6. Cellular homology
+          </h3>
         </article>
       </main>
     </div>
