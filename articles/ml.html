@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>What machines can and can&#39;t do | artagnon.com</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="/dist/favicon.ico" />
+    <link rel="stylesheet" href="/dist/style.min.css" />
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"],
+      "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} },
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+      TeX: {extensions: ["/dist/xypic.min.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel=&#39;stylesheet&#39;" />
+    <noscript>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" />
+    </noscript>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/haskell.min.js"></script>
+    <script defer="" src="/dist/script.min.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <nav>
+        <ul>
+          <li>
+            <a href="/index">home</a>
+          </li>
+          <li>
+            <a href="/HoTT">HoTT</a>
+          </li>
+          <li>
+            <a href="/ag">ag</a>
+          </li>
+          <li>
+            <a href="/algebra">algebra</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/at">at</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/category">category</a>
+          </li>
+          <li>
+            <a href="/topoi">topoi</a>
+          </li>
+          <li>
+            <a href="/∞">∞</a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <header>
+          <h1>
+            What machines can and can't do
+          </h1>
+          <div id="metadata">
+            <span id="timestamp"><time datetime="2020-12-01" class="begin">Tue, 01 Dec 2020 07:40:57 +0100</time><span class="to">↪</span><time datetime="2020-12-01" class="end">Tue, 01 Dec 2020 07:40:57 +0100</time></span><br /><span id="locations"><address></address></span>
+          </div>
+        </header>
+        <article>
+          <p>
+            We begin with an inquiry into statistical methods (the broader class of what people refer to as "machine learning"), starting from a seemingly hardline stance, following a line of flawed reasoning leading up to the "singularity", finally stepping back to see where we went wrong. We imply several things for the future of employment, without being too explicit. The article is written for a wide audience, and has little jargon as a result.
+          </p>
+          <p>
+            Purely statistical methods cannot, by definition, develop any sort of "understanding". What this means is that it is impossible to guarantee the correctness of the output of a statistical method, beyond statistical correctness. One might argue that the world is made of up of a collection of "facts" that need to be "memorized" after having seen multiple times, all of which are correct. A variation of this is the "monkey brain", in which you train the monkey by asking it to perform a certain task, rewarding it everytime it gets it right, and penalizing it everytime it gets it wrong. This is the basic idea behind "reinforcement learning", the kind used to get machines to play games. Speed up the task-to-[reward or penalty] cycle exponentially, and you have a "smart monkey". There's another advantange to using a computer: while the "smart monkey" might make silly mistakes on a bad day, a computer never has "bad days". This boils down to the emotional engine of the brain, which people might argue, can be emulated by weighting the penalty that the machine receives, based on how fundamental the mistake was, and how many hours of training it has received. All this falls under the class of supervised learning, which one might argue is the same way a student learns from an exam.
+          </p>
+          <p>
+            Let us, for now, assume that a machine can successfully memorize billions of "facts", and look into how these might be represented. In most commonly used applications today, they are encoded in the form of matrices of floating-point numbers, with some weighted arithmetic operations connecting them, as chosen by the programmer. This is the basic idea behind neural networks, which falls under the umbrella of "deep learning". You might argue that being unable to interpret any of these individual numbers is akin to not being able to interpret the voltages of the individual neurons in the brain. We can now generalize "facts" to include a broader class of things that can be inferred from data. Even with the additional "frills", we're still doing statistical analysis, which is to say that the machine is "learning by example".
+          </p>
+          <p>
+            Even among human beings, learning by example is a very effective way to learn, when starting out. Most programmers would attest to the fact that they started out as hackers, copying examples, tweaking them, and checking them with a compiler. Some would argue that this approach doesn't scale in human beings, because they don't have the computational power to continue learning by example, and "cheat" by reading formal specifications as they become more seasoned. Does this mean that classical programmers could be replaced by machines?
+          </p>
+          <p>
+            The key to seeing the viability of this argument is to consider two things: (1) the structural complexity of the task, and (2) the number of examples available to concretely reinforce those patterns in a neural network. It's no secret that there are several good tools for aiding with "simple" programming langauages (otherwise called smart editors, or IDEs), which a reductionist would phrase as "machines are good at dumb tasks". Using simple frequency analysis, the IDE can even order its auto-complete suggestions and corrections intelligently. To date, there is no IDE that can assist with the help of the vast repositories of open-souce code, but it doesn't require a big leap in imagination to assume that this will be possible in the future. In fact, we should be open to the possibility that compilers start building repositories of error-messages, and run in the background, suggesting even more intelligent fixes, based on how others who encountered a similar error fixed it. A philophically-minded reader would be interested in whether the "intent" of the programmer can be dissected, and if, by labelling various segments of publicly available code with some kind of abstract "function", the machine can write entire programs with a few prompts. Assuming for a minute that this might be possible, can classical programmers stay relevant by simply moving to newer langauges, on which there are very few examples?
+          </p>
+          <p>
+            We can, without controversy, state that humans can always outwit machines by moving to more "fashionable" or "current" pursuits, but this opens up a quandry: is this some kind of primal game, where the prey constantly has to come up with new strategies to outrun the predator? Some would argue that by refining our statistical methods, one can emulate the process of "generalization" effectively removing the limitation, and exhausting beating the prey's creativity on the "search space" completely. Then, a big leap: an event, commonly referred to as the "singularity", whereby humans become near-obselete, is predicted in 2040. Why is this claim so ludicrous?
+          </p>
+          <hr class="horizrule" />
+          <p>
+            Let us first try to enumerate some recent accomplishments in the field.
+          </p>
+          <p>
+            Beating the best human player at Go, a program referred to as AlphaGo. The problem is well-defined, and there are very few starting rules. How does a human become good at Go? Just like in Chess, the rules play an insignificant role in the player's learning, and most of the training is about analyzing previous games. There's a huge dataset of expertly-played games available, and human players usually try to follow a semi-systematic approach. It could be argued that the machine is inefficient, because it doesn't follow a systematic approach, but the raw computational power makes this handicap look irrelevant. It's a little like arguing that a machine doesn't know the decimal system, the tables of multiplication, and simply flips 0s and 1s to perform arithmetic; it's reductionist, but it works. Humans here are the disadvataged class in both cases, and it is completely unsurprising that, despite certain inefficiencies, AlphaGo essentially does what a human player does to beat them at it: it analyzes lots of games.
+          </p>
+          <p>
+            A language engine, referred to as GPT-3. How do humans master a natural language? They do it semi-systematically, starting from the association of simple words to real-world objects, then moving on to phrases describing something, learning some construction rules and absorbing culture along the way, and finally by reading good literature. Of course, the grammar rules play a very small part of the overall learning, so it is unsurprising that GPT-3 is able to produce grammatically correct sentences. However, literature talks about things in the real world, and for it to make sense, sufficient interaction with the real world is a prerequisite. It's not a bounded game, where all the necessary information is contained on a map or a board. Again, it is unsurprising that GPT-3 can't "know" whether dropping a metallic plate would cause it to melt. It cannot infer the relationship between real-world objects, nor can it differentiate between a factual and fictional human experience. Without these abilities, it is impossible to write good literature. All it can do is build statistical models of various pieces of text, and splice some well-formed sentences together.
+          </p>
+          <p>
+            The translation engine behind Google Translate. Someone who has just started using the product with no knowledge of the underlying technology would be puzzled about why this is chalked up as an achievement. Indeed, it's unlikely that we'll even have a half-decent translation engine using statistical methods. Natural language is not a purely statistical game, and a good translator needs a deep understanding of both languages, and cultural context. We're likely to see incremental improvements though.
+          </p>
+          <p>
+            Medical diagnostics. On millions of patient records including medical scans, a statistical model can serve as a valuable aid to a doctor. It should come as no surprise that a lot of medical science is about statical correlations, and statistical models have been a resounding success in this area.
+          </p>
+          <p>
+            Proof-search on a well-defined problem phrased in a computer language, using well-defined operations to go from one step of the mathematical proof to the next (in other words, aiding proof-search in programs known as "proof assistants"). Classic combinatorial problems, with huge search spaces, lots of rules at each node, and clear end goals. Sort of like a game on steroids. Some progress has been made, and the IDEs are expected to get better.
+          </p>
+          <p>
+            Finding protein-folding structures, referred to as AlphaFold. Another combinatorial problem, with well-defined rules. The landmark achievement here is that this problem has an enormous search space, and that it will greatly accelerate research in computational biology.
+          </p>
+          <p>
+            Facial recognition. A classic pattern-recognition problem, which can only be learnt by example. It suffices to say that this technology is a resounding success, with the unfortunate side-effect of opening the door to various abusive ways in which it can be used.
+          </p>
+          <p>
+            Automated support over voice and text. There is very little "domain knowledge" needed here, and all of it is encapsulated within a very narrow context. There are few concrete rules mostly of the type of "if the human says this, then say that" (the model used here are essentially decision trees), and humans learn to identify voice by example. The landmark achievement here is in "speech synthesis", or making the machine do text-to-human-like-speech. Despite that, it should be noted that speech-to-text is still an unsolved problem for non-standard accents. People would argue that there isn't enough data on the non-standard accents, and yes, that's what this particular problem boils down to.
+          </p>
+          <p>
+            What about more classical stuff, you'd ask. Sure, statistical methods have been used to improve upon classical data structures and algorithms (there was one beating quicksort recently). Analyzing the numbers for patterns, then building a data structure that's best suited for those patterns, before deciding how to handle them, sounds pretty sensible. The landmark achievement is that this model can be trained and executed faster than the corresponding classical algorithm.
+          </p>
+          <hr class="horizrule" />
+          <p>
+            Now, we're ready to see machines fall flat on their faces when presented with problems that are effortless for humans.
+          </p>
+          <ol class="olitems" type="a" start="1">
+            <li>
+              You're given a sequence of stones, and each stone is represented by a unique symbol. What can you say about the following sequence?
+            </li>
+          </ol>
+          <footer>
+            <p>
+              [.*, %\!, &amp;^#?]
+            </p>
+          </footer>
+          <p>
+            The different symbols were specifically chosen to throw the machine off: even if they weren't different, it'd spend a long time looking for some kind of correlation, but a kindgergarderner would simply say that there are more stones on the right.
+          </p>
+          <ol class="olitems" type="a" start="2">
+            <li>
+              Two similar twins, one named Bob, and the other named Joy, jump off from a height of 10ft simultaneously. The first time, they jump without touching each other, and the second time, they hold hands. What is the difference between the two flight timings?
+            </li>
+          </ol>
+          <p>
+            This thought experiment, even if not already familiar, should be a simple task for any human to simulate in their heads. It does not require knowledge of how gravity works, or having countless hours of video data from children's parks. There are multiple issues here: first, the machine has no idea what information is relevant, and has no idea if such an experiment has ever been conducted in the past. While we can immediately say what information is irrelvant, the poor machine grinds away to eternity. We conduct these kinds of thought experiments all the time, because there are multitudes of possibilties, and we simulate them abstractly, and efficiently.
+          </p>
+          <ol class="olitems" type="a" start="3">
+            <li>
+              I've drawn a certain kind of matrix here. Do you see what I'm trying to show you?
+            </li>
+          </ol>
+          <footer>
+            <p>
+              *
+            </p>
+            <p>
+              **
+            </p>
+            <p>
+              ***
+            </p>
+            <p>
+              ****
+            </p>
+            <p>
+              *****
+            </p>
+          </footer>
+          <p>
+            Anyone with minimal exposure to linear algebra would immediately say that it's a lower-triangular matrix, even if they've never seen it presented that way. You'd argue that this is too vague for a machine, and I'd agree with you. Wasn't this the problem that "machine learning" was supposed to solve? Grinding away on petabytes of high-resolution data from multiple cameras isn't going to solve this one though.
+          </p>
+          <p>
+            These problems illustrate the basic principles needed to solve more challenging problems. In order to even claim that there is such a thing as a "singularity", ignoring the date for a moment, one needs to atleast have a sketch of how to tackle the last problem on this list, ordered by difficulty.
+          </p>
+          <ol class="olitems" type="a" start="1">
+            <li>
+              Given that a hedgehog is a rodent that some people keep as pets, which of these six pictures is the picture of a hedgehog?
+            </li>
+            <li>
+              Derive the equation of motion for a simple pendulum from the simple axioms of classical mechanics.
+            </li>
+            <li>
+              Watch a film, and critically comment on the acting, screenplay, direction, and storyline.
+            </li>
+            <li>
+              Deliver a talk on black holes, and guage the level of understanding of the audience from the questions you receive.
+            </li>
+            <li>
+              Check the correctness of the proof of the abc conjecture, by directly reading the document uploaded on arXiV.
+            </li>
+          </ol>
+          <p>
+            All the poor machine can do at this point is look up data, do some correlations, and stitch some hodgepodge together.
+          </p>
+          <hr class="horizrule" />
+          <p>
+            So, what's the objective? To build general-purpose intelligence based on statistical methods? Impossible. What if that machine has an intelligence that's "different" but that somehow "subsumes" human intelligence? That is pseudoscientific rubbish. Show me today that your methods can do what simple human intution can. Otherwise, what's the point of collecting even more data, and incrementally improving your algorithms? The models behind AlphaGo, GPT-3, and AlphaFold have the same essential nature as the ones used to tailor ads to us, and talk to us in the form of voice-assistants. AI research is enormously expensive, and it is paid for with our privacy. Give it away if you like, but don't do it while being drunk on the "singularity" kool-aid.
+          </p>
+        </article>
+      </main>
+    </div>
+  </body>
+</html>
