@@ -121,12 +121,12 @@
           <p>
             This is a Region:
           </p>
-          <pre><code class="cpp">for (i : Vec)
+          <pre><code class="hljs cpp">for (i : Vec)
   A = i;</code></pre>
           <p>
             This is a ChainRegion comprising of an IfRegion and a BasicBlockRegion:
           </p>
-          <pre><code class="cpp">if (foo)
+          <pre><code class="hljs cpp">if (foo)
   A = 15;
 else
   A = 21;
@@ -134,7 +134,7 @@ quux();</code></pre>
           <p>
             This is an UnstructuredRegion, but it is very much SESE:
           </p>
-          <pre><code class="cpp">jump:
+          <pre><code class="hljs cpp">jump:
   A = 18;
 if (A &lt; 17)
   A = A + 3;
@@ -174,7 +174,7 @@ if (A &lt; 17)
           <p>
             The key insight in our algorithm is that we need to match a Split Statement with its Merge Statement(s), and need to paritition our DFS start/end time intervals into two categories: intervals to trust (ie. ones that exist, and should not be modified), and intervals to assign. The DFS start time corresponds to DFS first-visit sequence, and end time corresponds to DFS final-visit sequence. <mark>interval1.start_time &gt; interval2.start_time</mark> and <mark>interval1.end_time &lt; interval2.end_time</mark> means that interval1 is nested within interval2, or that the node corresponding to interval2 dominates the node corresponding to interval1.
           </p>
-          <pre><code class="cpp">void DFS(Node *v) {
+          <pre><code class="hljs cpp">void DFS(Node *v) {
   assign_start_time(v); // increment a clock as you assign
   for (auto u : v-&gt;outEdges()) {
     if (start_time_not_assigned(v)) DFS(v);
@@ -233,7 +233,7 @@ if (A &lt; 17)
           <p>
             Our API looks like:
           </p>
-          <pre><code class="cpp">void assignHeads(std::vector&lt;Statement*&gt; branchHeads,
+          <pre><code class="hljs cpp">void assignHeads(std::vector&lt;Statement*&gt; branchHeads,
                  std::vector&lt;Statement*&gt; headsToStaggerWith,
                  Statement* nestWithin, Statement* toEnclose);</code></pre>
           <p>

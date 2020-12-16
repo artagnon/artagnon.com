@@ -68,19 +68,19 @@
           <p>
             FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses <mark>PhysRegState</mark> to keep track of the state of various physical registers: they can be 0 (<mark>regDisabled</mark>), 1 (<mark>regFree</mark>), 2 (<mark>regReserved</mark>), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like <mark>LR.LastUse</mark>); a register can either be a <mark>&lt;def&gt;</mark> or a use. If <mark>IsImplicit</mark> is flipped, it could also be a implicit-def (<mark>&lt;imp-def&gt;</mark>) or implicit-use (<mark>&lt;imp-use&gt;</mark>).
           </p>
-          <pre><code class="cpp">%vreg349&lt;def&gt; = MOVZX32rm8 %vreg351, 1, %noreg, 0, %noreg</code></pre>
+          <pre><code class="hljs cpp">%vreg349&lt;def&gt; = MOVZX32rm8 %vreg351, 1, %noreg, 0, %noreg</code></pre>
           <p>
             turns into
           </p>
-          <pre><code class="cpp">%ESI&lt;def&gt; = MOVZX32rm8 %RDX&lt;kill&gt;, 1, %noreg, 0, %noreg</code></pre>
+          <pre><code class="hljs cpp">%ESI&lt;def&gt; = MOVZX32rm8 %RDX&lt;kill&gt;, 1, %noreg, 0, %noreg</code></pre>
           <p>
             after allocation. The <mark>&lt;kill&gt;</mark> indicates that the instruction is the last use of <mark>%RDX</mark>. In another example,
           </p>
-          <pre><code class="cpp">CQO %RAX&lt;imp-def&gt;, %RDX&lt;imp-def&gt;, %RAX&lt;imp-use&gt;</code></pre>
+          <pre><code class="hljs cpp">CQO %RAX&lt;imp-def&gt;, %RDX&lt;imp-def&gt;, %RAX&lt;imp-use&gt;</code></pre>
           <p>
             turns into
           </p>
-          <pre><code class="cpp">CQO %RAX&lt;imp-def&gt;, %RDX&lt;imp-def&gt;, %RAX&lt;imp-use,kill&gt;</code></pre>
+          <pre><code class="hljs cpp">CQO %RAX&lt;imp-def&gt;, %RDX&lt;imp-def&gt;, %RAX&lt;imp-use,kill&gt;</code></pre>
           <p>
             Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend <mark>%RAX</mark> into <mark>%RDX</mark> (not any other register) for use in a later <mark>IDIV</mark>. Remember that <mark>IDIV</mark> operates on <mark>%RDX:%RAX</mark> as the numerator, and writes the quotient in <mark>%RAX</mark>, reminder in <mark>%RDX</mark>.
           </p>
@@ -91,7 +91,7 @@
           <p>
             <mark>AllocateBasicBlock</mark>, which operates on <mark>MachineBasicBlock</mark>, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the <mark>LiveIns</mark> (registers coming in live from the previous <mark>MBB</mark>) as <mark>regReserved</mark> so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls <mark>usePhysReg</mark> on them. At this stage, the physical register must be either <mark>regDisabled</mark>, <mark>regReserved</mark>, or <mark>regFree</mark>. It cannot be allocated to a virtual register. Why? Imagine you see:
           </p>
-          <pre><code class="cpp">CQO %RAX&lt;imp-def&gt;, %RDX&lt;imp-def&gt;, %RAX&lt;imp-use&gt;</code></pre>
+          <pre><code class="hljs cpp">CQO %RAX&lt;imp-def&gt;, %RDX&lt;imp-def&gt;, %RAX&lt;imp-use&gt;</code></pre>
           <p>
             Now, if <mark>%RAX</mark> were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as <mark>regFree</mark>, and move on: we have done our part by completing the use of the register that was reserved earlier.
           </p>
@@ -105,12 +105,12 @@
           <p>
             To think about the problem, if we have,
           </p>
-          <pre><code class="cpp">%RAX&lt;def&gt; = COPY %vreg342</code></pre>
+          <pre><code class="hljs cpp">%RAX&lt;def&gt; = COPY %vreg342</code></pre>
           <p>
             we should always <mark>regReserve</mark> <mark>%RAX</mark>, right? Except if <mark>%RAX</mark> is dead. What<br/>
             about if it's an <mark>&lt;imp-def&gt;</mark>?
           </p>
-          <pre><code class="cpp">CQO %RAX&lt;imp-def&gt;, %RDX&lt;imp-def&gt;, %RAX&lt;imp-use&gt;</code></pre>
+          <pre><code class="hljs cpp">CQO %RAX&lt;imp-def&gt;, %RDX&lt;imp-def&gt;, %RAX&lt;imp-use&gt;</code></pre>
           <p>
             We didn't pass <mark>CQO</mark> <mark>%RAX</mark> explicitly, but that doesn't mean that a later instruction (for instance, <mark>IDIV</mark>) is not relying on this register's value. If we have an instruction between <mark>CQO</mark> and <mark>IDIV</mark>, that can potentially clobber <mark>%RAX</mark>, leading to a regalloc crash. Hence, we <mark>regReserve</mark> even if <mark>MO.isImplicit()</mark>.
           </p>

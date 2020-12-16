@@ -207,7 +207,7 @@
           <p>
             where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called <mark>whiskering</mark>.
           </p>
-          <pre><code class="coq">Definition whiskerL {A : Type} {x y z : A} (p : x = y)
+          <pre><code class="hljs coq">Definition whiskerL {A : Type} {x y z : A} (p : x = y)
   {q r : y = z} (h : q = r) : p @ q = p @ r
 := 1 @@ h.
 
@@ -233,7 +233,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             The foregoing fact, known as the <mark>Eckmann-Hilton argument</mark> comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
           </p>
-          <pre><code class="coq">Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :&gt; (x = x)) : p @ q = q @ p :=
+          <pre><code class="hljs coq">Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :&gt; (x = x)) : p @ q = q @ p :=
   (whiskerR_p1 p @@ whiskerL_1p q)^
   @ (concat_p1 _ @@ concat_p1 _)
   @ (concat_1p _ @@ concat_1p _)
@@ -281,7 +281,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             $\texttt{ap}_f$ can be read as the application of a function to a path.
           </p>
-          <pre><code class="coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
+          <pre><code class="hljs coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
   := match p with idpath =&gt; idpath end.</code></pre>
           <p>
             To provide a simple proof, it suffices to assume that $p$ is $\texttt{refl}_x$. In this case, we may define $\texttt{ap}_f(p) :\equiv \texttt{refl}_{f(x)} f(x) = f(x)$. We will often write $\texttt{ap}_f(p)$ as $f(p)$, and this matches the common category theory convention of using the same symbol for application of a functor to objects and morphisms.
@@ -348,7 +348,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path.
           </p>
-          <pre><code class="coq">Definition transport {A : Type} (P : A -&gt; Type) {x y : A} (p : x = y) (u : P x) : P y :=
+          <pre><code class="hljs coq">Definition transport {A : Type} (P : A -&gt; Type) {x y : A} (p : x = y) (u : P x) : P y :=
   match p with idpath =&gt; u end.</code></pre>
           <p class="exercise">
             We now state <mark>path lifting property</mark> without proof. Let $P : A \rightarrow \mathscr{U}$ be a type family over $A$, and assume we have $u : P(x)$ for some $x : A$. Then, for $p : x = y$, we have:
@@ -361,7 +361,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             in $\Sigma_{x : A} P(x)$, such that $\texttt{pr}_1(\texttt{lift}(u, p)) = p$.
           </p>
-          <pre><code class="coq">Definition equiv_path_sigma `(P : A -&gt; Type) (u v : sigT P)
+          <pre><code class="hljs coq">Definition equiv_path_sigma `(P : A -&gt; Type) (u v : sigT P)
 : {p : u.1 = v.1 &amp;  p # u.2 = v.2} &lt;~&gt; (u = v)
   := Build_Equiv _ _ (path_sigma_uncurried P u v) _.</code></pre>
           <p>
@@ -384,7 +384,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
             \texttt{apd}_f : \Pi_{p : x = y} p_\star(f(x)) =_{P(y)} f(y)
             $$
           </p>
-          <pre><code class="coq">(** Similarly, dependent functions act on paths; but the type is a bit more subtle.
+          <pre><code class="hljs coq">(** Similarly, dependent functions act on paths; but the type is a bit more subtle.
 If [f : forall a:A, B a] and [p : x = y] is a path in [A], then [apD f p] should somehow
 be a path between [f x : B x] and [f y : B y]. Since these live in different types,
 we use transport along [p] to make them comparable: [apD f p : p # f x = f y].
@@ -429,7 +429,7 @@ Definition apD {A : Type} {B : A-&gt;Type} (f : forall a: A, B a) {x y : A} (p :
           <p>
             The corresponding Coq code looks like:
           </p>
-          <pre><code class="coq">(** Transporting in a constant fibration. *)
+          <pre><code class="hljs coq">(** Transporting in a constant fibration. *)
 Definition transport_const {A B : Type} {x1 x2 : A} (p : x1 = x2) (y : B)
   : transport (fun x =&gt; B) p y = y.
 Proof.
@@ -450,25 +450,25 @@ Defined.</code></pre>
           <p class="exercise">
             Let us now dump a few definitions and lemmas in Coq:
           </p>
-          <pre><code class="coq">(** In a constant fibration, [apD] reduces to [ap], modulo [transport_const]. *)
+          <pre><code class="hljs coq">(** In a constant fibration, [apD] reduces to [ap], modulo [transport_const]. *)
 Lemma apD_const {A B} {x y : A} (f : A -&gt; B) (p : x = y) :
   apD f p = transport_const p (f x) @ ap f p.
 Proof.
   destruct p; reflexivity.
 Defined.</code></pre>
-          <pre><code class="coq">(** Transporting in a pulled back fibration. *)
+          <pre><code class="hljs coq">(** Transporting in a pulled back fibration. *)
 Lemma transport_compose {A B} {x y : A} (P : B -&gt; Type) (f : A -&gt; B)
   (p : x = y) (z : P (f x))
   : transport (fun x =&gt; P (f x)) p z  =  transport P (ap f p) z.
 Proof.
   destruct p; reflexivity.
 Defined.</code></pre>
-          <pre><code class="coq">Lemma ap_transport {A} {P Q : A -&gt; Type} {x y : A} (p : x = y) (f : forall x, P x -&gt; Q x) (z : P x) :
+          <pre><code class="hljs coq">Lemma ap_transport {A} {P Q : A -&gt; Type} {x y : A} (p : x = y) (f : forall x, P x -&gt; Q x) (z : P x) :
   f y (p # z) = (p # (f x z)).
 Proof.
   by induction p.
 Defined.</code></pre>
-          <pre><code class="coq">Definition transport_pp {A : Type} (P : A -&gt; Type) {x y z : A} (p : x = y) (q : y = z) (u : P x) :
+          <pre><code class="hljs coq">Definition transport_pp {A : Type} (P : A -&gt; Type) {x y z : A} (p : x = y) (q : y = z) (u : P x) :
   p @ q # u = q # p # u :=
   match q with idpath =&gt;
     match p with idpath =&gt; 1 end
@@ -531,7 +531,7 @@ Defined.</code></pre>
           <p>
             But this follows since both sides are equal to $H(x)$.
           </p>
-          <pre><code class="coq">(** Naturality of [ap]. *)
+          <pre><code class="hljs coq">(** Naturality of [ap]. *)
 Definition concat_Ap {A B : Type} {f g : A -&gt; B} (p : forall x, f x = g x) {x y : A} (q : x = y) :
   (ap f q) @ (p y) = (p x) @ (ap g q)
   :=
@@ -561,7 +561,7 @@ Definition concat_Ap {A B : Type} {f g : A -&gt; B} (p : forall x, f x = g x) {x
             f(H x) = f(H x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x)
             $$
           </p>
-          <pre><code class="coq">(** Naturality of [ap] at identity. *)
+          <pre><code class="hljs coq">(** Naturality of [ap] at identity. *)
 Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : A} (q : x = y) :
   (ap f q) @ (p y) = (p x) @ q
   :=
@@ -665,7 +665,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
             (x =_{A \times B} y) \rightarrow (\texttt{pr}_1(x) =_A \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) =_B \texttt{pr}_2(y))
             $$
           </p>
-          <pre><code class="coq">Definition equiv_path_prod {A B : Type} (z z' : A * B)
+          <pre><code class="hljs coq">Definition equiv_path_prod {A B : Type} (z z' : A * B)
   : (fst z = fst z') * (snd z = snd z')  &lt;~&gt;  (z = z')
   := Build_Equiv _ _ (path_prod_uncurried z z') _.</code></pre>
           <p>
@@ -693,11 +693,11 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
             r = \texttt{pair}^=(\texttt{ap}_{pr_1}(r), \texttt{ap}_{pr_2}(r)) \quad r : x =_{A \times B} y
             $$
           </p>
-          <pre><code class="coq">Definition transport_prod {A : Type} {P Q : A -&gt; Type} {a a' : A} (p : a = a')
+          <pre><code class="hljs coq">Definition transport_prod {A : Type} {P Q : A -&gt; Type} {a a' : A} (p : a = a')
   (z : P a * Q a)
   : transport (fun a =&gt; P a * Q a) p z  =  (p # (fst z), p # (snd z))
   := match p with idpath =&gt; 1 end.</code></pre>
-          <pre><code class="coq">Definition ap_functor_prod {A A' B B' : Type} (f : A -&gt; A') (g : B -&gt; B')
+          <pre><code class="hljs coq">Definition ap_functor_prod {A A' B B' : Type} (f : A -&gt; A') (g : B -&gt; B')
   (z z' : A * B) (p : fst z = fst z') (q : snd z = snd z')
   : ap (functor_prod f g) (path_prod _ _ p q)
   = path_prod (functor_prod f g z) (functor_prod f g z') (ap f p) (ap g q).
@@ -722,7 +722,7 @@ Defined.</code></pre>
           <p class="exercise">
             For $z : \Sigma_{x : A} P(x)$, we have $z = (\texttt{pr}_1(z), \texttt{pr}_2(z))$
           </p>
-          <pre><code class="coq">Definition eta_sigma `{P : A -&gt; Type} (u : sigT P)
+          <pre><code class="hljs coq">Definition eta_sigma `{P : A -&gt; Type} (u : sigT P)
   : (u.1; u.2) = u
   := 1.</code></pre>
           <p class="exercise">
@@ -741,7 +741,7 @@ Defined.</code></pre>
             p_\star(u, z) = (p_\star(u), \texttt{pair}^=(p, \texttt{refl}_{p_\star(u)})(z))
             $$
           </p>
-          <pre><code class="coq">(** Dependent transport is the same as transport along a [path_sigma]. *)
+          <pre><code class="hljs coq">(** Dependent transport is the same as transport along a [path_sigma]. *)
 Definition transportD_is_transport
            {A : Type} (B : A-&gt;Type) (C: sigT B -&gt; Type)
            (x1 x2 : A) (p : x1 = x2) (y : B x1) (z : C (x1 ; y))
@@ -762,7 +762,7 @@ Defined.</code></pre>
           <p>
             It's tempting to do this proof by $\mathbb{1}$-induction, but we'd get stuck and be unable to perform a path induction on $p : \star = \star$. A function $(x = y) \rightarrow \mathbb{1}$ is easy to define by sending everything to $\star$. We may assume, by path induction, that $x = y = \star$, in which case, we have $\texttt{refl}_\star : x = y$, yielding a constant function $\mathbb{1} \rightarrow (x = y)$. To show the inverses, consider an element $u : \mathbb{1}$, and safely assume that $u = \star$, but this is also the result of the composite $\mathbb{1} \rightarrow (x = y) \rightarrow \mathbb{1}$.
           </p>
-          <pre><code class="coq">Definition equiv_path_unit (z z' : Unit) : Unit &lt;~&gt; (z = z')
+          <pre><code class="hljs coq">Definition equiv_path_unit (z z' : Unit) : Unit &lt;~&gt; (z = z')
   := Build_Equiv _ _ (path_unit_uncurried z z') _.</code></pre>
           <p class="exercise">
             $\Pi$-types and functional extensionality
@@ -786,7 +786,7 @@ Defined.</code></pre>
           <p>
             We can regard this as an introduction rule for the type $f = g$.
           </p>
-          <pre><code class="coq">Definition path_forall `{Funext} {A : Type} {P : A -&gt; Type} (f g : forall x : A, P x) :
+          <pre><code class="hljs coq">Definition path_forall `{Funext} {A : Type} {P : A -&gt; Type} (f g : forall x : A, P x) :
   f == g -&gt; f = g
   :=
   (@apD10 A P f g)^-1.</code></pre>
@@ -832,7 +832,7 @@ Defined.</code></pre>
             (p_\star(f) = g) \simeq \Pi_{x : A(x)} (p_\star(f(a)) = g(p_\star(a)))
             $$
           </p>
-          <pre><code class="coq">(** Usually, a dependent path over [p:x1=x2] in [P:A-&gt;Type] between [y1:P x1] and [y2:P x2]
+          <pre><code class="hljs coq">(** Usually, a dependent path over [p:x1=x2] in [P:A-&gt;Type] between [y1:P x1] and [y2:P x2]
 is a path [transport P p y1 = y2] in [P x2].  However, when [P] is a function space,
 these dependent paths have a more convenient description: rather than transporting
 the argument of [y1] forwards and backwards, we transport only forwards but on both sides
@@ -881,7 +881,7 @@ Defined.</code></pre>
           <p>
             defined as follows.
           </p>
-          <pre><code class="coq">Definition equiv_path (A B : Type) (p : A = B) : A &lt;~&gt; B
+          <pre><code class="hljs coq">Definition equiv_path (A B : Type) (p : A = B) : A &lt;~&gt; B
   := Build_Equiv _ _ (transport (fun X:Type =&gt; X) p) _.</code></pre>
           <p class="exercise">
             The <mark>univalence axiom</mark> can be stated as the $\texttt{idtoequiv}$ being an equivalene.
@@ -891,7 +891,7 @@ Defined.</code></pre>
             (A =_\mathscr{U} B) \simeq (A \simeq B)
             $$
           </p>
-          <pre><code class="coq">Definition equiv_equiv_path  (A B : Type) : (A = B) &lt;~&gt; (A &lt;~&gt; B)
+          <pre><code class="hljs coq">Definition equiv_equiv_path  (A B : Type) : (A = B) &lt;~&gt; (A &lt;~&gt; B)
   := (equiv_path_universe A B)^-1%equiv.</code></pre>
           <p>
             As previously done, it is fruitful to break up this equivalence into:
@@ -1026,14 +1026,14 @@ Defined.</code></pre>
           <p class="exercise">
             We now dump some lemmas for $\texttt{transport}$:
           </p>
-          <pre><code class="coq">Definition transport_paths_FlFr {A B : Type} {f g : A -&gt; B} {x1 x2 : A}
+          <pre><code class="hljs coq">Definition transport_paths_FlFr {A B : Type} {f g : A -&gt; B} {x1 x2 : A}
   (p : x1 = x2) (q : f x1 = g x1)
   : transport (fun x =&gt; f x = g x) p q = (ap f p)^ @ q @ (ap g p).
 Proof.
   destruct p; simpl.
   exact ((concat_1p q)^ @ (concat_p1 (1 @ q))^).
 Defined.</code></pre>
-          <pre><code class="coq">Definition transport_paths_FlFr_D {A : Type} {B : A -&gt; Type}
+          <pre><code class="hljs coq">Definition transport_paths_FlFr_D {A : Type} {B : A -&gt; Type}
   {f g : forall a, B a} {x1 x2 : A} (p : x1 = x2) (q : f x1 = g x1)
 : transport (fun x =&gt; f x = g x) p q
   = (apD f p)^ @ ap (transport B p) q @ (apD g p).
@@ -1041,7 +1041,7 @@ Proof.
   destruct p; simpl.
   exact ((ap_idmap _)^ @ (concat_1p _)^ @ (concat_p1 _)^).
 Defined.</code></pre>
-          <pre><code class="coq">Definition transport_paths_lr {A : Type} {x1 x2 : A} (p : x1 = x2) (q : x1 = x1)
+          <pre><code class="hljs coq">Definition transport_paths_lr {A : Type} {x1 x2 : A} (p : x1 = x2) (q : x1 = x1)
   : transport (fun x =&gt; x = x) p q = p^ @ q @ p.
 Proof.
   destruct p; simpl.
@@ -1081,7 +1081,7 @@ Defined.</code></pre>
           <p class="exercise">
             For all $m, n : \mathbb{N}$, we have $(m = n) \simeq \texttt{code}(m, n)$
           </p>
-          <pre><code class="coq">Definition equiv_path_nat {n m} : (n =n m) &lt;~&gt; (n = m)
+          <pre><code class="hljs coq">Definition equiv_path_nat {n m} : (n =n m) &lt;~&gt; (n = m)
   := Build_Equiv _ _ (@path_nat n m) _.</code></pre>
           <h2 id="universal-properties">
             Universal properties
@@ -1113,11 +1113,11 @@ Defined.</code></pre>
           <p>
             defined as before.
           </p>
-          <pre><code class="coq">(* First, a positive version of the universal property *)
+          <pre><code class="hljs coq">(* First, a positive version of the universal property *)
 Definition equiv_prod_ind `(P : A * B -&gt; Type)
   : (forall (a : A) (b : B), P (a, b)) &lt;~&gt; (forall p : A * B, P p)
   := Build_Equiv _ _ (prod_ind P) _.</code></pre>
-          <pre><code class="coq">(* Now the negative universal property. *)
+          <pre><code class="hljs coq">(* Now the negative universal property. *)
 Definition prod_coind_uncurried `{A : X -&gt; Type} `{B : X -&gt; Type}
   : (forall x, A x) * (forall x, B x) -&gt; (forall x, A x * B x)
   := fun fg x =&gt; (fst fg x, snd fg x).</code></pre>

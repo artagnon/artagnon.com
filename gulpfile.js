@@ -5,7 +5,7 @@ const minify = require("gulp-minify");
 
 function css() {
   return src([
-    "design/all.css",
+    "design/style.css",
   ])
     .pipe(cleanCSS())
     .pipe(concat("style.min.css"))
