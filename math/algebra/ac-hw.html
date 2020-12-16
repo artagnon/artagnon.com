@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>[ac/hw] Commutative Algebra: Homework | artagnon.com</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="/dist/favicon.ico" />
+    <link rel="stylesheet" href="/dist/style.min.css" />
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"],
+      "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} },
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+      TeX: {extensions: ["/dist/xypic.min.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel=&#39;stylesheet&#39;" />
+    <noscript>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" />
+    </noscript>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/haskell.min.js"></script>
+    <script defer="" src="/dist/script.min.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <nav>
+        <ul>
+          <li>
+            <a href="/index">home</a>
+          </li>
+          <li>
+            <a href="/HoTT">HoTT</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/math">math</a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <header>
+          <h1>
+            [ac/hw] Commutative Algebra: Homework
+          </h1>
+          <div id="metadata">
+            <span id="timestamp"><time datetime="2020-12-16" class="begin">Wed, 16 Dec 2020 10:33:15 +0100</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:33:15 +0100</time></span><br /><span id="locations"><address></address></span>
+          </div>
+        </header>
+        <article>
+          <h2 id="ideals">
+            Ideals
+          </h2>
+          <p class="exercise">
+            Prove that a variety $X$ is irreducible if $I(X)$ is a prime ideal.
+          </p>
+          <p class="indent">
+            The definition of an irreducible variety is as follows. Let $X_1$ and $X_2$ be two varieties. $$X = X_1 \cup X_2 \implies X = X_1 \vee X = X_2$$
+          </p>
+          <p>
+            Proof: Let us proceed using proof by contradiction, and assume that $I$ is not prime. Let $f$ and $g$ be two prime ideals; i.e. $fg \in I \implies f, g \in A \backslash I$, for ring $A$. Now, define:<br/>
+            $$J_1 = (I, f), J_2 = (I, g)$$
+          </p>
+          <p>
+            Then,<br/>
+            $$V(J_1) \subsetneq X, V(J_2) \subsetneq X$$
+          </p>
+          <p>
+            which yields $X = V_1 \cup V_2$, a reducible, as required $\Box$
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            If $x$ is nilpotent $\iff 1 - x$ is unit.
+          </p>
+          <p>
+            Proof: $(1 - x)(1 + x + \ldots + x^{n - 1}) = 1$; by binomial expansion, $x^n = 0$ $\Box$
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Prove that $f = a_0 + \ldots + a_n x^n \in A[x]$ is unit iff $a_1, \ldots, a_n$ are nilpotent, and $a_0$ is unit.
+          </p>
+          <p>
+            Proof: Let $fg = 1$, where $g = \sum_m b_i x^i$. Clearly, $a_0, b_0$ are units, and by collecting terms, we get:
+          </p>
+          <p class="mathjax">
+            $$
+            a_n b_m = 0 \\
+            a_{n - 1} b_m + a_n b_{m - 1} = 0 \implies {a_n}^2 b_{m - 1} = 0 \\
+            \ldots \implies {a_n}^{m - 1} b_0 = 0
+            $$
+          </p>
+          <p>
+            Since $b_0 = 1$, it follows that ${a_n}^{m - 1} = 0$, which means $a_n$ is nilpotent. By induction, we can prove that all $a_i$s for $i &gt; 0$ are nilpotent $\Box$
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Prove that, in $A[x]$, the Jacobson radical is equal to the nilradical.
+          </p>
+          <p>
+            Proof: Let $f = a_0 + \ldots + a_n x^n \in \mathfrak{R}$. Then, $1 + xf$ is unit, and by the previous problem, $a_1, \ldots, a_n$ are all nilpotent, implying $\mathfrak{R} = \mathfrak{N}$ $\Box$
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Let $A$ be a ring, and $\mathfrak{N}$ be its nilradical. Then, show that the following are equivalent:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $A$ has exactly one prime ideal.
+            </li>
+            <li>
+              Every element of $A$ is either unit or nilpotent.
+            </li>
+            <li>
+              $A/\mathfrak{N}$ is a field.
+            </li>
+          </ol>
+          <p>
+            Proof: (i) implies that there is exactly one maximal ideal, since every ideal must be contained within some maximal ideal: then, let $\mathfrak{p} = \mathfrak{m}$ be this prime/maximal ideal. (iii) follows immediately, since, $A/\mathfrak{m}$ is a field (see <a href="/ra/hw">ra/hw</a>).
+          </p>
+          <p>
+            It follows from (i) that $A$ is a local ring with maximal ideal $\mathfrak{m}$. Let $x \in A - \mathfrak{m}$. The ideal generated by $x$ and $\mathfrak{m}$ is $A$, since $\mathfrak{m}$ is maximal. Let $y \in A, t \in \mathfrak{m}$, then $xy + t = 1 \implies xy = 1 - t \in 1 + \mathfrak{m}$, and hence $xy = 1 \implies y = 1/x$. This implies (ii), since every element $y \in A$ is invertible.
+          </p>
+          <p>
+            Starting from (iii), we know that the only ideals of $A/\mathfrak{N}$ are $(0)$ and $(1)$, by definition of a field. Hence, elements $x \in A$ are of the form $x + (0)$ and $x + (1)$; the second coset generates the entire ring, while the first coset generates the single ideal in $A$, and (i) follows from this $\Box$
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Let ring $A$ be such that every ideal not contained in the nilradical contains a nonzero idempotent (i.e. $e^2 = e \neq 0$). Prove that $\mathfrak{N} = \mathfrak{R}$.
+          </p>
+          <p>
+            Proof: $e \in \mathfrak{N} \iff 1 - ey$ is unit, for some $y \in A$, but $e \notin \mathfrak{R}$. Inverting logic, we get $e \notin \mathfrak{N} \iff 1 - ey$ is not unit. Now, plugging $y = e = e^2 \neq 0$, we get $1 - e$ is not unit $\implies 1 - e$ must be contained in some maximal ideal $\implies e$ must be contained in every maximal ideal, and we arrive at our contradiction $\Box$
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Let $I$ be an ideal in ring $A$ that is $\neq (1)$. Then, show that $I = \sqrt{I} \iff I$ is an intersection of prime ideals.
+          </p>
+          <p>
+            Proof: $\sqrt{I} = \{x \in A \mid \exists n \gt 0 : x^n \in I\}$, by definition. Now suppose, for $p \in A$, $x^n = p \neq 0$. Then, $px \in I$, by definition of an ideal, and the chain would not terminate at $n$. Hence, $\forall x \in I, x^n = 0$, and this is exactly the definition of the set of nilpotent elements.
+          </p>
+          <p>
+            Proof, the other way: $I$ is the set of nilpotent elements. Let $x \in I$ be any element; then, $\exists n : x^n = 0 \in I$. Since every element of $I$ is of this form, $I = \sqrt{I}$ $\Box$
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Prove that a local ring contains no idempotent $\neq 0, 1$.
+          </p>
+          <p>
+            Proof: A local ring is defined as having exactly one maximal ideal, $\mathfrak{m}$. Consider idempotent $e \in \mathfrak{m} \implies 1 - e^2$ is unit, and is not contained within $\mathfrak{m}$. Since $e$ is idempotent, $1 - e$ is unit as well. Now, since $\mathfrak{m}$ and $1 - e$ must generate $(1)$, $e(1 - e) = 1 \implies e = 0 \vee e = 1$ $\Box$
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            A ring is boolean if $x^2 = x$ for all $x \in A$. Show that in a Boolean ring $A$:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $2x = 0$, for all $x \in A$.
+            </li>
+            <li>
+              Every prime ideal $\mathfrak{p}$ is maximal, and $A/\mathfrak{p}$ is a field with two elements.
+            </li>
+            <li>
+              Every finitely generated ideal in $A$ is principal.
+            </li>
+          </ol>
+          <p>
+            Proof: To prove (ii), let $x + P \in A/\mathfrak{p}, x \notin \mathfrak{p}$. Then, $x(x - 1) = 0 \in \mathfrak{p}$. Since $\mathfrak{p}$ is prime, and $x \notin \mathfrak{p}$, $x - 1 \in P$ implying that $x + \mathfrak{p}$ is invertible, and hence $A/\mathfrak{p}$ is a field.
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Let $A$ be a ring, and $X$ the set of all prime ideals of $A$. For each subset $E$ of $A$, let $V(E)$ denote the set of all prime ideals of $A$ which contain $E$. Prove that:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              If $I$ is the ideal generated by $E$, then $V(E) = V(I) = V(\sqrt{I})$.
+            </li>
+            <li>
+              $V(0) = X, V(1) = \phi$.
+            </li>
+            <li>
+              If $(E_q)_{q \in Q}$ is the family of subsets of $A$ then: $$V \left(\bigcup_{q \in Q} E_q \right)= \bigcap_{q \in Q} V(E_q)$$
+            </li>
+            <li>
+              $V(I \cap J) = V(IJ) = V(I) \cup V(J)$, for ideals $I, J$.
+            </li>
+          </ol>
+          <p>
+            These results show that $V(E)$ satisfy the axioms for a closed set in a topological space. The resulting topology is called a <mark>Zariski topology</mark>, and $X$ is called the <mark>prime spectrum</mark> of $A$, written $\text{Spec}(A)$.
+          </p>
+          <p>
+            Proof:
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Prove that $\text{Spec } A$ is irreducible iff $\mathfrak{N}$ of $A$ is a prime ideal.
+          </p>
+          <hr class="horizrule" />
+          <h2 id="modules">
+            Modules
+          </h2>
+          <p class="exercise">
+            Prove that $(\mathbb{Z}/m\mathbb{Z}) \otimes_Z (\mathbb{Z}/n\mathbb{Z}) = 0$ if $m, n$ are coprime.
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Let $A$ be a ring, $I$ and ideal, and $M$ a module. Prove that $(A/I) \otimes_A M$ is isomorphic to $M/IM$.
+          </p>
+          <p>
+            Proof: Tensor exact sequence $0 \rightarrow I \rightarrow A \rightarrow A/I \rightarrow 0$ with $M$.
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Let $M, N$ be finitely-generated $A$-modules. If $M \otimes N = 0$ show that $M = 0$ or $N = 0$.
+          </p>
+          <p>
+            Proof: Let $\mathfrak{m}$ be a maximal ideal, and $k = A/\mathfrak{m}$ the reside field. Let $M_k = k \otimes_A M \cong M/\mathfrak{m} M$. By Nakayama's lemma, $M_k = 0 \implies M = 0$. But $M \otimes_A N = 0 \implies (M \otimes_A N)_k = 0 \implies M_k \otimes_k N_k = 0$, which in turn implies $M_k = 0$ or $N_k = 0$ since $M_k, N_k$ are vector spaces over a field.
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Let $M_i$ be a family of $A$-modules, and $M$ be their direct sum. Then, prove $M$ is flat $\iff$ each $M_i$ is flat.
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            If $\mathfrak{p}$ is a prime ideal in $A$, prove that $\mathfrak{p}[x]$ is a prime ideal in $A[x]$.
+          </p>
+          <hr class="horizrule" />
+          <h2 id="rings-of-fractions">
+            Rings of fractions
+          </h2>
+          <p class="exercise">
+            If $S$ is a multiplicatively closed set of ring $A$, and $M$ a finitely-generated $A$-module, prove that $S^{-1} A = 0$ iff there exists $s \in S$ such that $sM = 0$.
+          </p>
+          <hr class="horizrule" />
+          <p class="exercise">
+            Let $I$ be an ideal of ring $A$, and $S = 1 + I$. Show that $S^{-1} I$ is contained within the Jacobson radical of $S^{-1} A$. Use this and Nakayama's lemma to show that there exists $x \equiv 1 \text{ mod } I$ such that $xM = 0$, when $IM = M$.
+          </p>
+          <p>
+            Proof: To prove the second part, notice that if $M = IM$, then $S^{-1} M = (S^{-1} I)(S^{-1} M)$, hence by Nakayama's lemma, we have $S^{-1} M = 0$. Now, from the previous exercise,
+          </p>
+        </article>
+      </main>
+    </div>
+  </body>
+</html>
