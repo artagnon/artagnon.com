@@ -82,7 +82,7 @@
           <p>
             A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -108,7 +108,7 @@
           <p>
             The typical example is to think of two non-comparable subsets of a set. With identity arrows omitted, this looks like:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -129,7 +129,7 @@
               Anti-symmetry: whenever $pRq$ and $qRp$, we have $p = q$.
             </li>
           </ol>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -164,7 +164,7 @@
               Connexity: For all $p$, $q \in \mathcal{C}$, <mark>pRq</mark> or <mark>qRp</mark>.
             </li>
           </ol>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -178,7 +178,7 @@
           <p>
             Using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -195,7 +195,7 @@
           <p>
             Let us now consider categories with more than one arrow between two objects. A <mark>monoid</mark> is defined as an algebraic structure $(M, \circ, \mathbb{1})$ where $\circ$ is a function from $M \times M \rightarrow M$. A monoid naturally gives rise to a category with just one object: $M$. We can instantiate it with $M = \mathbb{N}$, $\circ = +$, and $\mathbb{1} = 0$ to obtain the familiar notion of addition of natural numbers:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -207,7 +207,7 @@
             
             $$
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -236,7 +236,7 @@
           <p>
             Before introducing comma categories, let us briefly introduce arrow categories as a prerequisite. An <mark>arrow category</mark> $\textbf{Set}^\rightarrow$ has as objects, the functions $f : A \rightarrow B$, and arrows between objects $f : A \rightarrow B$ and $g : C \rightarrow D$, the pair of arrows $\langle h, k\rangle$ such that the following diagram commutes:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -251,7 +251,7 @@
           <p>
             A <mark>comma category</mark> can be viewed as a special case of an arrow categories with fixed domain or codomain. $\textbf{Set} \downarrow \mathbb{R}$ is the category of real-valued functions; the codomain of the category is fixed to $\mathbb{R}$. An arrow from $f: A \rightarrow \mathbb{R}$ to $g: B \rightarrow \mathbb{R}$ is the arrow $k: A \rightarrow B$ that makes the following commute:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -266,7 +266,7 @@
           <p>
             $\textbf{Set} \downarrow \mathbb{R}$ can be construed to a $\textbf{Set}^\rightarrow$ as follows:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -281,7 +281,7 @@
           <p>
             Similarly, we can define $\mathcal{C} \uparrow a$ to be a comma category with a fixed domain instead of codomain:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -299,7 +299,7 @@
           <p>
             To work our way up to <mark>subobject classifiers</mark>, we need to build some prerequisite material. First, let us introduce the notion of <mark>monic</mark> and <mark>epic</mark> arrows, corresponding to injective and surjective functions in $\textbf{Set}$. $f$ is injective if $f(x) = f(y) \implies x = y$, and surjective if $\forall y, \exists x : y = f(x)$.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -314,7 +314,7 @@
           <p>
             If $f$ is monic, indicated as $f : b \rightarrowtail c$, the diagram above commutes, and $(f \circ g)(x) = (f \circ h)(x) = f(g(x)) = f(h(x)) \implies g = h$. In other words, a monic is said to be <mark>left-cancelable</mark>.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -330,7 +330,7 @@
           <p class="exercise">
             If $g \circ f$ is monic, so is $f$.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -356,7 +356,7 @@
           <p class="exercise">
             $f \circ g$ is iso, if $f$ and $g$ are, with $(f \circ g)^{-1} = g^{-1} \circ f^{-1}$.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -383,7 +383,7 @@
           <p class="exercise">
             $\mathbb{1} \rightarrow a$ is monic.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -401,7 +401,7 @@
           <p class="exercise">
             $\langle \texttt{pr}_a, \texttt{pr}_b\rangle = \mathbb{1}_{a \times b}$.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -421,7 +421,7 @@
           <p class="exercise">
             If $\langle f, g\rangle = \langle k, h\rangle$, then $f = k$ and $g = h$.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -437,7 +437,7 @@
           <p>
             By definition of product, since this diagram commutes,
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \begin{matrix}
               p &=& \texttt{pr}_A \circ \langle f, g \rangle = f \\
@@ -457,7 +457,7 @@
           <p>
             The following diagram commutes:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -473,7 +473,7 @@
           <p>
             yielding:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \begin{matrix}
               p = f \circ h = \texttt{pr}_A \circ \langle f, g\rangle \circ h \\
@@ -484,7 +484,7 @@
           <p>
             Combining $\texttt{pr}_A$ and $\texttt{pr}_B$, we get:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \langle f, g\rangle \circ h = \langle f \circ h, g \circ h\rangle
             $$
@@ -496,7 +496,7 @@
           <p>
             For isomorphism, there needs to exist $f : a \rightarrow b$ and $g : b \rightarrow a$, such that $f \circ g = g \circ f = \mathbb{1}$. From the diagram, we see that this is indeed the case:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{

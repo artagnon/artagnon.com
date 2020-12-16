@@ -78,7 +78,7 @@
           <p>
             there is a dependent function:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ind_{=A}(D, d) : \Pi_{x, y : A} \Pi_{p : x = y} D(x, y, p)
             $$
@@ -86,7 +86,7 @@
           <p>
             such that
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ind_{=A}(D, d, a, a, \texttt{refl}_a) \equiv d(a)
             $$
@@ -103,7 +103,7 @@
           <p class="exercise">
             To state our first lemma:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Pi_{A : \mathscr{U}} \Pi_{x, y : A} (x = y) \rightarrow (y = x)
             $$
@@ -114,7 +114,7 @@
           <p class="exercise">
             To state our second lemma:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
             $$
@@ -151,7 +151,7 @@
           <p>
             First, notice that $\Omega A \times \Omega A \rightarrow \Omega A$ induces an operation:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \star : \Omega^2(A) \times \Omega^2(A) \rightarrow \Omega^2(A)
             $$
@@ -159,7 +159,7 @@
           <p>
             In the following diagram,
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \begin{matrix}
                 p : a = b & q : a = b \\
@@ -168,7 +168,7 @@
               \end{matrix}
             $$
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -184,7 +184,7 @@
           <p>
             Composing the two upper and lower paths, we get $p \circ r, q \circ s : a = c$. The horizontal composition can be written as $\alpha \star \beta : p \circ r = q \circ s$ defined as follows. First, we define $\alpha \circ_r r = p \circ_r = q \circ r$ by path induction on $r$ so that
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \alpha \circ_r \texttt{refl}_b \equiv \texttt{ru}_p^{-1} \circ \alpha \circ \texttt{ru}_q
             $$
@@ -192,7 +192,7 @@
           <p>
             where $\texttt{ru}_p = p \circ \texttt{refl}_b$ is the right unit lemma, which we previously mentioned. We can also define $q \circ_l \beta : q \circ r = q \circ s$ by induction on $q$ so that
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{refl}_b \circ_l \beta \equiv \texttt{lu}_r^{-1} \circ \beta \circ \texttt{lu}_s
             $$
@@ -210,7 +210,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             Next, since $\alpha \circ_r r$ and $q \circ_l \beta$ are composable 2-paths, we can define horizontal composition by:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \alpha \star \beta :\equiv (\alpha \circ_r r)(q \circ_l \beta)
             $$
@@ -218,7 +218,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             Now, suppose that $a \equiv b \equiv c$ so that all paths $p, q, r, s$ are elements of $\Omega(A, a)$, and assume moreover that $p \equiv q \equiv r \equiv s \equiv \texttt{refl}_a$, so that $\alpha : \texttt{refl}_a = \texttt{refl}_a$ and $\beta : \texttt{refl}_a = \texttt{refl}_a$ are composable in both orders. In this case, we have:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \alpha \star \beta = \alpha \circ \beta = \alpha \star' \beta = \beta \circ \alpha
             $$
@@ -240,7 +240,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             Given a pointed type $(A, a)$, we can define the <mark>loop space</mark> of $(A, a)$ to be the following pointed type:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Omega(A, a) :\equiv ((a =_A a), \texttt{refl}_a)
             $$
@@ -248,7 +248,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             An element of it will be called a <mark>loop</mark> at a. For $n : \mathbb{N}$, the <mark>n-fold iterated loop space</mark> $\Omega^n(A, a)$ of a pointed type $(A, a)$ is defined recursively by:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Omega^0(A, a) :\equiv (A, a) \\
               \Omega^{n + 1}(A, a) :\equiv \Omega^n(\Omega(A, a))
@@ -266,7 +266,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p class="exercise">
             Given function $f : A \rightarrow B$, then for $x, y : A$, there is an operation
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(y))
             $$
@@ -311,7 +311,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             Let $D : \Pi_{x, y : A}(x = y) \rightarrow \mathscr{U}$ be the type family defined by:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             D(x, y, p) :\equiv P(x) \rightarrow P(y)
             $$
@@ -319,7 +319,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             then we have the function
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             d :\equiv \lambda x . \texttt{id}_{P(x)} : \Pi_{x : A} D(x, x, \texttt{refl}_x)
             $$
@@ -330,7 +330,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p>
             Sometimes, it is necessary to notate the type family $P$ in which the transport operation happens:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{transport}^P(p, -) : P(x) \rightarrow P(y)
             $$
@@ -346,7 +346,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p class="exercise">
             We now state <mark>path lifting property</mark> without proof. Let $P : A \rightarrow \mathscr{U}$ be a type family over $A$, and assume we have $u : P(x)$ for some $x : A$. Then, for $p : x = y$, we have:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{lift}(u, p) : (x, y) = (y, p_\star(u))
             $$
@@ -372,7 +372,7 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
           <p class="exercise">
             <mark>Dependent map</mark>. Suppose $f : \Pi_{x : A} P(x)$, we have a map
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{apd}_f : \Pi_{p : x = y} p_\star(f(x)) =_{P(y)} f(y)
             $$
@@ -392,7 +392,7 @@ Definition apD {A : Type} {B : A-&gt;Type} (f : forall a: A, B a) {x y : A} (p :
           <p>
             We prove it as follows. Let $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$ be the type family defined by
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             D(x, y, p) :\equiv p_\star(f(x)) = f(y)
             $$
@@ -400,7 +400,7 @@ Definition apD {A : Type} {B : A-&gt;Type} (f : forall a: A, B a) {x y : A} (p :
           <p>
             Then $D(x, x, \texttt{refl}_x)$ is ($\texttt{refl}_x)_\star = f(x)$. Then we get $D(x, x, \texttt{refl}_x) \equiv f(x) = f(x)$. Thus, we find the function:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             d :\equiv \lambda x . \texttt{refl}_{f(x)} : \Pi_{x : A} D(x, x, \texttt{refl}_x)
             $$
@@ -414,7 +414,7 @@ Definition apD {A : Type} {B : A-&gt;Type} (f : forall a: A, B a) {x y : A} (p :
           <p class="exercise">
             If $P : A \rightarrow \mathscr{U}$ is defined by $P(x) :\equiv B$ for a fixed $B : \mathscr{U}$, then for any $x, y : A$, $p : x = y$, and $b : B$, we have a path:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{transportconst}^B_P(b) : \texttt{transport}^P(p, b) = b
             $$
@@ -434,7 +434,7 @@ Defined.</code></pre>
           <p>
             By concatenating $\texttt{transportconst}$ and its inverse, we obtain:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             f(x) = f(y) \rightarrow p_\star(f(x) = f(y)) \\
               p_\star(f(x) = f(y)) \rightarrow f(x) = f(y)
@@ -472,7 +472,7 @@ Defined.</code></pre>
           <p>
             It is now time to talk about identifications between types and functions. For two functions to be equal, they must agree on every element in their domains. Let $f, g : \Pi_{x : A} P(x)$ be two sections of of the type family $P : A \rightarrow \mathscr{U}$. A homotopy from $f$ to $g$ is the dependent function:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             f \sim g :\equiv \Pi_{x : A} f(x) = g(x)
             $$
@@ -483,7 +483,7 @@ Defined.</code></pre>
           <p>
             Just as functions in type theory are automatically functors, homotopies are automatically natural transforms:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Pi_{f : \Pi_{x : A} P(x)} (f \sim f) \\
               \Pi_{f, g : \Pi_{x : A} P(x)} (f \sim g) \rightarrow (g \sim f) \\
@@ -493,7 +493,7 @@ Defined.</code></pre>
           <p class="exercise">
             Suppose $H : f \sim g$ is a homotopy between functions $f, g : A \rightarrow B$ and let $p : x =_A y$. Then we have:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             H(x) \circ g(p) = f(p) \circ H(y)
             $$
@@ -501,7 +501,7 @@ Defined.</code></pre>
           <p>
             We may also draw the commutative diagram:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -516,7 +516,7 @@ Defined.</code></pre>
           <p>
             To supply a proof by induction, we may assume that $p$ is $\texttt{refl}_x$. Since $\texttt{ap}_f$ and $\texttt{ap}_g$ compute on reflexivity, in this case, what we must show is:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             H(x) \circ \texttt{refl}_{g(x)} = \texttt{refl}_{f(x)} \circ H(x)
             $$
@@ -534,7 +534,7 @@ Definition concat_Ap {A B : Type} {f g : A -&gt; B} (p : forall x, f x = g x) {x
           <p class="exercise">
             Let $H : f \sim \texttt{id}_A$ be a homotopy with $f : A \rightarrow A$. Then for any $x : A$, we have:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
               \begin{xy}
               \xymatrix{
@@ -549,7 +549,7 @@ Definition concat_Ap {A B : Type} {f g : A -&gt; B} (p : forall x, f x = g x) {x
           <p>
             That is, $f(H x) \circ H x = H(f x) \circ H x$. We can now whisker by $(H x)^{-1}$ to cancel $H x$ obtaining:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             f(H x) = f(H x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x)
             $$
@@ -564,7 +564,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
           <p>
             Moving onto types from a traditional perspective, one may say that a function $f : A \rightarrow B$ is an <mark>isomorphism</mark> if there is a function $g : B \rightarrow A$ such that composites $f \circ g \sim \texttt{id}_B$ and $g \circ f \sim \texttt{id}_A$. A homotopical perspective suggests that this should be called a homotopy equivalence, and equivalence of higher groupoids from a category theoretic perspective. However, the type
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Sigma_{g : B \rightarrow A} (f \circ g \sim \texttt{id}_B) \times (g \circ f \sim \texttt{id}_A)
             $$
@@ -592,7 +592,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
           <p>
             Later, we will see many different definitions of $\texttt{isequiv}(f)$, all of which satisfy these properties. For now, let us be satiated with the easiest such definition:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{isequiv}(f) :\equiv (\Sigma_{g : B \rightarrow A} f \circ g \sim \texttt{id}_B) \times (\Sigma_{h : B \rightarrow A} h \circ f \sim \texttt{id}_A)
             $$
@@ -600,7 +600,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
           <p>
             For the moment, the main takeaway is that we have a well-defined meaning for "$f$ is an equivalence" by exhibiting a quasi-inverse to it. We can write
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             A \simeq B :\equiv \Sigma_{f : A \rightarrow B} \texttt{isequiv(f)}
             $$
@@ -625,7 +625,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
           <p>
             The goal now is to form new types corresponding to the type theoretic ones from our <a href="/HoTT/1">previous note</a>. For instance, a cartesian product $A = B \times C$, $x :\equiv (b, c)$, $y :\equiv (b', c')$, then we have:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (b, c) = (b', c') \simeq (b = b') \times (c = c')
             $$
@@ -633,7 +633,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
           <p>
             In more traditional language, two ordered pairs are equal just when their components are equal. The higher structure of identity types can also be expressed in terms of those equivalences. Similarly, when a type family $P : A \rightarrow \mathscr{U}$ is built up fiberwise, up to homotopy, in terms of the corresponding operations on the data that went into $P$. For instance, $P(x) = B(x) \times C(x)$. Then, we have:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{transport}^P(p, (b, c)) = (\texttt{transport}^B(p, b), \texttt{transport}^C(p, c)
             $$
@@ -653,7 +653,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
           <p>
             We have the following function which we will prove is an equivalence by exhibiting its quasi-inverse:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (x =_{A \times B} y) \rightarrow (\texttt{pr}_1(x) =_A \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) =_B \texttt{pr}_2(y))
             $$
@@ -664,7 +664,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
           <p>
             We can now denote this by
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{pair}^= : (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) = \texttt{pr}_2(y)) \rightarrow x = y
             $$
@@ -672,7 +672,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
           <p>
             It can be helpful view $\texttt{pair}^=$ as an <mark>introduction rule</mark> for $x = y$.  to The elimination rules can then be written out as:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{ap}_{pr_1} : (x = y) \rightarrow (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \\
               \texttt{ap}_{pr_2} : (x = y) \rightarrow (\texttt{pr}_2(x) = \texttt{pr}_2(y))
@@ -681,7 +681,7 @@ Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : 
           <p>
             For $p : \texttt{pr}_1 x = \texttt{pr}_1 y$ and $q : \texttt{pr}_2 x = \texttt{pr}_2 y$, we get the following <mark>propositional uniqueness principle</mark>:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             r = \texttt{pair}^=(\texttt{ap}_{pr_1}(r), \texttt{ap}_{pr_2}(r)) \quad r : x =_{A \times B} y
             $$
@@ -704,7 +704,7 @@ Defined.</code></pre>
           <p>
             Suppose we have a path $p : w = w'$ in $\Sigma_{x : A} P(x)$. Then, we get $\texttt{pr}_1(p) : \texttt{pr}_1(w) = \texttt{pr}_1(w')$. However, we cannot ask if $\texttt{pr}_1(w)$ is identical to $\texttt{pr}_1(w')$, since they don't have the same type, but we can transport $\texttt{pr}_2(w)$ along the path $\texttt{pr}_1(p)$, and this gives us an element of the same type as $\texttt{pr}_2(w')$. By path induction, we obtain the path $\texttt{pr}_1(p)_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))$, which we can regard as the type of paths from $\texttt{pr}_2(w)$ to $\texttt{pr}_2(w')$.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (w = w') \simeq \Sigma_{p : \texttt{pr}_1(w) = \texttt{pr}_1(w')} p_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))
             $$
@@ -721,7 +721,7 @@ Defined.</code></pre>
           <p class="exercise">
             Suppose we have the type families $P : A \rightarrow \mathscr{U}$ and $Q : (\Sigma_{x : A} P(x)) \rightarrow \mathscr{U}$, then we can construct the type family over $A$ defined by:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             x \mapsto \Sigma_{u : P(x)} Q(x, u)
             $$
@@ -729,7 +729,7 @@ Defined.</code></pre>
           <p>
             For any path $p : x = y$, we have $(u, z) : \Sigma_{u : P(x)} Q(x, u)$, we have
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             p_\star(u, z) = (p_\star(u), \texttt{pair}^=(p, \texttt{refl}_{p_\star(u)})(z))
             $$
@@ -763,7 +763,7 @@ Defined.</code></pre>
           <p>
             We expect type $f = g$ of paths from $f$ to $g$ in $\Pi_{x : A} B(x)$ to be equivalent to the type of pointwise paths:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (f = g) \simeq \Pi_{x : A} (f(x) =_{B(x)} g(x))
             $$
@@ -771,7 +771,7 @@ Defined.</code></pre>
           <p>
             The <mark>functional extensionality</mark> axiom says that the above relation is an equivalence. This implies that there is a quasi-inverse:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{funext} : (\Pi_{x : a} f(x) = g(x)) \rightarrow (f = g)
             $$
@@ -786,7 +786,7 @@ Defined.</code></pre>
           <p>
             From this point of view, $\texttt{happly}$ is an elimination rule, while the homotopies witnessing $\texttt{funext}$ as quasi-inverse to $\texttt{happly}$ become a propositional computation rule:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{happly}(\texttt{funext}(h), x) = h(x) \quad h : \Pi_{x : A} (f(x) = g(x))
             $$
@@ -794,7 +794,7 @@ Defined.</code></pre>
           <p>
             and a propositional uniqueness principle,
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             p = \texttt{funext}(x \mapsto \texttt{happly}(p, x)) \quad p : f = g
             $$
@@ -802,7 +802,7 @@ Defined.</code></pre>
           <p>
             We can also compute identity, inverses, and compositions in $\Pi$-types; they are simply given by pointwise operations:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{refl}_f = \texttt{funext}(x \mapsto \texttt{refl}_{f(x)}) \\
               \alpha^{-1} = \texttt{funext}(x \mapsto \texttt{happly}(\alpha, x)^{-1}) \\
@@ -812,7 +812,7 @@ Defined.</code></pre>
           <p>
             For the non-dependent function $A \rightarrow B$, a special case of the corresponding dependent function, the rules for transport are quite straightforward:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{transport}^{A \rightarrow B}(p, f) = (x \mapsto \texttt{transport}^B(p, f(\texttt{transport}^A(p^{-1}, x))))
             $$
@@ -820,7 +820,7 @@ Defined.</code></pre>
           <p class="exercise">
             Given type families $A, B : X \rightarrow \mathscr{U}$, $p : x =_X y$, $f : A(x) \rightarrow B(x)$, and $g : A(y) \rightarrow B(y)$, we have an equivalence:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (p_\star(f) = g) \simeq \Pi_{x : A(x)} (p_\star(f(a)) = g(p_\star(a)))
             $$
@@ -843,7 +843,7 @@ Defined.</code></pre>
           <p>
             Moreover, if $q : p_\star(f) = g$ corresponds under this equivalence to $\hat{q}$, then for $a : A(x)$, the path
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{happly}(q, p_\star(a)) : p_\star(f)(p_\star(a)) = g(p_\star(a))
             $$
@@ -851,7 +851,7 @@ Defined.</code></pre>
           <p>
             is equal to the composite:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \begin{align*}
                 (p_\star(f))(p_\star(a)) &= p_\star(f(p^{-1}_\star(p_\star(a)) & (\texttt{by transport lemma}) \\
@@ -866,7 +866,7 @@ Defined.</code></pre>
           <p class="exercise">
             For types $A, B : \mathscr{U}$, there is a certain function
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{idtoequiv} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
             $$
@@ -879,7 +879,7 @@ Defined.</code></pre>
           <p class="exercise">
             The <mark>univalence axiom</mark> can be stated as the $\texttt{idtoequiv}$ being an equivalene.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (A =_\mathscr{U} B) \simeq (A \simeq B)
             $$
@@ -894,7 +894,7 @@ Defined.</code></pre>
               Introduction rule:
             </li>
           </ol>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{ua} : (A \simeq B) \rightarrow (A =_\mathscr{U} B)
             $$
@@ -904,7 +904,7 @@ Defined.</code></pre>
               Elimination rule:
             </li>
           </ol>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{idtoequiv} \equiv \texttt{transport}^{X \rightarrow X} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
             $$
@@ -914,7 +914,7 @@ Defined.</code></pre>
               Propositional computation rule:
             </li>
           </ol>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{transport}^{X \rightarrow X}(\texttt{ua}(f), x) = f(x)
             $$
@@ -924,7 +924,7 @@ Defined.</code></pre>
               Propositional equivalence principle, for any $p : A = B$
             </li>
           </ol>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             p = \texttt{ua}(\texttt{transport}^{X \rightarrow X}(p))
             $$
@@ -932,7 +932,7 @@ Defined.</code></pre>
           <p>
             We can also identify reflexvivity, concatenation, and inverses of equalities:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{refl}_A = \texttt{ua}(\texttt{id}_A) \\
               \texttt{ua}(f) \circ \texttt{ua}(g) = \texttt{ua}(g \circ f) \\
@@ -942,7 +942,7 @@ Defined.</code></pre>
           <p class="exercise">
             For any type family $B : A \rightarrow \mathscr{U}$ and $x, y : A$ with a path $p : x = y$ and $u : B(x)$, we have:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \begin{align*}
               \texttt{transport}^P(p, u) &= \texttt{transport}^{X \rightarrow X}(\texttt{ap}_B(p), u) \\
@@ -959,7 +959,7 @@ Defined.</code></pre>
           <p class="exercise">
             If $f : A \rightarrow B$ is an equivalence, then for all $a, a' : A$ so is:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{ap}_f : (a =_A a') \rightarrow (f(a) =_B f(a'))
             $$
@@ -967,7 +967,7 @@ Defined.</code></pre>
           <p>
             To prove this, let $f^{-1}$ be a quasi inverse of $f$ with the homotopies:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \alpha : \Pi_{b : B} f(f^{-1}(b)) = b \\
               \beta : \Pi_{a : A} f(f^{-1}(a)) = a
@@ -976,7 +976,7 @@ Defined.</code></pre>
           <p>
             The quasi-inverse of $ap_f$ is essentially:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{ap}_{f^{-1}} : (f(a) = f(a')) \rightarrow (f^{-1}(f(a)) = f^{-1}(f(a')))
             $$
@@ -984,7 +984,7 @@ Defined.</code></pre>
           <p>
             However, in order to obtain an element of $a =_A a'$ from $\texttt{ap}_{f^{-1}}(q)$ we must concatenate with $\beta_\alpha^{-1}$ and $\beta_{\alpha'}$ on either side. For $p : a =_A a'$ and $q : f(a) =_B f(a')$, we have:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \beta_\alpha^{-1} \circ \texttt{ap}_f(\texttt{ap}_f(p)) \circ \beta_{\alpha'} = p \\
               \texttt{ap}_f(\beta_\alpha^{-1} \circ \texttt{ap}_{f^-1}(a) \circ \beta_{\alpha'}) = q
@@ -996,7 +996,7 @@ Defined.</code></pre>
           <p>
             Thus, for some type $A$, we have a full characterizion of $a =_A a'$ and the type $p =_{a_{=A}} q$ is determined as well. For example, paths $p = q$ where $p, q : f =_{\Pi_{x : A} B(x)} g$ are equivalent to homotopies:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Pi_{x : A} (\texttt{happly}(p)(x) =_{f(x) = g(x)} \texttt{happly}(q)(x)
             $$
@@ -1007,7 +1007,7 @@ Defined.</code></pre>
           <p class="exercise">
             For any $A$ and $a : A$ with $p : x_1 = x_2$, we have
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \begin{matrix}
               \texttt{transport}^{x \mapsto (a = x)}(p, q) = q \circ p & q : a = x_1 \\
@@ -1046,7 +1046,7 @@ Defined.</code></pre>
           <p>
             We will introduce an encode-decode method to define $\mathbb{N}$. The codes for identites are a type family:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{code} : \mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathscr{U}
             $$
@@ -1054,7 +1054,7 @@ Defined.</code></pre>
           <p>
             defined by double recursion over $\mathbb{N}$ as follows:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{code}(0, 0) :\equiv \mathbf{1} \\
               \texttt{code}(\texttt{succ}(m), 0) :\equiv \mathbf{0} \\
@@ -1065,7 +1065,7 @@ Defined.</code></pre>
           <p>
             We also define, by recursion, a dependent function $r : \Pi_{n : \mathbb{N}} \texttt{code}(n, n)$ with
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             r(0) :\equiv \star \\
               r(\texttt{succ}(n)) :\equiv r(n)
@@ -1082,7 +1082,7 @@ Defined.</code></pre>
           <p>
             By combining the path computation rules described in the previous sections, we can show that various type forming operations satisfy the expected universal properties, interpreted in a homotopical way as equivalences.
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (X \rightarrow A \times B) \rightarrow (X \rightarrow A) \times (X \rightarrow B)
             $$
@@ -1090,7 +1090,7 @@ Defined.</code></pre>
           <p>
             defined by $f \mapsto (\texttt{pr}_1 \circ f, \texttt{pr}_2 \circ f)$. To prove that this is an equivalence, given $f : X \rightarrow A \times B$, the round-trip composite yields the function:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \lambda x . (\texttt{pr}_1(f(x)), \texttt{pr}_2(f(x))) = f \quad \texttt{by functional extensionality}
             $$
@@ -1098,7 +1098,7 @@ Defined.</code></pre>
           <p>
             We also have a dependently typed version of this universal property:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (\Pi_{x : X} A(x) \times B(x)) \rightarrow (\Pi_{x : X} A(x)) \times (\Pi_{x : X} B(x))
             $$
@@ -1117,7 +1117,7 @@ Definition prod_coind_uncurried `{A : X -&gt; Type} `{B : X -&gt; Type}
           <p>
             Since $\Sigma$ types are a generalization of cartesian product types, we can straightaway jump to the dependently typed version; if we have a type $X$ and type families $A : A \rightarrow \mathscr{U}$ and $P : \Pi_{x : A} A(x) \rightarrow \mathscr{U}$, then we have:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (\Pi_{x : X} \Sigma_{x : A(x)} P(x, a)) \rightarrow (\Sigma_{g : \Pi_{x : A} A(x)} \Pi_{x : X} P(x, g(x)))
             $$
@@ -1128,7 +1128,7 @@ Definition prod_coind_uncurried `{A : X -&gt; Type} `{B : X -&gt; Type}
           <p>
             In the case of cartesian products, the non-dependent version simply expresses the <mark>cartesian closure adjuction</mark>:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ((A \times B) \rightarrow C) \simeq (A \rightarrow (B \rightarrow C))
             $$
@@ -1136,7 +1136,7 @@ Definition prod_coind_uncurried `{A : X -&gt; Type} `{B : X -&gt; Type}
           <p>
             Some other induction principles are also part of universal properties of this sort. For instance, path induction is the right-to-left direction of an equivalence as follows:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             (\Pi_{x : A}\Pi_{p : a = x} B(x, p)) \simeq B(a, \texttt{refl}_a)
             $$
@@ -1147,7 +1147,7 @@ Definition prod_coind_uncurried `{A : X -&gt; Type} `{B : X -&gt; Type}
           <p>
             As such, we have described the usual universal property of a cartesian product, but the reader may wonder about <mark>limits</mark> and <mark>colimits</mark> of types. For <mark>pullbacks</mark>, the expected explicit construction works; given $f: A \rightarrow C$ and $g : B \rightarrow C$, we define:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             A \times_C B :\equiv \Sigma_{a : A}\Sigma_{b : B} (f(a) = g(b))
             $$
