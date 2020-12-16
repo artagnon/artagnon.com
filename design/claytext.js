@@ -6,6 +6,6 @@ $(() => {
     el.textContent = dayjs(el.textContent).fromNow();
   }
 
-  // syntax-highlight coq and cpp
+  // syntax-highlight on startup
   hljs.initHighlightingOnLoad();
 });

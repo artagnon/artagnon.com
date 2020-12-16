@@ -68,7 +68,7 @@
           <p>
             This chapter is dedicated to the study of <mark>HSet</mark> (sets, the $0$-type), <mark>HProp</mark> (mere propositions, the $(-1)$-type), and <mark>Contr</mark> (contractible types, the $(-2)$-type):
           </p>
-          <pre><code class="coq">Notation Contr := (IsTrunc minus_two).
+          <pre><code class="hljs coq">Notation Contr := (IsTrunc minus_two).
 Notation IsHProp := (IsTrunc minus_two.+1).
 Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
           <p>
@@ -88,9 +88,9 @@ Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
           <p>
             Sets in homotopy type theory are not like sets in ZF set theory, in that there is no global "membership predicate" $\in$. To provide some examples of sets, $\mathbb{1}$, $\mathbb{0}$ and $\mathbb{N}$ are sets.
           </p>
-          <pre><code class="coq">Global Instance hprop_Empty : IsHProp Empty.
+          <pre><code class="hljs coq">Global Instance hprop_Empty : IsHProp Empty.
 Proof. intro x. destruct x. Defined.</code></pre>
-          <pre><code class="coq">Corollary hset_nat : IsHSet nat.
+          <pre><code class="hljs coq">Corollary hset_nat : IsHSet nat.
 Proof.
   exact _.
 Defined.</code></pre>
@@ -119,19 +119,19 @@ Defined.</code></pre>
           <p>
             So since $B(x)$ is a set, we have $\texttt{happly}(p, x) = \texttt{happly}(q, x)$. Now, using funext again, the dependent functions $(x \mapsto \texttt{happly}(p, x))$ and $(x \mapsto \texttt{happly}(q, x))$ are equal, and hence, applying $\texttt{ap}_\texttt{funext}$, so are $p$ and $q$.
           </p>
-          <pre><code class="coq">Global Instance trunc_forall `{P : A -&gt; Type} `{forall a, IsTrunc n (P a)}
+          <pre><code class="hljs coq">Global Instance trunc_forall `{P : A -&gt; Type} `{forall a, IsTrunc n (P a)}
   : IsTrunc n (forall a, P a) | 100.</code></pre>
           <p>
             Sets are just the first rung of the ladder of $n$-types, and may also be called the $0$-type; its defining property is that it has no non-trivial paths. Similarly, the $1$-type can be has no non-trivial paths between paths.
           </p>
-          <pre><code class="coq">Notation Is1Type := IsTrunc 1.</code></pre>
+          <pre><code class="hljs coq">Notation Is1Type := IsTrunc 1.</code></pre>
           <p>
             A type $A$ is a $1$-type if for all $x, y : A$, and $p, q : x = y$, $r, s : p = q$, we have $r = s$. We can similarly define $2$-types, $3$-types, and so on.
           </p>
           <p class="exercise">
             If $A$ is a set, that is, $\texttt{isSet}(A)$ is inhabitated, then $A$ is a $1$-type.
           </p>
-          <pre><code class="coq">(** Truncation levels are cumulative. *)
+          <pre><code class="hljs coq">(** Truncation levels are cumulative. *)
 Global Instance trunc_succ `{IsTrunc n A}
   : IsTrunc n.+1 A | 1000.
 Proof.
@@ -143,7 +143,7 @@ Qed.</code></pre>
           <p>
             Another fact to keep in mind is that this stratification of types is not degenerate; in particular, not all types are sets. For instance, universe $\mathscr{U}$ is not a set.
           </p>
-          <pre><code class="coq">Definition not_hset_Type : ~ (IsHSet Type).
+          <pre><code class="hljs coq">Definition not_hset_Type : ~ (IsHSet Type).
 Proof.
   intro HT.
   apply true_ne_false.
@@ -189,7 +189,7 @@ Defined.</code></pre>
           <p class="exercise">
             If $P$ is a mere proposition, and $x_0 : P$, then $P \simeq \mathbb{1}$.
           </p>
-          <pre><code class="coq">(** If an hprop is inhabited, then it is equivalent to [Unit]. *)
+          <pre><code class="hljs coq">(** If an hprop is inhabited, then it is equivalent to [Unit]. *)
 Lemma if_hprop_then_equiv_Unit (hprop : Type) `{IsHProp hprop} :  hprop -&gt; hprop &lt;~&gt; Unit.
 Proof.
   intro p.
@@ -200,7 +200,7 @@ Defined.</code></pre>
           <p class="exercise">
             If $P$ and $Q$ are mere propositions such that $P \rightarrow Q$ and $Q \rightarrow P$, then $P \simeq Q$.
           </p>
-          <pre><code class="coq">(** Two propositions are equivalent as soon as there are maps in both directions. *)
+          <pre><code class="hljs coq">(** Two propositions are equivalent as soon as there are maps in both directions. *)
 Definition isequiv_iff_hprop `{IsHProp A} `{IsHProp B}
   (f : A -&gt; B) (g : B -&gt; A)
   : IsEquiv f.
@@ -220,7 +220,7 @@ Defined.</code></pre>
           <p class="exercise">
             For any type $A$, types $\texttt{isProp}(A)$ and $\texttt{isSet}(A)$ are mere propositions.
           </p>
-          <pre><code class="coq">(** Truncatedness is an hprop. *)
+          <pre><code class="hljs coq">(** Truncatedness is an hprop. *)
 Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
   : IsHProp (IsTrunc n A) | 0.</code></pre>
           <h2 id="classical-versus-intuitionistic-logic">
@@ -254,9 +254,9 @@ Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
               $A$ has decidable equality if $\Pi_{a, b : A} ((a = b) + \neg(a = b))$.
             </li>
           </ol>
-          <pre><code class="coq">Class Decidable (A : Type) :=
+          <pre><code class="hljs coq">Class Decidable (A : Type) :=
   dec : A + (~ A).</code></pre>
-          <pre><code class="coq">Class DecidablePaths (A : Type) :=
+          <pre><code class="hljs coq">Class DecidablePaths (A : Type) :=
   dec_paths : forall (x y : A), Decidable (x = y).</code></pre>
           <h2 id="subsets-and-propositional-resizing">
             Subsets and propositional resizing
@@ -267,7 +267,7 @@ Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
           <p class="exercise">
             Suppose $P : A \rightarrow \mathscr{U}$ is a type famiy such that $P(x)$ is a mere proposition for all $x : A$. If $u, v : \Sigma_{x : A} P(x)$ are such that $\texttt{pr}_1(u) = \texttt{pr}_1(v)$, then $u = v$.
           </p>
-          <pre><code class="coq">(** ** Subtypes (sigma types whose second components are hprops) *)
+          <pre><code class="hljs coq">(** ** Subtypes (sigma types whose second components are hprops) *)
 
 (** To prove equality in a subtype, we only need equality of the first component. *)
 Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
@@ -339,7 +339,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p class="exercise">
             If $B : A \rightarrow \mathscr{U}$ is such that for all $x : A$, B(x) is a mere proposition, then $\Pi_{x : A} B(x)$ is a mere proposition.
           </p>
-          <pre><code class="coq">Definition PiType_isMereProp `{Funext} (A : Type) (B : A -&gt; Type)
+          <pre><code class="hljs coq">Definition PiType_isMereProp `{Funext} (A : Type) (B : A -&gt; Type)
   := trunc_forall _ A B (-1).</code></pre>
           <p>
             In particular, If $B$ is a mere proposition, then so is $A \rightarrow B$ regardless of what $A$ is. Since $\mathbb{0}$ is a mere proposition, so is $\neg A \equiv A \rightarrow \mathbb{0}$. Thus the connectives "implies", "not", and "forall" preserve mere propositions.
@@ -446,7 +446,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p class="exercise">
             If $P$ is a mere proposition, then $P \simeq ||P||$.
           </p>
-          <pre><code class="coq">Definition isequiv_to_O_inO (T : Type) `{In O T} : IsEquiv (to O T).
+          <pre><code class="hljs coq">Definition isequiv_to_O_inO (T : Type) `{In O T} : IsEquiv (to O T).
 Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
           <p>
             It has the following important consequence:
@@ -465,7 +465,7 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
           <p>
             Then we have $\Pi_{x : A} P(x)$.
           </p>
-          <pre><code class="coq">Lemma unique_choice {X Y} (R:X-&gt;Y-&gt;Type) :
+          <pre><code class="hljs coq">Lemma unique_choice {X Y} (R:X-&gt;Y-&gt;Type) :
  (forall x y, IsHProp (R x y)) -&gt; (forall x, (hunique (R x)))
    -&gt; {f : X -&gt; Y &amp; forall x, (R x (f x))}.</code></pre>
           <h2 id="when-are-mere-propositions-truncated">
@@ -505,7 +505,7 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
               $A$ is equivalent to $\mathbb{1}$.
             </li>
           </ol>
-          <pre><code class="coq">(* The Unit type is contractible *)
+          <pre><code class="hljs coq">(* The Unit type is contractible *)
 (** Because [Contr] is a notation, and [Contr_internal] is the record, we need to iota expand to fool Coq's typeclass machinery into accepting supposedly "mismatched" contexts. *)
 Global Instance contr_unit : Contr Unit | 0 := let x := {|
   center := tt;
@@ -514,17 +514,17 @@ Global Instance contr_unit : Contr Unit | 0 := let x := {|
           <p class="exercise">
             For any type $A$, the type $\texttt{isContr}(A)$ is a mere proposition.
           </p>
-          <pre><code class="coq">Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
+          <pre><code class="hljs coq">Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
   : IsHProp (IsTrunc n A) | 0.</code></pre>
           <p class="exercise">
             If $A$ is contractible, so is $\texttt{isContr}(A)$.
           </p>
-          <pre><code class="coq">Global Instance contr_contr `{Funext} (A : Type) `{Contr A}
+          <pre><code class="hljs coq">Global Instance contr_contr `{Funext} (A : Type) `{Contr A}
   : Contr (Contr A) | 100.</code></pre>
           <p class="exercise">
             If $P : A \rightarrow \mathscr{U}$ is a type family such that $P(a)$ is contractible, then $\Pi_{x : A} P(x)$ is contractible.
           </p>
-          <pre><code class="coq">Global Instance trunc_forall `{P : A -&gt; Type} `{forall a, IsTrunc n (P a)}
+          <pre><code class="hljs coq">Global Instance trunc_forall `{P : A -&gt; Type} `{forall a, IsTrunc n (P a)}
   : IsTrunc n (forall a, P a) | 100.</code></pre>
           <p class="exercise">
             If $B$ is a retract of $A$, and $A$ is contractible, then so is $B$.
@@ -532,7 +532,7 @@ Global Instance contr_unit : Contr Unit | 0 := let x := {|
           <p class="exercise">
             For any $A$ and any $a : A$, the type $\Sigma_{x : A} (x = a)$ is contractible.
           </p>
-          <pre><code class="coq">Global Instance contr_basedpaths {X : Type} (x : X) : Contr {y : X &amp; x = y} | 100.</code></pre>
+          <pre><code class="hljs coq">Global Instance contr_basedpaths {X : Type} (x : X) : Contr {y : X &amp; x = y} | 100.</code></pre>
           <p class="exercise">
             Let $P : A \rightarrow \mathscr{U}$ be a type family.
           </p>
@@ -544,22 +544,22 @@ Global Instance contr_unit : Contr Unit | 0 := let x := {|
               If $A$ is contractible with center $a$, then $\Sigma_{x : A} P(x)$ is equivalent to $P(a)$.
             </li>
           </ol>
-          <pre><code class="coq">Definition equiv_sigma_contr {A : Type} (P : A -&gt; Type)
+          <pre><code class="hljs coq">Definition equiv_sigma_contr {A : Type} (P : A -&gt; Type)
            `{forall a, Contr (P a)}
 : sigT P &lt;~&gt; A
   := Build_Equiv _ _ pr1 _.</code></pre>
-          <pre><code class="coq">Definition equiv_contr_sigma {A : Type} (P : A -&gt; Type) `{Contr A}
+          <pre><code class="hljs coq">Definition equiv_contr_sigma {A : Type} (P : A -&gt; Type) `{Contr A}
 : { x : A &amp; P x } &lt;~&gt; P (center A).</code></pre>
           <p class="exercise">
             Type $A$ is a mere proposition if and only if for all $x, y : A$, the type $x =_A y$ is contractible.
           </p>
-          <pre><code class="coq">(** Any two points in an hprop are connected by a path. *)
+          <pre><code class="hljs coq">(** Any two points in an hprop are connected by a path. *)
 Theorem path_ishprop `{H : IsHProp A}
   : forall x y : A, x = y.
 Proof.
   apply H.
 Defined.</code></pre>
-          <pre><code class="coq">Theorem hprop_allpath (A : Type)
+          <pre><code class="hljs coq">Theorem hprop_allpath (A : Type)
   : (forall (x y : A), x = y) -&gt; IsHProp A.
   intros H x y.
   pose (C := Build_Contr A x (H x)).
