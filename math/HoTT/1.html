@@ -87,7 +87,7 @@
           <p>
             Instead of defining projections $pr1$ and $pr2$ for the two projections from the pair, we will define a "recursor" as follows:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             rec_{A \times B} : \Pi_{C : \mathscr{U}} (A \times B \times C) \rightarrow A \times B \rightarrow C \\
               rec_{A \times B}(C, g, (a, b)) :\equiv g(a)(b)
@@ -96,7 +96,7 @@
           <p>
             So that:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             pr1 :\equiv rec_{A \times B}(A, \lambda a . \lambda b . a) \\
               pr2 :\equiv rec_{A \times B}(B, \lambda a . \lambda b . b)
@@ -108,7 +108,7 @@
           <p>
             To prove a property for all elements of a prduct, it is enough to prove it for its canonical elements (the ordered pairs). In the universal case, we call the resulting function induction for product types:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ind_{A \times B} : \Pi_{C : A \times B \rightarrow U} (\Pi_{x : A}\Pi_{y : B} C((x, y))) \rightarrow \Pi_{x : A \rightarrow B} C(x)
             $$
@@ -116,7 +116,7 @@
           <p>
             with the defining equation:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ind_{A \times B}(C, g, (a, b)) :\equiv g(a)(b)
             $$
@@ -127,7 +127,7 @@
           <p>
             Comment: the induction for the unit type turns out to be more useful than the recursor:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             uniq_1 : \Pi_{x : \mathbf{1}} x = \star \\
               uniq_1(x) :\equiv refl_\star
@@ -139,7 +139,7 @@
           <p>
             The dependent pair type is written $\Sigma_{x : A}, B(x)$. When the second component doesn't depend on the first, we get the cartesian product type $A \times B$. The first projection follows a straightforward extraction:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             pr1 : (\Sigma_{x : A} B(x)) \rightarrow A
             $$
@@ -147,7 +147,7 @@
           <p>
             However, the second projection must be a dependent function, whose type involves the first projection function:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             pr2 : \Pi_{p: \Sigma_{x : A} B(x)} B(pr1(p))
             $$
@@ -155,7 +155,7 @@
           <p>
             Thus, we need the induction principle for $\Sigma$-types (the <mark>dependent eliminator</mark>):
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             g : \Pi_{a : A}\Pi_{b : B(a)} C((a, b))
             $$
@@ -163,7 +163,7 @@
           <p>
             We can then derive a function:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             f : \Pi_{p:\Sigma_{x : A}, B(x)} C(p)
             $$
@@ -174,7 +174,7 @@
           <p>
             Now, we present the <mark>type-theoretic axiom of choice</mark> where $R : A \rightarrow B \rightarrow U$:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ac : (\Pi_{a : A} \Sigma_{y : B} R(x, y)) \rightarrow (\Sigma_{f : A \rightarrow B} \Pi_{x : A} R(x, f(x))) \\
               ac(g) :\equiv (\lambda x . pr_1(g(x)), \lambda x . pr2(g(x)) \\
@@ -188,7 +188,7 @@
           <p>
             Let's also provide an example of the magma type, in which the second component depends on the first component:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             Magma :\equiv \Sigma_{A : \mathscr{U}} A \rightarrow A \rightarrow A
             $$
@@ -199,7 +199,7 @@
           <p>
             The recursor for coproduct types can be written as:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             rec_{A + B} : \Pi_{C : \mathscr{U}} (A \rightarrow C) \rightarrow (B \rightarrow C) \rightarrow A + B \rightarrow C \\
               rec_{A + B}(C, g_0, g_1, inl(a)) :\equiv g_0(a) \\
@@ -209,7 +209,7 @@
           <p>
             The if-then-else pattern in general programming practice utilizes booleans as follows:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             rec_2 : \Pi_{C : \mathscr{U}} C \rightarrow C \rightarrow \mathbf{2} \rightarrow C \\
               rec_2(C, c_0, c_1, 0_\mathbb{2}) :\equiv c_0 \\
@@ -222,7 +222,7 @@
           <p>
             To define infinite types like $\mathbb{N}$, we need the additional concept of well-founded recursion. We can package the recursor into a single function, as previously:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             rec_\mathbb{N} : \Pi_{C : \mathscr{U}} C \rightarrow (\mathbb{N} \rightarrow C \rightarrow C) \rightarrow \mathbb{N} \rightarrow C
             $$
@@ -230,7 +230,7 @@
           <p>
             Given step 0, and a next-step function, we can define:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             rec_{\mathbb{N}}(C, c_0, c_s, 0) = c_0 \\
               rec_{\mathbb{N}}(C, c_0, c_s, succ(n)) = c_s(n, rec_\mathbb{N}(C, c_0, c_s, n))
@@ -239,7 +239,7 @@
           <p>
             We can generalize general recursion to dependent functions as follows:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ind_{\mathbb{N}} : \Pi_{C : \mathbb{N} \rightarrow U} C(0) \rightarrow (\Pi_{n : \mathbb{N}} C(n) \rightarrow C(succ(n))) \rightarrow \Pi_{n \in \mathbb{N}} C(n)
             $$
@@ -247,7 +247,7 @@
           <p>
             with these defining equations:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             f(0) :\equiv c_0 \\
               f(succ(n)) :\equiv c_s(n, f(n))
@@ -262,7 +262,7 @@
           <p>
             The identity family takes two copies of $A$, and illustrates an equality between them: $id_A : A \rightarrow A \rightarrow \mathscr{U}$. The formation rule says that given a type $A : \mathscr{U}$ and two elements $a, b : A$, we can form the type $(a =_A b) : \mathscr{U}$ in the same universe. The introduction rule is a dependent function called reflexivity:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{refl} : \Pi_{a : A} a = a
             $$
@@ -270,7 +270,7 @@
           <p>
             The elimination rule for identity types is subtle. We begin by considering the consequence that equals may be substituted for equals, called <mark>indiscrenability of identicals</mark>. For every family $C : A \rightarrow \mathscr{U}$, there is a function
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             f : \Pi_{x, y : A} \Pi_{x =_A y} C(x) \rightarrow C(y)
             $$
@@ -278,7 +278,7 @@
           <p>
             such that:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             f(x, x, \texttt{refl}_x) :\equiv id_{C(x)}
             $$
@@ -292,7 +292,7 @@
           <p>
             Given functions:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             C : \Pi_{x, y : A} (x =_A y) \rightarrow \mathscr{U} \\
               c : \Pi_{x : A} C(x, x, \texttt{refl}_x)
@@ -301,7 +301,7 @@
           <p>
             There is a function:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             f : \Pi_{x, y : A} \Pi_{p : x =_A y} C(x, y, p)
             $$
@@ -309,7 +309,7 @@
           <p>
             such that
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             f(x, x, \texttt{refl}_x) :\equiv c(x)
             $$
@@ -320,7 +320,7 @@
           <p>
             If we package up path induction into a single function, it takes the form:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ind_{=A} : \Pi_{C : \Pi_{x, y : A} (x =_A y) \rightarrow \mathscr{U}} (\Pi_{x : A} C(x, x, \texttt{refl}_x)) \rightarrow \Pi_{x, y : A} \Pi_{p : x =_A y} C(x, y, p)
             $$
@@ -328,7 +328,7 @@
           <p>
             with the equality, traditionally called $J$:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ind_{=A}(C, c, x, x, \texttt{refl}_x) :\equiv c(x)
             $$
@@ -339,7 +339,7 @@
           <p>
             By fixing a certain $a : A$, we can show <mark>based path induction</mark>, a simpler version:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             ind'_{=A} : \Pi_{a : A}\Pi_{C : \Pi_{a : A} (a =_A x) \rightarrow \mathscr{U}} C(a, \texttt{refl}_a) \rightarrow \Pi_{x : A} \Pi_{p : a =_A x} C(x, p)
             $$

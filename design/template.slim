@@ -84,19 +84,19 @@ html lang="en"
                 pre
                  code class="#{paragraph.prop}" == paragraph.to_s
               - when :images
-                div class="imgrow"
+                div class="imgrow full-bleed"
                   - if paragraph.split("\n").length == 1
                     figure
                       img src="#{paragraph.split("\n")[0]}" style="width:100%"
                   - else
-                    figure class="left"
+                    figure class="left full-bleed"
                       img src="#{paragraph.split("\n")[0]}"
-                    figure class="right"
+                    figure class="right full-bleed"
                       img src="#{paragraph.split("\n")[1]}"
               - when :horizrule
                 hr class="#{paragraph.prop}"
               - when :mathjax
-                p class="mathjax" == paragraph.to_s
+                p class="mathjax full-bleed" == paragraph.to_s
               - when :exercise
                 p class="exercise" == paragraph.to_s
               - when :indent

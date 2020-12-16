@@ -3,11 +3,7 @@ html {
   -webkit-text-size-adjust: 100%;
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-body {
-  margin: 0;
-  background-color: lavenderblush;
+  background-color: whitesmoke;
 }
 
 h1 {
@@ -39,9 +35,16 @@ a:visited {
 
 div#wrapper {
   margin: 0;
-  padding-left: 20vw;
-  padding-right: 20vw;
   padding-bottom: 10vw;
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(65ch, 100%)
+    1fr;
+}
+
+div#wrapper > * {
+  grid-column: 2;
 }
 
 ul#indexfill {
@@ -234,9 +237,13 @@ div.imgrow::after {
   display: table;
 }
 
+.full-bleed {
+  width: 100%;
+  grid-column: 1/4;
+}
+
 .mathjax {
-  overflow-x: scroll;
-  overflow-y: hidden;
+  background-color: wheat;
 }
 
 a {

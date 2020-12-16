@@ -73,7 +73,7 @@ Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
           <p>
             A type $A$ is a <mark>set</mark> if forall $x, y : A$ and $p, q : x = y$, we have $p = q$. The proposition $\texttt{isSet}(A)$ is defined to be the type:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{isSet}(A) = \Pi_{x, y : A} \Pi_{p, q : x = y} (p = q)
             $$
@@ -96,7 +96,7 @@ Defined.</code></pre>
           <p>
             Given $B : A \rightarrow \mathscr{U}$, $\Pi_{x : A} B(x)$ is a set. For suppose $f, g : \Pi_{x : A} B(x)$ and for $p, q : f = g$. By functional extensionality,
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             p = \texttt{funext}(x \mapsto \texttt{happly}(p, x)) \quad q = \texttt{funext}(x \mapsto \texttt{happly}(q, x))
             $$
@@ -104,7 +104,7 @@ Defined.</code></pre>
           <p>
             But for $x : A$, we have
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{happly}(p, x) : f(x) = g(x) \quad \texttt{happly}(q, x) : f(x) = g(x)
             $$
@@ -171,7 +171,7 @@ Defined.</code></pre>
           <p>
             For $P : \mathscr{U}$,
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{isProp}(P) :\equiv \Pi_{x, y : P} x = y
             $$
@@ -222,7 +222,7 @@ Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
           <p>
             With the notion of mere proposition, we can now give a proper formulation of LEM and double negation:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{LEM} :\equiv \Pi_{A : \mathscr{U}} (\texttt{isProp}(A) \rightarrow (A + \neg A)) \\
               \Pi_{A : \mathscr{U}} (\texttt{isProp}(A) \rightarrow (\neg\neg A \rightarrow A))
@@ -231,7 +231,7 @@ Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
           <p>
             These are seen as being logically equivalent to each other. Renaming for clarity:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{LEM}_\infty :\equiv \Pi_{A : \mathscr{U}} (A + \neg A)
             $$
@@ -271,7 +271,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p>
             For instance, recall that we defined
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             A \simeq B :\equiv \Sigma_{f : A \rightarrow B} \texttt{isequiv}(f)
             $$
@@ -282,7 +282,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p>
             As further examples of subtypes, we may define the "subuniverses" of sets and propositions in $\mathscr{U}$:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{Set}_\mathscr{U} :\equiv \{A : \mathscr{U} \mid \texttt{isSet}(A)\} \\
               \texttt{Prop}_\mathscr{U} :\equiv \{A : \mathscr{U} \mid \texttt{isProp}(A)\}
@@ -291,7 +291,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p>
             Recall that for any two universes $\mathscr{U}_i$ and $\mathscr{U}_{i + 1}$, if $A : \mathscr{U}_i$, then $A : \mathscr{U}_{i + 1}$. For sets and mere propositions, we therefore have maps:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{Set}_{\mathscr{U}_i} \rightarrow \texttt{Set}_{\mathscr{U}_{i + 1}} \\
               \texttt{Prop}_{\mathscr{U}_i} \rightarrow \texttt{Prop}_{\mathscr{U}_{i + 1}}
@@ -312,7 +312,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p>
             In the absence of propositional resizing, the definition of <mark>power set</mark> depends on the choice of $\mathscr{U}$. In its presence, however, one can define the power set to be:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \mathscr{P}(A) :\equiv (A \rightarrow \Omega)_i
             $$
@@ -381,7 +381,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p>
             assume type $X$ and type families
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             A : X \rightarrow \mathscr{U} \\ P : \Pi_{x : X} A(x) \rightarrow \mathscr{U}
             $$
@@ -403,7 +403,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p>
             The <mark>axiom of choice</mark> asserts that under these assumptions,
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Pi_{x :A} (||\Sigma_{x : A(x)} P(x, a)||) \rightarrow ||\Sigma_{g : \Pi_{x : A} A(x)}\Pi_{x : A} P(x, g(x))||
             $$
@@ -414,7 +414,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p class="exercise">
             AC is equivalent to the statement that for any set $X$ and map $Y : X \rightarrow \mathscr{U}$ such that each $Y(x)$ is a set, we have
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Pi_{x : X}(||Y(x)||) \rightarrow ||\Pi_{x : X} Y(x)||
             $$
@@ -425,7 +425,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           <p>
             These two statements of AC are not a consequence of out basic type theory, but they may be consistently assumed as axioms. Note that the latter can be shown equivalent to asking for an equivalence:
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \Pi_{x : X}(||Y(x)||) \simeq ||\Pi_{x : X} Y(x)||
             $$
@@ -476,7 +476,7 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
           <p class="exercise">
             Type <mark>A</mark> is contractible or a <mark>singleton</mark>, if there is an $a : A$, called the <mark>center of contraction</mark>, such tht $a = x$ for all $x : A$. We denote the specified path $a = x$ by $\texttt{contr}_x$. In other words,
           </p>
-          <p class="mathjax">
+          <p class="mathjax full-bleed">
             $$
             \texttt{isContr}(A) :\equiv \Sigma_{a : A} \Pi_{x : A} (a = x)
             $$
