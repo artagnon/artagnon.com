@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>[ct/2] Universal Arrows, Yoneda Lemma, Limits | artagnon.com</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="/dist/favicon.ico" />
+    <link rel="stylesheet" href="/dist/style.min.css" />
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"],
+      "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} },
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+      TeX: {extensions: ["/dist/xypic.min.js","AMSmath.js","AMSsymbols.js"]} });
+    </script>
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel=&#39;stylesheet&#39;" />
+    <noscript>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" />
+    </noscript>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/haskell.min.js"></script>
+    <script defer="" src="/dist/script.min.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <nav>
+        <ul>
+          <li>
+            <a href="/index">home</a>
+          </li>
+          <li>
+            <a href="/HoTT">HoTT</a>
+          </li>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/attic">attic</a>
+          </li>
+          <li>
+            <a href="/math">math</a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <header>
+          <h1>
+            [ct/2] Universal Arrows, Yoneda Lemma, Limits
+          </h1>
+          <div id="metadata">
+            <span id="timestamp"><time datetime="2020-12-16" class="begin">Wed, 16 Dec 2020 10:33:15 +0100</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:33:15 +0100</time></span><br /><span id="locations"><address></address></span>
+          </div>
+        </header>
+        <article>
+          <h2 id="universal-arrow">
+            Universal arrow
+          </h2>
+          <p>
+            Let $S : A \rightarrow B$ be a functor. For the objects $a \in A, b \in B$, the universal arrow from $b$ to $S$ is defined as the pair $\langle r, u \rangle$ with object $r \in A$ and morphism $u : b \rightarrow Sr$:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            b \ar[r]^u \ar@{}[d]|{=} & Sr \ar@{.>}[d]|{\exists!} \\
+            b \ar[r]^f & Sa
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Said differently, every arrow $f$ factors uniquely through $u$.
+          </p>
+          <p>
+            Examples:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $\textbf{Vec}_K$ is defined as the vector space over field $K$. The forgetful functor $U : \textbf{Vec}_K \rightarrow \textbf{Set}$ is a function sending a vector space to its underlying elements. For any set $X$, there exists a $\textbf{Vec}_X$ with $X$ as the basis. This fact is illustrated by the function $j : X \rightarrow U(V_X)$, and there also exists $k : X \rightarrow U(W)$ obtained by linear transformation. This makes $j$ a universal functor.
+            </li>
+            <li>
+              Free category $C$ over graph $G$ is given by the universal functor $k : C \rightarrow UG$. Similarly, we have universal functors for a free group or free R-module on a given set of generators.
+            </li>
+            <li>
+              For integral domain $D$ and field of quotients $Q(D)$, there exists a monomorphism $j : D \rightarrow Q(D)$. The universal (forgetful) functor $\langle Q(D), j \rangle$ maps $\textbf{Fld} \rightarrow \textbf{Dom}_m$, from the category of fields to the category of domains, provided we take the arrows of $\textbf{Dom}_m$ to be monomorphisms of integral domains.
+            </li>
+          </ol>
+          <p>
+            A <mark>universal element</mark> of functor $H : D \rightarrow \textbf{Set}$ is defined to be the pair $\langle r, e \rangle$ consisting of $r \in D$, $e \in Hr$, such that $\langle d, x \rangle$ consisting of $Hr \in D$ and arrow $f : r \rightarrow d$ implies that $(Hf)e = x$.
+          </p>
+          <p>
+            Consider the equivalence relation $E$ on set $S$, and the projection $p : S \rightarrow S/E$ sending every element in the set to its E-equivalence class:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            S \ar@{}[d]|{=}\ar[r]^p & S/E \ar[d]^g \\
+            S \ar[r]^f & X
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            This states that $\langle S/E, p \rangle$ is a universal element under the functor $H : \textbf{Set} \rightarrow \textbf{Set}$.
+          </p>
+          <p>
+            $f : G \rightarrow G/N$, the morphism that sends each group to its quotient group, is another example of the universal element for the functor $H : \textbf{Grp} \rightarrow \textbf{Set}$.
+          </p>
+          <p>
+            Relationship between universal arrow and universal element: An element $e$ can be considered universal arrow $H : \textbf{*} \rightarrow Hr \in \textbf{Ens}$ from the one-point set $\textbf{*}$; then $\langle r, e \rangle$ from $\{\textbf{*}\}$ to $H$ is a universal element. If $G : A \rightarrow B$ is a functor, then the pair $\langle r, u : b \rightarrow Sr \rangle$ is a universal arrow if $\langle r, u \in C(b, Sr) \rangle$ is a universal element of the functor $H = C(b, S-)$.
+          </p>
+          <p>
+            Projections $p : a \times b \rightarrow a$ and $q : a \times b \rightarrow b$ give us another example of universal arrows. Given any other pair of arrows $f : c \rightarrow a$, $g : \rightarrow b$, and $h : c \rightarrow a \times b$, we get $ph = f$ making $\langle p, q \rangle$ a <mark>universal pair</mark>. To make it a universal arrow, consider the diagonal functor $\Delta C = C \times C$ so that the pair $\langle f, g \rangle : \Delta c \rightarrow \langle a, b \rangle$; then $\langle p, q \rangle$ is a universal arrow from $\Delta$ to $a \times b$.
+          </p>
+          <h2 id="yoneda-lemma">
+            Yoneda lemma
+          </h2>
+          <p>
+            The concept of universality can be formulated in terms of <a href="/category/1#hom-sets">hom-sets</a> as follows. Given functor $S: A \rightarrow B$, the pair $\langle r, u : b \rightarrow Sr \rangle$ for $r \in A$ is universal if and only if the function $g : r \rightarrow a$ and the composition $Sg \circ u : b \rightarrow Sa$ satisfies the bijection of hom-sets $A(r, a) \cong B(b, Sa)$. This is natural in $A$. If $A, B$ have small hom-sets, then the functor $B(b, S-)$ to $\textbf{Set}$ is isomorphic to the covariant hom-functor $A(r, -)$. Such isomorphisms are called <mark>representations</mark>.
+          </p>
+          <p>
+            Let $D$ be a category with small hom-sets. Then, <mark>representation</mark> of functor $K : D \rightarrow \textbf{Set}$, given $r \in D$, is the pair $\langle r, \psi \rangle$ such that:<br/>
+            $$\psi : D(r, -) \cong K$$
+          </p>
+          <p>
+            $r$ is called <mark>representing object</mark>, and $K$ is termed <mark>representable</mark>, when such a representation exists. A representation is hence just a covariant hom-functor $D(r, -)$.
+          </p>
+          <p>
+            Let $D$ be a category with small hom-sets, $r \in D$, and $\textbf{*}$ denote the one-point set. If $\langle r, u \rangle: \textbf{*} \rightarrow Kr$ is a universal arrow from $\textbf{*}$ to $K : D \rightarrow \textbf{Set}$, then function $\psi$ which, for every object of $D$, sends the arrow $g : r \rightarrow d$ to $K(g)(u\textbf{*}) \in Kd$ is a representation of $K$.
+          </p>
+          <p>
+            A universal arrow from $b$ to $S : A \rightarrow B$ can be written as the natural isomorphism $A(r, a) \cong B(b, Sa)$, or equivalently as representation of the functor $B(b, S-) : A \rightarrow \textbf{Set}$, or equally well as the universal element of the same functor.
+          </p>
+          <p>
+            Informally speaking, the <mark>Yoneda lemma</mark> states that an object can be recovered by knowing the maps into it. Formally, given category $D$ with small hom-sets, $r \in D$, functor $K : D \rightarrow \textbf{Set}$, there is a bijection:<br/>
+            $$\text{Nat}(D(r, -), K) \cong Kr$$
+          </p>
+          <p>
+            which sends each NT $D(r, -) \overset{\bullet}{\rightarrow} K$ to $\alpha_r 1_r$, the identity $r \rightarrow r$. The proof is indicated as:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            D(r, r)\ar[r]^{\alpha_r}\ar[d]_{K(d, f)} & K(r)\ar[d]^{K(f)} & r \ar[d]^f\\
+            D(r, d)\ar[r]^{\alpha_d} & K(d) & d
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            The bijection $y : \text{Nat}(D(r, -), K) \cong Kr$ is the natural isomorphism $N \overset{\bullet}{\rightarrow} E : \textbf{Set}^D \times D \rightarrow \textbf{Set}$. The object function $r \mapsto D(r, -)$ and the arrow function:<br/>
+            $$(f : s \rightarrow r) \mapsto D(f, -) : D(r, -) \mapsto D(s, -)$$
+          </p>
+          <p>
+            define a fully faithful functor $Y : D^{op} \rightarrow \textbf{Set}^{D}$, and this is called the <mark>Yoneda functor</mark>.
+          </p>
+          <h2 id="coproducts-and-colimits">
+            Coproducts and colimits
+          </h2>
+          <p>
+            For any category $C$, the diagonal functor $\Delta : C \rightarrow C \times C$ is given by the object mapping $\Delta : c \rightarrow \langle c, c \rangle$ and morphism mapping $\Delta : f \rightarrow \langle f, f \rangle$. A universal arrow from object $\langle a, b \rangle$ to $\Delta$, given by $\langle a, b \rangle \rightarrow \langle c, c \rangle$ is called the <mark>coproduct diagram</mark>. When such a diagram exists, object $c$ is written as $a \sqcup b$:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            a\ar[r]^i\ar[dr]_f & a \sqcup b \ar@{.>}[d]|{\exists! h} & b\ar[l]_j\ar[dl]^g \\
+            & d &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            The assignment $\langle f, g \rangle \mapsto h$ is a bijection that is natural in $d$:<br/>
+            $$C(a, d) \times C(b, d) \cong C(a \sqcup b, d)$$
+          </p>
+          <p>
+            Examples include the disjoint union in $\textbf{Set}$, wedge product in $\textbf{Top}_*$, and the tensor product in $\textbf{CRng}$.
+          </p>
+          <p>
+            For <mark>infinite coproducts</mark>, replace $C^2$ with $C^X$, for any set $X$:<br/>
+            $$C(\sqcup_x a_x, c) \cong \prod_x C(a_x, c)$$
+          </p>
+          <p>
+            If $a_x = b$ for all x, <mark>copower</mark> $\sqcup_X b$ is written as $X \bullet b$:<br/>
+            $$C(X \bullet b, c) \cong C(b, c)^X$$
+          </p>
+          <p>
+            If $C$ has a null object such that $0: b \rightarrow z \rightarrow c$ is the zero arrow, <mark>cokernel</mark> of $f : a \rightarrow b$ is given by $u : b \rightarrow c$:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            a\ar[r]^f & b \ar[r]^u\ar[dr]_h & c\ar@{.>}[d]|{\exists! h'} & uf = 0 \\
+            & & d & hf = 0
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Given a pair of arrows $f, g : a \rightarrow b$, <mark>coequalizer</mark> $u$ can be defined as:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            a\ar@<-.5ex>[r]_f\ar@<.5ex>[r]^g & b \ar[r]^u\ar[dr]_h & c\ar@{.>}[d]|{\exists! h'} & uf = ug \\
+            & & d & hf = hg
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Let $\downarrow \downarrow$ represent a category $C$ with two objects and two non-identity arrows between them. Then, functor category $C^{\downarrow \downarrow}$ can be formed:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            a\ar@<-.5ex>[r]_f\ar@<.5ex>[r]^g\ar[d]_h & b\ar[d]^k \\
+            a'\ar@<-.5ex>[r]_{f'}\ar@<.5ex>[r]^{g'} & b'
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Having defined the diagonal functor $\Delta : C \rightarrow C^{\downarrow \downarrow}$, and object $c \in C$, consider:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            a\ar@<-.5ex>[r]_f\ar@<.5ex>[r]^g\ar[d]_{kf} & b\ar[d]^k \\
+            c\ar@<-.5ex>[r]_1\ar@<.5ex>[r]^1 & c
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            In other words, $k$ coequalizes $f, g$. A coequalizer of pair $\langle f, g \rangle$ is simply a universal arrow $\langle f, g \rangle \rightarrow \Delta$.
+          </p>
+          <p>
+            As an example, coequalizer in $\textbf{Set}$ for the set of functions $f, g : X \rightarrow Y$ is simply the projection $Y \rightarrow Y/E$ where $E$ is the least equivalence relation $E \subset Y \times Y$.
+          </p>
+          <p>
+            Given $f : a \rightarrow b, g : a \rightarrow c$, <mark>pushout</mark> is defined as the pair $\langle f, g \rangle$ such that:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            \langle f, g \rangle \ar[d] & b\ar[d]^h & a\ar[d]^{hf = kg}\ar[l]_f\ar[r]^g & c\ar[d]^k \\
+            \Delta(s)& s & s\ar[l]_1\ar[r]^1 & s
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            The <mark>coproduct over $a$</mark>, also called <mark>cocartesian square</mark> or <mark>fibered sum</mark> is written as:<br/>
+            $$r = b \sqcup_a c = b \sqcup_{\langle f, g \rangle} c$$
+          </p>
+          <p>
+            The pushout of $\langle f, g \rangle$ always exists in $\textbf{Set}$; it is the disjoint union $a \sqcup b$ with elements identified with $fx$ and $gx$, for $x \in a$.
+          </p>
+          <p>
+            For $f: a \rightarrow b \in C$, the <mark>cokernel pair</mark> is defined as the pair of pushout of $f$ along with $f$. Indeed, there is some $r$ so that $u, v : b \rightarrow r$ are parallel arrows:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            a\ar[r] & b\ar@<-.5ex>[r]_u\ar@<.5ex>[r]^v\ar@<-.5ex>[dr]_f\ar@<.5ex>[dr]^g & r\ar@{.>}[d]|{\exists! t} \\
+            & & s
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Let $C$ be a category, and $J$ be an index category. The diagonal functor<br/>
+            $$\Delta : C \rightarrow C^J$$
+          </p>
+          <p>
+            sends each object $c$ to the constant functor $\Delta c$ - the functor which has the same value $c$ for each object $i \in J$, and the value $1_c$ at each arrow of $J$. Given $f : c \rightarrow c'$, $\Delta f : \Delta c \overset{\bullet}{\rightarrow} \Delta c'$ is an NT. Arrows $F : J \rightarrow C$ correspond to objects of $C^J$. The universal arrow $\langle r, u \rangle$ from $F$ to $\Delta$ is called a <mark>colimit</mark> (or <mark>direct limit</mark>, <mark>inductive limit</mark>) diagram for $F$; it consits of an object $r \in C$, usually written $r = \underset{\longrightarrow}{\text{Lim }} F$, or $r = \text{Colim } F$, along with an NT $u : F \overset{\bullet}{\rightarrow} \Delta r$ which is universal among NTs $\tau : F \overset{\bullet}{\rightarrow} \Delta c$. Pictorially, the following diagram commutes:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            F_1\ar[d]^{\tau_1}\ar[r] & F_2\ar[d]^{\tau_2}\ar[r] & F_3\ar[d]^{\tau_3}\ar@<-.5ex>[r]\ar@<.5ex>[r] & F_4\ar[d]^{\tau_4} & F_5\ar[d]^{\tau_5}\ar[l] \\
+            c\ar@{}[r]|{=} & c\ar@{}[r]|{=} & c\ar@{}[r]|{=} & c\ar@{}[r]|{=} & c
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            $\tau : F \overset{\bullet}{\rightarrow} \Delta c$ is often written as $\tau : F \overset{\bullet}{\rightarrow} c$, and is called the <mark>cone</mark> of $F$ to the base $c$:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            F_i\ar[r]^{F_u}\ar[dr]_{\tau_i} & F_j\ar[d]^{\tau_j}\ar[r]^{F_v} & F_k\ar[dl]^{\tau_k} \\
+            & c &
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            Alternatively, colimit of $F : J \rightarrow C$ consists of object $\underset{\longrightarrow}{\text{Lim }} F \in C$ along with the cone $\mu : F \overset{\bullet}{\rightarrow} \Delta (\underset{\longrightarrow}{\text{Lim }} F)$, from base $F$ to the vertex $\underset{\longrightarrow}{\text{Lim }} F$, which is a <mark>universal cone</mark> (or <mark>limiting cone</mark>).
+          </p>
+          <p>
+            As an example, consider $J = \omega = \{0 \rightarrow 1 \rightarrow 2 \rightarrow \ldots\}$, and functor $F : \omega \rightarrow \textbf{Set}$ which maps every arrow in $\omega$ to an inclusion map (subset in set). This functor is simply the inclusion $F_0 \subset F_1 \subset F_2 \subset \ldots$. The union $U$ of all sets, with cone given by inclusion map $F_n \rightarrow U$, is $\underset{\longrightarrow}{\text{Lim }} F$. For $J$ small, any $J \rightarrow \textbf{Set}$ has a colimit.
+          </p>
+          <h2 id="limits-and-products">
+            Limits and products
+          </h2>
+          <p>
+            The notion of a limit is dual to that of a colimit. Let $C$ be a category, $J$ be an index set, and $\Delta : C \rightarrow C^J$ be a diagonal functor. Limit of functor $F : J \rightarrow C$ is defined as the universal arrow $\langle r, \nu \rangle$ from $\Delta$ to $F$; it consists of object $r \in C$, $r = \underset{\longleftarrow}{\text{Lim }} F = \text{Lim } F$, called the <mark>limit object</mark> (or <mark>projective limit</mark>, <mark>inverse limit</mark>) of $F$, and the NT $\nu : \Delta r \overset{\bullet}{\rightarrow} F$, which is universal among $\tau : \Delta c \overset{\bullet}{\rightarrow} F$ for $c \in C$. $\tau : c \overset{\bullet}{\rightarrow} F$ is then called cone to base $F$ from vertex $c$, pictured as:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            c\ar[d]_{\tau_i}\ar[dr]|{\hole}_{\tau_j}\ar[r]^t & \underset{\longleftarrow}{\text{Lim }} F = \text{Lim } F\ar[d]^{\nu_j}\ar[dl]_{\nu_i} \\
+            F_i\ar[r]_{Fu} & F_j
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            The properties of limits and colimits may be pictured as:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            \underset{\longleftarrow}{\text{Lim }} F\ar[r]^\nu & F\ar@{}[d]|{=}\ar[r]^\mu & \underset{\longrightarrow}{\text{Lim }} F\ar@{.>}[d] \\
+            c\ar[r]^\tau\ar@{.>}[u] & F\ar[r]^\sigma & c
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            For a discrete category $J = \{1, 2\}$ and category $C$, limit of functor $F : \{1, 2\} \rightarrow C$ consisting of pairs $\langle a, b \rangle$, is called <mark>product</mark> of $a, b$ and written as $a \times b$. Then, we have projections $p, q$ defined as:<br/>
+            $$a \xleftarrow{p} a \times b \xrightarrow{q} b$$
+          </p>
+          <p>
+            They form a cone with vertex $a \times b$, and we have the bijection of sets natural in $c$:<br/>
+            $$C(c, a \times b) \cong C(c, a) \times C(c, b)$$
+          </p>
+          <p>
+            We then define $h = (f, g) : c \rightarrow a \times b$, and $f, g$ are called the <mark>components</mark> of $h$. In $\textbf{Cat}, \textbf{Grp}, \textbf{Top}$, this corresponds to direct product.
+          </p>
+          <p>
+            <mark>Infinite products</mark>. When $J$ is a set (= discrete category, category with all arrows identities), $F : J \rightarrow C$ is simply a $J$-indexed family of objects $a_i \in C$, while cone with vertex $c$ and base $a_j$ is a $J$-indexed family of arrows $f_j : c \rightarrow a_j$. We have $f : c \rightarrow \prod_j a_j$ and the following bijection of sets natural in $c$:<br/>
+            $$\prod_j C(c, a_j) \cong C(c, \prod_j a_j)$$
+          </p>
+          <p>
+            Products over any small set exist in $\textbf{Set}$, $\textbf{Grp}$, and $\textbf{Top}$; they are simply cartesian products.
+          </p>
+          <p>
+            If factors in a product are all equal, $a_j = b$ for all $j$, then $\prod_j a_j = \prod_j b$ is called <mark>power</mark>, and is written as $\prod_j b = b^J$. The following bijection of sets is natural in $c$:<br/>
+            $$C(c, b)^J \cong C(c, b^J)$$
+          </p>
+          <p>
+            Given $J = \downarrow \downarrow$ and functor $F : \downarrow \downarrow \rightarrow C$ defined by parallel arrows $f, g : a \rightarrow b$, the limit point $d \in F$, when it exists, is called an <mark>equalizer</mark> or <mark>difference kernel</mark> of $f$ and $g$:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            d\ar[r]^e & a\ar@<-.5ex>[r]_g\ar@<.5ex>[r]^f & b
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            The limit arrow $e$ amounts to cone $a \leftarrow d \rightarrow b$ from vertex $d$. In $\textbf{Set}$, equalizer always exists; $d$ is the set $d \in b \mid fx = gx$, and $e : d \rightarrow b$ is an injection of this subset of $b$ into $b$. In $\textbf{Ab}$, the equalizer $d$ is kernel of difference homomorphism $f - g : a \rightarrow b$. Any equalizer $e$ is necessarily a monic.
+          </p>
+          <p>
+            For $J : \rightarrow \bullet \leftarrow$, functor $F : (\rightarrow \bullet \leftarrow) \rightarrow C$ is a pair of arrows $b \xrightarrow{g} a \xleftarrow{f} d$. The cone of such a functor is a pair of arrows from vertex $c$ in the following diagram:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            c\ar@/_/[ddr]\ar@{.>}[dr]|{\exists!}\ar@/^/[drr] \\
+            & b \times_a d\ar[d]^p\ar[r]_q & d\ar[d]_f \\
+            & b\ar[r]^g & a
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            The diagram also illustrates the universal cone formed by $c \rightarrow b \times_a d$, and the square is called <mark>pullback square</mark>. The product $b \times_a d$ is then called pullback or <mark>fibered product</mark>.
+          </p>
+          <p>
+            In $\textbf{Top}$, if $g : d \rightarrow a$ is a "fiber map" with base $a$, and $f$ is a continuous map into the base, then projection $p$ of the pullback is the <mark>induced fiber map</mark>. When it exists, the pullback of a pair of equal arrows $b \rightarrow a \leftarrow b$ is called the <mark>kernel pair</mark> of $f$. A limit of the empty functor in $C$ is a terminal object of $C$.
+          </p>
+          <h2 id="categories-with-finite-products">
+            Categories with finite products
+          </h2>
+          <p>
+            A category is said to have finite products if, for any finite number of objects $c_1, c_2, \ldots c_n$, there exists a product object $c_1 \times c_2 \times \ldots c_n$ and projections $p_i : c_1 \times c_2 \times \ldots c_n \rightarrow c_i$ for $i = 1 \ldots n$, with the usual universal property.
+          </p>
+          <p>
+            If $C$ has a terminal object $t$ and products $a \leftarrow a \times b \rightarrow b$ for any two objects $a, b$, then $C$ has all finite products. The products provide, by $\langle a, b \rangle \mapsto a \times b$, the bifunctor $C \times C \rightarrow C$. For any three objects, we have the isomorphism natural in $a, b, c$:<br/>
+            $$\alpha = \alpha_{a, b, c} : (a \times b) \times c \cong a \times (b \times c)$$
+          </p>
+          <p>
+            For any object $a$, there are isomorphisms natural in $c$:<br/>
+            $$\rho_a = \rho : t \times a \cong a \quad \lambda_a = \lambda : a \times t \cong a$$
+          </p>
+          <p>
+            The proof can be expressed as a commutative diagram:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            & & b \\
+            a & a \times (b \times c)\ar[l]\ar[r]\ar[ur]\ar[dr] & b \times c\ar[u]\ar[d] \\
+            & & c
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            The dual result holds for a coproduct. A coproduct diagram consists of $m$ injections $i_j : a_j \rightarrow a_1 \sqcup a_2 \sqcup \ldots \sqcup a_m$ and a map $f: a_1 \sqcup a_2 \sqcup \ldots \sqcup a_n \rightarrow c$ determined by its $m$ cocomponents $f \circ i_j : f_j = a_j \rightarrow c$ for $j = 1, 2, \ldots m$. If $C$ has both finite products and finite coproducts, the arrows<br/>
+            $$a_1 \sqcup \ldots \sqcup a_m \rightarrow b_1 \times \ldots \times b_n$$
+          </p>
+          <p>
+            from coproducts to products is determined uniquely by an $m \times n$ matrix of arrows $f_{jk} = p_k f i_j : a_j \rightarrow b_k$. In any category with a null object $z$ and the zero arrow $a \rightarrow b$ through $z$, finite coproducts, and finite products, there is a canonical arrow of the coproduct to the product:<br/>
+            $$a_1 \sqcup \ldots \sqcup a_n \rightarrow a_1 \times \ldots \times a_n$$
+          </p>
+          <p>
+            This arrow is precisely the identity matrix of order $n$. It may be an isomorphism (in $\textbf{Ab}, \textbf{R-Mod}$), a proper monic (in $\textbf{Top}, \textbf{Set}$), or a proper epi (in $\textbf{Grp}$).
+          </p>
+          <h2 id="groups-in-categories">
+            Groups in categories
+          </h2>
+          <p>
+            Let $C$ be a category with finite products and terminal object $c$. Then, a monoid is defined by the triple $\langle c, \mu : c \times c \rightarrow c, \eta : t \rightarrow c \rangle$ such that the following diagrams commute:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            c \times (c \times c)\ar[r]^\alpha\ar[d]^{1 \times \mu} & (c \times c) \times c\ar[r]^{\mu \times 1} & c \times c\ar[d]^\mu \\
+            c \times c\ar[rr]^{\mu} & & c
+            }
+            \end{xy}
+            $$
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            t \times c\ar[r]^{\eta \times 1}\ar[d]^\lambda & c \times c\ar[d]^\mu & c \times t\ar[l]_{1 \times \eta}\ar[d]^\rho \\
+            c\ar@{}[r]|{=} & c\ar@{}[r]|{=} & c
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            where $\alpha$ is the associativity morphism. A group is then defined by the triple $\langle c, \mu, \eta \rangle$ together with the operation $\zeta : c \rightarrow c$ such that the following diagram commutes (with $\delta_c$ the diagonal):
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            c\ar[r]^{\delta_c}\ar[d] & c \times c\ar[r]^{1 \times \zeta} & c \times c\ar[d]^\mu \\
+            t\ar[rr]^\eta & & c
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            This suggests that $\zeta$ sends each element $c$ to its right inverse. One can draw similar diagrams for any algebraic system.
+          </p>
+          <p>
+            If $C$ is a category with finite products, then object $c$ is a group iff the hom-functor $C(-, c)$ is a group in the functor category $\textbf{Set}^{C^{op}}$. Each multiplication $\mu$ of $C$ determins a corresponding multiplication $\bar{\mu}$ in the hom-set $C(-, c) : C^{op} \rightarrow \textbf{Set}$ as the composite
+          </p>
+          <p class="mathjax">
+            $$
+            C(-, c) \times C(-, c) \xrightarrow{\theta} C(-, c \times c) \xrightarrow{\nu} C(-, c)
+            $$
+          </p>
+          <p>
+            where $\nu = \mu_* = C(-, \mu)$, while the first natural isomorphism is given by the definition of the product object $c \times c$. Conversely, given any natural $\nu$, the Yoneda lemma proves that there is a unique $\mu : c \times c \rightarrow c$ such that $\nu = \mu_*$. A diagram chase shows that $\mu$ is associative only if $\bar{\mu}$ is.
+          </p>
+          <h2 id="colimits-of-representatable-functors">
+            Colimits of representatable functors
+          </h2>
+          <p>
+            Any functor $K : D \rightarrow \textbf{Sets}$, from a small category $D$ to the category of Sets, can be represented, in a canoical way, by the colimit of a diagram of representable functors $\text{hom}(d, -)$, where $d \in D$. First, given $K$, we construct a diagram category for the colimit $J$, the "category of elements" of $K$; that is the comma category $1 \downarrow K$ of object pairs $(d, x)$, with $d \in D, x \in K(d)$ as objects, and arrows $f : (d, x) \rightarrow (d', x')$, those arrows $f: d \rightarrow d'$ for which $K(f)x = x'$. Then, $K$ is the colimit of the diagram on $1 \downarrow K$ given by the functor<br/>
+            $$M : J^D \rightarrow \textbf{Sets}^D$$
+          </p>
+          <p>
+            which sends each object $(d, x)$ to the hom-functor $D(d, -)$, and each arrow $f$ to the induced NT $f_* : D(d', -) \rightarrow D(d, -)$. Then, the Yoneda isomorphism on $\textbf{Sets}^D$ yields a cone over base $M$ to $K$:<br/>
+            $$y^{-1} : K(D) \rightarrow \text{Nat}(D(d, -), K)$$
+          </p>
+          <p>
+            and we get the following diagram:
+          </p>
+          <p class="mathjax">
+            $$
+            \begin{xy}
+            \xymatrix{
+            J\ar[d]^M & (d, x)\ar[d] & (d', x')\ar[d]\ar[l]_{f_*} \\
+            \textbf{Sets}^D & D(d, -)\ar[d]_{y^{-1}x}\ar[dr]_{y^{-1}x'}|{\hole} & D(d', -)\ar[d]^{y^{-1}z'}\ar[dl]_{y^{-1}z}\ar[l]_{f_*} \\
+            & K\ar@{.>}[r]_\theta & L
+            }
+            \end{xy}
+            $$
+          </p>
+          <p>
+            This cone to $K$ is colimiting over $D(d, -)$. Consider any other cone from $D(d, -)$ to the vertex $L$; by the Yoneda lemma, this is an NT $D \rightarrow \textbf{Sets}$, given by $y^{-1}z : D(d, -) \rightarrow L$, as well as by $y^{-1}z' : D(d', -) \rightarrow L$, for some $z \in L(D), fz = z'$. To show that the cone to $K$ is universal, construct an NT $\theta : K \rightarrow L$ and set $\theta_d x = z$. Since $f(y^{-1}z) = y^{-1}(fz) = y^{-1}z'$, $\theta$ is natural.
+          </p>
+          <p>
+            For small category $C$, the contravariant functor $F : C^{op} \rightarrow \textbf{Sets}$ is called a <mark>presheaf</mark>, and the category of these functors is written as $\hat{C}$. This terminology comes from the case when $C$ is a category of open subsets $U$ of a topological space, and $F$ smooth functions; then, for the inclusion $V \subset U$, we have the map $F(U) \rightarrow F(V)$.
+          </p>
+        </article>
+      </main>
+    </div>
+  </body>
+</html>
