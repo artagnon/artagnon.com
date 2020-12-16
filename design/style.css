@@ -37,13 +37,16 @@ div#wrapper {
   margin: 0;
   padding-bottom: 10vw;
   display: grid;
+  grid-template-rows:
+    auto
+    auto;
   grid-template-columns:
     1fr
     min(65ch, 100%)
     1fr;
 }
 
-div#wrapper * {
+div#wrapper > * {
   grid-column: 2;
 }
 
@@ -65,26 +68,27 @@ nav,
 main {
   float: none;
   clear: both;
+  margin-left: auto;
+  margin-right: auto;
   box-sizing: border-box;
-}
-
-main {
-  display: block;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  padding-bottom: 1.5vw;
 }
 
 nav {
   background-color: #eee0e5;
-  margin-left: auto;
-  margin-right: auto;
+  grid-row: 1;
+}
+
+main {
+  padding-bottom: 0.8vw;
+  grid-row: 2;
 }
 
 nav div img {
   float: left;
-  padding: 5px;
+  padding-left: 10px;
   width: 20%;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 nav div#topics > ul {
@@ -238,7 +242,8 @@ div.imgrow::after {
 }
 
 .full-bleed {
-  grid-column: 1/-1 !important;
+  width: 100%;
+  grid-column: 1 / 4;
 }
 
 .mathjax {
