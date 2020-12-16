@@ -42,7 +42,11 @@ html lang="en"
         ul
           - topics.each do |topic|
             li
-              a href="/#{topic}" = (if topic == "index" then "home" else topic end)
+              - if topic == "index"
+                a href="/"
+                  img src="/dist/artagnon.com.png"
+              - else
+                a href="/#{topic}" = topic
       main
         header
           h1 == title
