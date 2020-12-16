@@ -40,7 +40,7 @@ html lang="en"
     div id="wrapper"
       nav
         div
-          div id="homelogo"
+          div
             a href="/"
               img src="/dist/artagnon.com.png"
           div id="topics"
@@ -85,14 +85,14 @@ html lang="en"
                 pre
                  code class="hljs #{paragraph.prop}" == paragraph.to_s
               - when :images
-                div class="imgrow full-bleed"
+                div class="images full-bleed"
                   - if paragraph.split("\n").length == 1
                     figure
                       img src="#{paragraph.split("\n")[0]}" style="width:100%"
                   - else
-                    figure class="left full-bleed"
+                    figure class="full-bleed"
                       img src="#{paragraph.split("\n")[0]}"
-                    figure class="right full-bleed"
+                    figure class="full-bleed"
                       img src="#{paragraph.split("\n")[1]}"
               - when :horizrule
                 hr class="#{paragraph.prop}"
