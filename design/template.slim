@@ -39,14 +39,15 @@ html lang="en"
   body
     div id="wrapper"
       nav
-        ul
-          - topics.each do |topic|
-            li
-              - if topic == "index"
-                a href="/"
-                  img src="/dist/artagnon.com.png"
-              - else
-                a href="/#{topic}" = topic
+        div
+          div id="homelogo"
+            a href="/"
+              img src="/dist/artagnon.com.png"
+          div id="topics"
+            ul
+              - topics.select { |x| x != "index" }.each do |topic|
+                li
+                  a href="/#{topic}" = topic
       main
         header
           h1 == title
