@@ -67,37 +67,32 @@ main {
   box-sizing: border-box;
 }
 
-nav {
-  background-color: aliceblue;
-  border: darkgray 0.2px dotted;
-  grid-row: 1;
-  grid-template-columns: auto auto;
-}
-
 main {
   padding-bottom: 0.8vw;
   grid-row: 2;
 }
 
-nav div:nth-child(1) {
-  grid-column: 1;
-  height: 100%;
-  width: auto;
+nav {
+  background-color: aliceblue;
+  border: darkgray 0.2px dotted;
+  grid-row: 1;
+  /* Can't put children in a grid, due to the sneaky a preceding img */
 }
 
-nav div:nth-child(2) {
-  grid-column: 2;
-  height: 100%;
-  width: auto;
+nav > div:nth-child(1) {
+  float: left;
 }
 
-nav div:nth-child(1) img {
-  padding-left: 10px;
+nav > div:nth-child(2) {
+  float: right;
+}
+
+nav > div:nth-child(1) > * > img {
   width: 20%;
-  object-fit: contain;
+  padding-left: 10px;
 }
 
-nav div:nth-child(2) > ul {
+nav > div:nth-child(2) > ul {
   object-fit: contain;
   list-style: none;
   padding-left: 0;
