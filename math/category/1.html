@@ -65,7 +65,7 @@
           <p>
             For the product set $X \times Y$, given $W, f, g$, and projections $p : X \times Y \mapsto X$, $q : X \times Y \mapsto Y$, the following diagram commutes:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -74,7 +74,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             The unique function $h$ is given by $hw = \langle fw, gw \rangle$ for every $w \in W$.
           </p>
@@ -98,7 +98,7 @@
           <p>
             A monoid is a set $M$ equipped with $\mu : M \times M \rightarrow M$ and $\eta : 1 \rightarrow M$ such that the following diagrams commute:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -107,8 +107,8 @@
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -117,14 +117,14 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             This means that $\mu \circ (\eta \times 1) = \lambda$ and $\mu \circ (1 \times \eta) = \rho$.
           </p>
           <p>
             Writing it out in terms of the elements, we get the familiar associativity axioms:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -133,11 +133,11 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             and the identity axioms:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -152,7 +152,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Then a category can be defined as a monoid with "product over $O$":<br/>
             $$A \times_0 A = \{\langle f, g \rangle \mid f, g \in A; \text{dom } f = \text{cod } g\}$$
@@ -160,7 +160,7 @@
           <p>
             We describe a group as a monoid with the additional operation $\eta : M \rightarrow M$ corresponding to $x \rightarrow x^{-1}$:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -175,7 +175,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Equivalently, a group is a category with one object, and in which every arrow has a two-sided inverse under composition.
           </p>
@@ -224,7 +224,7 @@
           <p>
             A natural transformation is a morphism of functors. Given two functors $S, T : B \rightarrow C$, let $\tau : S \overset{\bullet}{\rightarrow} T$ be an NT. Then, every arrow $f : b \rightarrow b' \in S$ is mapped to $\tau_b = \tau b : Sb \rightarrow Sb' \in C$, so the following diagram commutes:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -233,11 +233,11 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             If we think of $S$ as giving a picture in $C$ of all objects and arrows in $B$, we get the following commutative diagrams:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -254,14 +254,14 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             $\tau_a, \tau_b, \tau_c$ are called the <mark>components of the NT</mark>. An NT with all components $\tau b$ invertible in $C$ is called a <mark>natural isomorphism</mark>. In this case, the the inverses $(\tau b)^{-1}$ are components of the NT $\tau^{-1} : T \rightarrow S$.
           </p>
           <p>
             The <a href="/la#determinant">determinant</a> is an NT $\tau : \textbf{CRng} \overset{\bullet}{\rightarrow} \textbf{Grp}$. Let $\text{det}_K M$ be the determinant of matrix $M$ with entries in commutative ring $K$. $\text{det}_K$ is a morphism $\text{GL}_n K \overset{\bullet}{\rightarrow} K^*$ of groups.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -270,11 +270,11 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             For group $G$, the transform $p_G = G/[G, G]$ to the factor-commutator group defines a transform $p$ from the identity functor on $\textbf{Grp}$ to the factor-commutator functor $\textbf{Grp} \rightarrow \textbf{Ab} \rightarrow \textbf{Grp}$. Moreover, $p$ is natural, because the following diagram commutes:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -283,7 +283,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             The double character group yields an example in $\textbf{Ab}$. Let $D$ denote the character group of $G$ so that $D(G) = \text{hom}(G, \mathbb{R}/\mathbb{Z})$ is the set of all homomorphisms $G \rightarrow \mathbb{R}/\mathbb{Z}$ with the familiar group structure, so that $\mathbb{R}/\mathbb{Z}$ is the additive group of real numbers modulo $1$. Each arrow $f : G \rightarrow G'$ determines an arrow $Df : DG' \rightarrow DG$, in the opposite direction, in $\textbf{Ab}$, with $(D f) t = tf : G' \rightarrow \mathbb{R}/\mathbb{Z}$ for each $t$; for composable arrows $D (g \circ f) = Df \circ Dg$. For this reason, $D$ is a contravariant functor on $\textbf{Ab}$ to $\textbf{Ab}$. However, the twice iterated character group $G \mapsto D(DG)$ and identity $I(G) = G$ are both functors $\textbf{Ab} \rightarrow \textbf{Ab}$. For each group $G$, there is a homomorphism:<br/>
             $$\tau_G : G \rightarrow D(DG)$$
@@ -361,7 +361,7 @@
               For every triple $\langle a, b, c \rangle$, the composition axiom:
             </li>
           </ol>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -370,7 +370,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <ol class="olitems" type="i" start="4">
             <li>
               For every object $b$, $1_b \in \text{hom}(b, b)$; the identity axiom
@@ -415,7 +415,7 @@
           <p>
             For $k : a \rightarrow a'$ and $g : b \rightarrow b'$, we have:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -424,14 +424,14 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <h2 id="product-structure">
             Product structure
           </h2>
           <p>
             $P_1$ along with $X$ and $Y$ defines a product. There exists a unique morphism between $P_1$ and $P_2$ preserving the product structure.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -441,14 +441,14 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             $P, Q$ are functors called <mark>projections</mark> of $P_1$ onto $X$ and $Y$. Elements of $P_1$ are pairs $\langle x, y \rangle$. $P, Q$ are said to be <mark>universal</mark> among functors to $X$ and $Y$.
           </p>
           <p>
             Let $U : X \rightarrow Y, V : X' \rightarrow Y'$ be two functors; then $U \times V : X \times Y \rightarrow X' \times Y'$ is the product of two functors, and we yield the following commutative diagram:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -457,7 +457,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Thus, $\times$ is a pair of functions, assigning to each pair of categories $\langle X, Y \rangle$, the category $X \times Y$, and to each pair of functors $\langle U, V \rangle$, the functor $U \times V$. Moreover, when $U \circ U'$ and $V \circ V'$ are defined, we have $(U \times U') \circ (V \times V') = UU' \times VV'$. This makes $\times$ into a functor:<br/>
             $$\times : \textbf{Cat} \times \textbf{Cat} \rightarrow \textbf{Cat}$$
@@ -475,7 +475,7 @@
           <p>
             Consider the product category $C \times \textbf{2}$, where $\textbf{2}$ is the category of the two-point set $\{0, 1\}$:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -486,7 +486,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Here $T_0, T_1 : C \rightarrow C \times \mathbf{2}$ are functors from "bottom" to "top". $T_0 f = \langle f, 0 \rangle$, $T_1 f = \langle f, 1 \rangle$. If $\uparrow : 0 \rightarrow 1$ denotes the unique non-identity arrow in $\mathbf{2}$, then $T_0, T_1$ are defined by:<br/>
             $$\mu : T_0 \overset{\bullet}{\rightarrow} T_1 \quad \mu c = \langle c, \uparrow \rangle$$
@@ -500,7 +500,7 @@
           <p>
             Consider functors $R, S, T : C \rightarrow B$ and NTs $\sigma : R \overset{\bullet}{\rightarrow} S, \tau : S \overset{\bullet}{\rightarrow} T$. Define $(\tau \bullet \sigma) c = \tau c \circ \sigma c$, which are components of the NT $\tau \bullet \sigma : R \overset{\bullet}{\rightarrow} T$. To show that $\tau \bullet \sigma$ is natural, let $f : c \rightarrow c' \in C$ in the commutative diagram:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -510,7 +510,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             The <mark>functor category</mark> may be written as $B^C = \text{Funct}(C, B)$, with objects the functors $T : C \rightarrow B$, and morphisms the NTs between two such functors. The hom-set for this category is:<br/>
             $$\text{Nat}(S, T) = B^C(S, T) = \{\tau \mid \tau : S \overset{\bullet}{\rightarrow} T\}$$
@@ -518,7 +518,7 @@
           <p>
             If $B = \{0, 1\}$, the category $\{0, 1\}^C$ is isomorphic to the powerset of $C$, $\mathscr{P}C$. For any category $B$, $B^1$ is isomorphic to $B$, and $B^2$ is the category whose objects are arrows $f : a \rightarrow b$ of $B$, and whose arrows $f \rightarrow f'$ are those that, along with pair $\langle h, k \rangle$, make the following diagram commute:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -527,14 +527,14 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <h2 id="category-of-all-categories">
             Category of all categories
           </h2>
           <p>
             Given three categories and four NTs, we have:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -542,19 +542,19 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             The vertical and horizontal composities satisfy the interchange law:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             (\tau' \bullet \sigma') \circ (\tau \bullet \sigma) = (\tau' \circ \tau) \bullet (\sigma' \circ \sigma)
             $$
-          </p>
+          </div>
           <p>
             The collection of all NTs is the set of arrows of two different categories under two different operations of composition, $\circ$ and $\bullet$, which satisfy the above interchange law. Moreover, any arrow that is identity for the composition $\circ$ is also identity for the composition $\bullet$. To prove this, notice that objects for the horizontal composition $\circ$ are the categories, for vertical composition, the functors. Notice that the objects and arrows of $C$ may be written as $c : \textbf{1} \rightarrow C$ and $f : \textbf{2} \rightarrow C$. Then, the symbols such as $\sigma \circ c = \sigma c$ have their accepted meaning in a situation such as:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -562,14 +562,14 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <h2 id="comma-category">
             Comma category
           </h2>
           <p>
             If $b$ is an object of category $C$, $(b \downarrow C)$ is a category in which objects are objects of $\langle f, c \rangle$, where $f : b \rightarrow c$, and arrows $h : \langle f, c \rangle \rightarrow \langle f', c' \rangle$, such that $h \circ f = f'$:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -578,14 +578,14 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Example: If $\mathbf{*}$ denotes a one-point set, $(\mathbf{*} \downarrow \mathbf{Set})$ denotes the category of pointed sets.
           </p>
           <p>
             If $b$ is an object of category $C$, and $S : D \rightarrow C$ a functor, the category $(b \downarrow S)$ of objects under $b$ has as objects pairs $\langle f, d \rangle$, where $d \in \text{Obj } D$ and $f : b \rightarrow Sd$, and arrows $h : \langle f, d \rangle \rightarrow \langle f', d' \rangle$ all those arrows $h : f \rightarrow f'$ such that $Sh \circ f = f'$:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -594,11 +594,11 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Consider $C \xleftarrow{T} A \xrightarrow{S} B$ where $S$ and $T$ are NTs. Then the category $(T \downarrow S)$, also written as $(T, S)$ is called the <mark>comma category</mark>. It has as objects triples $\langle c, b, f \rangle$, and as arrows $\langle c, b, f \rangle \rightarrow \langle c', b', f' \rangle$ all pairs $\langle k, h \rangle$ of arrows $k : c \rightarrow c'$, $h : b \rightarrow b'$ such that $f' \circ Tk = Sh \circ f$:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -607,11 +607,11 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             We get the following diagram when we consider projections of the comma category:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -620,7 +620,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <h2 id="graphs-and-free-categories">
             Graphs and free categories
           </h2>
@@ -630,7 +630,7 @@
           <p>
             A directed graph is a set of objects $O$ and a set $A$ of arrows $f$ such that there exists a pair of arrows:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -638,7 +638,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             A morphism between graphs $D : G \rightarrow G'$ is a pair of functions $D_O : O \rightarrow O'$ and $D_A : A \rightarrow A'$ such that:<br/>
             $$D_O \partial_0 f = \partial_0 D_A f \quad D_O \partial_1 f = \partial_1 D_A f$$
@@ -656,7 +656,7 @@
           <p>
             A category with objects $O$ may be described as an O-graph equipped with the two morphisms $c : A \times_O A \rightarrow A$ and $i : O \rightarrow A$, composition and identity, such that the following commute:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -671,11 +671,11 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             A <mark>free category</mark> may be "generated by a graph" $G$ having the same set of objects $O$, and morphisms composition on edges of the graph, and this is written as $C_G$. Given $D : B \rightarrow C$, we get the following diagram in terms of underlying graphs:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -684,7 +684,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             There is a bijective correspondence between categories and their underlying graphs:<br/>
             $$\textbf{Cat}(C_G, B) \cong \textbf{Grph}(C, UB)$$
@@ -695,7 +695,7 @@
           <p>
             Let $C$ be a category and $R_{a, b}$ be a relation defined on the hom-set. Then, quotient category $C/R$ is defined in terms of a universal functor $Q$:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -704,7 +704,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             If $C = \textbf{Top}$, and $fRf'$ is the <mark>homotopy equivalence</mark> between $f$ and $f'$, then quotient category $C/R$ is $\textbf{Toph}$ with objects topological spaces and arrows homotopy classes of continuous maps. If $C$ is a free category generated by a graph $G$, $C/R$ is said to have <mark>generators</mark> $G$ and <mark>relations</mark> $R$.
           </p>

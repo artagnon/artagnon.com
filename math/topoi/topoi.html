@@ -89,7 +89,7 @@
           <p>
             A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -100,7 +100,7 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             A <mark>pre-order</mark> is defined as a category in which there is at most one arrow, $\langle p, q\rangle$, between any two objects $p$ and $q$. In this kind of category, called there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
           </p>
@@ -115,7 +115,7 @@
           <p>
             The typical example is to think of two non-comparable subsets of a set. With identity arrows omitted, this looks like:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -127,7 +127,7 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             With one additional property described below, a <mark>pre-order</mark> becomes a <mark>partial ordering</mark>:
           </p>
@@ -136,7 +136,7 @@
               Anti-symmetry: whenever $pRq$ and $qRp$, we have $p = q$.
             </li>
           </ol>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -148,7 +148,7 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsubseteq \rangle$, is called a <mark>poset</mark>. The specific category we have used to encode $\mathbb{N}$ above is called <mark>$\textbf{Finord}$</mark>, the category of finite ordinals. In $\textbf{Finord}$, these three statements are equivalent:
           </p>
@@ -171,7 +171,7 @@
               Connexity: For all $p$, $q \in \mathcal{C}$, <mark>pRq</mark> or <mark>qRp</mark>.
             </li>
           </ol>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -181,11 +181,11 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             Using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -195,14 +195,14 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             This is a total order.
           </p>
           <p>
             Let us now consider categories with more than one arrow between two objects. A <mark>monoid</mark> is defined as an algebraic structure $(M, \circ, \mathbb{1})$ where $\circ$ is a function from $M \times M \rightarrow M$. A monoid naturally gives rise to a category with just one object: $M$. We can instantiate it with $M = \mathbb{N}$, $\circ = +$, and $\mathbb{1} = 0$ to obtain the familiar notion of addition of natural numbers:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -213,8 +213,8 @@
               \end{xy}
             
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -225,7 +225,7 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             If $a, b \in \mathcal{C}$, then we use $\mathcal{C}(a, b)$ to denote the set of arrows from $a$ to $b$. A <mark>subcategory</mark> $\mathcal{C} \subseteq \mathcal{D}$ is defined as:
           </p>
@@ -243,7 +243,7 @@
           <p>
             Before introducing comma categories, let us briefly introduce arrow categories as a prerequisite. An <mark>arrow category</mark> $\textbf{Set}^\rightarrow$ has as objects, the functions $f : A \rightarrow B$, and arrows between objects $f : A \rightarrow B$ and $g : C \rightarrow D$, the pair of arrows $\langle h, k\rangle$ such that the following diagram commutes:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -254,11 +254,11 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             A <mark>comma category</mark> can be viewed as a special case of an arrow categories with fixed domain or codomain. $\textbf{Set} \downarrow \mathbb{R}$ is the category of real-valued functions; the codomain of the category is fixed to $\mathbb{R}$. An arrow from $f: A \rightarrow \mathbb{R}$ to $g: B \rightarrow \mathbb{R}$ is the arrow $k: A \rightarrow B$ that makes the following commute:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -269,11 +269,11 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             $\textbf{Set} \downarrow \mathbb{R}$ can be construed to a $\textbf{Set}^\rightarrow$ as follows:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -284,11 +284,11 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             Similarly, we can define $\mathcal{C} \uparrow a$ to be a comma category with a fixed domain instead of codomain:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -299,14 +299,14 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <h2 id="set-membership-categorically">
             Set membership, categorically
           </h2>
           <p>
             To work our way up to <mark>subobject classifiers</mark>, we need to build some prerequisite material. First, let us introduce the notion of <mark>monic</mark> and <mark>epic</mark> arrows, corresponding to injective and surjective functions in $\textbf{Set}$. $f$ is injective if $f(x) = f(y) \implies x = y$, and surjective if $\forall y, \exists x : y = f(x)$.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -317,11 +317,11 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             If $f$ is monic, indicated as $f : b \rightarrowtail c$, the diagram above commutes, and $(f \circ g)(x) = (f \circ h)(x) = f(g(x)) = f(h(x)) \implies g = h$. In other words, a monic is said to be <mark>left-cancelable</mark>.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -332,12 +332,12 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <hr class="horizrule" />
           <p class="exercise">
             If $g \circ f$ is monic, so is $f$.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -348,7 +348,7 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <hr class="horizrule" />
           <p>
             If $f$ is epic, indicated as $f : a \twoheadrightarrow b$, the diagram above commutes, and $(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$. In other words, an epic is said to be <mark>right-cancelable</mark>.
@@ -363,7 +363,7 @@
           <p class="exercise">
             $f \circ g$ is iso, if $f$ and $g$ are, with $(f \circ g)^{-1} = g^{-1} \circ f^{-1}$.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -374,7 +374,7 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <hr class="horizrule" />
           <p>
             An <mark>initial object</mark> $\mathbb{0}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $\mathbb{0} \rightarrow a$, and a <mark>terminal object</mark> $\mathbb{1}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $a \rightarrow \mathbb{1}$. In $\textbf{Set}$, $\phi$ is distinguished to be the initial object because there exists only one function from $\phi$ to every other element in the category, namely $\phi$, the empty function; the graph of $\phi \times a$ is empty; and $\{e\}$, the singleton set is distinguished to be the terminal object.
@@ -390,7 +390,7 @@
           <p class="exercise">
             $\mathbb{1} \rightarrow a$ is monic.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -400,7 +400,7 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             $f \circ g = f \circ h \Leftrightarrow g = h$. Now, $g = h$ is true because there is only one arrow to it from any given object, and hence, $f$ is monic.
           </p>
@@ -408,7 +408,7 @@
           <p class="exercise">
             $\langle \texttt{pr}_a, \texttt{pr}_b\rangle = \mathbb{1}_{a \times b}$.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -420,7 +420,7 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             By uniqueness of identity arrow, $\mathbb{1}_{a \times b} = \langle \texttt{pr}_a, \texttt{pr}_b\rangle$.
           </p>
@@ -428,7 +428,7 @@
           <p class="exercise">
             If $\langle f, g\rangle = \langle k, h\rangle$, then $f = k$ and $g = h$.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -440,11 +440,11 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             By definition of product, since this diagram commutes,
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
               p &=& \texttt{pr}_A \circ \langle f, g \rangle = f \\
@@ -453,7 +453,7 @@
                 &=& \texttt{pr}_B \circ \langle k, h \rangle = h
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Hence, $f = k$ and $g = h$.
           </p>
@@ -464,7 +464,7 @@
           <p>
             The following diagram commutes:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -476,26 +476,26 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <p>
             yielding:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
               p = f \circ h = \texttt{pr}_A \circ \langle f, g\rangle \circ h \\
               q = g \circ h = \texttt{pr}_B \circ \langle f, g\rangle \circ h
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Combining $\texttt{pr}_A$ and $\texttt{pr}_B$, we get:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \langle f, g\rangle \circ h = \langle f \circ h, g \circ h\rangle
             $$
-          </p>
+          </div>
           <hr class="horizrule" />
           <p class="exercise">
             $a \times b \simeq b \times a$.
@@ -503,7 +503,7 @@
           <p>
             For isomorphism, there needs to exist $f : a \rightarrow b$ and $g : b \rightarrow a$, such that $f \circ g = g \circ f = \mathbb{1}$. From the diagram, we see that this is indeed the case:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -513,7 +513,7 @@
               \end{xy}
             
             $$
-          </p>
+          </div>
           <hr class="horizrule" />
         </article>
       </main>

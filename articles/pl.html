@@ -62,7 +62,7 @@
           </div>
         </header>
         <article>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
               \begin{xy}
               \xymatrix{
@@ -81,8 +81,8 @@
               \end{xy}
             
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{matrix}
                 \textbf{•} & \textrm{A root language: significantly novel, with no significant predecessor} \\
@@ -93,7 +93,7 @@
                 {}^{*} & \textrm{Mature high-performance high-complexity compiler/runtime}
               \end{matrix}
             $$
-          </p>
+          </div>
           <hr class="horizrule" />
           <p>
             An FAQ follows.
@@ -104,7 +104,7 @@
           <p>
             C++ templates are incredibly powerful, and with the introduction of compile-time expressions, vast portions of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:
           </p>
-          <pre><code class="hljs full-bleed cpp">template &lt;size_t i, typename... Ts, typename CurTy&gt;
+          <pre><code class="hljs cpp">template &lt;size_t i, typename... Ts, typename CurTy&gt;
 void recurseFillChildren(CurTy &amp;E)
 {
   using PackTy = std::variant&lt;Ts...&gt;;
@@ -125,7 +125,7 @@ void recurseFillChildren(CurTy &amp;E)
           <p>
             Rust didn't restrict what macros can do as much as C++ did. As a result, it's possible to do more with them. The particular example of the Pest parser is especially enlightening:
           </p>
-          <pre><code class="hljs full-bleed rs">#[derive(Parser)]
+          <pre><code class="hljs rs">#[derive(Parser)]
 #[grammar = "grammar.pest"]</code></pre>
           <p>
             Essentially, "grammar.pest" is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust's macros are very slow, and your compile-times blow up if you have recursive macros. <mark>std::embed</mark> in C++23 will probably do it right.
@@ -165,7 +165,7 @@ void recurseFillChildren(CurTy &amp;E)
               How many more language features are missing?
             </li>
           </ol>
-          <pre><code class="hljs full-bleed hs">{-# LANGUAGE MagicHash #-}
+          <pre><code class="hljs hs">{-# LANGUAGE MagicHash #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeInType #-}
 
@@ -173,16 +173,16 @@ import GHC.Exts
 
 type family MatchInt (f :: Int) :: () where
   MatchInt ('I# _) = '()</code></pre>
-          <pre><code class="hljs full-bleed hs">{-# LANGUAGE PolyKinds #-}
+          <pre><code class="hljs hs">{-# LANGUAGE PolyKinds #-}
 {-# LANGUAGE RankNTypes #-}
 
 f = undefined :: (forall (a :: k) m. m a -&gt; Int) -&gt; Int</code></pre>
-          <pre><code class="hljs full-bleed hs">{-# LANGUAGE PolyKinds #-}
+          <pre><code class="hljs hs">{-# LANGUAGE PolyKinds #-}
 
 data Proxy a = Proxy
 
 class Foo (t :: k) where foo :: Proxy (a :: t)</code></pre>
-          <pre><code class="hljs full-bleed hs">{-# LANGUAGE DataKinds              #-}
+          <pre><code class="hljs hs">{-# LANGUAGE DataKinds              #-}
 {-# LANGUAGE FlexibleContexts       #-}
 {-# LANGUAGE PolyKinds              #-}
 {-# LANGUAGE TypeFamilyDependencies #-}

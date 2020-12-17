@@ -82,7 +82,7 @@
           <p>
             The corresponding C++ code (is actually specialized with short) is:
           </p>
-          <pre><code class="hljs full-bleed cpp">template &lt;typename T&gt;
+          <pre><code class="hljs cpp">template &lt;typename T&gt;
 FORCEINLINE T operator()(T a, T b) const
 {
    return (a &gt;= b ? a : b);
@@ -90,7 +90,7 @@ FORCEINLINE T operator()(T a, T b) const
           <p>
             While in lldb, the assembly instructions look like:
           </p>
-          <pre><code class="hljs full-bleed cpp">--------------- [XCode 5]
+          <pre><code class="hljs cpp">--------------- [XCode 5]
 -&gt; 0x108af1930:  pushq  %rbp
    0x108af1931:  movq   %rsp, %rbp
    0x108af1934:  cmpw   %si, %di
@@ -98,7 +98,7 @@ FORCEINLINE T operator()(T a, T b) const
    0x108af193b:  movswl %si, %eax
    0x108af193e:  popq   %rbp
    0x108af193f:  retq</code></pre>
-          <pre><code class="hljs full-bleed cpp">--------------- [XCode 6]
+          <pre><code class="hljs cpp">--------------- [XCode 6]
 -&gt; 0x108d1ac10:  pushq  %rbp
    0x108d1ac11:  movq   %rsp, %rbp
    0x108d1ac14:  cmpl   %esi, %edi
@@ -113,7 +113,7 @@ FORCEINLINE T operator()(T a, T b) const
           <p>
             After execution of the cmpl/cmpw:
           </p>
-          <pre><code class="hljs full-bleed cpp">--------------- [XCode 5]
+          <pre><code class="hljs cpp">--------------- [XCode 5]
 (lldb) register read --format int16_t[] di
       di = {-48}
 (lldb) register read --format int16_t[] si
@@ -124,7 +124,7 @@ FORCEINLINE T operator()(T a, T b) const
      esi = {34 7103}
 (lldb) register read --format b rflags
   rflags = 0b0000000000000000000000000000000000000000000000000000001010010010</code></pre>
-          <pre><code class="hljs full-bleed cpp">--------------- [XCode 6]
+          <pre><code class="hljs cpp">--------------- [XCode 6]
 (lldb) register read --format int16_t[] di
       di = {-48}
 (lldb) register read --format int16_t[] si
@@ -137,7 +137,7 @@ FORCEINLINE T operator()(T a, T b) const
   rflags = 0b0000000000000000000000000000000000000000000000000000001000010010
                                                                      ^
                                                              Sign flag different</code></pre>
-          <pre><code class="hljs full-bleed cpp">--------------- [XCode 6, with C code calling max]
+          <pre><code class="hljs cpp">--------------- [XCode 6, with C code calling max]
 (lldb) register read --format int16_t[] di
       di = {-48}
 (lldb) register read --format int16_t[] si

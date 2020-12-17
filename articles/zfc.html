@@ -71,18 +71,18 @@
           <p>
             Let us informally define sets and set membership $\in$. A set is an unordered collection of <mark>objects</mark>, with the set itself being an object. Set membership checks whether a given object is contained within a set:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{align}
                 \forall x, x \in A \vee x \not\in A \tag{law of excluded middle} \\
                 A \in C \wedge A = B \rightarrow B \in C \tag{axiom of substitution}
               \end{align}
             $$
-          </p>
+          </div>
           <p>
             The <mark>axiom of substition</mark> uses the definition of equality:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
                 A = B & \leftrightarrow & \forall x, x \in A \rightarrow x \in B \\
@@ -90,7 +90,7 @@
                 && \forall x, x \in B \rightarrow x \in A
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             The axiom of substition is preserved for all sets only defined in terms of $\in$ and $=$.
           </p>
@@ -101,7 +101,7 @@
           <p>
             Goal:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
                 \textrm{reflexive} & \forall A, A = A \\
@@ -109,21 +109,21 @@
                 \textrm{transitive} & \forall A B C, (A = B) \wedge (B = C) \rightarrow (A = C)
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Hypothesis:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
                 A = B & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in B \tag{eq}
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Proof.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
                 A = A & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in A & \textrm{by (eq)} \\
@@ -146,7 +146,7 @@
                 & \rightarrow & A = C & \textrm{by (eq)}
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Qed.
           </p>
@@ -157,7 +157,7 @@
           <p>
             Hypothesis:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{align}
                 A = B & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
@@ -166,21 +166,21 @@
                 \forall x, x \in \{a, b\} & \leftrightarrow & (x = a) \vee (x = b) \tag{build-b}
               \end{align}
             $$
-          </p>
+          </div>
           <p>
             Lemma:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
                 A \neq B & \leftrightarrow & \exists x, (x \in A \wedge x \not\in B) \vee (x \not\in A \wedge x \in B) & \textrm{by (eq)}
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Proof.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
                 \emptyset & \neq & \textrm{any other set} & \textrm{by (phi) and (eq)} \\
@@ -189,7 +189,7 @@
                 \textrm{Plugging } x = \emptyset \textrm{ in (lemma)} & \rightarrow & \{\emptyset, \{\emptyset\}\} \neq \{\{\emptyset\}\} & \textrm{by (build-a) and (build-b)}
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Qed.
           </p>
@@ -200,7 +200,7 @@
           <p>
             Hypothesis:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{align}
                 A = B \leftrightarrow \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
@@ -208,11 +208,11 @@
                 \forall x, x \not\in \emptyset \tag{phi}
               \end{align}
             $$
-          </p>
+          </div>
           <p>
             Proof.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
                 A \cup A    = A & \leftrightarrow \forall x, x \in A \vee x \in A \leftrightarrow x \in A & \textrm{by (eq) and (union)} \\
@@ -224,7 +224,7 @@
                 \emptyset \cup A = A && \textrm{by similar argument}
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Qed.
           </p>
@@ -235,7 +235,7 @@
           <p>
             Hypothesis:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{align}
                 A = B & \leftrightarrow & \forall x, x \in A \leftrightarrow x \in B \tag{eq} \\
@@ -244,11 +244,11 @@
                 A \subsetneq B & \leftrightarrow & A \subseteq B \wedge A \neq B \tag{subset-neq}
               \end{align}
             $$
-          </p>
+          </div>
           <p>
             Proof.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
                 A \subseteq B \wedge B \subseteq A & \rightarrow & \forall x, x \in A \leftrightarrow x \in B & \textrm{by (subset-eq) and intuition} \\
@@ -271,7 +271,7 @@
                                                      & \rightarrow & A \subsetneq C & \textrm{by (subset-neq)}
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Qed.
           </p>
@@ -282,7 +282,7 @@
           <p>
             Hypothesis:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{align}
                 A \subseteq B & = & \forall x &, x \in A \rightarrow x \in B \tag{subset-eq} \\
@@ -290,11 +290,11 @@
                 A \cap B      & = & \forall x &, x \in A \wedge x \in B \tag{intersect}
               \end{align}
             $$
-          </p>
+          </div>
           <p>
             Proof.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{matrix}
                 A \cup B = B & \leftrightarrow & \forall x, x \in A \cup B \leftrightarrow x \in A \vee x \in B = B & \textrm{by (union)} \\
@@ -307,7 +307,7 @@
                              & \leftrightarrow & A \subseteq B & \textrm{by (subset-eq)}
               \end{matrix}
             $$
-          </p>
+          </div>
           <p>
             Qed.
           </p>
@@ -318,7 +318,7 @@
           <p>
             For this proof, we use natural deductions, as introduced in Dowek's <a href="http://www.lsv.fr/~dowek/Cours/Pit/pit.pdf">Proofs in Theories</a> Ch. 1.
           </p>
-          <div class="images full-bleed">
+          <div class="images">
             <figure>
               <img src="zfc-3.3.4.png" style="width:100%" />
             </figure>
