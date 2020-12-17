@@ -16,8 +16,12 @@ article {
 }
 
 nav li a {
-  font-size: 1.4em;
+  font-size: 1.2em;
   text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+    monospace;
 }
 
 a:link {
@@ -262,12 +266,16 @@ article > div.mathjax {
   grid-column: 1 / span 3;
 }
 
-.mathjax {
+div.mathjax {
+  overflow: hidden;
   background-color: #fdf6e3;
 }
 
-div.mathjax * {
+div.mathjax > * {
   object-fit: contain;
+
+  /* Mohd Abdul Mujib */
+  font-size: smaller;
 }
 
 a {
