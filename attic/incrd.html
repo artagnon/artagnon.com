@@ -68,7 +68,7 @@
           <p>
             An input program function is represented using a Control Flow Graph (CFG). It's composed of different Statements, which decompose into Expressions, but we will not concern ourselves with Expressions. The main control flow constructs are SplitStatement and MergeStatement. The SplitStatement has outgoing edges to N (N = 2 in the case of IfStatement) other Statements, and the MergeStatement has incoming edges from M other Statements.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -78,11 +78,11 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             The Dominator is a data structure that holds "domination relationship" between any two Statements in the CFG. "A dominates B" means: all paths starting from the start of the CFG to end of the CFG, that flow through A, must necessarily flow through B. It's represented using a tree of things that progressively dominate their children. We want to incrementally update this structure.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -94,7 +94,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <h2 id="motivation">
             Motivation
           </h2>
@@ -107,7 +107,7 @@
           <p>
             The main supporting data structure we will use for this feat is the Program Structure Tree, which is incrementally updated. The PST is a tree representation of structured control flow: all Control Flow Graph nodes belong to a Region in a nesting of single-entry single-exit Regions. Any control-flow that cannot be classified is boxed in an UnstructuredRegion, which we will not handle.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -117,16 +117,16 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             This is a Region:
           </p>
-          <pre><code class="hljs full-bleed cpp">for (i : Vec)
+          <pre><code class="hljs cpp">for (i : Vec)
   A = i;</code></pre>
           <p>
             This is a ChainRegion comprising of an IfRegion and a BasicBlockRegion:
           </p>
-          <pre><code class="hljs full-bleed cpp">if (foo)
+          <pre><code class="hljs cpp">if (foo)
   A = 15;
 else
   A = 21;
@@ -134,7 +134,7 @@ quux();</code></pre>
           <p>
             This is an UnstructuredRegion, but it is very much SESE:
           </p>
-          <pre><code class="hljs full-bleed cpp">jump:
+          <pre><code class="hljs cpp">jump:
   A = 18;
 if (A &lt; 17)
   A = A + 3;
@@ -143,7 +143,7 @@ if (A &lt; 17)
             Updating a vanilla Dominator tree is relatively easy: simply add a child to the correct node. The problem at hand is that we have an O(1)-query Dominator object that we want to keep up to date as we make edits to the IR. How is it O(1)-query? Every node in the tree is assigned DFS start and end times: so if one interval nests within another, the corresponding node is dominated by the<br/>
             other node.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -152,7 +152,7 @@ if (A &lt; 17)
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Supporting arbitarary IR edits is both very hard and not a useful goal: we can reduce all our edits to two items, namely inserting a SESE Statement, and inserting a SESE PST Region. Removing a Statment or Region is not interesting, because it just leaves gaps in the numbering, and doesn't affect any existing Dominance relationships if we make no changes after removal. Modifying a Region can be easily expressed as the removal of the old Region/insertion of the new Region.
           </p>
@@ -174,7 +174,7 @@ if (A &lt; 17)
           <p>
             The key insight in our algorithm is that we need to match a Split Statement with its Merge Statement(s), and need to paritition our DFS start/end time intervals into two categories: intervals to trust (ie. ones that exist, and should not be modified), and intervals to assign. The DFS start time corresponds to DFS first-visit sequence, and end time corresponds to DFS final-visit sequence. <mark>interval1.start_time &gt; interval2.start_time</mark> and <mark>interval1.end_time &lt; interval2.end_time</mark> means that interval1 is nested within interval2, or that the node corresponding to interval2 dominates the node corresponding to interval1.
           </p>
-          <pre><code class="hljs full-bleed cpp">void DFS(Node *v) {
+          <pre><code class="hljs cpp">void DFS(Node *v) {
   assign_start_time(v); // increment a clock as you assign
   for (auto u : v-&gt;outEdges()) {
     if (start_time_not_assigned(v)) DFS(v);
@@ -195,7 +195,7 @@ if (A &lt; 17)
           <p>
             The intervals of the each of the outEdges ("branches") must stagger with each other so there's no false dominance relationship between them. Two intervals "staggering" means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -205,8 +205,8 @@ if (A &lt; 17)
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -217,8 +217,8 @@ if (A &lt; 17)
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -229,11 +229,11 @@ if (A &lt; 17)
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Our API looks like:
           </p>
-          <pre><code class="hljs full-bleed cpp">void assignHeads(std::vector&lt;Statement*&gt; branchHeads,
+          <pre><code class="hljs cpp">void assignHeads(std::vector&lt;Statement*&gt; branchHeads,
                  std::vector&lt;Statement*&gt; headsToStaggerWith,
                  Statement* nestWithin, Statement* toEnclose);</code></pre>
           <p>

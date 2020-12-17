@@ -68,7 +68,7 @@
           <p>
             There are five [†] reduced cases we must consider, where backedges are marked by dotted arrows:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -78,8 +78,8 @@
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -89,8 +89,8 @@
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -100,8 +100,8 @@
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -111,8 +111,8 @@
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -121,11 +121,11 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Now, let's employ a simple DFS:
           </p>
-          <pre><code class="hljs full-bleed cpp">void DFS(Node *v) {
+          <pre><code class="hljs cpp">void DFS(Node *v) {
   assign_start_time(v); // increment a clock as you assign
   for (auto u : v-&gt;outEdges()) {
     if (start_time_not_assigned(v)) DFS(v);
@@ -135,7 +135,7 @@
           <p>
             We get the following start times and end times:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -145,8 +145,8 @@
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -156,8 +156,8 @@
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -167,8 +167,8 @@
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -178,8 +178,8 @@
             }
             \end{xy}
             $$
-          </p>
-          <p class="mathjax full-bleed">
+          </div>
+          <div class="mathjax">
             $$
             \begin{xy}
             \xymatrix{
@@ -188,7 +188,7 @@
             }
             \end{xy}
             $$
-          </p>
+          </div>
           <p>
             Let's call the first number "DFS number", and the second number "topo number", to indicate that this is the order that topological sort would have produced, in the absence of backedges (topological sort is meaningless when there are loops).
           </p>

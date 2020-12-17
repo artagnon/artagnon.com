@@ -83,21 +83,21 @@ html lang="en"
                     p == item
               - when :codeblock
                 pre
-                 code class="hljs full-bleed #{paragraph.prop}" == paragraph.to_s
+                 code class="hljs #{paragraph.prop}" == paragraph.to_s
               - when :images
-                div class="images full-bleed"
+                div class="images"
                   - if paragraph.split("\n").length == 1
                     figure
                       img src="#{paragraph.split("\n")[0]}" style="width:100%"
                   - else
-                    figure class="full-bleed"
+                    figure
                       img src="#{paragraph.split("\n")[0]}"
-                    figure class="full-bleed"
+                    figure
                       img src="#{paragraph.split("\n")[1]}"
               - when :horizrule
                 hr class="#{paragraph.prop}"
               - when :mathjax
-                p class="mathjax full-bleed" == paragraph.to_s
+                div class="mathjax" == paragraph.to_s
               - when :exercise
                 p class="exercise" == paragraph.to_s
               - when :indent

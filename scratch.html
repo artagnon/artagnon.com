@@ -68,18 +68,18 @@
           <p class="exercise">
             To state our second lemma:
           </p>
-          <p class="mathjax full-bleed">
+          <div class="mathjax">
             $$
             \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
             $$
-          </p>
+          </div>
           <p>
             I have written a lot of <a href="https://github.com/artagnon">code</a> in the past.
           </p>
           <h2 id="functors">
             Functors
           </h2>
-          <pre><code class="hljs full-bleed coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
+          <pre><code class="hljs coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
   := match p with idpath =&gt; idpath end.</code></pre>
           <ol class="olitems" type="i" start="2">
             <li>
