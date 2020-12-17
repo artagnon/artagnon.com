@@ -61,8 +61,7 @@ ul#indexfill li::before {
 
 nav,
 main {
-  float: none;
-  clear: both;
+  display: block;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
@@ -72,6 +71,7 @@ nav {
   background-color: aliceblue;
   border: darkgray 0.2px dotted;
   grid-row: 1;
+  grid-template-columns: auto auto;
 }
 
 main {
@@ -79,22 +79,31 @@ main {
   grid-row: 2;
 }
 
-nav div img {
-  float: left;
-  padding-left: 10px;
-  width: 20%;
-  display: table-cell;
-  vertical-align: middle;
+nav div:nth-child(1) {
+  grid-column: 1;
+  height: 100%;
+  width: auto;
 }
 
-nav div#topics > ul {
+nav div:nth-child(2) {
+  grid-column: 2;
+  height: 100%;
+  width: auto;
+}
+
+nav div:nth-child(1) img {
+  padding-left: 10px;
+  width: 20%;
+  object-fit: contain;
+}
+
+nav div:nth-child(2) > ul {
+  object-fit: contain;
   list-style: none;
   padding-left: 0;
-  padding-right: 10px;
   font-weight: 560;
   font-size: 0.8rem;
-  width: 10ch;
-  float: right;
+  width: 15ch;
 }
 
 @media print {
