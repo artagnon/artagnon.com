@@ -40,14 +40,13 @@ html lang="en"
     div id="wrapper"
       nav
         div
-          div
-            a href="/"
-              img src="/dist/artagnon.com.png"
-          div id="topics"
-            ul
-              - topics.select { |x| x != "index" }.each do |topic|
-                li
-                  a href="/#{topic}" = topic
+          a href="/"
+            img src="/dist/artagnon.com.png"
+        div
+          ul
+            - topics.each do |topic|
+              li
+                a href="/#{topic}" = topic
       main
         header
           h1 == title
