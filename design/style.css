@@ -34,7 +34,8 @@ a:visited {
 
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr min(80ch, 100vw) 1fr;
+  grid-template-columns: 1fr min(80ch, calc(100vw - 64px)) 1fr;
+  grid-column-gap: 32px;
 }
 
 .wrapper > * {
@@ -68,8 +69,8 @@ ul#indexfill li::before {
 nav {
   display: grid;
   grid-template-columns: 2;
-  margin-left: 30vw;
-  margin-right: 30vw;
+  margin-left: min(20vw, 10%);
+  margin-right: min(20vw, 10%);
   background-color: aliceblue;
   border: darkgray 0.2px dotted;
 }
@@ -88,9 +89,8 @@ nav > div:nth-child(2) {
 }
 
 nav > div:nth-child(1) > * > img {
-  width: 20%;
-  padding-left: 10px;
-  padding-top: 10px;
+  width: max(15%, 10vh);
+  padding: 10px;
 }
 
 nav > div:nth-child(2) > ul {
