@@ -37,72 +37,66 @@ html lang="en"
     // our js, compiled from js files in design/
     script defer=true src="/dist/script.min.js"
   body
-    div id="wrapper"
-      nav
-        div
-          a href="/"
-            img src="/dist/artagnon.com.svg"
-        div
-          ul
-            - topics.each do |topic|
+    nav
+      div
+        a href="/"
+          img src="/dist/artagnon.com.svg"
+      div
+        ul
+          - topics.each do |topic|
+            li
+              a href="/#{topic}" = topic
+    main
+      header class="wrapper"
+        h1 == title
+        div id="metadata"
+          span id="timestamp"
+            time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.rfc2822
+            span class="to" ↪
+            time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.rfc2822
+          br
+          span id="locations"
+            address = locations.join ", "
+      article class="wrapper"
+        - paragraphs.each do |paragraph|
+          - case paragraph.type
+            - when :blurb
+              p class="blurb" == paragraph.to_s
+            - when :plain
+              p == paragraph.to_s
+            - when :olitems
+              ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.olstart}"
+                - for item in paragraph.split "\n"
+                  li == item
+            - when :subheading
+              - if paragraph.prop == 1
+                h2 id="#{paragraph.bookmark}" = paragraph.to_s
+              - elsif paragraph.prop == 2
+                h3 id="#{paragraph.bookmark}" = paragraph.to_s
+              - else
+                h4 id="#{paragraph.bookmark}" = paragraph.to_s
+            - when :footer
+              footer
+                - for item in paragraph.split "\n"
+                  p == item
+            - when :codeblock
+              pre
+                code class="hljs #{paragraph.prop}" == paragraph.to_s
+            - when :images
+              div class="images"
+                - for img in paragraph.split("\n")
+                  figure
+                    img src=img
+            - when :horizrule
+              hr class="#{paragraph.prop}"
+            - when :mathjax
+              div class="mathjax" == paragraph.to_s
+            - when :exercise
+              p class="exercise" == paragraph.to_s
+            - when :indent
+              p class="indent" == paragraph.to_s
+        - if indexfill && indexfill.any?
+          ul id="indexfill"
+            - indexfill.each do |page|
               li
-                a href="/#{topic}" = topic
-      main
-        header
-          h1 == title
-          div id="metadata"
-            span id="timestamp"
-              time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.rfc2822
-              span class="to" ↪
-              time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.rfc2822
-            br
-            span id="locations"
-              address = locations.join ", "
-        article
-          - paragraphs.each do |paragraph|
-            - case paragraph.type
-              - when :blurb
-                p class="blurb" == paragraph.to_s
-              - when :plain
-                p == paragraph.to_s
-              - when :olitems
-                ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.olstart}"
-                  - for item in paragraph.split "\n"
-                    li == item
-              - when :subheading
-                - if paragraph.prop == 1
-                  h2 id="#{paragraph.bookmark}" = paragraph.to_s
-                - elsif paragraph.prop == 2
-                  h3 id="#{paragraph.bookmark}" = paragraph.to_s
-                - else
-                  h4 id="#{paragraph.bookmark}" = paragraph.to_s
-              - when :footer
-                footer
-                  - for item in paragraph.split "\n"
-                    p == item
-              - when :codeblock
-                pre
-                 code class="hljs #{paragraph.prop}" == paragraph.to_s
-              - when :images
-                div class="images"
-                  - if paragraph.split("\n").length == 1
-                    figure
-                      img src="#{paragraph.split("\n")[0]}" style="width:100%"
-                  - else
-                    figure
-                      img src="#{paragraph.split("\n")[0]}"
-                    figure
-                      img src="#{paragraph.split("\n")[1]}"
-              - when :horizrule
-                hr class="#{paragraph.prop}"
-              - when :mathjax
-                div class="mathjax" == paragraph.to_s
-              - when :exercise
-                p class="exercise" == paragraph.to_s
-              - when :indent
-                p class="indent" == paragraph.to_s
-          - if indexfill && indexfill.any?
-            ul id="indexfill"
-              - indexfill.each do |page|
-                li
-                  a href="/#{page.permalink}" = page.title
+                a href="/#{page.permalink}" = page.title

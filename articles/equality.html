@@ -31,153 +31,151 @@
     <script defer="" src="/dist/script.min.js"></script>
   </head>
   <body>
-    <div id="wrapper">
-      <nav>
-        <div>
-          <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+    <nav>
+      <div>
+        <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/computing">computing</a>
+          </li>
+          <li>
+            <a href="/math">math</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <header class="wrapper">
+        <h1>
+          Equality in Mechanized Mathematics
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 02:24:13 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
         </div>
-        <div>
-          <ul>
-            <li>
-              <a href="/articles">articles</a>
-            </li>
-            <li>
-              <a href="/computing">computing</a>
-            </li>
-            <li>
-              <a href="/math">math</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <main>
-        <header>
-          <h1>
-            Equality in Mechanized Mathematics
-          </h1>
-          <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-15" class="begin">Sat, 15 Feb 2020 18:12:59 +0100</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 02:24:13 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
-          </div>
-        </header>
-        <article>
-          <p class="blurb">
-            Here, we talk about equalities, and provide illustrative examples in vanilla Coq, SProp, and HoTT.
-          </p>
-          <h2 id="equality-in-mathematics">
-            Equality in Mathematics
-          </h2>
-          <p>
-            In <a href="/zfc">zfc-based mathematics</a>, say in abelian groups, $A \oplus B \simeq B \oplus A$, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a $\mathrm{1}$-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" almost fully replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
-          </p>
-          <h2 id="universes-in-coq">
-            Universes in Coq
-          </h2>
-          <p>
-            First, let us briefly talk about the cumulative universe of Coq. <mark>Prop</mark> is a <mark>Set</mark> that can be promoted to <mark>Type</mark> seamlessly. The reason for the distinction between <mark>Prop</mark> and <mark>Set</mark> is an engineering one: <mark>Prop</mark> is impredicative, while <mark>Set</mark> is not, and proofs are erased during extraction.
-          </p>
-          <pre><code class="hljs coq">Definition SetTypeIncl (A : Set) : Type := A.
+      </header>
+      <article class="wrapper">
+        <p class="blurb">
+          Here, we talk about equalities, and provide illustrative examples in vanilla Coq, SProp, and HoTT.
+        </p>
+        <h2 id="equality-in-mathematics">
+          Equality in Mathematics
+        </h2>
+        <p>
+          In <a href="/zfc">zfc-based mathematics</a>, say in abelian groups, $A \oplus B \simeq B \oplus A$, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a $\mathrm{1}$-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" almost fully replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
+        </p>
+        <h2 id="universes-in-coq">
+          Universes in Coq
+        </h2>
+        <p>
+          First, let us briefly talk about the cumulative universe of Coq. <mark>Prop</mark> is a <mark>Set</mark> that can be promoted to <mark>Type</mark> seamlessly. The reason for the distinction between <mark>Prop</mark> and <mark>Set</mark> is an engineering one: <mark>Prop</mark> is impredicative, while <mark>Set</mark> is not, and proofs are erased during extraction.
+        </p>
+        <pre><code class="hljs coq">Definition SetTypeIncl (A : Set) : Type := A.
 Definition PropTypeIncl (A : Prop) : Type := A.
 Definition PropSetIncl (A : Prop) : Set := A.</code></pre>
-          <p>
-            There is an $\infty$ hierarchy within the <mark>Type</mark> universe, and types of Types are Types themselves.
-          </p>
-          <p>
-            Inhabitants of a <mark>Set</mark> are sets of primitive things like $\mathbb{N}$ and $\mathbb{R}$, while inhabitants of a <mark>Prop</mark> are propositions, which could be $\top$, $\bot$, or some arbitrary term, the inhabitant of which acts as the proof.
-          </p>
-          <h2 id="propositions">
-            Propositions
-          </h2>
-          <p>
-            There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
-          </p>
-          <pre><code class="hljs coq">Axiom PropositionalProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.</code></pre>
-          <p>
-            We then get a proof obligation which we discharge using the axiom:
-          </p>
-          <pre><code class="hljs coq">Theorem PropEquality (P : Prop) (a b : P) : a = b.
+        <p>
+          There is an $\infty$ hierarchy within the <mark>Type</mark> universe, and types of Types are Types themselves.
+        </p>
+        <p>
+          Inhabitants of a <mark>Set</mark> are sets of primitive things like $\mathbb{N}$ and $\mathbb{R}$, while inhabitants of a <mark>Prop</mark> are propositions, which could be $\top$, $\bot$, or some arbitrary term, the inhabitant of which acts as the proof.
+        </p>
+        <h2 id="propositions">
+          Propositions
+        </h2>
+        <p>
+          There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
+        </p>
+        <pre><code class="hljs coq">Axiom PropositionalProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.</code></pre>
+        <p>
+          We then get a proof obligation which we discharge using the axiom:
+        </p>
+        <pre><code class="hljs coq">Theorem PropEquality (P : Prop) (a b : P) : a = b.
 Proof.
   by apply PropositionalProofIrrelevance.
 Qed.</code></pre>
-          <p>
-            In the general case, two different inhabitants of <mark>Prop</mark> are unequal. There is, however, a propositional equality existing between two equal propositions:
-          </p>
-          <pre><code class="hljs coq">Theorem PropRefl (P : Prop) (x : P): x = x.
+        <p>
+          In the general case, two different inhabitants of <mark>Prop</mark> are unequal. There is, however, a propositional equality existing between two equal propositions:
+        </p>
+        <pre><code class="hljs coq">Theorem PropRefl (P : Prop) (x : P): x = x.
 Proof.
   exact eq_refl.
 Qed.</code></pre>
-          <p>
-            where <mark>eq_refl</mark> is simply the sole inhabitant of an Inductive:
-          </p>
-          <pre><code class="hljs coq">Inductive eq (A : Type) (x : A) : A -&gt; Prop :=
+        <p>
+          where <mark>eq_refl</mark> is simply the sole inhabitant of an Inductive:
+        </p>
+        <pre><code class="hljs coq">Inductive eq (A : Type) (x : A) : A -&gt; Prop :=
   eq_refl : eq A x x.</code></pre>
-          <h2 id="the-proof-irrelevant-sprop">
-            The proof-irrelevant SProp
-          </h2>
-          <p>
-            There are three inhabitants of <a href="https://coq.inria.fr/refman/addendum/sprop.html">SProp</a>: <mark>sUnit</mark> corresponding to $\top$, <mark>sEmpty</mark> corresponding to $\bot$, and <mark>sProposition</mark> corresponding to a definitionally proof-irrelevant term. The way <mark>SProp</mark> implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of <mark>sProposition</mark> trivially inter-convertible.
-          </p>
-          <p>
-            Unfortunately, <mark>=</mark> doesn't work as expected:
-          </p>
-          <pre><code class="hljs coq">Theorem SPropIrr (P : SProp) (x y : P) : x = y.
+        <h2 id="the-proof-irrelevant-sprop">
+          The proof-irrelevant SProp
+        </h2>
+        <p>
+          There are three inhabitants of <a href="https://coq.inria.fr/refman/addendum/sprop.html">SProp</a>: <mark>sUnit</mark> corresponding to $\top$, <mark>sEmpty</mark> corresponding to $\bot$, and <mark>sProposition</mark> corresponding to a definitionally proof-irrelevant term. The way <mark>SProp</mark> implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of <mark>sProposition</mark> trivially inter-convertible.
+        </p>
+        <p>
+          Unfortunately, <mark>=</mark> doesn't work as expected:
+        </p>
+        <pre><code class="hljs coq">Theorem SPropIrr (P : SProp) (x y : P) : x = y.
 Proof.
   by reflexivity.
 Abort. (* Type-check fails at Qed.
         * (=) : ∀ A, A -&gt; A -&gt; Prop, but we want to return an SProp. *)</code></pre>
-          <p>
-            This is because the <mark>SProp</mark> universe is disjoint from the <mark>Prop</mark> universe:
-          </p>
-          <pre><code class="hljs coq">Theorem SPropToProp : SProp -&gt; Prop.
+        <p>
+          This is because the <mark>SProp</mark> universe is disjoint from the <mark>Prop</mark> universe:
+        </p>
+        <pre><code class="hljs coq">Theorem SPropToProp : SProp -&gt; Prop.
 Proof.
   by intros x; exact x.
 Abort. (* Type-check fails at Qed.
         * SProp is not convertible to Prop. *)</code></pre>
-          <p>
-            Fortunately, we can do better.
-          </p>
-          <h2 id="mere-propositions-in-homotopy-type-theory">
-            Mere propositions in homotopy type theory
-          </h2>
-          <p>
-            In <a href="https://github.com/HoTT/HoTT">HoTT</a>, there is just one $\infty$-ladder:
-          </p>
-          <ol class="olitems" type="i" start="1">
-            <li>
-              $\mathbb{1}$, and anything that's contractible to it, is the ($\mathrm{-2}$)-truncated Type.
-            </li>
-            <li>
-              A "mere proposition", an inhabitant of <mark>hProp</mark>, is simply a ($\mathrm{-1}$)-truncated Type.
-            </li>
-            <li>
-              <mark>hSet</mark> is the $\mathrm{0}$-truncated Type.
-            </li>
-          </ol>
-          <pre><code class="hljs coq">Notation Contr := (IsTrunc minus_two).
+        <p>
+          Fortunately, we can do better.
+        </p>
+        <h2 id="mere-propositions-in-homotopy-type-theory">
+          Mere propositions in homotopy type theory
+        </h2>
+        <p>
+          In <a href="https://github.com/HoTT/HoTT">HoTT</a>, there is just one $\infty$-ladder:
+        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            $\mathbb{1}$, and anything that's contractible to it, is the ($\mathrm{-2}$)-truncated Type.
+          </li>
+          <li>
+            A "mere proposition", an inhabitant of <mark>hProp</mark>, is simply a ($\mathrm{-1}$)-truncated Type.
+          </li>
+          <li>
+            <mark>hSet</mark> is the $\mathrm{0}$-truncated Type.
+          </li>
+        </ol>
+        <pre><code class="hljs coq">Notation Contr := (IsTrunc minus_two).
 Notation IsHProp := (IsTrunc minus_two.+1).
 Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
-          <p>
-            The notion of truncation is central to HoTT, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, whence higher-than-$m$ morphisms are rendered uninteresting. Any two hProps are propositionally equal:
-          </p>
-          <pre><code class="hljs coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
+        <p>
+          The notion of truncation is central to HoTT, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, whence higher-than-$m$ morphisms are rendered uninteresting. Any two hProps are propositionally equal:
+        </p>
+        <pre><code class="hljs coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.
   by apply path_ishprop.
 Qed.</code></pre>
+        <p>
+          Conceptually, this is as simple and elegant as <mark>PropEquality</mark>.
+        </p>
+        <footer>
           <p>
-            Conceptually, this is as simple and elegant as <mark>PropEquality</mark>.
+            † Big thanks to <a href="https://kenji.maillard.blue">Kenji Maillard</a> for the scintillating discussion, and for helping with the examples.
           </p>
-          <footer>
-            <p>
-              † Big thanks to <a href="https://kenji.maillard.blue">Kenji Maillard</a> for the scintillating discussion, and for helping with the examples.
-            </p>
-            <p>
-              ‡ Kudos to Hugo Moeneclaey for giving a wonderful introduction to truncation in the last HoTT class.
-            </p>
-            <p>
-              § Thanks to <a href="https://www.pédrot.fr">Pierre-Marie Pédrot</a> for pointing out some very serious errors.
-            </p>
-          </footer>
-        </article>
-      </main>
-    </div>
+          <p>
+            ‡ Kudos to Hugo Moeneclaey for giving a wonderful introduction to truncation in the last HoTT class.
+          </p>
+          <p>
+            § Thanks to <a href="https://www.pédrot.fr">Pierre-Marie Pédrot</a> for pointing out some very serious errors.
+          </p>
+        </footer>
+      </article>
+    </main>
   </body>
 </html>

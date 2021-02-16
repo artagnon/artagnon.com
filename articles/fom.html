@@ -31,163 +31,161 @@
     <script defer="" src="/dist/script.min.js"></script>
   </head>
   <body>
-    <div id="wrapper">
-      <nav>
-        <div>
-          <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+    <nav>
+      <div>
+        <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/computing">computing</a>
+          </li>
+          <li>
+            <a href="/math">math</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <header class="wrapper">
+        <h1>
+          An inquiry into the Foundations of Mathematics
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2020-02-02" class="begin">Sun, 02 Feb 2020 11:11:41 +0100</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 02:24:13 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
         </div>
-        <div>
-          <ul>
-            <li>
-              <a href="/articles">articles</a>
-            </li>
-            <li>
-              <a href="/computing">computing</a>
-            </li>
-            <li>
-              <a href="/math">math</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <main>
-        <header>
-          <h1>
-            An inquiry into the Foundations of Mathematics
-          </h1>
-          <div id="metadata">
-            <span id="timestamp"><time datetime="2020-02-02" class="begin">Sun, 02 Feb 2020 11:11:41 +0100</time><span class="to">↪</span><time datetime="2020-09-30" class="end">Wed, 30 Sep 2020 02:24:13 +0200</time></span><br /><span id="locations"><address>Paris</address></span>
-          </div>
-        </header>
-        <article>
-          <p class="blurb">
-            Starting from the question of what consequence Gödel's incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for these new foundations in Coq. We conclude by linking to recent work in $\infty$-categories and HoTT.
-          </p>
-          <p>
-            Mathematics can be thought of as a game where you start with some objects (say, sets), some axioms on the objects (typically, ZFC), and use a calculus of logical deductions (such as classical logic) to prove things. To mechanize this game in a proof assistant, one would either use a proof-search or tactic system, and check subject reduction. However, mechanized mathematics is done differently from classical mathematics, and we first investigate whether building new foundations is justifiable.
-          </p>
-          <p>
-            Gödel's second incompleteness theorem states that any formal system, that can express elementary arithmetic, cannot prove its own consistency, assuming à priori that the system is consistent. It doesn't destroy the platonic view of mathematics as such, but does destroy the view that there is only one correct foundation for mathematics. Further, one would argue that it is precisely this result that makes mathematics exciting: we can keep rewriting foundations to better suit our abstract intutions, and build higher abstractions, without worrying about whether there is "one true foundation".
-          </p>
-          <h2 id="departing-from-zfc-foundations">
-            Departing from ZFC foundations
-          </h2>
-          <p>
-            Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of $\sim$80% of recent mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations; objects and morphisms aren't sets. Indeed, set-theoretic questions about categories are ill-formed, although one can encode boolean algebras using topoi.
-          </p>
-          <p>
-            Moreover, one should aim for a foundation that is conducive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, which we will refer to henceforth as <a href="https://github.com/HoTT/HoTT">HoTT</a>. It is formalized in Coq, whose foundations are based in Martin-Löf Type Theory.
-          </p>
-          <h2 id="preliminaries">
-            Preliminaries
-          </h2>
-          <p>
-            What the following proposition says, is that, for every inhabitant of $\mathbb{N}$ that you supply, $f$ will supply an inhabitant of $\mathbb{1}$:
-          </p>
-          <pre><code class="hljs coq">Theorem f : nat -&gt; unit.
+      </header>
+      <article class="wrapper">
+        <p class="blurb">
+          Starting from the question of what consequence Gödel's incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for these new foundations in Coq. We conclude by linking to recent work in $\infty$-categories and HoTT.
+        </p>
+        <p>
+          Mathematics can be thought of as a game where you start with some objects (say, sets), some axioms on the objects (typically, ZFC), and use a calculus of logical deductions (such as classical logic) to prove things. To mechanize this game in a proof assistant, one would either use a proof-search or tactic system, and check subject reduction. However, mechanized mathematics is done differently from classical mathematics, and we first investigate whether building new foundations is justifiable.
+        </p>
+        <p>
+          Gödel's second incompleteness theorem states that any formal system, that can express elementary arithmetic, cannot prove its own consistency, assuming à priori that the system is consistent. It doesn't destroy the platonic view of mathematics as such, but does destroy the view that there is only one correct foundation for mathematics. Further, one would argue that it is precisely this result that makes mathematics exciting: we can keep rewriting foundations to better suit our abstract intutions, and build higher abstractions, without worrying about whether there is "one true foundation".
+        </p>
+        <h2 id="departing-from-zfc-foundations">
+          Departing from ZFC foundations
+        </h2>
+        <p>
+          Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of $\sim$80% of recent mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations; objects and morphisms aren't sets. Indeed, set-theoretic questions about categories are ill-formed, although one can encode boolean algebras using topoi.
+        </p>
+        <p>
+          Moreover, one should aim for a foundation that is conducive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, which we will refer to henceforth as <a href="https://github.com/HoTT/HoTT">HoTT</a>. It is formalized in Coq, whose foundations are based in Martin-Löf Type Theory.
+        </p>
+        <h2 id="preliminaries">
+          Preliminaries
+        </h2>
+        <p>
+          What the following proposition says, is that, for every inhabitant of $\mathbb{N}$ that you supply, $f$ will supply an inhabitant of $\mathbb{1}$:
+        </p>
+        <pre><code class="hljs coq">Theorem f : nat -&gt; unit.
 Proof.
   intros x.
   exact tt.
 Qed.</code></pre>
-          <p>
-            The proof is witness that we can always supply an inhabitant of the type $\mathbb{N} \rightarrow \mathbb{1}$. By Curry-Howard isomorphism:
-          </p>
-          <pre><code class="hljs coq">Definition f' : nat -&gt; unit := fun _ =&gt; tt.</code></pre>
-          <p>
-            In type theory, a function is just a non-dependent version of the $\Pi$ type, where the codomain $B$ is fixed:
-          </p>
-          <div class="mathjax">
-            $$
-            \begin{matrix}
-                A \rightarrow B &:=& \Pi_{x : A} B &:=& \forall (x : A), B
-              \end{matrix}
-            $$
-          </div>
-          <p>
-            The logical connective $\neg$, which we will use in the next section, has the following definition in type theory:
-          </p>
-          <div class="mathjax">
-            $$
-            \neg P := P \rightarrow \mathbb{0}
-            $$
-          </div>
-          <h2 id="two-intuitions-in-classical-mathematics-broken">
-            Two intuitions in classical mathematics broken
-          </h2>
-          <p>
-            Our first example is the classic proof-by-contradiction. A proof in constructive mathematics cannot proceed in the following logical sequence for a proposition $P$:
-          </p>
-          <div class="mathjax">
-            $$
-            \neg P \implies \ldots \textrm{contradiction} \implies P
-            $$
-          </div>
-          <p>
-            In other words,
-          </p>
-          <div class="mathjax">
-            $$
-            \neg \neg P \implies P
-            $$
-          </div>
-          <p>
-            This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type cannot be proved; to supply a witness is to supply a construction of the inhabitant, and indeed, no such construction might exist. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
-          </p>
-          <pre><code class="hljs coq">Axiom LEM : forall (P : Prop), P \/ ~P.</code></pre>
-          <p>
-            To understand this better, let us take the example of the constructive equivalent of $\mathbb{0} \Rightarrow \textrm {anything}$ in classical mathematics:
-          </p>
-          <pre><code class="hljs coq">Theorem FalseImpliesAnything : forall A, False -&gt; A.
+        <p>
+          The proof is witness that we can always supply an inhabitant of the type $\mathbb{N} \rightarrow \mathbb{1}$. By Curry-Howard isomorphism:
+        </p>
+        <pre><code class="hljs coq">Definition f' : nat -&gt; unit := fun _ =&gt; tt.</code></pre>
+        <p>
+          In type theory, a function is just a non-dependent version of the $\Pi$ type, where the codomain $B$ is fixed:
+        </p>
+        <div class="mathjax">
+          $$
+          \begin{matrix}
+              A \rightarrow B &:=& \Pi_{x : A} B &:=& \forall (x : A), B
+            \end{matrix}
+          $$
+        </div>
+        <p>
+          The logical connective $\neg$, which we will use in the next section, has the following definition in type theory:
+        </p>
+        <div class="mathjax">
+          $$
+          \neg P := P \rightarrow \mathbb{0}
+          $$
+        </div>
+        <h2 id="two-intuitions-in-classical-mathematics-broken">
+          Two intuitions in classical mathematics broken
+        </h2>
+        <p>
+          Our first example is the classic proof-by-contradiction. A proof in constructive mathematics cannot proceed in the following logical sequence for a proposition $P$:
+        </p>
+        <div class="mathjax">
+          $$
+          \neg P \implies \ldots \textrm{contradiction} \implies P
+          $$
+        </div>
+        <p>
+          In other words,
+        </p>
+        <div class="mathjax">
+          $$
+          \neg \neg P \implies P
+          $$
+        </div>
+        <p>
+          This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type cannot be proved; to supply a witness is to supply a construction of the inhabitant, and indeed, no such construction might exist. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
+        </p>
+        <pre><code class="hljs coq">Axiom LEM : forall (P : Prop), P \/ ~P.</code></pre>
+        <p>
+          To understand this better, let us take the example of the constructive equivalent of $\mathbb{0} \Rightarrow \textrm {anything}$ in classical mathematics:
+        </p>
+        <pre><code class="hljs coq">Theorem FalseImpliesAnything : forall A, False -&gt; A.
 Proof.
   intros A.
   exact (fun x : False =&gt; match x with end).
 Qed.</code></pre>
-          <p>
-            Since $\mathbb{0}$ has no inhabitants, the construction of any inhabitant of any type can be proved from it.
-          </p>
-          <p>
-            It is perhaps prudent to supply another example of a classical statement to illustrate Coq's typechecker:
-          </p>
-          <pre><code class="hljs coq">Theorem TrueDoesNotImplyFalse : True -&gt; False.
+        <p>
+          Since $\mathbb{0}$ has no inhabitants, the construction of any inhabitant of any type can be proved from it.
+        </p>
+        <p>
+          It is perhaps prudent to supply another example of a classical statement to illustrate Coq's typechecker:
+        </p>
+        <pre><code class="hljs coq">Theorem TrueDoesNotImplyFalse : True -&gt; False.
 Proof.
   (* Due to enforced exhaustive pattern-matching on inhabitants of the LHS,
    * we'd need to match up an inhabitant of True (there is only I)
    * to some inhabitant of False, but there are no inhabitants of False.
    *)
 Abort.</code></pre>
-          <p>
-            In category theory, $\mathbb{0}$ would be the inital object, and there is at most one arrow from the initial object to every other object in the category; $\mathbb{1}$ would be the final object, and there is at most one arrow from every other object in the category to it. The above theorem hypothesizes the existence of a morphism from the final object to the initial object, which of course, cannot exist.
-          </p>
-          <div class="mathjax">
-            $$
-            \begin{matrix}
-                \mathbb{0} \rightarrow &P& \\
-                &P& \rightarrow \mathbb{1} \\
-                \mathbb{0} \rightarrow &P& \rightarrow \mathbb{1}
-              \end{matrix}
-            $$
-          </div>
-          <hr class="ellipses" />
-          <p>
-            For the second example, let us investigate the classical notion of proof irrelevance. In ZFC, sets and propositions are in different universes of discourse, as opposed to type theory, where proofs objects are first-class. Over the course of its development, the question of proof relevance was raised in type theory. In the following example, $p$ and $q$ are inhabitants of the type $x = y$, and the question is whether $p$ is different from $q$:
-          </p>
-          <div class="mathjax">
-            $$
-            p : x = y \\
-            q : x = y
-            $$
-          </div>
-          <p>
-            The answer, as supplied by HoTT, is: yes, proofs are relevant, and $p$ is different from $q$; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths. In classical mathematics, $p$ would always be equal to $q$.
-          </p>
-          <h2 id="recent-work-in-the-field">
-            Recent work in the field
-          </h2>
-          <p>
-            We now provide references to recent constructive mathematics, in the area of higher categories. Jacob Lurie's <a href="https://www.math.ias.edu/~lurie/papers/HTT.pdf">Higher Topos Theory</a> from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Riehl's <a href="http://www.math.jhu.edu/~eriehl/elements.pdf">Elements of $\infty$-Category Theory</a> extends the theory to complete Segal spaces. Shulman's 2019 work, <a href="https://arxiv.org/pdf/1904.07004.pdf">All ($\infty$, 1)-Toposes have Strict Univalent Universes</a>, ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is currently developing <a href="https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf">Spectral Algebraic Geometry</a>, with $\infty$-categoric foundations.
-          </p>
-        </article>
-      </main>
-    </div>
+        <p>
+          In category theory, $\mathbb{0}$ would be the inital object, and there is at most one arrow from the initial object to every other object in the category; $\mathbb{1}$ would be the final object, and there is at most one arrow from every other object in the category to it. The above theorem hypothesizes the existence of a morphism from the final object to the initial object, which of course, cannot exist.
+        </p>
+        <div class="mathjax">
+          $$
+          \begin{matrix}
+              \mathbb{0} \rightarrow &P& \\
+              &P& \rightarrow \mathbb{1} \\
+              \mathbb{0} \rightarrow &P& \rightarrow \mathbb{1}
+            \end{matrix}
+          $$
+        </div>
+        <hr class="ellipses" />
+        <p>
+          For the second example, let us investigate the classical notion of proof irrelevance. In ZFC, sets and propositions are in different universes of discourse, as opposed to type theory, where proofs objects are first-class. Over the course of its development, the question of proof relevance was raised in type theory. In the following example, $p$ and $q$ are inhabitants of the type $x = y$, and the question is whether $p$ is different from $q$:
+        </p>
+        <div class="mathjax">
+          $$
+          p : x = y \\
+          q : x = y
+          $$
+        </div>
+        <p>
+          The answer, as supplied by HoTT, is: yes, proofs are relevant, and $p$ is different from $q$; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths. In classical mathematics, $p$ would always be equal to $q$.
+        </p>
+        <h2 id="recent-work-in-the-field">
+          Recent work in the field
+        </h2>
+        <p>
+          We now provide references to recent constructive mathematics, in the area of higher categories. Jacob Lurie's <a href="https://www.math.ias.edu/~lurie/papers/HTT.pdf">Higher Topos Theory</a> from 2009 builds the theory of $\infty$-categories in the setting of quasi-categories, and more recently, Emily Riehl's <a href="http://www.math.jhu.edu/~eriehl/elements.pdf">Elements of $\infty$-Category Theory</a> extends the theory to complete Segal spaces. Shulman's 2019 work, <a href="https://arxiv.org/pdf/1904.07004.pdf">All ($\infty$, 1)-Toposes have Strict Univalent Universes</a>, ties the $\infty$-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is currently developing <a href="https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf">Spectral Algebraic Geometry</a>, with $\infty$-categoric foundations.
+        </p>
+      </article>
+    </main>
   </body>
 </html>

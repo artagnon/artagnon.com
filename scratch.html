@@ -31,80 +31,78 @@
     <script defer="" src="/dist/script.min.js"></script>
   </head>
   <body>
-    <div id="wrapper">
-      <nav>
-        <div>
-          <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+    <nav>
+      <div>
+        <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/computing">computing</a>
+          </li>
+          <li>
+            <a href="/math">math</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <header class="wrapper">
+        <h1>
+          claytext demo
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2019-12-17" class="begin">Tue, 17 Dec 2019 06:03:56 +0100</time><span class="to">↪</span><time datetime="2020-12-03" class="end">Thu, 03 Dec 2020 08:28:04 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
         </div>
-        <div>
-          <ul>
-            <li>
-              <a href="/articles">articles</a>
-            </li>
-            <li>
-              <a href="/computing">computing</a>
-            </li>
-            <li>
-              <a href="/math">math</a>
-            </li>
-          </ul>
+      </header>
+      <article class="wrapper">
+        <p class="blurb">
+          Here, we discuss concepts from Ch.2 of the HoTT book
+        </p>
+        <p class="exercise">
+          To state our second lemma:
+        </p>
+        <div class="mathjax">
+          $$
+          \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
+          $$
         </div>
-      </nav>
-      <main>
-        <header>
-          <h1>
-            claytext demo
-          </h1>
-          <div id="metadata">
-            <span id="timestamp"><time datetime="2019-12-17" class="begin">Tue, 17 Dec 2019 06:03:56 +0100</time><span class="to">↪</span><time datetime="2020-12-03" class="end">Thu, 03 Dec 2020 08:28:04 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
-          </div>
-        </header>
-        <article>
-          <p class="blurb">
-            Here, we discuss concepts from Ch.2 of the HoTT book
-          </p>
-          <p class="exercise">
-            To state our second lemma:
-          </p>
-          <div class="mathjax">
-            $$
-            \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
-            $$
-          </div>
-          <p>
-            I have written a lot of <a href="https://github.com/artagnon">code</a> in the past.
-          </p>
-          <h2 id="functors">
-            Functors
-          </h2>
-          <pre><code class="hljs coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
+        <p>
+          I have written a lot of <a href="https://github.com/artagnon">code</a> in the past.
+        </p>
+        <h2 id="functors">
+          Functors
+        </h2>
+        <pre><code class="hljs coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
   := match p with idpath =&gt; idpath end.</code></pre>
-          <ol class="olitems" type="i" start="2">
-            <li>
-              Every element of $A$ is either unit or nilpotent.
-            </li>
-            <li>
-              $A/\mathfrak{N}$ is a field.
-            </li>
-          </ol>
-          <ol class="olitems" type="none" start="1">
-            <li>
-              The Merge dominates the Split, in which case, the Merge dominates everything lying on the outEdges of the Split leading to the Merge
-            </li>
-            <li>
-              The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
-            </li>
-          </ol>
-          <footer>
-            <p>
-              † Thanks to <a href="https://sites.google.com/view/chaitanyals">Chaitanya Leena Subramanium</a> for suggesting the exercises and pushing for the use of natural deductions in the last exercise.
-            </p>
-            <p>
-              ‡ Thanks to <a href="http://pauillac.inria.fr/~herbelin/">Hugo Herbelin</a> for patiently going through many proofs and pointing out the errors.
-            </p>
-          </footer>
-        </article>
-      </main>
-    </div>
+        <ol class="olitems" type="i" start="2">
+          <li>
+            Every element of $A$ is either unit or nilpotent.
+          </li>
+          <li>
+            $A/\mathfrak{N}$ is a field.
+          </li>
+        </ol>
+        <ol class="olitems" type="none" start="1">
+          <li>
+            The Merge dominates the Split, in which case, the Merge dominates everything lying on the outEdges of the Split leading to the Merge
+          </li>
+          <li>
+            The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
+          </li>
+        </ol>
+        <footer>
+          <p>
+            † Thanks to <a href="https://sites.google.com/view/chaitanyals">Chaitanya Leena Subramanium</a> for suggesting the exercises and pushing for the use of natural deductions in the last exercise.
+          </p>
+          <p>
+            ‡ Thanks to <a href="http://pauillac.inria.fr/~herbelin/">Hugo Herbelin</a> for patiently going through many proofs and pointing out the errors.
+          </p>
+        </footer>
+      </article>
+    </main>
   </body>
 </html>
