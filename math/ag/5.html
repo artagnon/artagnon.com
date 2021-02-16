@@ -31,91 +31,89 @@
     <script defer="" src="/dist/script.min.js"></script>
   </head>
   <body>
-    <div id="wrapper">
-      <nav>
-        <div>
-          <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+    <nav>
+      <div>
+        <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/computing">computing</a>
+          </li>
+          <li>
+            <a href="/math">math</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <header class="wrapper">
+        <h1>
+          [ag/5] Morphisms of schemes
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2019-03-31" class="begin">Sun, 31 Mar 2019 18:00:36 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
-        <div>
-          <ul>
-            <li>
-              <a href="/articles">articles</a>
-            </li>
-            <li>
-              <a href="/computing">computing</a>
-            </li>
-            <li>
-              <a href="/math">math</a>
-            </li>
-          </ul>
+      </header>
+      <article class="wrapper">
+        <p>
+          Just as we defined schemes as (i) a set (ii) with a topology (iii) with a structure shceaf of functions, let us define morphisms between schemes $X \rightarrow Y$ as (i) a map between sets (ii) that is continuous (iii) with some additional information about sheaves of functions. We want morphisms of affine schemes $\text{Spec } A \rightarrow \text{Spec } B$ to correspond to morphisms between rings $B \rightarrow A$. We have already seen that ring maps $B \rightarrow A$ induce maps of topological spaces in the opposite direction. The main new ingredient will be adding the structure sheaf of functions to this. From the geometric side, we want morphisms of schemes to be, at the very least, a morphism between ringed spaces. If $\pi : X \rightarrow Y$ is a map of differentiable manifolds, then a differentiable function on $Y$ pulls back to a differentiable function on $X$. More precisely, given an open subset $U \subset Y$, there is a natural map $\Gamma(U, \mathscr{O}_X) \rightarrow \Gamma(\pi^{-1}(U), \mathscr{O}_X)$. This behaves well with respect to restriction, so we have a map on $Y$: $\mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X$. Similarly a morphism of schemes $\pi : X \rightarrow Y$ should induce $\mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X$. In the category of differentiable manifolds, a continuous map $\pi : X \rightarrow Y$ is a map of differentiable manifolds precisely when differentiable functions on $Y$ pull back to differentiable functions on $X$, so this map of sheaves characterizes morphisms in a differentiable category. We could use this as the definition of a morphism in a differentiable category, but functions are odder than schemes, and we can't recover the pullback map from a map of topological spaces. The right patch is to hardwire this into the definition of the morphism: we have $\pi : X \rightarrow Y$ along with the pullback map $\pi^\# : \mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X$, and this leads to the definition of ringed spaces. We might be able to define morphisms between sheaves as morphisms between ringed spaces, but this isn't quite right: to each morphism $A \rightarrow B$ there is a corresponding morphism $\text{Spec } B \rightarrow \text{Spec } A$, but there can be additional morphisms of ringed spaces $\text{Spec } B \rightarrow \text{Spec } A$ not arising in this way.
+        </p>
+        <h2 id="morphisms-of-ringed-spaces">
+          Morphisms of ringed spaces
+        </h2>
+        <p>
+          A morphism of ringed spaces $\pi : X \rightarrow Y$ is a continuous map between topological spaces along with the pullback map $\mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X$, which is the same thing as $\pi^{-1} \mathscr{O}_Y \rightarrow \mathscr{O}_X$, by adjointness. There is the obvious notion of composition, so ringed spaces form a category. We also have the notions of isomorphisms and automorphisms. If $U \subset Y$ is an open subset, then we have the natural map of ringed spaces $(U, \mathscr{O}_Y|_U) \rightarrow (Y, \mathscr{O}_Y)$. More precisely, if $U \rightarrow Y$ is an isomorphism of $U$ with open subset $V \subset Y$, and we are given $(U, \mathscr{O}_U) \cong (V, \mathscr{O}_Y|_V)$, then the resulting map of ringed spaces is called an <mark>open embedding</mark> or <mark>open immersion</mark> of ringed spaces, and the morphism is written as $U \hookrightarrow Y$.
+        </p>
+        <p>
+          As an example, consider the ring map $\mathbb{C}[y] \rightarrow \mathbb{C}[x]$ given by $y \mapsto x^2$. We are mapping the affine line with coordinate $x$ with the affine line with coordinate $y$. The map is, on closed points, $a \mapsto a^2$. So, $[(x - 3)]$ maps to $[(x - 9)]$, and the preimage of $[(x - 4)]$ is $[(x + 2)], [(x - 2)]$. The pullback of $3/(y - 4)$ on $D([(y - 4)]) = \mathbb{A}^1 - \{4\}$ is $3/(x^2 - 4)$ on $\mathbb{A}^2 - \{2, -2\}$. Before we proceed, let us point out that every morphism of ringed spaces is not a morphism of locally ringed spaces.
+        </p>
+        <p>
+          Tentatively, maps of schemes $(X, \mathscr{O}_X) \rightarrow (Y, \mathscr{O}_Y)$ is a map of ringed spaces that "looks locally like" maps of affine schemes. More precisely, for the choice of open sets $\text{Spec } A \subset X, \text{Spec } B \subset Y$, such that $\pi(\text{Spec } A) \subset \text{Spec } B$, the induced maps of ringed spaces should look like:
+        </p>
+        <div class="mathjax">
+          $$
+          \mathscr{O}_{\text{Spec } B}(D(g)) \rightarrow \mathscr{O}_{\text{Spec } A}(\pi^{-1} D(g))
+          $$
         </div>
-      </nav>
-      <main>
-        <header>
-          <h1>
-            [ag/5] Morphisms of schemes
-          </h1>
-          <div id="metadata">
-            <span id="timestamp"><time datetime="2019-03-31" class="begin">Sun, 31 Mar 2019 18:00:36 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
-          </div>
-        </header>
-        <article>
-          <p>
-            Just as we defined schemes as (i) a set (ii) with a topology (iii) with a structure shceaf of functions, let us define morphisms between schemes $X \rightarrow Y$ as (i) a map between sets (ii) that is continuous (iii) with some additional information about sheaves of functions. We want morphisms of affine schemes $\text{Spec } A \rightarrow \text{Spec } B$ to correspond to morphisms between rings $B \rightarrow A$. We have already seen that ring maps $B \rightarrow A$ induce maps of topological spaces in the opposite direction. The main new ingredient will be adding the structure sheaf of functions to this. From the geometric side, we want morphisms of schemes to be, at the very least, a morphism between ringed spaces. If $\pi : X \rightarrow Y$ is a map of differentiable manifolds, then a differentiable function on $Y$ pulls back to a differentiable function on $X$. More precisely, given an open subset $U \subset Y$, there is a natural map $\Gamma(U, \mathscr{O}_X) \rightarrow \Gamma(\pi^{-1}(U), \mathscr{O}_X)$. This behaves well with respect to restriction, so we have a map on $Y$: $\mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X$. Similarly a morphism of schemes $\pi : X \rightarrow Y$ should induce $\mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X$. In the category of differentiable manifolds, a continuous map $\pi : X \rightarrow Y$ is a map of differentiable manifolds precisely when differentiable functions on $Y$ pull back to differentiable functions on $X$, so this map of sheaves characterizes morphisms in a differentiable category. We could use this as the definition of a morphism in a differentiable category, but functions are odder than schemes, and we can't recover the pullback map from a map of topological spaces. The right patch is to hardwire this into the definition of the morphism: we have $\pi : X \rightarrow Y$ along with the pullback map $\pi^\# : \mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X$, and this leads to the definition of ringed spaces. We might be able to define morphisms between sheaves as morphisms between ringed spaces, but this isn't quite right: to each morphism $A \rightarrow B$ there is a corresponding morphism $\text{Spec } B \rightarrow \text{Spec } A$, but there can be additional morphisms of ringed spaces $\text{Spec } B \rightarrow \text{Spec } A$ not arising in this way.
-          </p>
-          <h2 id="morphisms-of-ringed-spaces">
-            Morphisms of ringed spaces
-          </h2>
-          <p>
-            A morphism of ringed spaces $\pi : X \rightarrow Y$ is a continuous map between topological spaces along with the pullback map $\mathscr{O}_Y \rightarrow \pi_* \mathscr{O}_X$, which is the same thing as $\pi^{-1} \mathscr{O}_Y \rightarrow \mathscr{O}_X$, by adjointness. There is the obvious notion of composition, so ringed spaces form a category. We also have the notions of isomorphisms and automorphisms. If $U \subset Y$ is an open subset, then we have the natural map of ringed spaces $(U, \mathscr{O}_Y|_U) \rightarrow (Y, \mathscr{O}_Y)$. More precisely, if $U \rightarrow Y$ is an isomorphism of $U$ with open subset $V \subset Y$, and we are given $(U, \mathscr{O}_U) \cong (V, \mathscr{O}_Y|_V)$, then the resulting map of ringed spaces is called an <mark>open embedding</mark> or <mark>open immersion</mark> of ringed spaces, and the morphism is written as $U \hookrightarrow Y$.
-          </p>
-          <p>
-            As an example, consider the ring map $\mathbb{C}[y] \rightarrow \mathbb{C}[x]$ given by $y \mapsto x^2$. We are mapping the affine line with coordinate $x$ with the affine line with coordinate $y$. The map is, on closed points, $a \mapsto a^2$. So, $[(x - 3)]$ maps to $[(x - 9)]$, and the preimage of $[(x - 4)]$ is $[(x + 2)], [(x - 2)]$. The pullback of $3/(y - 4)$ on $D([(y - 4)]) = \mathbb{A}^1 - \{4\}$ is $3/(x^2 - 4)$ on $\mathbb{A}^2 - \{2, -2\}$. Before we proceed, let us point out that every morphism of ringed spaces is not a morphism of locally ringed spaces.
-          </p>
-          <p>
-            Tentatively, maps of schemes $(X, \mathscr{O}_X) \rightarrow (Y, \mathscr{O}_Y)$ is a map of ringed spaces that "looks locally like" maps of affine schemes. More precisely, for the choice of open sets $\text{Spec } A \subset X, \text{Spec } B \subset Y$, such that $\pi(\text{Spec } A) \subset \text{Spec } B$, the induced maps of ringed spaces should look like:
-          </p>
-          <div class="mathjax">
-            $$
-            \mathscr{O}_{\text{Spec } B}(D(g)) \rightarrow \mathscr{O}_{\text{Spec } A}(\pi^{-1} D(g))
-            $$
-          </div>
-          <p>
-            We would like this definition to be checkable on an affine open cover, and might hope to use the Affine Communication Lemma to develop the theory in this way. However, once we introduce locally ringed spaces, we will discard this tentative definition.
-          </p>
-          <h2 id="from-locally-ringed-spaces-to-morphism-of-schemes">
-            From locally ringed spaces to morphism of schemes
-          </h2>
-          <p>
-            The notion of locally ringed spaces is inspired by what we know about manifolds. If $\pi : X \rightarrow Y$ is a morphism of manifolds, with $\pi(p) = q$, and $f$ is a function on $Y$ vanishing on $q$, then the pulled back function $\pi^\#(f)$ on $X$ should vanish at $p$. Put differently, germs vanishing at $q \in Y$ should pull back to functions vanishing at germs of $p \in X$. A <mark>locally ringed space</mark> is a ringed space $(X, \mathscr{O}_X)$ such that stalks $\mathscr{O}_{X, p}$ are all local rings. The morphism of locally ringed spaces $\pi : X \rightarrow Y$ is a morphism of ringed spaces such that the induced map of stalks $\pi^\# : \mathscr{O}_{Y, q} \rightarrow \mathscr{O}_{X, p}$ sends the maximal ideals of the former to the maximal ideals of the latter (a <mark>morphism of local rings</mark>). Hence, if $p \mapsto q$, and $g$ is a function vanishing at $q$, then it will pull back to a function vanishing at $p$. Also, if $g$ is a function not vanishing at $q$, then it will pull back to a function not vanishing at $p$. Locally ringed spaces form a category. To summarize, a locally ringed space is one where (i) functions have values at points, and (ii) given a map of locally ringed spaces, the pullbacks where a function vanishes is precisely where the pulled back function vanishes.
-          </p>
-          <p>
-            If $\pi : \text{Spec } A \rightarrow \text{Spec } B$ is a morphism of locally ringed spaces, then it is the morphism of locally ringed spaces induced by the map $\pi^\# : \Gamma(\text{Spec } B, \mathscr{O}_{\text{Spec } B}) = B \rightarrow \Gamma(\text{Spec } A, \mathscr{O}_{\text{Spec } A}) = A$. To prove this, we want to show that $\pi$ is determined by its ring of global sections $\pi^\# : B \rightarrow A$. We first need to check that the map of points is determined by global sections. Now, a point $p$ of $\text{Spec } A$ can be identified with the prime ideal of global functions vanishing on it. The image point $\pi(p)$ can be identified with a unique point $q$ in $\text{Spec } B$, where the functions vanishing at $q$ are precisely those that pull back to functions vanishing at $p$. This is precisely the way in which maps of sets $\text{Spec } A \rightarrow \text{Spec } B$ induced by the ring map $B \rightarrow A$ was defined. Note in particular that if $b \in B$, then $\pi^{-1}(D(b)) = D(\pi^\# B)$, again using the hypothesis that $\pi$ is a morphism of locally ringed spaces. It remains to be shown that $\pi^\# : \mathscr{O}_{\text{Spec } B} \rightarrow \pi_* \mathscr{O}_{\text{Spec } A}$ is a morphism of sheaves. It suffices to check this on a distinguished base. We want to show that for any map of locally ringed spaces including the map of sheaves $\mathscr{O}_{\text{Spec } B} \rightarrow \pi_* \mathscr{O}_{\text{Spec } A}$, the map of schemes on any distinguished open set $D(b) \subset \text{Spec } B$ is determined by the map of global sections $B \rightarrow A$.
-          </p>
-          <p>
-            Consider the commutative diagram:
-          </p>
-          <div class="mathjax">
-            $$
-            \begin{xy}
-            \xymatrix{
-            \Gamma(\text{Spec } B, \mathscr{O}_{\text{Spec } B})\ar[r]^{\pi^\#_{\text{Spec } B}}\ar[d]^{\text{res}_{\text{Spec } B, D(b)}} & \Gamma(\text{Spec } A, \mathscr{O}_{\text{Spec } A})\ar[d]^{\text{res}_{\text{Spec } A, D(\pi^\# b)}} \\
-            \Gamma(D(b), \mathscr{O}_{\text{Spec } B})\ar[r]^{\pi^\#_{D(b)}} & \Gamma(D(\pi^\# b), \mathscr{O}_{\text{Spec } A})
-            }
-            \end{xy}
-            $$
-          </div>
-          <p>
-            The vertical arrows (restrictions to distinguished open sets) are localizations by $b$. The lower horizontal map $\pi^\#_{D(b)}$ is determined by the upper map (it is just localization by $b$).
-          </p>
-          <p>
-            If $X, Y$ are schemes, then a morphism $\pi : X \rightarrow Y$ as locally ringed spaces is a morphism of schemes. Thus, we have defined the category of schemes denoted by $\text{Sch}$. In practice, we will use the affine cover interpretation, and forget completely about locally ringed spaces. In particular, to put imprecisely, the category of affine schemes is the category of rings with arrows reversed.
-          </p>
-          <p>
-            In particular, there can be many different maps from one point to another. For example, here is a map of two maps from a point on $\text{Spec } \mathbb{C}$ to another point on $\text{Spec } \mathbb{C}$: the identity map and the complex conjugation. It is clear that morphisms glue and that composition of two morphisms is a morphism.
-          </p>
-        </article>
-      </main>
-    </div>
+        <p>
+          We would like this definition to be checkable on an affine open cover, and might hope to use the Affine Communication Lemma to develop the theory in this way. However, once we introduce locally ringed spaces, we will discard this tentative definition.
+        </p>
+        <h2 id="from-locally-ringed-spaces-to-morphism-of-schemes">
+          From locally ringed spaces to morphism of schemes
+        </h2>
+        <p>
+          The notion of locally ringed spaces is inspired by what we know about manifolds. If $\pi : X \rightarrow Y$ is a morphism of manifolds, with $\pi(p) = q$, and $f$ is a function on $Y$ vanishing on $q$, then the pulled back function $\pi^\#(f)$ on $X$ should vanish at $p$. Put differently, germs vanishing at $q \in Y$ should pull back to functions vanishing at germs of $p \in X$. A <mark>locally ringed space</mark> is a ringed space $(X, \mathscr{O}_X)$ such that stalks $\mathscr{O}_{X, p}$ are all local rings. The morphism of locally ringed spaces $\pi : X \rightarrow Y$ is a morphism of ringed spaces such that the induced map of stalks $\pi^\# : \mathscr{O}_{Y, q} \rightarrow \mathscr{O}_{X, p}$ sends the maximal ideals of the former to the maximal ideals of the latter (a <mark>morphism of local rings</mark>). Hence, if $p \mapsto q$, and $g$ is a function vanishing at $q$, then it will pull back to a function vanishing at $p$. Also, if $g$ is a function not vanishing at $q$, then it will pull back to a function not vanishing at $p$. Locally ringed spaces form a category. To summarize, a locally ringed space is one where (i) functions have values at points, and (ii) given a map of locally ringed spaces, the pullbacks where a function vanishes is precisely where the pulled back function vanishes.
+        </p>
+        <p>
+          If $\pi : \text{Spec } A \rightarrow \text{Spec } B$ is a morphism of locally ringed spaces, then it is the morphism of locally ringed spaces induced by the map $\pi^\# : \Gamma(\text{Spec } B, \mathscr{O}_{\text{Spec } B}) = B \rightarrow \Gamma(\text{Spec } A, \mathscr{O}_{\text{Spec } A}) = A$. To prove this, we want to show that $\pi$ is determined by its ring of global sections $\pi^\# : B \rightarrow A$. We first need to check that the map of points is determined by global sections. Now, a point $p$ of $\text{Spec } A$ can be identified with the prime ideal of global functions vanishing on it. The image point $\pi(p)$ can be identified with a unique point $q$ in $\text{Spec } B$, where the functions vanishing at $q$ are precisely those that pull back to functions vanishing at $p$. This is precisely the way in which maps of sets $\text{Spec } A \rightarrow \text{Spec } B$ induced by the ring map $B \rightarrow A$ was defined. Note in particular that if $b \in B$, then $\pi^{-1}(D(b)) = D(\pi^\# B)$, again using the hypothesis that $\pi$ is a morphism of locally ringed spaces. It remains to be shown that $\pi^\# : \mathscr{O}_{\text{Spec } B} \rightarrow \pi_* \mathscr{O}_{\text{Spec } A}$ is a morphism of sheaves. It suffices to check this on a distinguished base. We want to show that for any map of locally ringed spaces including the map of sheaves $\mathscr{O}_{\text{Spec } B} \rightarrow \pi_* \mathscr{O}_{\text{Spec } A}$, the map of schemes on any distinguished open set $D(b) \subset \text{Spec } B$ is determined by the map of global sections $B \rightarrow A$.
+        </p>
+        <p>
+          Consider the commutative diagram:
+        </p>
+        <div class="mathjax">
+          $$
+          \begin{xy}
+          \xymatrix{
+          \Gamma(\text{Spec } B, \mathscr{O}_{\text{Spec } B})\ar[r]^{\pi^\#_{\text{Spec } B}}\ar[d]^{\text{res}_{\text{Spec } B, D(b)}} & \Gamma(\text{Spec } A, \mathscr{O}_{\text{Spec } A})\ar[d]^{\text{res}_{\text{Spec } A, D(\pi^\# b)}} \\
+          \Gamma(D(b), \mathscr{O}_{\text{Spec } B})\ar[r]^{\pi^\#_{D(b)}} & \Gamma(D(\pi^\# b), \mathscr{O}_{\text{Spec } A})
+          }
+          \end{xy}
+          $$
+        </div>
+        <p>
+          The vertical arrows (restrictions to distinguished open sets) are localizations by $b$. The lower horizontal map $\pi^\#_{D(b)}$ is determined by the upper map (it is just localization by $b$).
+        </p>
+        <p>
+          If $X, Y$ are schemes, then a morphism $\pi : X \rightarrow Y$ as locally ringed spaces is a morphism of schemes. Thus, we have defined the category of schemes denoted by $\text{Sch}$. In practice, we will use the affine cover interpretation, and forget completely about locally ringed spaces. In particular, to put imprecisely, the category of affine schemes is the category of rings with arrows reversed.
+        </p>
+        <p>
+          In particular, there can be many different maps from one point to another. For example, here is a map of two maps from a point on $\text{Spec } \mathbb{C}$ to another point on $\text{Spec } \mathbb{C}$: the identity map and the complex conjugation. It is clear that morphisms glue and that composition of two morphisms is a morphism.
+        </p>
+      </article>
+    </main>
   </body>
 </html>

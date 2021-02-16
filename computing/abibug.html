@@ -31,64 +31,63 @@
     <script defer="" src="/dist/script.min.js"></script>
   </head>
   <body>
-    <div id="wrapper">
-      <nav>
-        <div>
-          <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+    <nav>
+      <div>
+        <a href="/"><img src="/dist/artagnon.com.svg" /></a>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/computing">computing</a>
+          </li>
+          <li>
+            <a href="/math">math</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <header class="wrapper">
+        <h1>
+          An ABI-mismatch bug
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2015-08-23" class="begin">Sun, 23 Aug 2015 16:25:56 -0500</time><span class="to">↪</span><time datetime="2020-12-17" class="end">Thu, 17 Dec 2020 03:04:07 +0100</time></span><br /><span id="locations"><address>Paris, Chennai, Boston</address></span>
         </div>
-        <div>
-          <ul>
-            <li>
-              <a href="/articles">articles</a>
-            </li>
-            <li>
-              <a href="/computing">computing</a>
-            </li>
-            <li>
-              <a href="/math">math</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <main>
-        <header>
-          <h1>
-            An ABI-mismatch bug
-          </h1>
-          <div id="metadata">
-            <span id="timestamp"><time datetime="2015-08-23" class="begin">Sun, 23 Aug 2015 16:25:56 -0500</time><span class="to">↪</span><time datetime="2020-12-17" class="end">Thu, 17 Dec 2020 03:04:07 +0100</time></span><br /><span id="locations"><address>Paris, Chennai, Boston</address></span>
-          </div>
-        </header>
-        <article>
-          <p>
-            Our custom max function returns the maximum of two positive integers, and returns the negative integer, given a positive and negative integer. Classic signed wrapping, you'd think. It's not so simple, as the problem reproduces only under the following circumstances:
-          </p>
-          <ol class="olitems" type="none" start="1">
-            <li>
-              LLVM code is calling the max function.
-            </li>
-            <li>
-              The library containing the max function is compiled without debugging information.
-            </li>
-            <li>
-              The entire world has been built with XCode 6+.
-            </li>
-          </ol>
-          <p>
-            More information: The LLVM IR is exactly the same between an XCode 5 sandbox, an XCode 6 sandbox, and a GNU/Linux sandbox. The corresponding assembly diff is also clean.
-          </p>
-          <p>
-            The corresponding C++ code (is actually specialized with short) is:
-          </p>
-          <pre><code class="hljs cpp">template &lt;typename T&gt;
+      </header>
+      <article class="wrapper">
+        <p>
+          Our custom max function returns the maximum of two positive integers, and returns the negative integer, given a positive and negative integer. Classic signed wrapping, you'd think. It's not so simple, as the problem reproduces only under the following circumstances:
+        </p>
+        <ol class="olitems" type="none" start="1">
+          <li>
+            LLVM code is calling the max function.
+          </li>
+          <li>
+            The library containing the max function is compiled without debugging information.
+          </li>
+          <li>
+            The entire world has been built with XCode 6+.
+          </li>
+        </ol>
+        <p>
+          More information: The LLVM IR is exactly the same between an XCode 5 sandbox, an XCode 6 sandbox, and a GNU/Linux sandbox. The corresponding assembly diff is also clean.
+        </p>
+        <p>
+          The corresponding C++ code (is actually specialized with short) is:
+        </p>
+        <pre><code class="hljs cpp">template &lt;typename T&gt;
 FORCEINLINE T operator()(T a, T b) const
 {
    return (a &gt;= b ? a : b);
 }</code></pre>
-          <p>
-            While in lldb, the assembly instructions look like:
-          </p>
-          <pre><code class="hljs cpp">--------------- [XCode 5]
+        <p>
+          While in lldb, the assembly instructions look like:
+        </p>
+        <pre><code class="hljs cpp">--------------- [XCode 5]
 -&gt; 0x108af1930:  pushq  %rbp
    0x108af1931:  movq   %rsp, %rbp
    0x108af1934:  cmpw   %si, %di
@@ -96,7 +95,7 @@ FORCEINLINE T operator()(T a, T b) const
    0x108af193b:  movswl %si, %eax
    0x108af193e:  popq   %rbp
    0x108af193f:  retq</code></pre>
-          <pre><code class="hljs cpp">--------------- [XCode 6]
+        <pre><code class="hljs cpp">--------------- [XCode 6]
 -&gt; 0x108d1ac10:  pushq  %rbp
    0x108d1ac11:  movq   %rsp, %rbp
    0x108d1ac14:  cmpl   %esi, %edi
@@ -104,14 +103,14 @@ FORCEINLINE T operator()(T a, T b) const
    0x108d1ac1a:  movswl %si, %eax
    0x108d1ac1d:  popq   %rbp
    0x108d1ac1e:  retq</code></pre>
-          <p>
-            So, it's comparing the extended registers, but cmpl/cmpw difference is<br/>
-            messing up somehow.
-          </p>
-          <p>
-            After execution of the cmpl/cmpw:
-          </p>
-          <pre><code class="hljs cpp">--------------- [XCode 5]
+        <p>
+          So, it's comparing the extended registers, but cmpl/cmpw difference is<br/>
+          messing up somehow.
+        </p>
+        <p>
+          After execution of the cmpl/cmpw:
+        </p>
+        <pre><code class="hljs cpp">--------------- [XCode 5]
 (lldb) register read --format int16_t[] di
       di = {-48}
 (lldb) register read --format int16_t[] si
@@ -122,7 +121,7 @@ FORCEINLINE T operator()(T a, T b) const
      esi = {34 7103}
 (lldb) register read --format b rflags
   rflags = 0b0000000000000000000000000000000000000000000000000000001010010010</code></pre>
-          <pre><code class="hljs cpp">--------------- [XCode 6]
+        <pre><code class="hljs cpp">--------------- [XCode 6]
 (lldb) register read --format int16_t[] di
       di = {-48}
 (lldb) register read --format int16_t[] si
@@ -135,7 +134,7 @@ FORCEINLINE T operator()(T a, T b) const
   rflags = 0b0000000000000000000000000000000000000000000000000000001000010010
                                                                      ^
                                                              Sign flag different</code></pre>
-          <pre><code class="hljs cpp">--------------- [XCode 6, with C code calling max]
+        <pre><code class="hljs cpp">--------------- [XCode 6, with C code calling max]
 (lldb) register read --format int16_t[] di
       di = {-48}
 (lldb) register read --format int16_t[] si
@@ -146,14 +145,13 @@ FORCEINLINE T operator()(T a, T b) const
          In the LLVM call, this is zero
 (lldb) register read --format int16_t[] esi
      esi = {34 0}</code></pre>
-          <p>
-            In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when calling a function with a word-sized register.
-          </p>
-          <p>
-            The SysV ABI does not guarantee that the i16 will be sext'ed to i32. Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5 doesn't know about this.
-          </p>
-        </article>
-      </main>
-    </div>
+        <p>
+          In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when calling a function with a word-sized register.
+        </p>
+        <p>
+          The SysV ABI does not guarantee that the i16 will be sext'ed to i32. Clang ABI is probably an enhancement over the SysV ABI, and LLVM 3.5 doesn't know about this.
+        </p>
+      </article>
+    </main>
   </body>
 </html>
