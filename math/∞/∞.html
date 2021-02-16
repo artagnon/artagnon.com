@@ -56,7 +56,7 @@
             An outline for studying higher category theory
           </h1>
           <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-09" class="begin">Wed, 09 Sep 2020 21:57:03 +0200</time><span class="to">↪</span><time datetime="2021-02-16" class="end">Tue, 16 Feb 2021 19:11:40 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+            <span id="timestamp"><time datetime="2020-09-09" class="begin">Wed, 09 Sep 2020 21:57:03 +0200</time><span class="to">↪</span><time datetime="2021-02-16" class="end">Tue, 16 Feb 2021 19:46:52 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
           </div>
         </header>
         <article>
@@ -451,14 +451,47 @@
           <h3 id="2.-definition-of-a-model-category-with-brief-examples">
             2. Definition of a model category with brief examples
           </h3>
+          <p class="exercise">
+            $f$ is a <mark>retract</mark> of $g$ iff $pq = rs = 1$.
+          </p>
+          <div class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            A\ar[r]^s\ar[d]^f & C\ar[r]^r\ar[d]^g & A\ar[d]^f \\
+              B\ar[r]^q & D\ar[r]^p & B
+              }
+              \end{xy}
+            
+            $$
+          </div>
+          <p class="exercise">
+            A <mark>functorial factorization</mark> is an ordered pair $(\alpha, \beta)$ of functors $\texttt{Map } \mathscr{C} \rightarrow \texttt{Map } \mathscr{C}$ such that $f = \beta(f) \circ \alpha(f)$ for all $f \in \mathscr{C}$. In particular, the domain of $\alpha(f)$ is the domain of $f$, the codomain of $\alpha(f)$ is the domain of $\beta(f)$, and the codomain of $\beta(f)$ is the codomain of $f$.
+          </p>
+          <p class="exercise">
+            $i$ has <mark>left-lifting property</mark> with respect to $p$ if there is a lift $h : B \rightarrow X$ such that $hi = f$ and $ph = g$.
+          </p>
+          <div class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            A\ar[r]^f\ar[d]^i & X\ar[d]^p \\
+              B\ar[r]^g\ar@{.>}[ru]^h & Y \\
+              }
+              \end{xy}
+            
+            $$
+          </div>
           <p>
-            Category $\mathfrak{C}$ is a model category if it is equipped with three classes of morphisms $(\mathfrak{W}. \mathfrak{C}, \mathfrak{F})$ that satisfy the following axioms:
+            Category $\mathscr{C}$ is a model category if it is equipped with three classes of morphisms $(\mathscr{W}. \mathscr{C}, \mathscr{F})$ that satisfy the following axioms:
           </p>
           <p>
-            (MC1) [(Co)complete] $\mathfrak{C}$ is complete and cocomplete.
+            (MC1) [(Co)complete] $\mathscr{C}$ is complete and cocomplete.
           </p>
           <p>
-            (MC2) [2 out of 3] If $(f, g, g \circ f)$ are three morphisms such that any two are in $\mathfrak{W}$, then so is the third.
+            (MC2) [2 out of 3] If $(f, g, g \circ f)$ are three morphisms such that any two are in $\mathscr{W}$, then so is the third.
           </p>
           <p>
             (MC3) [Retracts]
