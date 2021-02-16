@@ -207,11 +207,27 @@ See [my original work on fibrations and cofibrations](fibrations.pdf)
 
 ## 2. Definition of a model category with brief examples
 
-Category $\mathfrak{C}$ is a model category if it is equipped with three classes of morphisms $(\mathfrak{W}. \mathfrak{C}, \mathfrak{F})$ that satisfy the following axioms:
++ $f$ is a `retract` of $g$ iff $pq = rs = 1$.
 
-(MC1) [(Co)complete] $\mathfrak{C}$ is complete and cocomplete.
+{{
+  A\ar[r]^s\ar[d]^f & C\ar[r]^r\ar[d]^g & A\ar[d]^f \\
+  B\ar[r]^q & D\ar[r]^p & B
+}}
 
-(MC2) [2 out of 3] If $(f, g, g \circ f)$ are three morphisms such that any two are in $\mathfrak{W}$, then so is the third.
++ A `functorial factorization` is an ordered pair $(\alpha, \beta)$ of functors $\texttt{Map } \mathscr{C} \rightarrow \texttt{Map } \mathscr{C}$ such that $f = \beta(f) \circ \alpha(f)$ for all $f \in \mathscr{C}$. In particular, the domain of $\alpha(f)$ is the domain of $f$, the codomain of $\alpha(f)$ is the domain of $\beta(f)$, and the codomain of $\beta(f)$ is the codomain of $f$.
+
++ $i$ has `left-lifting property` with respect to $p$ if there is a lift $h : B \rightarrow X$ such that $hi = f$ and $ph = g$.
+
+{{
+  A\ar[r]^f\ar[d]^i & X\ar[d]^p \\
+  B\ar[r]^g\ar@{.>}[ru]^h & Y \\
+}}
+
+Category $\mathscr{C}$ is a model category if it is equipped with three classes of morphisms $(\mathscr{W}. \mathscr{C}, \mathscr{F})$ that satisfy the following axioms:
+
+(MC1) [(Co)complete] $\mathscr{C}$ is complete and cocomplete.
+
+(MC2) [2 out of 3] If $(f, g, g \circ f)$ are three morphisms such that any two are in $\mathscr{W}$, then so is the third.
 
 (MC3) [Retracts]
 
