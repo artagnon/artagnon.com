@@ -284,27 +284,51 @@ a {
   background-color: transparent;
 }
 
+a[href*="mailto:"] {
+  background-image: url("/dist/icon.email.svg");
+}
+
+a[href*="https://twitter.com"]
+{
+  background-image: url("/dist/icon.twitter.svg");
+}
+
+a[href*="https://github.com"]
+{
+  background-image: url("/dist/icon.github.svg");
+}
+
+a[href*="mailto:"],
+a[href*="https://twitter.com"],
+a[href*="https://github.com"]
+{
+  background-repeat: no-repeat;
+  background-position: center left;
+  padding-left: 1.3rem;
+  max-height: 1rem;
+  background-size: 1rem;
+}
+
 a[href*=".pdf"] {
-  background-image: url("/dist/icon.pdf.png");
+  background-image: url("/dist/icon.pdf.svg");
 }
 
 #metadata time.end {
-  background-image: url("/dist/icon.calendar.png");
+  background-image: url("/dist/icon.calendar.svg");
 }
 
 #metadata address {
-  background-image: url("/dist/icon.location.png");
+  background-image: url("/dist/icon.location.svg");
 }
 
 a[href*=".pdf"],
 #metadata time.end,
-#metadata address,
-#metadata #audience {
+#metadata address {
   background-repeat: no-repeat;
   background-position: center right;
-  padding-right: calc(20rem / 20);
-  max-height: calc(16rem / 20);
-  background-size: calc(16rem / 20);
+  padding-right: 1.3rem;
+  max-height: 1rem;
+  background-size: 1rem;
 }
 
 footer {
