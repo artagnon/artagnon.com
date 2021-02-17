@@ -12,11 +12,11 @@ In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B \simeq B \o
 
 First, let us briefly talk about the cumulative universe of Coq. `Prop` is a `Set` that can be promoted to `Type` seamlessly. The reason for the distinction between `Prop` and `Set` is an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
 
-~~
+```coq
 Definition SetTypeIncl (A : Set) : Type := A.
 Definition PropTypeIncl (A : Prop) : Type := A.
 Definition PropSetIncl (A : Prop) : Set := A.
-~~
+```
 
 There is an $\infty$ hierarchy within the `Type` universe, and types of Types are Types themselves.
 
@@ -26,34 +26,34 @@ Inhabitants of a `Set` are sets of primitive things like $\mathbb{N}$ and $\math
 
 There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
 
-~~
+```coq
 Axiom PropositionalProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.
-~~
+```
 
 We then get a proof obligation which we discharge using the axiom:
 
-~~
+```coq
 Theorem PropEquality (P : Prop) (a b : P) : a = b.
 Proof.
   by apply PropositionalProofIrrelevance.
 Qed.
-~~
+```
 
 In the general case, two different inhabitants of `Prop` are unequal. There is, however, a propositional equality existing between two equal propositions:
 
-~~
+```coq
 Theorem PropRefl (P : Prop) (x : P): x = x.
 Proof.
   exact eq_refl.
 Qed.
-~~
+```
 
 where `eq_refl` is simply the sole inhabitant of an Inductive:
 
-~~
+```coq
 Inductive eq (A : Type) (x : A) : A -> Prop :=
   eq_refl : eq A x x.
-~~
+```
 
 # The proof-irrelevant SProp
 
@@ -61,23 +61,23 @@ There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/spro
 
 Unfortunately, `=` doesn't work as expected:
 
-~~
+```coq
 Theorem SPropIrr (P : SProp) (x y : P) : x = y.
 Proof.
   by reflexivity.
 Abort. (* Type-check fails at Qed.
         * (=) : ∀ A, A -> A -> Prop, but we want to return an SProp. *)
-~~
+```
 
 This is because the `SProp` universe is disjoint from the `Prop` universe:
 
-~~
+```coq
 Theorem SPropToProp : SProp -> Prop.
 Proof.
   by intros x; exact x.
 Abort. (* Type-check fails at Qed.
         * SProp is not convertible to Prop. *)
-~~
+```
 
 Fortunately, we can do better.
 
@@ -89,20 +89,20 @@ In [HoTT](https://github.com/HoTT/HoTT), there is just one $\infty$-ladder:
 (ii) A "mere proposition", an inhabitant of `hProp`, is simply a ($\mathrm{-1}$)-truncated Type.
 (iii) `hSet` is the $\mathrm{0}$-truncated Type.
 
-~~
+```
 Notation Contr := (IsTrunc minus_two).
 Notation IsHProp := (IsTrunc minus_two.+1).
 Notation IsHSet := (IsTrunc minus_two.+2).
-~~
+```
 
 The notion of truncation is central to HoTT, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, whence higher-than-$m$ morphisms are rendered uninteresting. Any two hProps are propositionally equal:
 
-~~
+```coq
 Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.
   by apply path_ishprop.
 Qed.
-~~
+```
 
 Conceptually, this is as simple and elegant as `PropEquality`.
 
