@@ -499,7 +499,7 @@ Definition transport_prod {A : Type} {P Q : A -> Type} {a a' : A} (p : a = a')
   := match p with idpath => 1 end.
 ```
 
-```
+```coq
 Definition ap_functor_prod {A A' B B' : Type} (f : A -> A') (g : B -> B')
   (z z' : A * B) (p : fst z = fst z') (q : snd z = snd z')
   : ap (functor_prod f g) (path_prod _ _ p q)
@@ -540,7 +540,7 @@ $$
   p_\star(u, z) = (p_\star(u), \texttt{pair}^=(p, \texttt{refl}_{p_\star(u)})(z))
 $$
 
-```
+```coq
 (** Dependent transport is the same as transport along a [path_sigma]. *)
 Definition transportD_is_transport
            {A : Type} (B : A->Type) (C: sigT B -> Type)
@@ -560,7 +560,7 @@ Let us briefly discuss the type $\mathbb{1}$.
 
 It's tempting to do this proof by $\mathbb{1}$-induction, but we'd get stuck and be unable to perform a path induction on $p : \star = \star$. A function $(x = y) \rightarrow \mathbb{1}$ is easy to define by sending everything to $\star$. We may assume, by path induction, that $x = y = \star$, in which case, we have $\texttt{refl}_\star : x = y$, yielding a constant function $\mathbb{1} \rightarrow (x = y)$. To show the inverses, consider an element $u : \mathbb{1}$, and safely assume that $u = \star$, but this is also the result of the composite $\mathbb{1} \rightarrow (x = y) \rightarrow \mathbb{1}$.
 
-```
+```coq
 Definition equiv_path_unit (z z' : Unit) : Unit <~> (z = z')
   := Build_Equiv _ _ (path_unit_uncurried z z') _.
 ```
