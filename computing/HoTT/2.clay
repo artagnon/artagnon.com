@@ -96,7 +96,7 @@ $$
 
 where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called `whiskering`.
 
-~~
+```coq
 Definition whiskerL {A : Type} {x y z : A} (p : x = y)
   {q r : y = z} (h : q = r) : p @ q = p @ r
 := 1 @@ h.
@@ -104,7 +104,7 @@ Definition whiskerL {A : Type} {x y z : A} (p : x = y)
 Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
   (h : p = q) (r : y = z) : p @ r = q @ r
 := h @@ 1.
-~~
+```
 
 Next, since $\alpha \circ_r r$ and $q \circ_l \beta$ are composable 2-paths, we can define horizontal composition by:
 
@@ -120,7 +120,7 @@ $$
 
 The foregoing fact, known as the `Eckmann-Hilton argument` comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
 
-~~
+```coq
 Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :> (x = x)) : p @ q = q @ p :=
   (whiskerR_p1 p @@ whiskerL_1p q)^
   @ (concat_p1 _ @@ concat_p1 _)
@@ -129,7 +129,7 @@ Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :> (x = x)) : p @ q = q 
   @ (concat_1p _ @@ concat_1p _)^
   @ (concat_p1 _ @@ concat_p1 _)^
   @ (whiskerL_1p q @@ whiskerR_p1 p).
-~~
+```
 
 A `pointed type` $(A, a)$ is a type $A : \mathscr{U}$ together with a point $a : A$ called its `basepoint`. We write $\mathscr{U}_\bullet :\equiv \Sigma_{A : \mathscr{U}}$ for the type of pointed types in universe $\mathscr{U}$.
 
@@ -160,10 +160,10 @@ $$
 
 $\texttt{ap}_f$ can be read as the application of a function to a path.
 
-~~
+```coq
 Definition ap {A B : Type} (f : A -> B) {x y : A} (p : x = y) : f x = f y
   := match p with idpath => idpath end.
-~~
+```
 
 To provide a simple proof, it suffices to assume that $p$ is $\texttt{refl}_x$. In this case, we may define $\texttt{ap}_f(p) :\equiv \texttt{refl}_{f(x)} f(x) = f(x)$. We will often write $\texttt{ap}_f(p)$ as $f(p)$, and this matches the common category theory convention of using the same symbol for application of a functor to objects and morphisms.
 
@@ -206,10 +206,10 @@ Topologically, the transport lemma can be viewed as a "path lifting" operation o
 
 The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path.
 
-~~
+```coq
 Definition transport {A : Type} (P : A -> Type) {x y : A} (p : x = y) (u : P x) : P y :=
   match p with idpath => u end.
-~~
+```
 
 + We now state `path lifting property` without proof. Let $P : A \rightarrow \mathscr{U}$ be a type family over $A$, and assume we have $u : P(x)$ for some $x : A$. Then, for $p : x = y$, we have:
 
@@ -219,11 +219,11 @@ $$
 
 in $\Sigma_{x : A} P(x)$, such that $\texttt{pr}_1(\texttt{lift}(u, p)) = p$.
 
-~~
+```coq
 Definition equiv_path_sigma `(P : A -> Type) (u v : sigT P)
 : {p : u.1 = v.1 &  p # u.2 = v.2} <~> (u = v)
   := Build_Equiv _ _ (path_sigma_uncurried P u v) _.
-~~
+```
 
 In classical homotopy theory, a fibration is defined as a map for which there exist liftings of paths, while in contrast, we have shown that in type theory, every type family comes with a specified "lifting function".
 
@@ -239,7 +239,7 @@ $$
   \texttt{apd}_f : \Pi_{p : x = y} p_\star(f(x)) =_{P(y)} f(y)
 $$
 
-~~
+```coq
 (** Similarly, dependent functions act on paths; but the type is a bit more subtle.
 If [f : forall a:A, B a] and [p : x = y] is a path in [A], then [apD f p] should somehow
 be a path between [f x : B x] and [f y : B y]. Since these live in different types,
@@ -252,7 +252,7 @@ Definition apD {A : Type} {B : A->Type} (f : forall a: A, B a) {x y : A} (p : x=
   p # (f x) = f y
   :=
   match p with idpath => idpath end.
-~~
+```
 
 We prove it as follows. Let $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$ be the type family defined by
 
@@ -278,14 +278,14 @@ $$
 
 The corresponding Coq code looks like:
 
-~~
+```coq
 (** Transporting in a constant fibration. *)
 Definition transport_const {A B : Type} {x1 x2 : A} (p : x1 = x2) (y : B)
   : transport (fun x => B) p y = y.
 Proof.
   destruct p. exact 1.
 Defined.
-~~
+```
 
 In English, it suffices to assume that $y$ is $x$, and $p$ is $\texttt{refl}_x$. But $\texttt{transport}^P(\texttt{refl}_x, b) \equiv b$, so in this case, we have to prove that $b = b$, which can be discharged by $\texttt{refl}_b$.
 
@@ -298,16 +298,16 @@ $$
 
 + Let us now dump a few definitions and lemmas in Coq:
 
-~~
+```coq
 (** In a constant fibration, [apD] reduces to [ap], modulo [transport_const]. *)
 Lemma apD_const {A B} {x y : A} (f : A -> B) (p : x = y) :
   apD f p = transport_const p (f x) @ ap f p.
 Proof.
   destruct p; reflexivity.
 Defined.
-~~
+```
 
-~~
+```coq
 (** Transporting in a pulled back fibration. *)
 Lemma transport_compose {A B} {x y : A} (P : B -> Type) (f : A -> B)
   (p : x = y) (z : P (f x))
@@ -315,23 +315,23 @@ Lemma transport_compose {A B} {x y : A} (P : B -> Type) (f : A -> B)
 Proof.
   destruct p; reflexivity.
 Defined.
-~~
+```
 
-~~
+```coq
 Lemma ap_transport {A} {P Q : A -> Type} {x y : A} (p : x = y) (f : forall x, P x -> Q x) (z : P x) :
   f y (p # z) = (p # (f x z)).
 Proof.
   by induction p.
 Defined.
-~~
+```
 
-~~
+```coq
 Definition transport_pp {A : Type} (P : A -> Type) {x y z : A} (p : x = y) (q : y = z) (u : P x) :
   p @ q # u = q # p # u :=
   match q with idpath =>
     match p with idpath => 1 end
   end.
-~~
+```
 
 # Homotopies and equivalences
 
@@ -372,7 +372,7 @@ $$
 
 But this follows since both sides are equal to $H(x)$.
 
-~~
+```coq
 (** Naturality of [ap]. *)
 Definition concat_Ap {A B : Type} {f g : A -> B} (p : forall x, f x = g x) {x y : A} (q : x = y) :
   (ap f q) @ (p y) = (p x) @ (ap g q)
@@ -380,7 +380,7 @@ Definition concat_Ap {A B : Type} {f g : A -> B} (p : forall x, f x = g x) {x y 
   match q with
     | idpath => concat_1p _ @ ((concat_p1 _) ^)
   end.
-~~
+```
 
 + Let $H : f \sim \texttt{id}_A$ be a homotopy with $f : A \rightarrow A$. Then for any $x : A$, we have:
 
@@ -395,7 +395,7 @@ $$
   f(H x) = f(H x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x)
 $$
 
-~~
+```coq
 (** Naturality of [ap] at identity. *)
 Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} (q : x = y) :
   (ap f q) @ (p y) = (p x) @ q
@@ -403,7 +403,7 @@ Definition concat_A1p {A : Type} {f : A -> A} (p : forall x, f x = x) {x y : A} 
   match q with
     | idpath => concat_1p _ @ ((concat_p1 _) ^)
   end.
-~~
+```
 
 Moving onto types from a traditional perspective, one may say that a function $f : A \rightarrow B$ is an `isomorphism` if there is a function $g : B \rightarrow A$ such that composites $f \circ g \sim \texttt{id}_B$ and $g \circ f \sim \texttt{id}_A$. A homotopical perspective suggests that this should be called a homotopy equivalence, and equivalence of higher groupoids from a category theoretic perspective. However, the type
 
@@ -467,11 +467,11 @@ $$
   (x =_{A \times B} y) \rightarrow (\texttt{pr}_1(x) =_A \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) =_B \texttt{pr}_2(y))
 $$
 
-~~
+```coq
 Definition equiv_path_prod {A B : Type} (z z' : A * B)
   : (fst z = fst z') * (snd z = snd z')  <~>  (z = z')
   := Build_Equiv _ _ (path_prod_uncurried z z') _.
-~~
+```
 
 We can now denote this by
 
@@ -492,14 +492,14 @@ $$
   r = \texttt{pair}^=(\texttt{ap}_{pr_1}(r), \texttt{ap}_{pr_2}(r)) \quad r : x =_{A \times B} y
 $$
 
-~~
+```coq
 Definition transport_prod {A : Type} {P Q : A -> Type} {a a' : A} (p : a = a')
   (z : P a * Q a)
   : transport (fun a => P a * Q a) p z  =  (p # (fst z), p # (snd z))
   := match p with idpath => 1 end.
-~~
+```
 
-~~
+```
 Definition ap_functor_prod {A A' B B' : Type} (f : A -> A') (g : B -> B')
   (z z' : A * B) (p : fst z = fst z') (q : snd z = snd z')
   : ap (functor_prod f g) (path_prod _ _ p q)
@@ -508,7 +508,7 @@ Proof.
   destruct z as [a b]; destruct z' as [a' b'].
   simpl in p, q. destruct p, q. reflexivity.
 Defined.
-~~
+```
 
 # $\Sigma$-types
 
@@ -522,11 +522,11 @@ We have already proved this [previously](#type-families-are-fibrations), in the 
 
 + For $z : \Sigma_{x : A} P(x)$, we have $z = (\texttt{pr}_1(z), \texttt{pr}_2(z))$
 
-~~
+```coq
 Definition eta_sigma `{P : A -> Type} (u : sigT P)
   : (u.1; u.2) = u
   := 1.
-~~
+```
 
 + Suppose we have the type families $P : A \rightarrow \mathscr{U}$ and $Q : (\Sigma_{x : A} P(x)) \rightarrow \mathscr{U}$, then we can construct the type family over $A$ defined by:
 
@@ -540,7 +540,7 @@ $$
   p_\star(u, z) = (p_\star(u), \texttt{pair}^=(p, \texttt{refl}_{p_\star(u)})(z))
 $$
 
-~~
+```
 (** Dependent transport is the same as transport along a [path_sigma]. *)
 Definition transportD_is_transport
            {A : Type} (B : A->Type) (C: sigT B -> Type)
@@ -550,7 +550,7 @@ Definition transportD_is_transport
 Proof.
   destruct p. reflexivity.
 Defined.
-~~
+```
 
 # The unit type
 
@@ -560,10 +560,10 @@ Let us briefly discuss the type $\mathbb{1}$.
 
 It's tempting to do this proof by $\mathbb{1}$-induction, but we'd get stuck and be unable to perform a path induction on $p : \star = \star$. A function $(x = y) \rightarrow \mathbb{1}$ is easy to define by sending everything to $\star$. We may assume, by path induction, that $x = y = \star$, in which case, we have $\texttt{refl}_\star : x = y$, yielding a constant function $\mathbb{1} \rightarrow (x = y)$. To show the inverses, consider an element $u : \mathbb{1}$, and safely assume that $u = \star$, but this is also the result of the composite $\mathbb{1} \rightarrow (x = y) \rightarrow \mathbb{1}$.
 
-~~
+```
 Definition equiv_path_unit (z z' : Unit) : Unit <~> (z = z')
   := Build_Equiv _ _ (path_unit_uncurried z z') _.
-~~
+```
 
 + $\Pi$-types and functional extensionality
 
@@ -581,12 +581,12 @@ $$
 
 We can regard this as an introduction rule for the type $f = g$.
 
-~~
+```coq
 Definition path_forall `{Funext} {A : Type} {P : A -> Type} (f g : forall x : A, P x) :
   f == g -> f = g
   :=
   (@apD10 A P f g)^-1.
-~~
+```
 
 From this point of view, $\texttt{happly}$ is an elimination rule, while the homotopies witnessing $\texttt{funext}$ as quasi-inverse to $\texttt{happly}$ become a propositional computation rule:
 
@@ -620,7 +620,7 @@ $$
 (p_\star(f) = g) \simeq \Pi_{x : A(x)} (p_\star(f(a)) = g(p_\star(a)))
 $$
 
-~~
+```coq
 (** Usually, a dependent path over [p:x1=x2] in [P:A->Type] between [y1:P x1] and [y2:P x2]
 is a path [transport P p y1 = y2] in [P x2].  However, when [P] is a function space,
 these dependent paths have a more convenient description: rather than transporting
@@ -636,7 +636,7 @@ Proof.
   destruct p.
   apply equiv_path_arrow.
 Defined.
-~~
+```
 
 Moreover, if $q : p_\star(f) = g$ corresponds under this equivalence to $\hat{q}$, then for $a : A(x)$, the path
 
@@ -664,10 +664,10 @@ $$
 
 defined as follows.
 
-~~
+```coq
 Definition equiv_path (A B : Type) (p : A = B) : A <~> B
   := Build_Equiv _ _ (transport (fun X:Type => X) p) _.
-~~
+```
 
 + The `univalence axiom` can be stated as the $\texttt{idtoequiv}$ being an equivalene.
 
@@ -675,10 +675,10 @@ $$
   (A =_\mathscr{U} B) \simeq (A \simeq B)
 $$
 
-~~
+```coq
 Definition equiv_equiv_path  (A B : Type) : (A = B) <~> (A <~> B)
   := (equiv_path_universe A B)^-1%equiv.
-~~
+```
 
 As previously done, it is fruitful to break up this equivalence into:
 
@@ -775,7 +775,7 @@ $$
 
 + We now dump some lemmas for $\texttt{transport}$:
 
-~~
+```coq
 Definition transport_paths_FlFr {A B : Type} {f g : A -> B} {x1 x2 : A}
   (p : x1 = x2) (q : f x1 = g x1)
   : transport (fun x => f x = g x) p q = (ap f p)^ @ q @ (ap g p).
@@ -783,9 +783,9 @@ Proof.
   destruct p; simpl.
   exact ((concat_1p q)^ @ (concat_p1 (1 @ q))^).
 Defined.
-~~
+```
 
-~~
+```coq
 Definition transport_paths_FlFr_D {A : Type} {B : A -> Type}
   {f g : forall a, B a} {x1 x2 : A} (p : x1 = x2) (q : f x1 = g x1)
 : transport (fun x => f x = g x) p q
@@ -794,16 +794,16 @@ Proof.
   destruct p; simpl.
   exact ((ap_idmap _)^ @ (concat_1p _)^ @ (concat_p1 _)^).
 Defined.
-~~
+```
 
-~~
+```coq
 Definition transport_paths_lr {A : Type} {x1 x2 : A} (p : x1 = x2) (q : x1 = x1)
   : transport (fun x => x = x) p q = p^ @ q @ p.
 Proof.
   destruct p; simpl.
   exact ((concat_1p q)^ @ (concat_p1 (1 @ q))^).
 Defined.
-~~
+```
 
 # Natural numbers
 
@@ -831,10 +831,10 @@ $$
 
 + For all $m, n : \mathbb{N}$, we have $(m = n) \simeq \texttt{code}(m, n)$
 
-~~
+```coq
 Definition equiv_path_nat {n m} : (n =n m) <~> (n = m)
   := Build_Equiv _ _ (@path_nat n m) _.
-~~
+```
 
 # Universal properties
 
@@ -858,19 +858,19 @@ $$
 
 defined as before.
 
-~~
+```coq
 (* First, a positive version of the universal property *)
 Definition equiv_prod_ind `(P : A * B -> Type)
   : (forall (a : A) (b : B), P (a, b)) <~> (forall p : A * B, P p)
   := Build_Equiv _ _ (prod_ind P) _.
-~~
+```
 
-~~
+```coq
 (* Now the negative universal property. *)
 Definition prod_coind_uncurried `{A : X -> Type} `{B : X -> Type}
   : (forall x, A x) * (forall x, B x) -> (forall x, A x * B x)
   := fun fg x => (fst fg x, snd fg x).
-~~
+```
 
 Since $\Sigma$ types are a generalization of cartesian product types, we can straightaway jump to the dependently typed version; if we have a type $X$ and type families $A : A \rightarrow \mathscr{U}$ and $P : \Pi_{x : A} A(x) \rightarrow \mathscr{U}$, then we have:
 

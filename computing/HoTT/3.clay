@@ -6,11 +6,11 @@ This note corresponds to Ch. 3 in the HoTT book
 
 This chapter is dedicated to the study of `HSet` (sets, the $0$-type), `HProp` (mere propositions, the $(-1)$-type), and `Contr` (contractible types, the $(-2)$-type):
 
-~~
+```coq
 Notation Contr := (IsTrunc minus_two).
 Notation IsHProp := (IsTrunc minus_two.+1).
 Notation IsHSet := (IsTrunc minus_two.+2).
-~~
+```
 
 focusing on the logic of mere propositions and the notion of `propositional truncation`.
 
@@ -24,17 +24,17 @@ $$
 
 Sets in homotopy type theory are not like sets in ZF set theory, in that there is no global "membership predicate" $\in$. To provide some examples of sets, $\mathbb{1}$, $\mathbb{0}$ and $\mathbb{N}$ are sets.
 
-~~
+```coq
 Global Instance hprop_Empty : IsHProp Empty.
 Proof. intro x. destruct x. Defined.
-~~
+```
 
-~~
+```coq
 Corollary hset_nat : IsHSet nat.
 Proof.
   exact _.
 Defined.
-~~
+```
 
 Moreover, if $A$ and $B$ are sets, then so is $A \times B$. For given $x, y : A \times B$ and $p, q : x = y$, we have $p = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(p), \texttt{ap}_{\texttt{pr}_2}(p))$ and $q = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(q), \texttt{ap}_{\texttt{pr}_2}(q))$. But $\texttt{ap}_{\texttt{pr}_1}(p) = \texttt{ap}_{\texttt{pr}_1}(q)$ since $A$ is a set, and $\texttt{ap}_{\texttt{pr}_2}(p) = \texttt{ap}_{\texttt{pr}_2}(q)$, since $B$ is a set; hence $p = q$.
 
@@ -54,22 +54,22 @@ $$
 
 So since $B(x)$ is a set, we have $\texttt{happly}(p, x) = \texttt{happly}(q, x)$. Now, using funext again, the dependent functions $(x \mapsto \texttt{happly}(p, x))$ and $(x \mapsto \texttt{happly}(q, x))$ are equal, and hence, applying $\texttt{ap}_\texttt{funext}$, so are $p$ and $q$.
 
-~~
+```coq
 Global Instance trunc_forall `{P : A -> Type} `{forall a, IsTrunc n (P a)}
   : IsTrunc n (forall a, P a) | 100.
-~~
+```
 
 Sets are just the first rung of the ladder of $n$-types, and may also be called the $0$-type; its defining property is that it has no non-trivial paths. Similarly, the $1$-type can be has no non-trivial paths between paths.
 
-~~
+```coq
 Notation Is1Type := IsTrunc 1.
-~~
+```
 
 A type $A$ is a $1$-type if for all $x, y : A$, and $p, q : x = y$, $r, s : p = q$, we have $r = s$. We can similarly define $2$-types, $3$-types, and so on.
 
 + If $A$ is a set, that is, $\texttt{isSet}(A)$ is inhabitated, then $A$ is a $1$-type.
 
-~~
+```coq
 (** Truncation levels are cumulative. *)
 Global Instance trunc_succ `{IsTrunc n A}
   : IsTrunc n.+1 A | 1000.
@@ -79,11 +79,11 @@ Proof.
   - apply contr_paths_contr.
   - apply IH, H.
 Qed.
-~~
+```
 
 Another fact to keep in mind is that this stratification of types is not degenerate; in particular, not all types are sets. For instance, universe $\mathscr{U}$ is not a set.
 
-~~
+```coq
 Definition not_hset_Type : ~ (IsHSet Type).
 Proof.
   intro HT.
@@ -92,7 +92,7 @@ Proof.
   refine (_ @ (ap (fun q => transport idmap q false) r)).
   symmetry; apply transport_path_universe.
 Defined.
-~~
+```
 
 # Propositions as types?
 
@@ -120,7 +120,7 @@ Thus, to assert that $P$ is a mere proposition means to exhibit an inhabitant of
 
 + If $P$ is a mere proposition, and $x_0 : P$, then $P \simeq \mathbb{1}$.
 
-~~
+```coq
 (** If an hprop is inhabited, then it is equivalent to [Unit]. *)
 Lemma if_hprop_then_equiv_Unit (hprop : Type) `{IsHProp hprop} :  hprop -> hprop <~> Unit.
 Proof.
@@ -129,11 +129,11 @@ Proof.
   - exact (fun _ => tt).
   - exact (fun _ => p).
 Defined.
-~~
+```
 
 + If $P$ and $Q$ are mere propositions such that $P \rightarrow Q$ and $Q \rightarrow P$, then $P \simeq Q$.
 
-~~
+```coq
 (** Two propositions are equivalent as soon as there are maps in both directions. *)
 Definition isequiv_iff_hprop `{IsHProp A} `{IsHProp B}
   (f : A -> B) (g : B -> A)
@@ -142,7 +142,7 @@ Proof.
   apply (isequiv_adjointify f g);
     intros ?; apply path_ishprop.
 Defined.
-~~
+```
 
 A space that is homotopy equivalent to $\mathbb{1}$ is said to be contractible. Thus, any mere proposition that is inhabitated is contractible. On the other hand, the uninhabited type $\mathbb{0}$ is also vacuously a mere proposition.
 
@@ -152,11 +152,11 @@ Note that a type $A$ is a set if and only if, for $x, y : A$, the identity type 
 
 + For any type $A$, types $\texttt{isProp}(A)$ and $\texttt{isSet}(A)$ are mere propositions.
 
-~~
+```coq
 (** Truncatedness is an hprop. *)
 Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
   : IsHProp (IsTrunc n A) | 0.
-~~
+```
 
 # Classical versus intuitionistic logic
 
@@ -177,15 +177,15 @@ $$
 (ii) A type family $B : A \rightarrow \mathscr{U}$ is decidable if $\Pi_{a : A}(B(a) + \neg B(a))$.
 (iii) $A$ has decidable equality if $\Pi_{a, b : A} ((a = b) + \neg(a = b))$.
 
-~~
+```coq
 Class Decidable (A : Type) :=
   dec : A + (~ A).
-~~
+```
 
-~~
+```coq
 Class DecidablePaths (A : Type) :=
   dec_paths : forall (x y : A), Decidable (x = y).
-~~
+```
 
 # Subsets and propositional resizing
 
@@ -193,7 +193,7 @@ Suppose $P : A \rightarrow \mathscr{U}$  is a type family with each type $P(x)$ 
 
 + Suppose $P : A \rightarrow \mathscr{U}$ is a type famiy such that $P(x)$ is a mere proposition for all $x : A$. If $u, v : \Sigma_{x : A} P(x)$ are such that $\texttt{pr}_1(u) = \texttt{pr}_1(v)$, then $u = v$.
 
-~~
+```coq
 (** ** Subtypes (sigma types whose second components are hprops) *)
 
 (** To prove equality in a subtype, we only need equality of the first component. *)
@@ -202,7 +202,7 @@ Definition path_sigma_hprop {A : Type} {P : A -> Type}
            (u v : sigT P)
 : u.1 = v.1 -> u = v
   := path_sigma_uncurried P u v o pr1^-1.
-~~
+```
 
 For instance, recall that we defined
 
@@ -250,10 +250,10 @@ In many cases, logical connectives and quantifiers can be represented in this lo
 
 + If $B : A \rightarrow \mathscr{U}$ is such that for all $x : A$, B(x) is a mere proposition, then $\Pi_{x : A} B(x)$ is a mere proposition.
 
-~~
+```coq
 Definition PiType_isMereProp `{Funext} (A : Type) (B : A -> Type)
   := trunc_forall _ A B (-1).
-~~
+```
 
 In particular, If $B$ is a mere proposition, then so is $A \rightarrow B$ regardless of what $A$ is. Since $\mathbb{0}$ is a mere proposition, so is $\neg A \equiv A \rightarrow \mathbb{0}$. Thus the connectives "implies", "not", and "forall" preserve mere propositions.
 
@@ -322,10 +322,10 @@ This illustrates a common pitfall: although dependent function types preserve me
 
 + If $P$ is a mere proposition, then $P \simeq ||P||$.
 
-~~
+```coq
 Definition isequiv_to_O_inO (T : Type) `{In O T} : IsEquiv (to O T).
 Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).
-~~
+```
 
 It has the following important consequence:
 
@@ -336,11 +336,11 @@ It has the following important consequence:
 
 Then we have $\Pi_{x : A} P(x)$.
 
-~~
+```coq
 Lemma unique_choice {X Y} (R:X->Y->Type) :
  (forall x y, IsHProp (R x y)) -> (forall x, (hunique (R x)))
    -> {f : X -> Y & forall x, (R x (f x))}.
-~~
+```
 
 # When are mere propositions truncated?
 
@@ -364,77 +364,77 @@ We can pronounce this as "$A$ contains an element, and every other element of $A
 (ii) $A$ is a mere proposition, and there is a point $a : A$.
 (iii) $A$ is equivalent to $\mathbb{1}$.
 
-~~
+```coq
 (* The Unit type is contractible *)
 (** Because [Contr] is a notation, and [Contr_internal] is the record, we need to iota expand to fool Coq's typeclass machinery into accepting supposedly "mismatched" contexts. *)
 Global Instance contr_unit : Contr Unit | 0 := let x := {|
   center := tt;
   contr := fun t : Unit => match t with tt => 1 end
 |} in x.
-~~
+```
 
 + For any type $A$, the type $\texttt{isContr}(A)$ is a mere proposition.
 
-~~
+```coq
 Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
   : IsHProp (IsTrunc n A) | 0.
-~~
+```
 
 + If $A$ is contractible, so is $\texttt{isContr}(A)$.
 
-~~
+```coq
 Global Instance contr_contr `{Funext} (A : Type) `{Contr A}
   : Contr (Contr A) | 100.
-~~
+```
 
 + If $P : A \rightarrow \mathscr{U}$ is a type family such that $P(a)$ is contractible, then $\Pi_{x : A} P(x)$ is contractible.
 
-~~
+```coq
 Global Instance trunc_forall `{P : A -> Type} `{forall a, IsTrunc n (P a)}
   : IsTrunc n (forall a, P a) | 100.
-~~
+```
 
 + If $B$ is a retract of $A$, and $A$ is contractible, then so is $B$.
 
 + For any $A$ and any $a : A$, the type $\Sigma_{x : A} (x = a)$ is contractible.
 
-~~
+```coq
 Global Instance contr_basedpaths {X : Type} (x : X) : Contr {y : X & x = y} | 100.
-~~
+```
 
 + Let $P : A \rightarrow \mathscr{U}$ be a type family.
 
 (i) If each $P(x)$ is contractible, then $\Sigma_{x : A} P(x)$ is equivalent to $A$.
 (ii) If $A$ is contractible with center $a$, then $\Sigma_{x : A} P(x)$ is equivalent to $P(a)$.
 
-~~
+```coq
 Definition equiv_sigma_contr {A : Type} (P : A -> Type)
            `{forall a, Contr (P a)}
 : sigT P <~> A
   := Build_Equiv _ _ pr1 _.
-~~
+```
 
-~~
+```coq
 Definition equiv_contr_sigma {A : Type} (P : A -> Type) `{Contr A}
 : { x : A & P x } <~> P (center A).
-~~
+```
 
 + Type $A$ is a mere proposition if and only if for all $x, y : A$, the type $x =_A y$ is contractible.
 
-~~
+```coq
 (** Any two points in an hprop are connected by a path. *)
 Theorem path_ishprop `{H : IsHProp A}
   : forall x y : A, x = y.
 Proof.
   apply H.
 Defined.
-~~
+```
 
-~~
+```coq
 Theorem hprop_allpath (A : Type)
   : (forall (x y : A), x = y) -> IsHProp A.
   intros H x y.
   pose (C := Build_Contr A x (H x)).
   apply contr_paths_contr.
 Defined.
-~~
+```
