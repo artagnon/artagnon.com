@@ -18,19 +18,19 @@ Moreover, one should aim for a foundation that is conducive to mechanization, so
 
 What the following proposition says, is that, for every inhabitant of $\mathbb{N}$ that you supply, $f$ will supply an inhabitant of $\mathbb{1}$:
 
-~~
+```coq
 Theorem f : nat -> unit.
 Proof.
   intros x.
   exact tt.
 Qed.
-~~
+```
 
 The proof is witness that we can always supply an inhabitant of the type $\mathbb{N} \rightarrow \mathbb{1}$. By Curry-Howard isomorphism:
 
-~~
+```coq
 Definition f' : nat -> unit := fun _ => tt.
-~~
+```
 
 In type theory, a function is just a non-dependent version of the $\Pi$ type, where the codomain $B$ is fixed:
 
@@ -62,25 +62,25 @@ $$
 
 This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type cannot be proved; to supply a witness is to supply a construction of the inhabitant, and indeed, no such construction might exist. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
 
-~~
+```coq
 Axiom LEM : forall (P : Prop), P \/ ~P.
-~~
+```
 
 To understand this better, let us take the example of the constructive equivalent of $\mathbb{0} \Rightarrow \textrm {anything}$ in classical mathematics:
 
-~~
+```coq
 Theorem FalseImpliesAnything : forall A, False -> A.
 Proof.
   intros A.
   exact (fun x : False => match x with end).
 Qed.
-~~
+```
 
 Since $\mathbb{0}$ has no inhabitants, the construction of any inhabitant of any type can be proved from it.
 
 It is perhaps prudent to supply another example of a classical statement to illustrate Coq's typechecker:
 
-~~
+```coq
 Theorem TrueDoesNotImplyFalse : True -> False.
 Proof.
   (* Due to enforced exhaustive pattern-matching on inhabitants of the LHS,
@@ -88,7 +88,7 @@ Proof.
    * to some inhabitant of False, but there are no inhabitants of False.
    *)
 Abort.
-~~
+```
 
 In category theory, $\mathbb{0}$ would be the inital object, and there is at most one arrow from the initial object to every other object in the category; $\mathbb{1}$ would be the final object, and there is at most one arrow from every other object in the category to it. The above theorem hypothesizes the existence of a morphism from the final object to the initial object, which of course, cannot exist.
 
