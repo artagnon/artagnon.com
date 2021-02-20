@@ -17,13 +17,17 @@ html lang="en"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js"
-    script type="text/x-mathjax-config" MathJax.Hub.Config({
-      extensions: ["tex2jax.js"], jax: ["input/TeX","output/HTML-CSS"],
-      "HTML-CSS": { styles: {".MathJax_Preview": {visibility: "hidden"}} },
-      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
-      TeX: {extensions: ["/dist/xypic.min.js","AMSmath.js","AMSsymbols.js"]} });
-
+    javascript:
+      MathJax = {
+        loader: {
+          load: ['[custom]/xypic.min.js'],
+          paths: {custom: '/dist'}
+        },
+        tex: {
+          packages: {'[+]': ['xypic']}
+        }
+      };
+    script defer=true id="MathJax-script" src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
     // preload hljs css, since solarized-light is heavy
     link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"
     noscript
