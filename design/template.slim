@@ -17,6 +17,9 @@ html lang="en"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"
+
+    // MathJaX and xyJaX
+    script defer=true id="MathJax-script" src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
     javascript:
       MathJax = {
         loader: {
@@ -28,7 +31,7 @@ html lang="en"
           inlineMath: [['$', '$']]
         }
       };
-    script async=true id="MathJax-script" src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+
     // preload hljs css, since solarized-light is heavy
     link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"
     noscript
