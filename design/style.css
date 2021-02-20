@@ -24,11 +24,7 @@ nav li a {
     monospace;
 }
 
-a:link {
-  color: dimgray;
-}
-
-a:visited {
+a {
   color: dimgray;
 }
 
@@ -59,7 +55,11 @@ ul#indexfill {
   text-indent: -1em;
 }
 
-ul#indexfill li::before {
+ul#indexfill > li {
+  padding-bottom: 1rem;
+}
+
+ul#indexfill > li::before {
   content: "\00BB \0020";
   color: olive;
   user-select: none;
@@ -99,7 +99,7 @@ nav > div:nth-child(2) > ul {
   padding-left: 0;
   font-weight: 560;
   font-size: 0.8rem;
-  width: 15ch;
+  width: 10ch;
 }
 
 @media print {
@@ -270,12 +270,12 @@ a[href*="https://twitter.com"],
 a[href*="https://github.com"]
 {
   display: inline-block;
-  padding-bottom: 1.6rem;
+  padding-bottom: 1rem;
   background-repeat: no-repeat;
-  background-position: calc(100% - 1.6rem) left;
-  padding-left: 2.3rem;
-  max-height: 2rem;
-  background-size: 1.6rem;
+  background-position: calc(100% - 1rem) left;
+  padding-left: 1.6rem;
+  max-height: 1.3rem;
+  background-size: 1.3rem;
 }
 
 a[href*=".pdf"] {
