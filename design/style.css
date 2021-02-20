@@ -251,43 +251,25 @@ a {
   background-color: transparent;
 }
 
-a[href*="mailto:"] {
-  background-image: url("/dist/icon.email.svg");
-}
-
-a[href*="https://twitter.com"]
-{
-  background-image: url("/dist/icon.twitter.svg");
-}
-
-a[href="https://github.com/artagnon"]
-{
-  background-image: url("/dist/icon.github.svg");
-}
-
-a[href*="mailto:"],
-a[href*="https://twitter.com"],
-a[href="https://github.com/artagnon"]
-{
-  display: inline-block;
-  padding-bottom: 1rem;
-  background-repeat: no-repeat;
-  background-position: calc(100% - 1rem) left;
-  padding-left: 1.6rem;
-  max-height: 1.3rem;
-  background-size: 1.3rem;
-}
-
-a[href*=".pdf"] {
+a[href$=".pdf"] {
   background-image: url("/dist/icon.pdf.svg");
 }
 
-a[href*="https://youtube.com"]
+a[href^="https://youtube.com"]
 {
   background-image: url("/dist/icon.youtube.svg");
 }
 
-a[href*="https://github.com/"]
+a[href^="mailto:"] {
+  background-image: url("/dist/icon.email.svg");
+}
+
+a[href^="https://twitter.com"]
+{
+  background-image: url("/dist/icon.twitter.svg");
+}
+
+a[href^="https://github.com/"]
 {
   background-image: url("/dist/icon.github.svg");
 }
@@ -300,9 +282,11 @@ a[href*="https://github.com/"]
   background-image: url("/dist/icon.location.svg");
 }
 
-a[href*=".pdf"],
-a[href*="https://youtube.com"],
-a[href*="https://github.com"],
+a[href$=".pdf"],
+a[href^="https://youtube.com"],
+a[href^="mailto:"],
+a[href^="https://twitter.com"],
+a[href^="https://github.com"],
 #metadata time.end,
 #metadata address {
   background-repeat: no-repeat;
