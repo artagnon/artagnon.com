@@ -41,7 +41,7 @@ html lang="en"
     nav
       div
         a href="/"
-          img src="/dist/artagnon.com.svg"
+          img src="/dist/artagnon.com.svg" alt="home"
       div
         ul
           - topics.each do |topic|
@@ -87,7 +87,7 @@ html lang="en"
               div class="images"
                 - for img in paragraph.split("\n")
                   figure
-                    img src=img
+                    img src=img alt=img
             - when :horizrule
               hr class="#{paragraph.prop}"
             - when :mathjax
