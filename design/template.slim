@@ -107,7 +107,7 @@ html lang="en"
         - if subtopics && subtopics.any?
           ul id="indexfill"
             - subtopics.each do |st|
-              h2 = st.title
+              h2 = "#{st.title} (#{st.begints.to_date.year} — #{st.endts.to_date.year})"
               - st.cps.each do |cp|
                 li
                   a href="/#{cp.permalink}" = cp.title
