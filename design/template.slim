@@ -104,8 +104,10 @@ html lang="en"
               p class="exercise" == paragraph.to_s
             - when :indent
               p class="indent" == paragraph.to_s
-        - if indexfill && indexfill.any?
+        - if subtopics && subtopics.any?
           ul id="indexfill"
-            - indexfill.each do |page|
-              li
-                a href="/#{page.permalink}" = page.title
+            - subtopics.each do |st|
+              h2 = st.title
+              - st.cps.each do |cp|
+                li
+                  a href="/#{cp.permalink}" = cp.title
