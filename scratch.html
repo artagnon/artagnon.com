@@ -61,41 +61,52 @@
           claytext demo
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2019-12-17" class="begin">Tue, 17 Dec 2019 06:03:56 +0100</time><span class="to">↪</span><time datetime="2021-02-17" class="end">Wed, 17 Feb 2021 21:34:46 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+          <span id="timestamp"><time datetime="2019-12-17" class="begin">Tue, 17 Dec 2019 06:03:56 +0100</time><span class="to">↪</span><time datetime="2021-02-24" class="end">Wed, 24 Feb 2021 20:45:31 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
         </div>
       </header>
       <article class="wrapper">
         <p class="blurb">
-          Here, we discuss concepts from Ch.2 of the HoTT book
-        </p>
-        <p class="exercise">
-          To state our second lemma:
+          This page serves to demonstrate the capabilities of the clayoven engine
         </p>
         <div class="mathjax">
           $$
           \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
           $$
         </div>
-        <p>
-          I have written a lot of <a href="https://github.com/artagnon">code</a> in the past.
-        </p>
         <h2 id="functors">
           Functors
         </h2>
         <pre><code class="hljs coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
   := match p with idpath =&gt; idpath end.</code></pre>
-        <ol class="olitems" type="i" start="2">
-          <li>
-            Every element of $A$ is either unit or nilpotent.
-          </li>
+        <pre><code class="hljs cpp">template &lt;size_t i, typename... Ts, typename CurTy&gt;
+void recurseFillChildren(CurTy &amp;E)
+{
+  using PackTy = std::variant&lt;Ts...&gt;;
+  using TyL = std::variant_alternative_t&lt;i - 1, PackTy&gt;;
+  static_assert(std::is_same_v&lt;CurTy, TyL&gt;);
+  using TyR = std::variant_alternative_t&lt;i, PackTy&gt;;
+
+  for (i32 j = 0; j &lt; E.NChildren; ++j)
+  {
+    E.Children.push_back(miniParser&lt;TyR&gt;());
+    if constexpr (i + 1 &lt; sizeof...(Ts))
+      recurseFillChildren&lt;i + 1, Ts...&gt;(E.Children.back());
+  }
+};</code></pre>
+        <div class="images">
+          <figure>
+            <img src="/dist/artagnon.com.svg" alt="/dist/artagnon.com.svg" />
+          </figure>
+          <figure>
+            <img src="  /dist/icon.calendar.svg" alt="  /dist/icon.calendar.svg" />
+          </figure>
+        </div>
+        <ol class="olitems" type="i" start="3">
           <li>
             $A/\mathfrak{N}$ is a field.
           </li>
         </ol>
-        <ol class="olitems" type="none" start="1">
-          <li>
-            The Merge dominates the Split, in which case, the Merge dominates everything lying on the outEdges of the Split leading to the Merge
-          </li>
+        <ol class="olitems" type="a" start="1">
           <li>
             The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
           </li>
