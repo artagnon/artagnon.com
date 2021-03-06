@@ -56,187 +56,188 @@
       </div>
     </nav>
     <main>
-      <header class="wrapper">
-        <h1>
-          The essentials
-        </h1>
-        <div id="metadata">
-          <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2021-02-21" class="end">Sun, 21 Feb 2021 16:31:11 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
-        </div>
-      </header>
-      <article class="wrapper">
-        <p class="blurb">
-          Here, we discuss concepts from Ch.2 of the HoTT book
-        </p>
-        <p>
-          The central idea is that types can be interpreted as higher-dimensional groupoids in category theory, or spaces in homotopy theory. Space $X$ is a set of points equipped with a topology, and a path betwen points $x$ and $y$ is represented by a continuous map $p : [0, 1] \rightarrow X$ where $p(0) = x, p(1) = y$. The function can be thought of as giving a point $x$ at each moment in time. A <mark>homotopy</mark> between a pair of continuous maps $H : X_1 \times [0, 1] \rightarrow X_2$, so that $H(s, 0) = p(s)$ and $H(s, 1) = q(s)$, can be thought of as a continuous deformation from $p$ to $q$.
-        </p>
-        <p>
-          The <mark>fundamental group</mark> of a fundamental $\infty$-groupoid of a space will agree with the classical definition of a fundamental group of the space: this correspondence illustrates how homotopy theory and higher-dimensional category theory are intimately related.
-        </p>
-        <p>
-          We will refer to $x =_A y$ as a path between the <mark>start point</mark> $x$ and <mark>endpoint</mark> $y$. $r : p =_{x =_A y} q$ can be thought of as a homotopy or a 2-path or 2-dimensional path. All of the basic constructions and axoims arises automatically from the induction principle for identity types. In other words, given the dependent funtions:
-        </p>
-        <ol class="olitems" type="i" start="1">
-          <li>
-            $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$
-          </li>
-          <li>
-            $d : \Pi_{a : A} D(a, a, \texttt{refl}_a)$
-          </li>
-        </ol>
-        <p>
-          there is a dependent function:
-        </p>
-        <div class="mathjax">
-          $$
-          ind_{=A}(D, d) : \Pi_{x, y : A} \Pi_{p : x = y} D(x, y, p)
-          $$
-        </div>
-        <p>
-          such that
-        </p>
-        <div class="mathjax">
-          $$
-          ind_{=A}(D, d, a, a, \texttt{refl}_a) \equiv d(a)
-          $$
-        </div>
-        <p>
-          Informally, the induction principle for identity types says that if we want to construct an object which depends on an inhabitant $p : x =_A y$ of an identity type, then it suffices to perform the construction in the special case when $x, y$ are judgementally the same, and $p$ is the reflexivity element $\texttt{refl}_x x = x$.
-        </p>
-        <p>
-          The induction principle endows each type with the structure of an $\infty$-groupoid, and each function between two types with the structure of the an $\infty$-functor betwen two such groupoids.
-        </p>
-        <h2 id="types-are-higher-groupoids">
-          Types are higher groupoids
-        </h2>
-        <p class="exercise">
-          To state our first lemma:
-        </p>
-        <div class="mathjax">
-          $$
-          \Pi_{A : \mathscr{U}} \Pi_{x, y : A} (x = y) \rightarrow (y = x)
-          $$
-        </div>
-        <p>
-          The proof of this lemma would involve constructing an inhabitant of this type. Let us write the proof in an informal style, as this is preferred. We want to construct $x, y :A$, $p : x = y$, and $p^{-1} : y = x$. By induction, it suffices to consider the case when $y = x$ and $p = \texttt{refl}_x$. In this case, the type of $x = y$ and $y = x$, in which we're trying to construct $p^{-1}$, are both equal to $x = x$. Thus, in the reflexivity case, we can define $\texttt{refl}_x^{-1}$ to simply be $\texttt{refl}_x$. The general case therefore proceeds by the induction principle, and the conversion rule $\texttt{refl}_x^{-1} \equiv \texttt{refl}_x$.
-        </p>
-        <p class="exercise">
-          To state our second lemma:
-        </p>
-        <div class="mathjax">
-          $$
-          \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
-          $$
-        </div>
-        <p>
-          The proof proceeds as follows: $\forall x, y, z : A$, every $p : x = y$ and every $q : y = z$, we need to construct an inhabitant of $x = z$. By induction on $p$, it sufficces to assume that $y = x$ and $p$ is $\texttt{refl}_x$. In this case, the type of $y = z$ of $q$ is $x = z$. By induction on $q$, it suffices to assume that $z = x$ and $q$ is $\texttt{refl}_x$. In this case, $x = z$ is $x = x$, and we have $\texttt{refl}_x : (x = x)$.
-        </p>
-        <p>
-          This proof raises the question of why an induction on $q$ is required at all, when we already have the equality $x = z$. Indeed, we could have done an induction on $p$ yielding the computation rule $p \circ \texttt{refl}_x \equiv p$, an induction on $q$ yielding the computation rule $\texttt{refl}_y \circ q \equiv q$, or, as above, induction on both $p$ and $q$, yeilding $\texttt{refl}_x \circ \texttt{refl}_x \equiv \texttt{refl}_x$. We would merely have three different elements of the same type.
-        </p>
-        <p class="exercise">
-          We will now state some results without the obvious proofs. For $\Pi_{A : \mathscr{U}} \Pi_{x, y, z, w : A}$, $p : x = y$, $q : y = z$, $r : z = w$:
-        </p>
-        <ol class="olitems" type="i" start="1">
-          <li>
-            $p = p \circ \texttt{refl}_y$ and $p = \texttt{refl}_x \circ p$
-          </li>
-          <li>
-            $p^{-1} \circ p = \texttt{refl}_y$ and $p \circ p^{-1} = \texttt{refl}_x$
-          </li>
-          <li>
-            $(p^{-1})^{-1} = p$
-          </li>
-          <li>
-            $(p \circ q) \circ r = p \circ (q \circ r)$
-          </li>
-        </ol>
-        <p>
-          Given a type $A$ with point $a : A$, we define its loop space $\Omega(A, a)$ to be the type $a =_A a$; we could concatenate this to $\Omega A$ if $a$ is understood from the context. Since any two elements of $\Omega A$ are paths with the same start and endpoints, we have $\Omega A \times \Omega A \rightarrow \Omega A$. It can also be fruitful to consider the loop space of a loop space of $A$, the space of 2-dimensional loops, written $\Omega^2(A, a)$, represented as $\texttt{refl}_a =_{a =_A a} \texttt{refl}_a$.
-        </p>
-        <p class="exercise">
-          The Eckmann-Hilton theorem can be stated as $\Omega^2(A) \times \Omega^2(A) \rightarrow \Omega^2(A)$ being commutative: $\alpha \circ \beta = \beta \circ \alpha$ for any $\alpha, \beta : \Omega^2(A)$.
-        </p>
-        <p>
-          First, notice that $\Omega A \times \Omega A \rightarrow \Omega A$ induces an operation:
-        </p>
-        <div class="mathjax">
-          $$
-          \star : \Omega^2(A) \times \Omega^2(A) \rightarrow \Omega^2(A)
-          $$
-        </div>
-        <p>
-          In the following diagram,
-        </p>
-        <div class="mathjax">
-          $$
-          \begin{matrix}
-              p : a = b & q : a = b \\
-              r : b = c & s : b = c \\
-              \alpha : p = q & \beta : r = s
-            \end{matrix}
-          $$
-        </div>
-        <div class="mathjax">
-          $$
-            \begin{xy}
-            \xymatrix{
-          
-          & \ar@{=>}[dd]_\alpha && \ar@{=>}[dd]_\beta & \\
-            a \ar@/^3pc/[rr]^p\ar@/_3pc/[rr]_q && b \ar@/^3pc/[rr]^r\ar@/_3pc/[rr]_s && c \\
-            & & & &
-            }
-            \end{xy}
-          
-          $$
-        </div>
-        <p>
-          Composing the two upper and lower paths, we get $p \circ r, q \circ s : a = c$. The horizontal composition can be written as $\alpha \star \beta : p \circ r = q \circ s$ defined as follows. First, we define $\alpha \circ_r r = p \circ_r = q \circ r$ by path induction on $r$ so that
-        </p>
-        <div class="mathjax">
-          $$
-          \alpha \circ_r \texttt{refl}_b \equiv \texttt{ru}_p^{-1} \circ \alpha \circ \texttt{ru}_q
-          $$
-        </div>
-        <p>
-          where $\texttt{ru}_p = p \circ \texttt{refl}_b$ is the right unit lemma, which we previously mentioned. We can also define $q \circ_l \beta : q \circ r = q \circ s$ by induction on $q$ so that
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{refl}_b \circ_l \beta \equiv \texttt{lu}_r^{-1} \circ \beta \circ \texttt{lu}_s
-          $$
-        </div>
-        <p>
-          where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called <mark>whiskering</mark>.
-        </p>
-        <pre><code class="hljs coq">Definition whiskerL {A : Type} {x y z : A} (p : x = y)
+      <div class="wrapper">
+        <header>
+          <h1>
+            The essentials
+          </h1>
+          <div id="metadata">
+            <span id="timestamp"><time datetime="2020-05-27" class="begin">Wed, 27 May 2020 12:24:05 +0200</time><span class="to">↪</span><time datetime="2021-02-21" class="end">Sun, 21 Feb 2021 16:31:11 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+          </div>
+        </header>
+        <article>
+          <p class="blurb">
+            Here, we discuss concepts from Ch.2 of the HoTT book
+          </p>
+          <p>
+            The central idea is that types can be interpreted as higher-dimensional groupoids in category theory, or spaces in homotopy theory. Space $X$ is a set of points equipped with a topology, and a path betwen points $x$ and $y$ is represented by a continuous map $p : [0, 1] \rightarrow X$ where $p(0) = x, p(1) = y$. The function can be thought of as giving a point $x$ at each moment in time. A <mark>homotopy</mark> between a pair of continuous maps $H : X_1 \times [0, 1] \rightarrow X_2$, so that $H(s, 0) = p(s)$ and $H(s, 1) = q(s)$, can be thought of as a continuous deformation from $p$ to $q$.
+          </p>
+          <p>
+            The <mark>fundamental group</mark> of a fundamental $\infty$-groupoid of a space will agree with the classical definition of a fundamental group of the space: this correspondence illustrates how homotopy theory and higher-dimensional category theory are intimately related.
+          </p>
+          <p>
+            We will refer to $x =_A y$ as a path between the <mark>start point</mark> $x$ and <mark>endpoint</mark> $y$. $r : p =_{x =_A y} q$ can be thought of as a homotopy or a 2-path or 2-dimensional path. All of the basic constructions and axoims arises automatically from the induction principle for identity types. In other words, given the dependent funtions:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$
+            </li>
+            <li>
+              $d : \Pi_{a : A} D(a, a, \texttt{refl}_a)$
+            </li>
+          </ol>
+          <p>
+            there is a dependent function:
+          </p>
+          <div class="mathjax">
+            $$
+            ind_{=A}(D, d) : \Pi_{x, y : A} \Pi_{p : x = y} D(x, y, p)
+            $$
+          </div>
+          <p>
+            such that
+          </p>
+          <div class="mathjax">
+            $$
+            ind_{=A}(D, d, a, a, \texttt{refl}_a) \equiv d(a)
+            $$
+          </div>
+          <p>
+            Informally, the induction principle for identity types says that if we want to construct an object which depends on an inhabitant $p : x =_A y$ of an identity type, then it suffices to perform the construction in the special case when $x, y$ are judgementally the same, and $p$ is the reflexivity element $\texttt{refl}_x x = x$.
+          </p>
+          <p>
+            The induction principle endows each type with the structure of an $\infty$-groupoid, and each function between two types with the structure of the an $\infty$-functor betwen two such groupoids.
+          </p>
+          <h2 id="types-are-higher-groupoids">
+            Types are higher groupoids
+          </h2>
+          <p class="exercise">
+            To state our first lemma:
+          </p>
+          <div class="mathjax">
+            $$
+            \Pi_{A : \mathscr{U}} \Pi_{x, y : A} (x = y) \rightarrow (y = x)
+            $$
+          </div>
+          <p>
+            The proof of this lemma would involve constructing an inhabitant of this type. Let us write the proof in an informal style, as this is preferred. We want to construct $x, y :A$, $p : x = y$, and $p^{-1} : y = x$. By induction, it suffices to consider the case when $y = x$ and $p = \texttt{refl}_x$. In this case, the type of $x = y$ and $y = x$, in which we're trying to construct $p^{-1}$, are both equal to $x = x$. Thus, in the reflexivity case, we can define $\texttt{refl}_x^{-1}$ to simply be $\texttt{refl}_x$. The general case therefore proceeds by the induction principle, and the conversion rule $\texttt{refl}_x^{-1} \equiv \texttt{refl}_x$.
+          </p>
+          <p class="exercise">
+            To state our second lemma:
+          </p>
+          <div class="mathjax">
+            $$
+            \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
+            $$
+          </div>
+          <p>
+            The proof proceeds as follows: $\forall x, y, z : A$, every $p : x = y$ and every $q : y = z$, we need to construct an inhabitant of $x = z$. By induction on $p$, it sufficces to assume that $y = x$ and $p$ is $\texttt{refl}_x$. In this case, the type of $y = z$ of $q$ is $x = z$. By induction on $q$, it suffices to assume that $z = x$ and $q$ is $\texttt{refl}_x$. In this case, $x = z$ is $x = x$, and we have $\texttt{refl}_x : (x = x)$.
+          </p>
+          <p>
+            This proof raises the question of why an induction on $q$ is required at all, when we already have the equality $x = z$. Indeed, we could have done an induction on $p$ yielding the computation rule $p \circ \texttt{refl}_x \equiv p$, an induction on $q$ yielding the computation rule $\texttt{refl}_y \circ q \equiv q$, or, as above, induction on both $p$ and $q$, yeilding $\texttt{refl}_x \circ \texttt{refl}_x \equiv \texttt{refl}_x$. We would merely have three different elements of the same type.
+          </p>
+          <p class="exercise">
+            We will now state some results without the obvious proofs. For $\Pi_{A : \mathscr{U}} \Pi_{x, y, z, w : A}$, $p : x = y$, $q : y = z$, $r : z = w$:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $p = p \circ \texttt{refl}_y$ and $p = \texttt{refl}_x \circ p$
+            </li>
+            <li>
+              $p^{-1} \circ p = \texttt{refl}_y$ and $p \circ p^{-1} = \texttt{refl}_x$
+            </li>
+            <li>
+              $(p^{-1})^{-1} = p$
+            </li>
+            <li>
+              $(p \circ q) \circ r = p \circ (q \circ r)$
+            </li>
+          </ol>
+          <p>
+            Given a type $A$ with point $a : A$, we define its loop space $\Omega(A, a)$ to be the type $a =_A a$; we could concatenate this to $\Omega A$ if $a$ is understood from the context. Since any two elements of $\Omega A$ are paths with the same start and endpoints, we have $\Omega A \times \Omega A \rightarrow \Omega A$. It can also be fruitful to consider the loop space of a loop space of $A$, the space of 2-dimensional loops, written $\Omega^2(A, a)$, represented as $\texttt{refl}_a =_{a =_A a} \texttt{refl}_a$.
+          </p>
+          <p class="exercise">
+            The Eckmann-Hilton theorem can be stated as $\Omega^2(A) \times \Omega^2(A) \rightarrow \Omega^2(A)$ being commutative: $\alpha \circ \beta = \beta \circ \alpha$ for any $\alpha, \beta : \Omega^2(A)$.
+          </p>
+          <p>
+            First, notice that $\Omega A \times \Omega A \rightarrow \Omega A$ induces an operation:
+          </p>
+          <div class="mathjax">
+            $$
+            \star : \Omega^2(A) \times \Omega^2(A) \rightarrow \Omega^2(A)
+            $$
+          </div>
+          <p>
+            In the following diagram,
+          </p>
+          <div class="mathjax">
+            $$
+            \begin{matrix}
+                p : a = b & q : a = b \\
+                r : b = c & s : b = c \\
+                \alpha : p = q & \beta : r = s
+              \end{matrix}
+            $$
+          </div>
+          <div class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            & \ar@{=>}[dd]_\alpha && \ar@{=>}[dd]_\beta & \\
+              a \ar@/^3pc/[rr]^p\ar@/_3pc/[rr]_q && b \ar@/^3pc/[rr]^r\ar@/_3pc/[rr]_s && c \\
+              & & & &
+              }
+              \end{xy}
+            
+            $$
+          </div>
+          <p>
+            Composing the two upper and lower paths, we get $p \circ r, q \circ s : a = c$. The horizontal composition can be written as $\alpha \star \beta : p \circ r = q \circ s$ defined as follows. First, we define $\alpha \circ_r r = p \circ_r = q \circ r$ by path induction on $r$ so that
+          </p>
+          <div class="mathjax">
+            $$
+            \alpha \circ_r \texttt{refl}_b \equiv \texttt{ru}_p^{-1} \circ \alpha \circ \texttt{ru}_q
+            $$
+          </div>
+          <p>
+            where $\texttt{ru}_p = p \circ \texttt{refl}_b$ is the right unit lemma, which we previously mentioned. We can also define $q \circ_l \beta : q \circ r = q \circ s$ by induction on $q$ so that
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{refl}_b \circ_l \beta \equiv \texttt{lu}_r^{-1} \circ \beta \circ \texttt{lu}_s
+            $$
+          </div>
+          <p>
+            where $\texttt{lu}_r$ denotes the left unit law. The operations $\circ_l$ and $\circ_r$ are called <mark>whiskering</mark>.
+          </p>
+          <pre><code class="hljs coq">Definition whiskerL {A : Type} {x y z : A} (p : x = y)
   {q r : y = z} (h : q = r) : p @ q = p @ r
 := 1 @@ h.
 
 Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
   (h : p = q) (r : y = z) : p @ r = q @ r
 := h @@ 1.</code></pre>
-        <p>
-          Next, since $\alpha \circ_r r$ and $q \circ_l \beta$ are composable 2-paths, we can define horizontal composition by:
-        </p>
-        <div class="mathjax">
-          $$
-          \alpha \star \beta :\equiv (\alpha \circ_r r)(q \circ_l \beta)
-          $$
-        </div>
-        <p>
-          Now, suppose that $a \equiv b \equiv c$ so that all paths $p, q, r, s$ are elements of $\Omega(A, a)$, and assume moreover that $p \equiv q \equiv r \equiv s \equiv \texttt{refl}_a$, so that $\alpha : \texttt{refl}_a = \texttt{refl}_a$ and $\beta : \texttt{refl}_a = \texttt{refl}_a$ are composable in both orders. In this case, we have:
-        </p>
-        <div class="mathjax">
-          $$
-          \alpha \star \beta = \alpha \circ \beta = \alpha \star' \beta = \beta \circ \alpha
-          $$
-        </div>
-        <p>
-          The foregoing fact, known as the <mark>Eckmann-Hilton argument</mark> comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
-        </p>
-        <pre><code class="hljs coq">Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :&gt; (x = x)) : p @ q = q @ p :=
+          <p>
+            Next, since $\alpha \circ_r r$ and $q \circ_l \beta$ are composable 2-paths, we can define horizontal composition by:
+          </p>
+          <div class="mathjax">
+            $$
+            \alpha \star \beta :\equiv (\alpha \circ_r r)(q \circ_l \beta)
+            $$
+          </div>
+          <p>
+            Now, suppose that $a \equiv b \equiv c$ so that all paths $p, q, r, s$ are elements of $\Omega(A, a)$, and assume moreover that $p \equiv q \equiv r \equiv s \equiv \texttt{refl}_a$, so that $\alpha : \texttt{refl}_a = \texttt{refl}_a$ and $\beta : \texttt{refl}_a = \texttt{refl}_a$ are composable in both orders. In this case, we have:
+          </p>
+          <div class="mathjax">
+            $$
+            \alpha \star \beta = \alpha \circ \beta = \alpha \star' \beta = \beta \circ \alpha
+            $$
+          </div>
+          <p>
+            The foregoing fact, known as the <mark>Eckmann-Hilton argument</mark> comes from classical homotopy theory and is used later to show that higher homotopy groups of a type are always abelian groups.
+          </p>
+          <pre><code class="hljs coq">Definition eckmann_hilton {A : Type} {x:A} (p q : 1 = 1 :&gt; (x = x)) : p @ q = q @ p :=
   (whiskerR_p1 p @@ whiskerL_1p q)^
   @ (concat_p1 _ @@ concat_p1 _)
   @ (concat_1p _ @@ concat_1p _)
@@ -244,150 +245,150 @@ Definition whiskerR {A : Type} {x y z : A} {p q : x = y}
   @ (concat_1p _ @@ concat_1p _)^
   @ (concat_p1 _ @@ concat_p1 _)^
   @ (whiskerL_1p q @@ whiskerR_p1 p).</code></pre>
-        <p>
-          A <mark>pointed type</mark> $(A, a)$ is a type $A : \mathscr{U}$ together with a point $a : A$ called its <mark>basepoint</mark>. We write $\mathscr{U}_\bullet :\equiv \Sigma_{A : \mathscr{U}}$ for the type of pointed types in universe $\mathscr{U}$.
-        </p>
-        <p>
-          Given a pointed type $(A, a)$, we can define the <mark>loop space</mark> of $(A, a)$ to be the following pointed type:
-        </p>
-        <div class="mathjax">
-          $$
-          \Omega(A, a) :\equiv ((a =_A a), \texttt{refl}_a)
-          $$
-        </div>
-        <p>
-          An element of it will be called a <mark>loop</mark> at a. For $n : \mathbb{N}$, the <mark>n-fold iterated loop space</mark> $\Omega^n(A, a)$ of a pointed type $(A, a)$ is defined recursively by:
-        </p>
-        <div class="mathjax">
-          $$
-          \Omega^0(A, a) :\equiv (A, a) \\
-            \Omega^{n + 1}(A, a) :\equiv \Omega^n(\Omega(A, a))
-          $$
-        </div>
-        <p>
-          An element of it will be called an <mark>n-loop</mark> at $a$.
-        </p>
-        <h2 id="functions-are-functors">
-          Functions are functors
-        </h2>
-        <p>
-          From a type theoretic perspective, functions should respect equality; topologically, this corresponds to saying that every function is continuous (or preserves paths).
-        </p>
-        <p class="exercise">
-          Given function $f : A \rightarrow B$, then for $x, y : A$, there is an operation
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(y))
-          $$
-        </div>
-        <p>
-          $\texttt{ap}_f$ can be read as the application of a function to a path.
-        </p>
-        <pre><code class="hljs coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
+          <p>
+            A <mark>pointed type</mark> $(A, a)$ is a type $A : \mathscr{U}$ together with a point $a : A$ called its <mark>basepoint</mark>. We write $\mathscr{U}_\bullet :\equiv \Sigma_{A : \mathscr{U}}$ for the type of pointed types in universe $\mathscr{U}$.
+          </p>
+          <p>
+            Given a pointed type $(A, a)$, we can define the <mark>loop space</mark> of $(A, a)$ to be the following pointed type:
+          </p>
+          <div class="mathjax">
+            $$
+            \Omega(A, a) :\equiv ((a =_A a), \texttt{refl}_a)
+            $$
+          </div>
+          <p>
+            An element of it will be called a <mark>loop</mark> at a. For $n : \mathbb{N}$, the <mark>n-fold iterated loop space</mark> $\Omega^n(A, a)$ of a pointed type $(A, a)$ is defined recursively by:
+          </p>
+          <div class="mathjax">
+            $$
+            \Omega^0(A, a) :\equiv (A, a) \\
+              \Omega^{n + 1}(A, a) :\equiv \Omega^n(\Omega(A, a))
+            $$
+          </div>
+          <p>
+            An element of it will be called an <mark>n-loop</mark> at $a$.
+          </p>
+          <h2 id="functions-are-functors">
+            Functions are functors
+          </h2>
+          <p>
+            From a type theoretic perspective, functions should respect equality; topologically, this corresponds to saying that every function is continuous (or preserves paths).
+          </p>
+          <p class="exercise">
+            Given function $f : A \rightarrow B$, then for $x, y : A$, there is an operation
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(y))
+            $$
+          </div>
+          <p>
+            $\texttt{ap}_f$ can be read as the application of a function to a path.
+          </p>
+          <pre><code class="hljs coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
   := match p with idpath =&gt; idpath end.</code></pre>
-        <p>
-          To provide a simple proof, it suffices to assume that $p$ is $\texttt{refl}_x$. In this case, we may define $\texttt{ap}_f(p) :\equiv \texttt{refl}_{f(x)} f(x) = f(x)$. We will often write $\texttt{ap}_f(p)$ as $f(p)$, and this matches the common category theory convention of using the same symbol for application of a functor to objects and morphisms.
-        </p>
-        <p class="exercise">
-          We will now provide some facts about $\texttt{ap}_f$ without proof.
-        </p>
-        <ol class="olitems" type="i" start="1">
-          <li>
-            $\texttt{ap}_f(p \circ q) = \texttt{ap}_f(p) \circ \texttt{ap}_f(q)$
-          </li>
-          <li>
-            $\texttt{ap}_f(p^{-1}) = \texttt{ap}_f(p)^{-1}$
-          </li>
-          <li>
-            $\texttt{ap}_g(\texttt{ap}_f(p)) = \texttt{ap}_{g \circ f}(p)$
-          </li>
-          <li>
-            $\texttt{ap}_{\texttt{id}_A} = p$
-          </li>
-        </ol>
-        <p>
-          These are themselves paths, which have to satisfy coherence laws, as usual.
-        </p>
-        <h2 id="type-families-are-fibrations">
-          Type families are fibrations
-        </h2>
-        <p>
-          If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingredient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as <mark>indiscrenability of identicals</mark> in our <a href="/HoTT/1#identity-types">previous note</a>.
-        </p>
-        <p class="exercise">
-          <mark>Transport lemma</mark>. Suppose $P$ is a type family over $A$ and $p : x =_A y$, then there is a function $p_\star : P(x) \rightarrow P(y)$.
-        </p>
-        <p>
-          Let $D : \Pi_{x, y : A}(x = y) \rightarrow \mathscr{U}$ be the type family defined by:
-        </p>
-        <div class="mathjax">
-          $$
-          D(x, y, p) :\equiv P(x) \rightarrow P(y)
-          $$
-        </div>
-        <p>
-          then we have the function
-        </p>
-        <div class="mathjax">
-          $$
-          d :\equiv \lambda x . \texttt{id}_{P(x)} : \Pi_{x : A} D(x, x, \texttt{refl}_x)
-          $$
-        </div>
-        <p>
-          so that the induction principle gives us $\texttt{ind}_{=A}(D, d, x, y, p) : P(x) \rightarrow P(y)$.
-        </p>
-        <p>
-          Sometimes, it is necessary to notate the type family $P$ in which the transport operation happens:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{transport}^P(p, -) : P(x) \rightarrow P(y)
-          $$
-        </div>
-        <p>
-          Topologically, the transport lemma can be viewed as a "path lifting" operation on a fibration. We think of a type famiy $P : A \rightarrow \mathscr{U}$ as a fibration with base space $A$, with $P(x)$ being the fiber over $x$, and with $\Sigma_{x : A} P(x)$ being the <mark>total space</mark> of the fibration, with first projection $\Sigma_{x : A} P(x) \rightarrow A$.
-        </p>
-        <p>
-          The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path.
-        </p>
-        <pre><code class="hljs coq">Definition transport {A : Type} (P : A -&gt; Type) {x y : A} (p : x = y) (u : P x) : P y :=
+          <p>
+            To provide a simple proof, it suffices to assume that $p$ is $\texttt{refl}_x$. In this case, we may define $\texttt{ap}_f(p) :\equiv \texttt{refl}_{f(x)} f(x) = f(x)$. We will often write $\texttt{ap}_f(p)$ as $f(p)$, and this matches the common category theory convention of using the same symbol for application of a functor to objects and morphisms.
+          </p>
+          <p class="exercise">
+            We will now provide some facts about $\texttt{ap}_f$ without proof.
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              $\texttt{ap}_f(p \circ q) = \texttt{ap}_f(p) \circ \texttt{ap}_f(q)$
+            </li>
+            <li>
+              $\texttt{ap}_f(p^{-1}) = \texttt{ap}_f(p)^{-1}$
+            </li>
+            <li>
+              $\texttt{ap}_g(\texttt{ap}_f(p)) = \texttt{ap}_{g \circ f}(p)$
+            </li>
+            <li>
+              $\texttt{ap}_{\texttt{id}_A} = p$
+            </li>
+          </ol>
+          <p>
+            These are themselves paths, which have to satisfy coherence laws, as usual.
+          </p>
+          <h2 id="type-families-are-fibrations">
+            Type families are fibrations
+          </h2>
+          <p>
+            If $\Pi_{x : A} B(x)$ and $p : x = y$, then $f(x) : B(x)$ and $f(y) : B(y)$ are elements of distinct types, so that a priori, we cannot even ask whether they are equal. The misssing ingredient is that $p$ itself gives us a way to relate $B(x)$ and $B(y)$. This problem was stated as <mark>indiscrenability of identicals</mark> in our <a href="/HoTT/1#identity-types">previous note</a>.
+          </p>
+          <p class="exercise">
+            <mark>Transport lemma</mark>. Suppose $P$ is a type family over $A$ and $p : x =_A y$, then there is a function $p_\star : P(x) \rightarrow P(y)$.
+          </p>
+          <p>
+            Let $D : \Pi_{x, y : A}(x = y) \rightarrow \mathscr{U}$ be the type family defined by:
+          </p>
+          <div class="mathjax">
+            $$
+            D(x, y, p) :\equiv P(x) \rightarrow P(y)
+            $$
+          </div>
+          <p>
+            then we have the function
+          </p>
+          <div class="mathjax">
+            $$
+            d :\equiv \lambda x . \texttt{id}_{P(x)} : \Pi_{x : A} D(x, x, \texttt{refl}_x)
+            $$
+          </div>
+          <p>
+            so that the induction principle gives us $\texttt{ind}_{=A}(D, d, x, y, p) : P(x) \rightarrow P(y)$.
+          </p>
+          <p>
+            Sometimes, it is necessary to notate the type family $P$ in which the transport operation happens:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{transport}^P(p, -) : P(x) \rightarrow P(y)
+            $$
+          </div>
+          <p>
+            Topologically, the transport lemma can be viewed as a "path lifting" operation on a fibration. We think of a type famiy $P : A \rightarrow \mathscr{U}$ as a fibration with base space $A$, with $P(x)$ being the fiber over $x$, and with $\Sigma_{x : A} P(x)$ being the <mark>total space</mark> of the fibration, with first projection $\Sigma_{x : A} P(x) \rightarrow A$.
+          </p>
+          <p>
+            The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path.
+          </p>
+          <pre><code class="hljs coq">Definition transport {A : Type} (P : A -&gt; Type) {x y : A} (p : x = y) (u : P x) : P y :=
   match p with idpath =&gt; u end.</code></pre>
-        <p class="exercise">
-          We now state <mark>path lifting property</mark> without proof. Let $P : A \rightarrow \mathscr{U}$ be a type family over $A$, and assume we have $u : P(x)$ for some $x : A$. Then, for $p : x = y$, we have:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{lift}(u, p) : (x, y) = (y, p_\star(u))
-          $$
-        </div>
-        <p>
-          in $\Sigma_{x : A} P(x)$, such that $\texttt{pr}_1(\texttt{lift}(u, p)) = p$.
-        </p>
-        <pre><code class="hljs coq">Definition equiv_path_sigma `(P : A -&gt; Type) (u v : sigT P)
+          <p class="exercise">
+            We now state <mark>path lifting property</mark> without proof. Let $P : A \rightarrow \mathscr{U}$ be a type family over $A$, and assume we have $u : P(x)$ for some $x : A$. Then, for $p : x = y$, we have:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{lift}(u, p) : (x, y) = (y, p_\star(u))
+            $$
+          </div>
+          <p>
+            in $\Sigma_{x : A} P(x)$, such that $\texttt{pr}_1(\texttt{lift}(u, p)) = p$.
+          </p>
+          <pre><code class="hljs coq">Definition equiv_path_sigma `(P : A -&gt; Type) (u v : sigT P)
 : {p : u.1 = v.1 &amp;  p # u.2 = v.2} &lt;~&gt; (u = v)
   := Build_Equiv _ _ (path_sigma_uncurried P u v) _.</code></pre>
-        <p>
-          In classical homotopy theory, a fibration is defined as a map for which there exist liftings of paths, while in contrast, we have shown that in type theory, every type family comes with a specified "lifting function".
-        </p>
-        <p>
-          When the type family $P : A \rightarrow \mathscr{U}$ is regarded as a fibration, the base is $A$, and the total space is $\Sigma_{x : A} P(x)$. We may also refer to the dependent function $\Pi_{x : A} P(x)$ as the <mark>section</mark> of the fibration $P$, and we may say that something happens <mark>fiberwise</mark> if it happens for each $P(x)$. For instance, a section $f : \Pi_{x : A} P(x)$ shows that $P$ is "fiberwise inhabited".
-        </p>
-        <p>
-          We can now prove a dependent version of the lemma $\texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(b))$ as follows. Given $\Pi_{x : A} P(x)$, we can define a non-dependent version of the function $f' : A \rightarrow \Sigma_{x : A} P(x)$ by setting $f'(x) :\equiv (x, f(x))$ and consider $f'(p) : f'(x) = f'(y)$. Since $\texttt{pr}_1 \circ f' \equiv \texttt{id}_A$, we have $\texttt{pr}_1(f'(p)) \equiv p$; thus $f'(p)$ does "lie over" $p$ in this sense. However, it is not obvious from the type of $f'(p)$ that it lies over any specific path in $A$ (in this case $p$), which is sometimes important.
-        </p>
-        <p>
-          The solution is to use the transport lemma; we have a canonical path $\texttt{lift}(u, p)$ from $(x, u)$ to $(u, p_\star(u))$, which lies over $p$. Thus, any path from $u : P(x)$ to $v : P(y)$ lying over $p$ should factor through $\texttt{lift}(u, p)$.
-        </p>
-        <p class="exercise">
-          <mark>Dependent map</mark>. Suppose $f : \Pi_{x : A} P(x)$, we have a map
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{apd}_f : \Pi_{p : x = y} p_\star(f(x)) =_{P(y)} f(y)
-          $$
-        </div>
-        <pre><code class="hljs coq">(** Similarly, dependent functions act on paths; but the type is a bit more subtle.
+          <p>
+            In classical homotopy theory, a fibration is defined as a map for which there exist liftings of paths, while in contrast, we have shown that in type theory, every type family comes with a specified "lifting function".
+          </p>
+          <p>
+            When the type family $P : A \rightarrow \mathscr{U}$ is regarded as a fibration, the base is $A$, and the total space is $\Sigma_{x : A} P(x)$. We may also refer to the dependent function $\Pi_{x : A} P(x)$ as the <mark>section</mark> of the fibration $P$, and we may say that something happens <mark>fiberwise</mark> if it happens for each $P(x)$. For instance, a section $f : \Pi_{x : A} P(x)$ shows that $P$ is "fiberwise inhabited".
+          </p>
+          <p>
+            We can now prove a dependent version of the lemma $\texttt{ap}_f : (x =_A y) \rightarrow (f(x) =_B f(b))$ as follows. Given $\Pi_{x : A} P(x)$, we can define a non-dependent version of the function $f' : A \rightarrow \Sigma_{x : A} P(x)$ by setting $f'(x) :\equiv (x, f(x))$ and consider $f'(p) : f'(x) = f'(y)$. Since $\texttt{pr}_1 \circ f' \equiv \texttt{id}_A$, we have $\texttt{pr}_1(f'(p)) \equiv p$; thus $f'(p)$ does "lie over" $p$ in this sense. However, it is not obvious from the type of $f'(p)$ that it lies over any specific path in $A$ (in this case $p$), which is sometimes important.
+          </p>
+          <p>
+            The solution is to use the transport lemma; we have a canonical path $\texttt{lift}(u, p)$ from $(x, u)$ to $(u, p_\star(u))$, which lies over $p$. Thus, any path from $u : P(x)$ to $v : P(y)$ lying over $p$ should factor through $\texttt{lift}(u, p)$.
+          </p>
+          <p class="exercise">
+            <mark>Dependent map</mark>. Suppose $f : \Pi_{x : A} P(x)$, we have a map
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{apd}_f : \Pi_{p : x = y} p_\star(f(x)) =_{P(y)} f(y)
+            $$
+          </div>
+          <pre><code class="hljs coq">(** Similarly, dependent functions act on paths; but the type is a bit more subtle.
 If [f : forall a:A, B a] and [p : x = y] is a path in [A], then [apD f p] should somehow
 be a path between [f x : B x] and [f y : B y]. Since these live in different types,
 we use transport along [p] to make them comparable: [apD f p : p # f x = f y].
@@ -399,308 +400,308 @@ Definition apD {A : Type} {B : A-&gt;Type} (f : forall a: A, B a) {x y : A} (p :
   p # (f x) = f y
   :=
   match p with idpath =&gt; idpath end.</code></pre>
-        <p>
-          We prove it as follows. Let $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$ be the type family defined by
-        </p>
-        <div class="mathjax">
-          $$
-          D(x, y, p) :\equiv p_\star(f(x)) = f(y)
-          $$
-        </div>
-        <p>
-          Then $D(x, x, \texttt{refl}_x)$ is ($\texttt{refl}_x)_\star = f(x)$. Then we get $D(x, x, \texttt{refl}_x) \equiv f(x) = f(x)$. Thus, we find the function:
-        </p>
-        <div class="mathjax">
-          $$
-          d :\equiv \lambda x . \texttt{refl}_{f(x)} : \Pi_{x : A} D(x, x, \texttt{refl}_x)
-          $$
-        </div>
-        <p>
-          and now, path induction gives us $\texttt{apd}_f(p) : p_\star(f(x)) = f(y)$ for each $p : x = y$.
-        </p>
-        <p>
-          We will refer generally to paths which "lie over paths" in this sense as <mark>dependent paths</mark>. Since a non-dependently typed function is a special case of a dependently typed function, we have the following relation between $\texttt{apd}_f$ and $\texttt{ap}_f$:
-        </p>
-        <p class="exercise">
-          If $P : A \rightarrow \mathscr{U}$ is defined by $P(x) :\equiv B$ for a fixed $B : \mathscr{U}$, then for any $x, y : A$, $p : x = y$, and $b : B$, we have a path:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{transportconst}^B_P(b) : \texttt{transport}^P(p, b) = b
-          $$
-        </div>
-        <p>
-          The corresponding Coq code looks like:
-        </p>
-        <pre><code class="hljs coq">(** Transporting in a constant fibration. *)
+          <p>
+            We prove it as follows. Let $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$ be the type family defined by
+          </p>
+          <div class="mathjax">
+            $$
+            D(x, y, p) :\equiv p_\star(f(x)) = f(y)
+            $$
+          </div>
+          <p>
+            Then $D(x, x, \texttt{refl}_x)$ is ($\texttt{refl}_x)_\star = f(x)$. Then we get $D(x, x, \texttt{refl}_x) \equiv f(x) = f(x)$. Thus, we find the function:
+          </p>
+          <div class="mathjax">
+            $$
+            d :\equiv \lambda x . \texttt{refl}_{f(x)} : \Pi_{x : A} D(x, x, \texttt{refl}_x)
+            $$
+          </div>
+          <p>
+            and now, path induction gives us $\texttt{apd}_f(p) : p_\star(f(x)) = f(y)$ for each $p : x = y$.
+          </p>
+          <p>
+            We will refer generally to paths which "lie over paths" in this sense as <mark>dependent paths</mark>. Since a non-dependently typed function is a special case of a dependently typed function, we have the following relation between $\texttt{apd}_f$ and $\texttt{ap}_f$:
+          </p>
+          <p class="exercise">
+            If $P : A \rightarrow \mathscr{U}$ is defined by $P(x) :\equiv B$ for a fixed $B : \mathscr{U}$, then for any $x, y : A$, $p : x = y$, and $b : B$, we have a path:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{transportconst}^B_P(b) : \texttt{transport}^P(p, b) = b
+            $$
+          </div>
+          <p>
+            The corresponding Coq code looks like:
+          </p>
+          <pre><code class="hljs coq">(** Transporting in a constant fibration. *)
 Definition transport_const {A B : Type} {x1 x2 : A} (p : x1 = x2) (y : B)
   : transport (fun x =&gt; B) p y = y.
 Proof.
   destruct p. exact 1.
 Defined.</code></pre>
-        <p>
-          In English, it suffices to assume that $y$ is $x$, and $p$ is $\texttt{refl}_x$. But $\texttt{transport}^P(\texttt{refl}_x, b) \equiv b$, so in this case, we have to prove that $b = b$, which can be discharged by $\texttt{refl}_b$.
-        </p>
-        <p>
-          By concatenating $\texttt{transportconst}$ and its inverse, we obtain:
-        </p>
-        <div class="mathjax">
-          $$
-          f(x) = f(y) \rightarrow p_\star(f(x) = f(y)) \\
-            p_\star(f(x) = f(y)) \rightarrow f(x) = f(y)
-          $$
-        </div>
-        <p class="exercise">
-          Let us now dump a few definitions and lemmas in Coq:
-        </p>
-        <pre><code class="hljs coq">(** In a constant fibration, [apD] reduces to [ap], modulo [transport_const]. *)
+          <p>
+            In English, it suffices to assume that $y$ is $x$, and $p$ is $\texttt{refl}_x$. But $\texttt{transport}^P(\texttt{refl}_x, b) \equiv b$, so in this case, we have to prove that $b = b$, which can be discharged by $\texttt{refl}_b$.
+          </p>
+          <p>
+            By concatenating $\texttt{transportconst}$ and its inverse, we obtain:
+          </p>
+          <div class="mathjax">
+            $$
+            f(x) = f(y) \rightarrow p_\star(f(x) = f(y)) \\
+              p_\star(f(x) = f(y)) \rightarrow f(x) = f(y)
+            $$
+          </div>
+          <p class="exercise">
+            Let us now dump a few definitions and lemmas in Coq:
+          </p>
+          <pre><code class="hljs coq">(** In a constant fibration, [apD] reduces to [ap], modulo [transport_const]. *)
 Lemma apD_const {A B} {x y : A} (f : A -&gt; B) (p : x = y) :
   apD f p = transport_const p (f x) @ ap f p.
 Proof.
   destruct p; reflexivity.
 Defined.</code></pre>
-        <pre><code class="hljs coq">(** Transporting in a pulled back fibration. *)
+          <pre><code class="hljs coq">(** Transporting in a pulled back fibration. *)
 Lemma transport_compose {A B} {x y : A} (P : B -&gt; Type) (f : A -&gt; B)
   (p : x = y) (z : P (f x))
   : transport (fun x =&gt; P (f x)) p z  =  transport P (ap f p) z.
 Proof.
   destruct p; reflexivity.
 Defined.</code></pre>
-        <pre><code class="hljs coq">Lemma ap_transport {A} {P Q : A -&gt; Type} {x y : A} (p : x = y) (f : forall x, P x -&gt; Q x) (z : P x) :
+          <pre><code class="hljs coq">Lemma ap_transport {A} {P Q : A -&gt; Type} {x y : A} (p : x = y) (f : forall x, P x -&gt; Q x) (z : P x) :
   f y (p # z) = (p # (f x z)).
 Proof.
   by induction p.
 Defined.</code></pre>
-        <pre><code class="hljs coq">Definition transport_pp {A : Type} (P : A -&gt; Type) {x y z : A} (p : x = y) (q : y = z) (u : P x) :
+          <pre><code class="hljs coq">Definition transport_pp {A : Type} (P : A -&gt; Type) {x y z : A} (p : x = y) (q : y = z) (u : P x) :
   p @ q # u = q # p # u :=
   match q with idpath =&gt;
     match p with idpath =&gt; 1 end
   end.</code></pre>
-        <h2 id="homotopies-and-equivalences">
-          Homotopies and equivalences
-        </h2>
-        <p>
-          It is now time to talk about identifications between types and functions. For two functions to be equal, they must agree on every element in their domains. Let $f, g : \Pi_{x : A} P(x)$ be two sections of of the type family $P : A \rightarrow \mathscr{U}$. A homotopy from $f$ to $g$ is the dependent function:
-        </p>
-        <div class="mathjax">
-          $$
-          f \sim g :\equiv \Pi_{x : A} f(x) = g(x)
-          $$
-        </div>
-        <p>
-          Note that this is not the same thing as $f = g$, but we will revisit this when we talk about the univalence axiom.
-        </p>
-        <p>
-          Just as functions in type theory are automatically functors, homotopies are automatically natural transforms:
-        </p>
-        <div class="mathjax">
-          $$
-          \Pi_{f : \Pi_{x : A} P(x)} (f \sim f) \\
-            \Pi_{f, g : \Pi_{x : A} P(x)} (f \sim g) \rightarrow (g \sim f) \\
-            \Pi_{f, g, h : \Pi_{x : A} P(x)} (f \sim g) \rightarrow (g \sim h) \rightarrow (f \sim h)
-          $$
-        </div>
-        <p class="exercise">
-          Suppose $H : f \sim g$ is a homotopy between functions $f, g : A \rightarrow B$ and let $p : x =_A y$. Then we have:
-        </p>
-        <div class="mathjax">
-          $$
-          H(x) \circ g(p) = f(p) \circ H(y)
-          $$
-        </div>
-        <p>
-          We may also draw the commutative diagram:
-        </p>
-        <div class="mathjax">
-          $$
-            \begin{xy}
-            \xymatrix{
-          
-          f(x)\ar@{=}[r]^{f(p)}\ar@{=}[d]_{H(x)} & f(y)\ar@{=}[d]^{H(y)} \\
-            g(x)\ar@{=}[r]_{g(p)} & g(y)
-            }
-            \end{xy}
-          
-          $$
-        </div>
-        <p>
-          To supply a proof by induction, we may assume that $p$ is $\texttt{refl}_x$. Since $\texttt{ap}_f$ and $\texttt{ap}_g$ compute on reflexivity, in this case, what we must show is:
-        </p>
-        <div class="mathjax">
-          $$
-          H(x) \circ \texttt{refl}_{g(x)} = \texttt{refl}_{f(x)} \circ H(x)
-          $$
-        </div>
-        <p>
-          But this follows since both sides are equal to $H(x)$.
-        </p>
-        <pre><code class="hljs coq">(** Naturality of [ap]. *)
+          <h2 id="homotopies-and-equivalences">
+            Homotopies and equivalences
+          </h2>
+          <p>
+            It is now time to talk about identifications between types and functions. For two functions to be equal, they must agree on every element in their domains. Let $f, g : \Pi_{x : A} P(x)$ be two sections of of the type family $P : A \rightarrow \mathscr{U}$. A homotopy from $f$ to $g$ is the dependent function:
+          </p>
+          <div class="mathjax">
+            $$
+            f \sim g :\equiv \Pi_{x : A} f(x) = g(x)
+            $$
+          </div>
+          <p>
+            Note that this is not the same thing as $f = g$, but we will revisit this when we talk about the univalence axiom.
+          </p>
+          <p>
+            Just as functions in type theory are automatically functors, homotopies are automatically natural transforms:
+          </p>
+          <div class="mathjax">
+            $$
+            \Pi_{f : \Pi_{x : A} P(x)} (f \sim f) \\
+              \Pi_{f, g : \Pi_{x : A} P(x)} (f \sim g) \rightarrow (g \sim f) \\
+              \Pi_{f, g, h : \Pi_{x : A} P(x)} (f \sim g) \rightarrow (g \sim h) \rightarrow (f \sim h)
+            $$
+          </div>
+          <p class="exercise">
+            Suppose $H : f \sim g$ is a homotopy between functions $f, g : A \rightarrow B$ and let $p : x =_A y$. Then we have:
+          </p>
+          <div class="mathjax">
+            $$
+            H(x) \circ g(p) = f(p) \circ H(y)
+            $$
+          </div>
+          <p>
+            We may also draw the commutative diagram:
+          </p>
+          <div class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            f(x)\ar@{=}[r]^{f(p)}\ar@{=}[d]_{H(x)} & f(y)\ar@{=}[d]^{H(y)} \\
+              g(x)\ar@{=}[r]_{g(p)} & g(y)
+              }
+              \end{xy}
+            
+            $$
+          </div>
+          <p>
+            To supply a proof by induction, we may assume that $p$ is $\texttt{refl}_x$. Since $\texttt{ap}_f$ and $\texttt{ap}_g$ compute on reflexivity, in this case, what we must show is:
+          </p>
+          <div class="mathjax">
+            $$
+            H(x) \circ \texttt{refl}_{g(x)} = \texttt{refl}_{f(x)} \circ H(x)
+            $$
+          </div>
+          <p>
+            But this follows since both sides are equal to $H(x)$.
+          </p>
+          <pre><code class="hljs coq">(** Naturality of [ap]. *)
 Definition concat_Ap {A B : Type} {f g : A -&gt; B} (p : forall x, f x = g x) {x y : A} (q : x = y) :
   (ap f q) @ (p y) = (p x) @ (ap g q)
   :=
   match q with
     | idpath =&gt; concat_1p _ @ ((concat_p1 _) ^)
   end.</code></pre>
-        <p class="exercise">
-          Let $H : f \sim \texttt{id}_A$ be a homotopy with $f : A \rightarrow A$. Then for any $x : A$, we have:
-        </p>
-        <div class="mathjax">
-          $$
-            \begin{xy}
-            \xymatrix{
-          
-          f f x\ar@{=}[r]^{f(H x)}\ar@{=}[d]_{H(f x)} & f x\ar@{=}[d]^{H x} \\
-            f x\ar@{=}[r]_{Hx} & x
-            }
-            \end{xy}
-          
-          $$
-        </div>
-        <p>
-          That is, $f(H x) \circ H x = H(f x) \circ H x$. We can now whisker by $(H x)^{-1}$ to cancel $H x$ obtaining:
-        </p>
-        <div class="mathjax">
-          $$
-          f(H x) = f(H x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x)
-          $$
-        </div>
-        <pre><code class="hljs coq">(** Naturality of [ap] at identity. *)
+          <p class="exercise">
+            Let $H : f \sim \texttt{id}_A$ be a homotopy with $f : A \rightarrow A$. Then for any $x : A$, we have:
+          </p>
+          <div class="mathjax">
+            $$
+              \begin{xy}
+              \xymatrix{
+            
+            f f x\ar@{=}[r]^{f(H x)}\ar@{=}[d]_{H(f x)} & f x\ar@{=}[d]^{H x} \\
+              f x\ar@{=}[r]_{Hx} & x
+              }
+              \end{xy}
+            
+            $$
+          </div>
+          <p>
+            That is, $f(H x) \circ H x = H(f x) \circ H x$. We can now whisker by $(H x)^{-1}$ to cancel $H x$ obtaining:
+          </p>
+          <div class="mathjax">
+            $$
+            f(H x) = f(H x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x) \circ H x \circ (H x)^{-1} = H(f x)
+            $$
+          </div>
+          <pre><code class="hljs coq">(** Naturality of [ap] at identity. *)
 Definition concat_A1p {A : Type} {f : A -&gt; A} (p : forall x, f x = x) {x y : A} (q : x = y) :
   (ap f q) @ (p y) = (p x) @ q
   :=
   match q with
     | idpath =&gt; concat_1p _ @ ((concat_p1 _) ^)
   end.</code></pre>
-        <p>
-          Moving onto types from a traditional perspective, one may say that a function $f : A \rightarrow B$ is an <mark>isomorphism</mark> if there is a function $g : B \rightarrow A$ such that composites $f \circ g \sim \texttt{id}_B$ and $g \circ f \sim \texttt{id}_A$. A homotopical perspective suggests that this should be called a homotopy equivalence, and equivalence of higher groupoids from a category theoretic perspective. However, the type
-        </p>
-        <div class="mathjax">
-          $$
-          \Sigma_{g : B \rightarrow A} (f \circ g \sim \texttt{id}_B) \times (g \circ f \sim \texttt{id}_A)
-          $$
-        </div>
-        <p>
-          is poorly behaved. For instance, a single function $f : A \rightarrow B$, there may be multiple unequal multiple inhabitants. This is closely related to the observation in higher category theory that one often needs to consider <mark>adjoint equivalences</mark>. Let us instead do the following:
-        </p>
-        <p>
-          Given $f : A \rightarrow B$, a quasi-inverse of $f$ is a triple $(g, \alpha, \beta)$ consisting of a function $g : B \rightarrow A$ and homotopies $\alpha : f \circ g \sim \texttt{id}_B$ and $\beta : g \circ f \sim \texttt{id}_A$. The quasi-inverse of $f$ is denoted $\texttt{qinv}(f)$.
-        </p>
-        <p>
-          In general, we will reserve the use of the term isomorphism in the special case when $A$ and $B$ behave like sets, where it is unproblematic. Let us define <mark>equivalence</mark> for an improved notation $isequiv(f)$ with the following properties:
-        </p>
-        <ol class="olitems" type="i" start="1">
-          <li>
-            For each $f: A \rightarrow B$, there is a function $\texttt{qinv}(f) \rightarrow \texttt{isequiv}(f)$
-          </li>
-          <li>
-            Similarly, for each $f$, we have $\texttt{isequiv}(f) \rightarrow \texttt{qinv}$
-          </li>
-          <li>
-            For any two inhabitants $e_1, e_2 : \texttt{isequiv}(f)$, we have $e_1 = e_2$
-          </li>
-        </ol>
-        <p>
-          Later, we will see many different definitions of $\texttt{isequiv}(f)$, all of which satisfy these properties. For now, let us be satiated with the easiest such definition:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{isequiv}(f) :\equiv (\Sigma_{g : B \rightarrow A} f \circ g \sim \texttt{id}_B) \times (\Sigma_{h : B \rightarrow A} h \circ f \sim \texttt{id}_A)
-          $$
-        </div>
-        <p>
-          For the moment, the main takeaway is that we have a well-defined meaning for "$f$ is an equivalence" by exhibiting a quasi-inverse to it. We can write
-        </p>
-        <div class="mathjax">
-          $$
-          A \simeq B :\equiv \Sigma_{f : A \rightarrow B} \texttt{isequiv(f)}
-          $$
-        </div>
-        <p class="exercise">
-          Type equivalence is an equivalence relation on $\mathscr{U}$. More specifically,
-        </p>
-        <ol class="olitems" type="i" start="1">
-          <li>
-            For any $A$, the identity fuction $\texttt{id}_A$ is an equivalence; $A \simeq A$
-          </li>
-          <li>
-            For any $f : A \simeq B$, we have an equivalence $f^{-1} : B \simeq A$
-          </li>
-          <li>
-            For any $f : A \simeq B$, $g : B \simeq C$, we have $g \circ f : A \simeq C$
-          </li>
-        </ol>
-        <h2 id="the-higher-groupoid-structure-of-type-formers">
-          The higher groupoid structure of type formers
-        </h2>
-        <p>
-          The goal now is to form new types corresponding to the type theoretic ones from our <a href="/HoTT/1">previous note</a>. For instance, a cartesian product $A = B \times C$, $x :\equiv (b, c)$, $y :\equiv (b', c')$, then we have:
-        </p>
-        <div class="mathjax">
-          $$
-          (b, c) = (b', c') \simeq (b = b') \times (c = c')
-          $$
-        </div>
-        <p>
-          In more traditional language, two ordered pairs are equal just when their components are equal. The higher structure of identity types can also be expressed in terms of those equivalences. Similarly, when a type family $P : A \rightarrow \mathscr{U}$ is built up fiberwise, up to homotopy, in terms of the corresponding operations on the data that went into $P$. For instance, $P(x) = B(x) \times C(x)$. Then, we have:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{transport}^P(p, (b, c)) = (\texttt{transport}^B(p, b), \texttt{transport}^C(p, c)
-          $$
-        </div>
-        <p>
-          Finally, the type forming rules are also functorial, and if a function $f$ is built from this functorially, then the operations $\texttt{ap}_f$ and $\texttt{apd}_f$ can be computed based on the corresponding ones on the data going into into $f$. For instance, $g : B \rightarrow B'$ and $h : C \rightarrow C'$, and we define $f : B \times C \rightarrow B' \times C'$ by $f(b,c) :\equiv (g(b), h(c))$, then modulo equivalence, we can identify $\texttt{ap}_f$ with $(\texttt{ap}_g, \texttt{ap}_h)$.
-        </p>
-        <p>
-          Since our philosophy states that identity types are defined uniformly for all types by their induction principle, so we cannot redefine them to be different for different types. The <a href="/HoTT/1">previous note</a> is insufficient to prove the desired theorems for two type formers: $\Pi$ types and universes. For $\Pi$ types, we use the axiom of <mark>functional extensionality</mark>, and for universes, we use the <mark>univalence axiom</mark>, which we will state shortly.
-        </p>
-        <p>
-          It is, however, important to note that not all identity types can be determined by induction over the construction of types. Counterexamples include most non-trivial <mark>higher inductive types</mark> (HITs). For instance, calculating the identity types of types $\mathbb{S}^n$ is equivalent to calculating the higher homotopy groups of spheres, a field of research in algebraic topology.
-        </p>
-        <h2 id="cartesian-product-types">
-          Cartesian product types
-        </h2>
-        <p>
-          We have the following function which we will prove is an equivalence by exhibiting its quasi-inverse:
-        </p>
-        <div class="mathjax">
-          $$
-          (x =_{A \times B} y) \rightarrow (\texttt{pr}_1(x) =_A \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) =_B \texttt{pr}_2(y))
-          $$
-        </div>
-        <pre><code class="hljs coq">Definition equiv_path_prod {A B : Type} (z z' : A * B)
+          <p>
+            Moving onto types from a traditional perspective, one may say that a function $f : A \rightarrow B$ is an <mark>isomorphism</mark> if there is a function $g : B \rightarrow A$ such that composites $f \circ g \sim \texttt{id}_B$ and $g \circ f \sim \texttt{id}_A$. A homotopical perspective suggests that this should be called a homotopy equivalence, and equivalence of higher groupoids from a category theoretic perspective. However, the type
+          </p>
+          <div class="mathjax">
+            $$
+            \Sigma_{g : B \rightarrow A} (f \circ g \sim \texttt{id}_B) \times (g \circ f \sim \texttt{id}_A)
+            $$
+          </div>
+          <p>
+            is poorly behaved. For instance, a single function $f : A \rightarrow B$, there may be multiple unequal multiple inhabitants. This is closely related to the observation in higher category theory that one often needs to consider <mark>adjoint equivalences</mark>. Let us instead do the following:
+          </p>
+          <p>
+            Given $f : A \rightarrow B$, a quasi-inverse of $f$ is a triple $(g, \alpha, \beta)$ consisting of a function $g : B \rightarrow A$ and homotopies $\alpha : f \circ g \sim \texttt{id}_B$ and $\beta : g \circ f \sim \texttt{id}_A$. The quasi-inverse of $f$ is denoted $\texttt{qinv}(f)$.
+          </p>
+          <p>
+            In general, we will reserve the use of the term isomorphism in the special case when $A$ and $B$ behave like sets, where it is unproblematic. Let us define <mark>equivalence</mark> for an improved notation $isequiv(f)$ with the following properties:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              For each $f: A \rightarrow B$, there is a function $\texttt{qinv}(f) \rightarrow \texttt{isequiv}(f)$
+            </li>
+            <li>
+              Similarly, for each $f$, we have $\texttt{isequiv}(f) \rightarrow \texttt{qinv}$
+            </li>
+            <li>
+              For any two inhabitants $e_1, e_2 : \texttt{isequiv}(f)$, we have $e_1 = e_2$
+            </li>
+          </ol>
+          <p>
+            Later, we will see many different definitions of $\texttt{isequiv}(f)$, all of which satisfy these properties. For now, let us be satiated with the easiest such definition:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{isequiv}(f) :\equiv (\Sigma_{g : B \rightarrow A} f \circ g \sim \texttt{id}_B) \times (\Sigma_{h : B \rightarrow A} h \circ f \sim \texttt{id}_A)
+            $$
+          </div>
+          <p>
+            For the moment, the main takeaway is that we have a well-defined meaning for "$f$ is an equivalence" by exhibiting a quasi-inverse to it. We can write
+          </p>
+          <div class="mathjax">
+            $$
+            A \simeq B :\equiv \Sigma_{f : A \rightarrow B} \texttt{isequiv(f)}
+            $$
+          </div>
+          <p class="exercise">
+            Type equivalence is an equivalence relation on $\mathscr{U}$. More specifically,
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              For any $A$, the identity fuction $\texttt{id}_A$ is an equivalence; $A \simeq A$
+            </li>
+            <li>
+              For any $f : A \simeq B$, we have an equivalence $f^{-1} : B \simeq A$
+            </li>
+            <li>
+              For any $f : A \simeq B$, $g : B \simeq C$, we have $g \circ f : A \simeq C$
+            </li>
+          </ol>
+          <h2 id="the-higher-groupoid-structure-of-type-formers">
+            The higher groupoid structure of type formers
+          </h2>
+          <p>
+            The goal now is to form new types corresponding to the type theoretic ones from our <a href="/HoTT/1">previous note</a>. For instance, a cartesian product $A = B \times C$, $x :\equiv (b, c)$, $y :\equiv (b', c')$, then we have:
+          </p>
+          <div class="mathjax">
+            $$
+            (b, c) = (b', c') \simeq (b = b') \times (c = c')
+            $$
+          </div>
+          <p>
+            In more traditional language, two ordered pairs are equal just when their components are equal. The higher structure of identity types can also be expressed in terms of those equivalences. Similarly, when a type family $P : A \rightarrow \mathscr{U}$ is built up fiberwise, up to homotopy, in terms of the corresponding operations on the data that went into $P$. For instance, $P(x) = B(x) \times C(x)$. Then, we have:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{transport}^P(p, (b, c)) = (\texttt{transport}^B(p, b), \texttt{transport}^C(p, c)
+            $$
+          </div>
+          <p>
+            Finally, the type forming rules are also functorial, and if a function $f$ is built from this functorially, then the operations $\texttt{ap}_f$ and $\texttt{apd}_f$ can be computed based on the corresponding ones on the data going into into $f$. For instance, $g : B \rightarrow B'$ and $h : C \rightarrow C'$, and we define $f : B \times C \rightarrow B' \times C'$ by $f(b,c) :\equiv (g(b), h(c))$, then modulo equivalence, we can identify $\texttt{ap}_f$ with $(\texttt{ap}_g, \texttt{ap}_h)$.
+          </p>
+          <p>
+            Since our philosophy states that identity types are defined uniformly for all types by their induction principle, so we cannot redefine them to be different for different types. The <a href="/HoTT/1">previous note</a> is insufficient to prove the desired theorems for two type formers: $\Pi$ types and universes. For $\Pi$ types, we use the axiom of <mark>functional extensionality</mark>, and for universes, we use the <mark>univalence axiom</mark>, which we will state shortly.
+          </p>
+          <p>
+            It is, however, important to note that not all identity types can be determined by induction over the construction of types. Counterexamples include most non-trivial <mark>higher inductive types</mark> (HITs). For instance, calculating the identity types of types $\mathbb{S}^n$ is equivalent to calculating the higher homotopy groups of spheres, a field of research in algebraic topology.
+          </p>
+          <h2 id="cartesian-product-types">
+            Cartesian product types
+          </h2>
+          <p>
+            We have the following function which we will prove is an equivalence by exhibiting its quasi-inverse:
+          </p>
+          <div class="mathjax">
+            $$
+            (x =_{A \times B} y) \rightarrow (\texttt{pr}_1(x) =_A \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) =_B \texttt{pr}_2(y))
+            $$
+          </div>
+          <pre><code class="hljs coq">Definition equiv_path_prod {A B : Type} (z z' : A * B)
   : (fst z = fst z') * (snd z = snd z')  &lt;~&gt;  (z = z')
   := Build_Equiv _ _ (path_prod_uncurried z z') _.</code></pre>
-        <p>
-          We can now denote this by
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{pair}^= : (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) = \texttt{pr}_2(y)) \rightarrow x = y
-          $$
-        </div>
-        <p>
-          It can be helpful view $\texttt{pair}^=$ as an <mark>introduction rule</mark> for $x = y$.  to The elimination rules can then be written out as:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{ap}_{pr_1} : (x = y) \rightarrow (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \\
-            \texttt{ap}_{pr_2} : (x = y) \rightarrow (\texttt{pr}_2(x) = \texttt{pr}_2(y))
-          $$
-        </div>
-        <p>
-          For $p : \texttt{pr}_1 x = \texttt{pr}_1 y$ and $q : \texttt{pr}_2 x = \texttt{pr}_2 y$, we get the following <mark>propositional uniqueness principle</mark>:
-        </p>
-        <div class="mathjax">
-          $$
-          r = \texttt{pair}^=(\texttt{ap}_{pr_1}(r), \texttt{ap}_{pr_2}(r)) \quad r : x =_{A \times B} y
-          $$
-        </div>
-        <pre><code class="hljs coq">Definition transport_prod {A : Type} {P Q : A -&gt; Type} {a a' : A} (p : a = a')
+          <p>
+            We can now denote this by
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{pair}^= : (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \times (\texttt{pr}_2(x) = \texttt{pr}_2(y)) \rightarrow x = y
+            $$
+          </div>
+          <p>
+            It can be helpful view $\texttt{pair}^=$ as an <mark>introduction rule</mark> for $x = y$.  to The elimination rules can then be written out as:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{ap}_{pr_1} : (x = y) \rightarrow (\texttt{pr}_1(x) = \texttt{pr}_1(y)) \\
+              \texttt{ap}_{pr_2} : (x = y) \rightarrow (\texttt{pr}_2(x) = \texttt{pr}_2(y))
+            $$
+          </div>
+          <p>
+            For $p : \texttt{pr}_1 x = \texttt{pr}_1 y$ and $q : \texttt{pr}_2 x = \texttt{pr}_2 y$, we get the following <mark>propositional uniqueness principle</mark>:
+          </p>
+          <div class="mathjax">
+            $$
+            r = \texttt{pair}^=(\texttt{ap}_{pr_1}(r), \texttt{ap}_{pr_2}(r)) \quad r : x =_{A \times B} y
+            $$
+          </div>
+          <pre><code class="hljs coq">Definition transport_prod {A : Type} {P Q : A -&gt; Type} {a a' : A} (p : a = a')
   (z : P a * Q a)
   : transport (fun a =&gt; P a * Q a) p z  =  (p # (fst z), p # (snd z))
   := match p with idpath =&gt; 1 end.</code></pre>
-        <pre><code class="hljs coq">Definition ap_functor_prod {A A' B B' : Type} (f : A -&gt; A') (g : B -&gt; B')
+          <pre><code class="hljs coq">Definition ap_functor_prod {A A' B B' : Type} (f : A -&gt; A') (g : B -&gt; B')
   (z z' : A * B) (p : fst z = fst z') (q : snd z = snd z')
   : ap (functor_prod f g) (path_prod _ _ p q)
   = path_prod (functor_prod f g z) (functor_prod f g z') (ap f p) (ap g q).
@@ -708,43 +709,43 @@ Proof.
   destruct z as [a b]; destruct z' as [a' b'].
   simpl in p, q. destruct p, q. reflexivity.
 Defined.</code></pre>
-        <h2 id="sigma-types">
-          $\Sigma$-types
-        </h2>
-        <p>
-          Suppose we have a path $p : w = w'$ in $\Sigma_{x : A} P(x)$. Then, we get $\texttt{pr}_1(p) : \texttt{pr}_1(w) = \texttt{pr}_1(w')$. However, we cannot ask if $\texttt{pr}_1(w)$ is identical to $\texttt{pr}_1(w')$, since they don't have the same type, but we can transport $\texttt{pr}_2(w)$ along the path $\texttt{pr}_1(p)$, and this gives us an element of the same type as $\texttt{pr}_2(w')$. By path induction, we obtain the path $\texttt{pr}_1(p)_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))$, which we can regard as the type of paths from $\texttt{pr}_2(w)$ to $\texttt{pr}_2(w')$.
-        </p>
-        <div class="mathjax">
-          $$
-          (w = w') \simeq \Sigma_{p : \texttt{pr}_1(w) = \texttt{pr}_1(w')} p_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))
-          $$
-        </div>
-        <p>
-          We have already proved this <a href="#type-families-are-fibrations">previously</a>, in the path lifting property. As usual, let us also deduce a propositional uniqueness principle as a special case:
-        </p>
-        <p class="exercise">
-          For $z : \Sigma_{x : A} P(x)$, we have $z = (\texttt{pr}_1(z), \texttt{pr}_2(z))$
-        </p>
-        <pre><code class="hljs coq">Definition eta_sigma `{P : A -&gt; Type} (u : sigT P)
+          <h2 id="sigma-types">
+            $\Sigma$-types
+          </h2>
+          <p>
+            Suppose we have a path $p : w = w'$ in $\Sigma_{x : A} P(x)$. Then, we get $\texttt{pr}_1(p) : \texttt{pr}_1(w) = \texttt{pr}_1(w')$. However, we cannot ask if $\texttt{pr}_1(w)$ is identical to $\texttt{pr}_1(w')$, since they don't have the same type, but we can transport $\texttt{pr}_2(w)$ along the path $\texttt{pr}_1(p)$, and this gives us an element of the same type as $\texttt{pr}_2(w')$. By path induction, we obtain the path $\texttt{pr}_1(p)_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))$, which we can regard as the type of paths from $\texttt{pr}_2(w)$ to $\texttt{pr}_2(w')$.
+          </p>
+          <div class="mathjax">
+            $$
+            (w = w') \simeq \Sigma_{p : \texttt{pr}_1(w) = \texttt{pr}_1(w')} p_\star(\texttt{pr}_2(w) = \texttt{pr}_2(w'))
+            $$
+          </div>
+          <p>
+            We have already proved this <a href="#type-families-are-fibrations">previously</a>, in the path lifting property. As usual, let us also deduce a propositional uniqueness principle as a special case:
+          </p>
+          <p class="exercise">
+            For $z : \Sigma_{x : A} P(x)$, we have $z = (\texttt{pr}_1(z), \texttt{pr}_2(z))$
+          </p>
+          <pre><code class="hljs coq">Definition eta_sigma `{P : A -&gt; Type} (u : sigT P)
   : (u.1; u.2) = u
   := 1.</code></pre>
-        <p class="exercise">
-          Suppose we have the type families $P : A \rightarrow \mathscr{U}$ and $Q : (\Sigma_{x : A} P(x)) \rightarrow \mathscr{U}$, then we can construct the type family over $A$ defined by:
-        </p>
-        <div class="mathjax">
-          $$
-          x \mapsto \Sigma_{u : P(x)} Q(x, u)
-          $$
-        </div>
-        <p>
-          For any path $p : x = y$, we have $(u, z) : \Sigma_{u : P(x)} Q(x, u)$, we have
-        </p>
-        <div class="mathjax">
-          $$
-          p_\star(u, z) = (p_\star(u), \texttt{pair}^=(p, \texttt{refl}_{p_\star(u)})(z))
-          $$
-        </div>
-        <pre><code class="hljs coq">(** Dependent transport is the same as transport along a [path_sigma]. *)
+          <p class="exercise">
+            Suppose we have the type families $P : A \rightarrow \mathscr{U}$ and $Q : (\Sigma_{x : A} P(x)) \rightarrow \mathscr{U}$, then we can construct the type family over $A$ defined by:
+          </p>
+          <div class="mathjax">
+            $$
+            x \mapsto \Sigma_{u : P(x)} Q(x, u)
+            $$
+          </div>
+          <p>
+            For any path $p : x = y$, we have $(u, z) : \Sigma_{u : P(x)} Q(x, u)$, we have
+          </p>
+          <div class="mathjax">
+            $$
+            p_\star(u, z) = (p_\star(u), \texttt{pair}^=(p, \texttt{refl}_{p_\star(u)})(z))
+            $$
+          </div>
+          <pre><code class="hljs coq">(** Dependent transport is the same as transport along a [path_sigma]. *)
 Definition transportD_is_transport
            {A : Type} (B : A-&gt;Type) (C: sigT B -&gt; Type)
            (x1 x2 : A) (p : x1 = x2) (y : B x1) (z : C (x1 ; y))
@@ -753,89 +754,89 @@ Definition transportD_is_transport
 Proof.
   destruct p. reflexivity.
 Defined.</code></pre>
-        <h2 id="the-unit-type">
-          The unit type
-        </h2>
-        <p>
-          Let us briefly discuss the type $\mathbb{1}$.
-        </p>
-        <p class="exercise">
-          For $x, y : \mathbb{1}$, $(x = y) \simeq \mathbb{1}$.
-        </p>
-        <p>
-          It's tempting to do this proof by $\mathbb{1}$-induction, but we'd get stuck and be unable to perform a path induction on $p : \star = \star$. A function $(x = y) \rightarrow \mathbb{1}$ is easy to define by sending everything to $\star$. We may assume, by path induction, that $x = y = \star$, in which case, we have $\texttt{refl}_\star : x = y$, yielding a constant function $\mathbb{1} \rightarrow (x = y)$. To show the inverses, consider an element $u : \mathbb{1}$, and safely assume that $u = \star$, but this is also the result of the composite $\mathbb{1} \rightarrow (x = y) \rightarrow \mathbb{1}$.
-        </p>
-        <pre><code class="hljs coq">Definition equiv_path_unit (z z' : Unit) : Unit &lt;~&gt; (z = z')
+          <h2 id="the-unit-type">
+            The unit type
+          </h2>
+          <p>
+            Let us briefly discuss the type $\mathbb{1}$.
+          </p>
+          <p class="exercise">
+            For $x, y : \mathbb{1}$, $(x = y) \simeq \mathbb{1}$.
+          </p>
+          <p>
+            It's tempting to do this proof by $\mathbb{1}$-induction, but we'd get stuck and be unable to perform a path induction on $p : \star = \star$. A function $(x = y) \rightarrow \mathbb{1}$ is easy to define by sending everything to $\star$. We may assume, by path induction, that $x = y = \star$, in which case, we have $\texttt{refl}_\star : x = y$, yielding a constant function $\mathbb{1} \rightarrow (x = y)$. To show the inverses, consider an element $u : \mathbb{1}$, and safely assume that $u = \star$, but this is also the result of the composite $\mathbb{1} \rightarrow (x = y) \rightarrow \mathbb{1}$.
+          </p>
+          <pre><code class="hljs coq">Definition equiv_path_unit (z z' : Unit) : Unit &lt;~&gt; (z = z')
   := Build_Equiv _ _ (path_unit_uncurried z z') _.</code></pre>
-        <p class="exercise">
-          $\Pi$-types and functional extensionality
-        </p>
-        <p>
-          We expect type $f = g$ of paths from $f$ to $g$ in $\Pi_{x : A} B(x)$ to be equivalent to the type of pointwise paths:
-        </p>
-        <div class="mathjax">
-          $$
-          (f = g) \simeq \Pi_{x : A} (f(x) =_{B(x)} g(x))
-          $$
-        </div>
-        <p>
-          The <mark>functional extensionality</mark> axiom says that the above relation is an equivalence. This implies that there is a quasi-inverse:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{funext} : (\Pi_{x : a} f(x) = g(x)) \rightarrow (f = g)
-          $$
-        </div>
-        <p>
-          We can regard this as an introduction rule for the type $f = g$.
-        </p>
-        <pre><code class="hljs coq">Definition path_forall `{Funext} {A : Type} {P : A -&gt; Type} (f g : forall x : A, P x) :
+          <p class="exercise">
+            $\Pi$-types and functional extensionality
+          </p>
+          <p>
+            We expect type $f = g$ of paths from $f$ to $g$ in $\Pi_{x : A} B(x)$ to be equivalent to the type of pointwise paths:
+          </p>
+          <div class="mathjax">
+            $$
+            (f = g) \simeq \Pi_{x : A} (f(x) =_{B(x)} g(x))
+            $$
+          </div>
+          <p>
+            The <mark>functional extensionality</mark> axiom says that the above relation is an equivalence. This implies that there is a quasi-inverse:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{funext} : (\Pi_{x : a} f(x) = g(x)) \rightarrow (f = g)
+            $$
+          </div>
+          <p>
+            We can regard this as an introduction rule for the type $f = g$.
+          </p>
+          <pre><code class="hljs coq">Definition path_forall `{Funext} {A : Type} {P : A -&gt; Type} (f g : forall x : A, P x) :
   f == g -&gt; f = g
   :=
   (@apD10 A P f g)^-1.</code></pre>
-        <p>
-          From this point of view, $\texttt{happly}$ is an elimination rule, while the homotopies witnessing $\texttt{funext}$ as quasi-inverse to $\texttt{happly}$ become a propositional computation rule:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{happly}(\texttt{funext}(h), x) = h(x) \quad h : \Pi_{x : A} (f(x) = g(x))
-          $$
-        </div>
-        <p>
-          and a propositional uniqueness principle,
-        </p>
-        <div class="mathjax">
-          $$
-          p = \texttt{funext}(x \mapsto \texttt{happly}(p, x)) \quad p : f = g
-          $$
-        </div>
-        <p>
-          We can also compute identity, inverses, and compositions in $\Pi$-types; they are simply given by pointwise operations:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{refl}_f = \texttt{funext}(x \mapsto \texttt{refl}_{f(x)}) \\
-            \alpha^{-1} = \texttt{funext}(x \mapsto \texttt{happly}(\alpha, x)^{-1}) \\
-            \alpha \circ \beta = \texttt{funext}(x \mapsto \texttt{happly}(\alpha, x) \circ \texttt{happly}(\beta, x))
-          $$
-        </div>
-        <p>
-          For the non-dependent function $A \rightarrow B$, a special case of the corresponding dependent function, the rules for transport are quite straightforward:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{transport}^{A \rightarrow B}(p, f) = (x \mapsto \texttt{transport}^B(p, f(\texttt{transport}^A(p^{-1}, x))))
-          $$
-        </div>
-        <p class="exercise">
-          Given type families $A, B : X \rightarrow \mathscr{U}$, $p : x =_X y$, $f : A(x) \rightarrow B(x)$, and $g : A(y) \rightarrow B(y)$, we have an equivalence:
-        </p>
-        <div class="mathjax">
-          $$
-          (p_\star(f) = g) \simeq \Pi_{x : A(x)} (p_\star(f(a)) = g(p_\star(a)))
-          $$
-        </div>
-        <pre><code class="hljs coq">(** Usually, a dependent path over [p:x1=x2] in [P:A-&gt;Type] between [y1:P x1] and [y2:P x2]
+          <p>
+            From this point of view, $\texttt{happly}$ is an elimination rule, while the homotopies witnessing $\texttt{funext}$ as quasi-inverse to $\texttt{happly}$ become a propositional computation rule:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{happly}(\texttt{funext}(h), x) = h(x) \quad h : \Pi_{x : A} (f(x) = g(x))
+            $$
+          </div>
+          <p>
+            and a propositional uniqueness principle,
+          </p>
+          <div class="mathjax">
+            $$
+            p = \texttt{funext}(x \mapsto \texttt{happly}(p, x)) \quad p : f = g
+            $$
+          </div>
+          <p>
+            We can also compute identity, inverses, and compositions in $\Pi$-types; they are simply given by pointwise operations:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{refl}_f = \texttt{funext}(x \mapsto \texttt{refl}_{f(x)}) \\
+              \alpha^{-1} = \texttt{funext}(x \mapsto \texttt{happly}(\alpha, x)^{-1}) \\
+              \alpha \circ \beta = \texttt{funext}(x \mapsto \texttt{happly}(\alpha, x) \circ \texttt{happly}(\beta, x))
+            $$
+          </div>
+          <p>
+            For the non-dependent function $A \rightarrow B$, a special case of the corresponding dependent function, the rules for transport are quite straightforward:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{transport}^{A \rightarrow B}(p, f) = (x \mapsto \texttt{transport}^B(p, f(\texttt{transport}^A(p^{-1}, x))))
+            $$
+          </div>
+          <p class="exercise">
+            Given type families $A, B : X \rightarrow \mathscr{U}$, $p : x =_X y$, $f : A(x) \rightarrow B(x)$, and $g : A(y) \rightarrow B(y)$, we have an equivalence:
+          </p>
+          <div class="mathjax">
+            $$
+            (p_\star(f) = g) \simeq \Pi_{x : A(x)} (p_\star(f(a)) = g(p_\star(a)))
+            $$
+          </div>
+          <pre><code class="hljs coq">(** Usually, a dependent path over [p:x1=x2] in [P:A-&gt;Type] between [y1:P x1] and [y2:P x2]
 is a path [transport P p y1 = y2] in [P x2].  However, when [P] is a function space,
 these dependent paths have a more convenient description: rather than transporting
 the argument of [y1] forwards and backwards, we transport only forwards but on both sides
@@ -850,193 +851,193 @@ Proof.
   destruct p.
   apply equiv_path_arrow.
 Defined.</code></pre>
-        <p>
-          Moreover, if $q : p_\star(f) = g$ corresponds under this equivalence to $\hat{q}$, then for $a : A(x)$, the path
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{happly}(q, p_\star(a)) : p_\star(f)(p_\star(a)) = g(p_\star(a))
-          $$
-        </div>
-        <p>
-          is equal to the composite:
-        </p>
-        <div class="mathjax">
-          $$
-          \begin{align*}
-              (p_\star(f))(p_\star(a)) &= p_\star(f(p^{-1}_\star(p_\star(a)) & (\texttt{by transport lemma}) \\
-                                       &= p_\star(f(a)) & \\
-                                       &= g(p_\star(a)) & (\texttt{by } \hat{q})&
-            \end{align*}
-          $$
-        </div>
-        <h2 id="universes-and-the-univalence-axiom">
-          Universes and the univalence axiom
-        </h2>
-        <p class="exercise">
-          For types $A, B : \mathscr{U}$, there is a certain function
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{idtoequiv} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
-          $$
-        </div>
-        <p>
-          defined as follows.
-        </p>
-        <pre><code class="hljs coq">Definition equiv_path (A B : Type) (p : A = B) : A &lt;~&gt; B
+          <p>
+            Moreover, if $q : p_\star(f) = g$ corresponds under this equivalence to $\hat{q}$, then for $a : A(x)$, the path
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{happly}(q, p_\star(a)) : p_\star(f)(p_\star(a)) = g(p_\star(a))
+            $$
+          </div>
+          <p>
+            is equal to the composite:
+          </p>
+          <div class="mathjax">
+            $$
+            \begin{align*}
+                (p_\star(f))(p_\star(a)) &= p_\star(f(p^{-1}_\star(p_\star(a)) & (\texttt{by transport lemma}) \\
+                                         &= p_\star(f(a)) & \\
+                                         &= g(p_\star(a)) & (\texttt{by } \hat{q})&
+              \end{align*}
+            $$
+          </div>
+          <h2 id="universes-and-the-univalence-axiom">
+            Universes and the univalence axiom
+          </h2>
+          <p class="exercise">
+            For types $A, B : \mathscr{U}$, there is a certain function
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{idtoequiv} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
+            $$
+          </div>
+          <p>
+            defined as follows.
+          </p>
+          <pre><code class="hljs coq">Definition equiv_path (A B : Type) (p : A = B) : A &lt;~&gt; B
   := Build_Equiv _ _ (transport (fun X:Type =&gt; X) p) _.</code></pre>
-        <p class="exercise">
-          The <mark>univalence axiom</mark> can be stated as the $\texttt{idtoequiv}$ being an equivalene.
-        </p>
-        <div class="mathjax">
-          $$
-          (A =_\mathscr{U} B) \simeq (A \simeq B)
-          $$
-        </div>
-        <pre><code class="hljs coq">Definition equiv_equiv_path  (A B : Type) : (A = B) &lt;~&gt; (A &lt;~&gt; B)
+          <p class="exercise">
+            The <mark>univalence axiom</mark> can be stated as the $\texttt{idtoequiv}$ being an equivalene.
+          </p>
+          <div class="mathjax">
+            $$
+            (A =_\mathscr{U} B) \simeq (A \simeq B)
+            $$
+          </div>
+          <pre><code class="hljs coq">Definition equiv_equiv_path  (A B : Type) : (A = B) &lt;~&gt; (A &lt;~&gt; B)
   := (equiv_path_universe A B)^-1%equiv.</code></pre>
-        <p>
-          As previously done, it is fruitful to break up this equivalence into:
-        </p>
-        <ol class="olitems" type="i" start="1">
-          <li>
-            Introduction rule:
-          </li>
-        </ol>
-        <div class="mathjax">
-          $$
-          \texttt{ua} : (A \simeq B) \rightarrow (A =_\mathscr{U} B)
-          $$
-        </div>
-        <ol class="olitems" type="i" start="2">
-          <li>
-            Elimination rule:
-          </li>
-        </ol>
-        <div class="mathjax">
-          $$
-          \texttt{idtoequiv} \equiv \texttt{transport}^{X \rightarrow X} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
-          $$
-        </div>
-        <ol class="olitems" type="i" start="3">
-          <li>
-            Propositional computation rule:
-          </li>
-        </ol>
-        <div class="mathjax">
-          $$
-          \texttt{transport}^{X \rightarrow X}(\texttt{ua}(f), x) = f(x)
-          $$
-        </div>
-        <ol class="olitems" type="i" start="4">
-          <li>
-            Propositional equivalence principle, for any $p : A = B$
-          </li>
-        </ol>
-        <div class="mathjax">
-          $$
-          p = \texttt{ua}(\texttt{transport}^{X \rightarrow X}(p))
-          $$
-        </div>
-        <p>
-          We can also identify reflexvivity, concatenation, and inverses of equalities:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{refl}_A = \texttt{ua}(\texttt{id}_A) \\
-            \texttt{ua}(f) \circ \texttt{ua}(g) = \texttt{ua}(g \circ f) \\
-            \texttt{ua}(f)^{-1} = ua(f^{-1})
-          $$
-        </div>
-        <p class="exercise">
-          For any type family $B : A \rightarrow \mathscr{U}$ and $x, y : A$ with a path $p : x = y$ and $u : B(x)$, we have:
-        </p>
-        <div class="mathjax">
-          $$
-          \begin{align*}
-            \texttt{transport}^P(p, u) &= \texttt{transport}^{X \rightarrow X}(\texttt{ap}_B(p), u) \\
-                                       &= \texttt{idtoequiv}(\texttt{ap}_B(p))(u)
-            \end{align*}
-          $$
-        </div>
-        <h2 id="identity-type">
-          Identity type
-        </h2>
-        <p>
-          Just as the type $a =_A a'$ is characterized upto isomorphism, with a separate definition for each $A$, there is no simple characterizion of the type $p =_{a =_A a'} q$ of paths between paths $p, q : a =_A a'$.
-        </p>
-        <p class="exercise">
-          If $f : A \rightarrow B$ is an equivalence, then for all $a, a' : A$ so is:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{ap}_f : (a =_A a') \rightarrow (f(a) =_B f(a'))
-          $$
-        </div>
-        <p>
-          To prove this, let $f^{-1}$ be a quasi inverse of $f$ with the homotopies:
-        </p>
-        <div class="mathjax">
-          $$
-          \alpha : \Pi_{b : B} f(f^{-1}(b)) = b \\
-            \beta : \Pi_{a : A} f(f^{-1}(a)) = a
-          $$
-        </div>
-        <p>
-          The quasi-inverse of $ap_f$ is essentially:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{ap}_{f^{-1}} : (f(a) = f(a')) \rightarrow (f^{-1}(f(a)) = f^{-1}(f(a')))
-          $$
-        </div>
-        <p>
-          However, in order to obtain an element of $a =_A a'$ from $\texttt{ap}_{f^{-1}}(q)$ we must concatenate with $\beta_\alpha^{-1}$ and $\beta_{\alpha'}$ on either side. For $p : a =_A a'$ and $q : f(a) =_B f(a')$, we have:
-        </p>
-        <div class="mathjax">
-          $$
-          \beta_\alpha^{-1} \circ \texttt{ap}_f(\texttt{ap}_f(p)) \circ \beta_{\alpha'} = p \\
-            \texttt{ap}_f(\beta_\alpha^{-1} \circ \texttt{ap}_{f^-1}(a) \circ \beta_{\alpha'}) = q
-          $$
-        </div>
-        <p>
-          We can prove the latter by simply canceling inverse paths.
-        </p>
-        <p>
-          Thus, for some type $A$, we have a full characterizion of $a =_A a'$ and the type $p =_{a_{=A}} q$ is determined as well. For example, paths $p = q$ where $p, q : f =_{\Pi_{x : A} B(x)} g$ are equivalent to homotopies:
-        </p>
-        <div class="mathjax">
-          $$
-          \Pi_{x : A} (\texttt{happly}(p)(x) =_{f(x) = g(x)} \texttt{happly}(q)(x)
-          $$
-        </div>
-        <p>
-          Next, we consider transport in families of paths; ie.e. transport in $C : A \rightarrow \mathscr{U}$ where each $C(x)$ is an identity type.
-        </p>
-        <p class="exercise">
-          For any $A$ and $a : A$ with $p : x_1 = x_2$, we have
-        </p>
-        <div class="mathjax">
-          $$
-          \begin{matrix}
-            \texttt{transport}^{x \mapsto (a = x)}(p, q) = q \circ p & q : a = x_1 \\
-            \texttt{transport}^{x \mapsto (x = a)}(p, q) = p^{-1} \circ q & q : x_1 = a \\
-            \texttt{transport}^{x \mapsto (x = x)}(p, q = p^{-1} \circ q \circ p & q : x_1 = x_1
-            \end{matrix}
-          $$
-        </div>
-        <p class="exercise">
-          We now dump some lemmas for $\texttt{transport}$:
-        </p>
-        <pre><code class="hljs coq">Definition transport_paths_FlFr {A B : Type} {f g : A -&gt; B} {x1 x2 : A}
+          <p>
+            As previously done, it is fruitful to break up this equivalence into:
+          </p>
+          <ol class="olitems" type="i" start="1">
+            <li>
+              Introduction rule:
+            </li>
+          </ol>
+          <div class="mathjax">
+            $$
+            \texttt{ua} : (A \simeq B) \rightarrow (A =_\mathscr{U} B)
+            $$
+          </div>
+          <ol class="olitems" type="i" start="2">
+            <li>
+              Elimination rule:
+            </li>
+          </ol>
+          <div class="mathjax">
+            $$
+            \texttt{idtoequiv} \equiv \texttt{transport}^{X \rightarrow X} : (A =_\mathscr{U} B) \rightarrow (A \simeq B)
+            $$
+          </div>
+          <ol class="olitems" type="i" start="3">
+            <li>
+              Propositional computation rule:
+            </li>
+          </ol>
+          <div class="mathjax">
+            $$
+            \texttt{transport}^{X \rightarrow X}(\texttt{ua}(f), x) = f(x)
+            $$
+          </div>
+          <ol class="olitems" type="i" start="4">
+            <li>
+              Propositional equivalence principle, for any $p : A = B$
+            </li>
+          </ol>
+          <div class="mathjax">
+            $$
+            p = \texttt{ua}(\texttt{transport}^{X \rightarrow X}(p))
+            $$
+          </div>
+          <p>
+            We can also identify reflexvivity, concatenation, and inverses of equalities:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{refl}_A = \texttt{ua}(\texttt{id}_A) \\
+              \texttt{ua}(f) \circ \texttt{ua}(g) = \texttt{ua}(g \circ f) \\
+              \texttt{ua}(f)^{-1} = ua(f^{-1})
+            $$
+          </div>
+          <p class="exercise">
+            For any type family $B : A \rightarrow \mathscr{U}$ and $x, y : A$ with a path $p : x = y$ and $u : B(x)$, we have:
+          </p>
+          <div class="mathjax">
+            $$
+            \begin{align*}
+              \texttt{transport}^P(p, u) &= \texttt{transport}^{X \rightarrow X}(\texttt{ap}_B(p), u) \\
+                                         &= \texttt{idtoequiv}(\texttt{ap}_B(p))(u)
+              \end{align*}
+            $$
+          </div>
+          <h2 id="identity-type">
+            Identity type
+          </h2>
+          <p>
+            Just as the type $a =_A a'$ is characterized upto isomorphism, with a separate definition for each $A$, there is no simple characterizion of the type $p =_{a =_A a'} q$ of paths between paths $p, q : a =_A a'$.
+          </p>
+          <p class="exercise">
+            If $f : A \rightarrow B$ is an equivalence, then for all $a, a' : A$ so is:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{ap}_f : (a =_A a') \rightarrow (f(a) =_B f(a'))
+            $$
+          </div>
+          <p>
+            To prove this, let $f^{-1}$ be a quasi inverse of $f$ with the homotopies:
+          </p>
+          <div class="mathjax">
+            $$
+            \alpha : \Pi_{b : B} f(f^{-1}(b)) = b \\
+              \beta : \Pi_{a : A} f(f^{-1}(a)) = a
+            $$
+          </div>
+          <p>
+            The quasi-inverse of $ap_f$ is essentially:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{ap}_{f^{-1}} : (f(a) = f(a')) \rightarrow (f^{-1}(f(a)) = f^{-1}(f(a')))
+            $$
+          </div>
+          <p>
+            However, in order to obtain an element of $a =_A a'$ from $\texttt{ap}_{f^{-1}}(q)$ we must concatenate with $\beta_\alpha^{-1}$ and $\beta_{\alpha'}$ on either side. For $p : a =_A a'$ and $q : f(a) =_B f(a')$, we have:
+          </p>
+          <div class="mathjax">
+            $$
+            \beta_\alpha^{-1} \circ \texttt{ap}_f(\texttt{ap}_f(p)) \circ \beta_{\alpha'} = p \\
+              \texttt{ap}_f(\beta_\alpha^{-1} \circ \texttt{ap}_{f^-1}(a) \circ \beta_{\alpha'}) = q
+            $$
+          </div>
+          <p>
+            We can prove the latter by simply canceling inverse paths.
+          </p>
+          <p>
+            Thus, for some type $A$, we have a full characterizion of $a =_A a'$ and the type $p =_{a_{=A}} q$ is determined as well. For example, paths $p = q$ where $p, q : f =_{\Pi_{x : A} B(x)} g$ are equivalent to homotopies:
+          </p>
+          <div class="mathjax">
+            $$
+            \Pi_{x : A} (\texttt{happly}(p)(x) =_{f(x) = g(x)} \texttt{happly}(q)(x)
+            $$
+          </div>
+          <p>
+            Next, we consider transport in families of paths; ie.e. transport in $C : A \rightarrow \mathscr{U}$ where each $C(x)$ is an identity type.
+          </p>
+          <p class="exercise">
+            For any $A$ and $a : A$ with $p : x_1 = x_2$, we have
+          </p>
+          <div class="mathjax">
+            $$
+            \begin{matrix}
+              \texttt{transport}^{x \mapsto (a = x)}(p, q) = q \circ p & q : a = x_1 \\
+              \texttt{transport}^{x \mapsto (x = a)}(p, q) = p^{-1} \circ q & q : x_1 = a \\
+              \texttt{transport}^{x \mapsto (x = x)}(p, q = p^{-1} \circ q \circ p & q : x_1 = x_1
+              \end{matrix}
+            $$
+          </div>
+          <p class="exercise">
+            We now dump some lemmas for $\texttt{transport}$:
+          </p>
+          <pre><code class="hljs coq">Definition transport_paths_FlFr {A B : Type} {f g : A -&gt; B} {x1 x2 : A}
   (p : x1 = x2) (q : f x1 = g x1)
   : transport (fun x =&gt; f x = g x) p q = (ap f p)^ @ q @ (ap g p).
 Proof.
   destruct p; simpl.
   exact ((concat_1p q)^ @ (concat_p1 (1 @ q))^).
 Defined.</code></pre>
-        <pre><code class="hljs coq">Definition transport_paths_FlFr_D {A : Type} {B : A -&gt; Type}
+          <pre><code class="hljs coq">Definition transport_paths_FlFr_D {A : Type} {B : A -&gt; Type}
   {f g : forall a, B a} {x1 x2 : A} (p : x1 = x2) (q : f x1 = g x1)
 : transport (fun x =&gt; f x = g x) p q
   = (apD f p)^ @ ap (transport B p) q @ (apD g p).
@@ -1044,128 +1045,129 @@ Proof.
   destruct p; simpl.
   exact ((ap_idmap _)^ @ (concat_1p _)^ @ (concat_p1 _)^).
 Defined.</code></pre>
-        <pre><code class="hljs coq">Definition transport_paths_lr {A : Type} {x1 x2 : A} (p : x1 = x2) (q : x1 = x1)
+          <pre><code class="hljs coq">Definition transport_paths_lr {A : Type} {x1 x2 : A} (p : x1 = x2) (q : x1 = x1)
   : transport (fun x =&gt; x = x) p q = p^ @ q @ p.
 Proof.
   destruct p; simpl.
   exact ((concat_1p q)^ @ (concat_p1 (1 @ q))^).
 Defined.</code></pre>
-        <h2 id="natural-numbers">
-          Natural numbers
-        </h2>
-        <p>
-          We will introduce an encode-decode method to define $\mathbb{N}$. The codes for identites are a type family:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{code} : \mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathscr{U}
-          $$
-        </div>
-        <p>
-          defined by double recursion over $\mathbb{N}$ as follows:
-        </p>
-        <div class="mathjax">
-          $$
-          \texttt{code}(0, 0) :\equiv \mathbf{1} \\
-            \texttt{code}(\texttt{succ}(m), 0) :\equiv \mathbf{0} \\
-            \texttt{code}(0, \texttt{succ}(n)) :\equiv \mathbf{0} \\
-            \texttt{code}(\texttt{succ}(m), \texttt{succ}(n)) :\equiv \texttt{code}(m, n)
-          $$
-        </div>
-        <p>
-          We also define, by recursion, a dependent function $r : \Pi_{n : \mathbb{N}} \texttt{code}(n, n)$ with
-        </p>
-        <div class="mathjax">
-          $$
-          r(0) :\equiv \star \\
-            r(\texttt{succ}(n)) :\equiv r(n)
-          $$
-        </div>
-        <p class="exercise">
-          For all $m, n : \mathbb{N}$, we have $(m = n) \simeq \texttt{code}(m, n)$
-        </p>
-        <pre><code class="hljs coq">Definition equiv_path_nat {n m} : (n =n m) &lt;~&gt; (n = m)
+          <h2 id="natural-numbers">
+            Natural numbers
+          </h2>
+          <p>
+            We will introduce an encode-decode method to define $\mathbb{N}$. The codes for identites are a type family:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{code} : \mathbb{N} \rightarrow \mathbb{N} \rightarrow \mathscr{U}
+            $$
+          </div>
+          <p>
+            defined by double recursion over $\mathbb{N}$ as follows:
+          </p>
+          <div class="mathjax">
+            $$
+            \texttt{code}(0, 0) :\equiv \mathbf{1} \\
+              \texttt{code}(\texttt{succ}(m), 0) :\equiv \mathbf{0} \\
+              \texttt{code}(0, \texttt{succ}(n)) :\equiv \mathbf{0} \\
+              \texttt{code}(\texttt{succ}(m), \texttt{succ}(n)) :\equiv \texttt{code}(m, n)
+            $$
+          </div>
+          <p>
+            We also define, by recursion, a dependent function $r : \Pi_{n : \mathbb{N}} \texttt{code}(n, n)$ with
+          </p>
+          <div class="mathjax">
+            $$
+            r(0) :\equiv \star \\
+              r(\texttt{succ}(n)) :\equiv r(n)
+            $$
+          </div>
+          <p class="exercise">
+            For all $m, n : \mathbb{N}$, we have $(m = n) \simeq \texttt{code}(m, n)$
+          </p>
+          <pre><code class="hljs coq">Definition equiv_path_nat {n m} : (n =n m) &lt;~&gt; (n = m)
   := Build_Equiv _ _ (@path_nat n m) _.</code></pre>
-        <h2 id="universal-properties">
-          Universal properties
-        </h2>
-        <p>
-          By combining the path computation rules described in the previous sections, we can show that various type forming operations satisfy the expected universal properties, interpreted in a homotopical way as equivalences.
-        </p>
-        <div class="mathjax">
-          $$
-          (X \rightarrow A \times B) \rightarrow (X \rightarrow A) \times (X \rightarrow B)
-          $$
-        </div>
-        <p>
-          defined by $f \mapsto (\texttt{pr}_1 \circ f, \texttt{pr}_2 \circ f)$. To prove that this is an equivalence, given $f : X \rightarrow A \times B$, the round-trip composite yields the function:
-        </p>
-        <div class="mathjax">
-          $$
-          \lambda x . (\texttt{pr}_1(f(x)), \texttt{pr}_2(f(x))) = f \quad \texttt{by functional extensionality}
-          $$
-        </div>
-        <p>
-          We also have a dependently typed version of this universal property:
-        </p>
-        <div class="mathjax">
-          $$
-          (\Pi_{x : X} A(x) \times B(x)) \rightarrow (\Pi_{x : X} A(x)) \times (\Pi_{x : X} B(x))
-          $$
-        </div>
-        <p>
-          defined as before.
-        </p>
-        <pre><code class="hljs coq">(* First, a positive version of the universal property *)
+          <h2 id="universal-properties">
+            Universal properties
+          </h2>
+          <p>
+            By combining the path computation rules described in the previous sections, we can show that various type forming operations satisfy the expected universal properties, interpreted in a homotopical way as equivalences.
+          </p>
+          <div class="mathjax">
+            $$
+            (X \rightarrow A \times B) \rightarrow (X \rightarrow A) \times (X \rightarrow B)
+            $$
+          </div>
+          <p>
+            defined by $f \mapsto (\texttt{pr}_1 \circ f, \texttt{pr}_2 \circ f)$. To prove that this is an equivalence, given $f : X \rightarrow A \times B$, the round-trip composite yields the function:
+          </p>
+          <div class="mathjax">
+            $$
+            \lambda x . (\texttt{pr}_1(f(x)), \texttt{pr}_2(f(x))) = f \quad \texttt{by functional extensionality}
+            $$
+          </div>
+          <p>
+            We also have a dependently typed version of this universal property:
+          </p>
+          <div class="mathjax">
+            $$
+            (\Pi_{x : X} A(x) \times B(x)) \rightarrow (\Pi_{x : X} A(x)) \times (\Pi_{x : X} B(x))
+            $$
+          </div>
+          <p>
+            defined as before.
+          </p>
+          <pre><code class="hljs coq">(* First, a positive version of the universal property *)
 Definition equiv_prod_ind `(P : A * B -&gt; Type)
   : (forall (a : A) (b : B), P (a, b)) &lt;~&gt; (forall p : A * B, P p)
   := Build_Equiv _ _ (prod_ind P) _.</code></pre>
-        <pre><code class="hljs coq">(* Now the negative universal property. *)
+          <pre><code class="hljs coq">(* Now the negative universal property. *)
 Definition prod_coind_uncurried `{A : X -&gt; Type} `{B : X -&gt; Type}
   : (forall x, A x) * (forall x, B x) -&gt; (forall x, A x * B x)
   := fun fg x =&gt; (fst fg x, snd fg x).</code></pre>
-        <p>
-          Since $\Sigma$ types are a generalization of cartesian product types, we can straightaway jump to the dependently typed version; if we have a type $X$ and type families $A : A \rightarrow \mathscr{U}$ and $P : \Pi_{x : A} A(x) \rightarrow \mathscr{U}$, then we have:
-        </p>
-        <div class="mathjax">
-          $$
-          (\Pi_{x : X} \Sigma_{x : A(x)} P(x, a)) \rightarrow (\Sigma_{g : \Pi_{x : A} A(x)} \Pi_{x : X} P(x, g(x)))
-          $$
-        </div>
-        <p>
-          Note that $\Sigma_{g : \Pi_{x : X} A(x)} \Pi_{x : X} P(x, g(x))$ can be read as "there exists a choice function $g : \Pi_{x : X} A(x)$ such that for all $x : X$, we have $P(x, g(x))$". The classical mathemtician may find that the axiom of choice doesn't carry its usual meaning.
-        </p>
-        <p>
-          In the case of cartesian products, the non-dependent version simply expresses the <mark>cartesian closure adjuction</mark>:
-        </p>
-        <div class="mathjax">
-          $$
-          ((A \times B) \rightarrow C) \simeq (A \rightarrow (B \rightarrow C))
-          $$
-        </div>
-        <p>
-          Some other induction principles are also part of universal properties of this sort. For instance, path induction is the right-to-left direction of an equivalence as follows:
-        </p>
-        <div class="mathjax">
-          $$
-          (\Pi_{x : A}\Pi_{p : a = x} B(x, p)) \simeq B(a, \texttt{refl}_a)
-          $$
-        </div>
-        <p>
-          However, for inductive types with recursion, such as natural numbers, have more complicated universal properties, as we intend to describe later.
-        </p>
-        <p>
-          As such, we have described the usual universal property of a cartesian product, but the reader may wonder about <mark>limits</mark> and <mark>colimits</mark> of types. For <mark>pullbacks</mark>, the expected explicit construction works; given $f: A \rightarrow C$ and $g : B \rightarrow C$, we define:
-        </p>
-        <div class="mathjax">
-          $$
-          A \times_C B :\equiv \Sigma_{a : A}\Sigma_{b : B} (f(a) = g(b))
-          $$
-        </div>
-        <p>
-          For colimits, however, we need a new ingredient, which we will discuss later.
-        </p>
-      </article>
+          <p>
+            Since $\Sigma$ types are a generalization of cartesian product types, we can straightaway jump to the dependently typed version; if we have a type $X$ and type families $A : A \rightarrow \mathscr{U}$ and $P : \Pi_{x : A} A(x) \rightarrow \mathscr{U}$, then we have:
+          </p>
+          <div class="mathjax">
+            $$
+            (\Pi_{x : X} \Sigma_{x : A(x)} P(x, a)) \rightarrow (\Sigma_{g : \Pi_{x : A} A(x)} \Pi_{x : X} P(x, g(x)))
+            $$
+          </div>
+          <p>
+            Note that $\Sigma_{g : \Pi_{x : X} A(x)} \Pi_{x : X} P(x, g(x))$ can be read as "there exists a choice function $g : \Pi_{x : X} A(x)$ such that for all $x : X$, we have $P(x, g(x))$". The classical mathemtician may find that the axiom of choice doesn't carry its usual meaning.
+          </p>
+          <p>
+            In the case of cartesian products, the non-dependent version simply expresses the <mark>cartesian closure adjuction</mark>:
+          </p>
+          <div class="mathjax">
+            $$
+            ((A \times B) \rightarrow C) \simeq (A \rightarrow (B \rightarrow C))
+            $$
+          </div>
+          <p>
+            Some other induction principles are also part of universal properties of this sort. For instance, path induction is the right-to-left direction of an equivalence as follows:
+          </p>
+          <div class="mathjax">
+            $$
+            (\Pi_{x : A}\Pi_{p : a = x} B(x, p)) \simeq B(a, \texttt{refl}_a)
+            $$
+          </div>
+          <p>
+            However, for inductive types with recursion, such as natural numbers, have more complicated universal properties, as we intend to describe later.
+          </p>
+          <p>
+            As such, we have described the usual universal property of a cartesian product, but the reader may wonder about <mark>limits</mark> and <mark>colimits</mark> of types. For <mark>pullbacks</mark>, the expected explicit construction works; given $f: A \rightarrow C$ and $g : B \rightarrow C$, we define:
+          </p>
+          <div class="mathjax">
+            $$
+            A \times_C B :\equiv \Sigma_{a : A}\Sigma_{b : B} (f(a) = g(b))
+            $$
+          </div>
+          <p>
+            For colimits, however, we need a new ingredient, which we will discuss later.
+          </p>
+        </article>
+      </div>
     </main>
   </body>
 </html>
