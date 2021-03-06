@@ -4,8 +4,6 @@ body {
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: ivory;
-  user-select: none;
-  -webkit-user-select: none;
 }
 
 h1 {
@@ -213,7 +211,7 @@ hr.ellipses {
 hr.ellipses::before {
   content: "...";
   display: inline-block;
-  letter-spacing: 0.6em;
+  letter-spacing: 0.6rem;
   top: -30px;
   position: relative;
   font-weight: 400;
@@ -290,13 +288,16 @@ a[href^="https://github.com"],
   background-size: 1rem;
 }
 
-footer {
-  padding-top: 20px;
-  padding-bottom: 10px;
+footer::before {
+  content: "...";
+  letter-spacing: 0.3rem;
+  color: dimgray;
+  position: relative;
+  display: inline-block;
 }
 
-footer p {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 0.8em;
+footer > p {
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  font-size: 70%;
 }
