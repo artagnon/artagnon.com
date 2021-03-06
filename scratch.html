@@ -56,29 +56,30 @@
       </div>
     </nav>
     <main>
-      <header class="wrapper">
-        <h1>
-          claytext demo
-        </h1>
-        <div id="metadata">
-          <span id="timestamp"><time datetime="2019-12-17" class="begin">Tue, 17 Dec 2019 06:03:56 +0100</time><span class="to">↪</span><time datetime="2021-02-24" class="end">Wed, 24 Feb 2021 20:45:55 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
-        </div>
-      </header>
-      <article class="wrapper">
-        <p class="blurb">
-          This page serves to demonstrate the capabilities of the clayoven engine
-        </p>
-        <div class="mathjax">
-          $$
-          \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
-          $$
-        </div>
-        <h2 id="functors">
-          Functors
-        </h2>
-        <pre><code class="hljs coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
+      <div class="wrapper">
+        <header>
+          <h1>
+            claytext demo
+          </h1>
+          <div id="metadata">
+            <span id="timestamp"><time datetime="2019-12-17" class="begin">Tue, 17 Dec 2019 06:03:56 +0100</time><span class="to">↪</span><time datetime="2021-02-24" class="end">Wed, 24 Feb 2021 20:45:55 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+          </div>
+        </header>
+        <article>
+          <p class="blurb">
+            This page serves to demonstrate the capabilities of the clayoven engine
+          </p>
+          <div class="mathjax">
+            $$
+            \Pi_{A : \mathscr{U}} \Pi_{x, y, z : A} (x = y) \rightarrow (y = z) \rightarrow (x = z)
+            $$
+          </div>
+          <h2 id="functors">
+            Functors
+          </h2>
+          <pre><code class="hljs coq">Definition ap {A B : Type} (f : A -&gt; B) {x y : A} (p : x = y) : f x = f y
   := match p with idpath =&gt; idpath end.</code></pre>
-        <pre><code class="hljs cpp">template &lt;size_t i, typename... Ts, typename CurTy&gt;
+          <pre><code class="hljs cpp">template &lt;size_t i, typename... Ts, typename CurTy&gt;
 void recurseFillChildren(CurTy &amp;E)
 {
   using PackTy = std::variant&lt;Ts...&gt;;
@@ -93,33 +94,34 @@ void recurseFillChildren(CurTy &amp;E)
       recurseFillChildren&lt;i + 1, Ts...&gt;(E.Children.back());
   }
 };</code></pre>
-        <div class="images">
-          <figure>
-            <img src="/dist/artagnon.com.svg" alt="/dist/artagnon.com.svg" />
-          </figure>
-          <figure>
-            <img src="  /dist/icon.calendar.svg" alt="  /dist/icon.calendar.svg" />
-          </figure>
-        </div>
-        <ol class="olitems" type="i" start="3">
-          <li>
-            $A/\mathfrak{N}$ is a field.
-          </li>
-        </ol>
-        <ol class="olitems" type="a" start="1">
-          <li>
-            The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
-          </li>
-        </ol>
-        <footer>
-          <p>
-            † Thanks to <a href="https://sites.google.com/view/chaitanyals">Chaitanya Leena Subramanium</a> for suggesting the exercises and pushing for the use of natural deductions in the last exercise.
-          </p>
-          <p>
-            ‡ Thanks to <a href="http://pauillac.inria.fr/~herbelin/">Hugo Herbelin</a> for patiently going through many proofs and pointing out the errors.
-          </p>
-        </footer>
-      </article>
+          <div class="images">
+            <figure>
+              <img src="/dist/artagnon.com.svg" alt="/dist/artagnon.com.svg" />
+            </figure>
+            <figure>
+              <img src="  /dist/icon.calendar.svg" alt="  /dist/icon.calendar.svg" />
+            </figure>
+          </div>
+          <ol class="olitems" type="i" start="3">
+            <li>
+              $A/\mathfrak{N}$ is a field.
+            </li>
+          </ol>
+          <ol class="olitems" type="a" start="1">
+            <li>
+              The Split dominates the Merge, in which case, the Split dominates everything on its outEdges leading to the Merge.
+            </li>
+          </ol>
+          <footer>
+            <p>
+              † Thanks to <a href="https://sites.google.com/view/chaitanyals">Chaitanya Leena Subramanium</a> for suggesting the exercises and pushing for the use of natural deductions in the last exercise.
+            </p>
+            <p>
+              ‡ Thanks to <a href="http://pauillac.inria.fr/~herbelin/">Hugo Herbelin</a> for patiently going through many proofs and pointing out the errors.
+            </p>
+          </footer>
+        </article>
+      </div>
     </main>
   </body>
 </html>
