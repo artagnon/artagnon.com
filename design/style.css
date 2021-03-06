@@ -4,10 +4,12 @@ body {
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: ivory;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 2rem;
   text-transform: capitalize;
 }
 
@@ -17,15 +19,6 @@ article {
 
 a {
   color: dimgray;
-}
-
-nav li a {
-  font-size: 1.2em;
-  text-transform: uppercase;
-  font-weight: 300;
-  letter-spacing: 0.3em;
-  font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
-    monospace;
 }
 
 .wrapper {
@@ -61,8 +54,6 @@ nav li a {
 #indexfill > li::before {
   content: "\00BB \0020";
   color: olive;
-  user-select: none;
-  -webkit-user-select: none;
 }
 
 nav {
@@ -72,10 +63,19 @@ nav {
   border: darkgray 0.2px dotted;
 }
 
+nav li a {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 0.2rem;
+  font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+    monospace;
+}
+
 nav,
 header {
-  margin-left: min(20vw, 10%);
-  margin-right: min(20vw, 10%);
+  margin-left: min(15vw, 5%);
+  margin-right: min(15vw, 5%);
 }
 
 main {
@@ -93,18 +93,16 @@ nav > div:nth-child(2) {
 }
 
 nav > div:nth-child(1) img {
-  width: min(60%, 10vh);
-  padding: 10px;
+  height: max(15vh, 15vw);
+  padding: 0.5rem 0 0.5rem 0.5rem;
 }
 
 nav > div:nth-child(2) > ul {
-  object-fit: contain;
   list-style: none;
-  padding-left: 0;
-  padding-right: 10px;
+  padding-right: 0.5rem;
   font-weight: 560;
+  line-height: calc(max(15vh, 15vw) / 4);
   font-size: 0.8rem;
-  min-width: 18ch;
 }
 
 @media print {
@@ -149,7 +147,7 @@ nav li a {
 }
 
 h1 {
-  margin: 0.67em 0;
+  margin: 0.67rem 0;
   font-weight: 540;
   margin-bottom: 4px;
   padding-bottom: 2px;
@@ -158,42 +156,39 @@ h1 {
 
 h2 {
   font-weight: 500;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   padding-top: 10px;
 }
 
-ol.olitems,
-ul.ulitems {
+.olitems {
   list-style-position: outside;
-  padding-left: 1.4em;
+  padding-left: 1.4rem;
 }
 
-p.blurb {
+.blurb {
   text-align: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
   color: olive;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-style: oblique 20deg;
-  font-weight: 290;
+  font-weight: 400;
 }
 
-p.exercise {
+.exercise {
+  padding-left: 1rem;
+  text-indent: -1rem;
+}
+
+.indent {
   padding-left: 1em;
-  text-indent: -1em;
 }
 
-p.indent {
-  padding-left: 1em;
-}
-
-p.exercise::before {
+.exercise::before {
   color: olive;
   content: "§";
-  user-select: none;
-  -webkit-user-select: none;
 }
 
 mark {
@@ -239,7 +234,7 @@ pre {
   border-style: none;
 }
 
-div.mathjax {
+.mathjax {
   overflow-x: scroll;
   background-color: #fdf6e3;
 }
