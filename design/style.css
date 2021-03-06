@@ -15,6 +15,10 @@ article {
   font-size: 1.2rem;
 }
 
+a {
+  color: dimgray;
+}
+
 nav li a {
   font-size: 1.2em;
   text-transform: uppercase;
@@ -24,23 +28,19 @@ nav li a {
     monospace;
 }
 
-a {
-  color: dimgray;
-}
-
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr min(100ch, calc(100vw - 64px)) 1fr;
+  grid-template-columns: 1fr min(80ch, calc(100vw - 64px)) 1fr;
   grid-column-gap: 32px;
 }
 
-.wrapper * {
+.wrapper > * {
   grid-column: 2;
 }
 
 /* Fullbleed: Josh Comeau */
-.wrapper pre,
-.wrapper .mathjax {
+.wrapper > pre,
+.wrapper > .mathjax {
   width: 100%;
   grid-column: 1 / span 3;
 }
@@ -68,10 +68,14 @@ a {
 nav {
   display: grid;
   grid-template-columns: 2;
-  margin-left: min(20vw, 10%);
-  margin-right: min(20vw, 10%);
   background-color: aliceblue;
   border: darkgray 0.2px dotted;
+}
+
+nav,
+header {
+  margin-left: min(20vw, 10%);
+  margin-right: min(20vw, 10%);
 }
 
 main {

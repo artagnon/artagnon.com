@@ -56,59 +56,58 @@
       </div>
     </nav>
     <main>
-      <div class="wrapper">
-        <header>
-          <h1>
-            An opinionated history of programming languages
-          </h1>
-          <div id="metadata">
-            <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 12:43:32 +0200</time><span class="to">↪</span><time datetime="2021-02-20" class="end">Sat, 20 Feb 2021 15:32:56 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
-          </div>
-        </header>
-        <article>
-          <div class="mathjax">
-            $$
-              \begin{xy}
-              \xymatrix{
-            
-            \color{red}{\textbf{FORTRAN (1957)}}^{*}\ar[dr] & \textbf{LISP (1958)}\ar[dl]\ar[dddl]\ar[dddr] & \textbf{ALGOL (1958)}\ar[r]\ar[dl]\ar[drr] & \textbf{Simula (1962)}\ar[dlll]\ar@/_4pc/[ddddd]\ar@/^1pc/[dddll] \\
-              \texttt{Smalltalk (1972)}\ar@{-->}@/_2pc/[ddddrr]\ar@{-->}@/^1.6pc/[ddddrrrr]^>>>>>>>>>>>>>>>>>>>>>>>>>{\texttt{Self (1987)}} & \texttt{C (1972)}^{*}\ar@{.>}[dd]\ar@{.>}[ddrr]\ar@{.>}[ddddl]\ar@{.>}@/_3pc/[ddddddrrr] & \textbf{Prolog (1972)}\ar[dd] & \textbf{ML (1973)}\ar@{~~>}@/_2pc/[ddddll]\ar@{~~>}@/^2pc/[ddddrr] & \color{red}{\texttt{Bourne Shell (1978)}}\ar[ddll] \\
-              \\
-              \texttt{Common Lisp (1984)}\ar@/_2pc/[ddddrr] & \color{green}{\texttt{C++ (1985)}}^{*}\ar[ddrr]\ar[ddddddl] & \texttt{Erlang (1986)}^{*}\ar@/_2pc/[ddddll] & \texttt{Perl (1987)}\ar[ddlll]\ar[ddl] & \color{green}{\textbf{Coq (1989)}}\ar@{~>}@/_0.5pc/[ddddlll]\ar@{~>}[ddddl] \\
-              \\
-              \texttt{Python (1990)} & \color{brown}{\texttt{Haskell (1990)}}\ar[dd]\ar[ddl]\ar[ddrr] & \color{brown}{\texttt{Ruby (1995)}} & \color{red}{\texttt{Java (1995)}}^{*}\ar[ddl]|{*}\ar[ddlll]|{*} & \color{red}{\texttt{Javascript (1995)}}^{*} & \texttt{OCaml (1996)}\ar@/^0.1pc/[ddddlllll] \\
-              \\
-              \color{brown}{\texttt{Scala (2004)}} & \texttt{Agda (2007)}\ar@/_2pc/[rr] & \color{brown}{\texttt{Clojure (2007)}} & \color{blue}{\texttt{Idris (2007)}} & \color{red}{\texttt{Go (2009)}} \\
-              \\
-              \texttt{Rust (2010)}
-              }
-              \end{xy}
-            
-            $$
-          </div>
-          <div class="mathjax">
-            $$
-            \begin{matrix}
-                \textbf{•} & \textrm{A root language: significantly novel, with no significant predecessor} \\
-                \color{red}{\bullet} & \textrm{Unlikely to influence anything in the future, due to remarkably poor design} \\
-                \color{brown}{\bullet} & \textrm{Dying language, for varied reasons} \\
-                \color{blue}{\bullet} & \textrm{Toy language} \\
-                \color{green}{\bullet} & \textrm{Candidates for designing a future language} \\
-                {}^{*} & \textrm{Mature high-performance high-complexity compiler/runtime}
-              \end{matrix}
-            $$
-          </div>
-          <hr class="horizrule" />
-          <p>
-            An FAQ follows.
-          </p>
-          <p class="exercise">
-            Why would someone pick C++ over Rust today?
-          </p>
-          <p>
-            C++ templates are incredibly powerful, and with the introduction of compile-time expressions, vast portions of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:
-          </p>
-          <pre><code class="hljs cpp">template &lt;size_t i, typename... Ts, typename CurTy&gt;
+      <header>
+        <h1>
+          An opinionated history of programming languages
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2020-09-30" class="begin">Wed, 30 Sep 2020 12:43:32 +0200</time><span class="to">↪</span><time datetime="2021-02-20" class="end">Sat, 20 Feb 2021 15:32:56 +0100</time></span><br /><span id="locations"><address>Paris</address></span>
+        </div>
+      </header>
+      <article class="wrapper">
+        <div class="mathjax">
+          $$
+            \begin{xy}
+            \xymatrix{
+          
+          \color{red}{\textbf{FORTRAN (1957)}}^{*}\ar[dr] & \textbf{LISP (1958)}\ar[dl]\ar[dddl]\ar[dddr] & \textbf{ALGOL (1958)}\ar[r]\ar[dl]\ar[drr] & \textbf{Simula (1962)}\ar[dlll]\ar@/_4pc/[ddddd]\ar@/^1pc/[dddll] \\
+            \texttt{Smalltalk (1972)}\ar@{-->}@/_2pc/[ddddrr]\ar@{-->}@/^1.6pc/[ddddrrrr]^>>>>>>>>>>>>>>>>>>>>>>>>>{\texttt{Self (1987)}} & \texttt{C (1972)}^{*}\ar@{.>}[dd]\ar@{.>}[ddrr]\ar@{.>}[ddddl]\ar@{.>}@/_3pc/[ddddddrrr] & \textbf{Prolog (1972)}\ar[dd] & \textbf{ML (1973)}\ar@{~~>}@/_2pc/[ddddll]\ar@{~~>}@/^2pc/[ddddrr] & \color{red}{\texttt{Bourne Shell (1978)}}\ar[ddll] \\
+            \\
+            \texttt{Common Lisp (1984)}\ar@/_2pc/[ddddrr] & \color{green}{\texttt{C++ (1985)}}^{*}\ar[ddrr]\ar[ddddddl] & \texttt{Erlang (1986)}^{*}\ar@/_2pc/[ddddll] & \texttt{Perl (1987)}\ar[ddlll]\ar[ddl] & \color{green}{\textbf{Coq (1989)}}\ar@{~>}@/_0.5pc/[ddddlll]\ar@{~>}[ddddl] \\
+            \\
+            \texttt{Python (1990)} & \color{brown}{\texttt{Haskell (1990)}}\ar[dd]\ar[ddl]\ar[ddrr] & \color{brown}{\texttt{Ruby (1995)}} & \color{red}{\texttt{Java (1995)}}^{*}\ar[ddl]|{*}\ar[ddlll]|{*} & \color{red}{\texttt{Javascript (1995)}}^{*} & \texttt{OCaml (1996)}\ar@/^0.1pc/[ddddlllll] \\
+            \\
+            \color{brown}{\texttt{Scala (2004)}} & \texttt{Agda (2007)}\ar@/_2pc/[rr] & \color{brown}{\texttt{Clojure (2007)}} & \color{blue}{\texttt{Idris (2007)}} & \color{red}{\texttt{Go (2009)}} \\
+            \\
+            \texttt{Rust (2010)}
+            }
+            \end{xy}
+          
+          $$
+        </div>
+        <div class="mathjax">
+          $$
+          \begin{matrix}
+              \textbf{•} & \textrm{A root language: significantly novel, with no significant predecessor} \\
+              \color{red}{\bullet} & \textrm{Unlikely to influence anything in the future, due to remarkably poor design} \\
+              \color{brown}{\bullet} & \textrm{Dying language, for varied reasons} \\
+              \color{blue}{\bullet} & \textrm{Toy language} \\
+              \color{green}{\bullet} & \textrm{Candidates for designing a future language} \\
+              {}^{*} & \textrm{Mature high-performance high-complexity compiler/runtime}
+            \end{matrix}
+          $$
+        </div>
+        <hr class="horizrule" />
+        <p>
+          An FAQ follows.
+        </p>
+        <p class="exercise">
+          Why would someone pick C++ over Rust today?
+        </p>
+        <p>
+          C++ templates are incredibly powerful, and with the introduction of compile-time expressions, vast portions of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:
+        </p>
+        <pre><code class="hljs cpp">template &lt;size_t i, typename... Ts, typename CurTy&gt;
 void recurseFillChildren(CurTy &amp;E)
 {
   using PackTy = std::variant&lt;Ts...&gt;;
@@ -123,53 +122,53 @@ void recurseFillChildren(CurTy &amp;E)
       recurseFillChildren&lt;i + 1, Ts...&gt;(E.Children.back());
   }
 };</code></pre>
-          <p class="exercise">
-            Is there anything that Rust can do that C++ can't?
-          </p>
-          <p>
-            Rust didn't restrict what macros can do as much as C++ did. As a result, it's possible to do more with them. The particular example of the Pest parser is especially enlightening:
-          </p>
-          <pre><code class="hljs rs">#[derive(Parser)]
+        <p class="exercise">
+          Is there anything that Rust can do that C++ can't?
+        </p>
+        <p>
+          Rust didn't restrict what macros can do as much as C++ did. As a result, it's possible to do more with them. The particular example of the Pest parser is especially enlightening:
+        </p>
+        <pre><code class="hljs rs">#[derive(Parser)]
 #[grammar = "grammar.pest"]</code></pre>
-          <p>
-            Essentially, "grammar.pest" is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust's macros are very slow, and your compile-times blow up if you have recursive macros. <mark>std::embed</mark> in C++23 will probably do it right.
-          </p>
-          <p class="exercise">
-            Why is Haskell classified as a dying language?
-          </p>
-          <p>
-            Haskell is pleasant to get started with, and write relatively simple programs in. In the 2010-2015 period, there was a lot of intellectual discourse and PL research around it. The high-brow crowd was obssessed with transactional memory, parser combinators, and lenses. Online resources were exploding: LYAH and CatProg enjoyed their bouts of popularity. Several people and companies invested in Haskell heavily in that period. The language is easy to get started with, and has a pleasant development experience for relatively simple programs. The problems started when codebases started growing in size and complexity.
-          </p>
-          <p>
-            You either need to be able to interactively debug your program or prove that it is correct: in Haskell, you can't do either; the best you can do is to write some QuickCheck tests. Then there's Liquid Haskell that allows you to pepper your Haskell code with invariants that it will check using Z3. Unfortunately, it is very limited in what it can do: good luck checking your monadic combinator library with LH. Moreover, there are no tools to help you debug the most notorious kind of bug seen in a complicated codebase: memory blowups caused by laziness. It suffices to say that tooling is weak. In Atom, the Haskell addon was terrible, and even today, in VSCode, the Haskell extension is among the most buggy language plugins.
-          </p>
-          <p>
-            There are <a href="https://gitlab.haskell.org/ghc/ghc/-/blob/a1f34d37b47826e86343e368a5c00f1a4b1f2bce/compiler/GHC/Driver/Session.hs#L3729-3876">over 120</a> language extensions, which can be turned on/off in each <mark>.hs</mark> file. The issue is that different extensions interact in subtle ways to produce bugs, and it's very difficult to tell if a new language extension will play well with the others (it often doesn't, until all the bugs are squashed, which can take a few years). The best case scenario plays out like this: GHC rejects your program, and suggests that you turn on some other language extensions; you turn them on, and you're left with a cryptic error message coming from a language extension you're not as familiar with; you spend the next N hours reading whatever little information is available about the more recent language extension, and decide to throw in the towel. The worst case plays out as follows: the typechecker hangs or crashes, and you're on the issue tracker searching for the issue; if you're lucky, you'll find a bug filed using 50~60% of the language extensions you used in your program, and you're not sure if it's the same issue; you file a new issue. In either case, your work has been halted.
-          </p>
-          <p>
-            There is almost zero documentation on language extensions. Hell, you can't even find the list of available language extensions with some description on any wiki. Looking at the big picture: first, this is a poor way to do software development; as the number of language extensions increase, your testing burden increases exponentially. Second, the problem of having a good type system is already solved by a simple dependent type theory; you study the core, and every new feature is just a small delta that fits in nicely with the overall model. As opposed to having to read detailed papers on each new language extension. And yes, there's a good chance that very few people will be able to understand your code if you're using some esoteric extensions. In summary, language extensions are complicated hacks to compensate for the poverty of Haskell's type system.
-          </p>
-          <p>
-            In practice, you'll be familar with ~20 language extensions, and use various combinations of them over and over again, so the problem might not seem as acute as a regular Haskell programmer. However, PL research has shifted away from Haskell for the most part, and the little that happens tends to be <a href="https://www.microsoft.com/en-us/research/uploads/prod/2019/03/ho-haskell-5c8bb4918a4de.pdf">unnecessarily complex nonsense</a> that never sees the light of day.
-          </p>
-          <p>
-            Here's a sample of some simple Haskell code pieced together. I've intentionally left out examples using <mark>LinearTypes</mark>, because it's unfair to find faults with such a recent language feature.
-          </p>
-          <ol class="olitems" type="none" start="1">
-            <li>
-              What does the code mean? What is the intent?
-            </li>
-            <li>
-              Can you specifically tell how each language extension was useful in the snippet?
-            </li>
-            <li>
-              Guess what the code will do on GHC 8.10.1. What will an older version of GHC do?
-            </li>
-            <li>
-              How many more language features are missing?
-            </li>
-          </ol>
-          <pre><code class="hljs hs">{-# LANGUAGE MagicHash #-}
+        <p>
+          Essentially, "grammar.pest" is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust's macros are very slow, and your compile-times blow up if you have recursive macros. <mark>std::embed</mark> in C++23 will probably do it right.
+        </p>
+        <p class="exercise">
+          Why is Haskell classified as a dying language?
+        </p>
+        <p>
+          Haskell is pleasant to get started with, and write relatively simple programs in. In the 2010-2015 period, there was a lot of intellectual discourse and PL research around it. The high-brow crowd was obssessed with transactional memory, parser combinators, and lenses. Online resources were exploding: LYAH and CatProg enjoyed their bouts of popularity. Several people and companies invested in Haskell heavily in that period. The language is easy to get started with, and has a pleasant development experience for relatively simple programs. The problems started when codebases started growing in size and complexity.
+        </p>
+        <p>
+          You either need to be able to interactively debug your program or prove that it is correct: in Haskell, you can't do either; the best you can do is to write some QuickCheck tests. Then there's Liquid Haskell that allows you to pepper your Haskell code with invariants that it will check using Z3. Unfortunately, it is very limited in what it can do: good luck checking your monadic combinator library with LH. Moreover, there are no tools to help you debug the most notorious kind of bug seen in a complicated codebase: memory blowups caused by laziness. It suffices to say that tooling is weak. In Atom, the Haskell addon was terrible, and even today, in VSCode, the Haskell extension is among the most buggy language plugins.
+        </p>
+        <p>
+          There are <a href="https://gitlab.haskell.org/ghc/ghc/-/blob/a1f34d37b47826e86343e368a5c00f1a4b1f2bce/compiler/GHC/Driver/Session.hs#L3729-3876">over 120</a> language extensions, which can be turned on/off in each <mark>.hs</mark> file. The issue is that different extensions interact in subtle ways to produce bugs, and it's very difficult to tell if a new language extension will play well with the others (it often doesn't, until all the bugs are squashed, which can take a few years). The best case scenario plays out like this: GHC rejects your program, and suggests that you turn on some other language extensions; you turn them on, and you're left with a cryptic error message coming from a language extension you're not as familiar with; you spend the next N hours reading whatever little information is available about the more recent language extension, and decide to throw in the towel. The worst case plays out as follows: the typechecker hangs or crashes, and you're on the issue tracker searching for the issue; if you're lucky, you'll find a bug filed using 50~60% of the language extensions you used in your program, and you're not sure if it's the same issue; you file a new issue. In either case, your work has been halted.
+        </p>
+        <p>
+          There is almost zero documentation on language extensions. Hell, you can't even find the list of available language extensions with some description on any wiki. Looking at the big picture: first, this is a poor way to do software development; as the number of language extensions increase, your testing burden increases exponentially. Second, the problem of having a good type system is already solved by a simple dependent type theory; you study the core, and every new feature is just a small delta that fits in nicely with the overall model. As opposed to having to read detailed papers on each new language extension. And yes, there's a good chance that very few people will be able to understand your code if you're using some esoteric extensions. In summary, language extensions are complicated hacks to compensate for the poverty of Haskell's type system.
+        </p>
+        <p>
+          In practice, you'll be familar with ~20 language extensions, and use various combinations of them over and over again, so the problem might not seem as acute as a regular Haskell programmer. However, PL research has shifted away from Haskell for the most part, and the little that happens tends to be <a href="https://www.microsoft.com/en-us/research/uploads/prod/2019/03/ho-haskell-5c8bb4918a4de.pdf">unnecessarily complex nonsense</a> that never sees the light of day.
+        </p>
+        <p>
+          Here's a sample of some simple Haskell code pieced together. I've intentionally left out examples using <mark>LinearTypes</mark>, because it's unfair to find faults with such a recent language feature.
+        </p>
+        <ol class="olitems" type="none" start="1">
+          <li>
+            What does the code mean? What is the intent?
+          </li>
+          <li>
+            Can you specifically tell how each language extension was useful in the snippet?
+          </li>
+          <li>
+            Guess what the code will do on GHC 8.10.1. What will an older version of GHC do?
+          </li>
+          <li>
+            How many more language features are missing?
+          </li>
+        </ol>
+        <pre><code class="hljs hs">{-# LANGUAGE MagicHash #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeInType #-}
 
@@ -177,16 +176,16 @@ import GHC.Exts
 
 type family MatchInt (f :: Int) :: () where
   MatchInt ('I# _) = '()</code></pre>
-          <pre><code class="hljs hs">{-# LANGUAGE PolyKinds #-}
+        <pre><code class="hljs hs">{-# LANGUAGE PolyKinds #-}
 {-# LANGUAGE RankNTypes #-}
 
 f = undefined :: (forall (a :: k) m. m a -&gt; Int) -&gt; Int</code></pre>
-          <pre><code class="hljs hs">{-# LANGUAGE PolyKinds #-}
+        <pre><code class="hljs hs">{-# LANGUAGE PolyKinds #-}
 
 data Proxy a = Proxy
 
 class Foo (t :: k) where foo :: Proxy (a :: t)</code></pre>
-          <pre><code class="hljs hs">{-# LANGUAGE DataKinds              #-}
+        <pre><code class="hljs hs">{-# LANGUAGE DataKinds              #-}
 {-# LANGUAGE FlexibleContexts       #-}
 {-# LANGUAGE PolyKinds              #-}
 {-# LANGUAGE TypeFamilyDependencies #-}
@@ -198,14 +197,13 @@ type family v `OfDim` (n :: Dim v) = r | r -&gt; n
 
 (!*^) :: Dim m `OfDim` j -&gt; Dim m `OfDim` i
 (!*^) = undefined</code></pre>
-          <p class="exercise">
-            Doesn't Go feature a solid compiler/runtime?
-          </p>
-          <p>
-            It does, but the author didn't feel that it was worthy of an asterisk, because the compiler is working with a really dumb language. Nevertheless, the GC and scheduler are praise-worthy, as is the overall experience with ultra-low compile-times.
-          </p>
-        </article>
-      </div>
+        <p class="exercise">
+          Doesn't Go feature a solid compiler/runtime?
+        </p>
+        <p>
+          It does, but the author didn't feel that it was worthy of an asterisk, because the compiler is working with a really dumb language. Nevertheless, the GC and scheduler are praise-worthy, as is the overall experience with ultra-low compile-times.
+        </p>
+      </article>
     </main>
   </body>
 </html>
