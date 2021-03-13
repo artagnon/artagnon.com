@@ -94,7 +94,8 @@ html lang="en"
             - when :images
               div class="images"
                 - for img in paragraph.split("\n")
-                  img src=img alt=img
+                  figure
+                    img src=img alt=img
             - when :horizrule
               hr class="#{paragraph.prop}"
             - when :mathjax
@@ -107,7 +108,10 @@ html lang="en"
           ul id="indexfill"
             - subtopics.each do |st|
               - if st.title
-                h2 = "#{st.title} (#{st.begints.to_date.year} — #{st.endts.to_date.year})"
+                - if st.begints.to_date.year == st.endts.year
+                  h2 = "#{st.title} (#{st.begints.to_date.year})"
+                - else
+                  h2 = "#{st.title} (#{st.begints.to_date.year} — #{st.endts.to_date.year})"
               - st.cps.each do |cp|
                 li
                   a href="/#{cp.permalink}" = cp.title
