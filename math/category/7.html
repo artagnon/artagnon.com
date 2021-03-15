@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -72,10 +75,10 @@
           Kernels and cokernels
         </h2>
         <p>
-          A null object in category $C$ is an object that is both initial and final. If $C$ has a null object, then to any $a, b \in C$, there exist unique arrows $a \rightarrow z$, and $z \rightarrow b$. A null object is unique upto isomorphism.
+          A null object in category <span class="mathjax">$C$</span> is an object that is both initial and final. If <span class="mathjax">$C$</span> has a null object, then to any <span class="mathjax">$a, b \in C$</span>, there exist unique arrows <span class="mathjax">$a \rightarrow z$</span>, and <span class="mathjax">$z \rightarrow b$</span>. A null object is unique upto isomorphism.
         </p>
         <p>
-          Let $C$ have a null object. The kernel of arrow $f : a \rightarrow b$ is defined to be an equalizer of arrows $f, 0 : a \rightrightarrows b$. Put more directly, $k : s \rightarrow a$ is the kernel of $f : a \rightarrow b$ when $fk = 0$, and every arrow $h$ such that $fh = 0$ factors uniquely through $k$:
+          Let <span class="mathjax">$C$</span> have a null object. The kernel of arrow <span class="mathjax">$f : a \rightarrow b$</span> is defined to be an equalizer of arrows <span class="mathjax">$f, 0 : a \rightrightarrows b$</span>. Put more directly, <span class="mathjax">$k : s \rightarrow a$</span> is the kernel of <span class="mathjax">$f : a \rightarrow b$</span> when <span class="mathjax">$fk = 0$</span>, and every arrow <span class="mathjax">$h$</span> such that <span class="mathjax">$fh = 0$</span> factors uniquely through <span class="mathjax">$k$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -89,16 +92,16 @@
           $$
         </div>
         <p>
-          Thus, any category with equalizers, or more generally finite limits, and with zero has kernels for all arrows, and the arrow $k : s \rightarrow a$ is unique upto isomorphism of $s$. Like all equalizers, the kernel is necessarily a <a href="/category/1#monics-epis-and-zeros">monic</a>. It is convenient, therefore, to think of the kernel as a subobject of $a$, or the equivalence class of monics $s \rightarrow a$.
+          Thus, any category with equalizers, or more generally finite limits, and with zero has kernels for all arrows, and the arrow <span class="mathjax">$k : s \rightarrow a$</span> is unique upto isomorphism of <span class="mathjax">$s$</span>. Like all equalizers, the kernel is necessarily a <a href="/category/1#monics-epis-and-zeros">monic</a>. It is convenient, therefore, to think of the kernel as a subobject of <span class="mathjax">$a$</span>, or the equivalence class of monics <span class="mathjax">$s \rightarrow a$</span>.
         </p>
         <p>
-          For example, in $\textbf{Grp}$ with just one element (the identity element $I$) is a null object, and for any two groups with zero morphism, $G \rightarrow H$ is the unique morphism which sends all of $G$ to the identity in $H$. The kernel of an arbirary morphism $f : G \rightarrow H$ is the insertion $N \rightarrow G$ of the usual kernel $N =$ all $x$ in $G$ with $fx = 1$. Note that $N$ is the normal subgroup, and that in $\textbf{Grp}$, all kernels are monic, but there are monics which are not kernels.
+          For example, in <span class="mathjax">$\textbf{Grp}$</span> with just one element (the identity element <span class="mathjax">$I$</span>) is a null object, and for any two groups with zero morphism, <span class="mathjax">$G \rightarrow H$</span> is the unique morphism which sends all of <span class="mathjax">$G$</span> to the identity in <span class="mathjax">$H$</span>. The kernel of an arbirary morphism <span class="mathjax">$f : G \rightarrow H$</span> is the insertion <span class="mathjax">$N \rightarrow G$</span> of the usual kernel <span class="mathjax">$N =$</span> all <span class="mathjax">$x$</span> in <span class="mathjax">$G$</span> with <span class="mathjax">$fx = 1$</span>. Note that <span class="mathjax">$N$</span> is the normal subgroup, and that in <span class="mathjax">$\textbf{Grp}$</span>, all kernels are monic, but there are monics which are not kernels.
         </p>
         <p>
-          In the category $\textbf{Set}_*$ of pointed sets, the one-point set is a null object, and zero map $P \rightarrow Q$ is the function taking all of $P$ to the base $*_Q$ in $Q$. For any morphism $f : P \rightarrow Q$ of pointed sets, its kernel $S \rightarrow P$ is the insertion of the subset $S$ of those $S \in P$ with $fx = *_Q$, where base point of $S$ is identical with base point $P$. The same discussion gives kernels in $\textbf{Top}_*$. In $\textbf{Grp}$, an epimorphism is determined by its kernel, but this is not the case for $\textbf{Set}_*$ or $\textbf{Top}_*$.
+          In the category <span class="mathjax">$\textbf{Set}_*$</span> of pointed sets, the one-point set is a null object, and zero map <span class="mathjax">$P \rightarrow Q$</span> is the function taking all of <span class="mathjax">$P$</span> to the base <span class="mathjax">$*_Q$</span> in <span class="mathjax">$Q$</span>. For any morphism <span class="mathjax">$f : P \rightarrow Q$</span> of pointed sets, its kernel <span class="mathjax">$S \rightarrow P$</span> is the insertion of the subset <span class="mathjax">$S$</span> of those <span class="mathjax">$S \in P$</span> with <span class="mathjax">$fx = *_Q$</span>, where base point of <span class="mathjax">$S$</span> is identical with base point <span class="mathjax">$P$</span>. The same discussion gives kernels in <span class="mathjax">$\textbf{Top}_*$</span>. In <span class="mathjax">$\textbf{Grp}$</span>, an epimorphism is determined by its kernel, but this is not the case for <span class="mathjax">$\textbf{Set}_*$</span> or <span class="mathjax">$\textbf{Top}_*$</span>.
         </p>
         <p>
-          In an $\text{Ab}$-category $A$, all equalizers are kernels. Indeed, in such a category, each hom-set $A(b, c)$ is an abelian group. Given parallel arrows $f, g : b \rightarrow c$ and arrow $h : a \rightarrow b$, such that $fh = gh$ iff $(f - g)h = 0$. Therefore, the universal $h$ can either be described as the equalizer of $f, g$, or kernel of $f - g$. The dual notion gives rise to cokernel, as <a href="/category/2#coproducts-and-colimits">already discussed</a>.
+          In an <span class="mathjax">$\text{Ab}$</span>-category <span class="mathjax">$A$</span>, all equalizers are kernels. Indeed, in such a category, each hom-set <span class="mathjax">$A(b, c)$</span> is an abelian group. Given parallel arrows <span class="mathjax">$f, g : b \rightarrow c$</span> and arrow <span class="mathjax">$h : a \rightarrow b$</span>, such that <span class="mathjax">$fh = gh$</span> iff <span class="mathjax">$(f - g)h = 0$</span>. Therefore, the universal <span class="mathjax">$h$</span> can either be described as the equalizer of <span class="mathjax">$f, g$</span>, or kernel of <span class="mathjax">$f - g$</span>. The dual notion gives rise to cokernel, as <a href="/category/2#coproducts-and-colimits">already discussed</a>.
         </p>
       </article>
     </main>

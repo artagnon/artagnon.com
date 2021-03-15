@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -69,173 +72,173 @@
       </header>
       <article class="wrapper">
         <p class="exercise">
-          Prove that $(x)$ is a maximal ideal in $R[x]$. i.e. $(x) \subset I \subset R[x] \implies (x) = I \vee I = R[x]$.
+          Prove that <span class="mathjax">$(x)$</span> is a maximal ideal in <span class="mathjax">$R[x]$</span>. i.e. <span class="mathjax">$(x) \subset I \subset R[x] \implies (x) = I \vee I = R[x]$</span>.
         </p>
         <p>
-          Proof: Let us use the reductio ad absurdum technique, and assume that $(x) \neq I \wedge I \neq R[x]$. Then, $f(x) \in I, f(x) \notin (x), f(x) \notin R[x]$.
+          Proof: Let us use the reductio ad absurdum technique, and assume that <span class="mathjax">$(x) \neq I \wedge I \neq R[x]$</span>. Then, <span class="mathjax">$f(x) \in I, f(x) \notin (x), f(x) \notin R[x]$</span>.
         </p>
         <p>
-          Since $f(x)$ is a general polynomial, we can use the remainder theorem to obtain:<br/>
-          $$f(x) = g(x)q(x) + r(x)$$
+          Since <span class="mathjax">$f(x)$</span> is a general polynomial, we can use the remainder theorem to obtain:<br/>
+          $<span class="mathjax">$f(x) = g(x)q(x) + r(x)$</span>$
         </p>
         <p>
-          Now, since we're free to choose $g$, choose $g(x) = x$. Then $r(x)$ must be of a lower degree, and hence a constant $c$.<br/>
-          $$f(x) = x . q(x) + c$$
+          Now, since we're free to choose <span class="mathjax">$g$</span>, choose <span class="mathjax">$g(x) = x$</span>. Then <span class="mathjax">$r(x)$</span> must be of a lower degree, and hence a constant <span class="mathjax">$c$</span>.<br/>
+          $<span class="mathjax">$f(x) = x . q(x) + c$</span>$
         </p>
         <p>
-          There are two cases to consider: either $c = 0$ or $c$ is a nonzero constant. In the first case, since $f(x) = x . q(x)$, our assumption that $f(x) \notin (x)$ breaks, and we have a contradiction. In the second, $I$ would contain the unit ideal, and hence $I = R[x]$, breaking the assumption that $I \neq R[x]$. This leads to another contradiction, finishing off the proof $\Box$
+          There are two cases to consider: either <span class="mathjax">$c = 0$</span> or <span class="mathjax">$c$</span> is a nonzero constant. In the first case, since <span class="mathjax">$f(x) = x . q(x)$</span>, our assumption that <span class="mathjax">$f(x) \notin (x)$</span> breaks, and we have a contradiction. In the second, <span class="mathjax">$I$</span> would contain the unit ideal, and hence <span class="mathjax">$I = R[x]$</span>, breaking the assumption that <span class="mathjax">$I \neq R[x]$</span>. This leads to another contradiction, finishing off the proof <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Prove that $x^2 + 1$ is a maximal ideal in $R[x]$. i.e. $(x^2 + 1) \subset I \subset R[x] \implies (x^2 + 1) = I \vee I = R[x]$.
+          Prove that <span class="mathjax">$x^2 + 1$</span> is a maximal ideal in <span class="mathjax">$R[x]$</span>. i.e. <span class="mathjax">$(x^2 + 1) \subset I \subset R[x] \implies (x^2 + 1) = I \vee I = R[x]$</span>.
         </p>
         <p>
-          Proof: Let us again use proof by contradiction, and assume that $(x^2 + 1) \neq I \wedge I \neq R[x]$. Then, $f(x) \in I, f(x) \notin (x^2 + 1), f(x) \notin R[x]$.
+          Proof: Let us again use proof by contradiction, and assume that <span class="mathjax">$(x^2 + 1) \neq I \wedge I \neq R[x]$</span>. Then, <span class="mathjax">$f(x) \in I, f(x) \notin (x^2 + 1), f(x) \notin R[x]$</span>.
         </p>
         <p>
-          Since $f(x)$ is a general polynomial, we can use the remainder theorem to obtain:<br/>
-          $$f(x) = g(x)q(x) + r(x)$$
+          Since <span class="mathjax">$f(x)$</span> is a general polynomial, we can use the remainder theorem to obtain:<br/>
+          $<span class="mathjax">$f(x) = g(x)q(x) + r(x)$</span>$
         </p>
         <p>
-          Now, choose $g(x) = x + \alpha$; $r(x)$ can only be a zero, because if it were a nonzero constant, $f(x)$ would contain $1$, and hence $f(x) \in R[x]$ otherwise:<br/>
-          $$f(x) = (x + \alpha)q(x)$$
+          Now, choose <span class="mathjax">$g(x) = x + \alpha$</span>; <span class="mathjax">$r(x)$</span> can only be a zero, because if it were a nonzero constant, <span class="mathjax">$f(x)$</span> would contain <span class="mathjax">$1$</span>, and hence <span class="mathjax">$f(x) \in R[x]$</span> otherwise:<br/>
+          $<span class="mathjax">$f(x) = (x + \alpha)q(x)$</span>$
         </p>
         <p>
-          Since $f(x) \in I$ from our assumption, we get $I = (x + \alpha)$. Note that $x^2 + 1 \in I$, from our hypothesis:<br/>
-          $$x^2 + 1 = (x + \alpha)h(x)$$
+          Since <span class="mathjax">$f(x) \in I$</span> from our assumption, we get <span class="mathjax">$I = (x + \alpha)$</span>. Note that <span class="mathjax">$x^2 + 1 \in I$</span>, from our hypothesis:<br/>
+          $<span class="mathjax">$x^2 + 1 = (x + \alpha)h(x)$</span>$
         </p>
         <p>
-          But $x^2 + 1$ is irreducible in $R[x]$; assume that it factors:<br/>
-          $$x^2 + 1 = (x - a)(x - b) = x^2 - (a + b) . x + ab$$<br/>
-          $$\implies a + b = 0 \wedge ab = 1 \implies a^2 = -1$$
+          But <span class="mathjax">$x^2 + 1$</span> is irreducible in <span class="mathjax">$R[x]$</span>; assume that it factors:<br/>
+          $<span class="mathjax">$x^2 + 1 = (x - a)(x - b) = x^2 - (a + b) . x + ab$</span><span class="mathjax">$<br/>
+          $</span><span class="mathjax">$\implies a + b = 0 \wedge ab = 1 \implies a^2 = -1$</span>$
         </p>
         <p>
-          This cannot happen in $R[x]$, and we hence arrive at a contradiction $\Box$
+          This cannot happen in <span class="mathjax">$R[x]$</span>, and we hence arrive at a contradiction <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
           Provide an example of an irreducible element which is not prime, in a ring of your choosing.
         </p>
         <p>
-          Solution: Consider the ring of Gauss integers $\mathbb{Z}[\sqrt{-5}]$. Then $6 = 2 . 3 = (1 + \sqrt{-5}) (1 + \sqrt{-5})$, and this ring is not a unique factorization domain. Let us inspect $2$: it belongs to the multiplicative set containing $2 . 3$, but it does not divide either $1 + \sqrt{-5}$ or $1 - \sqrt{-5}$.
+          Solution: Consider the ring of Gauss integers <span class="mathjax">$\mathbb{Z}[\sqrt{-5}]$</span>. Then <span class="mathjax">$6 = 2 . 3 = (1 + \sqrt{-5}) (1 + \sqrt{-5})$</span>, and this ring is not a unique factorization domain. Let us inspect <span class="mathjax">$2$</span>: it belongs to the multiplicative set containing <span class="mathjax">$2 . 3$</span>, but it does not divide either <span class="mathjax">$1 + \sqrt{-5}$</span> or <span class="mathjax">$1 - \sqrt{-5}$</span>.
         </p>
         <p>
-          Prime ideals are defined as $A \backslash S$, where $S$ is a multiplicative set such that:<br/>
-          $$fg \in S \implies f \in S \wedge g \in S$$
+          Prime ideals are defined as <span class="mathjax">$A \backslash S$</span>, where <span class="mathjax">$S$</span> is a multiplicative set such that:<br/>
+          $<span class="mathjax">$fg \in S \implies f \in S \wedge g \in S$</span>$
         </p>
         <p>
-          Now, $\mathbb{Z}[\sqrt{-5}]$ does not cleave into $S$ and $A \backslash S$ cleanly when $6 \in S$. Since $1 + \sqrt{-5}$ or $1 - \sqrt{-5}$ are prime, $2$ and $3$ are disjoint from the set containing them, and so are in S. Hence, $2$ is not prime, but is irreducible, as required $\Box$
+          Now, <span class="mathjax">$\mathbb{Z}[\sqrt{-5}]$</span> does not cleave into <span class="mathjax">$S$</span> and <span class="mathjax">$A \backslash S$</span> cleanly when <span class="mathjax">$6 \in S$</span>. Since <span class="mathjax">$1 + \sqrt{-5}$</span> or <span class="mathjax">$1 - \sqrt{-5}$</span> are prime, <span class="mathjax">$2$</span> and <span class="mathjax">$3$</span> are disjoint from the set containing them, and so are in S. Hence, <span class="mathjax">$2$</span> is not prime, but is irreducible, as required <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Provide examples of prime ideals that are not maximal in $\mathbb{Z}[x, y]$.
+          Provide examples of prime ideals that are not maximal in <span class="mathjax">$\mathbb{Z}[x, y]$</span>.
         </p>
         <p>
-          Solution: $(x), (y), (x + y)$ are prime ideals, but only the last one is maximal; the first two are irreducible.
+          Solution: <span class="mathjax">$(x), (y), (x + y)$</span> are prime ideals, but only the last one is maximal; the first two are irreducible.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Prove that every maximal ideal is a prime ideal in ring $A$.
+          Prove that every maximal ideal is a prime ideal in ring <span class="mathjax">$A$</span>.
         </p>
         <p>
-          Proof: The definition of a prime ideal $P$ is:<br/>
-          $$fg \in P \implies f \in P \vee g \in P$$
+          Proof: The definition of a prime ideal <span class="mathjax">$P$</span> is:<br/>
+          $<span class="mathjax">$fg \in P \implies f \in P \vee g \in P$</span>$
         </p>
         <p>
           The definition of a maximal ideal is:<br/>
-          $$\not\exists I : M \subset I \subset A$$
+          $<span class="mathjax">$\not\exists I : M \subset I \subset A$</span>$
         </p>
         <p>
-          From this definition, it should be clear that maximal ideals can never be the product of two different maximal ideals $J$ and $K$, for if it were, then<br/>
-          $$J \subset JK \subset A \text{ or } K \subset JK \subset A$$
+          From this definition, it should be clear that maximal ideals can never be the product of two different maximal ideals <span class="mathjax">$J$</span> and <span class="mathjax">$K$</span>, for if it were, then<br/>
+          $<span class="mathjax">$J \subset JK \subset A \text{ or } K \subset JK \subset A$</span>$
         </p>
         <p>
-          contradicting the definition of a maximal ideal. i.e. for $j \in J, k \in K$<br/>
-          $$jk \in M \implies j \in M \vee k \in M$$
+          contradicting the definition of a maximal ideal. i.e. for <span class="mathjax">$j \in J, k \in K$</span><br/>
+          $<span class="mathjax">$jk \in M \implies j \in M \vee k \in M$</span>$
         </p>
         <p>
-          This is precisely the definition of a prime ideal $\Box$
+          This is precisely the definition of a prime ideal <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
           Give an example of an algebraically closed ring, and an example of one that is not.
         </p>
         <p>
-          Solution: $\mathbb{C}[x]$ is algebraically closed, because all polynomials in one variable in the ring have solutions in the ring. $\mathbb{R}[x]$ is not algebraically closed, because the solution of, for instance, $x^2 + 1 = 0$ does not lie in the ring $\Box$
+          Solution: <span class="mathjax">$\mathbb{C}[x]$</span> is algebraically closed, because all polynomials in one variable in the ring have solutions in the ring. <span class="mathjax">$\mathbb{R}[x]$</span> is not algebraically closed, because the solution of, for instance, <span class="mathjax">$x^2 + 1 = 0$</span> does not lie in the ring <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          List all the maximal ideals of $\mathbb{C}[x]$ and $\mathbb{R}[x]$.
+          List all the maximal ideals of <span class="mathjax">$\mathbb{C}[x]$</span> and <span class="mathjax">$\mathbb{R}[x]$</span>.
         </p>
         <p>
-          Solution: The maximal ideals of $\mathbb{C}[x]$ are $(x - \alpha)$, while those of $\mathbb{R}[x]$ are $(x - a)$ and $(x - \alpha)(x - \bar{\alpha})$, where $a$ is a real number, and $\alpha$ is a complex number. Notice that all maximal ideals of $\mathbb{C}$ can be factorized into monic factors, while in the case of $\mathbb{R}$, quadratic factors are required $\Box$
+          Solution: The maximal ideals of <span class="mathjax">$\mathbb{C}[x]$</span> are <span class="mathjax">$(x - \alpha)$</span>, while those of <span class="mathjax">$\mathbb{R}[x]$</span> are <span class="mathjax">$(x - a)$</span> and <span class="mathjax">$(x - \alpha)(x - \bar{\alpha})$</span>, where <span class="mathjax">$a$</span> is a real number, and <span class="mathjax">$\alpha$</span> is a complex number. Notice that all maximal ideals of <span class="mathjax">$\mathbb{C}$</span> can be factorized into monic factors, while in the case of <span class="mathjax">$\mathbb{R}$</span>, quadratic factors are required <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Prove that $P$ is a prime ideal in ring $A$ iff $A/P$ is an integral domain.
+          Prove that <span class="mathjax">$P$</span> is a prime ideal in ring <span class="mathjax">$A$</span> iff <span class="mathjax">$A/P$</span> is an integral domain.
         </p>
         <p>
-          An integral domain is defined by $pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/P$.
+          An integral domain is defined by <span class="mathjax">$pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/P$</span>.
         </p>
         <p>
-          Proof: Given that $A/P$ is an integral domain, show that $P$ is prime. Consider elements $a, b \in A$. Elements of $A/P$ are then of the form $a + P, b + P$. Now, use the definition of an integral domain to write:<br/>
-          $$(a + P)(b + P) = 0 + P \implies a + P = 0 + P \vee b + P = 0 + P$$<br/>
-          $$ab + P = 0 + P \implies a - 0 \in P \vee b - 0 \in P$$<br/>
-          $$ab \in P \implies a \in P \vee b \in P$$
+          Proof: Given that <span class="mathjax">$A/P$</span> is an integral domain, show that <span class="mathjax">$P$</span> is prime. Consider elements <span class="mathjax">$a, b \in A$</span>. Elements of <span class="mathjax">$A/P$</span> are then of the form <span class="mathjax">$a + P, b + P$</span>. Now, use the definition of an integral domain to write:<br/>
+          $<span class="mathjax">$(a + P)(b + P) = 0 + P \implies a + P = 0 + P \vee b + P = 0 + P$</span><span class="mathjax">$<br/>
+          $</span><span class="mathjax">$ab + P = 0 + P \implies a - 0 \in P \vee b - 0 \in P$</span><span class="mathjax">$<br/>
+          $</span><span class="mathjax">$ab \in P \implies a \in P \vee b \in P$</span>$
         </p>
         <p>
           This is exactly the definition of a prime ideal, as required.
         </p>
         <p>
-          Proof, the other way: To show $A/P$ is an integral domain, given that $P$ is a prime ideal. First, consider the surjective homomorphism<br/>
-          $$A \xrightarrow[]{\varphi} A/P$$
+          Proof, the other way: To show <span class="mathjax">$A/P$</span> is an integral domain, given that <span class="mathjax">$P$</span> is a prime ideal. First, consider the surjective homomorphism<br/>
+          $<span class="mathjax">$A \xrightarrow[]{\varphi} A/P$</span>$
         </p>
         <p>
-          From isomorphism theorem, $\text{ker}(\varphi) = P = \{a \mid \varphi(a) = 0\}$. We know that:<br/>
-          $$pq \in P \implies p \in P \vee q \in P$$<br/>
-          $$\varphi(p)\varphi(q) \in (0) \implies \varphi(p) \in (0) \vee \varphi(q) \in (0)$$
+          From isomorphism theorem, <span class="mathjax">$\text{ker}(\varphi) = P = \{a \mid \varphi(a) = 0\}$</span>. We know that:<br/>
+          $<span class="mathjax">$pq \in P \implies p \in P \vee q \in P$</span><span class="mathjax">$<br/>
+          $</span><span class="mathjax">$\varphi(p)\varphi(q) \in (0) \implies \varphi(p) \in (0) \vee \varphi(q) \in (0)$</span>$
         </p>
         <p>
-          This gives us the required condition for integral domain $\Box$
+          This gives us the required condition for integral domain <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Prove that $M$ is a maximal ideal in ring $A$ iff $A/M$ is a field.
+          Prove that <span class="mathjax">$M$</span> is a maximal ideal in ring <span class="mathjax">$A$</span> iff <span class="mathjax">$A/M$</span> is a field.
         </p>
         <p>
-          A field is defined by $pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/M$ and $\exists v^{-1}: v^{-1}v = vv^{-1} = 1 \mid v \in A/M$.
+          A field is defined by <span class="mathjax">$pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/M$</span> and <span class="mathjax">$\exists v^{-1}: v^{-1}v = vv^{-1} = 1 \mid v \in A/M$</span>.
         </p>
         <p>
-          Proof:  To show that $M$ is maximal given that $A/M$ is a field. For the zerodivisor proof, follow exactly. For the next part, assume $w \in A$:<br/>
-          $$(v + M)(w + M) = 1 + M$$<br/>
-          $$vw - 1 \in M \implies vw \in 1 + M = (1)$$
+          Proof:  To show that <span class="mathjax">$M$</span> is maximal given that <span class="mathjax">$A/M$</span> is a field. For the zerodivisor proof, follow exactly. For the next part, assume <span class="mathjax">$w \in A$</span>:<br/>
+          $<span class="mathjax">$(v + M)(w + M) = 1 + M$</span><span class="mathjax">$<br/>
+          $</span><span class="mathjax">$vw - 1 \in M \implies vw \in 1 + M = (1)$</span>$
         </p>
         <p>
-          hence $vw$ is unit, which implies that $w = v^{-1}$ as required.
+          hence <span class="mathjax">$vw$</span> is unit, which implies that <span class="mathjax">$w = v^{-1}$</span> as required.
         </p>
         <p>
-          Proof, the other way: To show that $A/M$ is a field, given $M$ is maximal. Consider the surjective homomorphism:<br/>
-          $$A \xrightarrow[]{\varphi} A/M$$
+          Proof, the other way: To show that <span class="mathjax">$A/M$</span> is a field, given <span class="mathjax">$M$</span> is maximal. Consider the surjective homomorphism:<br/>
+          $<span class="mathjax">$A \xrightarrow[]{\varphi} A/M$</span>$
         </p>
         <p>
-          Now, since $A/M$ is a field, the only ideals are $(0)$ and $(1)$; by isomorphism theorem, there is a bijective correspondence between ideals of $A$ containing $M$ and those of $A/M$.<br/>
-          $$\varphi^{-1}(0) = ker(\varphi) = (0)$$<br/>
-          $$\varphi^{-1}(1) = A \backslash (0) = M$$
+          Now, since <span class="mathjax">$A/M$</span> is a field, the only ideals are <span class="mathjax">$(0)$</span> and <span class="mathjax">$(1)$</span>; by isomorphism theorem, there is a bijective correspondence between ideals of <span class="mathjax">$A$</span> containing <span class="mathjax">$M$</span> and those of <span class="mathjax">$A/M$</span>.<br/>
+          $<span class="mathjax">$\varphi^{-1}(0) = ker(\varphi) = (0)$</span><span class="mathjax">$<br/>
+          $</span><span class="mathjax">$\varphi^{-1}(1) = A \backslash (0) = M$</span>$
         </p>
         <p>
-          Since $(0) \subset M \subset A$, we have shown that $M$ is maximal, as required $\Box$
+          Since <span class="mathjax">$(0) \subset M \subset A$</span>, we have shown that <span class="mathjax">$M$</span> is maximal, as required <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          For ideals $P$ and $Q$, show that $PQ$ is contained within $P \cap Q$.
+          For ideals <span class="mathjax">$P$</span> and <span class="mathjax">$Q$</span>, show that <span class="mathjax">$PQ$</span> is contained within <span class="mathjax">$P \cap Q$</span>.
         </p>
         <p>
           Proof: From isomorphism theorem,<br/>
-          $$(P + Q)/Q \cong P/(P \cap Q)$$<br/>
-          $$PQ/(P + Q) = P \cap Q$$
+          $<span class="mathjax">$(P + Q)/Q \cong P/(P \cap Q)$</span><span class="mathjax">$<br/>
+          $</span><span class="mathjax">$PQ/(P + Q) = P \cap Q$</span>$
         </p>
         <p>
-          Since $P + Q = \text{gcd}(P, Q)$, we see that unless the gcd is $1$, $PQ$ is strictly smaller than $P \cap Q$ $\Box$
+          Since <span class="mathjax">$P + Q = \text{gcd}(P, Q)$</span>, we see that unless the gcd is <span class="mathjax">$1$</span>, <span class="mathjax">$PQ$</span> is strictly smaller than <span class="mathjax">$P \cap Q$</span> <span class="mathjax">$\Box$</span>
         </p>
       </article>
     </main>

@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -72,7 +75,7 @@
           Adjoints
         </h2>
         <p>
-          For a fixed field $K$, consider the functors
+          For a fixed field <span class="mathjax">$K$</span>, consider the functors
         </p>
         <div class="mathjax">
           $$
@@ -84,11 +87,11 @@
           $$
         </div>
         <p>
-          $U$ is the forgetful functor which takes the vector field to the corresponding set of vectors, while $V$ takes $\textbf{Set}$ to a basis. For set $X$, $V(X)$ is the finite formal set of linear combinations $\sum r_i x_i$, with scalar coefficents $r_i$, and $x_i \in X$. For vector space $W$, $g : X \rightarrow U(W)$ extends to $f : V(X) \rightarrow W$, and hence there is a bijection<br/>
-          $$\varphi : \textbf{Set}(X, U(W)) \cong \textbf{Vec}_K(V(X), W)$$
+          <span class="mathjax">$U$</span> is the forgetful functor which takes the vector field to the corresponding set of vectors, while <span class="mathjax">$V$</span> takes <span class="mathjax">$\textbf{Set}$</span> to a basis. For set <span class="mathjax">$X$</span>, <span class="mathjax">$V(X)$</span> is the finite formal set of linear combinations <span class="mathjax">$\sum r_i x_i$</span>, with scalar coefficents <span class="mathjax">$r_i$</span>, and <span class="mathjax">$x_i \in X$</span>. For vector space <span class="mathjax">$W$</span>, <span class="mathjax">$g : X \rightarrow U(W)$</span> extends to <span class="mathjax">$f : V(X) \rightarrow W$</span>, and hence there is a bijection<br/>
+          $<span class="mathjax">$\varphi : \textbf{Set}(X, U(W)) \cong \textbf{Vec}_K(V(X), W)$</span>$
         </p>
         <p>
-          Setting $h : X' \rightarrow X, h^* g = g \circ h$, naturality in $X, W$ are obtained from the following diagram:
+          Setting <span class="mathjax">$h : X' \rightarrow X, h^* g = g \circ h$</span>, naturality in <span class="mathjax">$X, W$</span> are obtained from the following diagram:
         </p>
         <div class="mathjax">
           $$
@@ -101,19 +104,19 @@
           $$
         </div>
         <p>
-          As another example, consider the <a href="/category/1#graphs-and-free-categories">free category</a> over a small graph $G$, $C = FG$, and $D : \textbf{Grph} \rightarrow \textbf{Cat}$ given by; it is related to the forgetful functor $U : \textbf{Cat} \rightarrow \textbf{Grph}$ since $D : G \rightarrow UB$ extends to $D' : FG \rightarrow B$. Moreover $D \mapsto D'$ is a natural isomorphism:<br/>
-          $$\textbf{Cat}(FG, B) \cong \textbf{Grph}(G, UB)$$
+          As another example, consider the <a href="/category/1#graphs-and-free-categories">free category</a> over a small graph <span class="mathjax">$G$</span>, <span class="mathjax">$C = FG$</span>, and <span class="mathjax">$D : \textbf{Grph} \rightarrow \textbf{Cat}$</span> given by; it is related to the forgetful functor <span class="mathjax">$U : \textbf{Cat} \rightarrow \textbf{Grph}$</span> since <span class="mathjax">$D : G \rightarrow UB$</span> extends to <span class="mathjax">$D' : FG \rightarrow B$</span>. Moreover <span class="mathjax">$D \mapsto D'$</span> is a natural isomorphism:<br/>
+          $<span class="mathjax">$\textbf{Cat}(FG, B) \cong \textbf{Grph}(G, UB)$</span>$
         </p>
         <p>
-          In the category of small sets, the function $g : T \times R \rightarrow S$, a function of two variables, can be considered as $\varphi g : T \rightarrow \text{Hom}(R, S)$, a function of one variable, so that the following bijection holds:<br/>
-          $$\varphi : \text{Hom}(T \times R, S) \cong \text{Hom}(T, \text{Hom}(R, S))$$
+          In the category of small sets, the function <span class="mathjax">$g : T \times R \rightarrow S$</span>, a function of two variables, can be considered as <span class="mathjax">$\varphi g : T \rightarrow \text{Hom}(R, S)$</span>, a function of one variable, so that the following bijection holds:<br/>
+          $<span class="mathjax">$\varphi : \text{Hom}(T \times R, S) \cong \text{Hom}(T, \text{Hom}(R, S))$</span>$
         </p>
         <p>
-          For modules $A, B, C$ in a commutative ring $K$, a similar bijection holds:<br/>
-          $$\text{Hom}(A \otimes_K B, C) \cong \text{Hom}(A, \text{Hom}_K(B, C))$$
+          For modules <span class="mathjax">$A, B, C$</span> in a commutative ring <span class="mathjax">$K$</span>, a similar bijection holds:<br/>
+          $<span class="mathjax">$\text{Hom}(A \otimes_K B, C) \cong \text{Hom}(A, \text{Hom}_K(B, C))$</span>$
         </p>
         <p>
-          The <mark>adjuction</mark> from category $X$ to category $A$, where $F, G$ are functors, is given by the triple $\langle F, G, \varphi \rangle : X \rightharpoonup A$
+          The <mark>adjuction</mark> from category <span class="mathjax">$X$</span> to category <span class="mathjax">$A$</span>, where <span class="mathjax">$F, G$</span> are functors, is given by the triple <span class="mathjax">$\langle F, G, \varphi \rangle : X \rightharpoonup A$</span>
         </p>
         <div class="mathjax">
           $$
@@ -125,11 +128,11 @@
           $$
         </div>
         <p>
-          while $\varphi$ is a function such that:<br/>
-          $$\varphi = \varphi_{x, y} : A(Fx, a) \cong X(x, Ga)$$
+          while <span class="mathjax">$\varphi$</span> is a function such that:<br/>
+          $<span class="mathjax">$\varphi = \varphi_{x, y} : A(Fx, a) \cong X(x, Ga)$</span>$
         </p>
         <p>
-          Here, $A(Fx, a)$ is the bifunctor:
+          Here, <span class="mathjax">$A(Fx, a)$</span> is the bifunctor:
         </p>
         <div class="mathjax">
           $$
@@ -137,7 +140,7 @@
           $$
         </div>
         <p>
-          For all $h : x' \rightarrow x, k : a \rightarrow a'$, it satisfies the diagrams:
+          For all <span class="mathjax">$h : x' \rightarrow x, k : a \rightarrow a'$</span>, it satisfies the diagrams:
         </p>
         <div class="mathjax">
           $$
@@ -156,21 +159,21 @@
           $$
         </div>
         <p>
-          Here, $h^* = X(h, Ga), k_* = A(Fx, k)$.
+          Here, <span class="mathjax">$h^* = X(h, Ga), k_* = A(Fx, k)$</span>.
         </p>
         <p>
-          An adjunction can also be described without talking about hom-sets, directly in terms of arrows. There is a bijection which assigns to each of the arrows $f : Fx \rightarrow a$ arrows $\varphi f = \text{rad } f : x \rightarrow Ga$, the <mark>right adjunct</mark> of $f$, in such a way that the natural compositions hold:<br/>
-          $$\varphi(k \circ f) = Gk \circ \varphi f \quad \varphi(f \circ Fh) = \varphi f \circ h$$
+          An adjunction can also be described without talking about hom-sets, directly in terms of arrows. There is a bijection which assigns to each of the arrows <span class="mathjax">$f : Fx \rightarrow a$</span> arrows <span class="mathjax">$\varphi f = \text{rad } f : x \rightarrow Ga$</span>, the <mark>right adjunct</mark> of <span class="mathjax">$f$</span>, in such a way that the natural compositions hold:<br/>
+          $<span class="mathjax">$\varphi(k \circ f) = Gk \circ \varphi f \quad \varphi(f \circ Fh) = \varphi f \circ h$</span>$
         </p>
         <p>
-          $F$ is said to be <mark>right adjoint</mark> for $G$, and $G$ is the <mark>left adjoint</mark> for $F$.
+          <span class="mathjax">$F$</span> is said to be <mark>right adjoint</mark> for <span class="mathjax">$G$</span>, and <span class="mathjax">$G$</span> is the <mark>left adjoint</mark> for <span class="mathjax">$F$</span>.
         </p>
         <p>
-          Every adjunction yields a universal arrow. Call the hom-set that contains the identity $1 : Fx \rightarrow Fx$ the $\varphi$-image of $\eta_x$. $\eta_x$ is a universal arrow by <a href="/category/2#yoneda-lemma">Yoneda's proposition</a>:<br/>
-          $$\eta_x : x \rightarrow GFx \quad \eta_x = \varphi(1_{Fx})$$
+          Every adjunction yields a universal arrow. Call the hom-set that contains the identity <span class="mathjax">$1 : Fx \rightarrow Fx$</span> the <span class="mathjax">$\varphi$</span>-image of <span class="mathjax">$\eta_x$</span>. <span class="mathjax">$\eta_x$</span> is a universal arrow by <a href="/category/2#yoneda-lemma">Yoneda's proposition</a>:<br/>
+          $<span class="mathjax">$\eta_x : x \rightarrow GFx \quad \eta_x = \varphi(1_{Fx})$</span>$
         </p>
         <p>
-          The adjunction gives such a universal arrow $\eta_x$ for every object $x$. The function $x \mapsto \eta_x$ is an NT $I_x \rightarrow GF$. We obtain the following diagrams:
+          The adjunction gives such a universal arrow <span class="mathjax">$\eta_x$</span> for every object <span class="mathjax">$x$</span>. The function <span class="mathjax">$x \mapsto \eta_x$</span> is an NT <span class="mathjax">$I_x \rightarrow GF$</span>. We obtain the following diagrams:
         </p>
         <div class="mathjax">
           $$
@@ -193,11 +196,11 @@
           $$
         </div>
         <p>
-          where $h_* = X(1, h)$ and $h^* = X(h, 1)$.
+          where <span class="mathjax">$h_* = X(1, h)$</span> and <span class="mathjax">$h^* = X(h, 1)$</span>.
         </p>
         <p>
-          The bijection $\varphi$ can be expressed as:<br/>
-          $$\varphi(f) = G(f)\eta_x \quad f = Fx \rightarrow a$$
+          The bijection <span class="mathjax">$\varphi$</span> can be expressed as:<br/>
+          $<span class="mathjax">$\varphi(f) = G(f)\eta_x \quad f = Fx \rightarrow a$</span>$
         </p>
         <p>
           and we obtain:
@@ -219,45 +222,45 @@
           $$
         </div>
         <p>
-          To summarize, every adjunction $\langle F, G, \varphi \rangle : X \rightharpoonup A$ determines:
+          To summarize, every adjunction <span class="mathjax">$\langle F, G, \varphi \rangle : X \rightharpoonup A$</span> determines:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            A natural transform $\eta : I_x \overset{\bullet}{\rightarrow} GF$ such that for each object $x$, the arrow $\eta_x$ is universal from $x$ to $G$, and right adjunct $f : Fx \rightarrow a$ is detemined by $\varphi f = Gf \circ \eta_x : x \rightarrow Ga$
+            A natural transform <span class="mathjax">$\eta : I_x \overset{\bullet}{\rightarrow} GF$</span> such that for each object <span class="mathjax">$x$</span>, the arrow <span class="mathjax">$\eta_x$</span> is universal from <span class="mathjax">$x$</span> to <span class="mathjax">$G$</span>, and right adjunct <span class="mathjax">$f : Fx \rightarrow a$</span> is detemined by <span class="mathjax">$\varphi f = Gf \circ \eta_x : x \rightarrow Ga$</span>
           </li>
           <li>
-            Dually, another natural transform $\epsilon : FG \overset{\bullet}{\rightarrow} I_x$ such that every arrow $\epsilon_a$ is universal from $G$ to $a$, and left adjunct $g : x \rightarrow Ga$ is determined by $\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a$
+            Dually, another natural transform <span class="mathjax">$\epsilon : FG \overset{\bullet}{\rightarrow} I_x$</span> such that every arrow <span class="mathjax">$\epsilon_a$</span> is universal from <span class="mathjax">$G$</span> to <span class="mathjax">$a$</span>, and left adjunct <span class="mathjax">$g : x \rightarrow Ga$</span> is determined by <span class="mathjax">$\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a$</span>
           </li>
         </ol>
         <p>
           Moreover, the following composites are identities:<br/>
-          $$G \xrightarrow{\eta G} GFG \xrightarrow{G \epsilon} G \quad F \xrightarrow{F \eta} FGF \xrightarrow{\epsilon F} F$$
+          $<span class="mathjax">$G \xrightarrow{\eta G} GFG \xrightarrow{G \epsilon} G \quad F \xrightarrow{F \eta} FGF \xrightarrow{\epsilon F} F$</span>$
         </p>
         <p>
-          $\eta$ is termed <mark>unit</mark> and $\epsilon$ is termed <mark>counit</mark> of the adjunction.
+          <span class="mathjax">$\eta$</span> is termed <mark>unit</mark> and <span class="mathjax">$\epsilon$</span> is termed <mark>counit</mark> of the adjunction.
         </p>
         <p>
           The adjunct is completely determined by one of the following items:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            Functors $F, G$ and NT $\eta : 1_x \overset{\bullet}{\rightarrow} GF$ such that every $\eta_x : x \rightarrow GFx$ is universal. Then, $\varphi f = Gf \circ \eta_x : x \rightarrow Ga$.
+            Functors <span class="mathjax">$F, G$</span> and NT <span class="mathjax">$\eta : 1_x \overset{\bullet}{\rightarrow} GF$</span> such that every <span class="mathjax">$\eta_x : x \rightarrow GFx$</span> is universal. Then, <span class="mathjax">$\varphi f = Gf \circ \eta_x : x \rightarrow Ga$</span>.
           </li>
           <li>
-            Functor $G : A \rightarrow X$, object $F_0 x \in A$, and universal arrow $\eta_x : x \rightarrow GF_0 x$, from $x$ to $G$. Then, functor $F$ has object function $F_0$ and, on arrow $h : x \rightarrow x'$, by $GFh \circ \eta_x \rightarrow \eta_{x'}$.
+            Functor <span class="mathjax">$G : A \rightarrow X$</span>, object <span class="mathjax">$F_0 x \in A$</span>, and universal arrow <span class="mathjax">$\eta_x : x \rightarrow GF_0 x$</span>, from <span class="mathjax">$x$</span> to <span class="mathjax">$G$</span>. Then, functor <span class="mathjax">$F$</span> has object function <span class="mathjax">$F_0$</span> and, on arrow <span class="mathjax">$h : x \rightarrow x'$</span>, by <span class="mathjax">$GFh \circ \eta_x \rightarrow \eta_{x'}$</span>.
           </li>
           <li>
-            Functors $F, G$, and NT $\epsilon : FG \overset{\bullet}{\rightarrow} I_A$ such that every $\epsilon_a : FGa \rightarrow a$ is universal. Then, $\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a$.
+            Functors <span class="mathjax">$F, G$</span>, and NT <span class="mathjax">$\epsilon : FG \overset{\bullet}{\rightarrow} I_A$</span> such that every <span class="mathjax">$\epsilon_a : FGa \rightarrow a$</span> is universal. Then, <span class="mathjax">$\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a$</span>.
           </li>
           <li>
-            Functor $F : X \rightarrow A$, object $G_0 \in X$, and universal arrow $\epsilon_a : FG_0 a \rightarrow a$, from $F$ to $a$.
+            Functor <span class="mathjax">$F : X \rightarrow A$</span>, object <span class="mathjax">$G_0 \in X$</span>, and universal arrow <span class="mathjax">$\epsilon_a : FG_0 a \rightarrow a$</span>, from <span class="mathjax">$F$</span> to <span class="mathjax">$a$</span>.
           </li>
           <li>
-            Functors $F, G$ and NTs $\eta : I_X \overset{\bullet}{\rightarrow} GF$ and $\epsilon : FG \overset{\bullet}{\rightarrow} I_A$.
+            Functors <span class="mathjax">$F, G$</span> and NTs <span class="mathjax">$\eta : I_X \overset{\bullet}{\rightarrow} GF$</span> and <span class="mathjax">$\epsilon : FG \overset{\bullet}{\rightarrow} I_A$</span>.
           </li>
         </ol>
         <p>
-          Due to (v), we can also write the adjunct $\langle F, G, \varphi \rangle$ as $\langle F, G, \eta, \epsilon \rangle : A \rightharpoonup X$.
+          Due to (v), we can also write the adjunct <span class="mathjax">$\langle F, G, \varphi \rangle$</span> as <span class="mathjax">$\langle F, G, \eta, \epsilon \rangle : A \rightharpoonup X$</span>.
         </p>
         <p>
           To prove (i), or its dual (iii), notice:
@@ -286,7 +289,7 @@
           $$
         </div>
         <p>
-          To prove (v), given $\eta, \epsilon$, define:
+          To prove (v), given <span class="mathjax">$\eta, \epsilon$</span>, define:
         </p>
         <div class="mathjax">
           $$
@@ -298,26 +301,26 @@
           $$
         </div>
         <p>
-          by $\varphi f = Gf \circ \eta_x$ for all $f : Fx \rightarrow a$, and $\theta g = \epsilon_a \circ Fg$ for all $g : x \rightarrow Ga$. Since $G$ is a functor and $\varphi$ an NT, we have:<br/>
-          $$\varphi \theta g = G \eta_a \circ GFg \circ \eta_x = G \eta_a \circ \eta_{Ga} \circ g$$
+          by <span class="mathjax">$\varphi f = Gf \circ \eta_x$</span> for all <span class="mathjax">$f : Fx \rightarrow a$</span>, and <span class="mathjax">$\theta g = \epsilon_a \circ Fg$</span> for all <span class="mathjax">$g : x \rightarrow Ga$</span>. Since <span class="mathjax">$G$</span> is a functor and <span class="mathjax">$\varphi$</span> an NT, we have:<br/>
+          $<span class="mathjax">$\varphi \theta g = G \eta_a \circ GFg \circ \eta_x = G \eta_a \circ \eta_{Ga} \circ g$</span>$
         </p>
         <p>
-          Now, since $G \eta_a \circ \eta_{Ga} = 1$, $\varphi \theta$ is identity. Dually, $\theta \varphi$ is also identity, and therefore, $\varphi$ is a bijection with inverse $\theta$. It is clearly natural, and hence an adjunction.
+          Now, since <span class="mathjax">$G \eta_a \circ \eta_{Ga} = 1$</span>, <span class="mathjax">$\varphi \theta$</span> is identity. Dually, <span class="mathjax">$\theta \varphi$</span> is also identity, and therefore, <span class="mathjax">$\varphi$</span> is a bijection with inverse <span class="mathjax">$\theta$</span>. It is clearly natural, and hence an adjunction.
         </p>
         <p>
-          The result is very useful; for instance, (iii) and (iv) let us construct an adjuction whenever we have a universal arrow from or to all objects in a category. For example, $C$ has finite products when for each pair $\langle a, b \rangle \in C \times C$, when there is a universal arrow $\Delta : C \rightarrow C \times C$ to $\langle a, b \rangle$. From the result, we conclude that the function $\langle a, b \rangle \rightarrow a \times b$ giving a product object is actually a functor $C \times C \rightarrow C$, and this functor is right adjoint to $\Delta$:<br/>
-          $$\varphi : (C \times C)(\Delta c, \langle a, b \rangle) \cong C(c, a \times b)$$
+          The result is very useful; for instance, (iii) and (iv) let us construct an adjuction whenever we have a universal arrow from or to all objects in a category. For example, <span class="mathjax">$C$</span> has finite products when for each pair <span class="mathjax">$\langle a, b \rangle \in C \times C$</span>, when there is a universal arrow <span class="mathjax">$\Delta : C \rightarrow C \times C$</span> to <span class="mathjax">$\langle a, b \rangle$</span>. From the result, we conclude that the function <span class="mathjax">$\langle a, b \rangle \rightarrow a \times b$</span> giving a product object is actually a functor <span class="mathjax">$C \times C \rightarrow C$</span>, and this functor is right adjoint to <span class="mathjax">$\Delta$</span>:<br/>
+          $<span class="mathjax">$\varphi : (C \times C)(\Delta c, \langle a, b \rangle) \cong C(c, a \times b)$</span>$
         </p>
         <p>
-          Using the definition of arrows in $C \times C$, we get:<br/>
-          $$\varphi : C(c, a) \times C(c, b) \cong C(c, a \times b)$$
+          Using the definition of arrows in <span class="mathjax">$C \times C$</span>, we get:<br/>
+          $<span class="mathjax">$\varphi : C(c, a) \times C(c, b) \cong C(c, a \times b)$</span>$
         </p>
         <p>
-          The counit of this adjuction is $\langle a \times b, a \times b \rangle \rightarrow \langle a, b \rangle$; it is thus just projections of the product. The adjunction $\varphi^{-1}$ sends the pair $f : c \rightarrow a \times b$ to the pair $\langle pf, qf \rangle$; this is the way in which the adjuction $\varphi$ is determined by the counit $\epsilon$.
+          The counit of this adjuction is <span class="mathjax">$\langle a \times b, a \times b \rangle \rightarrow \langle a, b \rangle$</span>; it is thus just projections of the product. The adjunction <span class="mathjax">$\varphi^{-1}$</span> sends the pair <span class="mathjax">$f : c \rightarrow a \times b$</span> to the pair <span class="mathjax">$\langle pf, qf \rangle$</span>; this is the way in which the adjuction <span class="mathjax">$\varphi$</span> is determined by the counit <span class="mathjax">$\epsilon$</span>.
         </p>
         <p>
-          Similarly, if the category $C$ has coproducts $\langle a, b \rangle \rightarrow a \sqcup b$, they define the coproduct functor $C \times C \rightarrow C$ which is left adjoint to $\Delta$:<br/>
-          $$C(a \sqcup b, c) \cong (C \times C)(\langle a, b \rangle, \Delta c)$$
+          Similarly, if the category <span class="mathjax">$C$</span> has coproducts <span class="mathjax">$\langle a, b \rangle \rightarrow a \sqcup b$</span>, they define the coproduct functor <span class="mathjax">$C \times C \rightarrow C$</span> which is left adjoint to <span class="mathjax">$\Delta$</span>:<br/>
+          $<span class="mathjax">$C(a \sqcup b, c) \cong (C \times C)(\langle a, b \rangle, \Delta c)$</span>$
         </p>
         <p>
           Similar arguments hold for limits. Proving universality is an easy way of showing that adjoints exist.
@@ -342,84 +345,84 @@
           $$
         </div>
         <p>
-          Any two left adjoints of the $G : A \rightarrow X$ are naturally isomorphic. This follows immediately from the fact that universal arrows are unique upto isomorphism.
+          Any two left adjoints of the <span class="mathjax">$G : A \rightarrow X$</span> are naturally isomorphic. This follows immediately from the fact that universal arrows are unique upto isomorphism.
         </p>
         <p>
-          A functor $G : A \rightarrow X$ is said to have a left adjoint iff for every $x \in X$, the functor $X(x, Ga)$ is representable as a functor of $a \in A$. If $\varphi : A(F_0 x, a) \cong X(x, Ga)$ is a representation of this functor, then $F_0$ is the object function of the left adjoint of $G$, for which $\varphi$ is natural in $a$ and gives the adjunction. This is simply a restatement of (ii).
+          A functor <span class="mathjax">$G : A \rightarrow X$</span> is said to have a left adjoint iff for every <span class="mathjax">$x \in X$</span>, the functor <span class="mathjax">$X(x, Ga)$</span> is representable as a functor of <span class="mathjax">$a \in A$</span>. If <span class="mathjax">$\varphi : A(F_0 x, a) \cong X(x, Ga)$</span> is a representation of this functor, then <span class="mathjax">$F_0$</span> is the object function of the left adjoint of <span class="mathjax">$G$</span>, for which <span class="mathjax">$\varphi$</span> is natural in <span class="mathjax">$a$</span> and gives the adjunction. This is simply a restatement of (ii).
         </p>
         <p>
-          If additive functor $G : A \rightarrow M$ between $\text{Ab}$-categories $A, M$ has left adjoint $F : M \rightarrow A$, then $F$ is additive, and the adjunction bijections<br/>
-          $$\varphi : A(Fm, a) \cong M(m, Ga)$$
+          If additive functor <span class="mathjax">$G : A \rightarrow M$</span> between <span class="mathjax">$\text{Ab}$</span>-categories <span class="mathjax">$A, M$</span> has left adjoint <span class="mathjax">$F : M \rightarrow A$</span>, then <span class="mathjax">$F$</span> is additive, and the adjunction bijections<br/>
+          $<span class="mathjax">$\varphi : A(Fm, a) \cong M(m, Ga)$</span>$
         </p>
         <p>
-          are isomorphisms of abelian groups for all $m \in M, a \in A$. This can be shown as follows. If $\eta : I \overset{\bullet}{\rightarrow} GF$ is the unit of the adjunction, then $\varphi$ may be written as $\varphi f = Gf \circ \eta_m$ for any $f : Fm \rightarrow a$. If also $f' : Fm \rightarrow a$, additivity of $G$ gives:<br/>
-          $$\varphi(f + f') = (Gf + Gf')\eta_m = \varphi f + \varphi f'$$
+          are isomorphisms of abelian groups for all <span class="mathjax">$m \in M, a \in A$</span>. This can be shown as follows. If <span class="mathjax">$\eta : I \overset{\bullet}{\rightarrow} GF$</span> is the unit of the adjunction, then <span class="mathjax">$\varphi$</span> may be written as <span class="mathjax">$\varphi f = Gf \circ \eta_m$</span> for any <span class="mathjax">$f : Fm \rightarrow a$</span>. If also <span class="mathjax">$f' : Fm \rightarrow a$</span>, additivity of <span class="mathjax">$G$</span> gives:<br/>
+          $<span class="mathjax">$\varphi(f + f') = (Gf + Gf')\eta_m = \varphi f + \varphi f'$</span>$
         </p>
         <p>
-          Therefore $\varphi$ is a morphism of abelian groups. Next, take $g, g' : m \rightarrow n$ in $M$. Since $\eta$ is nautural,<br/>
-          $$GF(g + g') \circ \eta_m = \eta_n(g + g') = \eta_n g + \eta_n g'$$
+          Therefore <span class="mathjax">$\varphi$</span> is a morphism of abelian groups. Next, take <span class="mathjax">$g, g' : m \rightarrow n$</span> in <span class="mathjax">$M$</span>. Since <span class="mathjax">$\eta$</span> is nautural,<br/>
+          $<span class="mathjax">$GF(g + g') \circ \eta_m = \eta_n(g + g') = \eta_n g + \eta_n g'$</span>$
         </p>
         <p>
-          On the other hand, since $G$ is additive,<br/>
-          $$G(Fg + Fg') \circ \eta_m = \eta_n g + \eta_n g'$$
+          On the other hand, since <span class="mathjax">$G$</span> is additive,<br/>
+          $<span class="mathjax">$G(Fg + Fg') \circ \eta_m = \eta_n g + \eta_n g'$</span>$
         </p>
         <p>
-          The equality of these two results, along with the universal property of $\eta_m$ show that $F(g + g') = Fg + Fg'$. Hence $F$ is additive. Dually, right adjoint of an additive functor is additive.
+          The equality of these two results, along with the universal property of <span class="mathjax">$\eta_m$</span> show that <span class="mathjax">$F(g + g') = Fg + Fg'$</span>. Hence <span class="mathjax">$F$</span> is additive. Dually, right adjoint of an additive functor is additive.
         </p>
         <h2 id="reflective-subcategories">
           Reflective subcategories
         </h2>
         <p>
-          Let $f^* : A(a, -) \overset{\bullet}{\rightarrow} A(b, -)$ be the NT induced by the arrow $f : b \rightarrow a$ of $A$. Then $f^*$ is monic iff $f$ is epi, and $f^*$ is epi iff $f$ is a split monic. Note that $f^* \mapsto f$ is the bijection $Nat(A(a, -), A(b, -)) \cong A(b, a)$ given by the Yoneda lemma. Observe that for functors $S, T : C \rightarrow B$, the NT $\tau : S \overset{\bullet}{\rightarrow} T$ is epi in $B^C$ iff every component $\tau_c : S_c \rightarrow T_c$ is epi in $B$ for $B = \textbf{Set}$. To show this, notice that for $h \in A$, $f^*h = hf$. Hence the first result is just the definition of an epi $f$. If $f^*$ is epi, there is an $h_0 : a \rightarrow b$ such that $f^* h_0 = h_0 f^* = 1 : b \rightarrow b$, so $f$ has a left inverse. The converse is immediate. Now apply Yoneda lemma to the NT:<br/>
-          $$A(a, c) \xrightarrow{G_{a, c}} X(Ga, Gc) \xrightarrow{\varphi^{-1}} A(FGa, c)$$
+          Let <span class="mathjax">$f^* : A(a, -) \overset{\bullet}{\rightarrow} A(b, -)$</span> be the NT induced by the arrow <span class="mathjax">$f : b \rightarrow a$</span> of <span class="mathjax">$A$</span>. Then <span class="mathjax">$f^*$</span> is monic iff <span class="mathjax">$f$</span> is epi, and <span class="mathjax">$f^*$</span> is epi iff <span class="mathjax">$f$</span> is a split monic. Note that <span class="mathjax">$f^* \mapsto f$</span> is the bijection <span class="mathjax">$Nat(A(a, -), A(b, -)) \cong A(b, a)$</span> given by the Yoneda lemma. Observe that for functors <span class="mathjax">$S, T : C \rightarrow B$</span>, the NT <span class="mathjax">$\tau : S \overset{\bullet}{\rightarrow} T$</span> is epi in <span class="mathjax">$B^C$</span> iff every component <span class="mathjax">$\tau_c : S_c \rightarrow T_c$</span> is epi in <span class="mathjax">$B$</span> for <span class="mathjax">$B = \textbf{Set}$</span>. To show this, notice that for <span class="mathjax">$h \in A$</span>, <span class="mathjax">$f^*h = hf$</span>. Hence the first result is just the definition of an epi <span class="mathjax">$f$</span>. If <span class="mathjax">$f^*$</span> is epi, there is an <span class="mathjax">$h_0 : a \rightarrow b$</span> such that <span class="mathjax">$f^* h_0 = h_0 f^* = 1 : b \rightarrow b$</span>, so <span class="mathjax">$f$</span> has a left inverse. The converse is immediate. Now apply Yoneda lemma to the NT:<br/>
+          $<span class="mathjax">$A(a, c) \xrightarrow{G_{a, c}} X(Ga, Gc) \xrightarrow{\varphi^{-1}} A(FGa, c)$</span>$
         </p>
         <p>
-          It is determined by the image of $1 : a \rightarrow a$, which is exactly the definition of counit $\epsilon_a : FGa \rightarrow a$. But $\varphi^{-1}$ is an isomorphism, hence this NT is monic or epi, respectively, whenver $G_{a, c}$ is injective or surjective; i.e. when $G_{a, c}$ is full or faithful.
+          It is determined by the image of <span class="mathjax">$1 : a \rightarrow a$</span>, which is exactly the definition of counit <span class="mathjax">$\epsilon_a : FGa \rightarrow a$</span>. But <span class="mathjax">$\varphi^{-1}$</span> is an isomorphism, hence this NT is monic or epi, respectively, whenver <span class="mathjax">$G_{a, c}$</span> is injective or surjective; i.e. when <span class="mathjax">$G_{a, c}$</span> is full or faithful.
         </p>
         <p>
-          For an adjunction $\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A$, $G$ is faithful iff every component $\epsilon_a$ of the counit $\epsilon$ is epi, and $G$ is full iff every $\epsilon_a$ is split monic. Hence, $G$ is full and faithful iff each $\epsilon_a$ is an isomorphism $FGa \cong a$. This follows immediately from the last result.
+          For an adjunction <span class="mathjax">$\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A$</span>, <span class="mathjax">$G$</span> is faithful iff every component <span class="mathjax">$\epsilon_a$</span> of the counit <span class="mathjax">$\epsilon$</span> is epi, and <span class="mathjax">$G$</span> is full iff every <span class="mathjax">$\epsilon_a$</span> is split monic. Hence, <span class="mathjax">$G$</span> is full and faithful iff each <span class="mathjax">$\epsilon_a$</span> is an isomorphism <span class="mathjax">$FGa \cong a$</span>. This follows immediately from the last result.
         </p>
         <p>
-          A subcategory $A$ of $B$ is <mark>reflective</mark> in $B$ when the inclusion function $K : A \rightarrow B$ has left adjoint $F : B \rightarrow A$. The functor $F$ may be called a <mark>reflector</mark>, and the adjunction $\langle F, K, \varphi \rangle = \langle F, \varphi \rangle : B \rightharpoonup A$ a <mark>reflection</mark> of $B$ in subcategory $A$. Since the inclusion functor $K$ is always faithful, the counit $\epsilon$ of the reflection is always epi. A reflection can be described in terms of the composite functor $R = KF : b \rightarrow b$; indeed $A \subset B$ is reflective in $B$ iff there is a functor $R : B \rightarrow B$ with values in the subcategory $A$ and a bijection of sets:<br/>
-          $$A(Rb, a) \cong B(b, a)$$
+          A subcategory <span class="mathjax">$A$</span> of <span class="mathjax">$B$</span> is <mark>reflective</mark> in <span class="mathjax">$B$</span> when the inclusion function <span class="mathjax">$K : A \rightarrow B$</span> has left adjoint <span class="mathjax">$F : B \rightarrow A$</span>. The functor <span class="mathjax">$F$</span> may be called a <mark>reflector</mark>, and the adjunction <span class="mathjax">$\langle F, K, \varphi \rangle = \langle F, \varphi \rangle : B \rightharpoonup A$</span> a <mark>reflection</mark> of <span class="mathjax">$B$</span> in subcategory <span class="mathjax">$A$</span>. Since the inclusion functor <span class="mathjax">$K$</span> is always faithful, the counit <span class="mathjax">$\epsilon$</span> of the reflection is always epi. A reflection can be described in terms of the composite functor <span class="mathjax">$R = KF : b \rightarrow b$</span>; indeed <span class="mathjax">$A \subset B$</span> is reflective in <span class="mathjax">$B$</span> iff there is a functor <span class="mathjax">$R : B \rightarrow B$</span> with values in the subcategory <span class="mathjax">$A$</span> and a bijection of sets:<br/>
+          $<span class="mathjax">$A(Rb, a) \cong B(b, a)$</span>$
         </p>
         <p>
-          natural in $b \in B, a \in A$. A reflection can also be described in terms of universal arrows: $A \subset B$ is reflective iff to each $b \in B$, there is an object $Rb$ of the subcategory $A$, and the arrow $\eta_b : b \rightarrow Rb$ such that every arrow $g : b \rightarrow a \in A$ has the form $g = f \circ \eta_b$ for $f : Rb \rightarrow a$ of $A$. $R$ is then the object function of a functor $B \rightarrow B$ with values in $A$. If a full subcategory $A \subset B$ is reflective in $B$, then each object $a \in A$ is isommorphic to $FKa$, and hence $Ra \cong a$ for all $a$. Dually, $A \subset B$ is <mark>coreflective</mark> in $B$ when the inclusion functor $A \rightarrow B$ has right adjoint.
+          natural in <span class="mathjax">$b \in B, a \in A$</span>. A reflection can also be described in terms of universal arrows: <span class="mathjax">$A \subset B$</span> is reflective iff to each <span class="mathjax">$b \in B$</span>, there is an object <span class="mathjax">$Rb$</span> of the subcategory <span class="mathjax">$A$</span>, and the arrow <span class="mathjax">$\eta_b : b \rightarrow Rb$</span> such that every arrow <span class="mathjax">$g : b \rightarrow a \in A$</span> has the form <span class="mathjax">$g = f \circ \eta_b$</span> for <span class="mathjax">$f : Rb \rightarrow a$</span> of <span class="mathjax">$A$</span>. <span class="mathjax">$R$</span> is then the object function of a functor <span class="mathjax">$B \rightarrow B$</span> with values in <span class="mathjax">$A$</span>. If a full subcategory <span class="mathjax">$A \subset B$</span> is reflective in <span class="mathjax">$B$</span>, then each object <span class="mathjax">$a \in A$</span> is isommorphic to <span class="mathjax">$FKa$</span>, and hence <span class="mathjax">$Ra \cong a$</span> for all <span class="mathjax">$a$</span>. Dually, <span class="mathjax">$A \subset B$</span> is <mark>coreflective</mark> in <span class="mathjax">$B$</span> when the inclusion functor <span class="mathjax">$A \rightarrow B$</span> has right adjoint.
         </p>
         <p>
-          As an example, $\textbf{Ab}$ is reflective in $\textbf{Grp}$, for if $G/[G, G]$ is the usual factor-commutator group of group $G$, then $\text{Hom}(G/[G, G], A) \cong \text{Hom}(G, A)$ for $A$ abelian, and $\textbf{Ab}$ is full in $\textbf{Grp}$. As another example, consider the category of metric spaces $X$ with arrows uniformly continuous functions. The full subcategory of complete metric spaces is reflective; the reflector sends each metric space to its completion. As a third example, consider the category of all completely regular Hausdorff spaces with arrows continuous functions. The full subcategory of this category is reflective; the reflector sends each completely regular space to its <mark>Stone-Čech compatification</mark>.
+          As an example, <span class="mathjax">$\textbf{Ab}$</span> is reflective in <span class="mathjax">$\textbf{Grp}$</span>, for if <span class="mathjax">$G/[G, G]$</span> is the usual factor-commutator group of group <span class="mathjax">$G$</span>, then <span class="mathjax">$\text{Hom}(G/[G, G], A) \cong \text{Hom}(G, A)$</span> for <span class="mathjax">$A$</span> abelian, and <span class="mathjax">$\textbf{Ab}$</span> is full in <span class="mathjax">$\textbf{Grp}$</span>. As another example, consider the category of metric spaces <span class="mathjax">$X$</span> with arrows uniformly continuous functions. The full subcategory of complete metric spaces is reflective; the reflector sends each metric space to its completion. As a third example, consider the category of all completely regular Hausdorff spaces with arrows continuous functions. The full subcategory of this category is reflective; the reflector sends each completely regular space to its <mark>Stone-Čech compatification</mark>.
         </p>
         <p>
-          A coreflective subcategory of $\textbf{Ab}$ is the full subcategory of all torsion abelian groups; the coreflector sends each abelian group $A$ to the subgroup $TA$ of all elements of finite order in $A$.
+          A coreflective subcategory of <span class="mathjax">$\textbf{Ab}$</span> is the full subcategory of all torsion abelian groups; the coreflector sends each abelian group <span class="mathjax">$A$</span> to the subgroup <span class="mathjax">$TA$</span> of all elements of finite order in <span class="mathjax">$A$</span>.
         </p>
         <h2 id="equivalence-of-categories">
           Equivalence of categories
         </h2>
         <p>
-          A functor $S : A \rightarrow C$ is an isomorphism of categories when there is a functor $T : C \rightarrow A$ such that $ST = I : C \rightarrow C$ and $TS = I : A \rightarrow A$. In this case, the identity NTs $\eta : I \overset{\bullet}{\rightarrow} ST$ and $\epsilon : TS \overset{\bullet}{\rightarrow} I$ make $\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$ into an adjunction. In other words, the two-sided inverse $T$ of a functor $S$ is a left-adjoint of $S$; $T$ is also a right-adjoint of $S$.
+          A functor <span class="mathjax">$S : A \rightarrow C$</span> is an isomorphism of categories when there is a functor <span class="mathjax">$T : C \rightarrow A$</span> such that <span class="mathjax">$ST = I : C \rightarrow C$</span> and <span class="mathjax">$TS = I : A \rightarrow A$</span>. In this case, the identity NTs <span class="mathjax">$\eta : I \overset{\bullet}{\rightarrow} ST$</span> and <span class="mathjax">$\epsilon : TS \overset{\bullet}{\rightarrow} I$</span> make <span class="mathjax">$\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$</span> into an adjunction. In other words, the two-sided inverse <span class="mathjax">$T$</span> of a functor <span class="mathjax">$S$</span> is a left-adjoint of <span class="mathjax">$S$</span>; <span class="mathjax">$T$</span> is also a right-adjoint of <span class="mathjax">$S$</span>.
         </p>
         <p>
-          In any category $C$, the <mark>skeleton</mark> of $C$ is any full subcategory $A$, such that every object of $C$ is isomorphic to exactly one object in $A$. Then $A$ is equivalent to $C$, and any functor $K : A \rightarrow C$ is an equivalence of categories, for we can select to each $c \in C$ an isomorphism $\theta_c : c \cong Tc$, with $Tc$ an object of $A$. We can then make $T : C \rightarrow A$ a functor in exactly one way, so that $\theta$ will become a natural isomorphism $\theta : I \cong KT$. Moreover, $TK \cong I$, so $K$ is indeed an equivalence. This discussion can be summarized as: A category is equivalent to any of its skeletons. As an example, the category of all finite sets has as a skeleton the full subcategory with objects all finite ordinals. A category is called <mark>skeletal</mark> when any two isomorphic objects are identical; i.e. when a category is its own skeleton.
+          In any category <span class="mathjax">$C$</span>, the <mark>skeleton</mark> of <span class="mathjax">$C$</span> is any full subcategory <span class="mathjax">$A$</span>, such that every object of <span class="mathjax">$C$</span> is isomorphic to exactly one object in <span class="mathjax">$A$</span>. Then <span class="mathjax">$A$</span> is equivalent to <span class="mathjax">$C$</span>, and any functor <span class="mathjax">$K : A \rightarrow C$</span> is an equivalence of categories, for we can select to each <span class="mathjax">$c \in C$</span> an isomorphism <span class="mathjax">$\theta_c : c \cong Tc$</span>, with <span class="mathjax">$Tc$</span> an object of <span class="mathjax">$A$</span>. We can then make <span class="mathjax">$T : C \rightarrow A$</span> a functor in exactly one way, so that <span class="mathjax">$\theta$</span> will become a natural isomorphism <span class="mathjax">$\theta : I \cong KT$</span>. Moreover, <span class="mathjax">$TK \cong I$</span>, so <span class="mathjax">$K$</span> is indeed an equivalence. This discussion can be summarized as: A category is equivalent to any of its skeletons. As an example, the category of all finite sets has as a skeleton the full subcategory with objects all finite ordinals. A category is called <mark>skeletal</mark> when any two isomorphic objects are identical; i.e. when a category is its own skeleton.
         </p>
         <p>
-          An <mark>adjoint equivalence</mark> of categories is an adjoint $\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$ such that both units $\eta : I \overset{\bullet}{\rightarrow} ST$ and counits $\epsilon : TS \overset{\bullet}{\rightarrow} I$ are the natural isomorphisms $I \cong ST, TS \cong I$. Then $\eta^{-1}, \epsilon^{-1}$ are also identities, and the triangular identities $\epsilon T \bullet T \eta = 1$ and $S \epsilon \bullet \eta S = 1$ can be written as $T \epsilon^{-1} \bullet \eta^{-1} T = 1$ and $\epsilon^{-1} S \bullet S \eta^{-1} = 1$. These state that $\langle T, S, \epsilon^{-1}, \eta^{-1} \rangle : A \rightharpoonup C$ are adjunctions with unit $\epsilon^{-1} : I \overset{\bullet}{\rightarrow} TS$ and counit $\eta^{-1} : ST \overset{\bullet}{\rightarrow} I$. Thus, in an adjoint equivalence $\langle T, S, -, - \rangle$, the functor $T : C \rightarrow A$ is left adjoint of $S : A \rightarrow C$ with unit $\eta$, and $T$ is right adjoint of $S$ at the same time, with unit $\epsilon^{-1}$.
+          An <mark>adjoint equivalence</mark> of categories is an adjoint <span class="mathjax">$\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$</span> such that both units <span class="mathjax">$\eta : I \overset{\bullet}{\rightarrow} ST$</span> and counits <span class="mathjax">$\epsilon : TS \overset{\bullet}{\rightarrow} I$</span> are the natural isomorphisms <span class="mathjax">$I \cong ST, TS \cong I$</span>. Then <span class="mathjax">$\eta^{-1}, \epsilon^{-1}$</span> are also identities, and the triangular identities <span class="mathjax">$\epsilon T \bullet T \eta = 1$</span> and <span class="mathjax">$S \epsilon \bullet \eta S = 1$</span> can be written as <span class="mathjax">$T \epsilon^{-1} \bullet \eta^{-1} T = 1$</span> and <span class="mathjax">$\epsilon^{-1} S \bullet S \eta^{-1} = 1$</span>. These state that <span class="mathjax">$\langle T, S, \epsilon^{-1}, \eta^{-1} \rangle : A \rightharpoonup C$</span> are adjunctions with unit <span class="mathjax">$\epsilon^{-1} : I \overset{\bullet}{\rightarrow} TS$</span> and counit <span class="mathjax">$\eta^{-1} : ST \overset{\bullet}{\rightarrow} I$</span>. Thus, in an adjoint equivalence <span class="mathjax">$\langle T, S, -, - \rangle$</span>, the functor <span class="mathjax">$T : C \rightarrow A$</span> is left adjoint of <span class="mathjax">$S : A \rightarrow C$</span> with unit <span class="mathjax">$\eta$</span>, and <span class="mathjax">$T$</span> is right adjoint of <span class="mathjax">$S$</span> at the same time, with unit <span class="mathjax">$\epsilon^{-1}$</span>.
         </p>
         <p>
-          The following properties about functor $S : A \rightarrow C$ are equivalent:
+          The following properties about functor <span class="mathjax">$S : A \rightarrow C$</span> are equivalent:
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            $S$ is an equivalence of categories.
+            <span class="mathjax">$S$</span> is an equivalence of categories.
           </li>
           <li>
-            $S$ is part of the adjoint equivalence $\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$.
+            <span class="mathjax">$S$</span> is part of the adjoint equivalence <span class="mathjax">$\langle T, S, \eta, \epsilon \rangle : C \rightharpoonup A$</span>.
           </li>
           <li>
-            $S$ is full and faithful, and each object $c \in C$ is isomorphic to $Sa$ for some object $a \in A$.
+            <span class="mathjax">$S$</span> is full and faithful, and each object <span class="mathjax">$c \in C$</span> is isomorphic to <span class="mathjax">$Sa$</span> for some object <span class="mathjax">$a \in A$</span>.
           </li>
         </ol>
         <p>
-          Trivially, (b) implies (a). To prove that (a) implies (c), note that $ST \cong I$ shows that each $c \in C$ has the form $c \cong S(Tc)$ for an $a = Tc \in A$. The natural isomorphism $\theta : TS \cong I$ gives for each $f : a \rightarrow a'$ the commutative diagram:
+          Trivially, (b) implies (a). To prove that (a) implies (c), note that <span class="mathjax">$ST \cong I$</span> shows that each <span class="mathjax">$c \in C$</span> has the form <span class="mathjax">$c \cong S(Tc)$</span> for an <span class="mathjax">$a = Tc \in A$</span>. The natural isomorphism <span class="mathjax">$\theta : TS \cong I$</span> gives for each <span class="mathjax">$f : a \rightarrow a'$</span> the commutative diagram:
         </p>
         <div class="mathjax">
           $$
@@ -432,7 +435,7 @@
           $$
         </div>
         <p>
-          It follows that $S$ is faithful. Symmetrically, $ST \cong I$ proves that $T$ is faithful. To show that $S$ is full, consider any $h : Sa \rightarrow Sa'$, and set $f = \theta_a \circ Th \circ \theta_a^{-1}$. Then the above square commutes when $Sf$ is replaced by $h$, so $TSf = Th$. Since $T$ is faithful, and $Sf = h$, it implies that $S$ is full. To prove that (c) implies (b), we must construct $S$ from a left adjoint $T$. For each $c \in C$, choose some object $a_0 = T_0 c \in A$ and the isomorphism $\eta_c$:
+          It follows that <span class="mathjax">$S$</span> is faithful. Symmetrically, <span class="mathjax">$ST \cong I$</span> proves that <span class="mathjax">$T$</span> is faithful. To show that <span class="mathjax">$S$</span> is full, consider any <span class="mathjax">$h : Sa \rightarrow Sa'$</span>, and set <span class="mathjax">$f = \theta_a \circ Th \circ \theta_a^{-1}$</span>. Then the above square commutes when <span class="mathjax">$Sf$</span> is replaced by <span class="mathjax">$h$</span>, so <span class="mathjax">$TSf = Th$</span>. Since <span class="mathjax">$T$</span> is faithful, and <span class="mathjax">$Sf = h$</span>, it implies that <span class="mathjax">$S$</span> is full. To prove that (c) implies (b), we must construct <span class="mathjax">$S$</span> from a left adjoint <span class="mathjax">$T$</span>. For each <span class="mathjax">$c \in C$</span>, choose some object <span class="mathjax">$a_0 = T_0 c \in A$</span> and the isomorphism <span class="mathjax">$\eta_c$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -445,39 +448,39 @@
           $$
         </div>
         <p>
-          For every arrow $f : c \rightarrow Sa$, the composite $f \circ \eta_c^{-1}$ has the form $Sg$ because $S$ is full; this $g$ is unique because $S$ is faithful. In other words, $f = Sg \circ \eta_c$, for unique $G$, so $\eta_c$ is universal from $c$ to $S$. Therefore, $T_0$ can be made a functor $T : C \rightarrow A$ in exactly one way so $\eta : I \overset{\bullet}{\rightarrow} ST$ is natural, and then $T$ is left adjoint of $S$ with unit the isomorphism $\eta$. As with any adjunction, $S \epsilon_a \bullet \eta_{S_a} = 1$ by putting $c = Sa, f = 1$ in the above diagram. Thus, $S \epsilon_a = (\eta_{S_a})^{-1}$ is invertible. Since $S$ is full and faithful, the counit $\epsilon_a$ is also invertible. Therefore, $\langle S, T, \eta, \epsilon \rangle : C \rightharpoonup A$ is an adjunction equivalence.
+          For every arrow <span class="mathjax">$f : c \rightarrow Sa$</span>, the composite <span class="mathjax">$f \circ \eta_c^{-1}$</span> has the form <span class="mathjax">$Sg$</span> because <span class="mathjax">$S$</span> is full; this <span class="mathjax">$g$</span> is unique because <span class="mathjax">$S$</span> is faithful. In other words, <span class="mathjax">$f = Sg \circ \eta_c$</span>, for unique <span class="mathjax">$G$</span>, so <span class="mathjax">$\eta_c$</span> is universal from <span class="mathjax">$c$</span> to <span class="mathjax">$S$</span>. Therefore, <span class="mathjax">$T_0$</span> can be made a functor <span class="mathjax">$T : C \rightarrow A$</span> in exactly one way so <span class="mathjax">$\eta : I \overset{\bullet}{\rightarrow} ST$</span> is natural, and then <span class="mathjax">$T$</span> is left adjoint of <span class="mathjax">$S$</span> with unit the isomorphism <span class="mathjax">$\eta$</span>. As with any adjunction, <span class="mathjax">$S \epsilon_a \bullet \eta_{S_a} = 1$</span> by putting <span class="mathjax">$c = Sa, f = 1$</span> in the above diagram. Thus, <span class="mathjax">$S \epsilon_a = (\eta_{S_a})^{-1}$</span> is invertible. Since <span class="mathjax">$S$</span> is full and faithful, the counit <span class="mathjax">$\epsilon_a$</span> is also invertible. Therefore, <span class="mathjax">$\langle S, T, \eta, \epsilon \rangle : C \rightharpoonup A$</span> is an adjunction equivalence.
         </p>
         <p>
-          If $A$ is a full subcategory of $C$ and every $c \in C$ is isomorphic to some object of $A$, then the insertion $K : A \rightarrow C$ is an equivalence and is part of the adjoint equivalence $\langle T, K, \eta, 1 \rangle : C \rightharpoonup A$ with counit identity. Therefore $A$ is reflective in $C$. To show this, in the previous result, let $A$ be a full subcategory of $C$ and $S = K : A \rightarrow C$ is the insertion. For objects $a \in A \subset C$, we can choose $a_0 = a = Ka$, and $\eta_{Ka}$ the identity. Then $K \epsilon_a = 1$ and hence $\epsilon_a = 1$ for all $a$, completing the proof.
+          If <span class="mathjax">$A$</span> is a full subcategory of <span class="mathjax">$C$</span> and every <span class="mathjax">$c \in C$</span> is isomorphic to some object of <span class="mathjax">$A$</span>, then the insertion <span class="mathjax">$K : A \rightarrow C$</span> is an equivalence and is part of the adjoint equivalence <span class="mathjax">$\langle T, K, \eta, 1 \rangle : C \rightharpoonup A$</span> with counit identity. Therefore <span class="mathjax">$A$</span> is reflective in <span class="mathjax">$C$</span>. To show this, in the previous result, let <span class="mathjax">$A$</span> be a full subcategory of <span class="mathjax">$C$</span> and <span class="mathjax">$S = K : A \rightarrow C$</span> is the insertion. For objects <span class="mathjax">$a \in A \subset C$</span>, we can choose <span class="mathjax">$a_0 = a = Ka$</span>, and <span class="mathjax">$\eta_{Ka}$</span> the identity. Then <span class="mathjax">$K \epsilon_a = 1$</span> and hence <span class="mathjax">$\epsilon_a = 1$</span> for all <span class="mathjax">$a$</span>, completing the proof.
         </p>
         <p>
-          Duality theorems in functional analysis are often instances of equivalences. For example, let $\textbf{CAb}$ be the category of compact topological abelian groups, and let $P$ assign to every such group $G$ its character group $PG$, consisting of all continuous homomorphisms $G \rightarrow \textbf{R}/\mathbb{Z}$. The <mark>Pontrjagin duality theorem</mark> asserts that $P : \textbf{CAb} \rightarrow \textbf{Ab}^{op}$ is an equivalence of categories. Similarly, the <mark>Gelfand-Naimark theorem</mark> states that the functor $C$ that assigns to each compact Hausdorff space $X$ its abelian $C^*$-algebra of continuous complex-valued functions is an equivalence of categories.
+          Duality theorems in functional analysis are often instances of equivalences. For example, let <span class="mathjax">$\textbf{CAb}$</span> be the category of compact topological abelian groups, and let <span class="mathjax">$P$</span> assign to every such group <span class="mathjax">$G$</span> its character group <span class="mathjax">$PG$</span>, consisting of all continuous homomorphisms <span class="mathjax">$G \rightarrow \textbf{R}/\mathbb{Z}$</span>. The <mark>Pontrjagin duality theorem</mark> asserts that <span class="mathjax">$P : \textbf{CAb} \rightarrow \textbf{Ab}^{op}$</span> is an equivalence of categories. Similarly, the <mark>Gelfand-Naimark theorem</mark> states that the functor <span class="mathjax">$C$</span> that assigns to each compact Hausdorff space <span class="mathjax">$X$</span> its abelian <span class="mathjax">$C^*$</span>-algebra of continuous complex-valued functions is an equivalence of categories.
         </p>
         <h2 id="adjunctions-for-preorders">
           Adjunctions for preorders
         </h2>
         <p>
-          Preorders may be regarded as categories, with functors all order-preserving functions. Then order-reversing function $\bar{L}$ from $P$ to $Q$ is the functor $\bar{L} : P \rightarrow Q^{op}$.
+          Preorders may be regarded as categories, with functors all order-preserving functions. Then order-reversing function <span class="mathjax">$\bar{L}$</span> from <span class="mathjax">$P$</span> to <span class="mathjax">$Q$</span> is the functor <span class="mathjax">$\bar{L} : P \rightarrow Q^{op}$</span>.
         </p>
         <p>
-          Let $P, Q$ be two preorders and $L : P \rightarrow Q^{op}$ and $R : Q^{op} \rightarrow P$ be two order-preserving functions. Then $L$, regarded as a functor, is left-adjoint to $R$ iff for all $p \in P, q \in Q$:<br/>
-          $$Lp \geq q \text{ in Q } \iff p \leq Rq \text{ in P}$$
+          Let <span class="mathjax">$P, Q$</span> be two preorders and <span class="mathjax">$L : P \rightarrow Q^{op}$</span> and <span class="mathjax">$R : Q^{op} \rightarrow P$</span> be two order-preserving functions. Then <span class="mathjax">$L$</span>, regarded as a functor, is left-adjoint to <span class="mathjax">$R$</span> iff for all <span class="mathjax">$p \in P, q \in Q$</span>:<br/>
+          $<span class="mathjax">$Lp \geq q \text{ in Q } \iff p \leq Rq \text{ in P}$</span>$
         </p>
         <p>
-          A pair of order-preserving functions $L, R$ satisfying this is called the <mark>Galios connection</mark> from $P$ to $Q$. When this is the case, there is exactly one adjunction $\varphi$ making $L$ the left adjoint of $R$. For all $p, q$, $p \leq RLp$ and $LRq \geq q$; hence also:<br/>
-          $$Lp \geq LRLp \geq Lp \quad Rq \leq RLRq \leq Rq$$
+          A pair of order-preserving functions <span class="mathjax">$L, R$</span> satisfying this is called the <mark>Galios connection</mark> from <span class="mathjax">$P$</span> to <span class="mathjax">$Q$</span>. When this is the case, there is exactly one adjunction <span class="mathjax">$\varphi$</span> making <span class="mathjax">$L$</span> the left adjoint of <span class="mathjax">$R$</span>. For all <span class="mathjax">$p, q$</span>, <span class="mathjax">$p \leq RLp$</span> and <span class="mathjax">$LRq \geq q$</span>; hence also:<br/>
+          $<span class="mathjax">$Lp \geq LRLp \geq Lp \quad Rq \leq RLRq \leq Rq$</span>$
         </p>
         <p>
-          To prove this, notice that $P$ becomes a category when there is exactly one arrow $p \rightarrow p'$ whenver $p \leq p'$. Thus, the first condition states that there is a bijection $\text{Hom}_{Q^{op}}(Lp, q) \cong \text{Hom}_P(p, Rq)$. Since each hom-set has exactly one element, this bijection is natural. The unit of the adjunction is the inequality $p \leq RLp$ and the counit is $LRq \geq q$. Thus, the second condition is the triangular identity connecting unit and counit. In the convenient case when $P, Q$ are posets, these conditions become $L = LRL, R = RLR$.
+          To prove this, notice that <span class="mathjax">$P$</span> becomes a category when there is exactly one arrow <span class="mathjax">$p \rightarrow p'$</span> whenver <span class="mathjax">$p \leq p'$</span>. Thus, the first condition states that there is a bijection <span class="mathjax">$\text{Hom}_{Q^{op}}(Lp, q) \cong \text{Hom}_P(p, Rq)$</span>. Since each hom-set has exactly one element, this bijection is natural. The unit of the adjunction is the inequality <span class="mathjax">$p \leq RLp$</span> and the counit is <span class="mathjax">$LRq \geq q$</span>. Thus, the second condition is the triangular identity connecting unit and counit. In the convenient case when <span class="mathjax">$P, Q$</span> are posets, these conditions become <span class="mathjax">$L = LRL, R = RLR$</span>.
         </p>
         <p>
-          As a fundamental example, consider the group $G$ acting on a set $U$, by $\langle \sigma, x \rangle \rightarrow \sigma \bullet x$ for all $\sigma \in G, x \in U$. Take $P = \mathscr{P}(U), Q = \mathscr{P}(G)$, the powersets. Let $LX = \{\sigma \mid x \in X \implies \sigma \bullet x = x\}$, $RS = \{\sigma \mid x \in S \implies \sigma \bullet x = x\}$; in other words, $LX$ is the subgroup of $G$ which fixes all points $x \in X$ and $RS$ is the set of fixed points of automorphisms of $S$. Then, $LX \geq S$ in $Q$, iff $\sigma \bullet x = x$ for all $\sigma \in S, x \in X$, which in turn only holds if $X \leq RS$ in $P$. Therefore, $L, S$ form an adjoint pair or Galios connection.
+          As a fundamental example, consider the group <span class="mathjax">$G$</span> acting on a set <span class="mathjax">$U$</span>, by <span class="mathjax">$\langle \sigma, x \rangle \rightarrow \sigma \bullet x$</span> for all <span class="mathjax">$\sigma \in G, x \in U$</span>. Take <span class="mathjax">$P = \mathscr{P}(U), Q = \mathscr{P}(G)$</span>, the powersets. Let <span class="mathjax">$LX = \{\sigma \mid x \in X \implies \sigma \bullet x = x\}$</span>, <span class="mathjax">$RS = \{\sigma \mid x \in S \implies \sigma \bullet x = x\}$</span>; in other words, <span class="mathjax">$LX$</span> is the subgroup of <span class="mathjax">$G$</span> which fixes all points <span class="mathjax">$x \in X$</span> and <span class="mathjax">$RS$</span> is the set of fixed points of automorphisms of <span class="mathjax">$S$</span>. Then, <span class="mathjax">$LX \geq S$</span> in <span class="mathjax">$Q$</span>, iff <span class="mathjax">$\sigma \bullet x = x$</span> for all <span class="mathjax">$\sigma \in S, x \in X$</span>, which in turn only holds if <span class="mathjax">$X \leq RS$</span> in <span class="mathjax">$P$</span>. Therefore, <span class="mathjax">$L, S$</span> form an adjoint pair or Galios connection.
         </p>
         <p>
-          As another example, consider sets $U, V$ and powersets $\mathscr{P}(U), \mathscr{P}(V)$. For each function $f : U \rightarrow V$, the direct image $f_*(X) = \{f(x) | x \in X\}$ is order-preserving, and is hence $f_* : \mathscr{P}(U) \rightarrow \mathscr{P}(V)$ is the corresponding functor. The inverse image $f^*(Y) = \{x | \exists y : f(x) = y\}$ is also order preserving, and hence $f^* : \mathscr{P}(V) \rightarrow \mathscr{P}(U)$ is the corresponding functor. Hence, the direct image $f_*$ is left-adjoint to the inverse image $f^*$.
+          As another example, consider sets <span class="mathjax">$U, V$</span> and powersets <span class="mathjax">$\mathscr{P}(U), \mathscr{P}(V)$</span>. For each function <span class="mathjax">$f : U \rightarrow V$</span>, the direct image <span class="mathjax">$f_*(X) = \{f(x) | x \in X\}$</span> is order-preserving, and is hence <span class="mathjax">$f_* : \mathscr{P}(U) \rightarrow \mathscr{P}(V)$</span> is the corresponding functor. The inverse image <span class="mathjax">$f^*(Y) = \{x | \exists y : f(x) = y\}$</span> is also order preserving, and hence <span class="mathjax">$f^* : \mathscr{P}(V) \rightarrow \mathscr{P}(U)$</span> is the corresponding functor. Hence, the direct image <span class="mathjax">$f_*$</span> is left-adjoint to the inverse image <span class="mathjax">$f^*$</span>.
         </p>
         <p>
-          As yet another example, consider Boolean algebras. Let $\mathscr{P}(U)$ be a category. The diagonal functor $\Delta : \mathscr{P}(U) \rightarrow \mathscr{P}(U) \times \mathscr{P}(U)$ has right adjoint $\cap$, with $\langle X, Y \rangle \mapsto X \cap Y$, and left adjoint $\cup$, with $\langle X, Y \rangle \mapsto X \cup Y$. If $X$ is a fixed subset of $U$, intersection with $X$ is the functor $X \cap - : \mathscr{P}(U) \rightarrow \mathscr{P}(U)$. Since $X \cap Y \leq Z$ if $Y \leq Z \cup X'$, where $X'$ is the complement of $X$ in $U$, right adjoint of $X \cap -$ is $X' \cup -$. Thus, construction of suitable adjoints leads to $\cap, \cup, '$. Now, let $P : U \times V \rightarrow U$ be a projection from sets $U, V$. Each subset $S \in U \times V$ determines subsets of $U$ by:
+          As yet another example, consider Boolean algebras. Let <span class="mathjax">$\mathscr{P}(U)$</span> be a category. The diagonal functor <span class="mathjax">$\Delta : \mathscr{P}(U) \rightarrow \mathscr{P}(U) \times \mathscr{P}(U)$</span> has right adjoint <span class="mathjax">$\cap$</span>, with <span class="mathjax">$\langle X, Y \rangle \mapsto X \cap Y$</span>, and left adjoint <span class="mathjax">$\cup$</span>, with <span class="mathjax">$\langle X, Y \rangle \mapsto X \cup Y$</span>. If <span class="mathjax">$X$</span> is a fixed subset of <span class="mathjax">$U$</span>, intersection with <span class="mathjax">$X$</span> is the functor <span class="mathjax">$X \cap - : \mathscr{P}(U) \rightarrow \mathscr{P}(U)$</span>. Since <span class="mathjax">$X \cap Y \leq Z$</span> if <span class="mathjax">$Y \leq Z \cup X'$</span>, where <span class="mathjax">$X'$</span> is the complement of <span class="mathjax">$X$</span> in <span class="mathjax">$U$</span>, right adjoint of <span class="mathjax">$X \cap -$</span> is <span class="mathjax">$X' \cup -$</span>. Thus, construction of suitable adjoints leads to <span class="mathjax">$\cap, \cup, '$</span>. Now, let <span class="mathjax">$P : U \times V \rightarrow U$</span> be a projection from sets <span class="mathjax">$U, V$</span>. Each subset <span class="mathjax">$S \in U \times V$</span> determines subsets of <span class="mathjax">$U$</span> by:
         </p>
         <div class="mathjax">
           $$
@@ -486,17 +489,17 @@
           $$
         </div>
         <p>
-          They arise from $\langle x, y \rangle$ by applying universal and existential quantifiers. Also, $P_* S$ is the direct image of $S$ under projection $P$. Now, for all subsets $X \subset U$, we have:<br/>
-          $$S \leq P^* X \iff P_* S \leq X \quad P^* X \leq S \iff X \leq P_* S$$
+          They arise from <span class="mathjax">$\langle x, y \rangle$</span> by applying universal and existential quantifiers. Also, <span class="mathjax">$P_* S$</span> is the direct image of <span class="mathjax">$S$</span> under projection <span class="mathjax">$P$</span>. Now, for all subsets <span class="mathjax">$X \subset U$</span>, we have:<br/>
+          $<span class="mathjax">$S \leq P^* X \iff P_* S \leq X \quad P^* X \leq S \iff X \leq P_* S$</span>$
         </p>
         <p>
-          This states that inverse image operation $P^*$ has left adjoint $P_*$ and right adjoint $P_\#$. In this sense, both quantifiers $\exists$ and $\forall$ can be interpreted as adjoints. This also has the following geometric interpretation: $P^* X$ is the cylinder $X \times Y \subset U \times V$ over the base $X \in U$, $P_* S$ is the projection of $S \subset U \times V$ onto base $U$, $P_\# S$ is the largest subset $X \subset U$ such that the cylinder is contained wholly within $S$.
+          This states that inverse image operation <span class="mathjax">$P^*$</span> has left adjoint <span class="mathjax">$P_*$</span> and right adjoint <span class="mathjax">$P_\#$</span>. In this sense, both quantifiers <span class="mathjax">$\exists$</span> and <span class="mathjax">$\forall$</span> can be interpreted as adjoints. This also has the following geometric interpretation: <span class="mathjax">$P^* X$</span> is the cylinder <span class="mathjax">$X \times Y \subset U \times V$</span> over the base <span class="mathjax">$X \in U$</span>, <span class="mathjax">$P_* S$</span> is the projection of <span class="mathjax">$S \subset U \times V$</span> onto base <span class="mathjax">$U$</span>, <span class="mathjax">$P_\# S$</span> is the largest subset <span class="mathjax">$X \subset U$</span> such that the cylinder is contained wholly within <span class="mathjax">$S$</span>.
         </p>
         <h2 id="cartesian-closed-categories">
           Cartesian closed categories
         </h2>
         <p>
-          To assert that a category has finite products and coproducts is to say that the category has products, terminal, initial, and coproducts; thus the functors $C \rightarrow \textbf{1}$ and $\Delta: C \rightarrow C \times C$ have both left and right adjoints. Indeed, left adjoints give initial object and coproduct, while right adjoints give terminal object and product.
+          To assert that a category has finite products and coproducts is to say that the category has products, terminal, initial, and coproducts; thus the functors <span class="mathjax">$C \rightarrow \textbf{1}$</span> and <span class="mathjax">$\Delta: C \rightarrow C \times C$</span> have both left and right adjoints. Indeed, left adjoints give initial object and coproduct, while right adjoints give terminal object and product.
         </p>
         <p>
           A category is termed <mark>cartesian closed</mark> if the following functors have specified right adjoints:
@@ -516,30 +519,30 @@
           $$
         </div>
         <p>
-          To specify the first is to specify the terminal object $t \in C$. To specify the second is to specify, for each pair of objects $a, b \in C$, the product object $a \times b$ along with projections $a \leftarrow a \times b \rightarrow b$: the projections consistite the counit of the adjunction, and $\times$ is a bifunctor. The third specifies $- \times b : C \rightarrow C$, a right adjoint with bijection:<br/>
-          $$\text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)$$
+          To specify the first is to specify the terminal object <span class="mathjax">$t \in C$</span>. To specify the second is to specify, for each pair of objects <span class="mathjax">$a, b \in C$</span>, the product object <span class="mathjax">$a \times b$</span> along with projections <span class="mathjax">$a \leftarrow a \times b \rightarrow b$</span>: the projections consistite the counit of the adjunction, and <span class="mathjax">$\times$</span> is a bifunctor. The third specifies <span class="mathjax">$- \times b : C \rightarrow C$</span>, a right adjoint with bijection:<br/>
+          $<span class="mathjax">$\text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)$</span>$
         </p>
         <p>
-          natural in $a$ and $c$. By the <mark>parameter theorem</mark>, $\langle b, c \rangle \rightarrow c^b$ is the object functor of bifunctor $C^{op} \times C \rightarrow C$. Specifying the adjunction amounts to specifying specifying for all $c, b$, the arrow:<br/>
-          $$e : c^b \times b \rightarrow c$$
+          natural in <span class="mathjax">$a$</span> and <span class="mathjax">$c$</span>. By the <mark>parameter theorem</mark>, <span class="mathjax">$\langle b, c \rangle \rightarrow c^b$</span> is the object functor of bifunctor <span class="mathjax">$C^{op} \times C \rightarrow C$</span>. Specifying the adjunction amounts to specifying specifying for all <span class="mathjax">$c, b$</span>, the arrow:<br/>
+          $<span class="mathjax">$e : c^b \times b \rightarrow c$</span>$
         </p>
         <p>
-          which is natural in $c$, and universal from $- \times b$ to $c$. We call this $e = e_{c, b}$ the <mark>evaluation map</mark>. It amounts to ordinary evaluation $\langle f, x \rangle \mapsto fx$ in the following cases:
+          which is natural in <span class="mathjax">$c$</span>, and universal from <span class="mathjax">$- \times b$</span> to <span class="mathjax">$c$</span>. We call this <span class="mathjax">$e = e_{c, b}$</span> the <mark>evaluation map</mark>. It amounts to ordinary evaluation <span class="mathjax">$\langle f, x \rangle \mapsto fx$</span> in the following cases:
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            $\textbf{Set}$ is a cartesian closed category with $b^c = \text{Hom}(b, c)$.
+            <span class="mathjax">$\textbf{Set}$</span> is a cartesian closed category with <span class="mathjax">$b^c = \text{Hom}(b, c)$</span>.
           </li>
           <li>
-            $\textbf{Cat}$ is a cartesian closed category with $B^C$ the functor category.
+            <span class="mathjax">$\textbf{Cat}$</span> is a cartesian closed category with <span class="mathjax">$B^C$</span> the functor category.
           </li>
         </ol>
         <p>
           A closely related example of adjunctions is the functor:<br/>
-          $$- \otimes_K B : \text{K-Mod} \rightarrow \text{K-Mod}$$
+          $<span class="mathjax">$- \otimes_K B : \text{K-Mod} \rightarrow \text{K-Mod}$</span>$
         </p>
         <p>
-          which has right adjoint $\text{Hom}_K(B, -)$; the adjunct is determined by counit $\text{Hom}_K(B, A) \otimes_K B \rightarrow A$ given by the evaluation.
+          which has right adjoint <span class="mathjax">$\text{Hom}_K(B, -)$</span>; the adjunct is determined by counit <span class="mathjax">$\text{Hom}_K(B, A) \otimes_K B \rightarrow A$</span> given by the evaluation.
         </p>
         <h2 id="transformations-of-adjoints">
           Transformations of adjoints
@@ -554,7 +557,7 @@
           $$
         </div>
         <p>
-          we define the map between the two adjunctions by two functors $K : A \rightarrow A'$ and $L : X \rightarrow X'$ such that the following squares commute:
+          we define the map between the two adjunctions by two functors <span class="mathjax">$K : A \rightarrow A'$</span> and <span class="mathjax">$L : X \rightarrow X'$</span> such that the following squares commute:
         </p>
         <div class="mathjax">
           $$
@@ -567,7 +570,7 @@
           $$
         </div>
         <p>
-          and such that the diagram of adjunctions and hom-sets commutes for all $x \in X, a \in A$:
+          and such that the diagram of adjunctions and hom-sets commutes for all <span class="mathjax">$x \in X, a \in A$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -581,10 +584,10 @@
           $$
         </div>
         <p>
-          Here, $K_{Fx, a}$ is the map $f \mapsto Kf$ given by the functor $K$ applied to each $f : Fx \rightarrow a$.
+          Here, <span class="mathjax">$K_{Fx, a}$</span> is the map <span class="mathjax">$f \mapsto Kf$</span> given by the functor <span class="mathjax">$K$</span> applied to each <span class="mathjax">$f : Fx \rightarrow a$</span>.
         </p>
         <p>
-          The above condition is equivalent to $L \eta = \eta' L$ and $\epsilon' K = K \epsilon$. To prove this, set $a = Fx$ and chase $1 : Fx \rightarrow Fx$ around the commutative diagram to get the units $\eta, \eta'$, and the equality:
+          The above condition is equivalent to <span class="mathjax">$L \eta = \eta' L$</span> and <span class="mathjax">$\epsilon' K = K \epsilon$</span>. To prove this, set <span class="mathjax">$a = Fx$</span> and chase <span class="mathjax">$1 : Fx \rightarrow Fx$</span> around the commutative diagram to get the units <span class="mathjax">$\eta, \eta'$</span>, and the equality:
         </p>
         <div class="mathjax">
           $$
@@ -592,7 +595,7 @@
           $$
         </div>
         <p>
-          where $LGF = G'F'L$. Conversely, given the identity $L \eta = \eta' L$ of the NTs, the definition of adjunctions $\varphi, \varphi'$ by their units gives the required result. The case of counits is dual to this case.
+          where <span class="mathjax">$LGF = G'F'L$</span>. Conversely, given the identity <span class="mathjax">$L \eta = \eta' L$</span> of the NTs, the definition of adjunctions <span class="mathjax">$\varphi, \varphi'$</span> by their units gives the required result. The case of counits is dual to this case.
         </p>
         <p>
           Next, consider two adjunctions between the same two categories:
@@ -603,7 +606,7 @@
           $$
         </div>
         <p>
-          The following two NTs are said to be <mark>conjugate</mark> when the diagram commutes for every pair of objects $x \in X, a \in A$:
+          The following two NTs are said to be <mark>conjugate</mark> when the diagram commutes for every pair of objects <span class="mathjax">$x \in X, a \in A$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -616,7 +619,7 @@
           $$
         </div>
         <p>
-          Given the above two adjunctions, the NTs $\sigma, \tau$ are said to be <mark>conjugate</mark> iff the following diagrams commute:
+          Given the above two adjunctions, the NTs <span class="mathjax">$\sigma, \tau$</span> are said to be <mark>conjugate</mark> iff the following diagrams commute:
         </p>
         <div class="mathjax">
           $$
@@ -651,7 +654,7 @@
           $$
         </div>
         <p>
-          Also, given the NT $\sigma : F \overset{\bullet}{\rightarrow} F'$, there is a unique $\tau : G' \overset{\bullet}{\rightarrow} G$ such that $\langle \sigma, \tau \rangle$ is conjugate. To prove this, consider $\eqref{conj}$ with $x = G'a$:
+          Also, given the NT <span class="mathjax">$\sigma : F \overset{\bullet}{\rightarrow} F'$</span>, there is a unique <span class="mathjax">$\tau : G' \overset{\bullet}{\rightarrow} G$</span> such that <span class="mathjax">$\langle \sigma, \tau \rangle$</span> is conjugate. To prove this, consider <span class="mathjax">$\eqref{conj}$</span> with <span class="mathjax">$x = G'a$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -664,7 +667,7 @@
           $$
         </div>
         <p>
-          Start with the identity arrow $1 : G'a \rightarrow G'a$ on the top right, use the description of $\varphi, \varphi'$ by unit and counit, and chase the diagram around $1$ as follows:
+          Start with the identity arrow <span class="mathjax">$1 : G'a \rightarrow G'a$</span> on the top right, use the description of <span class="mathjax">$\varphi, \varphi'$</span> by unit and counit, and chase the diagram around <span class="mathjax">$1$</span> as follows:
         </p>
         <div class="mathjax">
           $$
@@ -677,7 +680,7 @@
           $$
         </div>
         <p>
-          This yields $\eqref{conj1}$ and its dual. A slightly different chase yields $\eqref{conj2}$ and its dual:
+          This yields <span class="mathjax">$\eqref{conj1}$</span> and its dual. A slightly different chase yields <span class="mathjax">$\eqref{conj2}$</span> and its dual:
         </p>
         <div class="mathjax">
           $$
@@ -690,7 +693,7 @@
           $$
         </div>
         <p>
-          Next, suppose $\sigma, \tau$ are not given. Then, applying Yoneda lemma to $\varphi \circ (\sigma_x)^* \circ \varphi^{-1}$ yields a unique family of arrows $\tau'_a$ for which $\eqref{conj}$ commutes, and this family is an NT. Since each $\epsilon_a : FGa \rightarrow a$ is universal from $F$ to $a$, there is also a unique family of arrows $\tau''_a : G'a \rightarrow Ga$ such that $\eqref{conj2}$ commutes. Since $\eqref{conj}$ implies $\eqref{conj2}$, $\tau'_a = \tau''_a$; in other words, if $\tau'' = \tau$ makes $\eqref{conj2}$ commute, it also makes $\eqref{conj}$ commute. Therefore $\eqref{conj2}$ implies $\eqref{conj}$. Given $\sigma$, there is immediately a unique NT $\tau : G' \rightarrow G$ for which $\eqref{conj1}$ commutes; since $\eqref{conj}$ implies $\eqref{conj1}$, $\tau_a = \tau'_a$. Hence solutions of $\tau'_a$ of $\eqref{conj}$ are necessarily natural; moreover $\eqref{conj1}$ implies $\eqref{conj}$, completing the proof.
+          Next, suppose <span class="mathjax">$\sigma, \tau$</span> are not given. Then, applying Yoneda lemma to <span class="mathjax">$\varphi \circ (\sigma_x)^* \circ \varphi^{-1}$</span> yields a unique family of arrows <span class="mathjax">$\tau'_a$</span> for which <span class="mathjax">$\eqref{conj}$</span> commutes, and this family is an NT. Since each <span class="mathjax">$\epsilon_a : FGa \rightarrow a$</span> is universal from <span class="mathjax">$F$</span> to <span class="mathjax">$a$</span>, there is also a unique family of arrows <span class="mathjax">$\tau''_a : G'a \rightarrow Ga$</span> such that <span class="mathjax">$\eqref{conj2}$</span> commutes. Since <span class="mathjax">$\eqref{conj}$</span> implies <span class="mathjax">$\eqref{conj2}$</span>, <span class="mathjax">$\tau'_a = \tau''_a$</span>; in other words, if <span class="mathjax">$\tau'' = \tau$</span> makes <span class="mathjax">$\eqref{conj2}$</span> commute, it also makes <span class="mathjax">$\eqref{conj}$</span> commute. Therefore <span class="mathjax">$\eqref{conj2}$</span> implies <span class="mathjax">$\eqref{conj}$</span>. Given <span class="mathjax">$\sigma$</span>, there is immediately a unique NT <span class="mathjax">$\tau : G' \rightarrow G$</span> for which <span class="mathjax">$\eqref{conj1}$</span> commutes; since <span class="mathjax">$\eqref{conj}$</span> implies <span class="mathjax">$\eqref{conj1}$</span>, <span class="mathjax">$\tau_a = \tau'_a$</span>. Hence solutions of <span class="mathjax">$\tau'_a$</span> of <span class="mathjax">$\eqref{conj}$</span> are necessarily natural; moreover <span class="mathjax">$\eqref{conj1}$</span> implies <span class="mathjax">$\eqref{conj}$</span>, completing the proof.
         </p>
         <p>
           The vertical compositions of:
@@ -701,10 +704,10 @@
           $$
         </div>
         <p>
-          are given by $\langle \sigma, \tau \rangle \circ \langle \sigma', \tau' \rangle = \langle \sigma \bullet \sigma', \tau \bullet \tau' \rangle$
+          are given by <span class="mathjax">$\langle \sigma, \tau \rangle \circ \langle \sigma', \tau' \rangle = \langle \sigma \bullet \sigma', \tau \bullet \tau' \rangle$</span>
         </p>
         <p>
-          For two given categories $X, A$, we have a new category $A^{(\text(adj)X)}$, the <mark>category of adjunctions</mark> from $X$ to $A$; its objects are adjunctions $\langle F, G, \eta, \epsilon \rangle$ and arrows are conjugate pairs $\langle \sigma, \tau \rangle$ with composition just noted. There are also two forgetful functors to the ordinary functor categories:
+          For two given categories <span class="mathjax">$X, A$</span>, we have a new category <span class="mathjax">$A^{(\text(adj)X)}$</span>, the <mark>category of adjunctions</mark> from <span class="mathjax">$X$</span> to <span class="mathjax">$A$</span>; its objects are adjunctions <span class="mathjax">$\langle F, G, \eta, \epsilon \rangle$</span> and arrows are conjugate pairs <span class="mathjax">$\langle \sigma, \tau \rangle$</span> with composition just noted. There are also two forgetful functors to the ordinary functor categories:
         </p>
         <div class="mathjax">
           $$
@@ -718,18 +721,18 @@
           $$
         </div>
         <p>
-          A typical example is for $\textbf{Set}$:<br/>
-          $$\text{Hom}(S \times T, R) \cong \text{Hom}(S, \text{Hom}(T, R))$$
+          A typical example is for <span class="mathjax">$\textbf{Set}$</span>:<br/>
+          $<span class="mathjax">$\text{Hom}(S \times T, R) \cong \text{Hom}(S, \text{Hom}(T, R))$</span>$
         </p>
         <p>
-          If $t : T \rightarrow T'$ is a function between the two sets, then $- \times t$ is a NT of functors $- \times T \overset{\bullet}{\rightarrow} T'$. Its conjugate is the NT $\text{Hom}(t \times -) : \text{Hom}(T', -) \rightarrow \text{Hom}(T, -)$; this is in the reverse direction as $S \times T$ is covariant in $\text{Hom}(T, R)$ and contravariant in $T$. We may call the above an <mark>adjuction with parameter</mark> $T \in \textbf{Set}$.
+          If <span class="mathjax">$t : T \rightarrow T'$</span> is a function between the two sets, then <span class="mathjax">$- \times t$</span> is a NT of functors <span class="mathjax">$- \times T \overset{\bullet}{\rightarrow} T'$</span>. Its conjugate is the NT <span class="mathjax">$\text{Hom}(t \times -) : \text{Hom}(T', -) \rightarrow \text{Hom}(T, -)$</span>; this is in the reverse direction as <span class="mathjax">$S \times T$</span> is covariant in <span class="mathjax">$\text{Hom}(T, R)$</span> and contravariant in <span class="mathjax">$T$</span>. We may call the above an <mark>adjuction with parameter</mark> <span class="mathjax">$T \in \textbf{Set}$</span>.
         </p>
         <p>
-          Given a bifunctor $F : X \times P \rightarrow A$, assume for each $p \in P$, that $F(-, p) : X \rightarrow A$ has a right adjoint $G(p, -) : A \rightarrow X$ via the adjunction:<br/>
-          $$\text{Hom}(F(x, p), a) \cong \text{Hom}(x, G(p, a))$$
+          Given a bifunctor <span class="mathjax">$F : X \times P \rightarrow A$</span>, assume for each <span class="mathjax">$p \in P$</span>, that <span class="mathjax">$F(-, p) : X \rightarrow A$</span> has a right adjoint <span class="mathjax">$G(p, -) : A \rightarrow X$</span> via the adjunction:<br/>
+          $<span class="mathjax">$\text{Hom}(F(x, p), a) \cong \text{Hom}(x, G(p, a))$</span>$
         </p>
         <p>
-          natural in $x$ and $a$. Then, there is a unique way to assign to each arrow $h : p' \rightarrow p$ of $P$, and each object $a \in A$, an arrow $G(h, p') \rightarrow G(h, p)$ of $X$ so that $G$ becomes a bifunctor $P^{\text{op}} \times A \rightarrow X$ for which the bijection of the adjunction is natural in $x, p, a$. This assignment of arrows $G(h, a)$ to $\langle h, a \rangle$ may also be described as the unique way to make $G(h, -)$ an NT conjugate to $F(-, h)$. To prove this, first notice that the bijection implies the following commutative diagram:
+          natural in <span class="mathjax">$x$</span> and <span class="mathjax">$a$</span>. Then, there is a unique way to assign to each arrow <span class="mathjax">$h : p' \rightarrow p$</span> of <span class="mathjax">$P$</span>, and each object <span class="mathjax">$a \in A$</span>, an arrow <span class="mathjax">$G(h, p') \rightarrow G(h, p)$</span> of <span class="mathjax">$X$</span> so that <span class="mathjax">$G$</span> becomes a bifunctor <span class="mathjax">$P^{\text{op}} \times A \rightarrow X$</span> for which the bijection of the adjunction is natural in <span class="mathjax">$x, p, a$</span>. This assignment of arrows <span class="mathjax">$G(h, a)$</span> to <span class="mathjax">$\langle h, a \rangle$</span> may also be described as the unique way to make <span class="mathjax">$G(h, -)$</span> an NT conjugate to <span class="mathjax">$F(-, h)$</span>. To prove this, first notice that the bijection implies the following commutative diagram:
         </p>
         <div class="mathjax">
           $$
@@ -742,7 +745,7 @@
           $$
         </div>
         <p>
-          This states precisely that $G(h, -) : G(p', -) \overset{\bullet}{\rightarrow} G(p, -)$ must be chosen as the conjugate to $F(-, h) : F(-, p) \rightarrow F(-, p')$. By the previous result, there is a unique choice of $G(h, -)$ to realize this - the condition for conjugacy may be expressed in any of the five ways previously stated. For a second arrow $h' : p' \rightarrow p''$, the uniqueness of choice of conjugates shows for $h'h$ that $G(h'h, -) = G(h, -) \circ G(h', -)$, so $G(-, a)$ is a functor and $G$ is a bifunctor, as required. Dually, given a bifunctor $P^{\text{op}} \times A \rightarrow X$, where each $G(p, -)$ has right adjoint $F(-, p)$, there is a unique way to make $F$ a bifunctor $X \times P \rightarrow A$.
+          This states precisely that <span class="mathjax">$G(h, -) : G(p', -) \overset{\bullet}{\rightarrow} G(p, -)$</span> must be chosen as the conjugate to <span class="mathjax">$F(-, h) : F(-, p) \rightarrow F(-, p')$</span>. By the previous result, there is a unique choice of <span class="mathjax">$G(h, -)$</span> to realize this - the condition for conjugacy may be expressed in any of the five ways previously stated. For a second arrow <span class="mathjax">$h' : p' \rightarrow p''$</span>, the uniqueness of choice of conjugates shows for <span class="mathjax">$h'h$</span> that <span class="mathjax">$G(h'h, -) = G(h, -) \circ G(h', -)$</span>, so <span class="mathjax">$G(-, a)$</span> is a functor and <span class="mathjax">$G$</span> is a bifunctor, as required. Dually, given a bifunctor <span class="mathjax">$P^{\text{op}} \times A \rightarrow X$</span>, where each <span class="mathjax">$G(p, -)$</span> has right adjoint <span class="mathjax">$F(-, p)$</span>, there is a unique way to make <span class="mathjax">$F$</span> a bifunctor <span class="mathjax">$X \times P \rightarrow A$</span>.
         </p>
         <h2 id="composition-of-adjoints">
           Composition of adjoints
@@ -758,17 +761,17 @@
         </div>
         <p>
           the composite functors yield the adjunction:<br/>
-          $$\langle \bar{F}F, G\bar{G}, G\bar{\eta}F . \eta, \bar{\epsilon} . \bar{F}\epsilon\bar{G} \rangle : X \rightharpoonup D$$
+          $<span class="mathjax">$\langle \bar{F}F, G\bar{G}, G\bar{\eta}F . \eta, \bar{\epsilon} . \bar{F}\epsilon\bar{G} \rangle : X \rightharpoonup D$</span>$
         </p>
         <p>
-          We prove it by noticing that, with hom-sets, the two given adjunctions yield a composite isomorphism, natural for all $x \in X, d \in D$:<br/>
-          $$D(\bar{F}Fx, d) \cong D(Fx, \bar{G}d) \cong X(x, G\bar{G}d)$$
+          We prove it by noticing that, with hom-sets, the two given adjunctions yield a composite isomorphism, natural for all <span class="mathjax">$x \in X, d \in D$</span>:<br/>
+          $<span class="mathjax">$D(\bar{F}Fx, d) \cong D(Fx, \bar{G}d) \cong X(x, G\bar{G}d)$</span>$
         </p>
         <p>
-          This makes the composite $\bar{F}F$ left adjoint to $G\bar{G}$. Setting $d = \bar{F}Fx$, and applying these two isomorphisms to the identity $1 : \bar{F}Fx \rightarrow \bar{F}Fx$, we find that the unit of composite adjunction is $x \xrightarrow{\eta x} GFx \xrightarrow{G\bar{\eta}Fx} G\bar{F}\bar{F}Fx$, so is $G\bar{\eta}F . \eta$, as asserted. The dual argument yields counit $\bar{\epsilon} . \bar{G}\epsilon\bar{F}$, as required.
+          This makes the composite <span class="mathjax">$\bar{F}F$</span> left adjoint to <span class="mathjax">$G\bar{G}$</span>. Setting <span class="mathjax">$d = \bar{F}Fx$</span>, and applying these two isomorphisms to the identity <span class="mathjax">$1 : \bar{F}Fx \rightarrow \bar{F}Fx$</span>, we find that the unit of composite adjunction is <span class="mathjax">$x \xrightarrow{\eta x} GFx \xrightarrow{G\bar{\eta}Fx} G\bar{F}\bar{F}Fx$</span>, so is <span class="mathjax">$G\bar{\eta}F . \eta$</span>, as asserted. The dual argument yields counit <span class="mathjax">$\bar{\epsilon} . \bar{G}\epsilon\bar{F}$</span>, as required.
         </p>
         <p>
-          Using this composition, we may form a category $\textbf{Adj}$, whose objects are small categories $X, A, D$, and whose arrows are adjunctions $\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A$ composed as above; the identity arrow is $A \rightharpoonup A$. This category has additional structure; each hom-set $\textbf{Adj}(X, A)$ may be regarded as a category; the category of adjunctions $A^{(\text{adj})X}$ has already been described. Its objects are these adjunctions, and arrows are conjugate pairs $\langle \sigma, \tau \rangle$ under "vertical" composition.
+          Using this composition, we may form a category <span class="mathjax">$\textbf{Adj}$</span>, whose objects are small categories <span class="mathjax">$X, A, D$</span>, and whose arrows are adjunctions <span class="mathjax">$\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A$</span> composed as above; the identity arrow is <span class="mathjax">$A \rightharpoonup A$</span>. This category has additional structure; each hom-set <span class="mathjax">$\textbf{Adj}(X, A)$</span> may be regarded as a category; the category of adjunctions <span class="mathjax">$A^{(\text{adj})X}$</span> has already been described. Its objects are these adjunctions, and arrows are conjugate pairs <span class="mathjax">$\langle \sigma, \tau \rangle$</span> under "vertical" composition.
         </p>
         <p>
           Given two conjugate pairs:
@@ -780,7 +783,7 @@
           $$
         </div>
         <p>
-          The "horizontal" composite NTs yield a conjugate pair $\bar{\sigma} \sigma : \bar{F}F \overset{\bullet}{\rightarrow} \bar{F'}F'$, $\tau \bar{\tau} : G'\bar{G'} \overset{\bullet}{\rightarrow} G\bar{G}$ of NTs for the conjugate adjunction. The proof may be visualized by the commutative diagram of hom-sets:
+          The "horizontal" composite NTs yield a conjugate pair <span class="mathjax">$\bar{\sigma} \sigma : \bar{F}F \overset{\bullet}{\rightarrow} \bar{F'}F'$</span>, <span class="mathjax">$\tau \bar{\tau} : G'\bar{G'} \overset{\bullet}{\rightarrow} G\bar{G}$</span> of NTs for the conjugate adjunction. The proof may be visualized by the commutative diagram of hom-sets:
         </p>
         <div class="mathjax">
           $$
@@ -794,20 +797,20 @@
         </div>
         <p>
           Moreover, this operation of horizontal composition is a bifunctor:<br/>
-          $$\textbf{Adj}(A, D) \times \textbf{Adj}(X, A) \cong \textbf{Adj}(X, D)$$
+          $<span class="mathjax">$\textbf{Adj}(A, D) \times \textbf{Adj}(X, A) \cong \textbf{Adj}(X, D)$</span>$
         </p>
         <p>
-          This means that $\textbf{Adj}$ is a <mark>two-dimensional category</mark> as is $\textbf{Cat}$.
+          This means that <span class="mathjax">$\textbf{Adj}$</span> is a <mark>two-dimensional category</mark> as is <span class="mathjax">$\textbf{Cat}$</span>.
         </p>
         <h2 id="subsets-and-characteristic-functions">
           Subsets and characteristic functions
         </h2>
         <p>
-          The characteristic function of a subset $S \subset X$ is the two-valued function $\psi_S : X \rightarrow \{0, 1\}$ on $X$ with values:<br/>
-          $$\psi_S x = 0 \text{ if } x \in S \quad \psi_S x = 1 \text { if } x \in X, x \notin S$$
+          The characteristic function of a subset <span class="mathjax">$S \subset X$</span> is the two-valued function <span class="mathjax">$\psi_S : X \rightarrow \{0, 1\}$</span> on <span class="mathjax">$X$</span> with values:<br/>
+          $<span class="mathjax">$\psi_S x = 0 \text{ if } x \in S \quad \psi_S x = 1 \text { if } x \in X, x \notin S$</span>$
         </p>
         <p>
-          Put differently, $\{0\} \subset \{0, 1\}$ is the simplest non-trivial subset. An arbitrary subset $S \subset X$ can be mapped into this simple subset by $\psi_S$, as defined. This produces the pullback map:
+          Put differently, <span class="mathjax">$\{0\} \subset \{0, 1\}$</span> is the simplest non-trivial subset. An arbitrary subset <span class="mathjax">$S \subset X$</span> can be mapped into this simple subset by <span class="mathjax">$\psi_S$</span>, as defined. This produces the pullback map:
         </p>
         <div class="mathjax">
           $$
@@ -820,7 +823,7 @@
           $$
         </div>
         <p>
-          These appear in probability theory; in logic, $\{0, 1\}$ are "truth values", and "truth" is represented by $\{0\}$. The monomorphism $t : \{0\} \rightarrow \{0, 1\}$ is termed <mark>subobject classifier</mark> for the category of sets. A subobject classifier for the category $C$ with terminal object $1$ is defined to be $t : 1 \rightarrow \Omega$, such that every monomorphism $m$ in $C$ is a pullback of $t$ in a unique way. In other words, for each $m$, there exists a pullback square:
+          These appear in probability theory; in logic, <span class="mathjax">$\{0, 1\}$</span> are "truth values", and "truth" is represented by <span class="mathjax">$\{0\}$</span>. The monomorphism <span class="mathjax">$t : \{0\} \rightarrow \{0, 1\}$</span> is termed <mark>subobject classifier</mark> for the category of sets. A subobject classifier for the category <span class="mathjax">$C$</span> with terminal object <span class="mathjax">$1$</span> is defined to be <span class="mathjax">$t : 1 \rightarrow \Omega$</span>, such that every monomorphism <span class="mathjax">$m$</span> in <span class="mathjax">$C$</span> is a pullback of <span class="mathjax">$t$</span> in a unique way. In other words, for each <span class="mathjax">$m$</span>, there exists a pullback square:
         </p>
         <div class="mathjax">
           $$
@@ -834,10 +837,10 @@
           $$
         </div>
         <p>
-          The top horizontal arrow is the unique map to terminal object $1$, and the lower horizontal arrow acts as the <mark>characteristic function</mark> of subobject $S$, while the universal morphism $t : 1 \rightarrow \Omega$ may be called "truth".
+          The top horizontal arrow is the unique map to terminal object <span class="mathjax">$1$</span>, and the lower horizontal arrow acts as the <mark>characteristic function</mark> of subobject <span class="mathjax">$S$</span>, while the universal morphism <span class="mathjax">$t : 1 \rightarrow \Omega$</span> may be called "truth".
         </p>
         <p>
-          For example, take $C$ to be a category of functions $f : X \rightarrow Y$. Here a monomorphism $g \rightarrowtail f$ is a function $S \rightarrow T$ between a pair of subsets $S \subset X$ and $T \subset Y$, such that $g(s) = f(s)$ for all $s \in S$. This means that the following diagram commutes:
+          For example, take <span class="mathjax">$C$</span> to be a category of functions <span class="mathjax">$f : X \rightarrow Y$</span>. Here a monomorphism <span class="mathjax">$g \rightarrowtail f$</span> is a function <span class="mathjax">$S \rightarrow T$</span> between a pair of subsets <span class="mathjax">$S \subset X$</span> and <span class="mathjax">$T \subset Y$</span>, such that <span class="mathjax">$g(s) = f(s)$</span> for all <span class="mathjax">$s \in S$</span>. This means that the following diagram commutes:
         </p>
         <div class="mathjax">
           $$
@@ -850,7 +853,7 @@
           $$
         </div>
         <p>
-          In this case, there are three types of elements in $X$: those $x \in S$, those $x \notin S$, but with $gx \in T$, and those $x \notin S, gx \notin T$. We may then define a characteristic function with three values by setting:
+          In this case, there are three types of elements in <span class="mathjax">$X$</span>: those <span class="mathjax">$x \in S$</span>, those <span class="mathjax">$x \notin S$</span>, but with <span class="mathjax">$gx \in T$</span>, and those <span class="mathjax">$x \notin S, gx \notin T$</span>. We may then define a characteristic function with three values by setting:
         </p>
         <div class="mathjax">
           $$
@@ -873,37 +876,37 @@
           $$
         </div>
         <p>
-          of objects $X \rightarrow Y$ and $j : \{0, 1, 2\} \rightarrow \{0, 1\}$ in the category of functions, whose function $j$ is given by $j0 = 0, j1 = 1, j2 = 2$. Thus, the inclusion $j$ is the subobject classifier for the category of functions.
+          of objects <span class="mathjax">$X \rightarrow Y$</span> and <span class="mathjax">$j : \{0, 1, 2\} \rightarrow \{0, 1\}$</span> in the category of functions, whose function <span class="mathjax">$j$</span> is given by <span class="mathjax">$j0 = 0, j1 = 1, j2 = 2$</span>. Thus, the inclusion <span class="mathjax">$j$</span> is the subobject classifier for the category of functions.
         </p>
         <p>
-          As an example, consider the arrow category $\textbf{2}$ as a category with two objects $0$ and $1$, and only one non-identity arrow $a : 0 \rightarrow 1$. Thus, an ordinary function $f$ is the same thing as a functor $\textbf{2} \rightarrow \textbf{Sets}$. Hence, we have constructed above the functor category for $\textbf{Sets}^2$.
+          As an example, consider the arrow category <span class="mathjax">$\textbf{2}$</span> as a category with two objects <span class="mathjax">$0$</span> and <span class="mathjax">$1$</span>, and only one non-identity arrow <span class="mathjax">$a : 0 \rightarrow 1$</span>. Thus, an ordinary function <span class="mathjax">$f$</span> is the same thing as a functor <span class="mathjax">$\textbf{2} \rightarrow \textbf{Sets}$</span>. Hence, we have constructed above the functor category for <span class="mathjax">$\textbf{Sets}^2$</span>.
         </p>
         <h2 id="categories-like-sets">
           Categories like sets
         </h2>
         <p>
-          An elementary <mark>topos</mark> is defined to be a category $E$ with the following properties:
+          An elementary <mark>topos</mark> is defined to be a category <span class="mathjax">$E$</span> with the following properties:
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            $E$ has all finite limits.
+            <span class="mathjax">$E$</span> has all finite limits.
           </li>
           <li>
-            $E$ has a subobject classifier.
+            <span class="mathjax">$E$</span> has a subobject classifier.
           </li>
           <li>
-            $E$ is cartesian closed.
+            <span class="mathjax">$E$</span> is cartesian closed.
           </li>
         </ol>
         <p>
-          Requiring $E$ to be cartesian closed means requring each functor "product with b" (i.e. $a \mapsto a \times b$) has for each $b \in E$ a right adjoint $c \mapsto c^b$ so that:<br/>
-          $$\text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)$$
+          Requiring <span class="mathjax">$E$</span> to be cartesian closed means requring each functor "product with b" (i.e. <span class="mathjax">$a \mapsto a \times b$</span>) has for each <span class="mathjax">$b \in E$</span> a right adjoint <span class="mathjax">$c \mapsto c^b$</span> so that:<br/>
+          $<span class="mathjax">$\text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)$</span>$
         </p>
         <p>
-          In other words, $E$ has exponentials.
+          In other words, <span class="mathjax">$E$</span> has exponentials.
         </p>
         <p>
-          The category $\text{Sets}$ of all small sets is a topos, as is $\textbf{Sets}^{C^\text{op}}$, the set of all contravariant functors on small category $C$. Such a functor $F : C^{\text{op}} \rightarrow \textbf{Sets}$ is called a <a href="/ag/1#definition-of-presheaf-and-sheaf">presheaf</a>. This is a reference to topology where $C$ is the set of all open subsets $U$ of topological space $X$; in this case, presheaf $F$ assigns to each $U$ a set $F(U)$, with functorial properties for continuous maps $U \rightarrow V$. If $F$ is the set of continuous real-valued functions on $U$, it is said to be a <a href="/ag/1#definition-of-presheaf-and-sheaf">sheaf</a>. A topological structure is essentially described by its topos of sheaves of $\textbf{Sets}$. Various logical properties are reflected in subobject classifiers $\Omega$ of a topos. Suitable toposes can replace the category of sets as a foundation for mathematics.
+          The category <span class="mathjax">$\text{Sets}$</span> of all small sets is a topos, as is <span class="mathjax">$\textbf{Sets}^{C^\text{op}}$</span>, the set of all contravariant functors on small category <span class="mathjax">$C$</span>. Such a functor <span class="mathjax">$F : C^{\text{op}} \rightarrow \textbf{Sets}$</span> is called a <a href="/ag/1#definition-of-presheaf-and-sheaf">presheaf</a>. This is a reference to topology where <span class="mathjax">$C$</span> is the set of all open subsets <span class="mathjax">$U$</span> of topological space <span class="mathjax">$X$</span>; in this case, presheaf <span class="mathjax">$F$</span> assigns to each <span class="mathjax">$U$</span> a set <span class="mathjax">$F(U)$</span>, with functorial properties for continuous maps <span class="mathjax">$U \rightarrow V$</span>. If <span class="mathjax">$F$</span> is the set of continuous real-valued functions on <span class="mathjax">$U$</span>, it is said to be a <a href="/ag/1#definition-of-presheaf-and-sheaf">sheaf</a>. A topological structure is essentially described by its topos of sheaves of <span class="mathjax">$\textbf{Sets}$</span>. Various logical properties are reflected in subobject classifiers <span class="mathjax">$\Omega$</span> of a topos. Suitable toposes can replace the category of sets as a foundation for mathematics.
         </p>
       </article>
     </main>

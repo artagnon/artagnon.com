@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -72,31 +75,31 @@
           Natural transforms, products
         </h2>
         <p class="exercise">
-          Find two different functors $T : \textbf{Grp} \rightarrow \textbf{Grp}$ with the object function $T(G) = G$, the identity for every group $G$.
+          Find two different functors <span class="mathjax">$T : \textbf{Grp} \rightarrow \textbf{Grp}$</span> with the object function <span class="mathjax">$T(G) = G$</span>, the identity for every group <span class="mathjax">$G$</span>.
         </p>
         <p>
-          Solution: In other words, we need to find morphisms $f, g$, such that the corresponding morphisms $T f, T g$ are present in the image of the $T$. The two required morphisms are, given $x \in G$, $f(x) = x$, the identity morphism, and $g(x) = 1$, the zero morphism. Indeed, the functor carries identity to identity, and $T(f \circ g) = Tf \circ Tg$ $\Box$
+          Solution: In other words, we need to find morphisms <span class="mathjax">$f, g$</span>, such that the corresponding morphisms <span class="mathjax">$T f, T g$</span> are present in the image of the <span class="mathjax">$T$</span>. The two required morphisms are, given <span class="mathjax">$x \in G$</span>, <span class="mathjax">$f(x) = x$</span>, the identity morphism, and <span class="mathjax">$g(x) = 1$</span>, the zero morphism. Indeed, the functor carries identity to identity, and <span class="mathjax">$T(f \circ g) = Tf \circ Tg$</span> <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
           Show how the field of quotients in an integral domain can be regarded as a functor.
         </p>
         <p>
-          Solution: An integral domain $G$ is defined as having no zero-divisors other than $0$. The field of quotients is a subgroup of this integral domain, where every element has an inverse. Indeed, we can define the functor $T : G \rightarrow Q$ to be the forgetful functor, which maps only units in $G$ to elements in $Q$. Let $f, g$ be two morphisms in $G$ for which $f \circ g$ is defined. Then, $T(1) = 1, T(f \circ g) = Tf \circ Tg$ $\Box$
+          Solution: An integral domain <span class="mathjax">$G$</span> is defined as having no zero-divisors other than <span class="mathjax">$0$</span>. The field of quotients is a subgroup of this integral domain, where every element has an inverse. Indeed, we can define the functor <span class="mathjax">$T : G \rightarrow Q$</span> to be the forgetful functor, which maps only units in <span class="mathjax">$G$</span> to elements in <span class="mathjax">$Q$</span>. Let <span class="mathjax">$f, g$</span> be two morphisms in <span class="mathjax">$G$</span> for which <span class="mathjax">$f \circ g$</span> is defined. Then, <span class="mathjax">$T(1) = 1, T(f \circ g) = Tf \circ Tg$</span> <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Prove that there is no functor $T : \textbf{Grp} \rightarrow \textbf{Ab}$ sending each element of group $G$ to its <mark>center</mark>.
+          Prove that there is no functor <span class="mathjax">$T : \textbf{Grp} \rightarrow \textbf{Ab}$</span> sending each element of group <span class="mathjax">$G$</span> to its <mark>center</mark>.
         </p>
         <p>
-          Proof: We have $a \in G$, and the object function $T(a) = bab^{-1}, b \in G$. Then, the object function takes identity to identity: $T(1) = bb^{-1} = 1$. But there is a problem with the arrow function: take $f = g = \text{id}$, so that $f \circ g = \text{id}$. Then, $(Tf \circ Tg)(a) = cbab^{-1}c^{-1} \neq T(f \circ g)(a) = bab^{-1}$ $\Box$
+          Proof: We have <span class="mathjax">$a \in G$</span>, and the object function <span class="mathjax">$T(a) = bab^{-1}, b \in G$</span>. Then, the object function takes identity to identity: <span class="mathjax">$T(1) = bb^{-1} = 1$</span>. But there is a problem with the arrow function: take <span class="mathjax">$f = g = \text{id}$</span>, so that <span class="mathjax">$f \circ g = \text{id}$</span>. Then, <span class="mathjax">$(Tf \circ Tg)(a) = cbab^{-1}c^{-1} \neq T(f \circ g)(a) = bab^{-1}$</span> <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Let $S$ be a fixed set, and $X^S$ all functions $h : S \rightarrow X$. Show that $X \mapsto X^S$ is the object function of functor $\textbf{Set} \rightarrow \textbf{Set}$, and that evaluation $e_X : X^S \times X \overset{\bullet}{\rightarrow} X$ defined by $e(h, s) = h(s)$, the value of the function $h$ at $s \in S$, is an NT.
+          Let <span class="mathjax">$S$</span> be a fixed set, and <span class="mathjax">$X^S$</span> all functions <span class="mathjax">$h : S \rightarrow X$</span>. Show that <span class="mathjax">$X \mapsto X^S$</span> is the object function of functor <span class="mathjax">$\textbf{Set} \rightarrow \textbf{Set}$</span>, and that evaluation <span class="mathjax">$e_X : X^S \times X \overset{\bullet}{\rightarrow} X$</span> defined by <span class="mathjax">$e(h, s) = h(s)$</span>, the value of the function <span class="mathjax">$h$</span> at <span class="mathjax">$s \in S$</span>, is an NT.
         </p>
         <p>
-          Proof: From the information given, we can conclude that $\mathscr{P} : X \mapsto X^S$ is the power-set functor, mapping every object $X \in \textbf{Set}$ to its power-set $\mathscr{P}X$. This is a functor, as identity maps to identity, and $\mathscr{P}(f \circ g) = \mathscr{P}f \circ \mathscr{P}g$ for any two morphisms $f, g \in \textbf{Set}$.
+          Proof: From the information given, we can conclude that <span class="mathjax">$\mathscr{P} : X \mapsto X^S$</span> is the power-set functor, mapping every object <span class="mathjax">$X \in \textbf{Set}$</span> to its power-set <span class="mathjax">$\mathscr{P}X$</span>. This is a functor, as identity maps to identity, and <span class="mathjax">$\mathscr{P}(f \circ g) = \mathscr{P}f \circ \mathscr{P}g$</span> for any two morphisms <span class="mathjax">$f, g \in \textbf{Set}$</span>.
         </p>
         <p>
           For the NT, the following diagram:
@@ -112,11 +115,11 @@
           $$
         </div>
         <p>
-          commutes, for $b, b' \in X$ $\Box$
+          commutes, for <span class="mathjax">$b, b' \in X$</span> <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          For a fixed group $H$, show that $G \mapsto H \times G$ defines a functor $H \times - : \textbf{Grp} \rightarrow \textbf{Grp}$, and that each morphism of groups $f : H \rightarrow K$ defines an NT $H \times - \overset{\bullet}{\rightarrow} K \times -$.
+          For a fixed group <span class="mathjax">$H$</span>, show that <span class="mathjax">$G \mapsto H \times G$</span> defines a functor <span class="mathjax">$H \times - : \textbf{Grp} \rightarrow \textbf{Grp}$</span>, and that each morphism of groups <span class="mathjax">$f : H \rightarrow K$</span> defines an NT <span class="mathjax">$H \times - \overset{\bullet}{\rightarrow} K \times -$</span>.
         </p>
         <p>
           Proof: For the NT, the following diagram:
@@ -132,39 +135,39 @@
           $$
         </div>
         <p>
-          commutes, for $b, b' \in X$.
+          commutes, for <span class="mathjax">$b, b' \in X$</span>.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Let $B, C$ be groups, and $S, T : B \rightarrow C$ functors (group homomorphisms). Then, show that an NT $S \overset{\bullet}{\rightarrow} T$ exists only if $S, T$ are <mark>conjugate</mark>; i.e. there is an element $h \in C$ such that $Tg = h(Sg)h^{-1}$, for all $g \in B$.
+          Let <span class="mathjax">$B, C$</span> be groups, and <span class="mathjax">$S, T : B \rightarrow C$</span> functors (group homomorphisms). Then, show that an NT <span class="mathjax">$S \overset{\bullet}{\rightarrow} T$</span> exists only if <span class="mathjax">$S, T$</span> are <mark>conjugate</mark>; i.e. there is an element <span class="mathjax">$h \in C$</span> such that <span class="mathjax">$Tg = h(Sg)h^{-1}$</span>, for all <span class="mathjax">$g \in B$</span>.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
           Find a category with an arrow that is both epi and monic, but not invertible.
         </p>
         <p>
-          Solution: $m : a \rightarrow b$ is such that $a \circ m = b \circ m \implies a = b$ and $m \circ a = m \circ b \implies a = b$, but $\exists$ no $m^{-1}$. This is true of an integral domain $\Box$
+          Solution: <span class="mathjax">$m : a \rightarrow b$</span> is such that <span class="mathjax">$a \circ m = b \circ m \implies a = b$</span> and <span class="mathjax">$m \circ a = m \circ b \implies a = b$</span>, but <span class="mathjax">$\exists$</span> no <span class="mathjax">$m^{-1}$</span>. This is true of an integral domain <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          If $f \circ g$ is monic, so is $g$. Is it true of $f$?
+          If <span class="mathjax">$f \circ g$</span> is monic, so is <span class="mathjax">$g$</span>. Is it true of <span class="mathjax">$f$</span>?
         </p>
         <p>
-          Solution: The condition that $f \circ g$ is monic can be written as $(f \circ g) \circ a = (f \circ g) \circ b \implies a = b$, by cancelation of $f \circ g$. We know that $g$ is also monic, and this can be written as $g \circ a = g \circ b \implies a = b$. By comparing with the previous condition, we see that $f$ is also monic $\Box$
+          Solution: The condition that <span class="mathjax">$f \circ g$</span> is monic can be written as <span class="mathjax">$(f \circ g) \circ a = (f \circ g) \circ b \implies a = b$</span>, by cancelation of <span class="mathjax">$f \circ g$</span>. We know that <span class="mathjax">$g$</span> is also monic, and this can be written as <span class="mathjax">$g \circ a = g \circ b \implies a = b$</span>. By comparing with the previous condition, we see that <span class="mathjax">$f$</span> is also monic <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
           Prove that composites of monics is monic, and that of epis is epi.
         </p>
         <p>
-          Proof: This follows immediately from the previous problem $\Box$
+          Proof: This follows immediately from the previous problem <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
           Show that the product category includes the following special cases: product of monoids, groups, and sets.
         </p>
         <p>
-          Proof: A monoid is defined as set $M$ equipped with $\mu : M \times M \rightarrow M$ and $\eta : 1 \rightarrow M$, such that the following diagrams commute:
+          Proof: A monoid is defined as set <span class="mathjax">$M$</span> equipped with <span class="mathjax">$\mu : M \times M \rightarrow M$</span> and <span class="mathjax">$\eta : 1 \rightarrow M$</span>, such that the following diagrams commute:
         </p>
         <div class="mathjax">
           $$
@@ -187,7 +190,7 @@
           $$
         </div>
         <p>
-          The product structure, written in terms of $M$ and $\mu$ is therefore:
+          The product structure, written in terms of <span class="mathjax">$M$</span> and <span class="mathjax">$\mu$</span> is therefore:
         </p>
         <div class="mathjax">
           $$
@@ -200,20 +203,20 @@
           $$
         </div>
         <p>
-          Comparing with the first diagram for monoid, we get $P = M \times M \times M$ and $f = \mu \circ (1 \times \mu)$.
+          Comparing with the first diagram for monoid, we get <span class="mathjax">$P = M \times M \times M$</span> and <span class="mathjax">$f = \mu \circ (1 \times \mu)$</span>.
         </p>
         <p>
           A group is defined as a monoid with an additional operation for inverse. We don't need this additional operation for the product structure to be defined.
         </p>
         <p>
-          $\textbf{Set}$ is simply a discrete category (category with one object), so the product structure is defined, in the obvious way, in terms of projections $\Box$
+          <span class="mathjax">$\textbf{Set}$</span> is simply a discrete category (category with one object), so the product structure is defined, in the obvious way, in terms of projections <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
           Show that the product of two preorders is a preorder.
         </p>
         <p>
-          Proof: A preorder is defined by reflexivity $a \leq a$, and transitivity $a \leq b \wedge b \leq c \implies a \leq c$. Let $a, b$ be objects and $f, g$ be arrows in the preorder category $C$. Then, $C \times C$ is defined as the category with objects as pairs $\langle a, b \rangle$ and arrows as pairs $\langle f, g \rangle$, where $f : a \rightarrow a', g : b \rightarrow b'$, such that:
+          Proof: A preorder is defined by reflexivity <span class="mathjax">$a \leq a$</span>, and transitivity <span class="mathjax">$a \leq b \wedge b \leq c \implies a \leq c$</span>. Let <span class="mathjax">$a, b$</span> be objects and <span class="mathjax">$f, g$</span> be arrows in the preorder category <span class="mathjax">$C$</span>. Then, <span class="mathjax">$C \times C$</span> is defined as the category with objects as pairs <span class="mathjax">$\langle a, b \rangle$</span> and arrows as pairs <span class="mathjax">$\langle f, g \rangle$</span>, where <span class="mathjax">$f : a \rightarrow a', g : b \rightarrow b'$</span>, such that:
         </p>
         <div class="mathjax">
           $$
@@ -221,38 +224,38 @@
           $$
         </div>
         <p>
-          along with the usual product structure. Since $f, g$ act on $a, b$ independently, both $f$ and $g$ preserve preorder properties, and hence so does $\langle f, g \rangle$ $\Box$
+          along with the usual product structure. Since <span class="mathjax">$f, g$</span> act on <span class="mathjax">$a, b$</span> independently, both <span class="mathjax">$f$</span> and <span class="mathjax">$g$</span> preserve preorder properties, and hence so does <span class="mathjax">$\langle f, g \rangle$</span> <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Describe the opposite of the category $\textbf{Matr}_K$.
+          Describe the opposite of the category <span class="mathjax">$\textbf{Matr}_K$</span>.
         </p>
         <p>
-          Solution: $\textbf{Matr}_K$ is the category of rectangular matrices of dimension $m \times n$ with entries in the commutative ring $K$. The objects are positive integers $m, n, \ldots$, and each $m \times n$ matrix $A$ is regarded as an arrow $A : n \rightarrow m$. The opposite category is a category with the same objects and direction of arrows reversed, i.e. the arrows are $A^{\text{op}} : m \rightarrow n$ $\Box$
+          Solution: <span class="mathjax">$\textbf{Matr}_K$</span> is the category of rectangular matrices of dimension <span class="mathjax">$m \times n$</span> with entries in the commutative ring <span class="mathjax">$K$</span>. The objects are positive integers <span class="mathjax">$m, n, \ldots$</span>, and each <span class="mathjax">$m \times n$</span> matrix <span class="mathjax">$A$</span> is regarded as an arrow <span class="mathjax">$A : n \rightarrow m$</span>. The opposite category is a category with the same objects and direction of arrows reversed, i.e. the arrows are <span class="mathjax">$A^{\text{op}} : m \rightarrow n$</span> <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <h2 id="functor-categories-comma-categories-free-categories">
           Functor categories, comma categories, free categories
         </h2>
         <p class="exercise">
-          Describe $B^X$, for $X$ a finite set.
+          Describe <span class="mathjax">$B^X$</span>, for <span class="mathjax">$X$</span> a finite set.
         </p>
         <p>
-          Solution: $B^X$ is a category with objects the functors $T : \textbf{Set} \rightarrow B$, and arrows the morphisms between these functors. We can think of $T$ as functors that endow additional structure to the $\textbf{Set}$. Contained in $T$ is also the identity functor that identifies each element in $\textbf{Set}$ to a corresponding element in the richer category $B$ $\Box$
+          Solution: <span class="mathjax">$B^X$</span> is a category with objects the functors <span class="mathjax">$T : \textbf{Set} \rightarrow B$</span>, and arrows the morphisms between these functors. We can think of <span class="mathjax">$T$</span> as functors that endow additional structure to the <span class="mathjax">$\textbf{Set}$</span>. Contained in <span class="mathjax">$T$</span> is also the identity functor that identifies each element in <span class="mathjax">$\textbf{Set}$</span> to a corresponding element in the richer category <span class="mathjax">$B$</span> <span class="mathjax">$\Box$</span>
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          If $P, Q$ are preorders, describe $P^Q$, and show that it is a preorder.
+          If <span class="mathjax">$P, Q$</span> are preorders, describe <span class="mathjax">$P^Q$</span>, and show that it is a preorder.
         </p>
         <p>
-          Proof: The functor category may be written as $P^Q = \text{Funct}(Q, P)$, with objects the functors $T : Q \rightarrow P$, and morphisms the NTs between two such functors. A preorder is defined by reflexivity $a \leq a$ and transitivity $a \leq b \wedge b \leq c \implies a \leq c$; we need to show that $P^Q$ preserves this property.
+          Proof: The functor category may be written as <span class="mathjax">$P^Q = \text{Funct}(Q, P)$</span>, with objects the functors <span class="mathjax">$T : Q \rightarrow P$</span>, and morphisms the NTs between two such functors. A preorder is defined by reflexivity <span class="mathjax">$a \leq a$</span> and transitivity <span class="mathjax">$a \leq b \wedge b \leq c \implies a \leq c$</span>; we need to show that <span class="mathjax">$P^Q$</span> preserves this property.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Given categories $B, C$, and functor category $B^2$, show that each functor $H : C \rightarrow B^2$ determines the functors $S, T : C \rightarrow B$, and an NT $\tau : S \overset{\bullet}{\rightarrow} T$, and show that the assignment $H \mapsto \langle S, T, \tau \rangle$ is bijective.
+          Given categories <span class="mathjax">$B, C$</span>, and functor category <span class="mathjax">$B^2$</span>, show that each functor <span class="mathjax">$H : C \rightarrow B^2$</span> determines the functors <span class="mathjax">$S, T : C \rightarrow B$</span>, and an NT <span class="mathjax">$\tau : S \overset{\bullet}{\rightarrow} T$</span>, and show that the assignment <span class="mathjax">$H \mapsto \langle S, T, \tau \rangle$</span> is bijective.
         </p>
         <p>
-          Proof: $B^2$ is the category whose objects are arrows $f : a \rightarrow b \in B$, and whose arrows $f \rightarrow f'$ are those that, along with pair $\langle h, k \rangle$, make the following diagram commute:
+          Proof: <span class="mathjax">$B^2$</span> is the category whose objects are arrows <span class="mathjax">$f : a \rightarrow b \in B$</span>, and whose arrows <span class="mathjax">$f \rightarrow f'$</span> are those that, along with pair <span class="mathjax">$\langle h, k \rangle$</span>, make the following diagram commute:
         </p>
         <div class="mathjax">
           $$
@@ -266,7 +269,7 @@
         </div>
         <hr class="horizrule" />
         <p class="exercise">
-          For small categories $A, B, C$, establish the bijection:
+          For small categories <span class="mathjax">$A, B, C$</span>, establish the bijection:
         </p>
         <div class="mathjax">
           $$
@@ -278,7 +281,7 @@
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          Show that the horizontal composition $\circ$ is a functor:
+          Show that the horizontal composition <span class="mathjax">$\circ$</span> is a functor:
         </p>
         <div class="mathjax">
           $$
@@ -287,7 +290,7 @@
         </div>
         <hr class="horizrule" />
         <p class="exercise">
-          Let $S$ be a set with two everywhere-defined binary operations $\bullet : S \times S \rightarrow S$ and $\circ : S \times S \rightarrow S$, such that both have the same two-sided identity element $e$, and satisfy the interchange law:
+          Let <span class="mathjax">$S$</span> be a set with two everywhere-defined binary operations <span class="mathjax">$\bullet : S \times S \rightarrow S$</span> and <span class="mathjax">$\circ : S \times S \rightarrow S$</span>, such that both have the same two-sided identity element <span class="mathjax">$e$</span>, and satisfy the interchange law:
         </p>
         <div class="mathjax">
           $$
@@ -299,7 +302,7 @@
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          If $K$ is a commutative ring, show that the <a href="/category/1#comma-category">comma category</a> $(K \downarrow \textbf{CRng})$ is the category of small commutative <a href="/ac/1#algebras">$K$-algebras</a>.
+          If <span class="mathjax">$K$</span> is a commutative ring, show that the <a href="/category/1#comma-category">comma category</a> <span class="mathjax">$(K \downarrow \textbf{CRng})$</span> is the category of small commutative <a href="/ac/1#algebras"><span class="mathjax">$K$</span>-algebras</a>.
         </p>
       </article>
     </main>

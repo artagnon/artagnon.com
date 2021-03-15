@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -72,40 +75,40 @@
           Algebraic Topology is about turning questions about the existence of topological objects to the corresponding algebraic objects. If an algebraic object does not exist, neither does the toplogical one, but since this process leads to information loss, existence of an algebraic object does not imply existence of the corresponding topological object.
         </p>
         <p>
-          Notation: we use $\cong$ to indicate homomorphism, $\approx$ to indicate isomorphism, and $\simeq$ to indicate homotopy equivalence.
+          Notation: we use <span class="mathjax">$\cong$</span> to indicate homomorphism, <span class="mathjax">$\approx$</span> to indicate isomorphism, and <span class="mathjax">$\simeq$</span> to indicate homotopy equivalence.
         </p>
         <h2 id="homotopy">
           Homotopy
         </h2>
         <p>
-          The maps $f_0, f_1 : X \rightarrow Y$ are said to be homotopic, if there is a homotopy $f_t$ connecting them; this is denoted as $f_0 \simeq f_1$. A homotopy $f : X \rightarrow X$ that gives a deformation retraction of a space $X$ to space $A$ has the has the property $f_t \mid A = \mathbb{1}$ for all $t$.
+          The maps <span class="mathjax">$f_0, f_1 : X \rightarrow Y$</span> are said to be homotopic, if there is a homotopy <span class="mathjax">$f_t$</span> connecting them; this is denoted as <span class="mathjax">$f_0 \simeq f_1$</span>. A homotopy <span class="mathjax">$f : X \rightarrow X$</span> that gives a deformation retraction of a space <span class="mathjax">$X$</span> to space <span class="mathjax">$A$</span> has the has the property <span class="mathjax">$f_t \mid A = \mathbb{1}$</span> for all <span class="mathjax">$t$</span>.
         </p>
         <p>
-          The notation for two spaces $X$ and $Y$ that are homotopy equivalent or have the same homotopy type is $X \simeq Y$.
+          The notation for two spaces <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span> that are homotopy equivalent or have the same homotopy type is <span class="mathjax">$X \simeq Y$</span>.
         </p>
         <h2 id="cw-complexes">
           CW complexes
         </h2>
         <p>
-          An orientable surface of genus $g$ can be constructed from a polygon with $4g$ sides. The surface of the torus formed from this construction is termed a 2-cell, while the circles giving it structure are 1-cells.
+          An orientable surface of genus <span class="mathjax">$g$</span> can be constructed from a polygon with <span class="mathjax">$4g$</span> sides. The surface of the torus formed from this construction is termed a 2-cell, while the circles giving it structure are 1-cells.
         </p>
         <h2 id="operations-on-spaces">
           Operations on spaces
         </h2>
         <p>
-          Wedge sum of two spaces $X$ and $Y$, $X \vee Y$, is defined as quotient of the disjoint union $X \sqcup Y$ obtained by identifying $x_0$ and $y_0$ as a single point. For instance, $S^1 \vee S^1$ is homeomorphic to the figure '8'.
+          Wedge sum of two spaces <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span>, <span class="mathjax">$X \vee Y$</span>, is defined as quotient of the disjoint union <span class="mathjax">$X \sqcup Y$</span> obtained by identifying <span class="mathjax">$x_0$</span> and <span class="mathjax">$y_0$</span> as a single point. For instance, <span class="mathjax">$S^1 \vee S^1$</span> is homeomorphic to the figure '8'.
         </p>
         <p>
-          Smash product of two spaces $X$ and $Y$, $X \wedge Y$, is defined as $X \times Y / (X \vee Y)$.
+          Smash product of two spaces <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span>, <span class="mathjax">$X \wedge Y$</span>, is defined as <span class="mathjax">$X \times Y / (X \vee Y)$</span>.
         </p>
         <h2 id="paths-and-the-fundamental-group">
           Paths and the fundamental group
         </h2>
         <p>
-          Homotopy of paths leading from $x_0$ to $x_1$ can be written as $f_t$, where $f_t(0) = x_0$ and $f_t(1) = x_1$. Now, $f_t(s) = f_0(s) + t[f_1(s) - f_0(s)]$.
+          Homotopy of paths leading from <span class="mathjax">$x_0$</span> to <span class="mathjax">$x_1$</span> can be written as <span class="mathjax">$f_t$</span>, where <span class="mathjax">$f_t(0) = x_0$</span> and <span class="mathjax">$f_t(1) = x_1$</span>. Now, <span class="mathjax">$f_t(s) = f_0(s) + t[f_1(s) - f_0(s)]$</span>.
         </p>
         <p>
-          Equivalence class of $f$ under equivalence relation of homotopy is called <mark>homotopy equivalence</mark>, and denoted by $[f]$.
+          Equivalence class of <span class="mathjax">$f$</span> under equivalence relation of homotopy is called <mark>homotopy equivalence</mark>, and denoted by <span class="mathjax">$[f]$</span>.
         </p>
         <p>
           Composition or product path:
@@ -117,10 +120,10 @@
           $$
         </div>
         <p>
-          Paths that have the same starting and endpoint are called loops, and the point is called the basepoint. The set of all homotopy classes $[f]$, $f : I \rightarrow X$ with a common basepoint $x_0$ is called the <mark>fundamental group</mark> $\pi_1(X, x_0)$. This is the first in the sequence $\pi_n(X, x_0)$, where $I$ is replaced by n-dimensional unit cubes $I^n$. $\pi_n(X, x_0)$ is a group with respect to product $[f][g] = [f . g]$.
+          Paths that have the same starting and endpoint are called loops, and the point is called the basepoint. The set of all homotopy classes <span class="mathjax">$[f]$</span>, <span class="mathjax">$f : I \rightarrow X$</span> with a common basepoint <span class="mathjax">$x_0$</span> is called the <mark>fundamental group</mark> <span class="mathjax">$\pi_1(X, x_0)$</span>. This is the first in the sequence <span class="mathjax">$\pi_n(X, x_0)$</span>, where <span class="mathjax">$I$</span> is replaced by n-dimensional unit cubes <span class="mathjax">$I^n$</span>. <span class="mathjax">$\pi_n(X, x_0)$</span> is a group with respect to product <span class="mathjax">$[f][g] = [f . g]$</span>.
         </p>
         <p>
-          A space $X$ is said to be simply-connected iff there is a unique homotopy class of paths connecting any two points in $X$.
+          A space <span class="mathjax">$X$</span> is said to be simply-connected iff there is a unique homotopy class of paths connecting any two points in <span class="mathjax">$X$</span>.
         </p>
         <h2 id="induced-homomorphisms">
           Induced homomorphisms
@@ -129,36 +132,36 @@
           Induced homomorphisms between fundamental groups arise as a consequence of maps between spaces.
         </p>
         <p>
-          $\varphi : (X, x_0) \rightarrow (Y, y_0)$ induces the homomorphism $\varphi_* : \pi_1(X, x_0) \rightarrow \pi_1(Y, y_0)$ taking loops based at $x_0$ to loops based at $y_0$, such that $\varphi_*[f] = [\varphi f]$.
+          <span class="mathjax">$\varphi : (X, x_0) \rightarrow (Y, y_0)$</span> induces the homomorphism <span class="mathjax">$\varphi_* : \pi_1(X, x_0) \rightarrow \pi_1(Y, y_0)$</span> taking loops based at <span class="mathjax">$x_0$</span> to loops based at <span class="mathjax">$y_0$</span>, such that <span class="mathjax">$\varphi_*[f] = [\varphi f]$</span>.
         </p>
         <p>
           Two basic properties of induced homomorphisms that make the fundamental group a functor:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            $(\varphi \psi)_* = \varphi_* \psi_*$ for the composition $(X, x_0) \xrightarrow{\varphi} (Y, y_0) \xrightarrow{\psi} (Z, z_0)$
+            <span class="mathjax">$(\varphi \psi)_* = \varphi_* \psi_*$</span> for the composition <span class="mathjax">$(X, x_0) \xrightarrow{\varphi} (Y, y_0) \xrightarrow{\psi} (Z, z_0)$</span>
           </li>
           <li>
-            $\mathbb{1} = \mathbb{1}_*$
+            <span class="mathjax">$\mathbb{1} = \mathbb{1}_*$</span>
           </li>
         </ol>
         <h2 id="fundamental-group-of-a-circle">
           Fundamental group of a circle
         </h2>
         <p>
-          The map sending $\phi : \mathbb{Z} \rightarrow \pi_1(S^1)$ sending integer $n$ to the homotopy class of loop $\omega_n(s) = (\cos 2 \pi ns, \sin 2 \pi ns)$ based at $(1, 0)$ is an isomorphism.
+          The map sending <span class="mathjax">$\phi : \mathbb{Z} \rightarrow \pi_1(S^1)$</span> sending integer <span class="mathjax">$n$</span> to the homotopy class of loop <span class="mathjax">$\omega_n(s) = (\cos 2 \pi ns, \sin 2 \pi ns)$</span> based at <span class="mathjax">$(1, 0)$</span> is an isomorphism.
         </p>
         <p>
-          $p(s) = (\cos 2 \pi s, \sin 2 \pi s)$, $\tilde{\omega_n}(s) = ns$, $\omega_n(s) = p \tilde{\omega_n}(s)$, and $\tilde{\omega_n}(s)$ is called the <mark>lift</mark> of $\omega_n(s)$.
+          <span class="mathjax">$p(s) = (\cos 2 \pi s, \sin 2 \pi s)$</span>, <span class="mathjax">$\tilde{\omega_n}(s) = ns$</span>, <span class="mathjax">$\omega_n(s) = p \tilde{\omega_n}(s)$</span>, and <span class="mathjax">$\tilde{\omega_n}(s)$</span> is called the <mark>lift</mark> of <span class="mathjax">$\omega_n(s)$</span>.
         </p>
         <p>
-          Brower's fixed-point theorem in two dimensions: Every continuous map $h : D^2 \rightarrow D^2$ has a fixed point $x$ with $h(x) = x$.
+          Brower's fixed-point theorem in two dimensions: Every continuous map <span class="mathjax">$h : D^2 \rightarrow D^2$</span> has a fixed point <span class="mathjax">$x$</span> with <span class="mathjax">$h(x) = x$</span>.
         </p>
         <p>
-          Borsuk-Ulam theorem in two dimensions: for every continuous map $f : S^2 \rightarrow \mathbb{R}^2$, there exists a pair of antipodal points $x, -x$ in $S^2$ with $f(x) = f(-x)$.
+          Borsuk-Ulam theorem in two dimensions: for every continuous map <span class="mathjax">$f : S^2 \rightarrow \mathbb{R}^2$</span>, there exists a pair of antipodal points <span class="mathjax">$x, -x$</span> in <span class="mathjax">$S^2$</span> with <span class="mathjax">$f(x) = f(-x)$</span>.
         </p>
         <p>
-          $\pi_1(X \times Y) \approx \pi_1(X) \times \pi_1(Y)$ if $X$ and $Y$ are path-connected.
+          <span class="mathjax">$\pi_1(X \times Y) \approx \pi_1(X) \times \pi_1(Y)$</span> if <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span> are path-connected.
         </p>
         <h2 id="van-kampen-theorem">
           van Kampen theorem
@@ -172,25 +175,25 @@
           $$
         </div>
         <p>
-          Here, N is the normal subgroup. This isomorphism holds if each intersection $A_\alpha \cap A_\beta \cap A_\gamma$ is path-connected.
+          Here, N is the normal subgroup. This isomorphism holds if each intersection <span class="mathjax">$A_\alpha \cap A_\beta \cap A_\gamma$</span> is path-connected.
         </p>
         <h2 id="covering-spaces">
           Covering spaces
         </h2>
         <p>
-          Covering spaces are a useful tool for computing fundamental groups. A covering space of $X$ is $\tilde{X}$ along with the map $p : \tilde{X} \rightarrow X$: there exists an open cover $\{U_\alpha\}$, such that, for every $\alpha$, $p^{-1}(U_\alpha)$ is a disjoint union of open sets in $\tilde{X}$, each of which is mapped homeomorphically by $p$ onto $\{U_\alpha\}$. $p$ need not be surjective.
+          Covering spaces are a useful tool for computing fundamental groups. A covering space of <span class="mathjax">$X$</span> is <span class="mathjax">$\tilde{X}$</span> along with the map <span class="mathjax">$p : \tilde{X} \rightarrow X$</span>: there exists an open cover <span class="mathjax">$\{U_\alpha\}$</span>, such that, for every <span class="mathjax">$\alpha$</span>, <span class="mathjax">$p^{-1}(U_\alpha)$</span> is a disjoint union of open sets in <span class="mathjax">$\tilde{X}$</span>, each of which is mapped homeomorphically by <span class="mathjax">$p$</span> onto <span class="mathjax">$\{U_\alpha\}$</span>. <span class="mathjax">$p$</span> need not be surjective.
         </p>
         <p>
-          In the helix example, we have $p : \mathbb{R} \rightarrow S^1$, and the open cover can be taken to be disjoint arcs whose union is $S^1$.
+          In the helix example, we have <span class="mathjax">$p : \mathbb{R} \rightarrow S^1$</span>, and the open cover can be taken to be disjoint arcs whose union is <span class="mathjax">$S^1$</span>.
         </p>
         <p>
-          Universal cover: Smallest subgroup $\pi(B) \leftrightarrow$ biggest covering space of $B$.
+          Universal cover: Smallest subgroup <span class="mathjax">$\pi(B) \leftrightarrow$</span> biggest covering space of <span class="mathjax">$B$</span>.
         </p>
         <h2 id="homology">
           Homology
         </h2>
         <p>
-          $\pi_i(S^n)$ is $0$ for $i \lt n$ and $\mathbb{Z}$ for $i = n$. However, higher homotopy groups are difficult to compute, and we use homology groups $H_n(X)$ instead. For the fundamental group of a circle, $H_n(S^i) = 0$ for $i \gt n$.
+          <span class="mathjax">$\pi_i(S^n)$</span> is <span class="mathjax">$0$</span> for <span class="mathjax">$i \lt n$</span> and <span class="mathjax">$\mathbb{Z}$</span> for <span class="mathjax">$i = n$</span>. However, higher homotopy groups are difficult to compute, and we use homology groups <span class="mathjax">$H_n(X)$</span> instead. For the fundamental group of a circle, <span class="mathjax">$H_n(S^i) = 0$</span> for <span class="mathjax">$i \gt n$</span>.
         </p>
         <p>
           Mayer-Vietoris sequences are the van-Kampen theorem equivalent in homology.
@@ -199,30 +202,30 @@
           $\Delta$-Complexes
         </h2>
         <p>
-          The union of all faces of simplices in $\Delta^n$ is the <mark>boundary</mark> of $\Delta^n$, written as $\partial \Delta^n$. The <mark>open simplex</mark> $\mathring{\Delta}^n = \Delta^n - \partial \Delta^n$ is the interior of $\Delta^n$.
+          The union of all faces of simplices in <span class="mathjax">$\Delta^n$</span> is the <mark>boundary</mark> of <span class="mathjax">$\Delta^n$</span>, written as <span class="mathjax">$\partial \Delta^n$</span>. The <mark>open simplex</mark> <span class="mathjax">$\mathring{\Delta}^n = \Delta^n - \partial \Delta^n$</span> is the interior of <span class="mathjax">$\Delta^n$</span>.
         </p>
         <p>
-          A $\Delta$-complex on space $X$ is a collection of maps $\sigma_\alpha : \Delta^n \rightarrow X$ with each $n$ dependent on $\alpha$ such that:
+          A <span class="mathjax">$\Delta$</span>-complex on space <span class="mathjax">$X$</span> is a collection of maps <span class="mathjax">$\sigma_\alpha : \Delta^n \rightarrow X$</span> with each <span class="mathjax">$n$</span> dependent on <span class="mathjax">$\alpha$</span> such that:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            The restriction $\sigma_\alpha|\mathring{\Delta}^n$ is injective, and each point in $X$ the the image of exactly one such restriction.
+            The restriction <span class="mathjax">$\sigma_\alpha|\mathring{\Delta}^n$</span> is injective, and each point in <span class="mathjax">$X$</span> the the image of exactly one such restriction.
           </li>
           <li>
-            Each restriction of $\sigma_\alpha$ to a face of $\Delta^n$ is one of the maps $\sigma_\beta : \Delta^{n - 1} \rightarrow X$.
+            Each restriction of <span class="mathjax">$\sigma_\alpha$</span> to a face of <span class="mathjax">$\Delta^n$</span> is one of the maps <span class="mathjax">$\sigma_\beta : \Delta^{n - 1} \rightarrow X$</span>.
           </li>
           <li>
-            $A \subset X$ is open iff $\sigma_\alpha^{-1}(A)$ is open in $\Delta^{n}$ for each $\sigma_\alpha$.
+            <span class="mathjax">$A \subset X$</span> is open iff <span class="mathjax">$\sigma_\alpha^{-1}(A)$</span> is open in <span class="mathjax">$\Delta^{n}$</span> for each <span class="mathjax">$\sigma_\alpha$</span>.
           </li>
         </ol>
         <h2 id="simplicial-homology">
           Simplicial homology
         </h2>
         <p>
-          The task is to define simplicial homology groups of $\Delta$-complexes of $X$. Let $\Delta_n(X)$ be the free abelian group with basis open n-simplicies $e_\alpha^n$ of $X$. The elements of $\Delta_n(X)$ are called <mark>n-chains</mark>, and can be written as $\sum_\alpha n_\alpha \sigma_\alpha$, where $\sigma_\alpha : \Delta^n \rightarrow X$.
+          The task is to define simplicial homology groups of <span class="mathjax">$\Delta$</span>-complexes of <span class="mathjax">$X$</span>. Let <span class="mathjax">$\Delta_n(X)$</span> be the free abelian group with basis open n-simplicies <span class="mathjax">$e_\alpha^n$</span> of <span class="mathjax">$X$</span>. The elements of <span class="mathjax">$\Delta_n(X)$</span> are called <mark>n-chains</mark>, and can be written as <span class="mathjax">$\sum_\alpha n_\alpha \sigma_\alpha$</span>, where <span class="mathjax">$\sigma_\alpha : \Delta^n \rightarrow X$</span>.
         </p>
         <p>
-          To construct an $n$-simplex, a cell is attached to the $(n - 1)$-simplex. The $n$-simplex is given by $[v_0, \ldots v_n]$, and the boundary is obtained by taking the faces of the $(n - 1)$-simplex: $[v_0, v_1, \ldots \hat{v_i}, \ldots v_n]$, where the $\hat{}$ over $v_i$ indicates that the vertex is deleted from the sequence. The <mark>boundary homomorphism</mark> $\partial_n : \Delta_n(X) \rightarrow \Delta_{n - 1}(X)$ is then given by:
+          To construct an <span class="mathjax">$n$</span>-simplex, a cell is attached to the <span class="mathjax">$(n - 1)$</span>-simplex. The <span class="mathjax">$n$</span>-simplex is given by <span class="mathjax">$[v_0, \ldots v_n]$</span>, and the boundary is obtained by taking the faces of the <span class="mathjax">$(n - 1)$</span>-simplex: <span class="mathjax">$[v_0, v_1, \ldots \hat{v_i}, \ldots v_n]$</span>, where the <span class="mathjax">$\hat{}$</span> over <span class="mathjax">$v_i$</span> indicates that the vertex is deleted from the sequence. The <mark>boundary homomorphism</mark> <span class="mathjax">$\partial_n : \Delta_n(X) \rightarrow \Delta_{n - 1}(X)$</span> is then given by:
         </p>
         <div class="mathjax">
           $$
@@ -230,7 +233,7 @@
           $$
         </div>
         <p>
-          Using $C_n(X) = \Delta_n(X)$, the composition
+          Using <span class="mathjax">$C_n(X) = \Delta_n(X)$</span>, the composition
         </p>
         <div class="mathjax">
           $$
@@ -238,35 +241,35 @@
           $$
         </div>
         <p>
-          is zero, and this is more concisely written as $\partial^2 = 0$. The defect in exactness of this sequence is expressed as the $n^{th}$ simplicial homology group $H_n^\Delta = \text{ker } \partial_n \mathbin{/} \text{im } \partial_{n + 1}$. It follows that $\text{im } \partial_{n + 1} \subset \text{ker } \partial_n$. Elements of $\text{ker } \partial_n$ are called <mark>cycles</mark>, and those of $\text{im } \partial_{n + 1}$ are called <mark>boundaries</mark>. Elements of $H_n$ are cosets of $\text{im } \partial_n$, and are called <mark>homology classes</mark>.
+          is zero, and this is more concisely written as <span class="mathjax">$\partial^2 = 0$</span>. The defect in exactness of this sequence is expressed as the <span class="mathjax">$n^{th}$</span> simplicial homology group <span class="mathjax">$H_n^\Delta = \text{ker } \partial_n \mathbin{/} \text{im } \partial_{n + 1}$</span>. It follows that <span class="mathjax">$\text{im } \partial_{n + 1} \subset \text{ker } \partial_n$</span>. Elements of <span class="mathjax">$\text{ker } \partial_n$</span> are called <mark>cycles</mark>, and those of <span class="mathjax">$\text{im } \partial_{n + 1}$</span> are called <mark>boundaries</mark>. Elements of <span class="mathjax">$H_n$</span> are cosets of <span class="mathjax">$\text{im } \partial_n$</span>, and are called <mark>homology classes</mark>.
         </p>
         <h2 id="singular-homology">
           Singular homology
         </h2>
         <p>
-          A <mark>singular n-simplex</mark> is simply a map $\sigma : \Delta \rightarrow X$; it is termed "singular" because the simplex need not be a nice embedding and can have "singularities": all that's required is that $\sigma$ be continuous.
+          A <mark>singular n-simplex</mark> is simply a map <span class="mathjax">$\sigma : \Delta \rightarrow X$</span>; it is termed "singular" because the simplex need not be a nice embedding and can have "singularities": all that's required is that <span class="mathjax">$\sigma$</span> be continuous.
         </p>
         <p>
-          Singular homology may be thought of a special case of simplicial homology: Let $S(X)$ be the $\Delta$-complex with one n-simplex $\Delta_\alpha^n$ for each singular n-simplex $\sigma : \Delta^n \rightarrow X$ with $\Delta_\sigma^n$ attached in the obvious way to $(n - 1)$-simplices of $S(X)$ that are restrictions of $\sigma$ to various $(n - 1)$-simplices of $\partial \Delta^n$. Hence, the simplicial group $H^\Delta_n(S(X))$ is identical to the singular group $H_n(X)$.
+          Singular homology may be thought of a special case of simplicial homology: Let <span class="mathjax">$S(X)$</span> be the <span class="mathjax">$\Delta$</span>-complex with one n-simplex <span class="mathjax">$\Delta_\alpha^n$</span> for each singular n-simplex <span class="mathjax">$\sigma : \Delta^n \rightarrow X$</span> with <span class="mathjax">$\Delta_\sigma^n$</span> attached in the obvious way to <span class="mathjax">$(n - 1)$</span>-simplices of <span class="mathjax">$S(X)$</span> that are restrictions of <span class="mathjax">$\sigma$</span> to various <span class="mathjax">$(n - 1)$</span>-simplices of <span class="mathjax">$\partial \Delta^n$</span>. Hence, the simplicial group <span class="mathjax">$H^\Delta_n(S(X))$</span> is identical to the singular group <span class="mathjax">$H_n(X)$</span>.
         </p>
         <p>
-          For the chain sequence $C_n \xrightarrow{\partial_n} C_{n - 1} \xrightarrow{\partial_{n - 1}} \ldots \xrightarrow{\partial_0} C_0$, the homology group is the quotient group $H_n(X) = \text{ker } \partial_n \text { / } \text{im } \partial_{n + 1}$, with singular n-cycles in the numerator and boundaries in the denominator. In homological algebra, this quotient is termed as defect, as an exact sequence would yield a vacuous quotient group.
+          For the chain sequence <span class="mathjax">$C_n \xrightarrow{\partial_n} C_{n - 1} \xrightarrow{\partial_{n - 1}} \ldots \xrightarrow{\partial_0} C_0$</span>, the homology group is the quotient group <span class="mathjax">$H_n(X) = \text{ker } \partial_n \text { / } \text{im } \partial_{n + 1}$</span>, with singular n-cycles in the numerator and boundaries in the denominator. In homological algebra, this quotient is termed as defect, as an exact sequence would yield a vacuous quotient group.
         </p>
         <p>
-          A <mark>singular n-chain</mark> can always be written as $\mathcal{E} = \sum \epsilon_i \sigma_i$ with $\epsilon_i = \pm 1$; when we compute $\partial \mathcal{E}$ as a sum of $(n - 1)$ simplices with signs $\pm 1$, there may be some canceling pairs consisting of identical $(n - 1)$ simplices with opposite sign.
+          A <mark>singular n-chain</mark> can always be written as <span class="mathjax">$\mathcal{E} = \sum \epsilon_i \sigma_i$</span> with <span class="mathjax">$\epsilon_i = \pm 1$</span>; when we compute <span class="mathjax">$\partial \mathcal{E}$</span> as a sum of <span class="mathjax">$(n - 1)$</span> simplices with signs <span class="mathjax">$\pm 1$</span>, there may be some canceling pairs consisting of identical <span class="mathjax">$(n - 1)$</span> simplices with opposite sign.
         </p>
         <p>
-          Choose a maximal collection of canceling pairs to construct an n-dimensional simplex $K_\mathcal{E}$ from a disjoint union of n-simplices $\Delta_i^n$, one for each $\sigma_i$, by identifying $(n - 1)$-dimensional faces corresponding to the cancelation pairs. Then, $\sigma_i$s induce a map $K_\mathcal{E} \rightarrow X$. $K_\mathcal{E}$ is a manifold locally homeomorphic to $\mathbb{R}^n$ except at subcomplexes of dimension $\leq (n - 2)$.
+          Choose a maximal collection of canceling pairs to construct an n-dimensional simplex <span class="mathjax">$K_\mathcal{E}$</span> from a disjoint union of n-simplices <span class="mathjax">$\Delta_i^n$</span>, one for each <span class="mathjax">$\sigma_i$</span>, by identifying <span class="mathjax">$(n - 1)$</span>-dimensional faces corresponding to the cancelation pairs. Then, <span class="mathjax">$\sigma_i$</span>s induce a map <span class="mathjax">$K_\mathcal{E} \rightarrow X$</span>. <span class="mathjax">$K_\mathcal{E}$</span> is a manifold locally homeomorphic to <span class="mathjax">$\mathbb{R}^n$</span> except at subcomplexes of dimension <span class="mathjax">$\leq (n - 2)$</span>.
         </p>
         <p>
-          Corresponding to the decomposition of a space to its path-connected components $X_\alpha$, we have the isomorphism $H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)$. Also, $H_0(X) \approx \mathbb{Z}$, for path-connected space $X$. If $X$ is a point,<br/>
-          $$H_n(X) \approx \begin{cases} 0 \quad n \gt 0 \\ \mathbb{Z} \quad n = 0 \end{cases}$$
+          Corresponding to the decomposition of a space to its path-connected components <span class="mathjax">$X_\alpha$</span>, we have the isomorphism <span class="mathjax">$H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)$</span>. Also, <span class="mathjax">$H_0(X) \approx \mathbb{Z}$</span>, for path-connected space <span class="mathjax">$X$</span>. If <span class="mathjax">$X$</span> is a point,<br/>
+          $<span class="mathjax">$H_n(X) \approx \begin{cases} 0 \quad n \gt 0 \\ \mathbb{Z} \quad n = 0 \end{cases}$</span>$
         </p>
         <p>
-          For any space $X$, $H_0(X)$ is the direct sum of $\mathbb{Z}$s, one for each path component of $X$. By definition $H_0(X) = C_0(X)/\text{im } \partial_1$ since $\partial_0 = 0$. Define a homomorphism $\epsilon : C_0(X) \rightarrow \mathbb{Z}$ by $\epsilon(\sum_i n_i \sigma_i) = \sum_i n_i$. Then, $\text{ker } \epsilon = \text{im } \partial_1$ if $X$ is path-connected; hence $\epsilon$ induces the isomorphism $H_0(X) \approx \mathbb{Z}$.
+          For any space <span class="mathjax">$X$</span>, <span class="mathjax">$H_0(X)$</span> is the direct sum of <span class="mathjax">$\mathbb{Z}$</span>s, one for each path component of <span class="mathjax">$X$</span>. By definition <span class="mathjax">$H_0(X) = C_0(X)/\text{im } \partial_1$</span> since <span class="mathjax">$\partial_0 = 0$</span>. Define a homomorphism <span class="mathjax">$\epsilon : C_0(X) \rightarrow \mathbb{Z}$</span> by <span class="mathjax">$\epsilon(\sum_i n_i \sigma_i) = \sum_i n_i$</span>. Then, <span class="mathjax">$\text{ker } \epsilon = \text{im } \partial_1$</span> if <span class="mathjax">$X$</span> is path-connected; hence <span class="mathjax">$\epsilon$</span> induces the isomorphism <span class="mathjax">$H_0(X) \approx \mathbb{Z}$</span>.
         </p>
         <p>
-          It is convenient to define an augmented chain complex in which a point has a homology groups in all dimensions including zero, and this is termed as the <mark>reduced homology group</mark> $\tilde{H}_n(X)$:
+          It is convenient to define an augmented chain complex in which a point has a homology groups in all dimensions including zero, and this is termed as the <mark>reduced homology group</mark> <span class="mathjax">$\tilde{H}_n(X)$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -277,7 +280,7 @@
           Homotopy invariance
         </h2>
         <p>
-          Two spaces that are homotopically equivalent have isomorphic homology groups. For map $f : X \rightarrow Y$, the induced homomorphism $f_\# : C_n(X) \rightarrow C_n(Y)$ is defined by composing each singular $n$-simplex $\sigma : \Delta^n \rightarrow X$ with $f$ to obtain $f_\#(\sigma) = f_\# \sigma : \Delta^n \rightarrow Y$.
+          Two spaces that are homotopically equivalent have isomorphic homology groups. For map <span class="mathjax">$f : X \rightarrow Y$</span>, the induced homomorphism <span class="mathjax">$f_\# : C_n(X) \rightarrow C_n(Y)$</span> is defined by composing each singular <span class="mathjax">$n$</span>-simplex <span class="mathjax">$\sigma : \Delta^n \rightarrow X$</span> with <span class="mathjax">$f$</span> to obtain <span class="mathjax">$f_\#(\sigma) = f_\# \sigma : \Delta^n \rightarrow Y$</span>.
         </p>
         <div class="mathjax">
           $$
@@ -290,29 +293,29 @@
           $$
         </div>
         <p>
-          The fact that the maps $f_\# : C_n(X) \rightarrow C_n(Y)$ satisfy $f_\# \partial = \partial f_\#$ is expressed by saying that $f_\#$s define a <mark>chain map</mark> between the singular chain complex of $X$ to that of $Y$.
+          The fact that the maps <span class="mathjax">$f_\# : C_n(X) \rightarrow C_n(Y)$</span> satisfy <span class="mathjax">$f_\# \partial = \partial f_\#$</span> is expressed by saying that <span class="mathjax">$f_\#$</span>s define a <mark>chain map</mark> between the singular chain complex of <span class="mathjax">$X$</span> to that of <span class="mathjax">$Y$</span>.
         </p>
         <p>
-          A chain map between chain complexes induces a homomorphism between the homology groups of the complexes: $f_\#$ takes cycles to cycles and boundaries to boundaries, and hence induces $f_* : H_n(X) \rightarrow H_n(Y)$.
+          A chain map between chain complexes induces a homomorphism between the homology groups of the complexes: <span class="mathjax">$f_\#$</span> takes cycles to cycles and boundaries to boundaries, and hence induces <span class="mathjax">$f_* : H_n(X) \rightarrow H_n(Y)$</span>.
         </p>
         <p>
-          If two maps $f, g : X \rightarrow Y$ are homotopic, they induce the same homomorphism $f_* = g_* : H_n(X) \rightarrow H_n(Y)$.
+          If two maps <span class="mathjax">$f, g : X \rightarrow Y$</span> are homotopic, they induce the same homomorphism <span class="mathjax">$f_* = g_* : H_n(X) \rightarrow H_n(Y)$</span>.
         </p>
         <p>
-          Given a homotopy $F : X \times I \rightarrow Y$ from $f$ to $g$, we can define the prism operator $C_n(X) \rightarrow C_{n + 1}(Y)$ as:<br/>
-          $$P(\sigma) = \sum_i (-1)^i F \circ (\sigma \times \mathbb{1})|[v_0 \ldots v_n, w_0 \ldots w_n]$$
+          Given a homotopy <span class="mathjax">$F : X \times I \rightarrow Y$</span> from <span class="mathjax">$f$</span> to <span class="mathjax">$g$</span>, we can define the prism operator <span class="mathjax">$C_n(X) \rightarrow C_{n + 1}(Y)$</span> as:<br/>
+          $<span class="mathjax">$P(\sigma) = \sum_i (-1)^i F \circ (\sigma \times \mathbb{1})|[v_0 \ldots v_n, w_0 \ldots w_n]$</span>$
         </p>
         <p>
-          $P$ is a chain homotopy between $f_\#$ and $g_\#$ since $\partial P + P \partial = g_\# - f_\#$.
+          <span class="mathjax">$P$</span> is a chain homotopy between <span class="mathjax">$f_\#$</span> and <span class="mathjax">$g_\#$</span> since <span class="mathjax">$\partial P + P \partial = g_\# - f_\#$</span>.
         </p>
         <p>
-          There are also induced homomorphisms $f_* : \tilde{H}_n(X) \rightarrow \tilde{H}_n(Y)$ for reduced homology groups, since $f_\# \epsilon = \epsilon f_\#$.
+          There are also induced homomorphisms <span class="mathjax">$f_* : \tilde{H}_n(X) \rightarrow \tilde{H}_n(Y)$</span> for reduced homology groups, since <span class="mathjax">$f_\# \epsilon = \epsilon f_\#$</span>.
         </p>
         <h2 id="excision">
           Excision
         </h2>
         <p>
-          Our goal is to find a relationship between spaces $X$, subspace $A$, and quotient space $X/A$. Given a nonempty closed subspace $A$ which is a deformation retraction of the neighborhood of $X$, the following long exact sequence is what we need:
+          Our goal is to find a relationship between spaces <span class="mathjax">$X$</span>, subspace <span class="mathjax">$A$</span>, and quotient space <span class="mathjax">$X/A$</span>. Given a nonempty closed subspace <span class="mathjax">$A$</span> which is a deformation retraction of the neighborhood of <span class="mathjax">$X$</span>, the following long exact sequence is what we need:
         </p>
         <div class="mathjax">
           $$
@@ -320,39 +323,39 @@
           $$
         </div>
         <p>
-          where $i$ is the inclusion $A \hookrightarrow X$, and $j$ is the quotient map $X \rightarrow X/A$. Pairs of spaces $(X, A)$ satisfying this are called <mark>good pairs</mark>.
+          where <span class="mathjax">$i$</span> is the inclusion <span class="mathjax">$A \hookrightarrow X$</span>, and <span class="mathjax">$j$</span> is the quotient map <span class="mathjax">$X \rightarrow X/A$</span>. Pairs of spaces <span class="mathjax">$(X, A)$</span> satisfying this are called <mark>good pairs</mark>.
         </p>
         <p>
           Analogous to what we had earlier:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            $H_i(S^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}$; take $(X, A) = (D^n, S^{n - 1})$ so that $X/A = S^n$: $\tilde{H}_i(D^n)$ in the l.e.s of this pair are zero since $D^n$ is contractable. Exactness of this sequence then implies that maps $\tilde{H}_i(S^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})$ are isomorphisms for $i \gt 0$, and that $\tilde{H}_0(S^n) = 0$.
+            <span class="mathjax">$H_i(S^n) \approx \begin{cases} \mathbb{Z} \quad i = n \\ 0 \quad i \neq n \end{cases}$</span>; take <span class="mathjax">$(X, A) = (D^n, S^{n - 1})$</span> so that <span class="mathjax">$X/A = S^n$</span>: <span class="mathjax">$\tilde{H}_i(D^n)$</span> in the l.e.s of this pair are zero since <span class="mathjax">$D^n$</span> is contractable. Exactness of this sequence then implies that maps <span class="mathjax">$\tilde{H}_i(S^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})$</span> are isomorphisms for <span class="mathjax">$i \gt 0$</span>, and that <span class="mathjax">$\tilde{H}_0(S^n) = 0$</span>.
           </li>
           <li>
-            Every map $f : D^n \rightarrow D^n$ has a fixed point; Brower's fixed point theorem.
+            Every map <span class="mathjax">$f : D^n \rightarrow D^n$</span> has a fixed point; Brower's fixed point theorem.
           </li>
         </ol>
         <h2 id="relative-homology-groups">
           Relative homology groups
         </h2>
         <p>
-          In relative homology, we ignore all singular chains of a subspace of a given space. Let $A \subset X$ be spaces, and $C_n(X, A)$ be defined as the quotient group $C_n(X) \mathbin{/} C_n(A)$. Then, we have a chain of boundary homomorphisms:<br/>
-          $$\ldots \rightarrow C_n(X, A) \xrightarrow{\partial} C_{n - 1}(X, A) \rightarrow \ldots$$
+          In relative homology, we ignore all singular chains of a subspace of a given space. Let <span class="mathjax">$A \subset X$</span> be spaces, and <span class="mathjax">$C_n(X, A)$</span> be defined as the quotient group <span class="mathjax">$C_n(X) \mathbin{/} C_n(A)$</span>. Then, we have a chain of boundary homomorphisms:<br/>
+          $<span class="mathjax">$\ldots \rightarrow C_n(X, A) \xrightarrow{\partial} C_{n - 1}(X, A) \rightarrow \ldots$</span>$
         </p>
         <p>
-          The relation $\partial^2 = 0$ holds for this chain. The homology groups of this chain $\text{ker } \partial \mathbin{/} \text{im } \partial$ is termed as <mark>relative homology groups</mark> $H_n(X, A)$.
+          The relation <span class="mathjax">$\partial^2 = 0$</span> holds for this chain. The homology groups of this chain <span class="mathjax">$\text{ker } \partial \mathbin{/} \text{im } \partial$</span> is termed as <mark>relative homology groups</mark> <span class="mathjax">$H_n(X, A)$</span>.
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            Elements of $H_n(X, A)$ are represented by relative cycles: n-chains $\alpha \in C_n(X)$ such that $\partial \alpha \in C_{n - 1}(A)$.
+            Elements of <span class="mathjax">$H_n(X, A)$</span> are represented by relative cycles: n-chains <span class="mathjax">$\alpha \in C_n(X)$</span> such that <span class="mathjax">$\partial \alpha \in C_{n - 1}(A)$</span>.
           </li>
           <li>
-            Relative cycle is trivial in $H_n(X, A)$ iff there is a relative boundary $\alpha = \partial \beta + \gamma$ for some $\beta \in C_{n + 1}(X), \gamma \in C_n(A)$.
+            Relative cycle is trivial in <span class="mathjax">$H_n(X, A)$</span> iff there is a relative boundary <span class="mathjax">$\alpha = \partial \beta + \gamma$</span> for some <span class="mathjax">$\beta \in C_{n + 1}(X), \gamma \in C_n(A)$</span>.
           </li>
         </ol>
         <p>
-          For chain complexes $A, B, C$, inclusion map $i$, and quotient map $j$, we have a chain complex of short exact sequences:
+          For chain complexes <span class="mathjax">$A, B, C$</span>, inclusion map <span class="mathjax">$i$</span>, and quotient map <span class="mathjax">$j$</span>, we have a chain complex of short exact sequences:
         </p>
         <div class="mathjax">
           $$
@@ -376,13 +379,13 @@
           $$
         </div>
         <p>
-          where $H_n(A)$ denotes the homology group $\text{ker } \partial \text { / } \text{im } \partial$ at $A_n$, with $H_n(B), H_n(X, A)$ defined similarly.
+          where <span class="mathjax">$H_n(A)$</span> denotes the homology group <span class="mathjax">$\text{ker } \partial \text { / } \text{im } \partial$</span> at <span class="mathjax">$A_n$</span>, with <span class="mathjax">$H_n(B), H_n(X, A)$</span> defined similarly.
         </p>
         <p>
-          The description of the boundary map $\partial : H_n(X, A) \rightarrow H_{n - 1}(A)$ is: if <mark>class</mark> $[\alpha] \in H_n(X, A)$ is represented by a relative cycle $\alpha$, then $\partial [\alpha]$ is the class of $\partial \alpha\ \in H_{n - 1}(A)$.
+          The description of the boundary map <span class="mathjax">$\partial : H_n(X, A) \rightarrow H_{n - 1}(A)$</span> is: if <mark>class</mark> <span class="mathjax">$[\alpha] \in H_n(X, A)$</span> is represented by a relative cycle <span class="mathjax">$\alpha$</span>, then <span class="mathjax">$\partial [\alpha]$</span> is the class of <span class="mathjax">$\partial \alpha\ \in H_{n - 1}(A)$</span>.
         </p>
         <p>
-          In the l.e.s of homology pairs $(D^n, \partial D^n)$, $H_i(D^n, \partial D^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})$ are isomorphisms for all $i \gt 0$.
+          In the l.e.s of homology pairs <span class="mathjax">$(D^n, \partial D^n)$</span>, <span class="mathjax">$H_i(D^n, \partial D^n) \xrightarrow{\partial} \tilde{H}_i(S^{n - 1})$</span> are isomorphisms for all <span class="mathjax">$i \gt 0$</span>.
         </p>
         <div class="mathjax">
           $$
@@ -393,19 +396,19 @@
           Excision theorem
         </h2>
         <p>
-          The excision theorem: For spaces $Z \subset A \subset X$ such that closure of $Z$ is contained within the interior of $A$, the inclusion map $(X - Z, A - Z) \hookrightarrow (A, X)$ induces the homomorphism $H_n(X - Z, A - Z) \rightarrow H_n(A, X)$ for all $n$.
+          The excision theorem: For spaces <span class="mathjax">$Z \subset A \subset X$</span> such that closure of <span class="mathjax">$Z$</span> is contained within the interior of <span class="mathjax">$A$</span>, the inclusion map <span class="mathjax">$(X - Z, A - Z) \hookrightarrow (A, X)$</span> induces the homomorphism <span class="mathjax">$H_n(X - Z, A - Z) \rightarrow H_n(A, X)$</span> for all <span class="mathjax">$n$</span>.
         </p>
         <p>
-          Let $\mathcal{U} = \{U_i\}$ be the set of subspaces of $X$ that form an open cover of $X$, and $C_n^{\mathcal{U}}$ be a subset of $C_n$ consisting of chains $\sum_i n_i \sigma_i$ such that each $\sigma_i$ has image in a subset of $\mathcal{U}$. The boundary map $C_n(X) \rightarrow C_{n - 1}(X)$ takes $C_n^{\mathcal{U}}(X)$ to $C_{n - 1}^{\mathcal{U}}(X)$ so that $C_n^{\mathcal{U}}$ forms a chain complex; this homology is written as $H_n^{\mathcal{U}}$.
+          Let <span class="mathjax">$\mathcal{U} = \{U_i\}$</span> be the set of subspaces of <span class="mathjax">$X$</span> that form an open cover of <span class="mathjax">$X$</span>, and <span class="mathjax">$C_n^{\mathcal{U}}$</span> be a subset of <span class="mathjax">$C_n$</span> consisting of chains <span class="mathjax">$\sum_i n_i \sigma_i$</span> such that each <span class="mathjax">$\sigma_i$</span> has image in a subset of <span class="mathjax">$\mathcal{U}$</span>. The boundary map <span class="mathjax">$C_n(X) \rightarrow C_{n - 1}(X)$</span> takes <span class="mathjax">$C_n^{\mathcal{U}}(X)$</span> to <span class="mathjax">$C_{n - 1}^{\mathcal{U}}(X)$</span> so that <span class="mathjax">$C_n^{\mathcal{U}}$</span> forms a chain complex; this homology is written as <span class="mathjax">$H_n^{\mathcal{U}}$</span>.
         </p>
         <p>
-          The inclusion map $\iota : C_n^{\mathcal{U}}(X) \hookrightarrow C_n(X)$ is chain homotopic; that is, there exists $\rho : C_n(X) \rightarrow C_n^{\mathcal{U}}$ such that $\iota \rho, \rho \iota$ are chain homotopic to identity. $\iota$ induces the isomorphism $H_n^{\mathcal{U}}(X) \approx H_n(X)$.
+          The inclusion map <span class="mathjax">$\iota : C_n^{\mathcal{U}}(X) \hookrightarrow C_n(X)$</span> is chain homotopic; that is, there exists <span class="mathjax">$\rho : C_n(X) \rightarrow C_n^{\mathcal{U}}$</span> such that <span class="mathjax">$\iota \rho, \rho \iota$</span> are chain homotopic to identity. <span class="mathjax">$\iota$</span> induces the isomorphism <span class="mathjax">$H_n^{\mathcal{U}}(X) \approx H_n(X)$</span>.
         </p>
         <p>
-          For good pairs $(X, A)$, the map $(X, A) \rightarrow (X/A, A/A)$ induces homomorphism $q_* : H_n(X, A) \rightarrow H_n(X/A, A/A)$.
+          For good pairs <span class="mathjax">$(X, A)$</span>, the map <span class="mathjax">$(X, A) \rightarrow (X/A, A/A)$</span> induces homomorphism <span class="mathjax">$q_* : H_n(X, A) \rightarrow H_n(X/A, A/A)$</span>.
         </p>
         <p>
-          To find explicit cycles representing <mark>generators</mark> of the infinite cyclic groups $H_n(D^n, \partial D^n)$, and  $\tilde{H}_n(S^n)$, replace $(D^n, \partial D^n)$ with the equivalent $(\Delta^n, \partial \Delta^n)$; viewing as a singular n-simplex, the identity map $i_n : \Delta^n \rightarrow \Delta^n$ is a cycle generating $H_n(\Delta^n, \partial \Delta^n)$. Let $\Lambda \subset \Delta^n$ be the union of all but $(n - 1)$-dimensional faces of $\Delta^n$. Then,
+          To find explicit cycles representing <mark>generators</mark> of the infinite cyclic groups <span class="mathjax">$H_n(D^n, \partial D^n)$</span>, and  <span class="mathjax">$\tilde{H}_n(S^n)$</span>, replace <span class="mathjax">$(D^n, \partial D^n)$</span> with the equivalent <span class="mathjax">$(\Delta^n, \partial \Delta^n)$</span>; viewing as a singular n-simplex, the identity map <span class="mathjax">$i_n : \Delta^n \rightarrow \Delta^n$</span> is a cycle generating <span class="mathjax">$H_n(\Delta^n, \partial \Delta^n)$</span>. Let <span class="mathjax">$\Lambda \subset \Delta^n$</span> be the union of all but <span class="mathjax">$(n - 1)$</span>-dimensional faces of <span class="mathjax">$\Delta^n$</span>. Then,
         </p>
         <div class="mathjax">
           $$
@@ -413,7 +416,7 @@
           $$
         </div>
         <p>
-          To find a cycle representing $\tilde{H}_n(S^n)$, consider $S^n$ to be two $n$-simplices $\Delta^n_1$ and $\Delta^n_2$. Then, $\Delta^n_1 - \Delta^n_2$, viewed as a singular $n$-chain, is the cycle representing $\tilde{H}_n(S^n)$ since:
+          To find a cycle representing <span class="mathjax">$\tilde{H}_n(S^n)$</span>, consider <span class="mathjax">$S^n$</span> to be two <span class="mathjax">$n$</span>-simplices <span class="mathjax">$\Delta^n_1$</span> and <span class="mathjax">$\Delta^n_2$</span>. Then, <span class="mathjax">$\Delta^n_1 - \Delta^n_2$</span>, viewed as a singular <span class="mathjax">$n$</span>-chain, is the cycle representing <span class="mathjax">$\tilde{H}_n(S^n)$</span> since:
         </p>
         <div class="mathjax">
           $$
@@ -421,19 +424,19 @@
           $$
         </div>
         <p>
-          Since CW pairs are good pairs: let $A, B$ be subcomplexes of CW complex $X$; then, the inclusion $(B, A \cap B) \hookrightarrow (X, X/A)$ induces the homomorphism $H_n(B, A \cap B) \rightarrow H_n(X, A)$ for all $n$.
+          Since CW pairs are good pairs: let <span class="mathjax">$A, B$</span> be subcomplexes of CW complex <span class="mathjax">$X$</span>; then, the inclusion <span class="mathjax">$(B, A \cap B) \hookrightarrow (X, X/A)$</span> induces the homomorphism <span class="mathjax">$H_n(B, A \cap B) \rightarrow H_n(X, A)$</span> for all <span class="mathjax">$n$</span>.
         </p>
         <p>
-          Invariance of dimension: nonempty open sets $U \subset \mathbb{R}^m, V \subset \mathbb{R}^n$ are homeomorphic iff $m = n$. For $x \in U$, we have $H_k(U, U - \{x\}) \approx H_k(\mathbb{R}^m, \mathbb{R}^m - {x}$ by excision. From the l.e.s of the pair $(\mathbb{R}^m, \mathbb{R}^m - \{x\})$, $H_k(\mathbb{R}^m, \mathbb{R}^m - \{x\}) \approx \tilde{H}_{k - 1}(\mathbb{R}^m - \{x\})$. Since $\mathbb{R}^m - \{x\}$ deformation retracts onto $S^{m - 1}$, we conclude that $H_k(U, U - \{x\})$ is $\mathbb{Z}$ for $k = m$ and zero otherwise. By the same reasoning, $H_k(V, V - \{y\}$ is $Z$ for $k = n$ and zero otherwise. Since the homeomorphism $h : U \rightarrow V$ induces the isomorphism $H_k(U, U - \{x\}) \rightarrow H_k(V, V - \{h(x\})$ for all $k$, we get $m = n$.
+          Invariance of dimension: nonempty open sets <span class="mathjax">$U \subset \mathbb{R}^m, V \subset \mathbb{R}^n$</span> are homeomorphic iff <span class="mathjax">$m = n$</span>. For <span class="mathjax">$x \in U$</span>, we have <span class="mathjax">$H_k(U, U - \{x\}) \approx H_k(\mathbb{R}^m, \mathbb{R}^m - {x}$</span> by excision. From the l.e.s of the pair <span class="mathjax">$(\mathbb{R}^m, \mathbb{R}^m - \{x\})$</span>, <span class="mathjax">$H_k(\mathbb{R}^m, \mathbb{R}^m - \{x\}) \approx \tilde{H}_{k - 1}(\mathbb{R}^m - \{x\})$</span>. Since <span class="mathjax">$\mathbb{R}^m - \{x\}$</span> deformation retracts onto <span class="mathjax">$S^{m - 1}$</span>, we conclude that <span class="mathjax">$H_k(U, U - \{x\})$</span> is <span class="mathjax">$\mathbb{Z}$</span> for <span class="mathjax">$k = m$</span> and zero otherwise. By the same reasoning, <span class="mathjax">$H_k(V, V - \{y\}$</span> is <span class="mathjax">$Z$</span> for <span class="mathjax">$k = n$</span> and zero otherwise. Since the homeomorphism <span class="mathjax">$h : U \rightarrow V$</span> induces the isomorphism <span class="mathjax">$H_k(U, U - \{x\}) \rightarrow H_k(V, V - \{h(x\})$</span> for all <span class="mathjax">$k$</span>, we get <span class="mathjax">$m = n$</span>.
         </p>
         <p>
-          <mark>Local homology groups</mark> can be used to tell when spaces are not locally homeomorphic at certain points. They are defined as, for space $X$ and $x \in X$, the homology groups $H_n(X, X - \{x\})$. Indeed, for an open neighborhood $U$ of $x$, excision gives the isomorphism $H_n(X, X - \{x\}) \approx H_n(U, U - \{x\}$, so these groups depend only on the local homology of $X$, near $x$.
+          <mark>Local homology groups</mark> can be used to tell when spaces are not locally homeomorphic at certain points. They are defined as, for space <span class="mathjax">$X$</span> and <span class="mathjax">$x \in X$</span>, the homology groups <span class="mathjax">$H_n(X, X - \{x\})$</span>. Indeed, for an open neighborhood <span class="mathjax">$U$</span> of <span class="mathjax">$x$</span>, excision gives the isomorphism <span class="mathjax">$H_n(X, X - \{x\}) \approx H_n(U, U - \{x\}$</span>, so these groups depend only on the local homology of <span class="mathjax">$X$</span>, near <span class="mathjax">$x$</span>.
         </p>
         <h2 id="naturality">
           Naturality
         </h2>
         <p>
-          For an l.e.s to be natural means that, for the map $f_* : (X, A) \rightarrow (Y, B)$, the following diagram commutes:
+          For an l.e.s to be natural means that, for the map <span class="mathjax">$f_* : (X, A) \rightarrow (Y, B)$</span>, the following diagram commutes:
         </p>
         <div class="mathjax">
           $$
@@ -449,13 +452,13 @@
           Equivalence of simplicial and singular homology
         </h2>
         <p>
-          For a $\Delta$-complex, singular and simplicial homology groups are always isomorphic. Let $X$ be a $\Delta$-complex with the subcomplex $A \subset X$; $A$ is the $\Delta$-complex formed by the union of simplices of $X$. Relative groups $H_n^\Delta(X, A)$ can be formed in the same way as for singular homology, via relative chains $\Delta_n(X, A) = \Delta_n(X)/\Delta_n(A)$, and this yields a l.e.s of simplicial homology groups for the pair $(X, A)$. There is a canonical homomorphism $H_n^\Delta(X, A) \rightarrow H_n(X, A)$ induced by $\Delta_n(X, A) \rightarrow C_n(X, A)$, sending each $n$-simplex of $X$ to its characteristic map $\sigma : \Delta^n \rightarrow X$.
+          For a <span class="mathjax">$\Delta$</span>-complex, singular and simplicial homology groups are always isomorphic. Let <span class="mathjax">$X$</span> be a <span class="mathjax">$\Delta$</span>-complex with the subcomplex <span class="mathjax">$A \subset X$</span>; <span class="mathjax">$A$</span> is the <span class="mathjax">$\Delta$</span>-complex formed by the union of simplices of <span class="mathjax">$X$</span>. Relative groups <span class="mathjax">$H_n^\Delta(X, A)$</span> can be formed in the same way as for singular homology, via relative chains <span class="mathjax">$\Delta_n(X, A) = \Delta_n(X)/\Delta_n(A)$</span>, and this yields a l.e.s of simplicial homology groups for the pair <span class="mathjax">$(X, A)$</span>. There is a canonical homomorphism <span class="mathjax">$H_n^\Delta(X, A) \rightarrow H_n(X, A)$</span> induced by <span class="mathjax">$\Delta_n(X, A) \rightarrow C_n(X, A)$</span>, sending each <span class="mathjax">$n$</span>-simplex of <span class="mathjax">$X$</span> to its characteristic map <span class="mathjax">$\sigma : \Delta^n \rightarrow X$</span>.
         </p>
         <p>
-          The homomorphisms $H_n^\Delta(X, A) \rightarrow H_n(X, A)$ are isomorphisms for all $n$ and pair $(X, A)$. The simplicial chain group $\Delta_n(X^k, X^{k - 1})$ is zero for $n \neq k$, and is a free abelian group with basis the $k$-simplicies of $X$ when $n = k$. The corresponding singular homology groups $H_n(X^k, X^{k - 1})$ can be computed by considering the map $\phi : \bigsqcup_\alpha (\Delta_\alpha^k, \partial \Delta_\alpha^k) \rightarrow (X^k, X^{k - 1})$. Since the quotient group induces a homeomorphism of spaces $\bigsqcup_\alpha \Delta_\alpha^k/\bigsqcup_\alpha \partial \Delta_\alpha^k \approx X^k/X^{k - 1}$, it induces isomorphisms on all singular homolgy groups. Thus, $H_n(X^k, X^{k - 1})$ is zero for $n \neq k$, and for $n = k$, it is a free abelian group with basis relative cycles of the $k$-simplicies of $X$.
+          The homomorphisms <span class="mathjax">$H_n^\Delta(X, A) \rightarrow H_n(X, A)$</span> are isomorphisms for all <span class="mathjax">$n$</span> and pair <span class="mathjax">$(X, A)$</span>. The simplicial chain group <span class="mathjax">$\Delta_n(X^k, X^{k - 1})$</span> is zero for <span class="mathjax">$n \neq k$</span>, and is a free abelian group with basis the <span class="mathjax">$k$</span>-simplicies of <span class="mathjax">$X$</span> when <span class="mathjax">$n = k$</span>. The corresponding singular homology groups <span class="mathjax">$H_n(X^k, X^{k - 1})$</span> can be computed by considering the map <span class="mathjax">$\phi : \bigsqcup_\alpha (\Delta_\alpha^k, \partial \Delta_\alpha^k) \rightarrow (X^k, X^{k - 1})$</span>. Since the quotient group induces a homeomorphism of spaces <span class="mathjax">$\bigsqcup_\alpha \Delta_\alpha^k/\bigsqcup_\alpha \partial \Delta_\alpha^k \approx X^k/X^{k - 1}$</span>, it induces isomorphisms on all singular homolgy groups. Thus, <span class="mathjax">$H_n(X^k, X^{k - 1})$</span> is zero for <span class="mathjax">$n \neq k$</span>, and for <span class="mathjax">$n = k$</span>, it is a free abelian group with basis relative cycles of the <span class="mathjax">$k$</span>-simplicies of <span class="mathjax">$X$</span>.
         </p>
         <p>
-          The five lemma: In the following diagram, if $\alpha, \beta, \delta, \epsilon$ are isomorphisms, so is $\gamma$:
+          The five lemma: In the following diagram, if <span class="mathjax">$\alpha, \beta, \delta, \epsilon$</span> are isomorphisms, so is <span class="mathjax">$\gamma$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -468,45 +471,45 @@
           $$
         </div>
         <p>
-          $H_n(X)$ is finitely generated when $X$ is a $\Delta$-complex with finitely many n-simplicies since, in this case, the simplicial chain of the group $\Delta_n(X)$ is finitely generated, hence also is the subgroup of cycles and the quotient group $H_n^\Delta(X)$. If we write $H_n(X)$ as a direct sum of cyclic groups, then the number of $\mathbb{Z}$ summands are called the $n^{th}$ <mark>Betti numbers</mark>, and the integer specifying the order of finite cyclic summands are called <mark>torsion coefficients</mark>.
+          <span class="mathjax">$H_n(X)$</span> is finitely generated when <span class="mathjax">$X$</span> is a <span class="mathjax">$\Delta$</span>-complex with finitely many n-simplicies since, in this case, the simplicial chain of the group <span class="mathjax">$\Delta_n(X)$</span> is finitely generated, hence also is the subgroup of cycles and the quotient group <span class="mathjax">$H_n^\Delta(X)$</span>. If we write <span class="mathjax">$H_n(X)$</span> as a direct sum of cyclic groups, then the number of <span class="mathjax">$\mathbb{Z}$</span> summands are called the <span class="mathjax">$n^{th}$</span> <mark>Betti numbers</mark>, and the integer specifying the order of finite cyclic summands are called <mark>torsion coefficients</mark>.
         </p>
         <h2 id="degree">
           Degree
         </h2>
         <p>
-          For the map $f : S^n \rightarrow S^n$, the induced homomorphism $H_n(S^n) \rightarrow H_n(S^n)$ is a homomorphism of an infinite cyclic to itself, and must be of the form $f_*(\alpha) = d \alpha$, where $d$ depends only on $f$. $d$ is then called degree of $f$, and denoted by $\text{deg } f$. Some properties:
+          For the map <span class="mathjax">$f : S^n \rightarrow S^n$</span>, the induced homomorphism <span class="mathjax">$H_n(S^n) \rightarrow H_n(S^n)$</span> is a homomorphism of an infinite cyclic to itself, and must be of the form <span class="mathjax">$f_*(\alpha) = d \alpha$</span>, where <span class="mathjax">$d$</span> depends only on <span class="mathjax">$f$</span>. <span class="mathjax">$d$</span> is then called degree of <span class="mathjax">$f$</span>, and denoted by <span class="mathjax">$\text{deg } f$</span>. Some properties:
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            $\text{deg } \mathbb{1} = 1$ since $\mathbb{1}_* = \mathbb{1}$.
+            <span class="mathjax">$\text{deg } \mathbb{1} = 1$</span> since <span class="mathjax">$\mathbb{1}_* = \mathbb{1}$</span>.
           </li>
           <li>
-            $\text{deg } f = 0$ if $f$ is not surjective.
+            <span class="mathjax">$\text{deg } f = 0$</span> if <span class="mathjax">$f$</span> is not surjective.
           </li>
           <li>
-            If $f \simeq g$, then $\text{deg } f = \text{deg } g$.
+            If <span class="mathjax">$f \simeq g$</span>, then <span class="mathjax">$\text{deg } f = \text{deg } g$</span>.
           </li>
           <li>
-            $\text{deg } fg = \text{deg } f . \text{deg } g$ since $(fg)_* = f_* g_*$.
+            <span class="mathjax">$\text{deg } fg = \text{deg } f . \text{deg } g$</span> since <span class="mathjax">$(fg)_* = f_* g_*$</span>.
           </li>
           <li>
-            $\text{deg } f = -1$ if $f$ is a reflection of $S^n$.
+            <span class="mathjax">$\text{deg } f = -1$</span> if <span class="mathjax">$f$</span> is a reflection of <span class="mathjax">$S^n$</span>.
           </li>
           <li>
-            The antipodal map $\mathbb{-1} : S^n \rightarrow S^n$ has degree $(-1)^{n + 1}$.
+            The antipodal map <span class="mathjax">$\mathbb{-1} : S^n \rightarrow S^n$</span> has degree <span class="mathjax">$(-1)^{n + 1}$</span>.
           </li>
           <li>
-            If $f : S^n \rightarrow S^n$ has no fixed points, then $\text{deg } f = (-1)^{n + 1}$.
+            If <span class="mathjax">$f : S^n \rightarrow S^n$</span> has no fixed points, then <span class="mathjax">$\text{deg } f = (-1)^{n + 1}$</span>.
           </li>
         </ol>
         <p>
-          $S^n$ has a continuous field of nonzero tangent vectors iff $n$ is odd. Let $x \mapsto v(x)$ be a mapping, assigning to each vector $x \in S^n$ the vector $v(x)$, the tangent to $S^n$ at $x$. Regarding $v(x)$ as a vector at origin instead of $x$, tangency just means that $x$ and $v(x)$ are orthogonal at $\mathbb{R}^{n + 1}$. Assume that $v(x) \neq 0$ at all $x$; then, replace $v(x)$ by $v(x)/|v(x)|$ so that $|v(x)| = 1$. Then, $x \cos(t) + v(x) \sin(t)$ lie in the unit circle in the plane spanned by $x$ and $v(x)$. Letting $t$ go from $0$ to $\pi$, we obtain the homotopy $f_t = x \cos(t) + v(x) \sin(t)$ from the identity map of $S^n$ to the antipodal map $\mathbb{-1}$. Then, $\text{deg}(\mathbb{-1}) = \text{deg}(\mathbb{1})$, and hence $n$ must be odd.
+          <span class="mathjax">$S^n$</span> has a continuous field of nonzero tangent vectors iff <span class="mathjax">$n$</span> is odd. Let <span class="mathjax">$x \mapsto v(x)$</span> be a mapping, assigning to each vector <span class="mathjax">$x \in S^n$</span> the vector <span class="mathjax">$v(x)$</span>, the tangent to <span class="mathjax">$S^n$</span> at <span class="mathjax">$x$</span>. Regarding <span class="mathjax">$v(x)$</span> as a vector at origin instead of <span class="mathjax">$x$</span>, tangency just means that <span class="mathjax">$x$</span> and <span class="mathjax">$v(x)$</span> are orthogonal at <span class="mathjax">$\mathbb{R}^{n + 1}$</span>. Assume that <span class="mathjax">$v(x) \neq 0$</span> at all <span class="mathjax">$x$</span>; then, replace <span class="mathjax">$v(x)$</span> by <span class="mathjax">$v(x)/|v(x)|$</span> so that <span class="mathjax">$|v(x)| = 1$</span>. Then, <span class="mathjax">$x \cos(t) + v(x) \sin(t)$</span> lie in the unit circle in the plane spanned by <span class="mathjax">$x$</span> and <span class="mathjax">$v(x)$</span>. Letting <span class="mathjax">$t$</span> go from <span class="mathjax">$0$</span> to <span class="mathjax">$\pi$</span>, we obtain the homotopy <span class="mathjax">$f_t = x \cos(t) + v(x) \sin(t)$</span> from the identity map of <span class="mathjax">$S^n$</span> to the antipodal map <span class="mathjax">$\mathbb{-1}$</span>. Then, <span class="mathjax">$\text{deg}(\mathbb{-1}) = \text{deg}(\mathbb{1})$</span>, and hence <span class="mathjax">$n$</span> must be odd.
         </p>
         <p>
-          $\mathbb{Z}_2$ is the only non-trivial group that can act freely on $S^n$ if $n$ is even. The action of a group $G$ on a space $X$ is defined as the group $\text{Homeo}(X)$, the group of homeomorphisms $X \rightarrow X$, and the action is free if the homeomorphisms corresponding to each nontrivial element of $G$ has no fixed points. In the case of $S^n$, the antipodal map $x \mapsto -x$ generates a free action of $\mathbb{Z}_2$. The degree of a homeomorphism must be $\pm 1$, so the action of group $G$ on $S^n$ determines the degree function $d : G \rightarrow \pm 1$. This is a homomorphism since $\text{deg } fg = \text{deg } f . \text{deg } g$, and the action is free so it sends each element of $G$ to $(-1)^{n + 1}$. Hence, for an even $n$, $d$ has a trivial kernel.
+          <span class="mathjax">$\mathbb{Z}_2$</span> is the only non-trivial group that can act freely on <span class="mathjax">$S^n$</span> if <span class="mathjax">$n$</span> is even. The action of a group <span class="mathjax">$G$</span> on a space <span class="mathjax">$X$</span> is defined as the group <span class="mathjax">$\text{Homeo}(X)$</span>, the group of homeomorphisms <span class="mathjax">$X \rightarrow X$</span>, and the action is free if the homeomorphisms corresponding to each nontrivial element of <span class="mathjax">$G$</span> has no fixed points. In the case of <span class="mathjax">$S^n$</span>, the antipodal map <span class="mathjax">$x \mapsto -x$</span> generates a free action of <span class="mathjax">$\mathbb{Z}_2$</span>. The degree of a homeomorphism must be <span class="mathjax">$\pm 1$</span>, so the action of group <span class="mathjax">$G$</span> on <span class="mathjax">$S^n$</span> determines the degree function <span class="mathjax">$d : G \rightarrow \pm 1$</span>. This is a homomorphism since <span class="mathjax">$\text{deg } fg = \text{deg } f . \text{deg } g$</span>, and the action is free so it sends each element of <span class="mathjax">$G$</span> to <span class="mathjax">$(-1)^{n + 1}$</span>. Hence, for an even <span class="mathjax">$n$</span>, <span class="mathjax">$d$</span> has a trivial kernel.
         </p>
         <p>
-          Let $f : S^n \rightarrow S^n$, $n \gt 0$, $f^{-1}(y)$ be the function with preimage finitely many points $x_1 \ldots x_n$. Then, let $U_1 \ldots U_n$ be the disjoint open neighborhoods of these points, and $V$ be the neighborhood of $y$, the points mapped by $f$. Then, $f(U_i - x_i) \subset V - y$, and we get the following commutative diagram:
+          Let <span class="mathjax">$f : S^n \rightarrow S^n$</span>, <span class="mathjax">$n \gt 0$</span>, <span class="mathjax">$f^{-1}(y)$</span> be the function with preimage finitely many points <span class="mathjax">$x_1 \ldots x_n$</span>. Then, let <span class="mathjax">$U_1 \ldots U_n$</span> be the disjoint open neighborhoods of these points, and <span class="mathjax">$V$</span> be the neighborhood of <span class="mathjax">$y$</span>, the points mapped by <span class="mathjax">$f$</span>. Then, <span class="mathjax">$f(U_i - x_i) \subset V - y$</span>, and we get the following commutative diagram:
         </p>
         <div class="mathjax">
           $$
@@ -520,13 +523,13 @@
           $$
         </div>
         <p>
-          so $f_*$ becomes multiplication by an integer $f$ called <mark>local degree</mark> at $x_i$, written $\text{deg }f|x_i$. $\text{deg } f = \sum_i \text{deg } f|x_i$.
+          so <span class="mathjax">$f_*$</span> becomes multiplication by an integer <span class="mathjax">$f$</span> called <mark>local degree</mark> at <span class="mathjax">$x_i$</span>, written <span class="mathjax">$\text{deg }f|x_i$</span>. <span class="mathjax">$\text{deg } f = \sum_i \text{deg } f|x_i$</span>.
         </p>
         <p>
-          To construct the map $S^n \rightarrow S^n$ of any degree, let $q : S^n \rightarrow \bigvee_k S^n$ be the quotient map mapping each $S^n$ to the open ball $B_i$ in $S^n$ to a point, and $p : \bigvee_k S^n \rightarrow S^n$ identify all summands to a single sphere. Consider $f = pq$; for almost all $y \in S^n$, we have $f^{-1}(y)$ identifying a single $x_i$ in each open ball $B_i$. Since $f$ is a homeomorphism near $x_i$, its local degree near $x_i$ is $\pm 1$. Thus, we can produce $S^n \rightarrow S^n$ with degree $\pm k$.
+          To construct the map <span class="mathjax">$S^n \rightarrow S^n$</span> of any degree, let <span class="mathjax">$q : S^n \rightarrow \bigvee_k S^n$</span> be the quotient map mapping each <span class="mathjax">$S^n$</span> to the open ball <span class="mathjax">$B_i$</span> in <span class="mathjax">$S^n$</span> to a point, and <span class="mathjax">$p : \bigvee_k S^n \rightarrow S^n$</span> identify all summands to a single sphere. Consider <span class="mathjax">$f = pq$</span>; for almost all <span class="mathjax">$y \in S^n$</span>, we have <span class="mathjax">$f^{-1}(y)$</span> identifying a single <span class="mathjax">$x_i$</span> in each open ball <span class="mathjax">$B_i$</span>. Since <span class="mathjax">$f$</span> is a homeomorphism near <span class="mathjax">$x_i$</span>, its local degree near <span class="mathjax">$x_i$</span> is <span class="mathjax">$\pm 1$</span>. Thus, we can produce <span class="mathjax">$S^n \rightarrow S^n$</span> with degree <span class="mathjax">$\pm k$</span>.
         </p>
         <p>
-          $\text{deg } Sf = \text{deg } f$, where $Sf : S^{n + 1} \rightarrow S^{n + 1}$ is the <mark>suspension</mark> of $f : S^n \rightarrow S^n$. Suspension preserves degree, and we get the following commutative diagram:
+          <span class="mathjax">$\text{deg } Sf = \text{deg } f$</span>, where <span class="mathjax">$Sf : S^{n + 1} \rightarrow S^{n + 1}$</span> is the <mark>suspension</mark> of <span class="mathjax">$f : S^n \rightarrow S^n$</span>. Suspension preserves degree, and we get the following commutative diagram:
         </p>
         <div class="mathjax">
           $$
@@ -539,7 +542,7 @@
           $$
         </div>
         <p>
-          For $f : S^n \rightarrow S^n$, the suspension map $Sf$ maps only one point to the two poles of $S^{n + 1}$. This means that the local degree of $Sf$ at each of the poles must equal the global degree of $Sf$: so, local degree of $S^n \rightarrow S^n$ can be any integer when $n \geq 2$, just as the degree can be any integer when $n \geq 1$.
+          For <span class="mathjax">$f : S^n \rightarrow S^n$</span>, the suspension map <span class="mathjax">$Sf$</span> maps only one point to the two poles of <span class="mathjax">$S^{n + 1}$</span>. This means that the local degree of <span class="mathjax">$Sf$</span> at each of the poles must equal the global degree of <span class="mathjax">$Sf$</span>: so, local degree of <span class="mathjax">$S^n \rightarrow S^n$</span> can be any integer when <span class="mathjax">$n \geq 2$</span>, just as the degree can be any integer when <span class="mathjax">$n \geq 1$</span>.
         </p>
       </article>
     </main>
