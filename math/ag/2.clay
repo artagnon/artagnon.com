@@ -1,4 +1,4 @@
-[ag/2] Schemes I
+Schemes I
 
 We will understand schemes through the sheaf of functions on a space. We define schemes in terms of three pieces of data:
 
@@ -9,7 +9,10 @@ We will understand schemes through the sheaf of functions on a space. We define 
 In the key example of affine complex variety (roughly, things cut out in $\mathbb{C}^n$ by polynomials), the set is the set of "traditional points" that are n-tuples of complex numbers, plus some handy additional points. For the topology, we will require that the "subset of points where the function vanishes" to be closed. For the structure sheaf, we have algebraic functions on the open space consisting of points where the denominator does not vanish.
 
 As a first example, consider differentiable manifolds. Taking $X$ to be a differentiable manifold, we see that it has a topology, and a sheaf of differentiable functions $\mathscr{O}_X$. This gives $\mathscr{O}_X$ the structure of a ringed space. Evaluation at a point $p$ gives a surjective map from the stalk to $\mathbb{R}$:
-$$\mathscr{O}_{X, p} \twoheadrightarrow \mathbb{R}$$
+
+$$
+  \mathscr{O}_{X, p} \twoheadrightarrow \mathbb{R}
+$$
 
 so the kernel, the germs of functions vanishing at $p$, is given by the maximal ideal $m_{X, p}$.
 
@@ -33,7 +36,9 @@ We will interpret functions on $\text{Spec } A$ as global sections on the struct
 
 As a first example, consider the complex affine line $\mathbb{A}_\mathbb{C}^1 := \text{Spec } \mathbb{C}[x]$. Since $\mathbb{C}[x]$ is an integral domain, $0$ is a prime ideal. $(x - a)$ is a prime ideal too, and it is maximal, since quotient by this ideal gives a field:
 
-$$0 \rightarrow (x - a) \rightarrow \mathbb{C}[x] \xrightarrow{f \mapsto f(a)} \mathbb{C} \rightarrow 0$$
+$$
+  0 \rightarrow (x - a) \rightarrow \mathbb{C}[x] \xrightarrow{f \mapsto f(a)} \mathbb{C} \rightarrow 0
+$$
 
 There are no other prime ideals. In the geometric picture, there is one "traditional point" for each $a \in \mathbb{C}$ plus one bonus point $[(0)]$. $[(x - a)]$ will readily associate to $a \in C$, but $[(0)]$ is mysterious, for it lies somewhere on the complex line, but nowhere in particular: we will call it a "generic point".
 
@@ -70,12 +75,16 @@ Therefore, maps of rings induce maps of spectra.
 
 In an algebraically closed affine variety, the translation between maps given by explicit functions and maps of rings is quite direct. For example, consider the parabola in $\mathbb{C}^2$ given by $b = a^2$ and the parabola in $\mathbb{C}^3$ given by $y = x^2, z = y^2$. Suppose that the map sends the point $(a, b) \in \mathbb{C}^2$ to the point $(a, b, b^2) \in \mathbb{C}^3$. In our new language, we have the map:
 
-$$\text{Spec } \mathbb{C}[a, b]/(b - a^2) \rightarrow \text{Spec } \mathbb{C}[x, y, z]/(y - x^2, z - y^2)$$
+$$
+  \text{Spec } \mathbb{C}[a, b]/(b - a^2) \rightarrow \text{Spec } \mathbb{C}[x, y, z]/(y - x^2, z - y^2)
+$$
 
 given by:
 
-$$\mathbb{C}[a, b]/(b - a^2) \leftarrow \mathbb{C}[x, y, z]/(y - x^2, z - y^2) \\
-(a, b, b^2) \leftarrow (x, y, z)$$
+$$
+  \mathbb{C}[a, b]/(b - a^2) \leftarrow \mathbb{C}[x, y, z]/(y - x^2, z - y^2) \\
+  (a, b, b^2) \leftarrow (x, y, z)
+$$
 
 Now, we turn our attention to functions not determined by their values at points: the failure of nilpotents. A non-zero function may vanish at all points. Any function whose power is zero necessarily lies in the intersection of all prime ideals. The [nilradical](/ac/1#nilradicals) $\mathfrak{N}$ is the intersection of all prime ideals. To specify exactly when our intuition fails, two functions have the same value at two different points iff they differ by a nilpotent. Geometrically, a function vanishes at all points in a ring spectrum iff a power of it is $0$. A ring with no nonzero nilpotents is termed `reduced`.
 
@@ -90,7 +99,10 @@ We have also seen how points of $\text{Spec } A/I$ should be visualized as subse
 # Underlying topological space of an affine scheme
 
 The locus where a polynomial vanishes should be a closed set. The `Zariski topology` says that the only closed sets we should consider are these sets, and other sets that are forced to be closed by these; in other words, it is the coarsest topology in which the locus where a polynomial vanishes is a closed set. We define the `vanishing set` of $S$ by:
-$$V(S) = \{[\mathfrak{p}] \in \text{Spec } A : S \subset \mathfrak{p}\}$$
+
+$$
+  V(S) = \{[\mathfrak{p}] \in \text{Spec } A : S \subset \mathfrak{p}\}
+$$
 
 It is the set of points where all elements of $S$ vanish (or equivalently, are contained in a prime ideal).
 
@@ -113,7 +125,9 @@ We saw that $\text{Spec } B/I$ and $\text{Spec } S^{-1} B$ were subsets of $\tex
 
 We define the distinguished open set to be:
 
-$$D(f) := \{[\mathfrak{p}] \in \text{Spec } A \mid f \notin \mathfrak{p} \text{ or } f([\mathfrak{p}]) \neq 0\}$$
+$$
+  D(f) := \{[\mathfrak{p}] \in \text{Spec } A \mid f \notin \mathfrak{p} \text{ or } f([\mathfrak{p}]) \neq 0\}
+$$
 
 That is, the locus where $f$ does not vanish. Informally, this is the doesn't-vanish-set, analogous to the terminology we used for vanishing set $V(f)$. The Zariski topology on the distinguished open set $D(f) \subset \text{Spec } A$ coincides with the Zariski topology on $\text{Spec } A_f$. Distinguished open sets form a nice base for the Zariski topology.
 
@@ -138,7 +152,10 @@ An `irreducible component` of a topological space is a maximum irreducible subse
 Spaces can be broken up into a finite number of irreducible components. For example, in the locus of $xy = 0 \in \mathbb{A}_\mathbb{C}^2$, we think of the space as having two "pieces": the $x$ and $y$ axes. The reason for this is that the underlying topological space is `Noetherian`. In particular a topological space is said to be Noetherian if it satisfies the `descending chain condition` for closed subsets.
 
 If $X$ is a Noetherian topological space, then every nonempty subset $Z$ can be expressed as a finite union of irreducible subsets: $Z = Z_1 \cup \ldots \cup Z_n$, none contained in the other. To prove this, we will use the technique of `Noetherian induction`. Consider the collection of closed subsets of $X$ which cannot be expressed as a finite union of irreducible closed subsets. Let $Y_1$ be one such, and let it contain another such, call it $Y_2$. If $Y_2$ contains another such, call it $Y_3$, and so on. By the d.c.c, this sequence must eventually stop, so let it stop at some $Y_r$, which cannot be written as a finite union of irreducible closed sets; moreover, every closed subset contained in it can be so written. But $Y_r$ is not irreducible, so we can write $Y_r = Y' \cup Y''$, where $Y', Y''$ are proper closed subsets. By hypothesis, both of these can be written as a finite union of closed irreducible sets, and hence so can $Y_r$, leading to a contradiction. Next we show uniqueness; let:
-$$Z = Z_1 \cup \ldots \cup Z_r = Z'_1 \cup \ldots \cup Z'_s$$
+
+$$
+  Z = Z_1 \cup \ldots \cup Z_r = Z'_1 \cup \ldots \cup Z'_s
+$$
 
 be two such representations. Then, $Z'_1 \subset Z_1 \cup \ldots \cup Z_r$ so $Z'_1 = (Z_1 \cap Z'_1) \cup \ldots \cup (Z_r \cap Z'_1)$. Since $Z'_1$ is irreducible, one of these is equal to $Z'_1$ itself; say $Z_1 \cap Z'_1$ without loss of generality. Thus $Z'_1 \subset Z_1 \subset Z'_a$ for some $a$. But hypothesis, $Z'_1$ is not contained in any other $Z'_i$, leading to $a = 1$. Hence, $Z'_1 = Z_1$, and induction completes the proof.
 
@@ -151,7 +168,10 @@ It turns out that all the spectra we have considered are Noetherian topological 
 Hence, any finitely generated algebra over $k$ or $\mathbb{Z}$ is Noetherian. Example of a non-Noetherian ring: $k[x_1, x_2, \ldots]$, since the sequence of ideals does not terminate.
 
 `Hilbert's Basis Theorem`: If $A$ is Noetherian, so is $A[x]$. To prove this, we show that any ideal $I \subset A[x]$ is finitely-generated. We inductively produce a set of generators $f_1, \ldots$ as follows. For $n \gt 0$ if $I \neq (f_1, \ldots, f_{n - 1})$, let $f_n = I - (f_1, \ldots, f_{n - 1})$ be a nonzero element of lowest degree. Thus, $f_1$ is an element of $I$ of lowest degree, assuming $I \neq (0)$. If this procedure terminates, then we are done. Otherwise, let $a_n \in A$ be an initial coefficient of $f_n$ for $n \gt 0$. Then, as $A$ is Noetherian, $(a_1, a_2, \ldots) = (a_1, \ldots, a_N)$ for some $N$. Let $a_{N + 1} = \sum_{i = 1}^N b_i a_i$. Then,
-$$f_{N + 1} - \sum_{i = 1}^N b_i f_i x^{\text{deg } f_{N + 1} - \text{deg } f_i}$$
+
+$$
+  f_{N + 1} - \sum_{i = 1}^N b_i f_i x^{\text{deg } f_{N + 1} - \text{deg } f_i}
+$$
 
 is an element of $I$ that is nonzero, and of lower degree than $f_{N + 1}$, leading to a contradiction.
 

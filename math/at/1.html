@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[at/1] Fundamental Group, Singular Homology, Excision | artagnon.com</title>
+    <title>Fundamental Group, Singular Homology, Excision | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -61,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [at/1] Fundamental Group, Singular Homology, Excision
+          Fundamental Group, Singular Homology, Excision
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2018-12-08" class="begin">Sat, 08 Dec 2018 14:14:39 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2018-12-08" class="begin">Sat, 08 Dec 2018 14:14:39 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:25:49 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -259,9 +259,13 @@
           Choose a maximal collection of canceling pairs to construct an n-dimensional simplex <span class="mathjax">$K_\mathcal{E}$</span> from a disjoint union of n-simplices <span class="mathjax">$\Delta_i^n$</span>, one for each <span class="mathjax">$\sigma_i$</span>, by identifying <span class="mathjax">$(n - 1)$</span>-dimensional faces corresponding to the cancelation pairs. Then, <span class="mathjax">$\sigma_i$</span>s induce a map <span class="mathjax">$K_\mathcal{E} \rightarrow X$</span>. <span class="mathjax">$K_\mathcal{E}$</span> is a manifold locally homeomorphic to <span class="mathjax">$\mathbb{R}^n$</span> except at subcomplexes of dimension <span class="mathjax">$\leq (n - 2)$</span>.
         </p>
         <p>
-          Corresponding to the decomposition of a space to its path-connected components <span class="mathjax">$X_\alpha$</span>, we have the isomorphism <span class="mathjax">$H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)$</span>. Also, <span class="mathjax">$H_0(X) \approx \mathbb{Z}$</span>, for path-connected space <span class="mathjax">$X$</span>. If <span class="mathjax">$X$</span> is a point,<br/>
-          $<span class="mathjax">$H_n(X) \approx \begin{cases} 0 \quad n \gt 0 \\ \mathbb{Z} \quad n = 0 \end{cases}$</span>$
+          Corresponding to the decomposition of a space to its path-connected components <span class="mathjax">$X_\alpha$</span>, we have the isomorphism <span class="mathjax">$H_n(X) \approx \oplus_\alpha H_\alpha(X_\alpha)$</span>. Also, <span class="mathjax">$H_0(X) \approx \mathbb{Z}$</span>, for path-connected space <span class="mathjax">$X$</span>. If <span class="mathjax">$X$</span> is a point,
         </p>
+        <div class="mathjax">
+          $$
+          H_n(X) \approx \begin{cases} 0 \quad n \gt 0 \\ \mathbb{Z} \quad n = 0 \end{cases}
+          $$
+        </div>
         <p>
           For any space <span class="mathjax">$X$</span>, <span class="mathjax">$H_0(X)$</span> is the direct sum of <span class="mathjax">$\mathbb{Z}$</span>s, one for each path component of <span class="mathjax">$X$</span>. By definition <span class="mathjax">$H_0(X) = C_0(X)/\text{im } \partial_1$</span> since <span class="mathjax">$\partial_0 = 0$</span>. Define a homomorphism <span class="mathjax">$\epsilon : C_0(X) \rightarrow \mathbb{Z}$</span> by <span class="mathjax">$\epsilon(\sum_i n_i \sigma_i) = \sum_i n_i$</span>. Then, <span class="mathjax">$\text{ker } \epsilon = \text{im } \partial_1$</span> if <span class="mathjax">$X$</span> is path-connected; hence <span class="mathjax">$\epsilon$</span> induces the isomorphism <span class="mathjax">$H_0(X) \approx \mathbb{Z}$</span>.
         </p>
@@ -299,9 +303,13 @@
           If two maps <span class="mathjax">$f, g : X \rightarrow Y$</span> are homotopic, they induce the same homomorphism <span class="mathjax">$f_* = g_* : H_n(X) \rightarrow H_n(Y)$</span>.
         </p>
         <p>
-          Given a homotopy <span class="mathjax">$F : X \times I \rightarrow Y$</span> from <span class="mathjax">$f$</span> to <span class="mathjax">$g$</span>, we can define the prism operator <span class="mathjax">$C_n(X) \rightarrow C_{n + 1}(Y)$</span> as:<br/>
-          $<span class="mathjax">$P(\sigma) = \sum_i (-1)^i F \circ (\sigma \times \mathbb{1})|[v_0 \ldots v_n, w_0 \ldots w_n]$</span>$
+          Given a homotopy <span class="mathjax">$F : X \times I \rightarrow Y$</span> from <span class="mathjax">$f$</span> to <span class="mathjax">$g$</span>, we can define the prism operator <span class="mathjax">$C_n(X) \rightarrow C_{n + 1}(Y)$</span> as:
         </p>
+        <div class="mathjax">
+          $$
+          P(\sigma) = \sum_i (-1)^i F \circ (\sigma \times \mathbb{1})|[v_0 \ldots v_n, w_0 \ldots w_n]
+          $$
+        </div>
         <p>
           <span class="mathjax">$P$</span> is a chain homotopy between <span class="mathjax">$f_\#$</span> and <span class="mathjax">$g_\#$</span> since <span class="mathjax">$\partial P + P \partial = g_\# - f_\#$</span>.
         </p>
@@ -337,9 +345,13 @@
           Relative homology groups
         </h2>
         <p>
-          In relative homology, we ignore all singular chains of a subspace of a given space. Let <span class="mathjax">$A \subset X$</span> be spaces, and <span class="mathjax">$C_n(X, A)$</span> be defined as the quotient group <span class="mathjax">$C_n(X) \mathbin{/} C_n(A)$</span>. Then, we have a chain of boundary homomorphisms:<br/>
-          $<span class="mathjax">$\ldots \rightarrow C_n(X, A) \xrightarrow{\partial} C_{n - 1}(X, A) \rightarrow \ldots$</span>$
+          In relative homology, we ignore all singular chains of a subspace of a given space. Let <span class="mathjax">$A \subset X$</span> be spaces, and <span class="mathjax">$C_n(X, A)$</span> be defined as the quotient group <span class="mathjax">$C_n(X) \mathbin{/} C_n(A)$</span>. Then, we have a chain of boundary homomorphisms:
         </p>
+        <div class="mathjax">
+          $$
+          \ldots \rightarrow C_n(X, A) \xrightarrow{\partial} C_{n - 1}(X, A) \rightarrow \ldots
+          $$
+        </div>
         <p>
           The relation <span class="mathjax">$\partial^2 = 0$</span> holds for this chain. The homology groups of this chain <span class="mathjax">$\text{ker } \partial \mathbin{/} \text{im } \partial$</span> is termed as <mark>relative homology groups</mark> <span class="mathjax">$H_n(X, A)$</span>.
         </p>

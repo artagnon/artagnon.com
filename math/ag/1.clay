@@ -1,4 +1,4 @@
-[ag/1] Sheaves
+Sheaves
 
 Informally speaking, the collection of all functions on all open subsets of a space is termed as a `sheaf`. There are several ways of getting hold of them:
 
@@ -25,7 +25,10 @@ Two additional facts:
 (b) Given $f_i \in \mathscr{O}(U_i)$ all agreeing pairwise, we can glue them together to make one differentiable function on all of $U$, $f \in \mathscr{O}(U)$.
 
 `Germ` of a differentiable function $f$ at a point $p$ is defined as:
-$$\{f, \text{open } U \mid p \in U, f \in \mathscr{O}(U)\}$$
+
+$$
+\{f, \text{open } U \mid p \in U, f \in \mathscr{O}(U)\}
+$$
 
 modulo the relation $(f, U) \sim (g, V)$, if there is some open set $W \subset U$, $p \in V$, such that $f|_W = g|_W$ (i.e. $\text{res}_{U, W} f = \text{res}_{V, W} g$). Intuitively, two functions that are the same in an open neighborhood of $p$, but different elsewhere, have the same germ. We call this set of germs at $p$ the `stalk` at $p$, denoted by $\mathscr{O}_p$. If $f$ is defined on $U$ and $g$ is defined on $V$, then $f + g$ is defined on $U \cap V$. If additionally, $p \in U$ then we get the map $\mathscr{O}(U) \rightarrow \mathscr{O}_p$. We're talking about germs as [colimits](/category/2#coproducts-and-colimits). Moreover, $\mathscr{O}_p$ is a local ring, since it has exactly one maximal ideal $m_p \subset \mathscr{O}_p$, the ideal of germs vanishing at $p$. We can interpret the value of the function, or the value of the germ, at a point, as an element of the local ring modulo the maximal ideal: this doesn't work for all sheaves, but does work for things behaving like sheaves of functions, formalized later as a `locally ringed space`.
 
@@ -64,12 +67,18 @@ $$
 A presheaf is the same thing as a contravariant functor.
 
 The stalk of a presheaf $\mathscr{F}$ is defined to be the set of germs of $\mathscr{F}$ at point $p$, denoted $\mathscr{F}_p$:
-$$\mathscr{F}_p = \{f, \text{open } U \mid p \in U, f \in \mathscr{F}(U)\}$$
+
+$$
+  \mathscr{F}_p = \{f, \text{open } U \mid p \in U, f \in \mathscr{F}(U)\}
+$$
 
 modulo the relation $(f, U) \sim (g, V)$, where $f|_W = g|_W$.
 
 Another equivalent definition in terms of colimits is:
-$$\mathscr{F}_p = \underset{\longrightarrow}{\text{Lim }} \mathscr{F}(U)$$
+
+$$
+  \mathscr{F}_p = \underset{\longrightarrow}{\text{Lim }} \mathscr{F}(U)
+$$
 
 If $p \in U, f \in \mathscr{F}(U)$, then $\mathscr{F}_p$ is called the ring of germs of $f$ at point $p$.
 
@@ -97,7 +106,10 @@ where identity is exactness over $\mathscr{F}(U)$, and gluability is exactness o
 As an example, consider the restriction of sheaf $\mathscr{F}$ on $U$, $\mathscr{F}|_U = \mathscr{F}|_U(V)$ for all open subsets $V \subset U$.
 
 As another example, consider the `skyscraper sheaf`. Suppose $X$ is a topological space, $p \in X$, and $S$ is a set. Let $i_p : p \rightarrow X$ be the inclusion; then $i_{p, *}S$ is defined by:
-$$i_{p, *}S(U) = \begin{cases} S \quad p \in U \\ \{e\} \quad p \notin U \end{cases}$$
+
+$$
+  i_{p, *}S(U) = \begin{cases} S \quad p \in U \\ \{e\} \quad p \notin U \end{cases}
+$$
 
 where $\{e\}$ is any one-point set. This is called the skyscraper sheaf, because the informal picture looks like a skyscraper at point $p$.
 
@@ -141,7 +153,9 @@ If we interpret a presheaf on $X$ as a functor from the category of open sets, t
 
 Suppose $\mathscr{F}, \mathscr{G}$ are two sheaves in topological space $X$; then we define $\textit{Hom}(\mathscr{F}, \mathscr{G})$ as:
 
-$$\textit{Hom}(\mathscr{F}, \mathscr{G})(U) := \text{Mor}(\mathscr{F}|_U, \mathscr{G}|_U)$$
+$$
+  \textit{Hom}(\mathscr{F}, \mathscr{G})(U) := \text{Mor}(\mathscr{F}|_U, \mathscr{G}|_U)
+$$
 
 This is a sheaf, called `sheaf $\textit{Hom}$`, of sets on $X$. The functor is contravariant in its first argument and covariant in its second argument. $\textit{Hom}$, however, does not commute with taking stalks; i.e. $\textit{Hom}(\mathscr{F}, \mathscr{G})_p$ is not isomorphic to $\textit{Hom}(\mathscr{F}_p, \mathscr{G}_p)$.
 
@@ -156,12 +170,18 @@ Sheaves of abelian groups also form an abelian category, albeit with an addition
 Lots of properties of sheaves can be checked at the level of stalks. This isn't true of presheaves, and reflects the local nature of sheaves.
 
 Suppose $\mathscr{F}$ is a sheaf of abelian groups of $X$, and $s$ is a global section of $\mathscr{F}$. Let the `support` of $s$ be the points $p \in X$ where $s$ has a nonzero germ:
-$$\text{Supp}(s) = \{p \in X \mid s_p \neq 0 \text{ in } \mathscr{F}_p\}$$
+
+$$
+  \text{Supp}(s) = \{p \in X \mid s_p \neq 0 \text{ in } \mathscr{F}_p\}
+$$
 
 We can think of this as the subset of $X$ "where section $s$ lives". The complement is the locus where $s$ is the $0$-section.
 
 We say that an element $\prod_{p \in U} s_p$ of $\prod_{p \in U} \mathscr{F}_p$ consists of `compatible germs`, for all $p \in U$, if there is some representative
-$$\{U_p \text{ open in } U, \tilde{s}_p \in \mathscr{F}(U_p)\}$$
+
+$$
+  \{U_p \text{ open in } U, \tilde{s}_p \in \mathscr{F}(U_p)\}
+$$
 
 for $s_p$ (where $p \in U_p \subset U$), such that the germ $\tilde{s}_p$ is $s_q$ for all $q \in U_p$. Equivalently, there an open cover $\{U_i\}$ of $U$ and sections $f_i \in \mathscr{F}(U_i)$, such that if $p \in U_i$, then $s_p$ is the germ of $s_i$ at $p$. Hence, any section $s$ of $\mathscr{F}$ over $U$ gives a choice of compatible germs for $U$.
 
@@ -182,7 +202,9 @@ Let $\phi : \mathscr{F} \rightarrow \mathscr{G}$ be a morphism of sheaves on top
 
 As an example, consider the `exponential exact sequence`. Let $X = \mathbb{C}$ in classical topology, $\mathscr{O}_X$ be the sheaf of holomorphic functions, and $\mathscr{O}^*_X$ be the sheaf of invertible holomorphic functions. This is a sheaf of abelian groups under multiplication. We have the map:
 
-$$0 \rightarrow \underline{\mathbb{Z}} \xrightarrow{\times 2 \pi i} \mathscr{O}_X \xrightarrow{\text{exp}} \mathscr{O}^*_X \rightarrow 1$$
+$$
+  0 \rightarrow \underline{\mathbb{Z}} \xrightarrow{\times 2 \pi i} \mathscr{O}_X \xrightarrow{\text{exp}} \mathscr{O}^*_X \rightarrow 1
+$$
 
 where $\underline{\mathbb{Z}}$ is the constant sheaf associated to $\mathbb{Z}$.
 
@@ -190,7 +212,9 @@ where $\underline{\mathbb{Z}}$ is the constant sheaf associated to $\mathbb{Z}$.
 
 We have discussed how to get a hold of sheaves using stalks (invoking compatible germs), and we describe the second way now. Suppose we have the sheaf $\mathscr{F}$ on topological space, and a base ${B_i}$ of open sets on $X$. Then, consider the following information:
 
-$$(\{f(B_i)\}, \{\text{res}_{B_i, B_j} : \mathscr{F}(B_i) \rightarrow \mathscr{F}(B_j)\})$$
+$$
+  (\{f(B_i)\}, \{\text{res}_{B_i, B_j} : \mathscr{F}(B_i) \rightarrow \mathscr{F}(B_j)\})
+$$
 
 We can recover the sheaf from this information, because we can recover stalks when germs are compatible.
 
@@ -200,7 +224,10 @@ A sheaf on $\{B_i\}$ is the following information. For each base in $\{B_i\}$, w
 (b) The base gluability axiom. If $B = \cup B_i$, and we have $f_i \in B_i$ such that $f_i$ agress with $f_j$ on any basic open set $B_i \cap B_j$, then there exists $f \in B$ such that $\text{res}_{B, B_i} f_i = f$ for all $i$.
 
 Suppose $B_i$ is a base on $X$, and $F$ is a sheaf of sets on this base, then there exists sheaf $\mathscr{F}$ extending $F$, with isomorphisms $\mathscr{F}(B_i) \cong F(B_i)$ agreeing with restriction maps. This sheaf $\mathscr{F}$ is unique upto isomorphism. To prove this, let $\mathscr{F}$ be the sheaf of compatible germs of $F$. Define stalk of a presheaf $F$ on a base $p \in X$ by $F_p = \underset{\longrightarrow}{\text{Lim }} F(B_i)$ where colimit is over all $B_i$ in the base containing $p$. A family of germs in open set $U$ is compatible near $p$ if there is a section $s$ over some $B_i$ containing $p$ such that the germs over $B_i$ are the germs of $s$; more precisely,
-$$\mathscr{F}(U) = \{(f_p \in F_p)_{p \in U}\}$$
+
+$$
+  \mathscr{F}(U) = \{(f_p \in F_p)_{p \in U}\}
+$$
 
 such that for all $p \in U$ there exists $B$ with $p \in B \subset U$, $s \in F(B)$, with $s_q = f_q$ for all $q \in B$, where $B$ is in our base. This a sheaf for the same reason a sheaf of compatible germs was. Now, we claim that $F(B) \rightarrow \mathscr{F}(B)$ is an isomorphism, and that $\mathscr{F}$ is unique upto isomorphism, completing our proof.
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[ag/2] Schemes I | artagnon.com</title>
+    <title>Schemes I | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -61,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [ag/2] Schemes I
+          Schemes I
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2019-03-10" class="begin">Sun, 10 Mar 2019 15:39:54 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2019-03-10" class="begin">Sun, 10 Mar 2019 15:39:54 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:25:49 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -86,9 +86,13 @@
           In the key example of affine complex variety (roughly, things cut out in <span class="mathjax">$\mathbb{C}^n$</span> by polynomials), the set is the set of "traditional points" that are n-tuples of complex numbers, plus some handy additional points. For the topology, we will require that the "subset of points where the function vanishes" to be closed. For the structure sheaf, we have algebraic functions on the open space consisting of points where the denominator does not vanish.
         </p>
         <p>
-          As a first example, consider differentiable manifolds. Taking <span class="mathjax">$X$</span> to be a differentiable manifold, we see that it has a topology, and a sheaf of differentiable functions <span class="mathjax">$\mathscr{O}_X$</span>. This gives <span class="mathjax">$\mathscr{O}_X$</span> the structure of a ringed space. Evaluation at a point <span class="mathjax">$p$</span> gives a surjective map from the stalk to <span class="mathjax">$\mathbb{R}$</span>:<br/>
-          $<span class="mathjax">$\mathscr{O}_{X, p} \twoheadrightarrow \mathbb{R}$</span>$
+          As a first example, consider differentiable manifolds. Taking <span class="mathjax">$X$</span> to be a differentiable manifold, we see that it has a topology, and a sheaf of differentiable functions <span class="mathjax">$\mathscr{O}_X$</span>. This gives <span class="mathjax">$\mathscr{O}_X$</span> the structure of a ringed space. Evaluation at a point <span class="mathjax">$p$</span> gives a surjective map from the stalk to <span class="mathjax">$\mathbb{R}$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          \mathscr{O}_{X, p} \twoheadrightarrow \mathbb{R}
+          $$
+        </div>
         <p>
           so the kernel, the germs of functions vanishing at <span class="mathjax">$p$</span>, is given by the maximal ideal <span class="mathjax">$m_{X, p}$</span>.
         </p>
@@ -194,7 +198,7 @@
         <div class="mathjax">
           $$
           \mathbb{C}[a, b]/(b - a^2) \leftarrow \mathbb{C}[x, y, z]/(y - x^2, z - y^2) \\
-          (a, b, b^2) \leftarrow (x, y, z)
+            (a, b, b^2) \leftarrow (x, y, z)
           $$
         </div>
         <p>
@@ -216,9 +220,13 @@
           Underlying topological space of an affine scheme
         </h2>
         <p>
-          The locus where a polynomial vanishes should be a closed set. The <mark>Zariski topology</mark> says that the only closed sets we should consider are these sets, and other sets that are forced to be closed by these; in other words, it is the coarsest topology in which the locus where a polynomial vanishes is a closed set. We define the <mark>vanishing set</mark> of <span class="mathjax">$S$</span> by:<br/>
-          $<span class="mathjax">$V(S) = \{[\mathfrak{p}] \in \text{Spec } A : S \subset \mathfrak{p}\}$</span>$
+          The locus where a polynomial vanishes should be a closed set. The <mark>Zariski topology</mark> says that the only closed sets we should consider are these sets, and other sets that are forced to be closed by these; in other words, it is the coarsest topology in which the locus where a polynomial vanishes is a closed set. We define the <mark>vanishing set</mark> of <span class="mathjax">$S$</span> by:
         </p>
+        <div class="mathjax">
+          $$
+          V(S) = \{[\mathfrak{p}] \in \text{Spec } A : S \subset \mathfrak{p}\}
+          $$
+        </div>
         <p>
           It is the set of points where all elements of <span class="mathjax">$S$</span> vanish (or equivalently, are contained in a prime ideal).
         </p>
@@ -298,9 +306,13 @@
           Spaces can be broken up into a finite number of irreducible components. For example, in the locus of <span class="mathjax">$xy = 0 \in \mathbb{A}_\mathbb{C}^2$</span>, we think of the space as having two "pieces": the <span class="mathjax">$x$</span> and <span class="mathjax">$y$</span> axes. The reason for this is that the underlying topological space is <mark>Noetherian</mark>. In particular a topological space is said to be Noetherian if it satisfies the <mark>descending chain condition</mark> for closed subsets.
         </p>
         <p>
-          If <span class="mathjax">$X$</span> is a Noetherian topological space, then every nonempty subset <span class="mathjax">$Z$</span> can be expressed as a finite union of irreducible subsets: <span class="mathjax">$Z = Z_1 \cup \ldots \cup Z_n$</span>, none contained in the other. To prove this, we will use the technique of <mark>Noetherian induction</mark>. Consider the collection of closed subsets of <span class="mathjax">$X$</span> which cannot be expressed as a finite union of irreducible closed subsets. Let <span class="mathjax">$Y_1$</span> be one such, and let it contain another such, call it <span class="mathjax">$Y_2$</span>. If <span class="mathjax">$Y_2$</span> contains another such, call it <span class="mathjax">$Y_3$</span>, and so on. By the d.c.c, this sequence must eventually stop, so let it stop at some <span class="mathjax">$Y_r$</span>, which cannot be written as a finite union of irreducible closed sets; moreover, every closed subset contained in it can be so written. But <span class="mathjax">$Y_r$</span> is not irreducible, so we can write <span class="mathjax">$Y_r = Y' \cup Y''$</span>, where <span class="mathjax">$Y', Y''$</span> are proper closed subsets. By hypothesis, both of these can be written as a finite union of closed irreducible sets, and hence so can <span class="mathjax">$Y_r$</span>, leading to a contradiction. Next we show uniqueness; let:<br/>
-          $<span class="mathjax">$Z = Z_1 \cup \ldots \cup Z_r = Z'_1 \cup \ldots \cup Z'_s$</span>$
+          If <span class="mathjax">$X$</span> is a Noetherian topological space, then every nonempty subset <span class="mathjax">$Z$</span> can be expressed as a finite union of irreducible subsets: <span class="mathjax">$Z = Z_1 \cup \ldots \cup Z_n$</span>, none contained in the other. To prove this, we will use the technique of <mark>Noetherian induction</mark>. Consider the collection of closed subsets of <span class="mathjax">$X$</span> which cannot be expressed as a finite union of irreducible closed subsets. Let <span class="mathjax">$Y_1$</span> be one such, and let it contain another such, call it <span class="mathjax">$Y_2$</span>. If <span class="mathjax">$Y_2$</span> contains another such, call it <span class="mathjax">$Y_3$</span>, and so on. By the d.c.c, this sequence must eventually stop, so let it stop at some <span class="mathjax">$Y_r$</span>, which cannot be written as a finite union of irreducible closed sets; moreover, every closed subset contained in it can be so written. But <span class="mathjax">$Y_r$</span> is not irreducible, so we can write <span class="mathjax">$Y_r = Y' \cup Y''$</span>, where <span class="mathjax">$Y', Y''$</span> are proper closed subsets. By hypothesis, both of these can be written as a finite union of closed irreducible sets, and hence so can <span class="mathjax">$Y_r$</span>, leading to a contradiction. Next we show uniqueness; let:
         </p>
+        <div class="mathjax">
+          $$
+          Z = Z_1 \cup \ldots \cup Z_r = Z'_1 \cup \ldots \cup Z'_s
+          $$
+        </div>
         <p>
           be two such representations. Then, <span class="mathjax">$Z'_1 \subset Z_1 \cup \ldots \cup Z_r$</span> so <span class="mathjax">$Z'_1 = (Z_1 \cap Z'_1) \cup \ldots \cup (Z_r \cap Z'_1)$</span>. Since <span class="mathjax">$Z'_1$</span> is irreducible, one of these is equal to <span class="mathjax">$Z'_1$</span> itself; say <span class="mathjax">$Z_1 \cap Z'_1$</span> without loss of generality. Thus <span class="mathjax">$Z'_1 \subset Z_1 \subset Z'_a$</span> for some <span class="mathjax">$a$</span>. But hypothesis, <span class="mathjax">$Z'_1$</span> is not contained in any other <span class="mathjax">$Z'_i$</span>, leading to <span class="mathjax">$a = 1$</span>. Hence, <span class="mathjax">$Z'_1 = Z_1$</span>, and induction completes the proof.
         </p>
@@ -322,9 +334,13 @@
           Hence, any finitely generated algebra over <span class="mathjax">$k$</span> or <span class="mathjax">$\mathbb{Z}$</span> is Noetherian. Example of a non-Noetherian ring: <span class="mathjax">$k[x_1, x_2, \ldots]$</span>, since the sequence of ideals does not terminate.
         </p>
         <p>
-          <mark>Hilbert's Basis Theorem</mark>: If <span class="mathjax">$A$</span> is Noetherian, so is <span class="mathjax">$A[x]$</span>. To prove this, we show that any ideal <span class="mathjax">$I \subset A[x]$</span> is finitely-generated. We inductively produce a set of generators <span class="mathjax">$f_1, \ldots$</span> as follows. For <span class="mathjax">$n \gt 0$</span> if <span class="mathjax">$I \neq (f_1, \ldots, f_{n - 1})$</span>, let <span class="mathjax">$f_n = I - (f_1, \ldots, f_{n - 1})$</span> be a nonzero element of lowest degree. Thus, <span class="mathjax">$f_1$</span> is an element of <span class="mathjax">$I$</span> of lowest degree, assuming <span class="mathjax">$I \neq (0)$</span>. If this procedure terminates, then we are done. Otherwise, let <span class="mathjax">$a_n \in A$</span> be an initial coefficient of <span class="mathjax">$f_n$</span> for <span class="mathjax">$n \gt 0$</span>. Then, as <span class="mathjax">$A$</span> is Noetherian, <span class="mathjax">$(a_1, a_2, \ldots) = (a_1, \ldots, a_N)$</span> for some <span class="mathjax">$N$</span>. Let <span class="mathjax">$a_{N + 1} = \sum_{i = 1}^N b_i a_i$</span>. Then,<br/>
-          $<span class="mathjax">$f_{N + 1} - \sum_{i = 1}^N b_i f_i x^{\text{deg } f_{N + 1} - \text{deg } f_i}$</span>$
+          <mark>Hilbert's Basis Theorem</mark>: If <span class="mathjax">$A$</span> is Noetherian, so is <span class="mathjax">$A[x]$</span>. To prove this, we show that any ideal <span class="mathjax">$I \subset A[x]$</span> is finitely-generated. We inductively produce a set of generators <span class="mathjax">$f_1, \ldots$</span> as follows. For <span class="mathjax">$n \gt 0$</span> if <span class="mathjax">$I \neq (f_1, \ldots, f_{n - 1})$</span>, let <span class="mathjax">$f_n = I - (f_1, \ldots, f_{n - 1})$</span> be a nonzero element of lowest degree. Thus, <span class="mathjax">$f_1$</span> is an element of <span class="mathjax">$I$</span> of lowest degree, assuming <span class="mathjax">$I \neq (0)$</span>. If this procedure terminates, then we are done. Otherwise, let <span class="mathjax">$a_n \in A$</span> be an initial coefficient of <span class="mathjax">$f_n$</span> for <span class="mathjax">$n \gt 0$</span>. Then, as <span class="mathjax">$A$</span> is Noetherian, <span class="mathjax">$(a_1, a_2, \ldots) = (a_1, \ldots, a_N)$</span> for some <span class="mathjax">$N$</span>. Let <span class="mathjax">$a_{N + 1} = \sum_{i = 1}^N b_i a_i$</span>. Then,
         </p>
+        <div class="mathjax">
+          $$
+          f_{N + 1} - \sum_{i = 1}^N b_i f_i x^{\text{deg } f_{N + 1} - \text{deg } f_i}
+          $$
+        </div>
         <p>
           is an element of <span class="mathjax">$I$</span> that is nonzero, and of lower degree than <span class="mathjax">$f_{N + 1}$</span>, leading to a contradiction.
         </p>

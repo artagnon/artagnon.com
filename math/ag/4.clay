@@ -1,4 +1,4 @@
-[ag/4] Properties of schemes
+Properties of schemes
 
 We have already shown that $\mathbb{A}_k^n$ is irreducible; this argument behaves well under gluing yielding the fact that $\mathbb{P}_k^n$ behaves well under gluing. If there is some property $P$ of schemes that is "open", then to check if all points of the quasicompact scheme have $P$, it is sufficient to check just the closed points. In many good situations, the closed points are dense.
 
@@ -47,10 +47,16 @@ Suppose $A$ is a ring, and $(f_1, \ldots, f_n) = A$.
 (b) If $A$ be a finitely-generated $B$-algebra, then so is $A_{f_i}$. If each $A_{f_i}$ is a finitely-generated $B$-algebra, then so is $A$.
 
 We divide the proof into parts (i) and (ii) in accordance with the Affine Communication Lemma. To prove (a)(i), consider the strictly increasing chain of ideals $I_1 \subsetneq I_2 \subsetneq \ldots$ of $A_f$. Then, we can verify that $J_1 \subsetneq J_2 \subsetneq \ldots$ is a strictly increasing chain of ideals of $A$, where:
-$$J_j = \{r \in A : r \in I_j\}$$
+
+$$
+  J_j = \{r \in A : r \in I_j\}
+$$
 
 where $r \in I_j$ means image of $r$ in $A_f$ lies in $I_j$. Clearly $J_j$ is an ideal of $A$. If $x/f^n \in I_{j + 1} \backslash I_j$, where $x \in A$, then $x \in J_{j + 1}$ and $x \notin J_j$. For part (ii), consider the strictly increasing chain of ideals $I_1 \subsetneq I_2 \subsetneq \ldots$ in $A$. Then, for each $1 \leq i \leq n$:
-$$I_{i, 1} \subset I_{i, 2} \subset I_{i, 3} \subset \ldots$$
+
+$$
+  I_{i, 1} \subset I_{i, 2} \subset I_{i, 3} \subset \ldots
+$$
 
 is an increasing chain of ideals of $A_f$. Then, $I_{i, j} = I_j \otimes_A A_{f_i}$. It remains to be shown that for each $j$, $I_{i, j} \subsetneq I_{i, j + 1}$, for some $i$; then the result will follow.
 
@@ -85,7 +91,10 @@ Another way to think about them: associated points are generic points of irreduc
 (b) $M$ has a finite number of associated points/primes. For example, there are only a finite number of irreducible closed subsets of $\text{Spec } A$, such that the only possible functions of $\text{Spec } A$ are unions of these. We can interpret this as Noetherianness forcing some kind of finiteness. This gives some meaning to the statement that generic points are the few crucial points of the scheme. We can completely describe which supports of $\text{Spec } A$ are the support of an element of $M$: precisely those subsets which are the closure of the subsets of the associated points.
 
 We immediately see from (a) that, if $M = A$, the generic points of the irreducible components of $\text{Spec } A$ are the associated primes of $M = A$, by considering the function $1$. Other associated points of $\text{Spec } A$ are called `embedded points`. Thus, in the case of $\text{Spec } k[x, y]/(y^2, xy)$, the only embedded point is the origin. Furthermore the map:
-$$M \rightarrow \prod_{\text{associated } p} M_p$$
+
+$$
+  M \rightarrow \prod_{\text{associated } p} M_p
+$$
 
 is injective (Once again, we see that the associated points are where all the action happens). We show this by showing that the kernel is $0$. Suppose the function $f$ has a germ $0$ at each associated point, so its support contains no associated points. It is supported on a closed subset, which by (a), must be the union of closures of associated points. Thus, it must be supported nowhere, and be the zero function.
 

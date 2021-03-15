@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[ag/0] Notes from Hartshorne | artagnon.com</title>
+    <title>Notes from Hartshorne | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -61,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [ag/0] Notes from Hartshorne
+          Notes from Hartshorne
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2019-02-09" class="begin">Sat, 09 Feb 2019 10:43:21 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2019-02-09" class="begin">Sat, 09 Feb 2019 10:43:21 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:25:49 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -78,9 +78,13 @@
           Let <span class="mathjax">$k$</span> be an algebraically closed field. Then <mark>affine variety</mark> over an <span class="mathjax">$n$</span>-space, <span class="mathjax">$A_k^n$</span>, is defined as the set of <span class="mathjax">$n$</span>-tuples over the set <span class="mathjax">$k$</span>. <span class="mathjax">$P = (a_1, \ldots, a_n)$</span> is called a point in <span class="mathjax">$A^n$</span>, and <span class="mathjax">$a_i$</span>s are called coordinates.
         </p>
         <p>
-          Let <span class="mathjax">$A = k[x_1, \ldots, x_n]$</span> be a polynomial ring in <span class="mathjax">$n$</span>-space over <span class="mathjax">$k$</span>. Elements of <span class="mathjax">$A$</span> are then functions from affine <span class="mathjax">$n$</span>-space to <span class="mathjax">$k$</span>, defined by <span class="mathjax">$f(P) = f(a_1, \ldots, a_n)$</span>, where <span class="mathjax">$f \in A, P \in A^n$</span>. The <mark>zero-set</mark> of <span class="mathjax">$T \in A$</span> is defined as the set of simultaneous zeros of <span class="mathjax">$f$</span>:<br/>
-          $<span class="mathjax">$Z(T) = \{P \in A^n \mid f(P) = 0 \quad \forall f \in T\}$</span>$
+          Let <span class="mathjax">$A = k[x_1, \ldots, x_n]$</span> be a polynomial ring in <span class="mathjax">$n$</span>-space over <span class="mathjax">$k$</span>. Elements of <span class="mathjax">$A$</span> are then functions from affine <span class="mathjax">$n$</span>-space to <span class="mathjax">$k$</span>, defined by <span class="mathjax">$f(P) = f(a_1, \ldots, a_n)$</span>, where <span class="mathjax">$f \in A, P \in A^n$</span>. The <mark>zero-set</mark> of <span class="mathjax">$T \in A$</span> is defined as the set of simultaneous zeros of <span class="mathjax">$f$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          Z(T) = \{P \in A^n \mid f(P) = 0 \quad \forall f \in T\}
+          $$
+        </div>
         <p>
           Note that if <span class="mathjax">$a$</span> is an ideal, then <span class="mathjax">$Z(a) = Z(T)$</span>.
         </p>
@@ -97,9 +101,13 @@
           An affine variety can then be expressed as an irreducible subset of <span class="mathjax">$A^n$</span>. An open subset of an affine variety is called <mark>quasi-affine</mark>.
         </p>
         <p>
-          An <mark>ideal</mark> <span class="mathjax">$I(Y)$</span> for <span class="mathjax">$Y \subseteq A^n$</span> is defined as:<br/>
-          $<span class="mathjax">$I(Y) = \{f \in A \mid f(P) = 0 \quad \forall P \in Y\}$</span>$
+          An <mark>ideal</mark> <span class="mathjax">$I(Y)$</span> for <span class="mathjax">$Y \subseteq A^n$</span> is defined as:
         </p>
+        <div class="mathjax">
+          $$
+          I(Y) = \{f \in A \mid f(P) = 0 \quad \forall P \in Y\}
+          $$
+        </div>
         <p>
           So, we have the functions <span class="mathjax">$Z$</span> and <span class="mathjax">$I$</span>, <span class="mathjax">$Z$</span> mapping subsets of <span class="mathjax">$A$</span> to an algebraic set, and <span class="mathjax">$I$</span> mapping the subsets of <span class="mathjax">$A^n$</span> to ideals. Their properties can be summarized as follows:
         </p>
@@ -182,9 +190,13 @@
           A <mark>graded ring</mark> <span class="mathjax">$S$</span> is a ring together with the decomposition <span class="mathjax">$S = \bigoplus_{d \geq 0} S_d$</span>, the direct sum of abelian groups, such that for <span class="mathjax">$d, e \geq 0$</span>, <span class="mathjax">$S_d . S_e \subseteq S_{d + e}$</span>. An element of <span class="mathjax">$S_d$</span> is called a <mark>homogenous element</mark> of degree <span class="mathjax">$d$</span>. Ideal <span class="mathjax">$a \subseteq S$</span> is a <mark>homogenous ideal</mark> if <span class="mathjax">$a = \bigoplus_{d \geq 0} (a \cap S_d)$</span>. An ideal is said to be homogenous if it is generated by homogenous elements. The sum, product, intersection, and radical of homogenous ideals yields a homogenous ideal.
         </p>
         <p>
-          A polynomial <span class="mathjax">$f \in S$</span> cannot be used to define a polynomial in <span class="mathjax">$P^n$</span> because of the nonuniqueness of homogenous coordinates. However, if <span class="mathjax">$f$</span> is a <mark>homogenous polynomial</mark> of degree <span class="mathjax">$d$</span>, then <span class="mathjax">$f(\lambda a_0, \ldots, \lambda a_n) = \lambda^d f(a_0, \ldots, a_n)$</span>, so the property of <span class="mathjax">$f$</span> being zero depends only on the equivalence class of <span class="mathjax">$(a_0, \ldots, a_n)$</span>. Thus, if <span class="mathjax">$T \in S$</span> is a set of homogenous elements, the zero-set <span class="mathjax">$Z$</span> can be defined as:<br/>
-          $<span class="mathjax">$Z(T) = \{P \in P^n \mid f(P) = 0 \quad \forall f \in T\}$</span>$
+          A polynomial <span class="mathjax">$f \in S$</span> cannot be used to define a polynomial in <span class="mathjax">$P^n$</span> because of the nonuniqueness of homogenous coordinates. However, if <span class="mathjax">$f$</span> is a <mark>homogenous polynomial</mark> of degree <span class="mathjax">$d$</span>, then <span class="mathjax">$f(\lambda a_0, \ldots, \lambda a_n) = \lambda^d f(a_0, \ldots, a_n)$</span>, so the property of <span class="mathjax">$f$</span> being zero depends only on the equivalence class of <span class="mathjax">$(a_0, \ldots, a_n)$</span>. Thus, if <span class="mathjax">$T \in S$</span> is a set of homogenous elements, the zero-set <span class="mathjax">$Z$</span> can be defined as:
         </p>
+        <div class="mathjax">
+          $$
+          Z(T) = \{P \in P^n \mid f(P) = 0 \quad \forall f \in T\}
+          $$
+        </div>
         <p>
           Since <span class="mathjax">$S$</span> is noetherian, any set of homogenous elements <span class="mathjax">$T$</span> has a finite subset <span class="mathjax">$f_1, \ldots, f_r$</span> such that <span class="mathjax">$Z(T) = Z(f_1, \ldots, f_r)$</span>.
         </p>
@@ -195,9 +207,13 @@
           A <mark>projective variety</mark> is the irreducible algebraic sets of <span class="mathjax">$P^n$</span> along with the induced topology. An open subset of a projective variety is a <mark>quasi-projective variety</mark>. If <span class="mathjax">$Y \subset P^n$</span> is a subset, we define the <mark>projective ideal</mark>, <span class="mathjax">$I(Y)$</span> to be the ideal <span class="mathjax">$\{f | f \text{ is homogenous}, f(P) = 0 \, \forall P \in Y\}$</span>. If <span class="mathjax">$Y$</span> is an algebraic set, we define the <mark>homogenous coordinate ring</mark> to be <span class="mathjax">$S(Y) = S/I(Y)$</span>.
         </p>
         <p>
-          We want to show that every projective <span class="mathjax">$n$</span>-space has a covering by the affine <span class="mathjax">$n$</span>-space, and hence, every projective (or quasi-projective) variety has a covering by an affine (or quasi-affine) variety. If <span class="mathjax">$f \in S$</span> is a linear homogenous polynomial, then the zero set of <span class="mathjax">$f$</span> is called a <mark>hyperplane</mark>; we denote the zero-set of <span class="mathjax">$x_i$</span> to be <span class="mathjax">$H_i$</span>. Let <span class="mathjax">$U_i = P^n - H_i$</span> be open subsets. Then, <span class="mathjax">$P^n$</span> is covered by <span class="mathjax">$U_i$</span>, since if <span class="mathjax">$P = (a_0, \ldots, a_n)$</span> is a point, then atleast one <span class="mathjax">$a_i$</span> is nonzero, and hence <span class="mathjax">$P \in U_i$</span>. We define mapping <span class="mathjax">$\varphi_i : U_i \rightarrow A^n$</span>, such that if <span class="mathjax">$P \in U_i$</span> and <span class="mathjax">$\varphi_i(P) = Q$</span>, where <span class="mathjax">$Q$</span> is the point defined by:<br/>
-          $<span class="mathjax">$Q = \left(\frac{a_0}{a_i}, \ldots, \frac{a_n}{a_i}\right)$</span>$
+          We want to show that every projective <span class="mathjax">$n$</span>-space has a covering by the affine <span class="mathjax">$n$</span>-space, and hence, every projective (or quasi-projective) variety has a covering by an affine (or quasi-affine) variety. If <span class="mathjax">$f \in S$</span> is a linear homogenous polynomial, then the zero set of <span class="mathjax">$f$</span> is called a <mark>hyperplane</mark>; we denote the zero-set of <span class="mathjax">$x_i$</span> to be <span class="mathjax">$H_i$</span>. Let <span class="mathjax">$U_i = P^n - H_i$</span> be open subsets. Then, <span class="mathjax">$P^n$</span> is covered by <span class="mathjax">$U_i$</span>, since if <span class="mathjax">$P = (a_0, \ldots, a_n)$</span> is a point, then atleast one <span class="mathjax">$a_i$</span> is nonzero, and hence <span class="mathjax">$P \in U_i$</span>. We define mapping <span class="mathjax">$\varphi_i : U_i \rightarrow A^n$</span>, such that if <span class="mathjax">$P \in U_i$</span> and <span class="mathjax">$\varphi_i(P) = Q$</span>, where <span class="mathjax">$Q$</span> is the point defined by:
         </p>
+        <div class="mathjax">
+          $$
+          Q = \left(\frac{a_0}{a_i}, \ldots, \frac{a_n}{a_i}\right)
+          $$
+        </div>
         <p>
           with <span class="mathjax">$a_i/a_i$</span> omitted. Note that <span class="mathjax">$\varphi_i$</span> is well-defined since <span class="mathjax">$a_j/a_i$</span> is independent of the choice of homogenous coordinates.
         </p>
@@ -296,9 +312,13 @@
           To prove (c), notice that <span class="mathjax">$K(Y)$</span>, which is equal to <span class="mathjax">$K(Y_i)$</span>, which is the quotient field of <span class="mathjax">$A(Y)$</span>. But by <span class="mathjax">$\varphi_i^*$</span>, this is isomorphic to <span class="mathjax">$S(Y)_{((0))}$</span>.
         </p>
         <p>
-          To prove (a), let <span class="mathjax">$f \in \mathcal{O}(Y)$</span> be a global regular function. For each <span class="mathjax">$i$</span>, <span class="mathjax">$f$</span> is regular on <span class="mathjax">$Y_i$</span>, so <span class="mathjax">$f \in A(Y_i)$</span>. But we know that <span class="mathjax">$A(Y_i) \cong S(Y)_{(x_i)}$</span>, so <span class="mathjax">$f$</span> can be written as <span class="mathjax">$g_i/x_i^{N_i}$</span>, where <span class="mathjax">$g_i \in S(Y)$</span> is homogenous of degree <span class="mathjax">$N_i$</span>. Thinking of <span class="mathjax">$\mathcal{O}(Y), K(Y), S(Y)$</span> as subrings of the quotient field <span class="mathjax">$L$</span> of <span class="mathjax">$S(Y)$</span>, we get <span class="mathjax">$x_i^{N_i} f = S(Y)_{N_i}$</span>. Now, choose <span class="mathjax">$N \geq \sum N_i$</span>. Then, <span class="mathjax">$S(Y)_N$</span> is spanned as a <span class="mathjax">$k$</span>-vector space as monomials of degree <span class="mathjax">$N$</span> in <span class="mathjax">$x_0, \ldots, x_n$</span>, and in any such mononomial atleast one <span class="mathjax">$x_i$</span> occurs as with power <span class="mathjax">$\geq N_i$</span>. Thus, <span class="mathjax">$S(Y)_N . f^q \subseteq S(Y)_N \, \forall q \gt 0$</span> and <span class="mathjax">$x_0^N . f^q \subseteq S(Y) \, \forall q \gt 0$</span>. This shows that a subring <span class="mathjax">$S(Y)[f]$</span> of <span class="mathjax">$L$</span> is contained in <span class="mathjax">$x_0^{-N} S(Y)$</span>, which is a finitely-generated <span class="mathjax">$S(Y)$</span>-module. Since <span class="mathjax">$S(Y)$</span> is noetherian, <span class="mathjax">$S(Y)[f]$</span> is a finitely-generated <span class="mathjax">$S(Y)$</span>-module, and therefore, <span class="mathjax">$f$</span> is integral over <span class="mathjax">$S(Y)$</span>. This means that there are elements <span class="mathjax">$a_0, \ldots, a_n \in S(Y)$</span> such that:<br/>
-          $<span class="mathjax">$a_n f^n + \ldots + a_0 = 0$</span>$
+          To prove (a), let <span class="mathjax">$f \in \mathcal{O}(Y)$</span> be a global regular function. For each <span class="mathjax">$i$</span>, <span class="mathjax">$f$</span> is regular on <span class="mathjax">$Y_i$</span>, so <span class="mathjax">$f \in A(Y_i)$</span>. But we know that <span class="mathjax">$A(Y_i) \cong S(Y)_{(x_i)}$</span>, so <span class="mathjax">$f$</span> can be written as <span class="mathjax">$g_i/x_i^{N_i}$</span>, where <span class="mathjax">$g_i \in S(Y)$</span> is homogenous of degree <span class="mathjax">$N_i$</span>. Thinking of <span class="mathjax">$\mathcal{O}(Y), K(Y), S(Y)$</span> as subrings of the quotient field <span class="mathjax">$L$</span> of <span class="mathjax">$S(Y)$</span>, we get <span class="mathjax">$x_i^{N_i} f = S(Y)_{N_i}$</span>. Now, choose <span class="mathjax">$N \geq \sum N_i$</span>. Then, <span class="mathjax">$S(Y)_N$</span> is spanned as a <span class="mathjax">$k$</span>-vector space as monomials of degree <span class="mathjax">$N$</span> in <span class="mathjax">$x_0, \ldots, x_n$</span>, and in any such mononomial atleast one <span class="mathjax">$x_i$</span> occurs as with power <span class="mathjax">$\geq N_i$</span>. Thus, <span class="mathjax">$S(Y)_N . f^q \subseteq S(Y)_N \, \forall q \gt 0$</span> and <span class="mathjax">$x_0^N . f^q \subseteq S(Y) \, \forall q \gt 0$</span>. This shows that a subring <span class="mathjax">$S(Y)[f]$</span> of <span class="mathjax">$L$</span> is contained in <span class="mathjax">$x_0^{-N} S(Y)$</span>, which is a finitely-generated <span class="mathjax">$S(Y)$</span>-module. Since <span class="mathjax">$S(Y)$</span> is noetherian, <span class="mathjax">$S(Y)[f]$</span> is a finitely-generated <span class="mathjax">$S(Y)$</span>-module, and therefore, <span class="mathjax">$f$</span> is integral over <span class="mathjax">$S(Y)$</span>. This means that there are elements <span class="mathjax">$a_0, \ldots, a_n \in S(Y)$</span> such that:
         </p>
+        <div class="mathjax">
+          $$
+          a_n f^n + \ldots + a_0 = 0
+          $$
+        </div>
         <p>
           Now, <span class="mathjax">$S(Y)_0 = k$</span>, so <span class="mathjax">$a_i \in k$</span> and <span class="mathjax">$f$</span> is algebraic over <span class="mathjax">$k$</span>. But <span class="mathjax">$f$</span> is algebraically closed, so <span class="mathjax">$f \in k$</span>, completing the proof.
         </p>
