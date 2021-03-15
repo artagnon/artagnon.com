@@ -1,4 +1,4 @@
-[ct/3] Adjunctions
+Adjunctions
 
 # Adjoints
 
@@ -13,7 +13,10 @@ $$
 $$
 
 $U$ is the forgetful functor which takes the vector field to the corresponding set of vectors, while $V$ takes $\textbf{Set}$ to a basis. For set $X$, $V(X)$ is the finite formal set of linear combinations $\sum r_i x_i$, with scalar coefficents $r_i$, and $x_i \in X$. For vector space $W$, $g : X \rightarrow U(W)$ extends to $f : V(X) \rightarrow W$, and hence there is a bijection
-$$\varphi : \textbf{Set}(X, U(W)) \cong \textbf{Vec}_K(V(X), W)$$
+
+$$
+  \varphi : \textbf{Set}(X, U(W)) \cong \textbf{Vec}_K(V(X), W)
+$$
 
 Setting $h : X' \rightarrow X, h^* g = g \circ h$, naturality in $X, W$ are obtained from the following diagram:
 
@@ -26,14 +29,20 @@ $$
 \end{xy}
 $$
 
-As another example, consider the [free category](/category/1#graphs-and-free-categories) over a small graph $G$, $C = FG$, and $D : \textbf{Grph} \rightarrow \textbf{Cat}$ given by; it is related to the forgetful functor $U : \textbf{Cat} \rightarrow \textbf{Grph}$ since $D : G \rightarrow UB$ extends to $D' : FG \rightarrow B$. Moreover $D \mapsto D'$ is a natural isomorphism:
+As another example, consider the [free category](1#graphs-and-free-categories) over a small graph $G$, $C = FG$, and $D : \textbf{Grph} \rightarrow \textbf{Cat}$ given by; it is related to the forgetful functor $U : \textbf{Cat} \rightarrow \textbf{Grph}$ since $D : G \rightarrow UB$ extends to $D' : FG \rightarrow B$. Moreover $D \mapsto D'$ is a natural isomorphism:
 $$\textbf{Cat}(FG, B) \cong \textbf{Grph}(G, UB)$$
 
 In the category of small sets, the function $g : T \times R \rightarrow S$, a function of two variables, can be considered as $\varphi g : T \rightarrow \text{Hom}(R, S)$, a function of one variable, so that the following bijection holds:
-$$\varphi : \text{Hom}(T \times R, S) \cong \text{Hom}(T, \text{Hom}(R, S))$$
+
+$$
+  \varphi : \text{Hom}(T \times R, S) \cong \text{Hom}(T, \text{Hom}(R, S))
+$$
 
 For modules $A, B, C$ in a commutative ring $K$, a similar bijection holds:
-$$\text{Hom}(A \otimes_K B, C) \cong \text{Hom}(A, \text{Hom}_K(B, C))$$
+
+$$
+  \text{Hom}(A \otimes_K B, C) \cong \text{Hom}(A, \text{Hom}_K(B, C))
+$$
 
 The `adjuction` from category $X$ to category $A$, where $F, G$ are functors, is given by the triple $\langle F, G, \varphi \rangle : X \rightharpoonup A$
 
@@ -46,11 +55,16 @@ X\ar@<.5ex>[r]^F & A\ar@<.5ex>[l]^G
 $$
 
 while $\varphi$ is a function such that:
-$$\varphi = \varphi_{x, y} : A(Fx, a) \cong X(x, Ga)$$
+
+$$
+  \varphi = \varphi_{x, y} : A(Fx, a) \cong X(x, Ga)
+$$
 
 Here, $A(Fx, a)$ is the bifunctor:
 
-$$X^{op} \times A \xrightarrow{F^{op} \times \text{Id}} A^{op} \times A \xrightarrow{\text{hom}} \textbf{Set}$$
+$$
+  X^{op} \times A \xrightarrow{F^{op} \times \text{Id}} A^{op} \times A \xrightarrow{\text{hom}} \textbf{Set}
+$$
 
 For all $h : x' \rightarrow x, k : a \rightarrow a'$, it satisfies the diagrams:
 
@@ -72,12 +86,18 @@ $$
 Here, $h^* = X(h, Ga), k_* = A(Fx, k)$.
 
 An adjunction can also be described without talking about hom-sets, directly in terms of arrows. There is a bijection which assigns to each of the arrows $f : Fx \rightarrow a$ arrows $\varphi f = \text{rad } f : x \rightarrow Ga$, the `right adjunct` of $f$, in such a way that the natural compositions hold:
-$$\varphi(k \circ f) = Gk \circ \varphi f \quad \varphi(f \circ Fh) = \varphi f \circ h$$
+
+$$
+  \varphi(k \circ f) = Gk \circ \varphi f \quad \varphi(f \circ Fh) = \varphi f \circ h
+$$
 
 $F$ is said to be `right adjoint` for $G$, and $G$ is the `left adjoint` for $F$.
 
-Every adjunction yields a universal arrow. Call the hom-set that contains the identity $1 : Fx \rightarrow Fx$ the $\varphi$-image of $\eta_x$. $\eta_x$ is a universal arrow by [Yoneda's proposition](/category/2#yoneda-lemma):
-$$\eta_x : x \rightarrow GFx \quad \eta_x = \varphi(1_{Fx})$$
+Every adjunction yields a universal arrow. Call the hom-set that contains the identity $1 : Fx \rightarrow Fx$ the $\varphi$-image of $\eta_x$. $\eta_x$ is a universal arrow by [Yoneda's proposition](2#yoneda-lemma):
+
+$$
+  \eta_x : x \rightarrow GFx \quad \eta_x = \varphi(1_{Fx})
+$$
 
 The adjunction gives such a universal arrow $\eta_x$ for every object $x$. The function $x \mapsto \eta_x$ is an NT $I_x \rightarrow GF$. We obtain the following diagrams:
 
@@ -102,7 +122,10 @@ $$
 where $h_* = X(1, h)$ and $h^* = X(h, 1)$.
 
 The bijection $\varphi$ can be expressed as:
-$$\varphi(f) = G(f)\eta_x \quad f = Fx \rightarrow a$$
+
+$$
+  \varphi(f) = G(f)\eta_x \quad f = Fx \rightarrow a
+$$
 
 and we obtain:
 
@@ -127,7 +150,10 @@ To summarize, every adjunction $\langle F, G, \varphi \rangle : X \rightharpoonu
 (ii) Dually, another natural transform $\epsilon : FG \overset{\bullet}{\rightarrow} I_x$ such that every arrow $\epsilon_a$ is universal from $G$ to $a$, and left adjunct $g : x \rightarrow Ga$ is determined by $\varphi^{-1} g = \epsilon_a \circ Fg : Fx \rightarrow a$
 
 Moreover, the following composites are identities:
-$$G \xrightarrow{\eta G} GFG \xrightarrow{G \epsilon} G \quad F \xrightarrow{F \eta} FGF \xrightarrow{\epsilon F} F$$
+
+$$
+  G \xrightarrow{\eta G} GFG \xrightarrow{G \epsilon} G \quad F \xrightarrow{F \eta} FGF \xrightarrow{\epsilon F} F
+$$
 
 $\eta$ is termed `unit` and $\epsilon$ is termed `counit` of the adjunction.
 
@@ -174,20 +200,32 @@ A(Fx, a)\ar@<.5ex>[r]^\varphi & X(x, Ga)\ar@<.5ex>[l]^\theta
 $$
 
 by $\varphi f = Gf \circ \eta_x$ for all $f : Fx \rightarrow a$, and $\theta g = \epsilon_a \circ Fg$ for all $g : x \rightarrow Ga$. Since $G$ is a functor and $\varphi$ an NT, we have:
-$$\varphi \theta g = G \eta_a \circ GFg \circ \eta_x = G \eta_a \circ \eta_{Ga} \circ g$$
+
+$$
+  \varphi \theta g = G \eta_a \circ GFg \circ \eta_x = G \eta_a \circ \eta_{Ga} \circ g
+$$
 
 Now, since $G \eta_a \circ \eta_{Ga} = 1$, $\varphi \theta$ is identity. Dually, $\theta \varphi$ is also identity, and therefore, $\varphi$ is a bijection with inverse $\theta$. It is clearly natural, and hence an adjunction.
 
 The result is very useful; for instance, (iii) and (iv) let us construct an adjuction whenever we have a universal arrow from or to all objects in a category. For example, $C$ has finite products when for each pair $\langle a, b \rangle \in C \times C$, when there is a universal arrow $\Delta : C \rightarrow C \times C$ to $\langle a, b \rangle$. From the result, we conclude that the function $\langle a, b \rangle \rightarrow a \times b$ giving a product object is actually a functor $C \times C \rightarrow C$, and this functor is right adjoint to $\Delta$:
-$$\varphi : (C \times C)(\Delta c, \langle a, b \rangle) \cong C(c, a \times b)$$
+
+$$
+  \varphi : (C \times C)(\Delta c, \langle a, b \rangle) \cong C(c, a \times b)
+$$
 
 Using the definition of arrows in $C \times C$, we get:
-$$\varphi : C(c, a) \times C(c, b) \cong C(c, a \times b)$$
+
+$$
+  \varphi : C(c, a) \times C(c, b) \cong C(c, a \times b)
+$$
 
 The counit of this adjuction is $\langle a \times b, a \times b \rangle \rightarrow \langle a, b \rangle$; it is thus just projections of the product. The adjunction $\varphi^{-1}$ sends the pair $f : c \rightarrow a \times b$ to the pair $\langle pf, qf \rangle$; this is the way in which the adjuction $\varphi$ is determined by the counit $\epsilon$.
 
 Similarly, if the category $C$ has coproducts $\langle a, b \rangle \rightarrow a \sqcup b$, they define the coproduct functor $C \times C \rightarrow C$ which is left adjoint to $\Delta$:
-$$C(a \sqcup b, c) \cong (C \times C)(\langle a, b \rangle, \Delta c)$$
+
+$$
+  C(a \sqcup b, c) \cong (C \times C)(\langle a, b \rangle, \Delta c)
+$$
 
 Similar arguments hold for limits. Proving universality is an easy way of showing that adjoints exist.
 
@@ -213,30 +251,48 @@ Any two left adjoints of the $G : A \rightarrow X$ are naturally isomorphic. Thi
 A functor $G : A \rightarrow X$ is said to have a left adjoint iff for every $x \in X$, the functor $X(x, Ga)$ is representable as a functor of $a \in A$. If $\varphi : A(F_0 x, a) \cong X(x, Ga)$ is a representation of this functor, then $F_0$ is the object function of the left adjoint of $G$, for which $\varphi$ is natural in $a$ and gives the adjunction. This is simply a restatement of (ii).
 
 If additive functor $G : A \rightarrow M$ between $\text{Ab}$-categories $A, M$ has left adjoint $F : M \rightarrow A$, then $F$ is additive, and the adjunction bijections
-$$\varphi : A(Fm, a) \cong M(m, Ga)$$
+
+$$
+  \varphi : A(Fm, a) \cong M(m, Ga)
+$$
 
 are isomorphisms of abelian groups for all $m \in M, a \in A$. This can be shown as follows. If $\eta : I \overset{\bullet}{\rightarrow} GF$ is the unit of the adjunction, then $\varphi$ may be written as $\varphi f = Gf \circ \eta_m$ for any $f : Fm \rightarrow a$. If also $f' : Fm \rightarrow a$, additivity of $G$ gives:
-$$\varphi(f + f') = (Gf + Gf')\eta_m = \varphi f + \varphi f'$$
+
+$$
+  \varphi(f + f') = (Gf + Gf')\eta_m = \varphi f + \varphi f'
+$$
 
 Therefore $\varphi$ is a morphism of abelian groups. Next, take $g, g' : m \rightarrow n$ in $M$. Since $\eta$ is nautural,
-$$GF(g + g') \circ \eta_m = \eta_n(g + g') = \eta_n g + \eta_n g'$$
+
+$$
+  GF(g + g') \circ \eta_m = \eta_n(g + g') = \eta_n g + \eta_n g'
+$$
 
 On the other hand, since $G$ is additive,
-$$G(Fg + Fg') \circ \eta_m = \eta_n g + \eta_n g'$$
+
+$$
+  G(Fg + Fg') \circ \eta_m = \eta_n g + \eta_n g'
+$$
 
 The equality of these two results, along with the universal property of $\eta_m$ show that $F(g + g') = Fg + Fg'$. Hence $F$ is additive. Dually, right adjoint of an additive functor is additive.
 
 # Reflective subcategories
 
 Let $f^* : A(a, -) \overset{\bullet}{\rightarrow} A(b, -)$ be the NT induced by the arrow $f : b \rightarrow a$ of $A$. Then $f^*$ is monic iff $f$ is epi, and $f^*$ is epi iff $f$ is a split monic. Note that $f^* \mapsto f$ is the bijection $Nat(A(a, -), A(b, -)) \cong A(b, a)$ given by the Yoneda lemma. Observe that for functors $S, T : C \rightarrow B$, the NT $\tau : S \overset{\bullet}{\rightarrow} T$ is epi in $B^C$ iff every component $\tau_c : S_c \rightarrow T_c$ is epi in $B$ for $B = \textbf{Set}$. To show this, notice that for $h \in A$, $f^*h = hf$. Hence the first result is just the definition of an epi $f$. If $f^*$ is epi, there is an $h_0 : a \rightarrow b$ such that $f^* h_0 = h_0 f^* = 1 : b \rightarrow b$, so $f$ has a left inverse. The converse is immediate. Now apply Yoneda lemma to the NT:
-$$A(a, c) \xrightarrow{G_{a, c}} X(Ga, Gc) \xrightarrow{\varphi^{-1}} A(FGa, c)$$
+
+$$
+  A(a, c) \xrightarrow{G_{a, c}} X(Ga, Gc) \xrightarrow{\varphi^{-1}} A(FGa, c)
+$$
 
 It is determined by the image of $1 : a \rightarrow a$, which is exactly the definition of counit $\epsilon_a : FGa \rightarrow a$. But $\varphi^{-1}$ is an isomorphism, hence this NT is monic or epi, respectively, whenver $G_{a, c}$ is injective or surjective; i.e. when $G_{a, c}$ is full or faithful.
 
 For an adjunction $\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A$, $G$ is faithful iff every component $\epsilon_a$ of the counit $\epsilon$ is epi, and $G$ is full iff every $\epsilon_a$ is split monic. Hence, $G$ is full and faithful iff each $\epsilon_a$ is an isomorphism $FGa \cong a$. This follows immediately from the last result.
 
 A subcategory $A$ of $B$ is `reflective` in $B$ when the inclusion function $K : A \rightarrow B$ has left adjoint $F : B \rightarrow A$. The functor $F$ may be called a `reflector`, and the adjunction $\langle F, K, \varphi \rangle = \langle F, \varphi \rangle : B \rightharpoonup A$ a `reflection` of $B$ in subcategory $A$. Since the inclusion functor $K$ is always faithful, the counit $\epsilon$ of the reflection is always epi. A reflection can be described in terms of the composite functor $R = KF : b \rightarrow b$; indeed $A \subset B$ is reflective in $B$ iff there is a functor $R : B \rightarrow B$ with values in the subcategory $A$ and a bijection of sets:
-$$A(Rb, a) \cong B(b, a)$$
+
+$$
+  A(Rb, a) \cong B(b, a)
+$$
 
 natural in $b \in B, a \in A$. A reflection can also be described in terms of universal arrows: $A \subset B$ is reflective iff to each $b \in B$, there is an object $Rb$ of the subcategory $A$, and the arrow $\eta_b : b \rightarrow Rb$ such that every arrow $g : b \rightarrow a \in A$ has the form $g = f \circ \eta_b$ for $f : Rb \rightarrow a$ of $A$. $R$ is then the object function of a functor $B \rightarrow B$ with values in $A$. If a full subcategory $A \subset B$ is reflective in $B$, then each object $a \in A$ is isommorphic to $FKa$, and hence $Ra \cong a$ for all $a$. Dually, $A \subset B$ is `coreflective` in $B$ when the inclusion functor $A \rightarrow B$ has right adjoint.
 
@@ -291,10 +347,16 @@ Duality theorems in functional analysis are often instances of equivalences. For
 Preorders may be regarded as categories, with functors all order-preserving functions. Then order-reversing function $\bar{L}$ from $P$ to $Q$ is the functor $\bar{L} : P \rightarrow Q^{op}$.
 
 Let $P, Q$ be two preorders and $L : P \rightarrow Q^{op}$ and $R : Q^{op} \rightarrow P$ be two order-preserving functions. Then $L$, regarded as a functor, is left-adjoint to $R$ iff for all $p \in P, q \in Q$:
-$$Lp \geq q \text{ in Q } \iff p \leq Rq \text{ in P}$$
+
+$$
+  Lp \geq q \text{ in Q } \iff p \leq Rq \text{ in P}
+$$
 
 A pair of order-preserving functions $L, R$ satisfying this is called the `Galios connection` from $P$ to $Q$. When this is the case, there is exactly one adjunction $\varphi$ making $L$ the left adjoint of $R$. For all $p, q$, $p \leq RLp$ and $LRq \geq q$; hence also:
-$$Lp \geq LRLp \geq Lp \quad Rq \leq RLRq \leq Rq$$
+
+$$
+  Lp \geq LRLp \geq Lp \quad Rq \leq RLRq \leq Rq
+$$
 
 To prove this, notice that $P$ becomes a category when there is exactly one arrow $p \rightarrow p'$ whenver $p \leq p'$. Thus, the first condition states that there is a bijection $\text{Hom}_{Q^{op}}(Lp, q) \cong \text{Hom}_P(p, Rq)$. Since each hom-set has exactly one element, this bijection is natural. The unit of the adjunction is the inequality $p \leq RLp$ and the counit is $LRq \geq q$. Thus, the second condition is the triangular identity connecting unit and counit. In the convenient case when $P, Q$ are posets, these conditions become $L = LRL, R = RLR$.
 
@@ -304,11 +366,16 @@ As another example, consider sets $U, V$ and powersets $\mathscr{P}(U), \mathscr
 
 As yet another example, consider Boolean algebras. Let $\mathscr{P}(U)$ be a category. The diagonal functor $\Delta : \mathscr{P}(U) \rightarrow \mathscr{P}(U) \times \mathscr{P}(U)$ has right adjoint $\cap$, with $\langle X, Y \rangle \mapsto X \cap Y$, and left adjoint $\cup$, with $\langle X, Y \rangle \mapsto X \cup Y$. If $X$ is a fixed subset of $U$, intersection with $X$ is the functor $X \cap - : \mathscr{P}(U) \rightarrow \mathscr{P}(U)$. Since $X \cap Y \leq Z$ if $Y \leq Z \cup X'$, where $X'$ is the complement of $X$ in $U$, right adjoint of $X \cap -$ is $X' \cup -$. Thus, construction of suitable adjoints leads to $\cap, \cup, '$. Now, let $P : U \times V \rightarrow U$ be a projection from sets $U, V$. Each subset $S \in U \times V$ determines subsets of $U$ by:
 
-$$P_* S = \{x \mid \exists y \in V \text{ and } \langle x, y \rangle \in S\} \\
-P_\# S = \{x \mid \forall y \in V \implies \langle x, y \rangle \in S\}$$
+$$
+P_* S = \{x \mid \exists y \in V \text{ and } \langle x, y \rangle \in S\} \\
+P_\# S = \{x \mid \forall y \in V \implies \langle x, y \rangle \in S\}
+$$
 
 They arise from $\langle x, y \rangle$ by applying universal and existential quantifiers. Also, $P_* S$ is the direct image of $S$ under projection $P$. Now, for all subsets $X \subset U$, we have:
-$$S \leq P^* X \iff P_* S \leq X \quad P^* X \leq S \iff X \leq P_* S$$
+
+$$
+  S \leq P^* X \iff P_* S \leq X \quad P^* X \leq S \iff X \leq P_* S
+$$
 
 This states that inverse image operation $P^*$ has left adjoint $P_*$ and right adjoint $P_\#$. In this sense, both quantifiers $\exists$ and $\forall$ can be interpreted as adjoints. This also has the following geometric interpretation: $P^* X$ is the cylinder $X \times Y \subset U \times V$ over the base $X \in U$, $P_* S$ is the projection of $S \subset U \times V$ onto base $U$, $P_\# S$ is the largest subset $X \subset U$ such that the cylinder is contained wholly within $S$.
 
@@ -318,18 +385,28 @@ To assert that a category has finite products and coproducts is to say that the 
 
 A category is termed `cartesian closed` if the following functors have specified right adjoints:
 
-$$C \rightarrow \textbf{1} \quad C \rightarrow C \times C \quad C \xrightarrow{- \times b} C \\
-c \mapsto 0 \quad c \mapsto \langle c, c \rangle \quad a \mapsto a \times b$$
+$$
+  C \rightarrow \textbf{1} \quad C \rightarrow C \times C \quad C \xrightarrow{- \times b} C \\
+  c \mapsto 0 \quad c \mapsto \langle c, c \rangle \quad a \mapsto a \times b
+$$
 
 These right adjoints are:
 
-$$t \leftarrow\!\shortmid 0 \quad a \times b \leftarrow\!\shortmid \langle a, b \rangle \quad c^b \leftarrow\!\shortmid c$$
+$$
+  t \leftarrow\!\shortmid 0 \quad a \times b \leftarrow\!\shortmid \langle a, b \rangle \quad c^b \leftarrow\!\shortmid c
+$$
 
 To specify the first is to specify the terminal object $t \in C$. To specify the second is to specify, for each pair of objects $a, b \in C$, the product object $a \times b$ along with projections $a \leftarrow a \times b \rightarrow b$: the projections consistite the counit of the adjunction, and $\times$ is a bifunctor. The third specifies $- \times b : C \rightarrow C$, a right adjoint with bijection:
-$$\text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)$$
+
+$$
+  \text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)
+$$
 
 natural in $a$ and $c$. By the `parameter theorem`, $\langle b, c \rangle \rightarrow c^b$ is the object functor of bifunctor $C^{op} \times C \rightarrow C$. Specifying the adjunction amounts to specifying specifying for all $c, b$, the arrow:
-$$e : c^b \times b \rightarrow c$$
+
+$$
+  e : c^b \times b \rightarrow c
+$$
 
 which is natural in $c$, and universal from $- \times b$ to $c$. We call this $e = e_{c, b}$ the `evaluation map`. It amounts to ordinary evaluation $\langle f, x \rangle \mapsto fx$ in the following cases:
 
@@ -337,7 +414,10 @@ which is natural in $c$, and universal from $- \times b$ to $c$. We call this $e
 (b) $\textbf{Cat}$ is a cartesian closed category with $B^C$ the functor category.
 
 A closely related example of adjunctions is the functor:
-$$- \otimes_K B : \text{K-Mod} \rightarrow \text{K-Mod}$$
+
+$$
+  - \otimes_K B : \text{K-Mod} \rightarrow \text{K-Mod}
+$$
 
 which has right adjoint $\text{Hom}_K(B, -)$; the adjunct is determined by counit $\text{Hom}_K(B, A) \otimes_K B \rightarrow A$ given by the evaluation.
 
@@ -345,8 +425,10 @@ which has right adjoint $\text{Hom}_K(B, -)$; the adjunct is determined by couni
 
 Next, we turn our attention to maps between adjunctions. Given two adjunctions:
 
-$$\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
-\langle F', G', \eta', \epsilon' \rangle, X' \rightharpoonup A$$
+$$
+  \langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
+  \langle F', G', \eta', \epsilon' \rangle, X' \rightharpoonup A
+$$
 
 we define the map between the two adjunctions by two functors $K : A \rightarrow A'$ and $L : X \rightarrow X'$ such that the following squares commute:
 
@@ -375,13 +457,17 @@ Here, $K_{Fx, a}$ is the map $f \mapsto Kf$ given by the functor $K$ applied to 
 
 The above condition is equivalent to $L \eta = \eta' L$ and $\epsilon' K = K \epsilon$. To prove this, set $a = Fx$ and chase $1 : Fx \rightarrow Fx$ around the commutative diagram to get the units $\eta, \eta'$, and the equality:
 
-$$\langle L, \eta : L \rightarrow LGF \rangle = \langle \eta', L : L \rightarrow G'F'L \rangle$$
+$$
+  \langle L, \eta : L \rightarrow LGF \rangle = \langle \eta', L : L \rightarrow G'F'L \rangle
+$$
 
 where $LGF = G'F'L$. Conversely, given the identity $L \eta = \eta' L$ of the NTs, the definition of adjunctions $\varphi, \varphi'$ by their units gives the required result. The case of counits is dual to this case.
 
 Next, consider two adjunctions between the same two categories:
 
-$$\langle F, G, \eta, \epsilon \rangle, \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A$$
+$$
+  \langle F, G, \eta, \epsilon \rangle, \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A
+$$
 
 The following two NTs are said to be `conjugate` when the diagram commutes for every pair of objects $x \in X, a \in A$:
 
@@ -463,7 +549,9 @@ Next, suppose $\sigma, \tau$ are not given. Then, applying Yoneda lemma to $\var
 
 The vertical compositions of:
 
-$$\langle F, G, \eta, \epsilon \rangle \xrightarrow{\langle \sigma, \tau \rangle} \langle F', G', \eta' \epsilon' \rangle \xrightarrow{\langle \sigma', \tau' \rangle} \langle F'', G'', \eta'', \epsilon'' \rangle$$
+$$
+\langle F, G, \eta, \epsilon \rangle \xrightarrow{\langle \sigma, \tau \rangle} \langle F', G', \eta' \epsilon' \rangle \xrightarrow{\langle \sigma', \tau' \rangle} \langle F'', G'', \eta'', \epsilon'' \rangle
+$$
 
 are given by $\langle \sigma, \tau \rangle \circ \langle \sigma', \tau' \rangle = \langle \sigma \bullet \sigma', \tau \bullet \tau' \rangle$
 
@@ -480,12 +568,18 @@ F' & \langle F', G', \eta', \epsilon' \rangle\ar@{|->}[l]\ar@{|->}[r] & G'
 $$
 
 A typical example is for $\textbf{Set}$:
-$$\text{Hom}(S \times T, R) \cong \text{Hom}(S, \text{Hom}(T, R))$$
+
+$$
+\text{Hom}(S \times T, R) \cong \text{Hom}(S, \text{Hom}(T, R))
+$$
 
 If $t : T \rightarrow T'$ is a function between the two sets, then $- \times t$ is a NT of functors $- \times T \overset{\bullet}{\rightarrow} T'$. Its conjugate is the NT $\text{Hom}(t \times -) : \text{Hom}(T', -) \rightarrow \text{Hom}(T, -)$; this is in the reverse direction as $S \times T$ is covariant in $\text{Hom}(T, R)$ and contravariant in $T$. We may call the above an `adjuction with parameter` $T \in \textbf{Set}$.
 
 Given a bifunctor $F : X \times P \rightarrow A$, assume for each $p \in P$, that $F(-, p) : X \rightarrow A$ has a right adjoint $G(p, -) : A \rightarrow X$ via the adjunction:
-$$\text{Hom}(F(x, p), a) \cong \text{Hom}(x, G(p, a))$$
+
+$$
+  \text{Hom}(F(x, p), a) \cong \text{Hom}(x, G(p, a))
+$$
 
 natural in $x$ and $a$. Then, there is a unique way to assign to each arrow $h : p' \rightarrow p$ of $P$, and each object $a \in A$, an arrow $G(h, p') \rightarrow G(h, p)$ of $X$ so that $G$ becomes a bifunctor $P^{\text{op}} \times A \rightarrow X$ for which the bijection of the adjunction is natural in $x, p, a$. This assignment of arrows $G(h, a)$ to $\langle h, a \rangle$ may also be described as the unique way to make $G(h, -)$ an NT conjugate to $F(-, h)$. To prove this, first notice that the bijection implies the following commutative diagram:
 
@@ -504,14 +598,22 @@ This states precisely that $G(h, -) : G(p', -) \overset{\bullet}{\rightarrow} G(
 
 Two adjunctions compose to give a single adjunction as follows. Given two adjunctions:
 
-$$\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
-\langle \bar{F}, \bar{G}, \bar{\eta}, \bar{\epsilon} \rangle : A \rightharpoonup D$$
+$$
+\langle F, G, \eta, \epsilon \rangle : X \rightharpoonup A \\
+\langle \bar{F}, \bar{G}, \bar{\eta}, \bar{\epsilon} \rangle : A \rightharpoonup D
+$$
 
 the composite functors yield the adjunction:
-$$\langle \bar{F}F, G\bar{G}, G\bar{\eta}F . \eta, \bar{\epsilon} . \bar{F}\epsilon\bar{G} \rangle : X \rightharpoonup D$$
+
+$$
+\langle \bar{F}F, G\bar{G}, G\bar{\eta}F . \eta, \bar{\epsilon} . \bar{F}\epsilon\bar{G} \rangle : X \rightharpoonup D
+$$
 
 We prove it by noticing that, with hom-sets, the two given adjunctions yield a composite isomorphism, natural for all $x \in X, d \in D$:
-$$D(\bar{F}Fx, d) \cong D(Fx, \bar{G}d) \cong X(x, G\bar{G}d)$$
+
+$$
+  D(\bar{F}Fx, d) \cong D(Fx, \bar{G}d) \cong X(x, G\bar{G}d)
+$$
 
 This makes the composite $\bar{F}F$ left adjoint to $G\bar{G}$. Setting $d = \bar{F}Fx$, and applying these two isomorphisms to the identity $1 : \bar{F}Fx \rightarrow \bar{F}Fx$, we find that the unit of composite adjunction is $x \xrightarrow{\eta x} GFx \xrightarrow{G\bar{\eta}Fx} G\bar{F}\bar{F}Fx$, so is $G\bar{\eta}F . \eta$, as asserted. The dual argument yields counit $\bar{\epsilon} . \bar{G}\epsilon\bar{F}$, as required.
 
@@ -519,8 +621,10 @@ Using this composition, we may form a category $\textbf{Adj}$, whose objects are
 
 Given two conjugate pairs:
 
-$$\langle \sigma, \tau \rangle : \langle F, G, \eta, \epsilon \rangle \overset{\bullet}{\rightarrow} \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A \\
-\langle \bar{\sigma}, \bar{\tau} \rangle : \langle \bar{F}, \bar{G}, \bar{\eta}, \bar{\epsilon} \rangle \overset{\bullet}{\rightarrow} \langle \bar{F'}, \bar{G'}, \bar{\eta'}, \bar{\epsilon'} \rangle : A \rightharpoonup D$$
+$$
+\langle \sigma, \tau \rangle : \langle F, G, \eta, \epsilon \rangle \overset{\bullet}{\rightarrow} \langle F', G', \eta', \epsilon' \rangle : X \rightharpoonup A \\
+\langle \bar{\sigma}, \bar{\tau} \rangle : \langle \bar{F}, \bar{G}, \bar{\eta}, \bar{\epsilon} \rangle \overset{\bullet}{\rightarrow} \langle \bar{F'}, \bar{G'}, \bar{\eta'}, \bar{\epsilon'} \rangle : A \rightharpoonup D
+$$
 
 The "horizontal" composite NTs yield a conjugate pair $\bar{\sigma} \sigma : \bar{F}F \overset{\bullet}{\rightarrow} \bar{F'}F'$, $\tau \bar{\tau} : G'\bar{G'} \overset{\bullet}{\rightarrow} G\bar{G}$ of NTs for the conjugate adjunction. The proof may be visualized by the commutative diagram of hom-sets:
 
@@ -534,14 +638,19 @@ D(\bar{F}Fx, d)\ar@{}[r]|{\cong} & A(Fx, \bar{G}d)\ar@{}[r]|{\cong} & X(x, G\bar
 $$
 
 Moreover, this operation of horizontal composition is a bifunctor:
-$$\textbf{Adj}(A, D) \times \textbf{Adj}(X, A) \cong \textbf{Adj}(X, D)$$
+$$
+  \textbf{Adj}(A, D) \times \textbf{Adj}(X, A) \cong \textbf{Adj}(X, D)
+$$
 
 This means that $\textbf{Adj}$ is a `two-dimensional category` as is $\textbf{Cat}$.
 
 # Subsets and characteristic functions
 
 The characteristic function of a subset $S \subset X$ is the two-valued function $\psi_S : X \rightarrow \{0, 1\}$ on $X$ with values:
-$$\psi_S x = 0 \text{ if } x \in S \quad \psi_S x = 1 \text { if } x \in X, x \notin S$$
+
+$$
+  \psi_S x = 0 \text{ if } x \in S \quad \psi_S x = 1 \text { if } x \in X, x \notin S
+$$
 
 Put differently, $\{0\} \subset \{0, 1\}$ is the simplest non-trivial subset. An arbitrary subset $S \subset X$ can be mapped into this simple subset by $\psi_S$, as defined. This produces the pullback map:
 
@@ -609,7 +718,10 @@ An elementary `topos` is defined to be a category $E$ with the following propert
 (c) $E$ is cartesian closed.
 
 Requiring $E$ to be cartesian closed means requring each functor "product with b" (i.e. $a \mapsto a \times b$) has for each $b \in E$ a right adjoint $c \mapsto c^b$ so that:
-$$\text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)$$
+
+$$
+  \text{Hom}(a \times b, c) \cong \text{Hom}(a, c^b)
+$$
 
 In other words, $E$ has exponentials.
 

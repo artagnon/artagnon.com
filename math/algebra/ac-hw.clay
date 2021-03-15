@@ -1,16 +1,25 @@
-[ac/hw] Commutative Algebra: Homework
+Commutative Algebra: Homework
 
 # Ideals
 
 + Prove that a variety $X$ is irreducible if $I(X)$ is a prime ideal.
 
-- The definition of an irreducible variety is as follows. Let $X_1$ and $X_2$ be two varieties. $$X = X_1 \cup X_2 \implies X = X_1 \vee X = X_2$$
+- The definition of an irreducible variety is as follows. Let $X_1$ and $X_2$ be two varieties.
+
+$$
+  X = X_1 \cup X_2 \implies X = X_1 \vee X = X_2
+$$
 
 Proof: Let us proceed using proof by contradiction, and assume that $I$ is not prime. Let $f$ and $g$ be two prime ideals; i.e. $fg \in I \implies f, g \in A \backslash I$, for ring $A$. Now, define:
-$$J_1 = (I, f), J_2 = (I, g)$$
+
+$$
+  J_1 = (I, f), J_2 = (I, g)
+$$
 
 Then,
-$$V(J_1) \subsetneq X, V(J_2) \subsetneq X$$
+$$
+  V(J_1) \subsetneq X, V(J_2) \subsetneq X
+$$
 
 which yields $X = V_1 \cup V_2$, a reducible, as required $\Box$
 
@@ -26,9 +35,11 @@ Proof: $(1 - x)(1 + x + \ldots + x^{n - 1}) = 1$; by binomial expansion, $x^n = 
 
 Proof: Let $fg = 1$, where $g = \sum_m b_i x^i$. Clearly, $a_0, b_0$ are units, and by collecting terms, we get:
 
-$$a_n b_m = 0 \\
-a_{n - 1} b_m + a_n b_{m - 1} = 0 \implies {a_n}^2 b_{m - 1} = 0 \\
-\ldots \implies {a_n}^{m - 1} b_0 = 0$$
+$$
+  a_n b_m = 0 \\
+  a_{n - 1} b_m + a_n b_{m - 1} = 0 \implies {a_n}^2 b_{m - 1} = 0 \\
+  \ldots \implies {a_n}^{m - 1} b_0 = 0
+$$
 
 Since $b_0 = 1$, it follows that ${a_n}^{m - 1} = 0$, which means $a_n$ is nilpotent. By induction, we can prove that all $a_i$s for $i > 0$ are nilpotent $\Box$
 
