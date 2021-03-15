@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -86,7 +89,7 @@
           Germ of differentiable functions
         </h2>
         <p>
-          The ring of functions on each open set $U \subset X$ of topological space $X$ is written as $\mathscr{O}(U)$. If $W \hookrightarrow V \hookrightarrow U$, then the following diagram commutes:
+          The ring of functions on each open set <span class="mathjax">$U \subset X$</span> of topological space <span class="mathjax">$X$</span> is written as <span class="mathjax">$\mathscr{O}(U)$</span>. If <span class="mathjax">$W \hookrightarrow V \hookrightarrow U$</span>, then the following diagram commutes:
         </p>
         <div class="mathjax">
           $$
@@ -103,24 +106,24 @@
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            Let $U_i$ be a covering of $U$, and $f_1, f_2 \in \mathscr{O}(U)$. If $f_1 = res_{U, U_i} f_2$, then $f_1 = f_2$. Thus, we can identify functions by looking at them on a covering of open sets.
+            Let <span class="mathjax">$U_i$</span> be a covering of <span class="mathjax">$U$</span>, and <span class="mathjax">$f_1, f_2 \in \mathscr{O}(U)$</span>. If <span class="mathjax">$f_1 = res_{U, U_i} f_2$</span>, then <span class="mathjax">$f_1 = f_2$</span>. Thus, we can identify functions by looking at them on a covering of open sets.
           </li>
           <li>
-            Given $f_i \in \mathscr{O}(U_i)$ all agreeing pairwise, we can glue them together to make one differentiable function on all of $U$, $f \in \mathscr{O}(U)$.
+            Given <span class="mathjax">$f_i \in \mathscr{O}(U_i)$</span> all agreeing pairwise, we can glue them together to make one differentiable function on all of <span class="mathjax">$U$</span>, <span class="mathjax">$f \in \mathscr{O}(U)$</span>.
           </li>
         </ol>
         <p>
-          <mark>Germ</mark> of a differentiable function $f$ at a point $p$ is defined as:<br/>
-          $$\{f, \text{open } U \mid p \in U, f \in \mathscr{O}(U)\}$$
+          <mark>Germ</mark> of a differentiable function <span class="mathjax">$f$</span> at a point <span class="mathjax">$p$</span> is defined as:<br/>
+          $<span class="mathjax">$\{f, \text{open } U \mid p \in U, f \in \mathscr{O}(U)\}$</span>$
         </p>
         <p>
-          modulo the relation $(f, U) \sim (g, V)$, if there is some open set $W \subset U$, $p \in V$, such that $f|_W = g|_W$ (i.e. $\text{res}_{U, W} f = \text{res}_{V, W} g$). Intuitively, two functions that are the same in an open neighborhood of $p$, but different elsewhere, have the same germ. We call this set of germs at $p$ the <mark>stalk</mark> at $p$, denoted by $\mathscr{O}_p$. If $f$ is defined on $U$ and $g$ is defined on $V$, then $f + g$ is defined on $U \cap V$. If additionally, $p \in U$ then we get the map $\mathscr{O}(U) \rightarrow \mathscr{O}_p$. We're talking about germs as <a href="/category/2#coproducts-and-colimits">colimits</a>. Moreover, $\mathscr{O}_p$ is a local ring, since it has exactly one maximal ideal $m_p \subset \mathscr{O}_p$, the ideal of germs vanishing at $p$. We can interpret the value of the function, or the value of the germ, at a point, as an element of the local ring modulo the maximal ideal: this doesn't work for all sheaves, but does work for things behaving like sheaves of functions, formalized later as a <mark>locally ringed space</mark>.
+          modulo the relation <span class="mathjax">$(f, U) \sim (g, V)$</span>, if there is some open set <span class="mathjax">$W \subset U$</span>, <span class="mathjax">$p \in V$</span>, such that <span class="mathjax">$f|_W = g|_W$</span> (i.e. <span class="mathjax">$\text{res}_{U, W} f = \text{res}_{V, W} g$</span>). Intuitively, two functions that are the same in an open neighborhood of <span class="mathjax">$p$</span>, but different elsewhere, have the same germ. We call this set of germs at <span class="mathjax">$p$</span> the <mark>stalk</mark> at <span class="mathjax">$p$</span>, denoted by <span class="mathjax">$\mathscr{O}_p$</span>. If <span class="mathjax">$f$</span> is defined on <span class="mathjax">$U$</span> and <span class="mathjax">$g$</span> is defined on <span class="mathjax">$V$</span>, then <span class="mathjax">$f + g$</span> is defined on <span class="mathjax">$U \cap V$</span>. If additionally, <span class="mathjax">$p \in U$</span> then we get the map <span class="mathjax">$\mathscr{O}(U) \rightarrow \mathscr{O}_p$</span>. We're talking about germs as <a href="/category/2#coproducts-and-colimits">colimits</a>. Moreover, <span class="mathjax">$\mathscr{O}_p$</span> is a local ring, since it has exactly one maximal ideal <span class="mathjax">$m_p \subset \mathscr{O}_p$</span>, the ideal of germs vanishing at <span class="mathjax">$p$</span>. We can interpret the value of the function, or the value of the germ, at a point, as an element of the local ring modulo the maximal ideal: this doesn't work for all sheaves, but does work for things behaving like sheaves of functions, formalized later as a <mark>locally ringed space</mark>.
         </p>
         <h2 id="definition-of-presheaf-and-sheaf">
           Definition of presheaf and sheaf
         </h2>
         <p>
-          We will be considering sheafs on sets, and this can be done without loss in generality. The fact that $\mathscr{F}$ is a presheaf or sheaf on topological space $X$ is written as:
+          We will be considering sheafs on sets, and this can be done without loss in generality. The fact that <span class="mathjax">$\mathscr{F}$</span> is a presheaf or sheaf on topological space <span class="mathjax">$X$</span> is written as:
         </p>
         <div class="mathjax">
           $$
@@ -133,14 +136,14 @@
           $$
         </div>
         <p>
-          A <mark>presheaf</mark> $\mathscr{F}$ on topological space $X$ is the following data:
+          A <mark>presheaf</mark> <span class="mathjax">$\mathscr{F}$</span> on topological space <span class="mathjax">$X$</span> is the following data:
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            To each open set $U \subset X$, we have a set $\mathscr{F}(U) = \Gamma(U, \mathscr{F}) = H^0(U, \mathscr{F})$. The elements of $\mathscr{F}(U)$ are called the <mark>sections</mark> of $\mathscr{F}$.
+            To each open set <span class="mathjax">$U \subset X$</span>, we have a set <span class="mathjax">$\mathscr{F}(U) = \Gamma(U, \mathscr{F}) = H^0(U, \mathscr{F})$</span>. The elements of <span class="mathjax">$\mathscr{F}(U)$</span> are called the <mark>sections</mark> of <span class="mathjax">$\mathscr{F}$</span>.
           </li>
           <li>
-            For each inclusion $U \hookrightarrow V$ of open sets, we have the restriction map $\text{res}_{V, U}: \mathscr{F}(V) \rightarrow \mathscr{F}(U)$.
+            For each inclusion <span class="mathjax">$U \hookrightarrow V$</span> of open sets, we have the restriction map <span class="mathjax">$\text{res}_{V, U}: \mathscr{F}(V) \rightarrow \mathscr{F}(U)$</span>.
           </li>
         </ol>
         <p>
@@ -148,10 +151,10 @@
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            $\text{res}_{U, U} = \text{id}_{\mathscr{F}(U)}$.
+            <span class="mathjax">$\text{res}_{U, U} = \text{id}_{\mathscr{F}(U)}$</span>.
           </li>
           <li>
-            For the inclusion $W \hookrightarrow V \hookrightarrow U$, the following diagram commutes:
+            For the inclusion <span class="mathjax">$W \hookrightarrow V \hookrightarrow U$</span>, the following diagram commutes:
           </li>
         </ol>
         <div class="mathjax">
@@ -168,35 +171,35 @@
           A presheaf is the same thing as a contravariant functor.
         </p>
         <p>
-          The stalk of a presheaf $\mathscr{F}$ is defined to be the set of germs of $\mathscr{F}$ at point $p$, denoted $\mathscr{F}_p$:<br/>
-          $$\mathscr{F}_p = \{f, \text{open } U \mid p \in U, f \in \mathscr{F}(U)\}$$
+          The stalk of a presheaf <span class="mathjax">$\mathscr{F}$</span> is defined to be the set of germs of <span class="mathjax">$\mathscr{F}$</span> at point <span class="mathjax">$p$</span>, denoted <span class="mathjax">$\mathscr{F}_p$</span>:<br/>
+          $<span class="mathjax">$\mathscr{F}_p = \{f, \text{open } U \mid p \in U, f \in \mathscr{F}(U)\}$</span>$
         </p>
         <p>
-          modulo the relation $(f, U) \sim (g, V)$, where $f|_W = g|_W$.
+          modulo the relation <span class="mathjax">$(f, U) \sim (g, V)$</span>, where <span class="mathjax">$f|_W = g|_W$</span>.
         </p>
         <p>
           Another equivalent definition in terms of colimits is:<br/>
-          $$\mathscr{F}_p = \underset{\longrightarrow}{\text{Lim }} \mathscr{F}(U)$$
+          $<span class="mathjax">$\mathscr{F}_p = \underset{\longrightarrow}{\text{Lim }} \mathscr{F}(U)$</span>$
         </p>
         <p>
-          If $p \in U, f \in \mathscr{F}(U)$, then $\mathscr{F}_p$ is called the ring of germs of $f$ at point $p$.
+          If <span class="mathjax">$p \in U, f \in \mathscr{F}(U)$</span>, then <span class="mathjax">$\mathscr{F}_p$</span> is called the ring of germs of <span class="mathjax">$f$</span> at point <span class="mathjax">$p$</span>.
         </p>
         <p>
           A sheaf is defined as a presheaf along with two additional axioms:
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            Identity axiom: Let $U_i$ be a covering of $U$, and $f_1, f_2 \in \mathscr{F}(U)$. If $f_1 = res_{U, U_i} f_2$, then $f_1 = f_2$.
+            Identity axiom: Let <span class="mathjax">$U_i$</span> be a covering of <span class="mathjax">$U$</span>, and <span class="mathjax">$f_1, f_2 \in \mathscr{F}(U)$</span>. If <span class="mathjax">$f_1 = res_{U, U_i} f_2$</span>, then <span class="mathjax">$f_1 = f_2$</span>.
           </li>
           <li>
-            Gluability axiom: Given $f_i \in \mathscr{F}(U_i)$ all agreeing pairwise, we can glue them together to make one differentiable function on all of $U$, $f \in \mathscr{F}(U)$.
+            Gluability axiom: Given <span class="mathjax">$f_i \in \mathscr{F}(U_i)$</span> all agreeing pairwise, we can glue them together to make one differentiable function on all of <span class="mathjax">$U$</span>, <span class="mathjax">$f \in \mathscr{F}(U)$</span>.
           </li>
         </ol>
         <p>
           Here, the identity axiom asserts that there is atmost one way to glue, and the gluability axiom asserts that there is atleast one way to glue.
         </p>
         <p>
-          As an example, consider $\mathscr{F}(U \cup V) = \mathscr{F}(U) \times \mathscr{F}(V)$. Here, we use the fact that $\mathscr{F}(\phi)$ is the final object.
+          As an example, consider <span class="mathjax">$\mathscr{F}(U \cup V) = \mathscr{F}(U) \times \mathscr{F}(V)$</span>. Here, we use the fact that <span class="mathjax">$\mathscr{F}(\phi)$</span> is the final object.
         </p>
         <p>
           The two axioms for a sheaf can be interpreted as "exactnesss" of the <mark><a href="/category/2#limits-and-products">equalizer</a> exact sequence</mark>:
@@ -211,32 +214,32 @@
           $$
         </div>
         <p>
-          where identity is exactness over $\mathscr{F}(U)$, and gluability is exactness over $\prod \mathscr{F}(U_i)$.
+          where identity is exactness over <span class="mathjax">$\mathscr{F}(U)$</span>, and gluability is exactness over <span class="mathjax">$\prod \mathscr{F}(U_i)$</span>.
         </p>
         <p>
-          As an example, consider the restriction of sheaf $\mathscr{F}$ on $U$, $\mathscr{F}|_U = \mathscr{F}|_U(V)$ for all open subsets $V \subset U$.
+          As an example, consider the restriction of sheaf <span class="mathjax">$\mathscr{F}$</span> on <span class="mathjax">$U$</span>, <span class="mathjax">$\mathscr{F}|_U = \mathscr{F}|_U(V)$</span> for all open subsets <span class="mathjax">$V \subset U$</span>.
         </p>
         <p>
-          As another example, consider the <mark>skyscraper sheaf</mark>. Suppose $X$ is a topological space, $p \in X$, and $S$ is a set. Let $i_p : p \rightarrow X$ be the inclusion; then $i_{p, *}S$ is defined by:<br/>
-          $$i_{p, *}S(U) = \begin{cases} S \quad p \in U \\ \{e\} \quad p \notin U \end{cases}$$
+          As another example, consider the <mark>skyscraper sheaf</mark>. Suppose <span class="mathjax">$X$</span> is a topological space, <span class="mathjax">$p \in X$</span>, and <span class="mathjax">$S$</span> is a set. Let <span class="mathjax">$i_p : p \rightarrow X$</span> be the inclusion; then <span class="mathjax">$i_{p, *}S$</span> is defined by:<br/>
+          $<span class="mathjax">$i_{p, *}S(U) = \begin{cases} S \quad p \in U \\ \{e\} \quad p \notin U \end{cases}$</span>$
         </p>
         <p>
-          where $\{e\}$ is any one-point set. This is called the skyscraper sheaf, because the informal picture looks like a skyscraper at point $p$.
+          where <span class="mathjax">$\{e\}$</span> is any one-point set. This is called the skyscraper sheaf, because the informal picture looks like a skyscraper at point <span class="mathjax">$p$</span>.
         </p>
         <p>
-          Let $X$ be a topological space, and $S$ a set. Then, $\underline{S}_{\text{pre}}(U) = S$ for all open sets $U$, and $\underline{S}_{\text{pre}}$ is called the <mark>constant presheaf</mark> associated to $S$.
+          Let <span class="mathjax">$X$</span> be a topological space, and <span class="mathjax">$S$</span> a set. Then, <span class="mathjax">$\underline{S}_{\text{pre}}(U) = S$</span> for all open sets <span class="mathjax">$U$</span>, and <span class="mathjax">$\underline{S}_{\text{pre}}$</span> is called the <mark>constant presheaf</mark> associated to <span class="mathjax">$S$</span>.
         </p>
         <p>
-          Let $\mathscr{F}(U)$ be maps to $S$ that are locally constant; i.e. for any point $p \in U$, there is an open neighborhood of $p$ where the function is constant. This is called the <mark>constant sheaf</mark> associated to $S$, and is denoted by $\underline{S}$.
+          Let <span class="mathjax">$\mathscr{F}(U)$</span> be maps to <span class="mathjax">$S$</span> that are locally constant; i.e. for any point <span class="mathjax">$p \in U$</span>, there is an open neighborhood of <span class="mathjax">$p$</span> where the function is constant. This is called the <mark>constant sheaf</mark> associated to <span class="mathjax">$S$</span>, and is denoted by <span class="mathjax">$\underline{S}$</span>.
         </p>
         <p>
-          Suppose $\pi : X \rightarrow Y$ is a continuous map, and $\mathscr{F}$ is a presheaf on $X$. Then define $\pi_* \mathscr{F}$ by $\pi_* \mathscr{F}(V) = \mathscr{F}(\pi^{-1}(V))$, where $V$ is an open subset of $Y$. Then, $\pi_* \mathscr{F}$ is called the <mark>pushforward</mark> of $\mathscr{F}$ by $\pi$. The skyscraper sheaf can be interpreted as a pushforward of the constant sheaf $\underline{S}$ on a one-point space $p$, under the inclusion morphism $i_p : \{p\} \rightarrow X$.
+          Suppose <span class="mathjax">$\pi : X \rightarrow Y$</span> is a continuous map, and <span class="mathjax">$\mathscr{F}$</span> is a presheaf on <span class="mathjax">$X$</span>. Then define <span class="mathjax">$\pi_* \mathscr{F}$</span> by <span class="mathjax">$\pi_* \mathscr{F}(V) = \mathscr{F}(\pi^{-1}(V))$</span>, where <span class="mathjax">$V$</span> is an open subset of <span class="mathjax">$Y$</span>. Then, <span class="mathjax">$\pi_* \mathscr{F}$</span> is called the <mark>pushforward</mark> of <span class="mathjax">$\mathscr{F}$</span> by <span class="mathjax">$\pi$</span>. The skyscraper sheaf can be interpreted as a pushforward of the constant sheaf <span class="mathjax">$\underline{S}$</span> on a one-point space <span class="mathjax">$p$</span>, under the inclusion morphism <span class="mathjax">$i_p : \{p\} \rightarrow X$</span>.
         </p>
         <p>
-          Example: Suppose $\mathscr{O}_X$ is a sheaf of rings on topological space $X$; i.e. a sheaf on $X$ with values in the category of rings. Then, $(X, \mathscr{O}_X)$ is called a <mark>ringed space</mark>, and $\mathscr{O}_X$ is called the <mark>structuce sheaf</mark> of the ringed space. Sections of $\mathscr{O}_X$ on an open subset $U$ are called the <mark>functions</mark> on $U$. The stalk of $\mathscr{O}_X$ at point $p$ is represented as $\mathscr{O}_{X, p}$.
+          Example: Suppose <span class="mathjax">$\mathscr{O}_X$</span> is a sheaf of rings on topological space <span class="mathjax">$X$</span>; i.e. a sheaf on <span class="mathjax">$X$</span> with values in the category of rings. Then, <span class="mathjax">$(X, \mathscr{O}_X)$</span> is called a <mark>ringed space</mark>, and <span class="mathjax">$\mathscr{O}_X$</span> is called the <mark>structuce sheaf</mark> of the ringed space. Sections of <span class="mathjax">$\mathscr{O}_X$</span> on an open subset <span class="mathjax">$U$</span> are called the <mark>functions</mark> on <span class="mathjax">$U$</span>. The stalk of <span class="mathjax">$\mathscr{O}_X$</span> at point <span class="mathjax">$p$</span> is represented as <span class="mathjax">$\mathscr{O}_{X, p}$</span>.
         </p>
         <p>
-          Just as we have modules over a ring, we have $\mathscr{O}_X$-modules over the sheaf of rings $\mathscr{O}_X$. The definition of <mark>$\mathscr{O}_X$-module</mark> is a sheaf of abelian groups of $\mathscr{F}$ along with the following additional structure: for each $U$, the sheaf $\mathscr{F}(U)$ is an $\mathscr{O}_X(U)$-module, and given $U \subset V$, the following diagram commutes:
+          Just as we have modules over a ring, we have <span class="mathjax">$\mathscr{O}_X$</span>-modules over the sheaf of rings <span class="mathjax">$\mathscr{O}_X$</span>. The definition of <mark><span class="mathjax">$\mathscr{O}_X$</span>-module</mark> is a sheaf of abelian groups of <span class="mathjax">$\mathscr{F}$</span> along with the following additional structure: for each <span class="mathjax">$U$</span>, the sheaf <span class="mathjax">$\mathscr{F}(U)$</span> is an <span class="mathjax">$\mathscr{O}_X(U)$</span>-module, and given <span class="mathjax">$U \subset V$</span>, the following diagram commutes:
         </p>
         <div class="mathjax">
           $$
@@ -249,13 +252,13 @@
           $$
         </div>
         <p>
-          Just as an $A$-module generalizes the notion of an abelian group, since an abelian group is the same thing as a $\mathbb{Z}$-module, an $\mathscr{O}_X$-module generalizes the notion of a sheaf of abelian groups, as the latter is the same thing as a $\underline{\mathbb{Z}}$-module.
+          Just as an <span class="mathjax">$A$</span>-module generalizes the notion of an abelian group, since an abelian group is the same thing as a <span class="mathjax">$\mathbb{Z}$</span>-module, an <span class="mathjax">$\mathscr{O}_X$</span>-module generalizes the notion of a sheaf of abelian groups, as the latter is the same thing as a <span class="mathjax">$\underline{\mathbb{Z}}$</span>-module.
         </p>
         <h2 id="morphisms-of-presheaves-and-sheaves">
           Morphisms of presheaves and sheaves
         </h2>
         <p>
-          A morphism of presheaves or sheaves, $\phi : \mathscr{F} \rightarrow \mathscr{G}$, is the data of maps $\phi(U) : \mathscr{F}(U) \rightarrow \mathscr{G}(U)$, for all $U$, behaving well with respect to the restriction: if $U \hookrightarrow V$, then the following diagram commutes:
+          A morphism of presheaves or sheaves, <span class="mathjax">$\phi : \mathscr{F} \rightarrow \mathscr{G}$</span>, is the data of maps <span class="mathjax">$\phi(U) : \mathscr{F}(U) \rightarrow \mathscr{G}(U)$</span>, for all <span class="mathjax">$U$</span>, behaving well with respect to the restriction: if <span class="mathjax">$U \hookrightarrow V$</span>, then the following diagram commutes:
         </p>
         <div class="mathjax">
           $$
@@ -268,13 +271,13 @@
           $$
         </div>
         <p>
-          An example of a morphism of sheaves is that from differentiable functions on $\mathbb{R}$ to continuous functions; this is a forgetful map, forgetting that functions are differentiable, and only remembering that they are continuous.
+          An example of a morphism of sheaves is that from differentiable functions on <span class="mathjax">$\mathbb{R}$</span> to continuous functions; this is a forgetful map, forgetting that functions are differentiable, and only remembering that they are continuous.
         </p>
         <p>
-          If we interpret a presheaf on $X$ as a functor from the category of open sets, then a morphism of presheaves on $X$ is a natural transform.
+          If we interpret a presheaf on <span class="mathjax">$X$</span> as a functor from the category of open sets, then a morphism of presheaves on <span class="mathjax">$X$</span> is a natural transform.
         </p>
         <p>
-          Suppose $\mathscr{F}, \mathscr{G}$ are two sheaves in topological space $X$; then we define $\textit{Hom}(\mathscr{F}, \mathscr{G})$ as:
+          Suppose <span class="mathjax">$\mathscr{F}, \mathscr{G}$</span> are two sheaves in topological space <span class="mathjax">$X$</span>; then we define <span class="mathjax">$\textit{Hom}(\mathscr{F}, \mathscr{G})$</span> as:
         </p>
         <div class="mathjax">
           $$
@@ -282,16 +285,16 @@
           $$
         </div>
         <p>
-          This is a sheaf, called <mark>sheaf $\textit{Hom}$</mark>, of sets on $X$. The functor is contravariant in its first argument and covariant in its second argument. $\textit{Hom}$, however, does not commute with taking stalks; i.e. $\textit{Hom}(\mathscr{F}, \mathscr{G})_p$ is not isomorphic to $\textit{Hom}(\mathscr{F}_p, \mathscr{G}_p)$.
+          This is a sheaf, called <mark>sheaf <span class="mathjax">$\textit{Hom}$</span></mark>, of sets on <span class="mathjax">$X$</span>. The functor is contravariant in its first argument and covariant in its second argument. <span class="mathjax">$\textit{Hom}$</span>, however, does not commute with taking stalks; i.e. <span class="mathjax">$\textit{Hom}(\mathscr{F}, \mathscr{G})_p$</span> is not isomorphic to <span class="mathjax">$\textit{Hom}(\mathscr{F}_p, \mathscr{G}_p)$</span>.
         </p>
         <p>
-          We can make module-like constructions using presheaves of abelian groups on a topological space $X$. We can clearly add maps of presheaves to get another map of presheaves. Indeed, $(\phi + \psi)(V) = \phi(V) + \psi(V)$. We say that presheaves of abelian groups form an additive category.
+          We can make module-like constructions using presheaves of abelian groups on a topological space <span class="mathjax">$X$</span>. We can clearly add maps of presheaves to get another map of presheaves. Indeed, <span class="mathjax">$(\phi + \psi)(V) = \phi(V) + \psi(V)$</span>. We say that presheaves of abelian groups form an additive category.
         </p>
         <p>
-          If $\phi : \mathscr{F} \rightarrow \mathscr{G}$ is a morphism of presheaves, then the <mark>kernel</mark> of this map is defined by $(\text{ker}_\text{pre}\phi)(U) := \text{ker }\phi(U)$. $\text{ker}_\text{pre}\phi \rightarrow \mathscr{F}$ satisfies the universal property for kernels. The cokernel is defined similarly. It can readily be verified that presheaves of abelian groups form an <a href="/category/7">abelian category</a>.
+          If <span class="mathjax">$\phi : \mathscr{F} \rightarrow \mathscr{G}$</span> is a morphism of presheaves, then the <mark>kernel</mark> of this map is defined by <span class="mathjax">$(\text{ker}_\text{pre}\phi)(U) := \text{ker }\phi(U)$</span>. <span class="mathjax">$\text{ker}_\text{pre}\phi \rightarrow \mathscr{F}$</span> satisfies the universal property for kernels. The cokernel is defined similarly. It can readily be verified that presheaves of abelian groups form an <a href="/category/7">abelian category</a>.
         </p>
         <p>
-          Sheaves of abelian groups also form an abelian category, albeit with an additional complication of <mark>sheafification</mark>. $\text{Ab}_X$ forms an additive category, just as with presheaves, and the definition of kernel of a sheaf gives us no problems; in fact $\text{ker}_\text{pre}\phi := \text{ker }\phi$. The issue arises in cokernels.
+          Sheaves of abelian groups also form an abelian category, albeit with an additional complication of <mark>sheafification</mark>. <span class="mathjax">$\text{Ab}_X$</span> forms an additive category, just as with presheaves, and the definition of kernel of a sheaf gives us no problems; in fact <span class="mathjax">$\text{ker}_\text{pre}\phi := \text{ker }\phi$</span>. The issue arises in cokernels.
         </p>
         <h2 id="sheafification">
           Sheafification
@@ -300,21 +303,21 @@
           Lots of properties of sheaves can be checked at the level of stalks. This isn't true of presheaves, and reflects the local nature of sheaves.
         </p>
         <p>
-          Suppose $\mathscr{F}$ is a sheaf of abelian groups of $X$, and $s$ is a global section of $\mathscr{F}$. Let the <mark>support</mark> of $s$ be the points $p \in X$ where $s$ has a nonzero germ:<br/>
-          $$\text{Supp}(s) = \{p \in X \mid s_p \neq 0 \text{ in } \mathscr{F}_p\}$$
+          Suppose <span class="mathjax">$\mathscr{F}$</span> is a sheaf of abelian groups of <span class="mathjax">$X$</span>, and <span class="mathjax">$s$</span> is a global section of <span class="mathjax">$\mathscr{F}$</span>. Let the <mark>support</mark> of <span class="mathjax">$s$</span> be the points <span class="mathjax">$p \in X$</span> where <span class="mathjax">$s$</span> has a nonzero germ:<br/>
+          $<span class="mathjax">$\text{Supp}(s) = \{p \in X \mid s_p \neq 0 \text{ in } \mathscr{F}_p\}$</span>$
         </p>
         <p>
-          We can think of this as the subset of $X$ "where section $s$ lives". The complement is the locus where $s$ is the $0$-section.
+          We can think of this as the subset of <span class="mathjax">$X$</span> "where section <span class="mathjax">$s$</span> lives". The complement is the locus where <span class="mathjax">$s$</span> is the <span class="mathjax">$0$</span>-section.
         </p>
         <p>
-          We say that an element $\prod_{p \in U} s_p$ of $\prod_{p \in U} \mathscr{F}_p$ consists of <mark>compatible germs</mark>, for all $p \in U$, if there is some representative<br/>
-          $$\{U_p \text{ open in } U, \tilde{s}_p \in \mathscr{F}(U_p)\}$$
+          We say that an element <span class="mathjax">$\prod_{p \in U} s_p$</span> of <span class="mathjax">$\prod_{p \in U} \mathscr{F}_p$</span> consists of <mark>compatible germs</mark>, for all <span class="mathjax">$p \in U$</span>, if there is some representative<br/>
+          $<span class="mathjax">$\{U_p \text{ open in } U, \tilde{s}_p \in \mathscr{F}(U_p)\}$</span>$
         </p>
         <p>
-          for $s_p$ (where $p \in U_p \subset U$), such that the germ $\tilde{s}_p$ is $s_q$ for all $q \in U_p$. Equivalently, there an open cover $\{U_i\}$ of $U$ and sections $f_i \in \mathscr{F}(U_i)$, such that if $p \in U_i$, then $s_p$ is the germ of $s_i$ at $p$. Hence, any section $s$ of $\mathscr{F}$ over $U$ gives a choice of compatible germs for $U$.
+          for <span class="mathjax">$s_p$</span> (where <span class="mathjax">$p \in U_p \subset U$</span>), such that the germ <span class="mathjax">$\tilde{s}_p$</span> is <span class="mathjax">$s_q$</span> for all <span class="mathjax">$q \in U_p$</span>. Equivalently, there an open cover <span class="mathjax">$\{U_i\}$</span> of <span class="mathjax">$U$</span> and sections <span class="mathjax">$f_i \in \mathscr{F}(U_i)$</span>, such that if <span class="mathjax">$p \in U_i$</span>, then <span class="mathjax">$s_p$</span> is the germ of <span class="mathjax">$s_i$</span> at <span class="mathjax">$p$</span>. Hence, any section <span class="mathjax">$s$</span> of <span class="mathjax">$\mathscr{F}$</span> over <span class="mathjax">$U$</span> gives a choice of compatible germs for <span class="mathjax">$U$</span>.
         </p>
         <p>
-          Just as groupification gives an abelian group that best approximates to an abelian semigroup, sheafification gives a sheaf that best approximates to a presheaf, with an analogus universal property. If $\mathscr{F}$ is a presheaf, then $\text{sh} : \mathscr{F} \rightarrow \mathscr{F}^\text{sh}$ on $X$ is the <mark>sheafification</mark> of $\mathscr{F}$. If $\mathscr{F}^\text{sh}$ is a sheaf, then for any sheaf $\mathscr{G}$, and the presheaf morphism $g : \mathscr{F} \rightarrow \mathscr{G}$, there exists a unique morphism of sheaves $f : \mathscr{F}^\text{sh} \rightarrow \mathscr{G}$ making the following diagram commute:
+          Just as groupification gives an abelian group that best approximates to an abelian semigroup, sheafification gives a sheaf that best approximates to a presheaf, with an analogus universal property. If <span class="mathjax">$\mathscr{F}$</span> is a presheaf, then <span class="mathjax">$\text{sh} : \mathscr{F} \rightarrow \mathscr{F}^\text{sh}$</span> on <span class="mathjax">$X$</span> is the <mark>sheafification</mark> of <span class="mathjax">$\mathscr{F}$</span>. If <span class="mathjax">$\mathscr{F}^\text{sh}$</span> is a sheaf, then for any sheaf <span class="mathjax">$\mathscr{G}$</span>, and the presheaf morphism <span class="mathjax">$g : \mathscr{F} \rightarrow \mathscr{G}$</span>, there exists a unique morphism of sheaves <span class="mathjax">$f : \mathscr{F}^\text{sh} \rightarrow \mathscr{G}$</span> making the following diagram commute:
         </p>
         <div class="mathjax">
           $$
@@ -327,13 +330,13 @@
           $$
         </div>
         <p>
-          Next, we want to show that any presheaf has a sheafification. Indeed, define $\mathscr{F}^\text{sh}(U)$ to be the set of compatible germs of the presheaf $\mathscr{F}$ over $U$. More precisely, $\mathscr{F}^\text{sh}(U) = \{(f_p \in \mathscr{F}_p)_{p \in U}\}$ such that for all $p \in U$, there exists an open neighborhood $V$ of $p$ contained in $U$, and $s \in \mathscr{F}(V)$ with $s_q = f_q$ for all $q \in V$. Here, $s_q$ means the germ of $s$ at $q$; i.e. the image of $s$ in the stalk $\mathscr{F}_q$.
+          Next, we want to show that any presheaf has a sheafification. Indeed, define <span class="mathjax">$\mathscr{F}^\text{sh}(U)$</span> to be the set of compatible germs of the presheaf <span class="mathjax">$\mathscr{F}$</span> over <span class="mathjax">$U$</span>. More precisely, <span class="mathjax">$\mathscr{F}^\text{sh}(U) = \{(f_p \in \mathscr{F}_p)_{p \in U}\}$</span> such that for all <span class="mathjax">$p \in U$</span>, there exists an open neighborhood <span class="mathjax">$V$</span> of <span class="mathjax">$p$</span> contained in <span class="mathjax">$U$</span>, and <span class="mathjax">$s \in \mathscr{F}(V)$</span> with <span class="mathjax">$s_q = f_q$</span> for all <span class="mathjax">$q \in V$</span>. Here, <span class="mathjax">$s_q$</span> means the germ of <span class="mathjax">$s$</span> at <span class="mathjax">$q$</span>; i.e. the image of <span class="mathjax">$s$</span> in the stalk <span class="mathjax">$\mathscr{F}_q$</span>.
         </p>
         <p>
-          Let $\phi : \mathscr{F} \rightarrow \mathscr{G}$ be a morphism of sheaves on topological space $X$. Then $\mathscr{G}$ is called the <mark>quotient sheaf</mark> of $\mathscr{F}$ if $\phi$ is an epimorphism in the category of sheaves, or equivalently if $\phi$ is surjective on the level of stalks: $\phi_p : \mathscr{F}_p \rightarrow \mathscr{G}_p$ is surjective for all $p \in X$. Monomorphism and epimorphism - <mark>sheafiness</mark> and <mark>quotient sheafiness</mark> - may be checked at the level of stalks.
+          Let <span class="mathjax">$\phi : \mathscr{F} \rightarrow \mathscr{G}$</span> be a morphism of sheaves on topological space <span class="mathjax">$X$</span>. Then <span class="mathjax">$\mathscr{G}$</span> is called the <mark>quotient sheaf</mark> of <span class="mathjax">$\mathscr{F}$</span> if <span class="mathjax">$\phi$</span> is an epimorphism in the category of sheaves, or equivalently if <span class="mathjax">$\phi$</span> is surjective on the level of stalks: <span class="mathjax">$\phi_p : \mathscr{F}_p \rightarrow \mathscr{G}_p$</span> is surjective for all <span class="mathjax">$p \in X$</span>. Monomorphism and epimorphism - <mark>sheafiness</mark> and <mark>quotient sheafiness</mark> - may be checked at the level of stalks.
         </p>
         <p>
-          As an example, consider the <mark>exponential exact sequence</mark>. Let $X = \mathbb{C}$ in classical topology, $\mathscr{O}_X$ be the sheaf of holomorphic functions, and $\mathscr{O}^*_X$ be the sheaf of invertible holomorphic functions. This is a sheaf of abelian groups under multiplication. We have the map:
+          As an example, consider the <mark>exponential exact sequence</mark>. Let <span class="mathjax">$X = \mathbb{C}$</span> in classical topology, <span class="mathjax">$\mathscr{O}_X$</span> be the sheaf of holomorphic functions, and <span class="mathjax">$\mathscr{O}^*_X$</span> be the sheaf of invertible holomorphic functions. This is a sheaf of abelian groups under multiplication. We have the map:
         </p>
         <div class="mathjax">
           $$
@@ -341,13 +344,13 @@
           $$
         </div>
         <p>
-          where $\underline{\mathbb{Z}}$ is the constant sheaf associated to $\mathbb{Z}$.
+          where <span class="mathjax">$\underline{\mathbb{Z}}$</span> is the constant sheaf associated to <span class="mathjax">$\mathbb{Z}$</span>.
         </p>
         <h2 id="sheaves-on-a-base">
           Sheaves on a base
         </h2>
         <p>
-          We have discussed how to get a hold of sheaves using stalks (invoking compatible germs), and we describe the second way now. Suppose we have the sheaf $\mathscr{F}$ on topological space, and a base ${B_i}$ of open sets on $X$. Then, consider the following information:
+          We have discussed how to get a hold of sheaves using stalks (invoking compatible germs), and we describe the second way now. Suppose we have the sheaf <span class="mathjax">$\mathscr{F}$</span> on topological space, and a base <span class="mathjax">${B_i}$</span> of open sets on <span class="mathjax">$X$</span>. Then, consider the following information:
         </p>
         <div class="mathjax">
           $$
@@ -358,31 +361,31 @@
           We can recover the sheaf from this information, because we can recover stalks when germs are compatible.
         </p>
         <p>
-          A sheaf on $\{B_i\}$ is the following information. For each base in $\{B_i\}$, we have the set $F(B_i)$. If $B_i \subset B_j$, then we have $\text{res}_{B_j, B_i} : F(B_j) \rightarrow F(B_i)$ with $\text{res}_{B_i, B_i} = id_{F(B_i)}$. Further, if $B_i \subset B_j \subset B_k$, then $\text{res}_{B_k, B_i} = \text{res}_{B_j, B_i} \circ \text{res}_{B_k, B_j}$. This is the definition of <mark>presheaf on a base</mark>. For the definition of <mark>sheaf on a base</mark>, we need two additional axioms:
+          A sheaf on <span class="mathjax">$\{B_i\}$</span> is the following information. For each base in <span class="mathjax">$\{B_i\}$</span>, we have the set <span class="mathjax">$F(B_i)$</span>. If <span class="mathjax">$B_i \subset B_j$</span>, then we have <span class="mathjax">$\text{res}_{B_j, B_i} : F(B_j) \rightarrow F(B_i)$</span> with <span class="mathjax">$\text{res}_{B_i, B_i} = id_{F(B_i)}$</span>. Further, if <span class="mathjax">$B_i \subset B_j \subset B_k$</span>, then <span class="mathjax">$\text{res}_{B_k, B_i} = \text{res}_{B_j, B_i} \circ \text{res}_{B_k, B_j}$</span>. This is the definition of <mark>presheaf on a base</mark>. For the definition of <mark>sheaf on a base</mark>, we need two additional axioms:
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            The base identity axiom. If $B = \cup B_i$, then if $f, g \in F(B)$ such that $\text{res}_{B, B_i} f = \text{res}_{B, B_i} g$ for all $i$, then $f = g$.
+            The base identity axiom. If <span class="mathjax">$B = \cup B_i$</span>, then if <span class="mathjax">$f, g \in F(B)$</span> such that <span class="mathjax">$\text{res}_{B, B_i} f = \text{res}_{B, B_i} g$</span> for all <span class="mathjax">$i$</span>, then <span class="mathjax">$f = g$</span>.
           </li>
           <li>
-            The base gluability axiom. If $B = \cup B_i$, and we have $f_i \in B_i$ such that $f_i$ agress with $f_j$ on any basic open set $B_i \cap B_j$, then there exists $f \in B$ such that $\text{res}_{B, B_i} f_i = f$ for all $i$.
+            The base gluability axiom. If <span class="mathjax">$B = \cup B_i$</span>, and we have <span class="mathjax">$f_i \in B_i$</span> such that <span class="mathjax">$f_i$</span> agress with <span class="mathjax">$f_j$</span> on any basic open set <span class="mathjax">$B_i \cap B_j$</span>, then there exists <span class="mathjax">$f \in B$</span> such that <span class="mathjax">$\text{res}_{B, B_i} f_i = f$</span> for all <span class="mathjax">$i$</span>.
           </li>
         </ol>
         <p>
-          Suppose $B_i$ is a base on $X$, and $F$ is a sheaf of sets on this base, then there exists sheaf $\mathscr{F}$ extending $F$, with isomorphisms $\mathscr{F}(B_i) \cong F(B_i)$ agreeing with restriction maps. This sheaf $\mathscr{F}$ is unique upto isomorphism. To prove this, let $\mathscr{F}$ be the sheaf of compatible germs of $F$. Define stalk of a presheaf $F$ on a base $p \in X$ by $F_p = \underset{\longrightarrow}{\text{Lim }} F(B_i)$ where colimit is over all $B_i$ in the base containing $p$. A family of germs in open set $U$ is compatible near $p$ if there is a section $s$ over some $B_i$ containing $p$ such that the germs over $B_i$ are the germs of $s$; more precisely,<br/>
-          $$\mathscr{F}(U) = \{(f_p \in F_p)_{p \in U}\}$$
+          Suppose <span class="mathjax">$B_i$</span> is a base on <span class="mathjax">$X$</span>, and <span class="mathjax">$F$</span> is a sheaf of sets on this base, then there exists sheaf <span class="mathjax">$\mathscr{F}$</span> extending <span class="mathjax">$F$</span>, with isomorphisms <span class="mathjax">$\mathscr{F}(B_i) \cong F(B_i)$</span> agreeing with restriction maps. This sheaf <span class="mathjax">$\mathscr{F}$</span> is unique upto isomorphism. To prove this, let <span class="mathjax">$\mathscr{F}$</span> be the sheaf of compatible germs of <span class="mathjax">$F$</span>. Define stalk of a presheaf <span class="mathjax">$F$</span> on a base <span class="mathjax">$p \in X$</span> by <span class="mathjax">$F_p = \underset{\longrightarrow}{\text{Lim }} F(B_i)$</span> where colimit is over all <span class="mathjax">$B_i$</span> in the base containing <span class="mathjax">$p$</span>. A family of germs in open set <span class="mathjax">$U$</span> is compatible near <span class="mathjax">$p$</span> if there is a section <span class="mathjax">$s$</span> over some <span class="mathjax">$B_i$</span> containing <span class="mathjax">$p$</span> such that the germs over <span class="mathjax">$B_i$</span> are the germs of <span class="mathjax">$s$</span>; more precisely,<br/>
+          $<span class="mathjax">$\mathscr{F}(U) = \{(f_p \in F_p)_{p \in U}\}$</span>$
         </p>
         <p>
-          such that for all $p \in U$ there exists $B$ with $p \in B \subset U$, $s \in F(B)$, with $s_q = f_q$ for all $q \in B$, where $B$ is in our base. This a sheaf for the same reason a sheaf of compatible germs was. Now, we claim that $F(B) \rightarrow \mathscr{F}(B)$ is an isomorphism, and that $\mathscr{F}$ is unique upto isomorphism, completing our proof.
+          such that for all <span class="mathjax">$p \in U$</span> there exists <span class="mathjax">$B$</span> with <span class="mathjax">$p \in B \subset U$</span>, <span class="mathjax">$s \in F(B)$</span>, with <span class="mathjax">$s_q = f_q$</span> for all <span class="mathjax">$q \in B$</span>, where <span class="mathjax">$B$</span> is in our base. This a sheaf for the same reason a sheaf of compatible germs was. Now, we claim that <span class="mathjax">$F(B) \rightarrow \mathscr{F}(B)$</span> is an isomorphism, and that <span class="mathjax">$\mathscr{F}$</span> is unique upto isomorphism, completing our proof.
         </p>
         <h2 id="sheaves-are-abelian-categories">
           Sheaves are abelian categories
         </h2>
         <p>
-          We will see that sheaves of abelian groups and $\mathscr{O}_X$-modules are abelian categories. The properties of kernels, cokernels, exactness and so forth can be understood at the level of stalks (which are just abelian groups), and compatibility of germs will come for free.
+          We will see that sheaves of abelian groups and <span class="mathjax">$\mathscr{O}_X$</span>-modules are abelian categories. The properties of kernels, cokernels, exactness and so forth can be understood at the level of stalks (which are just abelian groups), and compatibility of germs will come for free.
         </p>
         <p>
-          We have shown that the category of sheaves is an additive category. To show that it is an abelian category, we must show that $\phi : \mathscr{F} \rightarrow \mathscr{G}$ has a kernel and cokernel. We have already shown that it has a kernel: the presheaf kernel is a sheaf, and is a kernel in the category of sheaves. Further, $\phi : \mathscr{F} \rightarrow \mathscr{G}$ has a cokernel in the category of presheaves: call it $\mathscr{H}_\text{pre}$, and let $\text{sh} : \mathscr{H}_\text{pre} \rightarrow \mathscr{H}$ be its sheafification. Then the cokernel is the colimit of the diagram:
+          We have shown that the category of sheaves is an additive category. To show that it is an abelian category, we must show that <span class="mathjax">$\phi : \mathscr{F} \rightarrow \mathscr{G}$</span> has a kernel and cokernel. We have already shown that it has a kernel: the presheaf kernel is a sheaf, and is a kernel in the category of sheaves. Further, <span class="mathjax">$\phi : \mathscr{F} \rightarrow \mathscr{G}$</span> has a cokernel in the category of presheaves: call it <span class="mathjax">$\mathscr{H}_\text{pre}$</span>, and let <span class="mathjax">$\text{sh} : \mathscr{H}_\text{pre} \rightarrow \mathscr{H}$</span> be its sheafification. Then the cokernel is the colimit of the diagram:
         </p>
         <div class="mathjax">
           $$
@@ -395,7 +398,7 @@
           $$
         </div>
         <p>
-          Now, the morphism $\mathscr{G} \rightarrow \mathscr{H}$ is a cokernel of $\phi$ in the category of sheaves. To prove this, consider the following diagram, where $\mathscr{E}$ is any sheaf:
+          Now, the morphism <span class="mathjax">$\mathscr{G} \rightarrow \mathscr{H}$</span> is a cokernel of <span class="mathjax">$\phi$</span> in the category of sheaves. To prove this, consider the following diagram, where <span class="mathjax">$\mathscr{E}$</span> is any sheaf:
         </p>
         <div class="mathjax">
           $$
@@ -422,13 +425,13 @@
           $$
         </div>
         <p>
-          We want to show that there is a unique morphism $\mathscr{H} \rightarrow \mathscr{E}$. Since $\mathscr{H}_\text{pre}$ is a cokernel in the category of presheaves, there exists a unique morphism of presheaves $\mathscr{H}_\text{pre} \rightarrow \mathscr{E}$. By universality of sheafification, there is a unique morphism $\mathscr{H} \rightarrow \mathscr{E}$ making the diagram commute. Hence, we have shown that the sheaves of abelian groups over topological space $X$ form an abelian category. Everything we've discussed carries over to sheaves of $\mathscr{O}_X$-modules identically, because a sequence of $\mathscr{O}_X$-modules is exact iff the underlying sequence of abelian groups is exact.
+          We want to show that there is a unique morphism <span class="mathjax">$\mathscr{H} \rightarrow \mathscr{E}$</span>. Since <span class="mathjax">$\mathscr{H}_\text{pre}$</span> is a cokernel in the category of presheaves, there exists a unique morphism of presheaves <span class="mathjax">$\mathscr{H}_\text{pre} \rightarrow \mathscr{E}$</span>. By universality of sheafification, there is a unique morphism <span class="mathjax">$\mathscr{H} \rightarrow \mathscr{E}$</span> making the diagram commute. Hence, we have shown that the sheaves of abelian groups over topological space <span class="mathjax">$X$</span> form an abelian category. Everything we've discussed carries over to sheaves of <span class="mathjax">$\mathscr{O}_X$</span>-modules identically, because a sequence of <span class="mathjax">$\mathscr{O}_X$</span>-modules is exact iff the underlying sequence of abelian groups is exact.
         </p>
         <h2 id="inverse-image-sheaf">
           Inverse image sheaf
         </h2>
         <p>
-          Given continuous map $\pi : X \rightarrow Y$, we get $\pi^{-1} : Y \rightarrow X$. Define $\pi^{-1}$ as <a href="/category/3#adjunctions">left-adjoint</a> to $\pi_*$. We then get canonical maps from $\pi^{-1}\pi_* \mathscr{F} \rightarrow \mathscr{F}$ associated to the identity morphism $\text{Mor}_Y(\pi_* \mathscr{F}, \pi_* \mathscr{F})$ and $\mathscr{G} \rightarrow \pi_*\pi^{-1} \mathscr{G}$ associated to the identity morphism $\text{Mor}_X(\pi^{-1}\mathscr{G}, \pi^{-1}\mathscr{G})$:
+          Given continuous map <span class="mathjax">$\pi : X \rightarrow Y$</span>, we get <span class="mathjax">$\pi^{-1} : Y \rightarrow X$</span>. Define <span class="mathjax">$\pi^{-1}$</span> as <a href="/category/3#adjunctions">left-adjoint</a> to <span class="mathjax">$\pi_*$</span>. We then get canonical maps from <span class="mathjax">$\pi^{-1}\pi_* \mathscr{F} \rightarrow \mathscr{F}$</span> associated to the identity morphism <span class="mathjax">$\text{Mor}_Y(\pi_* \mathscr{F}, \pi_* \mathscr{F})$</span> and <span class="mathjax">$\mathscr{G} \rightarrow \pi_*\pi^{-1} \mathscr{G}$</span> associated to the identity morphism <span class="mathjax">$\text{Mor}_X(\pi^{-1}\mathscr{G}, \pi^{-1}\mathscr{G})$</span>:
         </p>
         <div class="mathjax">
           $$

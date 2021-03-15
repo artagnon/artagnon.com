@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -69,16 +72,16 @@
       </header>
       <article class="wrapper">
         <p>
-          A topos is a categorical interpretation of boolean logic. We will start with some prerequisite set theory and category theory, build up the intuition for subobject classifiers, give an interpretation of set theory, and then move to formalizing boolean algebra using sheaves. The study of topoi is the study of cartesian-closed categories with subobject classifiers, and a category of sheaves over $\mathbb{B}$ is a complete boolean algebra.
+          A topos is a categorical interpretation of boolean logic. We will start with some prerequisite set theory and category theory, build up the intuition for subobject classifiers, give an interpretation of set theory, and then move to formalizing boolean algebra using sheaves. The study of topoi is the study of cartesian-closed categories with subobject classifiers, and a category of sheaves over <span class="mathjax">$\mathbb{B}$</span> is a complete boolean algebra.
         </p>
         <h2 id="some-set-theoretic-foundations">
           Some set theoretic foundations
         </h2>
         <p>
-          The study of set theory starts with the study of <mark>Russell's paradox</mark>, and axiomatization into <mark>Zermelo-Frankel set theory</mark> with no paradoxes. To understand Russell's paradox, we first introduce the <mark>principle of comprehension</mark>: $\{x : \varphi(x)\}$ says that $x$ is an element of a set that satisfies the predicate $\varphi(x)$. Now, we construct the <mark>Russell set</mark> $R = \{x : x \not\in x\}$, and ask if $R$ is a member of this set. If $R \not\in R$, then its elements belong to a set satisfying the predicate $x \in x$, yielding $R \in R$; if $R \in R$, then its elements belong to a set satisfying the predicate $x \not\in x$, yielding $R \not\in R$. This leads to a contradictory conclusion.
+          The study of set theory starts with the study of <mark>Russell's paradox</mark>, and axiomatization into <mark>Zermelo-Frankel set theory</mark> with no paradoxes. To understand Russell's paradox, we first introduce the <mark>principle of comprehension</mark>: <span class="mathjax">$\{x : \varphi(x)\}$</span> says that <span class="mathjax">$x$</span> is an element of a set that satisfies the predicate <span class="mathjax">$\varphi(x)$</span>. Now, we construct the <mark>Russell set</mark> <span class="mathjax">$R = \{x : x \not\in x\}$</span>, and ask if <span class="mathjax">$R$</span> is a member of this set. If <span class="mathjax">$R \not\in R$</span>, then its elements belong to a set satisfying the predicate <span class="mathjax">$x \in x$</span>, yielding <span class="mathjax">$R \in R$</span>; if <span class="mathjax">$R \in R$</span>, then its elements belong to a set satisfying the predicate <span class="mathjax">$x \not\in x$</span>, yielding <span class="mathjax">$R \not\in R$</span>. This leads to a contradictory conclusion.
         </p>
         <p>
-          In ZF set theory, we say that a set can only be built up from another set using logical connectives like $\cup$, $\cap$, and $-$. The axioms can only be applied to a set and the result is always a set. The comprehension principle is replaced by a <mark>separation principle</mark>: Given a set $A$, and a predicate $\varphi(x)$, there exists a set whose members are precisely the members of $A$ that satisfy the predicate. $R$ isn't admitted as a set in this theory, thus resolving the contradiction.
+          In ZF set theory, we say that a set can only be built up from another set using logical connectives like <span class="mathjax">$\cup$</span>, <span class="mathjax">$\cap$</span>, and <span class="mathjax">$-$</span>. The axioms can only be applied to a set and the result is always a set. The comprehension principle is replaced by a <mark>separation principle</mark>: Given a set <span class="mathjax">$A$</span>, and a predicate <span class="mathjax">$\varphi(x)$</span>, there exists a set whose members are precisely the members of <span class="mathjax">$A$</span> that satisfy the predicate. <span class="mathjax">$R$</span> isn't admitted as a set in this theory, thus resolving the contradiction.
         </p>
         <p>
           In category theory, the central concept of membership of an element in a set is replaced by the concept of a morphism between objects whose internal structures (elements) are opaque.
@@ -87,13 +90,13 @@
           Functions to elementary category theory
         </h2>
         <p>
-          We would first like to ask how functions are formalized in terms of sets. A function $f$ takes objects of $\text{dom } f$ to objects of $\text{codom } f$, represented as the pair $f = \langle x, y\rangle$, such that $\langle x, y\rangle = \langle z, y\rangle \implies x = z$. This formalism is weak because it doesn't include the domain, codomain, or the relation explicitly. To remedy this, we define the $f = \langle A, B, R\rangle$, with $A$ as the domain, $B$ the codomain, and $R \subseteq A \times B = \{\langle x, y\rangle : x \in A, y \in B\}$ the relation. Note that functions are composable yielding a unique $f \circ g = f(g(x))$ satisfying the associative law $f \circ (g \circ h) = (f \circ g) \circ h$.
+          We would first like to ask how functions are formalized in terms of sets. A function <span class="mathjax">$f$</span> takes objects of <span class="mathjax">$\text{dom } f$</span> to objects of <span class="mathjax">$\text{codom } f$</span>, represented as the pair <span class="mathjax">$f = \langle x, y\rangle$</span>, such that <span class="mathjax">$\langle x, y\rangle = \langle z, y\rangle \implies x = z$</span>. This formalism is weak because it doesn't include the domain, codomain, or the relation explicitly. To remedy this, we define the <span class="mathjax">$f = \langle A, B, R\rangle$</span>, with <span class="mathjax">$A$</span> as the domain, <span class="mathjax">$B$</span> the codomain, and <span class="mathjax">$R \subseteq A \times B = \{\langle x, y\rangle : x \in A, y \in B\}$</span> the relation. Note that functions are composable yielding a unique <span class="mathjax">$f \circ g = f(g(x))$</span> satisfying the associative law <span class="mathjax">$f \circ (g \circ h) = (f \circ g) \circ h$</span>.
         </p>
         <p>
           We can further abstract functions to arrows between objects in a category. The notion of "set membership" is an "internal notion" between the various members of the object, and needs to be "externalized". Let's start with some category theory.
         </p>
         <p>
-          A category $\mathcal{C}$ consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow $a \rightarrow a$ for each $a \in C$, with an associative law for compositions:
+          A category <span class="mathjax">$\mathcal{C}$</span> consists of a bunch of objects, a bunch of arrows between the objects, including the identity arrow <span class="mathjax">$a \rightarrow a$</span> for each <span class="mathjax">$a \in C$</span>, with an associative law for compositions:
         </p>
         <div class="mathjax">
           $$
@@ -108,14 +111,14 @@
           $$
         </div>
         <p>
-          A <mark>pre-order</mark> is defined as a category in which there is at most one arrow, $\langle p, q\rangle$, between any two objects $p$ and $q$. In this kind of category, called there is only one way to define composites. If $p$ and $q$ are any objects on a pre-order category, and $R$ is a binary relation, then we can identify two properties of $R$:
+          A <mark>pre-order</mark> is defined as a category in which there is at most one arrow, <span class="mathjax">$\langle p, q\rangle$</span>, between any two objects <span class="mathjax">$p$</span> and <span class="mathjax">$q$</span>. In this kind of category, called there is only one way to define composites. If <span class="mathjax">$p$</span> and <span class="mathjax">$q$</span> are any objects on a pre-order category, and <span class="mathjax">$R$</span> is a binary relation, then we can identify two properties of <span class="mathjax">$R$</span>:
         </p>
         <ol class="olitems" type="none" start="1">
           <li>
-            Reflexivity: for each $p \in \mathcal{C}$, we have $pRp$, the identity arrow.
+            Reflexivity: for each <span class="mathjax">$p \in \mathcal{C}$</span>, we have <span class="mathjax">$pRp$</span>, the identity arrow.
           </li>
           <li>
-            Transitivity: whenever $pRq$ and $qRs$, we have $pRs$.
+            Transitivity: whenever <span class="mathjax">$pRq$</span> and <span class="mathjax">$qRs$</span>, we have <span class="mathjax">$pRs$</span>.
           </li>
         </ol>
         <p>
@@ -139,7 +142,7 @@
         </p>
         <ol class="olitems" type="none" start="3">
           <li>
-            Anti-symmetry: whenever $pRq$ and $qRp$, we have $p = q$.
+            Anti-symmetry: whenever <span class="mathjax">$pRq$</span> and <span class="mathjax">$qRp$</span>, we have <span class="mathjax">$p = q$</span>.
           </li>
         </ol>
         <div class="mathjax">
@@ -156,17 +159,17 @@
           $$
         </div>
         <p>
-          A set $P$ together with the relation $\sqsubseteq$, denoted as $\langle P, \sqsubseteq \rangle$, is called a <mark>poset</mark>. The specific category we have used to encode $\mathbb{N}$ above is called <mark>$\textbf{Finord}$</mark>, the category of finite ordinals. In $\textbf{Finord}$, these three statements are equivalent:
+          A set <span class="mathjax">$P$</span> together with the relation <span class="mathjax">$\sqsubseteq$</span>, denoted as <span class="mathjax">$\langle P, \sqsubseteq \rangle$</span>, is called a <mark>poset</mark>. The specific category we have used to encode <span class="mathjax">$\mathbb{N}$</span> above is called <mark><span class="mathjax">$\textbf{Finord}$</span></mark>, the category of finite ordinals. In <span class="mathjax">$\textbf{Finord}$</span>, these three statements are equivalent:
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            $m \lt n$
+            <span class="mathjax">$m \lt n$</span>
           </li>
           <li>
-            $m \subset n$
+            <span class="mathjax">$m \subset n$</span>
           </li>
           <li>
-            $m \in n$
+            <span class="mathjax">$m \in n$</span>
           </li>
         </ol>
         <p>
@@ -174,7 +177,7 @@
         </p>
         <ol class="olitems" type="none" start="4">
           <li>
-            Connexity: For all $p$, $q \in \mathcal{C}$, <mark>pRq</mark> or <mark>qRp</mark>.
+            Connexity: For all <span class="mathjax">$p$</span>, <span class="mathjax">$q \in \mathcal{C}$</span>, <mark>pRq</mark> or <mark>qRp</mark>.
           </li>
         </ol>
         <div class="mathjax">
@@ -189,7 +192,7 @@
           $$
         </div>
         <p>
-          Using $\sqsubseteq$ to denote the relation, we can encode $\mathbb{N}$ as $0 = \{\} = \phi$, $1 = \{\phi\}$, $2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$, and so on, yielding $0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$
+          Using <span class="mathjax">$\sqsubseteq$</span> to denote the relation, we can encode <span class="mathjax">$\mathbb{N}$</span> as <span class="mathjax">$0 = \{\} = \phi$</span>, <span class="mathjax">$1 = \{\phi\}$</span>, <span class="mathjax">$2 = \{\phi, \{\phi\} \{\phi, \phi\}\}$</span>, and so on, yielding <span class="mathjax">$0 \sqsubseteq 1 \sqsubseteq 2 \sqsubseteq \ldots$</span>
         </p>
         <div class="mathjax">
           $$
@@ -206,7 +209,7 @@
           This is a total order.
         </p>
         <p>
-          Let us now consider categories with more than one arrow between two objects. A <mark>monoid</mark> is defined as an algebraic structure $(M, \circ, \mathbb{1})$ where $\circ$ is a function from $M \times M \rightarrow M$. A monoid naturally gives rise to a category with just one object: $M$. We can instantiate it with $M = \mathbb{N}$, $\circ = +$, and $\mathbb{1} = 0$ to obtain the familiar notion of addition of natural numbers:
+          Let us now consider categories with more than one arrow between two objects. A <mark>monoid</mark> is defined as an algebraic structure <span class="mathjax">$(M, \circ, \mathbb{1})$</span> where <span class="mathjax">$\circ$</span> is a function from <span class="mathjax">$M \times M \rightarrow M$</span>. A monoid naturally gives rise to a category with just one object: <span class="mathjax">$M$</span>. We can instantiate it with <span class="mathjax">$M = \mathbb{N}$</span>, <span class="mathjax">$\circ = +$</span>, and <span class="mathjax">$\mathbb{1} = 0$</span> to obtain the familiar notion of addition of natural numbers:
         </p>
         <div class="mathjax">
           $$
@@ -233,21 +236,21 @@
           $$
         </div>
         <p>
-          If $a, b \in \mathcal{C}$, then we use $\mathcal{C}(a, b)$ to denote the set of arrows from $a$ to $b$. A <mark>subcategory</mark> $\mathcal{C} \subseteq \mathcal{D}$ is defined as:
+          If <span class="mathjax">$a, b \in \mathcal{C}$</span>, then we use <span class="mathjax">$\mathcal{C}(a, b)$</span> to denote the set of arrows from <span class="mathjax">$a$</span> to <span class="mathjax">$b$</span>. A <mark>subcategory</mark> <span class="mathjax">$\mathcal{C} \subseteq \mathcal{D}$</span> is defined as:
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            All objects of $\mathcal{C}$ are objects of $\mathcal{D}$.
+            All objects of <span class="mathjax">$\mathcal{C}$</span> are objects of <span class="mathjax">$\mathcal{D}$</span>.
           </li>
           <li>
-            $\mathcal{C}(a ,b) \subseteq \mathcal{D}(a, b)$; all arrows of $\mathcal{C}$ are present in $\mathcal{D}$.
+            <span class="mathjax">$\mathcal{C}(a ,b) \subseteq \mathcal{D}(a, b)$</span>; all arrows of <span class="mathjax">$\mathcal{C}$</span> are present in <span class="mathjax">$\mathcal{D}$</span>.
           </li>
         </ol>
         <p>
-          A <mark>full subcategory</mark> $\mathcal{C}$ of $\mathcal{D}$ is defined as $\mathcal{C} \subseteq \mathcal{D}$ such that $\mathcal{C}(a, b) = \mathcal{D}(a, b)$; in other words, $\mathcal{D}$ has no arrows $a \rightarrow b$ other than the ones already present in $\mathcal{C}$. $\textbf{Finord}$ is a full subcategory of $\textbf{Finset}$, the category of finite sets.
+          A <mark>full subcategory</mark> <span class="mathjax">$\mathcal{C}$</span> of <span class="mathjax">$\mathcal{D}$</span> is defined as <span class="mathjax">$\mathcal{C} \subseteq \mathcal{D}$</span> such that <span class="mathjax">$\mathcal{C}(a, b) = \mathcal{D}(a, b)$</span>; in other words, <span class="mathjax">$\mathcal{D}$</span> has no arrows <span class="mathjax">$a \rightarrow b$</span> other than the ones already present in <span class="mathjax">$\mathcal{C}$</span>. <span class="mathjax">$\textbf{Finord}$</span> is a full subcategory of <span class="mathjax">$\textbf{Finset}$</span>, the category of finite sets.
         </p>
         <p>
-          Before introducing comma categories, let us briefly introduce arrow categories as a prerequisite. An <mark>arrow category</mark> $\textbf{Set}^\rightarrow$ has as objects, the functions $f : A \rightarrow B$, and arrows between objects $f : A \rightarrow B$ and $g : C \rightarrow D$, the pair of arrows $\langle h, k\rangle$ such that the following diagram commutes:
+          Before introducing comma categories, let us briefly introduce arrow categories as a prerequisite. An <mark>arrow category</mark> <span class="mathjax">$\textbf{Set}^\rightarrow$</span> has as objects, the functions <span class="mathjax">$f : A \rightarrow B$</span>, and arrows between objects <span class="mathjax">$f : A \rightarrow B$</span> and <span class="mathjax">$g : C \rightarrow D$</span>, the pair of arrows <span class="mathjax">$\langle h, k\rangle$</span> such that the following diagram commutes:
         </p>
         <div class="mathjax">
           $$
@@ -262,7 +265,7 @@
           $$
         </div>
         <p>
-          A <mark>comma category</mark> can be viewed as a special case of an arrow categories with fixed domain or codomain. $\textbf{Set} \downarrow \mathbb{R}$ is the category of real-valued functions; the codomain of the category is fixed to $\mathbb{R}$. An arrow from $f: A \rightarrow \mathbb{R}$ to $g: B \rightarrow \mathbb{R}$ is the arrow $k: A \rightarrow B$ that makes the following commute:
+          A <mark>comma category</mark> can be viewed as a special case of an arrow categories with fixed domain or codomain. <span class="mathjax">$\textbf{Set} \downarrow \mathbb{R}$</span> is the category of real-valued functions; the codomain of the category is fixed to <span class="mathjax">$\mathbb{R}$</span>. An arrow from <span class="mathjax">$f: A \rightarrow \mathbb{R}$</span> to <span class="mathjax">$g: B \rightarrow \mathbb{R}$</span> is the arrow <span class="mathjax">$k: A \rightarrow B$</span> that makes the following commute:
         </p>
         <div class="mathjax">
           $$
@@ -277,7 +280,7 @@
           $$
         </div>
         <p>
-          $\textbf{Set} \downarrow \mathbb{R}$ can be construed to a $\textbf{Set}^\rightarrow$ as follows:
+          <span class="mathjax">$\textbf{Set} \downarrow \mathbb{R}$</span> can be construed to a <span class="mathjax">$\textbf{Set}^\rightarrow$</span> as follows:
         </p>
         <div class="mathjax">
           $$
@@ -292,7 +295,7 @@
           $$
         </div>
         <p>
-          Similarly, we can define $\mathcal{C} \uparrow a$ to be a comma category with a fixed domain instead of codomain:
+          Similarly, we can define <span class="mathjax">$\mathcal{C} \uparrow a$</span> to be a comma category with a fixed domain instead of codomain:
         </p>
         <div class="mathjax">
           $$
@@ -310,7 +313,7 @@
           Set membership, categorically
         </h2>
         <p>
-          To work our way up to <mark>subobject classifiers</mark>, we need to build some prerequisite material. First, let us introduce the notion of <mark>monic</mark> and <mark>epic</mark> arrows, corresponding to injective and surjective functions in $\textbf{Set}$. $f$ is injective if $f(x) = f(y) \implies x = y$, and surjective if $\forall y, \exists x : y = f(x)$.
+          To work our way up to <mark>subobject classifiers</mark>, we need to build some prerequisite material. First, let us introduce the notion of <mark>monic</mark> and <mark>epic</mark> arrows, corresponding to injective and surjective functions in <span class="mathjax">$\textbf{Set}$</span>. <span class="mathjax">$f$</span> is injective if <span class="mathjax">$f(x) = f(y) \implies x = y$</span>, and surjective if <span class="mathjax">$\forall y, \exists x : y = f(x)$</span>.
         </p>
         <div class="mathjax">
           $$
@@ -325,7 +328,7 @@
           $$
         </div>
         <p>
-          If $f$ is monic, indicated as $f : b \rightarrowtail c$, the diagram above commutes, and $(f \circ g)(x) = (f \circ h)(x) = f(g(x)) = f(h(x)) \implies g = h$. In other words, a monic is said to be <mark>left-cancelable</mark>.
+          If <span class="mathjax">$f$</span> is monic, indicated as <span class="mathjax">$f : b \rightarrowtail c$</span>, the diagram above commutes, and <span class="mathjax">$(f \circ g)(x) = (f \circ h)(x) = f(g(x)) = f(h(x)) \implies g = h$</span>. In other words, a monic is said to be <mark>left-cancelable</mark>.
         </p>
         <div class="mathjax">
           $$
@@ -341,7 +344,7 @@
         </div>
         <hr class="horizrule" />
         <p class="exercise">
-          If $g \circ f$ is monic, so is $f$.
+          If <span class="mathjax">$g \circ f$</span> is monic, so is <span class="mathjax">$f$</span>.
         </p>
         <div class="mathjax">
           $$
@@ -357,17 +360,17 @@
         </div>
         <hr class="horizrule" />
         <p>
-          If $f$ is epic, indicated as $f : a \twoheadrightarrow b$, the diagram above commutes, and $(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$. In other words, an epic is said to be <mark>right-cancelable</mark>.
+          If <span class="mathjax">$f$</span> is epic, indicated as <span class="mathjax">$f : a \twoheadrightarrow b$</span>, the diagram above commutes, and <span class="mathjax">$(g \circ f)(x) = (h \circ f)(x) = g(f(x)) = h(f(x)) \implies g = h$</span>. In other words, an epic is said to be <mark>right-cancelable</mark>.
         </p>
         <p>
-          An <mark>iso</mark> arrow, indicated as $f : a \rightarrowtail\mathrel{\mspace{-11mu}}\twoheadrightarrow b$, corresponds to a bijective function in $\textbf{Set}$. It is invertible, and its action can be thought of as a "relabeling"; as an example, $A \times \{0\}$ attaches $0$ to every element of $A$.
+          An <mark>iso</mark> arrow, indicated as <span class="mathjax">$f : a \rightarrowtail\mathrel{\mspace{-11mu}}\twoheadrightarrow b$</span>, corresponds to a bijective function in <span class="mathjax">$\textbf{Set}$</span>. It is invertible, and its action can be thought of as a "relabeling"; as an example, <span class="mathjax">$A \times \{0\}$</span> attaches <span class="mathjax">$0$</span> to every element of <span class="mathjax">$A$</span>.
         </p>
         <p>
-          Every iso is both monic and epic, but "iso" isn't equivalent to "monic and epic".  Consider $(\mathbb{N}, +, 0)$ in which all arrows are monic and epic, but the only iso arrows are the identities, since no natural number has an additive inverse.
+          Every iso is both monic and epic, but "iso" isn't equivalent to "monic and epic".  Consider <span class="mathjax">$(\mathbb{N}, +, 0)$</span> in which all arrows are monic and epic, but the only iso arrows are the identities, since no natural number has an additive inverse.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          $f \circ g$ is iso, if $f$ and $g$ are, with $(f \circ g)^{-1} = g^{-1} \circ f^{-1}$.
+          <span class="mathjax">$f \circ g$</span> is iso, if <span class="mathjax">$f$</span> and <span class="mathjax">$g$</span> are, with <span class="mathjax">$(f \circ g)^{-1} = g^{-1} \circ f^{-1}$</span>.
         </p>
         <div class="mathjax">
           $$
@@ -383,18 +386,18 @@
         </div>
         <hr class="horizrule" />
         <p>
-          An <mark>initial object</mark> $\mathbb{0}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $\mathbb{0} \rightarrow a$, and a <mark>terminal object</mark> $\mathbb{1}$ is such that, for every $a$ in $\mathcal{C}$, there exists only one arrow $a \rightarrow \mathbb{1}$. In $\textbf{Set}$, $\phi$ is distinguished to be the initial object because there exists only one function from $\phi$ to every other element in the category, namely $\phi$, the empty function; the graph of $\phi \times a$ is empty; and $\{e\}$, the singleton set is distinguished to be the terminal object.
+          An <mark>initial object</mark> <span class="mathjax">$\mathbb{0}$</span> is such that, for every <span class="mathjax">$a$</span> in <span class="mathjax">$\mathcal{C}$</span>, there exists only one arrow <span class="mathjax">$\mathbb{0} \rightarrow a$</span>, and a <mark>terminal object</mark> <span class="mathjax">$\mathbb{1}$</span> is such that, for every <span class="mathjax">$a$</span> in <span class="mathjax">$\mathcal{C}$</span>, there exists only one arrow <span class="mathjax">$a \rightarrow \mathbb{1}$</span>. In <span class="mathjax">$\textbf{Set}$</span>, <span class="mathjax">$\phi$</span> is distinguished to be the initial object because there exists only one function from <span class="mathjax">$\phi$</span> to every other element in the category, namely <span class="mathjax">$\phi$</span>, the empty function; the graph of <span class="mathjax">$\phi \times a$</span> is empty; and <span class="mathjax">$\{e\}$</span>, the singleton set is distinguished to be the terminal object.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
           All initial objects are isomorphic to each other. By duality, all terminal objects are also isomorphic to each other.
         </p>
         <p>
-          Indeed, let $\mathbb{0}, \mathbb{0'}$ be two initial objects. Consider $f : \mathbb{0} \rightarrow \mathbb{0'}, g : \mathbb{0'} \rightarrow \mathbb{0}$ so that $g \circ f = \mathbb{0'} \rightarrow \mathbb{0'} = \texttt{id}_{\mathbb{0'}}$ and $f \circ g = \texttt{id}_{\mathbb{0}}$; so $f = g^{-1}$, and $\mathbb{0} \simeq \mathbb{0'}$.
+          Indeed, let <span class="mathjax">$\mathbb{0}, \mathbb{0'}$</span> be two initial objects. Consider <span class="mathjax">$f : \mathbb{0} \rightarrow \mathbb{0'}, g : \mathbb{0'} \rightarrow \mathbb{0}$</span> so that <span class="mathjax">$g \circ f = \mathbb{0'} \rightarrow \mathbb{0'} = \texttt{id}_{\mathbb{0'}}$</span> and <span class="mathjax">$f \circ g = \texttt{id}_{\mathbb{0}}$</span>; so <span class="mathjax">$f = g^{-1}$</span>, and <span class="mathjax">$\mathbb{0} \simeq \mathbb{0'}$</span>.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          $\mathbb{1} \rightarrow a$ is monic.
+          <span class="mathjax">$\mathbb{1} \rightarrow a$</span> is monic.
         </p>
         <div class="mathjax">
           $$
@@ -408,11 +411,11 @@
           $$
         </div>
         <p>
-          $f \circ g = f \circ h \Leftrightarrow g = h$. Now, $g = h$ is true because there is only one arrow to it from any given object, and hence, $f$ is monic.
+          <span class="mathjax">$f \circ g = f \circ h \Leftrightarrow g = h$</span>. Now, <span class="mathjax">$g = h$</span> is true because there is only one arrow to it from any given object, and hence, <span class="mathjax">$f$</span> is monic.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          $\langle \texttt{pr}_a, \texttt{pr}_b\rangle = \mathbb{1}_{a \times b}$.
+          <span class="mathjax">$\langle \texttt{pr}_a, \texttt{pr}_b\rangle = \mathbb{1}_{a \times b}$</span>.
         </p>
         <div class="mathjax">
           $$
@@ -428,11 +431,11 @@
           $$
         </div>
         <p>
-          By uniqueness of identity arrow, $\mathbb{1}_{a \times b} = \langle \texttt{pr}_a, \texttt{pr}_b\rangle$.
+          By uniqueness of identity arrow, <span class="mathjax">$\mathbb{1}_{a \times b} = \langle \texttt{pr}_a, \texttt{pr}_b\rangle$</span>.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          If $\langle f, g\rangle = \langle k, h\rangle$, then $f = k$ and $g = h$.
+          If <span class="mathjax">$\langle f, g\rangle = \langle k, h\rangle$</span>, then <span class="mathjax">$f = k$</span> and <span class="mathjax">$g = h$</span>.
         </p>
         <div class="mathjax">
           $$
@@ -461,11 +464,11 @@
           $$
         </div>
         <p>
-          Hence, $f = k$ and $g = h$.
+          Hence, <span class="mathjax">$f = k$</span> and <span class="mathjax">$g = h$</span>.
         </p>
         <hr class="horizrule" />
         <p class="exercise">
-          $\langle f \circ h, g \circ h\rangle = \langle f, g\rangle \circ h$.
+          <span class="mathjax">$\langle f \circ h, g \circ h\rangle = \langle f, g\rangle \circ h$</span>.
         </p>
         <p>
           The following diagram commutes:
@@ -495,7 +498,7 @@
           $$
         </div>
         <p>
-          Combining $\texttt{pr}_A$ and $\texttt{pr}_B$, we get:
+          Combining <span class="mathjax">$\texttt{pr}_A$</span> and <span class="mathjax">$\texttt{pr}_B$</span>, we get:
         </p>
         <div class="mathjax">
           $$
@@ -504,10 +507,10 @@
         </div>
         <hr class="horizrule" />
         <p class="exercise">
-          $a \times b \simeq b \times a$.
+          <span class="mathjax">$a \times b \simeq b \times a$</span>.
         </p>
         <p>
-          For isomorphism, there needs to exist $f : a \rightarrow b$ and $g : b \rightarrow a$, such that $f \circ g = g \circ f = \mathbb{1}$. From the diagram, we see that this is indeed the case:
+          For isomorphism, there needs to exist <span class="mathjax">$f : a \rightarrow b$</span> and <span class="mathjax">$g : b \rightarrow a$</span>, such that <span class="mathjax">$f \circ g = g \circ f = \mathbb{1}$</span>. From the diagram, we see that this is indeed the case:
         </p>
         <div class="mathjax">
           $$

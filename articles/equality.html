@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -75,7 +78,7 @@
           Equality in Mathematics
         </h2>
         <p>
-          In <a href="/zfc">zfc-based mathematics</a>, say in abelian groups, $A \oplus B \simeq B \oplus A$, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a $\mathrm{1}$-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" almost fully replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
+          In <a href="/zfc">zfc-based mathematics</a>, say in abelian groups, <span class="mathjax">$A \oplus B \simeq B \oplus A$</span>, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a <span class="mathjax">$\mathrm{1}$</span>-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" almost fully replacing equality. However, it can be tricky to mechanize a theory based on <span class="mathjax">$\infty$</span>-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
         </p>
         <h2 id="universes-in-coq">
           Universes in Coq
@@ -87,10 +90,10 @@
 Definition PropTypeIncl (A : Prop) : Type := A.
 Definition PropSetIncl (A : Prop) : Set := A.</code></pre>
         <p>
-          There is an $\infty$ hierarchy within the <mark>Type</mark> universe, and types of Types are Types themselves.
+          There is an <span class="mathjax">$\infty$</span> hierarchy within the <mark>Type</mark> universe, and types of Types are Types themselves.
         </p>
         <p>
-          Inhabitants of a <mark>Set</mark> are sets of primitive things like $\mathbb{N}$ and $\mathbb{R}$, while inhabitants of a <mark>Prop</mark> are propositions, which could be $\top$, $\bot$, or some arbitrary term, the inhabitant of which acts as the proof.
+          Inhabitants of a <mark>Set</mark> are sets of primitive things like <span class="mathjax">$\mathbb{N}$</span> and <span class="mathjax">$\mathbb{R}$</span>, while inhabitants of a <mark>Prop</mark> are propositions, which could be <span class="mathjax">$\top$</span>, <span class="mathjax">$\bot$</span>, or some arbitrary term, the inhabitant of which acts as the proof.
         </p>
         <h2 id="propositions">
           Propositions
@@ -122,7 +125,7 @@ Qed.</code></pre>
           The proof-irrelevant SProp
         </h2>
         <p>
-          There are three inhabitants of <a href="https://coq.inria.fr/refman/addendum/sprop.html">SProp</a>: <mark>sUnit</mark> corresponding to $\top$, <mark>sEmpty</mark> corresponding to $\bot$, and <mark>sProposition</mark> corresponding to a definitionally proof-irrelevant term. The way <mark>SProp</mark> implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of <mark>sProposition</mark> trivially inter-convertible.
+          There are three inhabitants of <a href="https://coq.inria.fr/refman/addendum/sprop.html">SProp</a>: <mark>sUnit</mark> corresponding to <span class="mathjax">$\top$</span>, <mark>sEmpty</mark> corresponding to <span class="mathjax">$\bot$</span>, and <mark>sProposition</mark> corresponding to a definitionally proof-irrelevant term. The way <mark>SProp</mark> implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of <mark>sProposition</mark> trivially inter-convertible.
         </p>
         <p>
           Unfortunately, <mark>=</mark> doesn't work as expected:
@@ -147,24 +150,24 @@ Abort. (* Type-check fails at Qed.
           Mere propositions in homotopy type theory
         </h2>
         <p>
-          In <a href="https://github.com/HoTT/HoTT">HoTT</a>, there is just one $\infty$-ladder:
+          In <a href="https://github.com/HoTT/HoTT">HoTT</a>, there is just one <span class="mathjax">$\infty$</span>-ladder:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            $\mathbb{1}$, and anything that's contractible to it, is the ($\mathrm{-2}$)-truncated Type.
+            <span class="mathjax">$\mathbb{1}$</span>, and anything that's contractible to it, is the (<span class="mathjax">$\mathrm{-2}$</span>)-truncated Type.
           </li>
           <li>
-            A "mere proposition", an inhabitant of <mark>hProp</mark>, is simply a ($\mathrm{-1}$)-truncated Type.
+            A "mere proposition", an inhabitant of <mark>hProp</mark>, is simply a (<span class="mathjax">$\mathrm{-1}$</span>)-truncated Type.
           </li>
           <li>
-            <mark>hSet</mark> is the $\mathrm{0}$-truncated Type.
+            <mark>hSet</mark> is the <span class="mathjax">$\mathrm{0}$</span>-truncated Type.
           </li>
         </ol>
         <pre><code class="hljs coq">Notation Contr := (IsTrunc minus_two).
 Notation IsHProp := (IsTrunc minus_two.+1).
 Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
         <p>
-          The notion of truncation is central to HoTT, where $A : \mathrm{Type}_n$ can be truncated to a $\mathrm{Type}_m$, whence higher-than-$m$ morphisms are rendered uninteresting. Any two hProps are propositionally equal:
+          The notion of truncation is central to HoTT, where <span class="mathjax">$A : \mathrm{Type}_n$</span> can be truncated to a <span class="mathjax">$\mathrm{Type}_m$</span>, whence higher-than-<span class="mathjax">$m$</span> morphisms are rendered uninteresting. Any two hProps are propositionally equal:
         </p>
         <pre><code class="hljs coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
 Proof.

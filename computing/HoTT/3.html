@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -72,7 +75,7 @@
           This note corresponds to Ch. 3 in the HoTT book
         </p>
         <p>
-          This chapter is dedicated to the study of <mark>HSet</mark> (sets, the $0$-type), <mark>HProp</mark> (mere propositions, the $(-1)$-type), and <mark>Contr</mark> (contractible types, the $(-2)$-type):
+          This chapter is dedicated to the study of <mark>HSet</mark> (sets, the <span class="mathjax">$0$</span>-type), <mark>HProp</mark> (mere propositions, the <span class="mathjax">$(-1)$</span>-type), and <mark>Contr</mark> (contractible types, the <span class="mathjax">$(-2)$</span>-type):
         </p>
         <pre><code class="hljs coq">Notation Contr := (IsTrunc minus_two).
 Notation IsHProp := (IsTrunc minus_two.+1).
@@ -84,7 +87,7 @@ Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
           Sets and $n$-types
         </h2>
         <p>
-          A type $A$ is a <mark>set</mark> if forall $x, y : A$ and $p, q : x = y$, we have $p = q$. The proposition $\texttt{isSet}(A)$ is defined to be the type:
+          A type <span class="mathjax">$A$</span> is a <mark>set</mark> if forall <span class="mathjax">$x, y : A$</span> and <span class="mathjax">$p, q : x = y$</span>, we have <span class="mathjax">$p = q$</span>. The proposition <span class="mathjax">$\texttt{isSet}(A)$</span> is defined to be the type:
         </p>
         <div class="mathjax">
           $$
@@ -92,7 +95,7 @@ Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
           $$
         </div>
         <p>
-          Sets in homotopy type theory are not like sets in ZF set theory, in that there is no global "membership predicate" $\in$. To provide some examples of sets, $\mathbb{1}$, $\mathbb{0}$ and $\mathbb{N}$ are sets.
+          Sets in homotopy type theory are not like sets in ZF set theory, in that there is no global "membership predicate" <span class="mathjax">$\in$</span>. To provide some examples of sets, <span class="mathjax">$\mathbb{1}$</span>, <span class="mathjax">$\mathbb{0}$</span> and <span class="mathjax">$\mathbb{N}$</span> are sets.
         </p>
         <pre><code class="hljs coq">Global Instance hprop_Empty : IsHProp Empty.
 Proof. intro x. destruct x. Defined.</code></pre>
@@ -101,13 +104,13 @@ Proof.
   exact _.
 Defined.</code></pre>
         <p>
-          Moreover, if $A$ and $B$ are sets, then so is $A \times B$. For given $x, y : A \times B$ and $p, q : x = y$, we have $p = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(p), \texttt{ap}_{\texttt{pr}_2}(p))$ and $q = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(q), \texttt{ap}_{\texttt{pr}_2}(q))$. But $\texttt{ap}_{\texttt{pr}_1}(p) = \texttt{ap}_{\texttt{pr}_1}(q)$ since $A$ is a set, and $\texttt{ap}_{\texttt{pr}_2}(p) = \texttt{ap}_{\texttt{pr}_2}(q)$, since $B$ is a set; hence $p = q$.
+          Moreover, if <span class="mathjax">$A$</span> and <span class="mathjax">$B$</span> are sets, then so is <span class="mathjax">$A \times B$</span>. For given <span class="mathjax">$x, y : A \times B$</span> and <span class="mathjax">$p, q : x = y$</span>, we have <span class="mathjax">$p = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(p), \texttt{ap}_{\texttt{pr}_2}(p))$</span> and <span class="mathjax">$q = \texttt{pair}^=(\texttt{ap}_{\texttt{pr}_1}(q), \texttt{ap}_{\texttt{pr}_2}(q))$</span>. But <span class="mathjax">$\texttt{ap}_{\texttt{pr}_1}(p) = \texttt{ap}_{\texttt{pr}_1}(q)$</span> since <span class="mathjax">$A$</span> is a set, and <span class="mathjax">$\texttt{ap}_{\texttt{pr}_2}(p) = \texttt{ap}_{\texttt{pr}_2}(q)$</span>, since <span class="mathjax">$B$</span> is a set; hence <span class="mathjax">$p = q$</span>.
         </p>
         <p>
-          Similarly, if $A$ is a set, and $B : A \rightarrow \mathscr{U}$ such that $B(x)$ is a set, then $\Sigma_{x : A} B(x)$ is a set
+          Similarly, if <span class="mathjax">$A$</span> is a set, and <span class="mathjax">$B : A \rightarrow \mathscr{U}$</span> such that <span class="mathjax">$B(x)$</span> is a set, then <span class="mathjax">$\Sigma_{x : A} B(x)$</span> is a set
         </p>
         <p>
-          Given $B : A \rightarrow \mathscr{U}$, $\Pi_{x : A} B(x)$ is a set. For suppose $f, g : \Pi_{x : A} B(x)$ and for $p, q : f = g$. By functional extensionality,
+          Given <span class="mathjax">$B : A \rightarrow \mathscr{U}$</span>, <span class="mathjax">$\Pi_{x : A} B(x)$</span> is a set. For suppose <span class="mathjax">$f, g : \Pi_{x : A} B(x)$</span> and for <span class="mathjax">$p, q : f = g$</span>. By functional extensionality,
         </p>
         <div class="mathjax">
           $$
@@ -115,7 +118,7 @@ Defined.</code></pre>
           $$
         </div>
         <p>
-          But for $x : A$, we have
+          But for <span class="mathjax">$x : A$</span>, we have
         </p>
         <div class="mathjax">
           $$
@@ -123,19 +126,19 @@ Defined.</code></pre>
           $$
         </div>
         <p>
-          So since $B(x)$ is a set, we have $\texttt{happly}(p, x) = \texttt{happly}(q, x)$. Now, using funext again, the dependent functions $(x \mapsto \texttt{happly}(p, x))$ and $(x \mapsto \texttt{happly}(q, x))$ are equal, and hence, applying $\texttt{ap}_\texttt{funext}$, so are $p$ and $q$.
+          So since <span class="mathjax">$B(x)$</span> is a set, we have <span class="mathjax">$\texttt{happly}(p, x) = \texttt{happly}(q, x)$</span>. Now, using funext again, the dependent functions <span class="mathjax">$(x \mapsto \texttt{happly}(p, x))$</span> and <span class="mathjax">$(x \mapsto \texttt{happly}(q, x))$</span> are equal, and hence, applying <span class="mathjax">$\texttt{ap}_\texttt{funext}$</span>, so are <span class="mathjax">$p$</span> and <span class="mathjax">$q$</span>.
         </p>
         <pre><code class="hljs coq">Global Instance trunc_forall `{P : A -&gt; Type} `{forall a, IsTrunc n (P a)}
   : IsTrunc n (forall a, P a) | 100.</code></pre>
         <p>
-          Sets are just the first rung of the ladder of $n$-types, and may also be called the $0$-type; its defining property is that it has no non-trivial paths. Similarly, the $1$-type can be has no non-trivial paths between paths.
+          Sets are just the first rung of the ladder of <span class="mathjax">$n$</span>-types, and may also be called the <span class="mathjax">$0$</span>-type; its defining property is that it has no non-trivial paths. Similarly, the <span class="mathjax">$1$</span>-type can be has no non-trivial paths between paths.
         </p>
         <pre><code class="hljs coq">Notation Is1Type := IsTrunc 1.</code></pre>
         <p>
-          A type $A$ is a $1$-type if for all $x, y : A$, and $p, q : x = y$, $r, s : p = q$, we have $r = s$. We can similarly define $2$-types, $3$-types, and so on.
+          A type <span class="mathjax">$A$</span> is a <span class="mathjax">$1$</span>-type if for all <span class="mathjax">$x, y : A$</span>, and <span class="mathjax">$p, q : x = y$</span>, <span class="mathjax">$r, s : p = q$</span>, we have <span class="mathjax">$r = s$</span>. We can similarly define <span class="mathjax">$2$</span>-types, <span class="mathjax">$3$</span>-types, and so on.
         </p>
         <p class="exercise">
-          If $A$ is a set, that is, $\texttt{isSet}(A)$ is inhabitated, then $A$ is a $1$-type.
+          If <span class="mathjax">$A$</span> is a set, that is, <span class="mathjax">$\texttt{isSet}(A)$</span> is inhabitated, then <span class="mathjax">$A$</span> is a <span class="mathjax">$1$</span>-type.
         </p>
         <pre><code class="hljs coq">(** Truncation levels are cumulative. *)
 Global Instance trunc_succ `{IsTrunc n A}
@@ -147,7 +150,7 @@ Proof.
   - apply IH, H.
 Qed.</code></pre>
         <p>
-          Another fact to keep in mind is that this stratification of types is not degenerate; in particular, not all types are sets. For instance, universe $\mathscr{U}$ is not a set.
+          Another fact to keep in mind is that this stratification of types is not degenerate; in particular, not all types are sets. For instance, universe <span class="mathjax">$\mathscr{U}$</span> is not a set.
         </p>
         <pre><code class="hljs coq">Definition not_hset_Type : ~ (IsHSet Type).
 Proof.
@@ -164,10 +167,10 @@ Defined.</code></pre>
           Our previous straightforward interpretation of "propositions as types" do not work anymore. The statements of <mark>double negation</mark> and <mark>law of excluded middle</mark> do not function as they do in classical type theory; in particular, they are incompatible with the univalence axiom.
         </p>
         <p class="exercise">
-          For $A : \mathscr{U}$, we do not have $\neg(\neg A) \rightarrow A$.
+          For <span class="mathjax">$A : \mathscr{U}$</span>, we do not have <span class="mathjax">$\neg(\neg A) \rightarrow A$</span>.
         </p>
         <p class="exercise">
-          For $A : \mathscr{U}$, we do not have $A + \neg A$.
+          For <span class="mathjax">$A : \mathscr{U}$</span>, we do not have <span class="mathjax">$A + \neg A$</span>.
         </p>
         <h2 id="mere-propositions">
           Mere propositions
@@ -176,13 +179,13 @@ Defined.</code></pre>
           Propositions-as-types have good and bad properties. Both have a common cause: when types are viewed as propositions, they contain more information than mere truth or falsity, and all "logical" constructions on them must respect this additional information. This suggests that we could obtain a more conventional logic by restricting attention to types that do not contain any more information than the truth value, and only regarding these as logical propositions.
         </p>
         <p>
-          Indeed, if $A$ will be "true" if it is inhabitated, and false if its inhabit yields a contradiction (i.e. $A \rightarrow \mathbb{0}$). Now, for example, if we're given an element of $\mathbb{2}$, it contains one bit of additional information: which element of $\mathbb{2}$ we are given. By contrast, when we're given an element of $\mathbb{1}$ (i.e. $\star$), we receive no more information than the mere fact that $\mathbb{1}$ contains an element, since any two elements of $\mathbb{1}$ are equal to each other. This suggests the following definition:
+          Indeed, if <span class="mathjax">$A$</span> will be "true" if it is inhabitated, and false if its inhabit yields a contradiction (i.e. <span class="mathjax">$A \rightarrow \mathbb{0}$</span>). Now, for example, if we're given an element of <span class="mathjax">$\mathbb{2}$</span>, it contains one bit of additional information: which element of <span class="mathjax">$\mathbb{2}$</span> we are given. By contrast, when we're given an element of <span class="mathjax">$\mathbb{1}$</span> (i.e. <span class="mathjax">$\star$</span>), we receive no more information than the mere fact that <span class="mathjax">$\mathbb{1}$</span> contains an element, since any two elements of <span class="mathjax">$\mathbb{1}$</span> are equal to each other. This suggests the following definition:
         </p>
         <p class="exercise">
-          Type $P$ is a <mark>mere proposition</mark> if forall $x, y : P$, we have $x = y$.
+          Type <span class="mathjax">$P$</span> is a <mark>mere proposition</mark> if forall <span class="mathjax">$x, y : P$</span>, we have <span class="mathjax">$x = y$</span>.
         </p>
         <p>
-          For $P : \mathscr{U}$,
+          For <span class="mathjax">$P : \mathscr{U}$</span>,
         </p>
         <div class="mathjax">
           $$
@@ -190,10 +193,10 @@ Defined.</code></pre>
           $$
         </div>
         <p>
-          Thus, to assert that $P$ is a mere proposition means to exhibit an inhabitant of $\texttt{isProp}(P)$, which is a dependent function connecting any two elements of $P$ by a path. The continuity/naturality of this function impiles not only that any two elements of $P$ are equal, but also that $P$ contains no higher homotopies either.
+          Thus, to assert that <span class="mathjax">$P$</span> is a mere proposition means to exhibit an inhabitant of <span class="mathjax">$\texttt{isProp}(P)$</span>, which is a dependent function connecting any two elements of <span class="mathjax">$P$</span> by a path. The continuity/naturality of this function impiles not only that any two elements of <span class="mathjax">$P$</span> are equal, but also that <span class="mathjax">$P$</span> contains no higher homotopies either.
         </p>
         <p class="exercise">
-          If $P$ is a mere proposition, and $x_0 : P$, then $P \simeq \mathbb{1}$.
+          If <span class="mathjax">$P$</span> is a mere proposition, and <span class="mathjax">$x_0 : P$</span>, then <span class="mathjax">$P \simeq \mathbb{1}$</span>.
         </p>
         <pre><code class="hljs coq">(** If an hprop is inhabited, then it is equivalent to [Unit]. *)
 Lemma if_hprop_then_equiv_Unit (hprop : Type) `{IsHProp hprop} :  hprop -&gt; hprop &lt;~&gt; Unit.
@@ -204,7 +207,7 @@ Proof.
   - exact (fun _ =&gt; p).
 Defined.</code></pre>
         <p class="exercise">
-          If $P$ and $Q$ are mere propositions such that $P \rightarrow Q$ and $Q \rightarrow P$, then $P \simeq Q$.
+          If <span class="mathjax">$P$</span> and <span class="mathjax">$Q$</span> are mere propositions such that <span class="mathjax">$P \rightarrow Q$</span> and <span class="mathjax">$Q \rightarrow P$</span>, then <span class="mathjax">$P \simeq Q$</span>.
         </p>
         <pre><code class="hljs coq">(** Two propositions are equivalent as soon as there are maps in both directions. *)
 Definition isequiv_iff_hprop `{IsHProp A} `{IsHProp B}
@@ -215,16 +218,16 @@ Proof.
     intros ?; apply path_ishprop.
 Defined.</code></pre>
         <p>
-          A space that is homotopy equivalent to $\mathbb{1}$ is said to be contractible. Thus, any mere proposition that is inhabitated is contractible. On the other hand, the uninhabited type $\mathbb{0}$ is also vacuously a mere proposition.
+          A space that is homotopy equivalent to <span class="mathjax">$\mathbb{1}$</span> is said to be contractible. Thus, any mere proposition that is inhabitated is contractible. On the other hand, the uninhabited type <span class="mathjax">$\mathbb{0}$</span> is also vacuously a mere proposition.
         </p>
         <p>
-          Note that a type $A$ is a set if and only if, for $x, y : A$, the identity type $x =_A y$ is a mere proposition.
+          Note that a type <span class="mathjax">$A$</span> is a set if and only if, for <span class="mathjax">$x, y : A$</span>, the identity type <span class="mathjax">$x =_A y$</span> is a mere proposition.
         </p>
         <p class="exercise">
           Every mere proposition is a set.
         </p>
         <p class="exercise">
-          For any type $A$, types $\texttt{isProp}(A)$ and $\texttt{isSet}(A)$ are mere propositions.
+          For any type <span class="mathjax">$A$</span>, types <span class="mathjax">$\texttt{isProp}(A)$</span> and <span class="mathjax">$\texttt{isSet}(A)$</span> are mere propositions.
         </p>
         <pre><code class="hljs coq">(** Truncatedness is an hprop. *)
 Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
@@ -251,13 +254,13 @@ Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
         </div>
         <ol class="olitems" type="i" start="1">
           <li>
-            A type $A$ is <mark>decidable</mark> if $A + \neg A$.
+            A type <span class="mathjax">$A$</span> is <mark>decidable</mark> if <span class="mathjax">$A + \neg A$</span>.
           </li>
           <li>
-            A type family $B : A \rightarrow \mathscr{U}$ is decidable if $\Pi_{a : A}(B(a) + \neg B(a))$.
+            A type family <span class="mathjax">$B : A \rightarrow \mathscr{U}$</span> is decidable if <span class="mathjax">$\Pi_{a : A}(B(a) + \neg B(a))$</span>.
           </li>
           <li>
-            $A$ has decidable equality if $\Pi_{a, b : A} ((a = b) + \neg(a = b))$.
+            <span class="mathjax">$A$</span> has decidable equality if <span class="mathjax">$\Pi_{a, b : A} ((a = b) + \neg(a = b))$</span>.
           </li>
         </ol>
         <pre><code class="hljs coq">Class Decidable (A : Type) :=
@@ -268,10 +271,10 @@ Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
           Subsets and propositional resizing
         </h2>
         <p>
-          Suppose $P : A \rightarrow \mathscr{U}$  is a type family with each type $P(x)$ regarded as a proposition. Then $P$ itself is a predicate on $A$, or a property of elements of $A$. What we regard as $\{x \in A \mid P(x)\}$ in set theory can be regarded as $\Sigma_{x : A} P(x)$ in type theory. For a general element $P$, $P(a)$ has more than one distinct proof; but if $P$ is a mere proposition, this cannot happen.
+          Suppose <span class="mathjax">$P : A \rightarrow \mathscr{U}$</span>  is a type family with each type <span class="mathjax">$P(x)$</span> regarded as a proposition. Then <span class="mathjax">$P$</span> itself is a predicate on <span class="mathjax">$A$</span>, or a property of elements of <span class="mathjax">$A$</span>. What we regard as <span class="mathjax">$\{x \in A \mid P(x)\}$</span> in set theory can be regarded as <span class="mathjax">$\Sigma_{x : A} P(x)$</span> in type theory. For a general element <span class="mathjax">$P$</span>, <span class="mathjax">$P(a)$</span> has more than one distinct proof; but if <span class="mathjax">$P$</span> is a mere proposition, this cannot happen.
         </p>
         <p class="exercise">
-          Suppose $P : A \rightarrow \mathscr{U}$ is a type famiy such that $P(x)$ is a mere proposition for all $x : A$. If $u, v : \Sigma_{x : A} P(x)$ are such that $\texttt{pr}_1(u) = \texttt{pr}_1(v)$, then $u = v$.
+          Suppose <span class="mathjax">$P : A \rightarrow \mathscr{U}$</span> is a type famiy such that <span class="mathjax">$P(x)$</span> is a mere proposition for all <span class="mathjax">$x : A$</span>. If <span class="mathjax">$u, v : \Sigma_{x : A} P(x)$</span> are such that <span class="mathjax">$\texttt{pr}_1(u) = \texttt{pr}_1(v)$</span>, then <span class="mathjax">$u = v$</span>.
         </p>
         <pre><code class="hljs coq">(** ** Subtypes (sigma types whose second components are hprops) *)
 
@@ -290,10 +293,10 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           $$
         </div>
         <p>
-          where each type $\texttt{isequiv}(f)$ was supposed to be a mere proposition. It follows that if two equivalences have equal underlying functions, then they are equal as equivalences. In $\Sigma_{x : A} P(x)$, $P$ can be thought of as a <mark>subtype</mark> of $A$. We may write $a \in \{x : A \mid P(x)\}$ to refer to the mere proposition $P(a)$. If it holds, we say that $a$ is a <mark>member</mark> of $P$. Similarly, $P \subseteq Q$ can be written as $\Pi_{x : A} (P(x) \rightarrow Q(x))$.
+          where each type <span class="mathjax">$\texttt{isequiv}(f)$</span> was supposed to be a mere proposition. It follows that if two equivalences have equal underlying functions, then they are equal as equivalences. In <span class="mathjax">$\Sigma_{x : A} P(x)$</span>, <span class="mathjax">$P$</span> can be thought of as a <mark>subtype</mark> of <span class="mathjax">$A$</span>. We may write <span class="mathjax">$a \in \{x : A \mid P(x)\}$</span> to refer to the mere proposition <span class="mathjax">$P(a)$</span>. If it holds, we say that <span class="mathjax">$a$</span> is a <mark>member</mark> of <span class="mathjax">$P$</span>. Similarly, <span class="mathjax">$P \subseteq Q$</span> can be written as <span class="mathjax">$\Pi_{x : A} (P(x) \rightarrow Q(x))$</span>.
         </p>
         <p>
-          As further examples of subtypes, we may define the "subuniverses" of sets and propositions in $\mathscr{U}$:
+          As further examples of subtypes, we may define the "subuniverses" of sets and propositions in <span class="mathjax">$\mathscr{U}$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -302,7 +305,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           $$
         </div>
         <p>
-          Recall that for any two universes $\mathscr{U}_i$ and $\mathscr{U}_{i + 1}$, if $A : \mathscr{U}_i$, then $A : \mathscr{U}_{i + 1}$. For sets and mere propositions, we therefore have maps:
+          Recall that for any two universes <span class="mathjax">$\mathscr{U}_i$</span> and <span class="mathjax">$\mathscr{U}_{i + 1}$</span>, if <span class="mathjax">$A : \mathscr{U}_i$</span>, then <span class="mathjax">$A : \mathscr{U}_{i + 1}$</span>. For sets and mere propositions, we therefore have maps:
         </p>
         <div class="mathjax">
           $$
@@ -314,16 +317,16 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           However, the former cannot be an equivalence, as making it so would remind us of paradoxes in Cantorian set theory. However, the latter could be an equivalence, and we consier adding the <mark>propositional resizing axiom</mark>:
         </p>
         <p class="exercise">
-          The map $\texttt{Prop}_{\mathscr{U}_i} \rightarrow \texttt{Prop}_{\mathscr{U}_{i + 1}}$ is an equivalence.
+          The map <span class="mathjax">$\texttt{Prop}_{\mathscr{U}_i} \rightarrow \texttt{Prop}_{\mathscr{U}_{i + 1}}$</span> is an equivalence.
         </p>
         <p>
-          It essentially says that any mere proposition in universe $\mathscr{U}_{i + 1}$ can be resized to an equivalent one in $\mathscr{U}_i$. It follows automatically if $\mathscr{U}_{i + 1}$ satisfies LEM. This is a form of <mark>impredicativity</mark> for mere propositions, and by avoiding its use, our type theory will remain predicative.
+          It essentially says that any mere proposition in universe <span class="mathjax">$\mathscr{U}_{i + 1}$</span> can be resized to an equivalent one in <span class="mathjax">$\mathscr{U}_i$</span>. It follows automatically if <span class="mathjax">$\mathscr{U}_{i + 1}$</span> satisfies LEM. This is a form of <mark>impredicativity</mark> for mere propositions, and by avoiding its use, our type theory will remain predicative.
         </p>
         <p>
-          In practice, however, what we want is a slightly different statement, that a universe $\mathscr{U}$ under consideration contains a type which "classifies all mere propositions". In other words, we want a type $\Omega : \mathscr{U}$ together with an $\Omega$-indexed family of mere propositions, which contains every mere proposition, upto equivalence. This follows from the propositional resizing axiom, if $\mathscr{U}$ is not the smallest univese $\mathscr{U}_0$, then we can define $\Omega :\equiv \texttt{Prop}_{\mathscr{U}_0}$.
+          In practice, however, what we want is a slightly different statement, that a universe <span class="mathjax">$\mathscr{U}$</span> under consideration contains a type which "classifies all mere propositions". In other words, we want a type <span class="mathjax">$\Omega : \mathscr{U}$</span> together with an <span class="mathjax">$\Omega$</span>-indexed family of mere propositions, which contains every mere proposition, upto equivalence. This follows from the propositional resizing axiom, if <span class="mathjax">$\mathscr{U}$</span> is not the smallest univese <span class="mathjax">$\mathscr{U}_0$</span>, then we can define <span class="mathjax">$\Omega :\equiv \texttt{Prop}_{\mathscr{U}_0}$</span>.
         </p>
         <p>
-          In the absence of propositional resizing, the definition of <mark>power set</mark> depends on the choice of $\mathscr{U}$. In its presence, however, one can define the power set to be:
+          In the absence of propositional resizing, the definition of <mark>power set</mark> depends on the choice of <span class="mathjax">$\mathscr{U}$</span>. In its presence, however, one can define the power set to be:
         </p>
         <div class="mathjax">
           $$
@@ -331,7 +334,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           $$
         </div>
         <p>
-          which is then independent of $\mathscr{U}$.
+          which is then independent of <span class="mathjax">$\mathscr{U}$</span>.
         </p>
         <h2 id="the-logic-of-mere-propositions">
           The logic of mere propositions
@@ -340,59 +343,59 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           In many cases, logical connectives and quantifiers can be represented in this logic by simply restricting the type-former to mere propositions; this, of course, requires us to know whether the type former in question preserve mere propositions.
         </p>
         <p class="exercise">
-          If $A$ and $B$ are mere propositions, so is $A \times B$.
+          If <span class="mathjax">$A$</span> and <span class="mathjax">$B$</span> are mere propositions, so is <span class="mathjax">$A \times B$</span>.
         </p>
         <p class="exercise">
-          If $B : A \rightarrow \mathscr{U}$ is such that for all $x : A$, B(x) is a mere proposition, then $\Pi_{x : A} B(x)$ is a mere proposition.
+          If <span class="mathjax">$B : A \rightarrow \mathscr{U}$</span> is such that for all <span class="mathjax">$x : A$</span>, B(x) is a mere proposition, then <span class="mathjax">$\Pi_{x : A} B(x)$</span> is a mere proposition.
         </p>
         <pre><code class="hljs coq">Definition PiType_isMereProp `{Funext} (A : Type) (B : A -&gt; Type)
   := trunc_forall _ A B (-1).</code></pre>
         <p>
-          In particular, If $B$ is a mere proposition, then so is $A \rightarrow B$ regardless of what $A$ is. Since $\mathbb{0}$ is a mere proposition, so is $\neg A \equiv A \rightarrow \mathbb{0}$. Thus the connectives "implies", "not", and "forall" preserve mere propositions.
+          In particular, If <span class="mathjax">$B$</span> is a mere proposition, then so is <span class="mathjax">$A \rightarrow B$</span> regardless of what <span class="mathjax">$A$</span> is. Since <span class="mathjax">$\mathbb{0}$</span> is a mere proposition, so is <span class="mathjax">$\neg A \equiv A \rightarrow \mathbb{0}$</span>. Thus the connectives "implies", "not", and "forall" preserve mere propositions.
         </p>
         <p>
-          On the other hand, even if $A$ and $B$ are mere propositions, $A + B$ will not, in general, be one. For instance, $\mathbb{1}$ is a mere proposition, but $\mathbb{2} = \mathbb{1} + \mathbb{1}$ is not. Logically speaking, $A + B$ is a "purely constructive" sort of "or": a witness of it contains which disjunct is true. However, if we need a more classical sort of "or" that preserves mere propositions, we need a way to "truncate" this type into a mere proposition by forgetting the additional information. The same issue arises with $\Sigma_{x : A} P(x)$.
+          On the other hand, even if <span class="mathjax">$A$</span> and <span class="mathjax">$B$</span> are mere propositions, <span class="mathjax">$A + B$</span> will not, in general, be one. For instance, <span class="mathjax">$\mathbb{1}$</span> is a mere proposition, but <span class="mathjax">$\mathbb{2} = \mathbb{1} + \mathbb{1}$</span> is not. Logically speaking, <span class="mathjax">$A + B$</span> is a "purely constructive" sort of "or": a witness of it contains which disjunct is true. However, if we need a more classical sort of "or" that preserves mere propositions, we need a way to "truncate" this type into a mere proposition by forgetting the additional information. The same issue arises with <span class="mathjax">$\Sigma_{x : A} P(x)$</span>.
         </p>
         <h2 id="propositional-truncation">
           Propositional truncation
         </h2>
         <p>
-          The <mark>propositional truncation</mark>, also called <mark>$(-1)$-truncation</mark>, <mark>bracket type</mark>, or <mark>squash type</mark>, is an additional type former wich "truncates" a type down to a mere proposition, forgetting all information contained in inhabitants of that type other than their existence.
+          The <mark>propositional truncation</mark>, also called <mark><span class="mathjax">$(-1)$</span>-truncation</mark>, <mark>bracket type</mark>, or <mark>squash type</mark>, is an additional type former wich "truncates" a type down to a mere proposition, forgetting all information contained in inhabitants of that type other than their existence.
         </p>
         <p>
-          More precisely, given type $A$, there is a type $||A||$ with two constructors:
+          More precisely, given type <span class="mathjax">$A$</span>, there is a type <span class="mathjax">$||A||$</span> with two constructors:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            For any $a : A$, we have $|a| : ||A||$.
+            For any <span class="mathjax">$a : A$</span>, we have <span class="mathjax">$|a| : ||A||$</span>.
           </li>
           <li>
-            For any $x, y : ||A||$, we have $x = y$.
+            For any <span class="mathjax">$x, y : ||A||$</span>, we have <span class="mathjax">$x = y$</span>.
           </li>
         </ol>
         <p>
-          The first constructor means that if $A$ is inhabitated, so is $||A||$. The second ensures that $||A||$ is a mere proposition; usually we leave the witness of this fact nameless.
+          The first constructor means that if <span class="mathjax">$A$</span> is inhabitated, so is <span class="mathjax">$||A||$</span>. The second ensures that <span class="mathjax">$||A||$</span> is a mere proposition; usually we leave the witness of this fact nameless.
         </p>
         <p>
-          The recursion principle of $||A||$ says that: if $B$ is a mere proposition, and we have $f : A \rightarrow B$, then there is an induced $g : ||A|| \rightarrow B$ such that $g(|a|) = f(a)$ for all $a : A$.
+          The recursion principle of <span class="mathjax">$||A||$</span> says that: if <span class="mathjax">$B$</span> is a mere proposition, and we have <span class="mathjax">$f : A \rightarrow B$</span>, then there is an induced <span class="mathjax">$g : ||A|| \rightarrow B$</span> such that <span class="mathjax">$g(|a|) = f(a)$</span> for all <span class="mathjax">$a : A$</span>.
         </p>
         <p>
-          In other words, any mere proposition that follows from $A$ already follows from $||A||$. Thus, $||A||$, as a mere proposition, contains no more information than the inhabitatedness of $A$.
+          In other words, any mere proposition that follows from <span class="mathjax">$A$</span> already follows from <span class="mathjax">$||A||$</span>. Thus, <span class="mathjax">$||A||$</span>, as a mere proposition, contains no more information than the inhabitatedness of <span class="mathjax">$A$</span>.
         </p>
         <p>
-          With propositional truncation, we can extend the "logic of mere propositions" to cover disjunction and existential quantification. Specifically, $||A + B|||$ is a mere propositional version of "A or B", which does not remember which disjunct is true.
+          With propositional truncation, we can extend the "logic of mere propositions" to cover disjunction and existential quantification. Specifically, <span class="mathjax">$||A + B|||$</span> is a mere propositional version of "A or B", which does not remember which disjunct is true.
         </p>
         <p>
-          The recursion principle of truncation implies that we can still do a case analysis on $||A + B||$ when attempting to prove a mere proposition. That is, suppose we have an assumption $u : ||A + B||$, and we are trying to prove a mere proposition $Q$. In other words, we are trying to define an element $||A + B|| \rightarrow Q$. Since $Q$ is a mere proposition, by recursion principle for propositional truncation, it suffices to construct a function $A + B \rightarrow Q$. But now we can do case analysis on $A + B$.
+          The recursion principle of truncation implies that we can still do a case analysis on <span class="mathjax">$||A + B||$</span> when attempting to prove a mere proposition. That is, suppose we have an assumption <span class="mathjax">$u : ||A + B||$</span>, and we are trying to prove a mere proposition <span class="mathjax">$Q$</span>. In other words, we are trying to define an element <span class="mathjax">$||A + B|| \rightarrow Q$</span>. Since <span class="mathjax">$Q$</span> is a mere proposition, by recursion principle for propositional truncation, it suffices to construct a function <span class="mathjax">$A + B \rightarrow Q$</span>. But now we can do case analysis on <span class="mathjax">$A + B$</span>.
         </p>
         <p>
-          Similarly, or a type family $P : A \rightarrow \mathscr{U}$, we can consider $||\Sigma_{x : A} P(x)||$ to be the mere propositional version of "there exists an $x : A$ such that $P(x)$". If we have an assumption of type $||\Sigma_{x : A} P(x)||$, we may introduce new assumptions $x : A$ and $y: P(x)$ when attempting to prove a mere proposition. In other words, if we know that there exists some $x : A$ such that $P(x)$, but we don't have a particular such $x$ at hand, then we are free to make use of such an $x$ as long as we aren't trying to construct anything which might depend on the particular value of $x$.
+          Similarly, or a type family <span class="mathjax">$P : A \rightarrow \mathscr{U}$</span>, we can consider <span class="mathjax">$||\Sigma_{x : A} P(x)||$</span> to be the mere propositional version of "there exists an <span class="mathjax">$x : A$</span> such that <span class="mathjax">$P(x)$</span>". If we have an assumption of type <span class="mathjax">$||\Sigma_{x : A} P(x)||$</span>, we may introduce new assumptions <span class="mathjax">$x : A$</span> and <span class="mathjax">$y: P(x)$</span> when attempting to prove a mere proposition. In other words, if we know that there exists some <span class="mathjax">$x : A$</span> such that <span class="mathjax">$P(x)$</span>, but we don't have a particular such <span class="mathjax">$x$</span> at hand, then we are free to make use of such an <span class="mathjax">$x$</span> as long as we aren't trying to construct anything which might depend on the particular value of <span class="mathjax">$x$</span>.
         </p>
         <h2 id="the-axiom-of-choice">
           The axiom of choice
         </h2>
         <p>
-          assume type $X$ and type families
+          assume type <span class="mathjax">$X$</span> and type families
         </p>
         <div class="mathjax">
           $$
@@ -404,13 +407,13 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            $X$ is a set.
+            <span class="mathjax">$X$</span> is a set.
           </li>
           <li>
-            $A(x)$ is a set for all $x : X$.
+            <span class="mathjax">$A(x)$</span> is a set for all <span class="mathjax">$x : X$</span>.
           </li>
           <li>
-            $P(x, a)$ is a mere proposition for all $x : X$ and $a : A(x)$.
+            <span class="mathjax">$P(x, a)$</span> is a mere proposition for all <span class="mathjax">$x : X$</span> and <span class="mathjax">$a : A(x)$</span>.
           </li>
         </ol>
         <p>
@@ -422,10 +425,10 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           $$
         </div>
         <p>
-          Note, in particular, that propositional truncation appears twice. The truncation in the domain means we assume that for every $x$, there exists some $a : A(x)$ such that $P(x, a)$, but that these values are not chosen or specified in any known way. The truncation in the codomain means we conclude that there exists some function $g$, but this function is not determined or specified in any known way.
+          Note, in particular, that propositional truncation appears twice. The truncation in the domain means we assume that for every <span class="mathjax">$x$</span>, there exists some <span class="mathjax">$a : A(x)$</span> such that <span class="mathjax">$P(x, a)$</span>, but that these values are not chosen or specified in any known way. The truncation in the codomain means we conclude that there exists some function <span class="mathjax">$g$</span>, but this function is not determined or specified in any known way.
         </p>
         <p class="exercise">
-          AC is equivalent to the statement that for any set $X$ and map $Y : X \rightarrow \mathscr{U}$ such that each $Y(x)$ is a set, we have
+          AC is equivalent to the statement that for any set <span class="mathjax">$X$</span> and map <span class="mathjax">$Y : X \rightarrow \mathscr{U}$</span> such that each <span class="mathjax">$Y(x)$</span> is a set, we have
         </p>
         <div class="mathjax">
           $$
@@ -450,7 +453,7 @@ Definition path_sigma_hprop {A : Type} {P : A -&gt; Type}
           The principle of unique choice
         </h2>
         <p class="exercise">
-          If $P$ is a mere proposition, then $P \simeq ||P||$.
+          If <span class="mathjax">$P$</span> is a mere proposition, then <span class="mathjax">$P \simeq ||P||$</span>.
         </p>
         <pre><code class="hljs coq">Definition isequiv_to_O_inO (T : Type) `{In O T} : IsEquiv (to O T).
 Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
@@ -458,18 +461,18 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
           It has the following important consequence:
         </p>
         <p class="exercise">
-          <mark>Principle of unique choice</mark>. Suppose $P : A \rightarrow \mathscr{U}$ such that:
+          <mark>Principle of unique choice</mark>. Suppose <span class="mathjax">$P : A \rightarrow \mathscr{U}$</span> such that:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            For each $s$, the type $P(x)$ is a mere proposition.
+            For each <span class="mathjax">$s$</span>, the type <span class="mathjax">$P(x)$</span> is a mere proposition.
           </li>
           <li>
-            For each $x$ we have $||P(x)||$.
+            For each <span class="mathjax">$x$</span> we have <span class="mathjax">$||P(x)||$</span>.
           </li>
         </ol>
         <p>
-          Then we have $\Pi_{x : A} P(x)$.
+          Then we have <span class="mathjax">$\Pi_{x : A} P(x)$</span>.
         </p>
         <pre><code class="hljs coq">Lemma unique_choice {X Y} (R:X-&gt;Y-&gt;Type) :
  (forall x y, IsHProp (R x y)) -&gt; (forall x, (hunique (R x)))
@@ -478,16 +481,16 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
           When are mere propositions truncated?
         </h2>
         <p>
-          In a nutshell, we shall use untruncated logic as the default convention, and qualify the truncated versions by "mere", for the following reason: mere propositions aren't a fundamental part of type theory; they are only the second rung on the $\infty$-ladder of types, and there are many other modalities not lying on this ladder at all.
+          In a nutshell, we shall use untruncated logic as the default convention, and qualify the truncated versions by "mere", for the following reason: mere propositions aren't a fundamental part of type theory; they are only the second rung on the <span class="mathjax">$\infty$</span>-ladder of types, and there are many other modalities not lying on this ladder at all.
         </p>
         <h2 id="contractability">
           Contractability
         </h2>
         <p>
-          A mere proposition which is inhabited must be equivalent to $\mathbb{1}$, and the converse also holds. A type with this property is called <mark>contractible</mark>.
+          A mere proposition which is inhabited must be equivalent to <span class="mathjax">$\mathbb{1}$</span>, and the converse also holds. A type with this property is called <mark>contractible</mark>.
         </p>
         <p class="exercise">
-          Type <mark>A</mark> is contractible or a <mark>singleton</mark>, if there is an $a : A$, called the <mark>center of contraction</mark>, such tht $a = x$ for all $x : A$. We denote the specified path $a = x$ by $\texttt{contr}_x$. In other words,
+          Type <mark>A</mark> is contractible or a <mark>singleton</mark>, if there is an <span class="mathjax">$a : A$</span>, called the <mark>center of contraction</mark>, such tht <span class="mathjax">$a = x$</span> for all <span class="mathjax">$x : A$</span>. We denote the specified path <span class="mathjax">$a = x$</span> by <span class="mathjax">$\texttt{contr}_x$</span>. In other words,
         </p>
         <div class="mathjax">
           $$
@@ -495,20 +498,20 @@ Definition p_simeq_trun_p := isequiv_to_O_inO (Tr (-1)).</code></pre>
           $$
         </div>
         <p>
-          We can pronounce this as "$A$ contains an element, and every other element of $A$ is equal to that element". To the classical ear, this could sound as a definition of <mark>connectedness</mark>, rather than contractability.
+          We can pronounce this as "<span class="mathjax">$A$</span> contains an element, and every other element of <span class="mathjax">$A$</span> is equal to that element". To the classical ear, this could sound as a definition of <mark>connectedness</mark>, rather than contractability.
         </p>
         <p class="exercise">
-          For type $A$, the following are logically equivalent:
+          For type <span class="mathjax">$A$</span>, the following are logically equivalent:
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            $A$ is contractible.
+            <span class="mathjax">$A$</span> is contractible.
           </li>
           <li>
-            $A$ is a mere proposition, and there is a point $a : A$.
+            <span class="mathjax">$A$</span> is a mere proposition, and there is a point <span class="mathjax">$a : A$</span>.
           </li>
           <li>
-            $A$ is equivalent to $\mathbb{1}$.
+            <span class="mathjax">$A$</span> is equivalent to <span class="mathjax">$\mathbb{1}$</span>.
           </li>
         </ol>
         <pre><code class="hljs coq">(* The Unit type is contractible *)
@@ -518,36 +521,36 @@ Global Instance contr_unit : Contr Unit | 0 := let x := {|
   contr := fun t : Unit =&gt; match t with tt =&gt; 1 end
 |} in x.</code></pre>
         <p class="exercise">
-          For any type $A$, the type $\texttt{isContr}(A)$ is a mere proposition.
+          For any type <span class="mathjax">$A$</span>, the type <span class="mathjax">$\texttt{isContr}(A)$</span> is a mere proposition.
         </p>
         <pre><code class="hljs coq">Global Instance ishprop_istrunc `{Funext} (n : trunc_index) (A : Type)
   : IsHProp (IsTrunc n A) | 0.</code></pre>
         <p class="exercise">
-          If $A$ is contractible, so is $\texttt{isContr}(A)$.
+          If <span class="mathjax">$A$</span> is contractible, so is <span class="mathjax">$\texttt{isContr}(A)$</span>.
         </p>
         <pre><code class="hljs coq">Global Instance contr_contr `{Funext} (A : Type) `{Contr A}
   : Contr (Contr A) | 100.</code></pre>
         <p class="exercise">
-          If $P : A \rightarrow \mathscr{U}$ is a type family such that $P(a)$ is contractible, then $\Pi_{x : A} P(x)$ is contractible.
+          If <span class="mathjax">$P : A \rightarrow \mathscr{U}$</span> is a type family such that <span class="mathjax">$P(a)$</span> is contractible, then <span class="mathjax">$\Pi_{x : A} P(x)$</span> is contractible.
         </p>
         <pre><code class="hljs coq">Global Instance trunc_forall `{P : A -&gt; Type} `{forall a, IsTrunc n (P a)}
   : IsTrunc n (forall a, P a) | 100.</code></pre>
         <p class="exercise">
-          If $B$ is a retract of $A$, and $A$ is contractible, then so is $B$.
+          If <span class="mathjax">$B$</span> is a retract of <span class="mathjax">$A$</span>, and <span class="mathjax">$A$</span> is contractible, then so is <span class="mathjax">$B$</span>.
         </p>
         <p class="exercise">
-          For any $A$ and any $a : A$, the type $\Sigma_{x : A} (x = a)$ is contractible.
+          For any <span class="mathjax">$A$</span> and any <span class="mathjax">$a : A$</span>, the type <span class="mathjax">$\Sigma_{x : A} (x = a)$</span> is contractible.
         </p>
         <pre><code class="hljs coq">Global Instance contr_basedpaths {X : Type} (x : X) : Contr {y : X &amp; x = y} | 100.</code></pre>
         <p class="exercise">
-          Let $P : A \rightarrow \mathscr{U}$ be a type family.
+          Let <span class="mathjax">$P : A \rightarrow \mathscr{U}$</span> be a type family.
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            If each $P(x)$ is contractible, then $\Sigma_{x : A} P(x)$ is equivalent to $A$.
+            If each <span class="mathjax">$P(x)$</span> is contractible, then <span class="mathjax">$\Sigma_{x : A} P(x)$</span> is equivalent to <span class="mathjax">$A$</span>.
           </li>
           <li>
-            If $A$ is contractible with center $a$, then $\Sigma_{x : A} P(x)$ is equivalent to $P(a)$.
+            If <span class="mathjax">$A$</span> is contractible with center <span class="mathjax">$a$</span>, then <span class="mathjax">$\Sigma_{x : A} P(x)$</span> is equivalent to <span class="mathjax">$P(a)$</span>.
           </li>
         </ol>
         <pre><code class="hljs coq">Definition equiv_sigma_contr {A : Type} (P : A -&gt; Type)
@@ -557,7 +560,7 @@ Global Instance contr_unit : Contr Unit | 0 := let x := {|
         <pre><code class="hljs coq">Definition equiv_contr_sigma {A : Type} (P : A -&gt; Type) `{Contr A}
 : { x : A &amp; P x } &lt;~&gt; P (center A).</code></pre>
         <p class="exercise">
-          Type $A$ is a mere proposition if and only if for all $x, y : A$, the type $x =_A y$ is contractible.
+          Type <span class="mathjax">$A$</span> is a mere proposition if and only if for all <span class="mathjax">$x, y : A$</span>, the type <span class="mathjax">$x =_A y$</span> is contractible.
         </p>
         <pre><code class="hljs coq">(** Any two points in an hprop are connected by a path. *)
 Theorem path_ishprop `{H : IsHProp A}

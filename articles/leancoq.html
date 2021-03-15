@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -89,7 +92,7 @@
         </p>
         <hr class="ellipses" />
         <p>
-          Lean supports both constructive and classical reasoning, but quotienting in Coq is painful due to <a href="http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf">"setoid-hell"</a>; something that would be fixed when types are modeled as $\infty$-groupoids instead of setoids, as in the HoTT line of work.
+          Lean supports both constructive and classical reasoning, but quotienting in Coq is painful due to <a href="http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf">"setoid-hell"</a>; something that would be fixed when types are modeled as <span class="mathjax">$\infty$</span>-groupoids instead of setoids, as in the HoTT line of work.
         </p>
         <p>
           <a href="https://github.com/leanprover-community/mathlib/blob/master/docs/tutorial/Zmod37.lean">Quotient-reasoning</a> makes formalizing commutative algebra painless, and it's baked into the Lean kernel. However, quotients are tricky to implement without breaking certain metatheoretic properties that Coq'ers cherish; nevertheless, there is an <a href="https://math-comp.github.io/htmldoc/mathcomp.ssreflect.generic_quotient.html">implementation</a> in Coq's <a href="https://github.com/math-comp/math-comp">math-comp</a>, albeit, without a reduction rule.
@@ -99,14 +102,14 @@
         </p>
         <hr class="ellipses" />
         <p>
-          Category theory in Lean has not been <a href="https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md">developed</a> with higher categories in mind; I'm not sure how one would define $\infty$-categories, since universes are explicit, and since there are no coinductive types: Coq's cumulativity seems to have been a better design choice.
+          Category theory in Lean has not been <a href="https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md">developed</a> with higher categories in mind; I'm not sure how one would define <span class="mathjax">$\infty$</span>-categories, since universes are explicit, and since there are no coinductive types: Coq's cumulativity seems to have been a better design choice.
         </p>
         <hr class="ellipses" />
         <p>
           One would think that Lean is an engineering feat, since it's written in C++: Coq's math-comp (90k loc) compares to Lean's mathlib (150k loc); math-comp builds in under ten minutes, while mathlib takes over thirty minutes to build! Indeed, due to their design decision to use a VM for computations, computation happens at a speed comparable to Python-bytecode evaluation — they seem to be overhauling this in Lean4 though, by compiling Lean code down to C before execution.
         </p>
         <p>
-          Another reason for the relative slowness of Lean is that they do a lot of automation under the hood, figuring out, for instance, that when the user writes $X \times Y$, $X$ and $Y$ are topogical spaces, and that $\times$ here means product topology.
+          Another reason for the relative slowness of Lean is that they do a lot of automation under the hood, figuring out, for instance, that when the user writes <span class="mathjax">$X \times Y$</span>, <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span> are topogical spaces, and that <span class="mathjax">$\times$</span> here means product topology.
         </p>
         <footer>
           <p>

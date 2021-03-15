@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -118,7 +121,7 @@
           1. Algebra of $R$-modules
         </h3>
         <p>
-          $R$-modules are abelian groups associated with the ring $R$. Let $M$ be one such abelian group. Then, the following axioms are satisfied for $r \in R$, $\lambda \in M$:
+          <span class="mathjax">$R$</span>-modules are abelian groups associated with the ring <span class="mathjax">$R$</span>. Let <span class="mathjax">$M$</span> be one such abelian group. Then, the following axioms are satisfied for <span class="mathjax">$r \in R$</span>, <span class="mathjax">$\lambda \in M$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -131,10 +134,10 @@
           $$
         </div>
         <p>
-          This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $\lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module.
+          This is the definition of a left <span class="mathjax">$R$</span>-module; to obtain the definition of a right <span class="mathjax">$R$</span>-module, simply swap <span class="mathjax">$r$</span> and <span class="mathjax">$\lambda$</span> in the equations. An <span class="mathjax">$RS$</span>-bimodule is simultaneously a left <span class="mathjax">$R$</span>-module and right-<span class="mathjax">$S$</span> module.
         </p>
         <p>
-          Ideals are the prime examples of submodules. A submodule $J$ of an $R$-module a subset of $R$, which is closed under multiplication with an element of the ring:
+          Ideals are the prime examples of submodules. A submodule <span class="mathjax">$J$</span> of an <span class="mathjax">$R$</span>-module a subset of <span class="mathjax">$R$</span>, which is closed under multiplication with an element of the ring:
         </p>
         <div class="mathjax">
           $$
@@ -156,7 +159,7 @@
           $$
         </div>
         <p>
-          It is trivial to verify that $R/J$ is a module:
+          It is trivial to verify that <span class="mathjax">$R/J$</span> is a module:
         </p>
         <div class="mathjax">
           $$
@@ -168,23 +171,23 @@
         </p>
         <ol class="olitems" type="a" start="1">
           <li>
-            Direct sum and direct product, $\oplus_i M_i$ and $\Pi_i M_i$, coincide when the sum or product is finite. Direct sums of modules yield free modules, and these are used to build free resolutions.
+            Direct sum and direct product, <span class="mathjax">$\oplus_i M_i$</span> and <span class="mathjax">$\Pi_i M_i$</span>, coincide when the sum or product is finite. Direct sums of modules yield free modules, and these are used to build free resolutions.
           </li>
           <li>
-            Tensor product, $M_1 \otimes M_2$, yields a third module. $- \otimes D$ and $D \otimes -$ are a covariant right-exact functors in the general case, and if $D$ is a flat module, tensoring with it preserves exactness.
+            Tensor product, <span class="mathjax">$M_1 \otimes M_2$</span>, yields a third module. <span class="mathjax">$- \otimes D$</span> and <span class="mathjax">$D \otimes -$</span> are a covariant right-exact functors in the general case, and if <span class="mathjax">$D$</span> is a flat module, tensoring with it preserves exactness.
           </li>
           <li>
-            Hom functor, $\textrm{Hom}(M_1, M_2)$, yields a third module. $\textrm{Hom}(-, D)$ and $\textrm{Hom}(D, -)$ are left-exact functors, for fixed module $D$. $\textrm{Hom}(D, -)$ is a covariant functor and $\textrm{Hom}(-, D)$ is a contravariant functor.
+            Hom functor, <span class="mathjax">$\textrm{Hom}(M_1, M_2)$</span>, yields a third module. <span class="mathjax">$\textrm{Hom}(-, D)$</span> and <span class="mathjax">$\textrm{Hom}(D, -)$</span> are left-exact functors, for fixed module <span class="mathjax">$D$</span>. <span class="mathjax">$\textrm{Hom}(D, -)$</span> is a covariant functor and <span class="mathjax">$\textrm{Hom}(-, D)$</span> is a contravariant functor.
           </li>
         </ol>
         <p>
-          There exists an additional connection between the tensor product and the Hom functor: $- \otimes M$ and $\textrm{Hom}(M, -)$ form an adjoint pair.
+          There exists an additional connection between the tensor product and the Hom functor: <span class="mathjax">$- \otimes M$</span> and <span class="mathjax">$\textrm{Hom}(M, -)$</span> form an adjoint pair.
         </p>
         <h3 id="2.-calculus-of-chain-complexes">
           2. Calculus of chain complexes
         </h3>
         <p>
-          A category with modules as objects and module morphisms as morphisms turns into an abelian category, in which every morphism admits a kernel and cokernel, every monic is a kernel, and every epi is a cokernel. A chain complex is defined as a sequence of morphisms satisfying the condition $\partial_n \partial_{n + 1} = 0, \forall n$, often abbreviated as $\partial^2 = 0$:
+          A category with modules as objects and module morphisms as morphisms turns into an abelian category, in which every morphism admits a kernel and cokernel, every monic is a kernel, and every epi is a cokernel. A chain complex is defined as a sequence of morphisms satisfying the condition <span class="mathjax">$\partial_n \partial_{n + 1} = 0, \forall n$</span>, often abbreviated as <span class="mathjax">$\partial^2 = 0$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -198,10 +201,10 @@
           $$
         </div>
         <p>
-          Equivalently, $\textrm{im}(\partial_{n + 1}) \subset \textrm{ker}(\partial_n)$. With this condition, it is possible to define the $n^\textrm{th}$ homology group $H_n = \textrm{ker}(\partial_n)/\textrm{im}(\partial_{n + 1})$.
+          Equivalently, <span class="mathjax">$\textrm{im}(\partial_{n + 1}) \subset \textrm{ker}(\partial_n)$</span>. With this condition, it is possible to define the <span class="mathjax">$n^\textrm{th}$</span> homology group <span class="mathjax">$H_n = \textrm{ker}(\partial_n)/\textrm{im}(\partial_{n + 1})$</span>.
         </p>
         <p>
-          The chain is said to be exact at $C_n$ if $\textrm{ker}(\partial_n) = \textrm{im}(\partial_{n + 1})$. A long exact sequence is exact at every $n$:
+          The chain is said to be exact at <span class="mathjax">$C_n$</span> if <span class="mathjax">$\textrm{ker}(\partial_n) = \textrm{im}(\partial_{n + 1})$</span>. A long exact sequence is exact at every <span class="mathjax">$n$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -235,7 +238,7 @@
           Resolutions are exact sequences that turn modules into complexes.
         </p>
         <p>
-          A module $P$ is defined to be projective if:
+          A module <span class="mathjax">$P$</span> is defined to be projective if:
         </p>
         <div class="mathjax">
           $$
@@ -250,7 +253,7 @@
           $$
         </div>
         <p>
-          A module $I$ is defined to be injective if:
+          A module <span class="mathjax">$I$</span> is defined to be injective if:
         </p>
         <div class="mathjax">
           $$
@@ -265,7 +268,7 @@
           $$
         </div>
         <p>
-          A free $R$-module is one that can be written as a direct sum of isomorphic copies of $R$. A free resolution of module $M$ is the following exact sequence:
+          A free <span class="mathjax">$R$</span>-module is one that can be written as a direct sum of isomorphic copies of <span class="mathjax">$R$</span>. A free resolution of module <span class="mathjax">$M$</span> is the following exact sequence:
         </p>
         <div class="mathjax">
           $$
@@ -340,7 +343,7 @@
           4. Derived functors
         </h3>
         <p>
-          Given either right-exact or left-exact functor $\mathscr{F}$, we can define left or right derived functors as (co)homology groups of $\mathscr{F}$ lifting a projective or injective (co)chain.
+          Given either right-exact or left-exact functor <span class="mathjax">$\mathscr{F}$</span>, we can define left or right derived functors as (co)homology groups of <span class="mathjax">$\mathscr{F}$</span> lifting a projective or injective (co)chain.
         </p>
         <div class="mathjax">
           $$
@@ -351,16 +354,16 @@
           $$
         </div>
         <p>
-          $\textrm{Tor}$ is the prime example of a left derived functor, obtained by setting $\mathscr{F} = \otimes$, and $\textrm{Ext}$ is the prime example of a right derived functor, obtained by setting $\mathscr{F}= \textrm{Hom}$.
+          <span class="mathjax">$\textrm{Tor}$</span> is the prime example of a left derived functor, obtained by setting <span class="mathjax">$\mathscr{F} = \otimes$</span>, and <span class="mathjax">$\textrm{Ext}$</span> is the prime example of a right derived functor, obtained by setting <span class="mathjax">$\mathscr{F}= \textrm{Hom}$</span>.
         </p>
         <h3 id="5.-homology-of-abelian-groups">
           5. Homology of abelian groups
         </h3>
         <p>
-          First, note that $\mathbb{Z}$ can be viewed as a $\mathbb{Z}-\mathbb{Z}G$ bimodule.
+          First, note that <span class="mathjax">$\mathbb{Z}$</span> can be viewed as a <span class="mathjax">$\mathbb{Z}-\mathbb{Z}G$</span> bimodule.
         </p>
         <p>
-          To compute $\textrm{Tor}$ and $\textrm{Ext}$ for some simple cases, consider the standard projective resolution of $\mathbb{Z}$:
+          To compute <span class="mathjax">$\textrm{Tor}$</span> and <span class="mathjax">$\textrm{Ext}$</span> for some simple cases, consider the standard projective resolution of <span class="mathjax">$\mathbb{Z}$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -374,7 +377,7 @@
           $$
         </div>
         <p>
-          Now, to compute $\textrm{Tor}^n(\mathbb{Z}/p, B)$, with $B$ an abelian group, tensor with $B$ to obtain the following projective chain:
+          Now, to compute <span class="mathjax">$\textrm{Tor}^n(\mathbb{Z}/p, B)$</span>, with <span class="mathjax">$B$</span> an abelian group, tensor with <span class="mathjax">$B$</span> to obtain the following projective chain:
         </p>
         <div class="mathjax">
           $$
@@ -388,10 +391,10 @@
           $$
         </div>
         <p>
-          Hence, $\textrm{Tor}^0(\mathbb{Z}/p, B) = B/Bp$, $\textrm{Tor}^1(\mathbb{Z}/p, B) = {}_pB$, with $\textrm{Tor}$ vanishing for all higher $n$. Flipping arrows, we obtain the injective resolution, and applying functor $\textrm{Hom}(B, -)$, we obtain $\textrm{Ext}^0(\mathbb{Z}/p, B) = {}_pB$ and $\textrm{Ext}^1(\mathbb{Z}/p, B) = B/Bp$, similarly vanishing for all higher $n$.
+          Hence, <span class="mathjax">$\textrm{Tor}^0(\mathbb{Z}/p, B) = B/Bp$</span>, <span class="mathjax">$\textrm{Tor}^1(\mathbb{Z}/p, B) = {}_pB$</span>, with <span class="mathjax">$\textrm{Tor}$</span> vanishing for all higher <span class="mathjax">$n$</span>. Flipping arrows, we obtain the injective resolution, and applying functor <span class="mathjax">$\textrm{Hom}(B, -)$</span>, we obtain <span class="mathjax">$\textrm{Ext}^0(\mathbb{Z}/p, B) = {}_pB$</span> and <span class="mathjax">$\textrm{Ext}^1(\mathbb{Z}/p, B) = B/Bp$</span>, similarly vanishing for all higher <span class="mathjax">$n$</span>.
         </p>
         <p>
-          An extension $\epsilon$ of $B$ by $A$ is defined to be:
+          An extension <span class="mathjax">$\epsilon$</span> of <span class="mathjax">$B$</span> by <span class="mathjax">$A$</span> is defined to be:
         </p>
         <div class="mathjax">
           $$
@@ -405,7 +408,7 @@
           $$
         </div>
         <p>
-          We write $H^n(G; B)$ to mean "homology of group G, with coefficients in B", and it is defined to be $\textrm{Tor}^n_{\mathbb{Z}G}(\mathbb{Z}, B)$. Cohomology of groups can be defined similarly, in terms of $\textrm{Ext}$.
+          We write <span class="mathjax">$H^n(G; B)$</span> to mean "homology of group G, with coefficients in B", and it is defined to be <span class="mathjax">$\textrm{Tor}^n_{\mathbb{Z}G}(\mathbb{Z}, B)$</span>. Cohomology of groups can be defined similarly, in terms of <span class="mathjax">$\textrm{Ext}$</span>.
         </p>
         <h3 id="6.-singular-and-cellular-homology">
           6. Singular and cellular homology
@@ -481,7 +484,7 @@
           See (a).
         </p>
         <p class="exercise">
-          $f$ is a <mark>retract</mark> of $g$ iff $pq = rs = 1$.
+          <span class="mathjax">$f$</span> is a <mark>retract</mark> of <span class="mathjax">$g$</span> iff <span class="mathjax">$pq = rs = 1$</span>.
         </p>
         <div class="mathjax">
           $$
@@ -496,10 +499,10 @@
           $$
         </div>
         <p class="exercise">
-          A <mark>functorial factorization</mark> is an ordered pair $(\alpha, \beta)$ of functors $\texttt{Map } \mathscr{C} \rightarrow \texttt{Map } \mathscr{C}$ such that $f = \beta(f) \circ \alpha(f)$ for all $f \in \mathscr{C}$. In particular, the domain of $\alpha(f)$ is the domain of $f$, the codomain of $\alpha(f)$ is the domain of $\beta(f)$, and the codomain of $\beta(f)$ is the codomain of $f$.
+          A <mark>functorial factorization</mark> is an ordered pair <span class="mathjax">$(\alpha, \beta)$</span> of functors <span class="mathjax">$\texttt{Map } \mathscr{C} \rightarrow \texttt{Map } \mathscr{C}$</span> such that <span class="mathjax">$f = \beta(f) \circ \alpha(f)$</span> for all <span class="mathjax">$f \in \mathscr{C}$</span>. In particular, the domain of <span class="mathjax">$\alpha(f)$</span> is the domain of <span class="mathjax">$f$</span>, the codomain of <span class="mathjax">$\alpha(f)$</span> is the domain of <span class="mathjax">$\beta(f)$</span>, and the codomain of <span class="mathjax">$\beta(f)$</span> is the codomain of <span class="mathjax">$f$</span>.
         </p>
         <p class="exercise">
-          $i$ has <mark>left-lifting property</mark> with respect to $p$ if there is a lift $h : B \rightarrow X$ such that $hi = f$ and $ph = g$.
+          <span class="mathjax">$i$</span> has <mark>left-lifting property</mark> with respect to <span class="mathjax">$p$</span> if there is a lift <span class="mathjax">$h : B \rightarrow X$</span> such that <span class="mathjax">$hi = f$</span> and <span class="mathjax">$ph = g$</span>.
         </p>
         <div class="mathjax">
           $$
@@ -514,22 +517,22 @@
           $$
         </div>
         <p>
-          Category $\mathscr{C}$ is a model category if it is equipped with three classes of morphisms $(\mathscr{W}. \mathscr{C}, \mathscr{F})$ that satisfy the following axioms:
+          Category <span class="mathjax">$\mathscr{C}$</span> is a model category if it is equipped with three classes of morphisms <span class="mathjax">$(\mathscr{W}. \mathscr{C}, \mathscr{F})$</span> that satisfy the following axioms:
         </p>
         <p>
-          $\textbf{(MC1)}$ [(Co)complete] $\mathscr{C}$ is complete and cocomplete.
+          <span class="mathjax">$\textbf{(MC1)}$</span> [(Co)complete] <span class="mathjax">$\mathscr{C}$</span> is complete and cocomplete.
         </p>
         <p>
-          $\textbf{(MC2)}$ [2 out of 3] If $(f, g, g \circ f)$ are three morphisms such that any two are in $\mathscr{W}$, then so is the third.
+          <span class="mathjax">$\textbf{(MC2)}$</span> [2 out of 3] If <span class="mathjax">$(f, g, g \circ f)$</span> are three morphisms such that any two are in <span class="mathjax">$\mathscr{W}$</span>, then so is the third.
         </p>
         <p>
-          $\textbf{(MC3)}$ [Retracts]
+          <span class="mathjax">$\textbf{(MC3)}$</span> [Retracts]
         </p>
         <p>
-          $\textbf{(MC4)}$ [Lifting]
+          <span class="mathjax">$\textbf{(MC4)}$</span> [Lifting]
         </p>
         <p>
-          $\textbf{(MC5)}$ [Functorial factorization]
+          <span class="mathjax">$\textbf{(MC5)}$</span> [Functorial factorization]
         </p>
         <h3 id="3.-the-homotopy-category-constructions-of-c_c-c_f-and-c_-cf">
           3. The homotopy category: constructions of $C_c$, $C_f$, and $C_{cf}$

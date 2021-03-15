@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -76,29 +79,29 @@
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            How to form a new type of this kind. For example $\Pi_{(x : A)} B(x)$
+            How to form a new type of this kind. For example <span class="mathjax">$\Pi_{(x : A)} B(x)$</span>
           </li>
           <li>
-            How to construct elements of this kind. For example, a function type has one constructor: $f(x) :\equiv 2x$.
+            How to construct elements of this kind. For example, a function type has one constructor: <span class="mathjax">$f(x) :\equiv 2x$</span>.
           </li>
           <li>
             How to use elements of this type. These are called eliminators or <mark>elimination rules</mark>. For instance, a function type has one eliminator, namely function application.
           </li>
           <li>
-            How the eliminator acts on the constructor. For example, $(\lambda x . \phi)(a)$ is judgementally equal to the expanded function $\lambda f . f(x)$.
+            How the eliminator acts on the constructor. For example, <span class="mathjax">$(\lambda x . \phi)(a)$</span> is judgementally equal to the expanded function <span class="mathjax">$\lambda f . f(x)$</span>.
           </li>
           <li>
             An optional uniqueness principle which expresses uniqueness into or out of the type. Every element of the type is uniquely determined by results of applying type eliminators to it. It is often a provable propositional equality: in this case, we call it <mark>propositional uniqueness principle</mark>.
           </li>
         </ol>
         <p>
-          Broadly speaking, there are two kinds of types: $\Pi$ (which turns out to be a degenerate case of an inductive type, which we will see later) and $\Sigma$.
+          Broadly speaking, there are two kinds of types: <span class="mathjax">$\Pi$</span> (which turns out to be a degenerate case of an inductive type, which we will see later) and <span class="mathjax">$\Sigma$</span>.
         </p>
         <h2 id="the-dependent-product-type-pi-type">
           The dependent product type ($\Pi$-type)
         </h2>
         <p>
-          Instead of defining projections $pr1$ and $pr2$ for the two projections from the pair, we will define a "recursor" as follows:
+          Instead of defining projections <span class="mathjax">$pr1$</span> and <span class="mathjax">$pr2$</span> for the two projections from the pair, we will define a "recursor" as follows:
         </p>
         <div class="mathjax">
           $$
@@ -116,7 +119,7 @@
           $$
         </div>
         <p>
-          In order to be able to write dependent functions over the product type, we can define function $f : \Pi_{x : A \times B} C(x)$ by providing $g : \Pi_{x : A} \Pi_{x : B} C((x, y))$ with the defining equation $f((x, y)) = g(x)(y)$.
+          In order to be able to write dependent functions over the product type, we can define function <span class="mathjax">$f : \Pi_{x : A \times B} C(x)$</span> by providing <span class="mathjax">$g : \Pi_{x : A} \Pi_{x : B} C((x, y))$</span> with the defining equation <span class="mathjax">$f((x, y)) = g(x)(y)$</span>.
         </p>
         <p>
           To prove a property for all elements of a prduct, it is enough to prove it for its canonical elements (the ordered pairs). In the universal case, we call the resulting function induction for product types:
@@ -150,7 +153,7 @@
           The dependent pair type ($\Sigma$-type)
         </h2>
         <p>
-          The dependent pair type is written $\Sigma_{x : A}, B(x)$. When the second component doesn't depend on the first, we get the cartesian product type $A \times B$. The first projection follows a straightforward extraction:
+          The dependent pair type is written <span class="mathjax">$\Sigma_{x : A}, B(x)$</span>. When the second component doesn't depend on the first, we get the cartesian product type <span class="mathjax">$A \times B$</span>. The first projection follows a straightforward extraction:
         </p>
         <div class="mathjax">
           $$
@@ -166,7 +169,7 @@
           $$
         </div>
         <p>
-          Thus, we need the induction principle for $\Sigma$-types (the <mark>dependent eliminator</mark>):
+          Thus, we need the induction principle for <span class="mathjax">$\Sigma$</span>-types (the <mark>dependent eliminator</mark>):
         </p>
         <div class="mathjax">
           $$
@@ -182,10 +185,10 @@
           $$
         </div>
         <p>
-          In order to package up the recursion and induction principles into a recursor for $\Sigma$, which we will not bother elaborating here. As usual, the recursor is the special case of induction when the family $C$ is fixed.
+          In order to package up the recursion and induction principles into a recursor for <span class="mathjax">$\Sigma$</span>, which we will not bother elaborating here. As usual, the recursor is the special case of induction when the family <span class="mathjax">$C$</span> is fixed.
         </p>
         <p>
-          Now, we present the <mark>type-theoretic axiom of choice</mark> where $R : A \rightarrow B \rightarrow U$:
+          Now, we present the <mark>type-theoretic axiom of choice</mark> where <span class="mathjax">$R : A \rightarrow B \rightarrow U$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -196,7 +199,7 @@
           $$
         </div>
         <p>
-          In English, this reads: if $\forall x : A$, there is a $y : B$ such that $R(x, y)$, then $\exists f : A \rightarrow B$ such that $\forall x : A$, we have $R(x, f(x))$. We will provide a more familar axiom of choice later.
+          In English, this reads: if <span class="mathjax">$\forall x : A$</span>, there is a <span class="mathjax">$y : B$</span> such that <span class="mathjax">$R(x, y)$</span>, then <span class="mathjax">$\exists f : A \rightarrow B$</span> such that <span class="mathjax">$\forall x : A$</span>, we have <span class="mathjax">$R(x, f(x))$</span>. We will provide a more familar axiom of choice later.
         </p>
         <p>
           Let's also provide an example of the magma type, in which the second component depends on the first component:
@@ -233,7 +236,7 @@
           $\mathbb{N}$ and primitive recursion
         </h2>
         <p>
-          To define infinite types like $\mathbb{N}$, we need the additional concept of well-founded recursion. We can package the recursor into a single function, as previously:
+          To define infinite types like <span class="mathjax">$\mathbb{N}$</span>, we need the additional concept of well-founded recursion. We can package the recursor into a single function, as previously:
         </p>
         <div class="mathjax">
           $$
@@ -273,7 +276,7 @@
           The cornerstone of homotopy type theory is that there can be more than one witness that two objects are equal. These correspond to paths or equivalences in the given space.
         </p>
         <p>
-          The identity family takes two copies of $A$, and illustrates an equality between them: $id_A : A \rightarrow A \rightarrow \mathscr{U}$. The formation rule says that given a type $A : \mathscr{U}$ and two elements $a, b : A$, we can form the type $(a =_A b) : \mathscr{U}$ in the same universe. The introduction rule is a dependent function called reflexivity:
+          The identity family takes two copies of <span class="mathjax">$A$</span>, and illustrates an equality between them: <span class="mathjax">$id_A : A \rightarrow A \rightarrow \mathscr{U}$</span>. The formation rule says that given a type <span class="mathjax">$A : \mathscr{U}$</span> and two elements <span class="mathjax">$a, b : A$</span>, we can form the type <span class="mathjax">$(a =_A b) : \mathscr{U}$</span> in the same universe. The introduction rule is a dependent function called reflexivity:
         </p>
         <div class="mathjax">
           $$
@@ -281,7 +284,7 @@
           $$
         </div>
         <p>
-          The elimination rule for identity types is subtle. We begin by considering the consequence that equals may be substituted for equals, called <mark>indiscrenability of identicals</mark>. For every family $C : A \rightarrow \mathscr{U}$, there is a function
+          The elimination rule for identity types is subtle. We begin by considering the consequence that equals may be substituted for equals, called <mark>indiscrenability of identicals</mark>. For every family <span class="mathjax">$C : A \rightarrow \mathscr{U}$</span>, there is a function
         </p>
         <div class="mathjax">
           $$
@@ -300,7 +303,7 @@
           Path induction
         </h2>
         <p>
-          The induction principle for the identity type is called <mark>path induction</mark>. It can be seen as stating that the family of identity types is freely generated by elements of the form $\texttt{refl}_x : x = x$.
+          The induction principle for the identity type is called <mark>path induction</mark>. It can be seen as stating that the family of identity types is freely generated by elements of the form <span class="mathjax">$\texttt{refl}_x : x = x$</span>.
         </p>
         <p>
           Given functions:
@@ -328,7 +331,7 @@
           $$
         </div>
         <p>
-          We can conclude that $C(x, y)$ is a reflexive relation that holds whenever $x = y$.
+          We can conclude that <span class="mathjax">$C(x, y)$</span> is a reflexive relation that holds whenever <span class="mathjax">$x = y$</span>.
         </p>
         <p>
           If we package up path induction into a single function, it takes the form:
@@ -339,7 +342,7 @@
           $$
         </div>
         <p>
-          with the equality, traditionally called $J$:
+          with the equality, traditionally called <span class="mathjax">$J$</span>:
         </p>
         <div class="mathjax">
           $$
@@ -350,7 +353,7 @@
           Indiscrenability of identicals is an instance of path induction, as we will show later.
         </p>
         <p>
-          By fixing a certain $a : A$, we can show <mark>based path induction</mark>, a simpler version:
+          By fixing a certain <span class="mathjax">$a : A$</span>, we can show <mark>based path induction</mark>, a simpler version:
         </p>
         <div class="mathjax">
           $$
@@ -358,13 +361,13 @@
           $$
         </div>
         <p>
-          Since every path is of the form $\texttt{refl}_a$, if we prove a property for reflexivity paths, then we have provided it for all paths.
+          Since every path is of the form <span class="mathjax">$\texttt{refl}_a$</span>, if we prove a property for reflexivity paths, then we have provided it for all paths.
         </p>
         <p>
-          Now, we must resolve a question: how can there be many different elements of the identity type (different paths), but also have an induction principle asserting that the only path is reflexivity? It is not that the identity type that is inductively defined; rather, it is the inductive family. In particular, path induction says that the family of types $x =_A y$, as $x$ and $y$ vary over all elements of $A$, inductively defined by the elements of the form $\texttt{refl}_x$. This means that to give an element of any other family, it suffices to consider the cases of the form $(x, y, p)$ dependent on a generic element $(x, y, p)$ of the identity family, it suffices to consider the cases of the form $(x, x, \texttt{refl}_x)$.
+          Now, we must resolve a question: how can there be many different elements of the identity type (different paths), but also have an induction principle asserting that the only path is reflexivity? It is not that the identity type that is inductively defined; rather, it is the inductive family. In particular, path induction says that the family of types <span class="mathjax">$x =_A y$</span>, as <span class="mathjax">$x$</span> and <span class="mathjax">$y$</span> vary over all elements of <span class="mathjax">$A$</span>, inductively defined by the elements of the form <span class="mathjax">$\texttt{refl}_x$</span>. This means that to give an element of any other family, it suffices to consider the cases of the form <span class="mathjax">$(x, y, p)$</span> dependent on a generic element <span class="mathjax">$(x, y, p)$</span> of the identity family, it suffices to consider the cases of the form <span class="mathjax">$(x, x, \texttt{refl}_x)$</span>.
         </p>
         <p>
-          In the homotopy interpretation, type of triples $(x, y, p)$, where $x, y$ are endpoints of the path $p$ (in other words, $\Sigma_{x, y : A} (x = y)$), is inductively generated by the constant loops at each point $x$. We will consequently see that that the space corresponding to $\Sigma_{x, y : A} (x = y)$ is a <mark>free path space</mark>. To conclude, $\Sigma_{y : A} (a = y)$ can be regarded as the type of all elements of $A$ which are equal to $a$.
+          In the homotopy interpretation, type of triples <span class="mathjax">$(x, y, p)$</span>, where <span class="mathjax">$x, y$</span> are endpoints of the path <span class="mathjax">$p$</span> (in other words, <span class="mathjax">$\Sigma_{x, y : A} (x = y)$</span>), is inductively generated by the constant loops at each point <span class="mathjax">$x$</span>. We will consequently see that that the space corresponding to <span class="mathjax">$\Sigma_{x, y : A} (x = y)$</span> is a <mark>free path space</mark>. To conclude, <span class="mathjax">$\Sigma_{y : A} (a = y)$</span> can be regarded as the type of all elements of <span class="mathjax">$A$</span> which are equal to <span class="mathjax">$a$</span>.
         </p>
       </article>
     </main>
