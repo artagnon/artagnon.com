@@ -1,4 +1,4 @@
-[ag/hw] Homework
+Algebraic Geometry: Homework
 
 # Affine and projective spaces
 
@@ -79,14 +79,19 @@ Suppose $\phi : \mathscr{F} \rightarrow \mathscr{G}$ is a morphism of sheaves. S
 
 Let $X$ be $\mathbb{C}$ with classical topology. Let $\underline{\mathbb{Z}}$ be the constant sheaf on $X$ associated to $\mathbb{Z}$, $\mathscr{O}_X$ the sheaf of holomorphic functions, and $\mathscr{F}$ the presheaf of functions admitting a holomorphic logarithm. Describe the exact sequence of presheaves on $X$:
 
-$$0 \rightarrow \underline{\mathbb{Z}} \rightarrow \mathscr{O}_X \rightarrow \mathscr{F} \rightarrow 0$$
+$$
+  0 \rightarrow \underline{\mathbb{Z}} \rightarrow \mathscr{O}_X \rightarrow \mathscr{F} \rightarrow 0
+$$
 
 where $\underline{\mathbb{Z}} \rightarrow \mathscr{O}_X$ is a natural inclusion, and $\mathscr{O}_X \rightarrow \mathscr{F}$ is given by $f \mapsto \text{exp}(2 \pi i f)$. Show that $\mathscr{F}$ is not a sheaf.
 
 --
 
 Prove that a section of a sheaf of sets is determined by its germs; i.e. the natural map is injective:
-$$\mathscr{F}(U) \rightarrow \prod_{p \in U} \mathscr{F}_p$$
+
+$$
+\mathscr{F}(U) \rightarrow \prod_{p \in U} \mathscr{F}_p
+$$
 
 --
 
@@ -155,7 +160,9 @@ Suppose $X = \cup U_i$ is an open cover, and we have sheaves $\mathscr{F}_i$ on 
 
 Stalk of a kernel is the kernel of stalks. For all $p \in X$, show that:
 
-$$(\text{Ker}(\mathscr{F} \rightarrow \mathscr{G}))_p \cong \text{Ker}(\mathscr{F}_p \rightarrow \mathscr{G}_p)$$
+$$
+  (\text{Ker}(\mathscr{F} \rightarrow \mathscr{G}))_p \cong \text{Ker}(\mathscr{F}_p \rightarrow \mathscr{G}_p)
+$$
 
 --
 
@@ -172,10 +179,16 @@ Show that taking stalks of a sheaf of abelian groups is an exact functor. More p
 --
 
 "Sections of U" is a left-exact functor. For topological space $X$, and $U \subset X$, if the sequence of sheaves $0 \rightarrow \mathscr{F} \rightarrow \mathscr{G} \rightarrow \mathscr{H}$ is exact, then so is:
-$$0 \rightarrow \mathscr{F}(U) \rightarrow \mathscr{G}(U) \rightarrow \mathscr{H}(U)$$
+
+$$
+  0 \rightarrow \mathscr{F}(U) \rightarrow \mathscr{G}(U) \rightarrow \mathscr{H}(U)
+$$
 
 Moreover, show that if the sequence of sheaves $\mathscr{F} \rightarrow \mathscr{G} \rightarrow \mathscr{H} \rightarrow 0$ is exact, then this is not:
-$$\mathscr{F}(U) \rightarrow \mathscr{G}(U) \rightarrow \mathscr{H}(U) \rightarrow 0$$
+
+$$
+  \mathscr{F}(U) \rightarrow \mathscr{G}(U) \rightarrow \mathscr{H}(U) \rightarrow 0
+$$
 
 --
 
@@ -384,20 +397,29 @@ Solution: We know that $I(S) = I(\bar{S})$, since $I(S)$ is the set of functions
 Prove that, if $J \subset A$ is an ideal, $I(V(J))) = \sqrt{J}$. To gain some intuition about this statement, consider the ideal $(x^2) \subset \mathbb{R}[x, y]$; operating on it with V, we get y-axis as the variety; operating on the variety with I, we get the ideal $(x)$, which is the radical of $(x^2)$.
 
 Proof: Let
-$$f \in J \subset k[x_1 ... x_n]$$
-$$(a_1 ... a_n) \in V(J)$$
+
+$$
+  f \in J \subset k[x_1 ... x_n] \\
+  (a_1 ... a_n) \in V(J)
+$$
 
 Introduce a new variable $y$, so that
-$$J' = (J, fy - 1) \subset k[x_1 ... x_n, y]$$
-$$(a_1 ... a_n, b) \in V(J')$$
+$$
+  J' = (J, fy - 1) \subset k[x_1 ... x_n, y] \\
+  (a_1 ... a_n, b) \in V(J')
+$$
 
 such that $bf(a_1 ... a_n) = 1$. Then,
 
-$$V(J') = \phi \implies 1 = \sum g_i h_i + g_0 (fy - 1) \mid g_i \in k[x_1 ... x_n, y], h_i \in J$$
+$$
+  V(J') = \phi \implies 1 = \sum g_i h_i + g_0 (fy - 1) \mid g_i \in k[x_1 ... x_n, y], h_i \in J
+$$
 
 Multiply both sides by $f^m$ to obtain:
 
-$$f^m = \sum g_i(x_1 ... x_n, fy) h_i + g_0(x_1 ... x_n, fy) (fy - 1)$$
+$$
+  f^m = \sum g_i(x_1 ... x_n, fy) h_i + g_0(x_1 ... x_n, fy) (fy - 1)
+$$
 
 This identity holds if $fy = 1$, and hence $f^m \in J$, as required $\Box$
 
@@ -580,7 +602,9 @@ Given a morphism of ringed spaces $\pi : X \rightarrow Y$, with $\pi(p) = q$, sh
 
 Suppose $\pi^\# : Y \rightarrow X$ is a morphism of rings. Define $\pi : \text{Spec } X \rightarrow \text{Spec } Y$ to be a morphism of ringed spaces as follows. The map of topological spaces is defined in the usual way. To describe a morphism of sheaves $\mathscr{O}_{\text{Spec } B} \rightarrow \pi_* \mathscr{O}_{\text{Spec } A}$ on $\text{Spec } B$, it suffices to describe a morphism of sheaves on the distinguished base of $\text{Spec } B$. On $D(g) \subset \text{Spec } B$, we define:
 
-$$\mathscr{O}_{\text{Spec } B}(D(g)) \rightarrow \mathscr{O}_{\text{Spec } A}(\pi^{-1} D(g))$$
+$$
+  \mathscr{O}_{\text{Spec } B}(D(g)) \rightarrow \mathscr{O}_{\text{Spec } A}(\pi^{-1} D(g))
+$$
 
 by $B_g \rightarrow A_{\pi^\# g}$. Show that this describes a morphism of sheaves on a distinguished base.
 
@@ -600,6 +624,9 @@ Show that a category of rings, and opposite category of affine schemes are equiv
 --
 
 Show that $\mathbb{A}_k^{n + 1} \backslash \{\overset{\rightarrow}{0}\} \rightarrow \mathbb{P}_k^n$ given by:
-$$(x_0, \ldots, x_n) \mapsto [x_0, \ldots, x_n]$$
+
+$$
+  (x_0, \ldots, x_n) \mapsto [x_0, \ldots, x_n]
+$$
 
 is a morphism of schemes.

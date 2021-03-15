@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[ag/1] Sheaves | artagnon.com</title>
+    <title>Sheaves | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -61,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [ag/1] Sheaves
+          Sheaves
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2019-03-04" class="begin">Mon, 04 Mar 2019 12:03:50 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2019-03-04" class="begin">Mon, 04 Mar 2019 12:03:50 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:25:49 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -110,9 +110,13 @@
           </li>
         </ol>
         <p>
-          <mark>Germ</mark> of a differentiable function <span class="mathjax">$f$</span> at a point <span class="mathjax">$p$</span> is defined as:<br/>
-          $<span class="mathjax">$\{f, \text{open } U \mid p \in U, f \in \mathscr{O}(U)\}$</span>$
+          <mark>Germ</mark> of a differentiable function <span class="mathjax">$f$</span> at a point <span class="mathjax">$p$</span> is defined as:
         </p>
+        <div class="mathjax">
+          $$
+          \{f, \text{open } U \mid p \in U, f \in \mathscr{O}(U)\}
+          $$
+        </div>
         <p>
           modulo the relation <span class="mathjax">$(f, U) \sim (g, V)$</span>, if there is some open set <span class="mathjax">$W \subset U$</span>, <span class="mathjax">$p \in V$</span>, such that <span class="mathjax">$f|_W = g|_W$</span> (i.e. <span class="mathjax">$\text{res}_{U, W} f = \text{res}_{V, W} g$</span>). Intuitively, two functions that are the same in an open neighborhood of <span class="mathjax">$p$</span>, but different elsewhere, have the same germ. We call this set of germs at <span class="mathjax">$p$</span> the <mark>stalk</mark> at <span class="mathjax">$p$</span>, denoted by <span class="mathjax">$\mathscr{O}_p$</span>. If <span class="mathjax">$f$</span> is defined on <span class="mathjax">$U$</span> and <span class="mathjax">$g$</span> is defined on <span class="mathjax">$V$</span>, then <span class="mathjax">$f + g$</span> is defined on <span class="mathjax">$U \cap V$</span>. If additionally, <span class="mathjax">$p \in U$</span> then we get the map <span class="mathjax">$\mathscr{O}(U) \rightarrow \mathscr{O}_p$</span>. We're talking about germs as <a href="/category/2#coproducts-and-colimits">colimits</a>. Moreover, <span class="mathjax">$\mathscr{O}_p$</span> is a local ring, since it has exactly one maximal ideal <span class="mathjax">$m_p \subset \mathscr{O}_p$</span>, the ideal of germs vanishing at <span class="mathjax">$p$</span>. We can interpret the value of the function, or the value of the germ, at a point, as an element of the local ring modulo the maximal ideal: this doesn't work for all sheaves, but does work for things behaving like sheaves of functions, formalized later as a <mark>locally ringed space</mark>.
         </p>
@@ -168,16 +172,24 @@
           A presheaf is the same thing as a contravariant functor.
         </p>
         <p>
-          The stalk of a presheaf <span class="mathjax">$\mathscr{F}$</span> is defined to be the set of germs of <span class="mathjax">$\mathscr{F}$</span> at point <span class="mathjax">$p$</span>, denoted <span class="mathjax">$\mathscr{F}_p$</span>:<br/>
-          $<span class="mathjax">$\mathscr{F}_p = \{f, \text{open } U \mid p \in U, f \in \mathscr{F}(U)\}$</span>$
+          The stalk of a presheaf <span class="mathjax">$\mathscr{F}$</span> is defined to be the set of germs of <span class="mathjax">$\mathscr{F}$</span> at point <span class="mathjax">$p$</span>, denoted <span class="mathjax">$\mathscr{F}_p$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          \mathscr{F}_p = \{f, \text{open } U \mid p \in U, f \in \mathscr{F}(U)\}
+          $$
+        </div>
         <p>
           modulo the relation <span class="mathjax">$(f, U) \sim (g, V)$</span>, where <span class="mathjax">$f|_W = g|_W$</span>.
         </p>
         <p>
-          Another equivalent definition in terms of colimits is:<br/>
-          $<span class="mathjax">$\mathscr{F}_p = \underset{\longrightarrow}{\text{Lim }} \mathscr{F}(U)$</span>$
+          Another equivalent definition in terms of colimits is:
         </p>
+        <div class="mathjax">
+          $$
+          \mathscr{F}_p = \underset{\longrightarrow}{\text{Lim }} \mathscr{F}(U)
+          $$
+        </div>
         <p>
           If <span class="mathjax">$p \in U, f \in \mathscr{F}(U)$</span>, then <span class="mathjax">$\mathscr{F}_p$</span> is called the ring of germs of <span class="mathjax">$f$</span> at point <span class="mathjax">$p$</span>.
         </p>
@@ -217,9 +229,13 @@
           As an example, consider the restriction of sheaf <span class="mathjax">$\mathscr{F}$</span> on <span class="mathjax">$U$</span>, <span class="mathjax">$\mathscr{F}|_U = \mathscr{F}|_U(V)$</span> for all open subsets <span class="mathjax">$V \subset U$</span>.
         </p>
         <p>
-          As another example, consider the <mark>skyscraper sheaf</mark>. Suppose <span class="mathjax">$X$</span> is a topological space, <span class="mathjax">$p \in X$</span>, and <span class="mathjax">$S$</span> is a set. Let <span class="mathjax">$i_p : p \rightarrow X$</span> be the inclusion; then <span class="mathjax">$i_{p, *}S$</span> is defined by:<br/>
-          $<span class="mathjax">$i_{p, *}S(U) = \begin{cases} S \quad p \in U \\ \{e\} \quad p \notin U \end{cases}$</span>$
+          As another example, consider the <mark>skyscraper sheaf</mark>. Suppose <span class="mathjax">$X$</span> is a topological space, <span class="mathjax">$p \in X$</span>, and <span class="mathjax">$S$</span> is a set. Let <span class="mathjax">$i_p : p \rightarrow X$</span> be the inclusion; then <span class="mathjax">$i_{p, *}S$</span> is defined by:
         </p>
+        <div class="mathjax">
+          $$
+          i_{p, *}S(U) = \begin{cases} S \quad p \in U \\ \{e\} \quad p \notin U \end{cases}
+          $$
+        </div>
         <p>
           where <span class="mathjax">$\{e\}$</span> is any one-point set. This is called the skyscraper sheaf, because the informal picture looks like a skyscraper at point <span class="mathjax">$p$</span>.
         </p>
@@ -300,16 +316,24 @@
           Lots of properties of sheaves can be checked at the level of stalks. This isn't true of presheaves, and reflects the local nature of sheaves.
         </p>
         <p>
-          Suppose <span class="mathjax">$\mathscr{F}$</span> is a sheaf of abelian groups of <span class="mathjax">$X$</span>, and <span class="mathjax">$s$</span> is a global section of <span class="mathjax">$\mathscr{F}$</span>. Let the <mark>support</mark> of <span class="mathjax">$s$</span> be the points <span class="mathjax">$p \in X$</span> where <span class="mathjax">$s$</span> has a nonzero germ:<br/>
-          $<span class="mathjax">$\text{Supp}(s) = \{p \in X \mid s_p \neq 0 \text{ in } \mathscr{F}_p\}$</span>$
+          Suppose <span class="mathjax">$\mathscr{F}$</span> is a sheaf of abelian groups of <span class="mathjax">$X$</span>, and <span class="mathjax">$s$</span> is a global section of <span class="mathjax">$\mathscr{F}$</span>. Let the <mark>support</mark> of <span class="mathjax">$s$</span> be the points <span class="mathjax">$p \in X$</span> where <span class="mathjax">$s$</span> has a nonzero germ:
         </p>
+        <div class="mathjax">
+          $$
+          \text{Supp}(s) = \{p \in X \mid s_p \neq 0 \text{ in } \mathscr{F}_p\}
+          $$
+        </div>
         <p>
           We can think of this as the subset of <span class="mathjax">$X$</span> "where section <span class="mathjax">$s$</span> lives". The complement is the locus where <span class="mathjax">$s$</span> is the <span class="mathjax">$0$</span>-section.
         </p>
         <p>
-          We say that an element <span class="mathjax">$\prod_{p \in U} s_p$</span> of <span class="mathjax">$\prod_{p \in U} \mathscr{F}_p$</span> consists of <mark>compatible germs</mark>, for all <span class="mathjax">$p \in U$</span>, if there is some representative<br/>
-          $<span class="mathjax">$\{U_p \text{ open in } U, \tilde{s}_p \in \mathscr{F}(U_p)\}$</span>$
+          We say that an element <span class="mathjax">$\prod_{p \in U} s_p$</span> of <span class="mathjax">$\prod_{p \in U} \mathscr{F}_p$</span> consists of <mark>compatible germs</mark>, for all <span class="mathjax">$p \in U$</span>, if there is some representative
         </p>
+        <div class="mathjax">
+          $$
+          \{U_p \text{ open in } U, \tilde{s}_p \in \mathscr{F}(U_p)\}
+          $$
+        </div>
         <p>
           for <span class="mathjax">$s_p$</span> (where <span class="mathjax">$p \in U_p \subset U$</span>), such that the germ <span class="mathjax">$\tilde{s}_p$</span> is <span class="mathjax">$s_q$</span> for all <span class="mathjax">$q \in U_p$</span>. Equivalently, there an open cover <span class="mathjax">$\{U_i\}$</span> of <span class="mathjax">$U$</span> and sections <span class="mathjax">$f_i \in \mathscr{F}(U_i)$</span>, such that if <span class="mathjax">$p \in U_i$</span>, then <span class="mathjax">$s_p$</span> is the germ of <span class="mathjax">$s_i$</span> at <span class="mathjax">$p$</span>. Hence, any section <span class="mathjax">$s$</span> of <span class="mathjax">$\mathscr{F}$</span> over <span class="mathjax">$U$</span> gives a choice of compatible germs for <span class="mathjax">$U$</span>.
         </p>
@@ -369,9 +393,13 @@
           </li>
         </ol>
         <p>
-          Suppose <span class="mathjax">$B_i$</span> is a base on <span class="mathjax">$X$</span>, and <span class="mathjax">$F$</span> is a sheaf of sets on this base, then there exists sheaf <span class="mathjax">$\mathscr{F}$</span> extending <span class="mathjax">$F$</span>, with isomorphisms <span class="mathjax">$\mathscr{F}(B_i) \cong F(B_i)$</span> agreeing with restriction maps. This sheaf <span class="mathjax">$\mathscr{F}$</span> is unique upto isomorphism. To prove this, let <span class="mathjax">$\mathscr{F}$</span> be the sheaf of compatible germs of <span class="mathjax">$F$</span>. Define stalk of a presheaf <span class="mathjax">$F$</span> on a base <span class="mathjax">$p \in X$</span> by <span class="mathjax">$F_p = \underset{\longrightarrow}{\text{Lim }} F(B_i)$</span> where colimit is over all <span class="mathjax">$B_i$</span> in the base containing <span class="mathjax">$p$</span>. A family of germs in open set <span class="mathjax">$U$</span> is compatible near <span class="mathjax">$p$</span> if there is a section <span class="mathjax">$s$</span> over some <span class="mathjax">$B_i$</span> containing <span class="mathjax">$p$</span> such that the germs over <span class="mathjax">$B_i$</span> are the germs of <span class="mathjax">$s$</span>; more precisely,<br/>
-          $<span class="mathjax">$\mathscr{F}(U) = \{(f_p \in F_p)_{p \in U}\}$</span>$
+          Suppose <span class="mathjax">$B_i$</span> is a base on <span class="mathjax">$X$</span>, and <span class="mathjax">$F$</span> is a sheaf of sets on this base, then there exists sheaf <span class="mathjax">$\mathscr{F}$</span> extending <span class="mathjax">$F$</span>, with isomorphisms <span class="mathjax">$\mathscr{F}(B_i) \cong F(B_i)$</span> agreeing with restriction maps. This sheaf <span class="mathjax">$\mathscr{F}$</span> is unique upto isomorphism. To prove this, let <span class="mathjax">$\mathscr{F}$</span> be the sheaf of compatible germs of <span class="mathjax">$F$</span>. Define stalk of a presheaf <span class="mathjax">$F$</span> on a base <span class="mathjax">$p \in X$</span> by <span class="mathjax">$F_p = \underset{\longrightarrow}{\text{Lim }} F(B_i)$</span> where colimit is over all <span class="mathjax">$B_i$</span> in the base containing <span class="mathjax">$p$</span>. A family of germs in open set <span class="mathjax">$U$</span> is compatible near <span class="mathjax">$p$</span> if there is a section <span class="mathjax">$s$</span> over some <span class="mathjax">$B_i$</span> containing <span class="mathjax">$p$</span> such that the germs over <span class="mathjax">$B_i$</span> are the germs of <span class="mathjax">$s$</span>; more precisely,
         </p>
+        <div class="mathjax">
+          $$
+          \mathscr{F}(U) = \{(f_p \in F_p)_{p \in U}\}
+          $$
+        </div>
         <p>
           such that for all <span class="mathjax">$p \in U$</span> there exists <span class="mathjax">$B$</span> with <span class="mathjax">$p \in B \subset U$</span>, <span class="mathjax">$s \in F(B)$</span>, with <span class="mathjax">$s_q = f_q$</span> for all <span class="mathjax">$q \in B$</span>, where <span class="mathjax">$B$</span> is in our base. This a sheaf for the same reason a sheaf of compatible germs was. Now, we claim that <span class="mathjax">$F(B) \rightarrow \mathscr{F}(B)$</span> is an isomorphism, and that <span class="mathjax">$\mathscr{F}$</span> is unique upto isomorphism, completing our proof.
         </p>

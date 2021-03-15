@@ -1,4 +1,4 @@
-[gn] General Topology
+General Topology
 
 Topology is $\{X, \tau\}$, where $X$ is a set and $\tau$ is the set of subsets of $X$; when unambiguous, $\tau$ can be used to describe the toplogy. $\tau$ satisfies the following properties:
 
@@ -49,10 +49,16 @@ If $X$ is an ordered set, and contains element $a$, the following four subsets a
 Given $X$ and $Y$, two topological spaces, the product topology $X \times Y$ is defined as a collection $\mathscr{B}$ having as basis all subsets of the form $U \times V$, where $U$ is an open subset of $X$, and $V$ is a an open subset of $Y$.
 
 A property of product spaces is:
-$$(U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2)$$
+
+$$
+  (U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2)
+$$
 
 If $\mathscr{B}$ is a basis for $X$, and $\mathscr{C}$ is a basis for $Y$, $X$ and $Y$ being topological spaces, then the collection:
-$$\mathscr{D} = \{B \times C \mid B \in \mathscr{B}, C \in \mathscr{C}\}$$
+
+$$
+  \mathscr{D} = \{B \times C \mid B \in \mathscr{B}, C \in \mathscr{C}\}
+$$
 
 is a basis for $X \times Y$. This can be proved as follows. Given an open set $W$ of $X \times Y$, and a point $x \times y \in W$, by definition of product topology, there is a basis element $U \times V$ such that $x \times y \in U \times V \subset W$. Because $\mathscr{B}, \mathscr{C}$ are bases of $X, Y$, we can choose an element $B \in \mathscr{B}$ such that $x \in B \subset U$, and $C \in \mathscr{C}$ such that $y \in C \subset V$. Then $x \times y \in B \times C \subset W$. Thus the collection $\mathscr{D}$ meets the criterion for being a basis of $X \times Y$.
 
@@ -60,21 +66,29 @@ is a basis for $X \times Y$. This can be proved as follows. Given an open set $W
 
 The collection $\mathscr{S}$ defined as:
 
-$$\mathscr{S} = \{\pi_1^{-1}(U) \mid U \text{ open in } X\} \cup \{\pi_2^{-1}(V) \mid V \text{ open in } Y\}$$
+$$
+  \mathscr{S} = \{\pi_1^{-1}(U) \mid U \text{ open in } X\} \cup \{\pi_2^{-1}(V) \mid V \text{ open in } Y\}
+$$
 
 is a subbasis for the product topology on $X \times Y$.
 
 # Subspace topology
 
 Given the topology $(X, \tau)$ and a $Y \subset X$, the subspace topology $\tau_Y$ is defined as:
-$$\tau_Y = \{Y \cap U \mid U \in \tau\}$$
+
+$$
+  \tau_Y = \{Y \cap U \mid U \in \tau\}
+$$
 
 If $\mathscr{B}$ is the basis for topology $X$, then $\mathscr{B}_Y = \{B \cap Y \mid B \in \mathscr{B}\}$ is a basis for the subspace topology on $Y$. We prove this as follows: Given $U$ open in $X$ and $y \in U \cap Y$, we can choose $B$ so that $y \in B \subset U$. Then, $y \in B \cap Y \subset U \cap Y$. It follows that $\mathscr{B}_Y$ is the basis for the subpsace topology on $Y$.
 
 Let $Y$ be a subspace of $X$. If $U$ is open in $Y$ and $Y$ is open in $X$, then $U$ is open in $X$. To prove this, notice that, since $Y$ is open in $U$, $Y = U \cap V$, for some open set $V$ in $X$. Now, since both $U$ and $V$ are open in $X$, so is $U \cap V$.
 
 If $A$ and $B$ are subspaces of $X$ and $Y$, then the product topology $A \times B$ is the same as the topology $A \times B$ one inherits as a subspace of $X \times Y$. To prove this, let $U, V$ be the general basis element of $X, Y$, where $U$ is open in $X$ and $V$ is open in $Y$. We know that the general basis element for for the subspace topology of $A \times B$ satisfies:
-$$(U \times A) \cap (V \times B) = (U \cap V) \times (A \cap B)$$
+
+$$
+  (U \times A) \cap (V \times B) = (U \cap V) \times (A \cap B)
+$$
 
 So, $(U \cap V) \times (A \cap B)$ is the general basis element for the product topology on $A \times B$. Since the bases for the product topology on $A \times B$ and the subspace topology $A \times B$ are the same, the topologies are the same.
 
@@ -85,10 +99,16 @@ Let $X$ be an ordered set in the order topology, and $Y$ be a subset. The result
 A subset $A$ of a topological space $X$ is said to be closed if $X - A$ is open. As an example, consider the subset $[a, b] \in \mathbb{R}$. It is closed because $\mathbb{R} - [a, b] = (-\infty, a) \cup (b, +\infty)$ is open.
 
 To prove (i), notice that $X, \phi$ are complements of open sets $\phi, X$, and are hence closed. To prove (ii), apply De-Morgan's law to a collection of closed sets $\{A_\alpha\}_{\alpha \in J}$:
-$$X - \bigcap_{\alpha \in J} A_\alpha = \bigcup_{\alpha \in J}(X - A_\alpha)$$
+
+$$
+  X - \bigcap_{\alpha \in J} A_\alpha = \bigcup_{\alpha \in J}(X - A_\alpha)
+$$
 
 Notice that the right hand side of this equation represents arbitary unions of open sets, and is hence open, since $X - A_\alpha$ is open by definition. To prove (iii), apply De-Morgan's law again on closed sets $A_j$:
-$$X - \bigcup_{j \in J} A_j = \bigcap_{j \in J}(X - A_j)$$
+
+$$
+  X - \bigcup_{j \in J} A_j = \bigcap_{j \in J}(X - A_j)
+$$
 
 The right side of this equation represents finite intersections of open sets and is therefore open. Hence, $\bigcup A_j$ is closed.
 
@@ -96,7 +116,9 @@ The right side of this equation represents finite intersections of open sets and
 
 Given a subset $A$ of a topology, the interior of $A$, denoted by $\text{Int } A$, is defined as the union of all open sets contained in $A$, and the closure of $A$, denoted by $\bar{A}$, is defined as the intersection of all closed sets containing $A$.
 
-$$\text{Int } A \subset A \subset \bar{A}$$
+$$
+  \text{Int } A \subset A \subset \bar{A}
+$$
 
 If $A$ is open, $A = \text{Int } A$, and if $A$ is closed, $A = \bar{A}$.
 
@@ -114,7 +136,10 @@ Let $A \subset X$. Then, $x$ is termed as the limit point of $A$ if every neighb
 Examples: In $B = \{\frac{1}{n} \mid n \in \mathbb{Z}^+\}$, the only limit point is $0$. In $A = (0, 1] \subset \mathbb{R}$, $1$ and $\frac{1}{2}$ are limit points. Every point in $[0, 1]$ is a limit point.
 
 The relationship between closure of $A$, and the set of all limit points of $A$, given by $A'$, is
-$$\bar{A} = A \cup A'$$
+
+$$
+  \bar{A} = A \cup A'
+$$
 
 To prove this, consider $x \in A'$, so that every neighborhood of $x$ intersects $A$ in a point different from $x$. Therefore, $x \in \bar{A}$, and hence $A' \subset \bar{A}$. Since $A \subset \bar{A}$ by definition, it follows that $A \cup A' \subset \bar{A}$. To demonstrate the reverse inclusion, let $x \in \bar{A}$, and show that $x \in A \cup A'$. If $x \in A$, this is trivial. If not, since $x \in \bar{A}$, we know that every neighborhood $U$ of $x$ intersects $A$ different from $x$. Then $x \in A'$, and $x \in A \cup A'$, completing the proof.
 
@@ -158,12 +183,18 @@ A metric on a set $X$ is given by a distance function $d : X \times X \rightarro
 (iii) (Triangle inequality) $d(x, y) + d(y, z) \geq d(x, z) \mid x, y, z \in X$
 
 An $\epsilon$-ball centered at $x$ is defined as:
-$$B_d(x, \epsilon) = \{y \mid d(x, y) \lt \epsilon\}$$
+
+$$
+  B_d(x, \epsilon) = \{y \mid d(x, y) \lt \epsilon\}
+$$
 
 A set $U$ is open in the metric topology induced by $d$ iff for each $y \subset U$, $\exists \delta > 0 : B_d(y, \delta) \subset U$
 
 Let $d$ and $d'$ be two metrics on set $X$, and $\tau$, $\tau'$ be the topologies induced by them. $\tau'$ is finer than $\tau$ iff for each $x \in X$ and $\epsilon \gt 0$, $\exists \delta \gt 0$ such that:
-$$B_{d'}(x, \delta) \subset B_d(x, \epsilon)$$
+
+$$
+  B_{d'}(x, \delta) \subset B_d(x, \epsilon)
+$$
 
 An example of a metric space is:
 
@@ -175,28 +206,41 @@ $$
 
 The standard metric space on $\mathbb{R}$ defined as $d(x, y) = |x - y|$. The standard bounded metric is defined as $\bar{f}(x, y) = min\{f(x, y), 1\}$. The Eucledian metric is defined as:
 
-$$d(x, y) = ((x_1 - y_1)^2 + \ldots (x_n - y_n)^2)^{1/2}$$
+$$
+  d(x, y) = ((x_1 - y_1)^2 + \ldots (x_n - y_n)^2)^{1/2}
+$$
 
 The `square metric` $\rho$ is defined as:
 
-$$\rho(x, y) = max\{(x_1 - y_1), \ldots (x_n - y_n)\}$$
+$$
+  \rho(x, y) = max\{(x_1 - y_1), \ldots (x_n - y_n)\}
+$$
 
 Given an index set J, the `uniform metric` $\bar{\rho}$ on $\mathbb{R}^J$ is defined as:
-$$\bar{\rho}(x, y) = \text{sup}\{\bar{d}(x_\alpha, y_\alpha) \mid \alpha \in J\}$$
+
+$$
+  \bar{\rho}(x, y) = \text{sup}\{\bar{d}(x_\alpha, y_\alpha) \mid \alpha \in J\}
+$$
 
 The uniform topology on $\mathbb{R}^J$ is finer than the product topology and coarser than the box topology; all these topologies are different if $J$ is infinite.
 
 Every metric space satisfies the Hausdorff axiom. Let $x, y \in (X, d)$ and $\epsilon = \frac{1}{2} d(x, y)$. Then the triangle inequality implies that $B_d(x, \epsilon), B_d(y, \epsilon)$ are disjoint.
 
 Let $X$ and $Y$ be two metric spaces with metrics $d_X$ and $d_Y$, and let $f : X \rightarrow Y$. Further, let $x \in X$, $y \in Y$, and $\epsilon \gt 0$. Then, the requirement for continuity of $f$ is equivalent to: $\exists \delta \gt 0$ such that:
-$$f_X(x, y) \lt \delta \implies f_Y(f(x), f(y)) \lt \epsilon$$
+
+$$
+  f_X(x, y) \lt \delta \implies f_Y(f(x), f(y)) \lt \epsilon
+$$
 
 The `sequence lemma`: Let $X$ be a topology, and $A \subset X$. If a sequence of points of $A$ converge to $x$, then $x \in \bar{A}$. The converse holds if $X$ is metrizable.
 
 Let $f : X \rightarrow Y$ be continuous. For every convergent sequence, $x_n \rightarrow x$ in $X$, $f(x_n) \rightarrow f(x)$. The converse holds if $X$ is metrizable. Here, we don't use the full strength of metrizability: all we need is countable collection of balls $B_d(x, \frac{1}{n})$ about $x$.
 
 Let $f_n : X \rightarrow Y$, from set $X$ to metric space $Y$, be a sequence of functions. Then $(f_n)$ converges uniformly to $f$ if given $\epsilon$, $\exists N \gt 0$ such that:
-$$d(f_n(x), f(x)) < \epsilon$$
+
+$$
+  d(f_n(x), f(x)) < \epsilon
+$$
 
 for all $x \in X$ and $n \gt N$. The uniform limit theorem additionally states that $f$ is continuous.
 
@@ -236,10 +280,16 @@ Generalization of IVT of calculus: Let $f : X \rightarrow Y$ be a continuous map
 A continuous map $f : [a, b] \rightarrow X$ in a space $X$ is a path in $X$ from a closed interval $[a, b] \in \mathbb{R}$, such that $f(a) = x, f(b) = y$, $x, y \in X$. $X$ is said to be `path connected` if every pair of points in $X$ can be joined by a path in $X$.
 
 The unit ball given by $\mathbb{B}^n \in \mathbb{R}^n$ where:
-$$\mathbb{B}^n = ||x|| = (x_1^2 + \ldots + x_n^2)^{1/2}$$
+
+$$
+  \mathbb{B}^n = ||x|| = (x_1^2 + \ldots + x_n^2)^{1/2}
+$$
 
 is path connected since we can always take a path from $[0, 1] \rightarrow \mathbb{R}^n$ given by:
-$$f(n) = (1 - t)x + ty$$
+
+$$
+  f(n) = (1 - t)x + ty
+$$
 
 Another example: The `punctured Eucledian space` given by $\mathbb{R}^n - \{0\}$ is path connected for $n > 1$ since we can always take a path connecting two points that doesn't go through the origin.
 
@@ -258,7 +308,10 @@ A collection of subsets $\mathscr{A}$ of space $X$ is said to be the cover or `c
 A space $X$ is compact if every finite subcollection of $\mathscr{A}$ also contains an open covering of $X$.
 
 All closed subsets of $\mathbb{R}$ are compact, so $[0, 1]$ is an example of a compact space. However, neither $(0, 1)$ nor $(0, 1]$ are compact. The latter is because we can choose an open covering
-$$\mathscr{A} = \{(1/n, 1] \mid n \in \mathbb{Z}^+\}$$
+
+$$
+  \mathscr{A} = \{(1/n, 1] \mid n \in \mathbb{Z}^+\}
+$$
 
 which doesn't cover $(0, 1]$.
 

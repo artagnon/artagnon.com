@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[gn] General Topology | artagnon.com</title>
+    <title>General Topology | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -61,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [gn] General Topology
+          General Topology
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2019-01-11" class="begin">Fri, 11 Jan 2019 13:38:21 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2019-01-11" class="begin">Fri, 11 Jan 2019 13:38:21 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:25:49 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -158,13 +158,21 @@
           Given <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span>, two topological spaces, the product topology <span class="mathjax">$X \times Y$</span> is defined as a collection <span class="mathjax">$\mathscr{B}$</span> having as basis all subsets of the form <span class="mathjax">$U \times V$</span>, where <span class="mathjax">$U$</span> is an open subset of <span class="mathjax">$X$</span>, and <span class="mathjax">$V$</span> is a an open subset of <span class="mathjax">$Y$</span>.
         </p>
         <p>
-          A property of product spaces is:<br/>
-          $<span class="mathjax">$(U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2)$</span>$
+          A property of product spaces is:
         </p>
+        <div class="mathjax">
+          $$
+          (U_1 \times V_1) \cap (U_2 \times V_2) = (U_1 \cap U_2) \times (V_1 \cap V_2)
+          $$
+        </div>
         <p>
-          If <span class="mathjax">$\mathscr{B}$</span> is a basis for <span class="mathjax">$X$</span>, and <span class="mathjax">$\mathscr{C}$</span> is a basis for <span class="mathjax">$Y$</span>, <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span> being topological spaces, then the collection:<br/>
-          $<span class="mathjax">$\mathscr{D} = \{B \times C \mid B \in \mathscr{B}, C \in \mathscr{C}\}$</span>$
+          If <span class="mathjax">$\mathscr{B}$</span> is a basis for <span class="mathjax">$X$</span>, and <span class="mathjax">$\mathscr{C}$</span> is a basis for <span class="mathjax">$Y$</span>, <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span> being topological spaces, then the collection:
         </p>
+        <div class="mathjax">
+          $$
+          \mathscr{D} = \{B \times C \mid B \in \mathscr{B}, C \in \mathscr{C}\}
+          $$
+        </div>
         <p>
           is a basis for <span class="mathjax">$X \times Y$</span>. This can be proved as follows. Given an open set <span class="mathjax">$W$</span> of <span class="mathjax">$X \times Y$</span>, and a point <span class="mathjax">$x \times y \in W$</span>, by definition of product topology, there is a basis element <span class="mathjax">$U \times V$</span> such that <span class="mathjax">$x \times y \in U \times V \subset W$</span>. Because <span class="mathjax">$\mathscr{B}, \mathscr{C}$</span> are bases of <span class="mathjax">$X, Y$</span>, we can choose an element <span class="mathjax">$B \in \mathscr{B}$</span> such that <span class="mathjax">$x \in B \subset U$</span>, and <span class="mathjax">$C \in \mathscr{C}$</span> such that <span class="mathjax">$y \in C \subset V$</span>. Then <span class="mathjax">$x \times y \in B \times C \subset W$</span>. Thus the collection <span class="mathjax">$\mathscr{D}$</span> meets the criterion for being a basis of <span class="mathjax">$X \times Y$</span>.
         </p>
@@ -186,9 +194,13 @@
           Subspace topology
         </h2>
         <p>
-          Given the topology <span class="mathjax">$(X, \tau)$</span> and a <span class="mathjax">$Y \subset X$</span>, the subspace topology <span class="mathjax">$\tau_Y$</span> is defined as:<br/>
-          $<span class="mathjax">$\tau_Y = \{Y \cap U \mid U \in \tau\}$</span>$
+          Given the topology <span class="mathjax">$(X, \tau)$</span> and a <span class="mathjax">$Y \subset X$</span>, the subspace topology <span class="mathjax">$\tau_Y$</span> is defined as:
         </p>
+        <div class="mathjax">
+          $$
+          \tau_Y = \{Y \cap U \mid U \in \tau\}
+          $$
+        </div>
         <p>
           If <span class="mathjax">$\mathscr{B}$</span> is the basis for topology <span class="mathjax">$X$</span>, then <span class="mathjax">$\mathscr{B}_Y = \{B \cap Y \mid B \in \mathscr{B}\}$</span> is a basis for the subspace topology on <span class="mathjax">$Y$</span>. We prove this as follows: Given <span class="mathjax">$U$</span> open in <span class="mathjax">$X$</span> and <span class="mathjax">$y \in U \cap Y$</span>, we can choose <span class="mathjax">$B$</span> so that <span class="mathjax">$y \in B \subset U$</span>. Then, <span class="mathjax">$y \in B \cap Y \subset U \cap Y$</span>. It follows that <span class="mathjax">$\mathscr{B}_Y$</span> is the basis for the subpsace topology on <span class="mathjax">$Y$</span>.
         </p>
@@ -196,9 +208,13 @@
           Let <span class="mathjax">$Y$</span> be a subspace of <span class="mathjax">$X$</span>. If <span class="mathjax">$U$</span> is open in <span class="mathjax">$Y$</span> and <span class="mathjax">$Y$</span> is open in <span class="mathjax">$X$</span>, then <span class="mathjax">$U$</span> is open in <span class="mathjax">$X$</span>. To prove this, notice that, since <span class="mathjax">$Y$</span> is open in <span class="mathjax">$U$</span>, <span class="mathjax">$Y = U \cap V$</span>, for some open set <span class="mathjax">$V$</span> in <span class="mathjax">$X$</span>. Now, since both <span class="mathjax">$U$</span> and <span class="mathjax">$V$</span> are open in <span class="mathjax">$X$</span>, so is <span class="mathjax">$U \cap V$</span>.
         </p>
         <p>
-          If <span class="mathjax">$A$</span> and <span class="mathjax">$B$</span> are subspaces of <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span>, then the product topology <span class="mathjax">$A \times B$</span> is the same as the topology <span class="mathjax">$A \times B$</span> one inherits as a subspace of <span class="mathjax">$X \times Y$</span>. To prove this, let <span class="mathjax">$U, V$</span> be the general basis element of <span class="mathjax">$X, Y$</span>, where <span class="mathjax">$U$</span> is open in <span class="mathjax">$X$</span> and <span class="mathjax">$V$</span> is open in <span class="mathjax">$Y$</span>. We know that the general basis element for for the subspace topology of <span class="mathjax">$A \times B$</span> satisfies:<br/>
-          $<span class="mathjax">$(U \times A) \cap (V \times B) = (U \cap V) \times (A \cap B)$</span>$
+          If <span class="mathjax">$A$</span> and <span class="mathjax">$B$</span> are subspaces of <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span>, then the product topology <span class="mathjax">$A \times B$</span> is the same as the topology <span class="mathjax">$A \times B$</span> one inherits as a subspace of <span class="mathjax">$X \times Y$</span>. To prove this, let <span class="mathjax">$U, V$</span> be the general basis element of <span class="mathjax">$X, Y$</span>, where <span class="mathjax">$U$</span> is open in <span class="mathjax">$X$</span> and <span class="mathjax">$V$</span> is open in <span class="mathjax">$Y$</span>. We know that the general basis element for for the subspace topology of <span class="mathjax">$A \times B$</span> satisfies:
         </p>
+        <div class="mathjax">
+          $$
+          (U \times A) \cap (V \times B) = (U \cap V) \times (A \cap B)
+          $$
+        </div>
         <p>
           So, <span class="mathjax">$(U \cap V) \times (A \cap B)$</span> is the general basis element for the product topology on <span class="mathjax">$A \times B$</span>. Since the bases for the product topology on <span class="mathjax">$A \times B$</span> and the subspace topology <span class="mathjax">$A \times B$</span> are the same, the topologies are the same.
         </p>
@@ -212,13 +228,21 @@
           A subset <span class="mathjax">$A$</span> of a topological space <span class="mathjax">$X$</span> is said to be closed if <span class="mathjax">$X - A$</span> is open. As an example, consider the subset <span class="mathjax">$[a, b] \in \mathbb{R}$</span>. It is closed because <span class="mathjax">$\mathbb{R} - [a, b] = (-\infty, a) \cup (b, +\infty)$</span> is open.
         </p>
         <p>
-          To prove (i), notice that <span class="mathjax">$X, \phi$</span> are complements of open sets <span class="mathjax">$\phi, X$</span>, and are hence closed. To prove (ii), apply De-Morgan's law to a collection of closed sets <span class="mathjax">$\{A_\alpha\}_{\alpha \in J}$</span>:<br/>
-          $<span class="mathjax">$X - \bigcap_{\alpha \in J} A_\alpha = \bigcup_{\alpha \in J}(X - A_\alpha)$</span>$
+          To prove (i), notice that <span class="mathjax">$X, \phi$</span> are complements of open sets <span class="mathjax">$\phi, X$</span>, and are hence closed. To prove (ii), apply De-Morgan's law to a collection of closed sets <span class="mathjax">$\{A_\alpha\}_{\alpha \in J}$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          X - \bigcap_{\alpha \in J} A_\alpha = \bigcup_{\alpha \in J}(X - A_\alpha)
+          $$
+        </div>
         <p>
-          Notice that the right hand side of this equation represents arbitary unions of open sets, and is hence open, since <span class="mathjax">$X - A_\alpha$</span> is open by definition. To prove (iii), apply De-Morgan's law again on closed sets <span class="mathjax">$A_j$</span>:<br/>
-          $<span class="mathjax">$X - \bigcup_{j \in J} A_j = \bigcap_{j \in J}(X - A_j)$</span>$
+          Notice that the right hand side of this equation represents arbitary unions of open sets, and is hence open, since <span class="mathjax">$X - A_\alpha$</span> is open by definition. To prove (iii), apply De-Morgan's law again on closed sets <span class="mathjax">$A_j$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          X - \bigcup_{j \in J} A_j = \bigcap_{j \in J}(X - A_j)
+          $$
+        </div>
         <p>
           The right side of this equation represents finite intersections of open sets and is therefore open. Hence, <span class="mathjax">$\bigcup A_j$</span> is closed.
         </p>
@@ -260,9 +284,13 @@
           Examples: In <span class="mathjax">$B = \{\frac{1}{n} \mid n \in \mathbb{Z}^+\}$</span>, the only limit point is <span class="mathjax">$0$</span>. In <span class="mathjax">$A = (0, 1] \subset \mathbb{R}$</span>, <span class="mathjax">$1$</span> and <span class="mathjax">$\frac{1}{2}$</span> are limit points. Every point in <span class="mathjax">$[0, 1]$</span> is a limit point.
         </p>
         <p>
-          The relationship between closure of <span class="mathjax">$A$</span>, and the set of all limit points of <span class="mathjax">$A$</span>, given by <span class="mathjax">$A'$</span>, is<br/>
-          $<span class="mathjax">$\bar{A} = A \cup A'$</span>$
+          The relationship between closure of <span class="mathjax">$A$</span>, and the set of all limit points of <span class="mathjax">$A$</span>, given by <span class="mathjax">$A'$</span>, is
         </p>
+        <div class="mathjax">
+          $$
+          \bar{A} = A \cup A'
+          $$
+        </div>
         <p>
           To prove this, consider <span class="mathjax">$x \in A'$</span>, so that every neighborhood of <span class="mathjax">$x$</span> intersects <span class="mathjax">$A$</span> in a point different from <span class="mathjax">$x$</span>. Therefore, <span class="mathjax">$x \in \bar{A}$</span>, and hence <span class="mathjax">$A' \subset \bar{A}$</span>. Since <span class="mathjax">$A \subset \bar{A}$</span> by definition, it follows that <span class="mathjax">$A \cup A' \subset \bar{A}$</span>. To demonstrate the reverse inclusion, let <span class="mathjax">$x \in \bar{A}$</span>, and show that <span class="mathjax">$x \in A \cup A'$</span>. If <span class="mathjax">$x \in A$</span>, this is trivial. If not, since <span class="mathjax">$x \in \bar{A}$</span>, we know that every neighborhood <span class="mathjax">$U$</span> of <span class="mathjax">$x$</span> intersects <span class="mathjax">$A$</span> different from <span class="mathjax">$x$</span>. Then <span class="mathjax">$x \in A'$</span>, and <span class="mathjax">$x \in A \cup A'$</span>, completing the proof.
         </p>
@@ -337,16 +365,24 @@
           </li>
         </ol>
         <p>
-          An <span class="mathjax">$\epsilon$</span>-ball centered at <span class="mathjax">$x$</span> is defined as:<br/>
-          $<span class="mathjax">$B_d(x, \epsilon) = \{y \mid d(x, y) \lt \epsilon\}$</span>$
+          An <span class="mathjax">$\epsilon$</span>-ball centered at <span class="mathjax">$x$</span> is defined as:
         </p>
+        <div class="mathjax">
+          $$
+          B_d(x, \epsilon) = \{y \mid d(x, y) \lt \epsilon\}
+          $$
+        </div>
         <p>
           A set <span class="mathjax">$U$</span> is open in the metric topology induced by <span class="mathjax">$d$</span> iff for each <span class="mathjax">$y \subset U$</span>, <span class="mathjax">$\exists \delta &gt; 0 : B_d(y, \delta) \subset U$</span>
         </p>
         <p>
-          Let <span class="mathjax">$d$</span> and <span class="mathjax">$d'$</span> be two metrics on set <span class="mathjax">$X$</span>, and <span class="mathjax">$\tau$</span>, <span class="mathjax">$\tau'$</span> be the topologies induced by them. <span class="mathjax">$\tau'$</span> is finer than <span class="mathjax">$\tau$</span> iff for each <span class="mathjax">$x \in X$</span> and <span class="mathjax">$\epsilon \gt 0$</span>, <span class="mathjax">$\exists \delta \gt 0$</span> such that:<br/>
-          $<span class="mathjax">$B_{d'}(x, \delta) \subset B_d(x, \epsilon)$</span>$
+          Let <span class="mathjax">$d$</span> and <span class="mathjax">$d'$</span> be two metrics on set <span class="mathjax">$X$</span>, and <span class="mathjax">$\tau$</span>, <span class="mathjax">$\tau'$</span> be the topologies induced by them. <span class="mathjax">$\tau'$</span> is finer than <span class="mathjax">$\tau$</span> iff for each <span class="mathjax">$x \in X$</span> and <span class="mathjax">$\epsilon \gt 0$</span>, <span class="mathjax">$\exists \delta \gt 0$</span> such that:
         </p>
+        <div class="mathjax">
+          $$
+          B_{d'}(x, \delta) \subset B_d(x, \epsilon)
+          $$
+        </div>
         <p>
           An example of a metric space is:
         </p>
@@ -374,9 +410,13 @@
           $$
         </div>
         <p>
-          Given an index set J, the <mark>uniform metric</mark> <span class="mathjax">$\bar{\rho}$</span> on <span class="mathjax">$\mathbb{R}^J$</span> is defined as:<br/>
-          $<span class="mathjax">$\bar{\rho}(x, y) = \text{sup}\{\bar{d}(x_\alpha, y_\alpha) \mid \alpha \in J\}$</span>$
+          Given an index set J, the <mark>uniform metric</mark> <span class="mathjax">$\bar{\rho}$</span> on <span class="mathjax">$\mathbb{R}^J$</span> is defined as:
         </p>
+        <div class="mathjax">
+          $$
+          \bar{\rho}(x, y) = \text{sup}\{\bar{d}(x_\alpha, y_\alpha) \mid \alpha \in J\}
+          $$
+        </div>
         <p>
           The uniform topology on <span class="mathjax">$\mathbb{R}^J$</span> is finer than the product topology and coarser than the box topology; all these topologies are different if <span class="mathjax">$J$</span> is infinite.
         </p>
@@ -384,9 +424,13 @@
           Every metric space satisfies the Hausdorff axiom. Let <span class="mathjax">$x, y \in (X, d)$</span> and <span class="mathjax">$\epsilon = \frac{1}{2} d(x, y)$</span>. Then the triangle inequality implies that <span class="mathjax">$B_d(x, \epsilon), B_d(y, \epsilon)$</span> are disjoint.
         </p>
         <p>
-          Let <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span> be two metric spaces with metrics <span class="mathjax">$d_X$</span> and <span class="mathjax">$d_Y$</span>, and let <span class="mathjax">$f : X \rightarrow Y$</span>. Further, let <span class="mathjax">$x \in X$</span>, <span class="mathjax">$y \in Y$</span>, and <span class="mathjax">$\epsilon \gt 0$</span>. Then, the requirement for continuity of <span class="mathjax">$f$</span> is equivalent to: <span class="mathjax">$\exists \delta \gt 0$</span> such that:<br/>
-          $<span class="mathjax">$f_X(x, y) \lt \delta \implies f_Y(f(x), f(y)) \lt \epsilon$</span>$
+          Let <span class="mathjax">$X$</span> and <span class="mathjax">$Y$</span> be two metric spaces with metrics <span class="mathjax">$d_X$</span> and <span class="mathjax">$d_Y$</span>, and let <span class="mathjax">$f : X \rightarrow Y$</span>. Further, let <span class="mathjax">$x \in X$</span>, <span class="mathjax">$y \in Y$</span>, and <span class="mathjax">$\epsilon \gt 0$</span>. Then, the requirement for continuity of <span class="mathjax">$f$</span> is equivalent to: <span class="mathjax">$\exists \delta \gt 0$</span> such that:
         </p>
+        <div class="mathjax">
+          $$
+          f_X(x, y) \lt \delta \implies f_Y(f(x), f(y)) \lt \epsilon
+          $$
+        </div>
         <p>
           The <mark>sequence lemma</mark>: Let <span class="mathjax">$X$</span> be a topology, and <span class="mathjax">$A \subset X$</span>. If a sequence of points of <span class="mathjax">$A$</span> converge to <span class="mathjax">$x$</span>, then <span class="mathjax">$x \in \bar{A}$</span>. The converse holds if <span class="mathjax">$X$</span> is metrizable.
         </p>
@@ -394,9 +438,13 @@
           Let <span class="mathjax">$f : X \rightarrow Y$</span> be continuous. For every convergent sequence, <span class="mathjax">$x_n \rightarrow x$</span> in <span class="mathjax">$X$</span>, <span class="mathjax">$f(x_n) \rightarrow f(x)$</span>. The converse holds if <span class="mathjax">$X$</span> is metrizable. Here, we don't use the full strength of metrizability: all we need is countable collection of balls <span class="mathjax">$B_d(x, \frac{1}{n})$</span> about <span class="mathjax">$x$</span>.
         </p>
         <p>
-          Let <span class="mathjax">$f_n : X \rightarrow Y$</span>, from set <span class="mathjax">$X$</span> to metric space <span class="mathjax">$Y$</span>, be a sequence of functions. Then <span class="mathjax">$(f_n)$</span> converges uniformly to <span class="mathjax">$f$</span> if given <span class="mathjax">$\epsilon$</span>, <span class="mathjax">$\exists N \gt 0$</span> such that:<br/>
-          $<span class="mathjax">$d(f_n(x), f(x)) &lt; \epsilon$</span>$
+          Let <span class="mathjax">$f_n : X \rightarrow Y$</span>, from set <span class="mathjax">$X$</span> to metric space <span class="mathjax">$Y$</span>, be a sequence of functions. Then <span class="mathjax">$(f_n)$</span> converges uniformly to <span class="mathjax">$f$</span> if given <span class="mathjax">$\epsilon$</span>, <span class="mathjax">$\exists N \gt 0$</span> such that:
         </p>
+        <div class="mathjax">
+          $$
+          d(f_n(x), f(x)) < \epsilon
+          $$
+        </div>
         <p>
           for all <span class="mathjax">$x \in X$</span> and <span class="mathjax">$n \gt N$</span>. The uniform limit theorem additionally states that <span class="mathjax">$f$</span> is continuous.
         </p>
@@ -462,13 +510,21 @@
           A continuous map <span class="mathjax">$f : [a, b] \rightarrow X$</span> in a space <span class="mathjax">$X$</span> is a path in <span class="mathjax">$X$</span> from a closed interval <span class="mathjax">$[a, b] \in \mathbb{R}$</span>, such that <span class="mathjax">$f(a) = x, f(b) = y$</span>, <span class="mathjax">$x, y \in X$</span>. <span class="mathjax">$X$</span> is said to be <mark>path connected</mark> if every pair of points in <span class="mathjax">$X$</span> can be joined by a path in <span class="mathjax">$X$</span>.
         </p>
         <p>
-          The unit ball given by <span class="mathjax">$\mathbb{B}^n \in \mathbb{R}^n$</span> where:<br/>
-          $<span class="mathjax">$\mathbb{B}^n = ||x|| = (x_1^2 + \ldots + x_n^2)^{1/2}$</span>$
+          The unit ball given by <span class="mathjax">$\mathbb{B}^n \in \mathbb{R}^n$</span> where:
         </p>
+        <div class="mathjax">
+          $$
+          \mathbb{B}^n = ||x|| = (x_1^2 + \ldots + x_n^2)^{1/2}
+          $$
+        </div>
         <p>
-          is path connected since we can always take a path from <span class="mathjax">$[0, 1] \rightarrow \mathbb{R}^n$</span> given by:<br/>
-          $<span class="mathjax">$f(n) = (1 - t)x + ty$</span>$
+          is path connected since we can always take a path from <span class="mathjax">$[0, 1] \rightarrow \mathbb{R}^n$</span> given by:
         </p>
+        <div class="mathjax">
+          $$
+          f(n) = (1 - t)x + ty
+          $$
+        </div>
         <p>
           Another example: The <mark>punctured Eucledian space</mark> given by <span class="mathjax">$\mathbb{R}^n - \{0\}$</span> is path connected for <span class="mathjax">$n &gt; 1$</span> since we can always take a path connecting two points that doesn't go through the origin.
         </p>
@@ -494,9 +550,13 @@
           A space <span class="mathjax">$X$</span> is compact if every finite subcollection of <span class="mathjax">$\mathscr{A}$</span> also contains an open covering of <span class="mathjax">$X$</span>.
         </p>
         <p>
-          All closed subsets of <span class="mathjax">$\mathbb{R}$</span> are compact, so <span class="mathjax">$[0, 1]$</span> is an example of a compact space. However, neither <span class="mathjax">$(0, 1)$</span> nor <span class="mathjax">$(0, 1]$</span> are compact. The latter is because we can choose an open covering<br/>
-          $<span class="mathjax">$\mathscr{A} = \{(1/n, 1] \mid n \in \mathbb{Z}^+\}$</span>$
+          All closed subsets of <span class="mathjax">$\mathbb{R}$</span> are compact, so <span class="mathjax">$[0, 1]$</span> is an example of a compact space. However, neither <span class="mathjax">$(0, 1)$</span> nor <span class="mathjax">$(0, 1]$</span> are compact. The latter is because we can choose an open covering
         </p>
+        <div class="mathjax">
+          $$
+          \mathscr{A} = \{(1/n, 1] \mid n \in \mathbb{Z}^+\}
+          $$
+        </div>
         <p>
           which doesn't cover <span class="mathjax">$(0, 1]$</span>.
         </p>
