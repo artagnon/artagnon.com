@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[ac/2] Modules of fractions, Primary decomposition | artagnon.com</title>
+    <title>Modules of fractions, Primary decomposition | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -61,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [ac/2] Modules of fractions, Primary decomposition
+          Modules of fractions, Primary decomposition
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2019-02-18" class="begin">Mon, 18 Feb 2019 17:56:57 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2019-02-18" class="begin">Mon, 18 Feb 2019 17:56:57 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:09:52 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -72,18 +72,30 @@
           Rings of fractions
         </h2>
         <p>
-          Rings of fractions, and the associated localization process, correspond to the <a href="/ag">algebro-geometric picture</a> of studying behavior of an open set or near a point. Using the way we construct <span class="mathjax">$\mathbb{Q}$</span> from <span class="mathjax">$\mathbb{Z}$</span>, we can construct equivalence classes of <span class="mathjax">$a, s$</span>, where <span class="mathjax">$(a, s) \in A, s \neq 0$</span>, defined as follows:<br/>
-          $<span class="mathjax">$(a, s) \equiv (b, t) \iff at - bs = 0$</span>$
+          Rings of fractions, and the associated localization process, correspond to the <a href="/ag">algebro-geometric picture</a> of studying behavior of an open set or near a point. Using the way we construct <span class="mathjax">$\mathbb{Q}$</span> from <span class="mathjax">$\mathbb{Z}$</span>, we can construct equivalence classes of <span class="mathjax">$a, s$</span>, where <span class="mathjax">$(a, s) \in A, s \neq 0$</span>, defined as follows:
         </p>
+        <div class="mathjax">
+          $$
+          (a, s) \equiv (b, t) \iff at - bs = 0
+          $$
+        </div>
         <p>
-          but this definition only works if <span class="mathjax">$A$</span> is an integral domain. A more general definition of equivalence involves using a <mark>multiplicative subset</mark> <span class="mathjax">$S$</span> of <span class="mathjax">$A$</span> and defining <span class="mathjax">$\equiv$</span> over <span class="mathjax">$A \times S$</span>:<br/>
-          $<span class="mathjax">$(a, s) \equiv (b, t) \iff \exists u \in S : u(at - bs) = 0$</span>$
+          but this definition only works if <span class="mathjax">$A$</span> is an integral domain. A more general definition of equivalence involves using a <mark>multiplicative subset</mark> <span class="mathjax">$S$</span> of <span class="mathjax">$A$</span> and defining <span class="mathjax">$\equiv$</span> over <span class="mathjax">$A \times S$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          (a, s) \equiv (b, t) \iff \exists u \in S : u(at - bs) = 0
+          $$
+        </div>
         <p>
-          Let <span class="mathjax">$a/s$</span> denote the equivalence class of <span class="mathjax">$(a, s)$</span> and <span class="mathjax">$S^{-1} A$</span> the set of all equivalence classes. We can endow <span class="mathjax">$S^{-1} A$</span> with a ring structure by defining addition and multiplication as operations on fractions, as in elementry algebra:<br/>
-          $<span class="mathjax">$a/s + b/t = (at + bs)/st$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$(a/s)(b/t) = ab/st$</span>$
+          Let <span class="mathjax">$a/s$</span> denote the equivalence class of <span class="mathjax">$(a, s)$</span> and <span class="mathjax">$S^{-1} A$</span> the set of all equivalence classes. We can endow <span class="mathjax">$S^{-1} A$</span> with a ring structure by defining addition and multiplication as operations on fractions, as in elementry algebra:
         </p>
+        <div class="mathjax">
+          $$
+          a/s + b/t = (at + bs)/st \\
+            (a/s)(b/t) = ab/st
+          $$
+        </div>
         <p>
           We also have the ring homomorphism <span class="mathjax">$A \rightarrow S^{-1} A$</span> defined by <span class="mathjax">$x \mapsto x/1$</span>. It is not injective in general. <span class="mathjax">$S^{-1} A$</span> is termed the <mark>ring of fractions</mark> of <span class="mathjax">$A$</span> with respect to <span class="mathjax">$S$</span>.
         </p>
@@ -131,13 +143,21 @@
           The same construction involving <span class="mathjax">$S^{-1}$</span> can be carried out in modules instead of rings. Let <span class="mathjax">$u : M \rightarrow N$</span> be an <span class="mathjax">$A$</span>-module homomorphism. This gives rise to an <span class="mathjax">$S^{-1} A$</span>-module homomorphism <span class="mathjax">$S^{-1} M \rightarrow S^{-1} N$</span>, such that <span class="mathjax">$S^{-1} u$</span> maps <span class="mathjax">$m/s$</span> to <span class="mathjax">$u(m)/s$</span>. We have <span class="mathjax">$S^{-1} (v \circ u) = S^{-1}v \circ S^{-1}u$</span>.
         </p>
         <p>
-          <span class="mathjax">$S^{-1}$</span> preserves exactness, in that if the following sequence is exact at <span class="mathjax">$M$</span>:<br/>
-          $<span class="mathjax">$L \xrightarrow{f} M \xrightarrow{g} N$</span>$
+          <span class="mathjax">$S^{-1}$</span> preserves exactness, in that if the following sequence is exact at <span class="mathjax">$M$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          L \xrightarrow{f} M \xrightarrow{g} N
+          $$
+        </div>
         <p>
-          then, this sequence is exact at <span class="mathjax">$S^{-1} M$</span>:<br/>
-          $<span class="mathjax">$S^{-1} L \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} N$</span>$
+          then, this sequence is exact at <span class="mathjax">$S^{-1} M$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          S^{-1} L \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} N
+          $$
+        </div>
         <p>
           This can proved by noticing that if <span class="mathjax">$g \circ f = 0$</span>, then so is <span class="mathjax">$S^{-1} g \circ S^{-1} f = S^{-1} (0)$</span>. Hence, <span class="mathjax">$\text{Im}(S^{-1} f) \subseteq \text{Ker}(S^{-1} g)$</span>. To prove inclusion in the other direction, let <span class="mathjax">$m/s \in S^{-1} g$</span>, then <span class="mathjax">$g(m)/s \in S^{-1} N$</span>, hence <span class="mathjax">$\exists t : t g(m) = 0$</span> in <span class="mathjax">$N$</span>. But <span class="mathjax">$t g(m) = g(tm)$</span>, since <span class="mathjax">$g$</span> is an <span class="mathjax">$A$</span>-module homomorphism, hence <span class="mathjax">$t(m) \in \text{Ker}(g) = \text{Im}(f)$</span>. Therefore, <span class="mathjax">$\exists m' \in M : t(m) = f(m')$</span>. Hence, in <span class="mathjax">$S^{-1} M$</span>, we have <span class="mathjax">$m/s = f(m')/st = S^{-1} f(m'/st) \in \text{Im}(S^{-1} f)$</span>. Hence, <span class="mathjax">$\text{Ker}(S^{-1} g) \subseteq \text{Im}(S^{-1} f)$</span>.
         </p>
@@ -165,17 +185,29 @@
           To prove (iii), apply <span class="mathjax">$S^{-1}$</span> to the exact sequence <span class="mathjax">$0 \rightarrow M \rightarrow N \rightarrow M/N \rightarrow 0$</span>.
         </p>
         <p>
-          Let <span class="mathjax">$M$</span> be an <span class="mathjax">$A$</span>-module. Then, there exists a unique isomorphism <span class="mathjax">$f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$</span> such that:<br/>
-          $<span class="mathjax">$f((a/s) \otimes m) = am/s \quad \forall a \in A, m \in M, s \in S$</span>$
+          Let <span class="mathjax">$M$</span> be an <span class="mathjax">$A$</span>-module. Then, there exists a unique isomorphism <span class="mathjax">$f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$</span> such that:
         </p>
+        <div class="mathjax">
+          $$
+          f((a/s) \otimes m) = am/s \quad \forall a \in A, m \in M, s \in S
+          $$
+        </div>
         <p>
-          To prove this, notice that the mapping <span class="mathjax">$S^{-1} A \rightarrow S^{-1} M$</span> given by <span class="mathjax">$(a/s, m) \mapsto am/s$</span> is <span class="mathjax">$A$</span>-bilinear, and by universal property of the tensor product, induces the <span class="mathjax">$A$</span>-homomorphism:<br/>
-          $<span class="mathjax">$f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$</span>$
+          To prove this, notice that the mapping <span class="mathjax">$S^{-1} A \rightarrow S^{-1} M$</span> given by <span class="mathjax">$(a/s, m) \mapsto am/s$</span> is <span class="mathjax">$A$</span>-bilinear, and by universal property of the tensor product, induces the <span class="mathjax">$A$</span>-homomorphism:
         </p>
+        <div class="mathjax">
+          $$
+          f : S^{-1} A \otimes_A M \rightarrow S^{-1} M
+          $$
+        </div>
         <p>
-          <span class="mathjax">$f$</span> is clearly surjective, and it remains to be proved that it is injective as well. Notice that every element of <span class="mathjax">$S^{-1} A \otimes M$</span> is of the form <span class="mathjax">$(1/s) \otimes m$</span>. Suppose that <span class="mathjax">$(1/s) \otimes m = 0$</span>, then <span class="mathjax">$m/s = 0$</span> and hence <span class="mathjax">$\exists t : tm = 0$</span>. Therefore:<br/>
-          $<span class="mathjax">$\frac{1}{s} \otimes m = \frac{t}{ts} \otimes m = \frac{1}{s} \otimes tm = 0$</span>$
+          <span class="mathjax">$f$</span> is clearly surjective, and it remains to be proved that it is injective as well. Notice that every element of <span class="mathjax">$S^{-1} A \otimes M$</span> is of the form <span class="mathjax">$(1/s) \otimes m$</span>. Suppose that <span class="mathjax">$(1/s) \otimes m = 0$</span>, then <span class="mathjax">$m/s = 0$</span> and hence <span class="mathjax">$\exists t : tm = 0$</span>. Therefore:
         </p>
+        <div class="mathjax">
+          $$
+          \frac{1}{s} \otimes m = \frac{t}{ts} \otimes m = \frac{1}{s} \otimes tm = 0
+          $$
+        </div>
         <p>
           Hence, <span class="mathjax">$f$</span> is injective, and therefore an isomorphism.
         </p>
@@ -183,13 +215,21 @@
           <span class="mathjax">$S^{-1} A$</span> is a <a href="/ac/1#exactness-of-the-tensor-product">flat</a> <span class="mathjax">$A$</span>-module, and this is immediately obvious.
         </p>
         <p>
-          If <span class="mathjax">$M, N$</span> are <span class="mathjax">$A$</span>-modules, there is an isomorphism of <span class="mathjax">$S^{-1} A$</span>-modules <span class="mathjax">$f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)$</span> such that:<br/>
-          $<span class="mathjax">$f((m/s) \otimes (n/t)) = (m \otimes n)/st$</span>$
+          If <span class="mathjax">$M, N$</span> are <span class="mathjax">$A$</span>-modules, there is an isomorphism of <span class="mathjax">$S^{-1} A$</span>-modules <span class="mathjax">$f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)$</span> such that:
         </p>
+        <div class="mathjax">
+          $$
+          f((m/s) \otimes (n/t)) = (m \otimes n)/st
+          $$
+        </div>
         <p>
-          In particular, if <span class="mathjax">$\mathfrak{p}$</span> is a prime ideal:<br/>
-          $<span class="mathjax">$M_\mathfrak{p} \otimes_{A_\mathfrak{p}} N_\mathfrak{p} \cong (M \otimes_A N)_\mathfrak{p}$</span>$
+          In particular, if <span class="mathjax">$\mathfrak{p}$</span> is a prime ideal:
         </p>
+        <div class="mathjax">
+          $$
+          M_\mathfrak{p} \otimes_{A_\mathfrak{p}} N_\mathfrak{p} \cong (M \otimes_A N)_\mathfrak{p}
+          $$
+        </div>
         <h2 id="local-properties">
           Local properties
         </h2>
@@ -242,13 +282,21 @@
           Primary decomposition
         </h2>
         <p>
-          Just as prime ideals are generalizations of primes in <span class="mathjax">$\mathbb{Z}$</span>, in some sense, powers of primes can be generalized to primary ideals: ideal <span class="mathjax">$Q$</span> of <span class="mathjax">$A$</span> is primary if <span class="mathjax">$Q \neq A$</span> and<br/>
-          $<span class="mathjax">$fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n &gt; 0$</span>$
+          Just as prime ideals are generalizations of primes in <span class="mathjax">$\mathbb{Z}$</span>, in some sense, powers of primes can be generalized to primary ideals: ideal <span class="mathjax">$Q$</span> of <span class="mathjax">$A$</span> is primary if <span class="mathjax">$Q \neq A$</span> and
         </p>
+        <div class="mathjax">
+          $$
+          fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0
+          $$
+        </div>
         <p>
-          In other words, for <span class="mathjax">$Q$</span> to be primary,<br/>
-          $<span class="mathjax">$A/Q \neq 0 \text{, and every zerodivisor in } A/Q \text{ is nilpotent}$</span>$
+          In other words, for <span class="mathjax">$Q$</span> to be primary,
         </p>
+        <div class="mathjax">
+          $$
+          A/Q \neq 0 \text{, and every zerodivisor in } A/Q \text{ is nilpotent}
+          $$
+        </div>
         <p>
           Clearly, every prime ideal is primary. Also, the contraction of a primary ideal is primary, for if <span class="mathjax">$f : A \rightarrow B$</span> and <span class="mathjax">$Q$</span> is primary in <span class="mathjax">$B$</span>, <span class="mathjax">$A/Q^c \cong B/Q$</span>.
         </p>
@@ -293,9 +341,13 @@
           Let us prove (iii), since (i) and (ii) are obvious. Let <span class="mathjax">$y \in (Q : x)$</span> and <span class="mathjax">$xy \in Q$</span>, and hence, since <span class="mathjax">$x \notin Q$</span>, <span class="mathjax">$y \in P$</span>. Hence, <span class="mathjax">$Q \subseteq (Q : x) \subseteq P$</span>; taking radicals, we get <span class="mathjax">$\sqrt{(Q : x)} = P$</span>. Let <span class="mathjax">$yz \in (Q : x)$</span> so that <span class="mathjax">$y \notin P$</span>; then <span class="mathjax">$xyz \in Q$</span>, hence <span class="mathjax">$xz \in Q$</span> and <span class="mathjax">$z \in (Q : x)$</span>.
         </p>
         <p>
-          The <mark>primary decomposition</mark> of ideal <span class="mathjax">$I$</span> is given by finite intersection of primary ideals:<br/>
-          $<span class="mathjax">$I = \bigcap_i Q_i$</span>$
+          The <mark>primary decomposition</mark> of ideal <span class="mathjax">$I$</span> is given by finite intersection of primary ideals:
         </p>
+        <div class="mathjax">
+          $$
+          I = \bigcap_i Q_i
+          $$
+        </div>
         <p>
           An ideal is said to be <mark>decomposable</mark> if such a decomposition exists.
         </p>
@@ -306,9 +358,13 @@
           Let <span class="mathjax">$I$</span> be a decomposable ideal. Then, any prime ideal <span class="mathjax">$P \supseteq I$</span> contains a minimal prime ideal belonging to <span class="mathjax">$I$</span>, and thus the minimal prime ideals of <span class="mathjax">$I$</span> are exactly the minimal elements in the set of all prime ideals containing <span class="mathjax">$I$</span>.
         </p>
         <p>
-          Let <span class="mathjax">$I = \bigcap_i Q_i$</span> be a minimal primary primary decomposition, and <span class="mathjax">$\sqrt{Q_i} = P_i$</span>. Then,<br/>
-          $<span class="mathjax">$\bigcup_i P_i = \{x \in A \mid (I : x) \neq I\}$</span>$
+          Let <span class="mathjax">$I = \bigcap_i Q_i$</span> be a minimal primary primary decomposition, and <span class="mathjax">$\sqrt{Q_i} = P_i$</span>. Then,
         </p>
+        <div class="mathjax">
+          $$
+          \bigcup_i P_i = \{x \in A \mid (I : x) \neq I\}
+          $$
+        </div>
         <p>
           In particular, if the zero ideal is decomposable, then the set <span class="mathjax">$D$</span> of zero-divisors of <span class="mathjax">$A$</span> is the union of prime ideals belonging to <span class="mathjax">$0$</span>.
         </p>
@@ -324,9 +380,13 @@
           </li>
         </ol>
         <p>
-          Let <span class="mathjax">$S$</span> be a multiplicatively closed subset of <span class="mathjax">$A$</span>, and <span class="mathjax">$I = \bigcap_i Q_i$</span> be the minimal primary decomposition of <span class="mathjax">$I$</span> in <span class="mathjax">$A$</span>. Let <span class="mathjax">$P_i = \sqrt{Q_i}$</span>, and suppose <span class="mathjax">$Q_i$</span> is numbered so that <span class="mathjax">$S$</span> meets <span class="mathjax">$P_{m + 1} \ldots P_n$</span>, but not <span class="mathjax">$P_1 \ldots P_m$</span>. Then:<br/>
-          $<span class="mathjax">$S^{-1} I = \bigcap_{i = 1}^m S^{-1} Q_i, \quad S(I) = \bigcap_{i = 1}^m Q_i$</span>$
+          Let <span class="mathjax">$S$</span> be a multiplicatively closed subset of <span class="mathjax">$A$</span>, and <span class="mathjax">$I = \bigcap_i Q_i$</span> be the minimal primary decomposition of <span class="mathjax">$I$</span> in <span class="mathjax">$A$</span>. Let <span class="mathjax">$P_i = \sqrt{Q_i}$</span>, and suppose <span class="mathjax">$Q_i$</span> is numbered so that <span class="mathjax">$S$</span> meets <span class="mathjax">$P_{m + 1} \ldots P_n$</span>, but not <span class="mathjax">$P_1 \ldots P_m$</span>. Then:
         </p>
+        <div class="mathjax">
+          $$
+          S^{-1} I = \bigcap_{i = 1}^m S^{-1} Q_i, \quad S(I) = \bigcap_{i = 1}^m Q_i
+          $$
+        </div>
         <p>
           Moreover, these are minimal primary decompositions.
         </p>
@@ -340,13 +400,21 @@
           Integral dependence
         </h2>
         <p>
-          Let <span class="mathjax">$B$</span> be a ring, and <span class="mathjax">$A$</span> a subring of <span class="mathjax">$B$</span>. Then, element <span class="mathjax">$x$</span> of <span class="mathjax">$B$</span> is said to be <mark>integral over <span class="mathjax">$A$</span></mark> if <span class="mathjax">$x$</span> is the root of the polynomial with coefficients in <span class="mathjax">$A$</span>, that is, if <span class="mathjax">$x$</span> satisfies:<br/>
-          $<span class="mathjax">$x^n + a_1 x^{n - 1} + \ldots + a_n = 0$</span>$
+          Let <span class="mathjax">$B$</span> be a ring, and <span class="mathjax">$A$</span> a subring of <span class="mathjax">$B$</span>. Then, element <span class="mathjax">$x$</span> of <span class="mathjax">$B$</span> is said to be <mark>integral over <span class="mathjax">$A$</span></mark> if <span class="mathjax">$x$</span> is the root of the polynomial with coefficients in <span class="mathjax">$A$</span>, that is, if <span class="mathjax">$x$</span> satisfies:
         </p>
+        <div class="mathjax">
+          $$
+          x^n + a_1 x^{n - 1} + \ldots + a_n = 0
+          $$
+        </div>
         <p>
-          Let <span class="mathjax">$A = \mathbb{Z}, B = \mathbb{Q}$</span>. If a rational number <span class="mathjax">$x = r/s$</span> is integral over <span class="mathjax">$\mathbb{Z}$</span>, where <span class="mathjax">$r, s$</span> have no common factor, we have:<br/>
-          $<span class="mathjax">$r^n + a_1 r^{n - 1} s + \ldots + a_n s^n = 0$</span>$
+          Let <span class="mathjax">$A = \mathbb{Z}, B = \mathbb{Q}$</span>. If a rational number <span class="mathjax">$x = r/s$</span> is integral over <span class="mathjax">$\mathbb{Z}$</span>, where <span class="mathjax">$r, s$</span> have no common factor, we have:
         </p>
+        <div class="mathjax">
+          $$
+          r^n + a_1 r^{n - 1} s + \ldots + a_n s^n = 0
+          $$
+        </div>
         <p>
           the <span class="mathjax">$a_i$</span> being rational integers. Hence, <span class="mathjax">$s$</span> divides <span class="mathjax">$r^n$</span>, <span class="mathjax">$s = \pm 1$</span>, and <span class="mathjax">$x \in \mathbb{Z}$</span>.
         </p>
@@ -368,9 +436,13 @@
           </li>
         </ol>
         <p>
-          To prove (i) <span class="mathjax">$\implies$</span> (ii), we have:<br/>
-          $<span class="mathjax">$x^{n + r} = -(a_1 x^{n + r - 1} + \ldots + a_n x^n)$</span>$
+          To prove (i) <span class="mathjax">$\implies$</span> (ii), we have:
         </p>
+        <div class="mathjax">
+          $$
+          x^{n + r} = -(a_1 x^{n + r - 1} + \ldots + a_n x^n)
+          $$
+        </div>
         <p>
           for all <span class="mathjax">$r \geq 0$</span>. Hence, by induction, all positive powers of <span class="mathjax">$x$</span> lie in the <span class="mathjax">$A$</span>-module generated by <span class="mathjax">$1, x, \ldots, x^{n - 1}$</span>. Hence, <span class="mathjax">$A[x]$</span> lie in the <span class="mathjax">$A$</span>-module generated by <span class="mathjax">$1, x, \ldots, x^{n - 1}$</span>. Hence, <span class="mathjax">$A[x]$</span> is generated by <span class="mathjax">$1, x, \ldots, x^{n - 1}$</span>.
         </p>
@@ -423,20 +495,10 @@
         </p>
         <p>
           For valuation ring <span class="mathjax">$A$</span>:<br/>
-          $<span class="mathjax">$A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}$</span>$
+          $<span class="mathjax">$<br/>
+            A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}<br/>
+          $</span>$
         </p>
-        <h2 id="dedekind-domains">
-          Dedekind domains
-        </h2>
-        <h2 id="completions">
-          Completions
-        </h2>
-        <h2 id="graded-rings-and-modules">
-          Graded rings and modules
-        </h2>
-        <h2 id="associated-graded-ring">
-          Associated graded ring
-        </h2>
         <h2 id="the-nullstellansatz">
           The Nullstellansatz
         </h2>
@@ -464,10 +526,14 @@
           <span class="mathjax">$J(X) = J(X_1) \cup J(X_2) \Rightarrow X = X_1 \text{ or } X_2$</span>; <span class="mathjax">$X$</span> is a prime ideal.
         </p>
         <p>
-          The following reverse-inclusions are obvious:<br/>
-          $<span class="mathjax">$X \subset Y \Rightarrow I(X) \supset I(Y)$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$I \subset J \Rightarrow V(I) \supset V(J)$</span>$
+          The following reverse-inclusions are obvious:
         </p>
+        <div class="mathjax">
+          $$
+          X \subset Y \Rightarrow I(X) \supset I(Y) \\
+            I \subset J \Rightarrow V(I) \supset V(J)
+          $$
+        </div>
         <h2 id="zariski-topology">
           Zariski topology
         </h2>
@@ -480,9 +546,13 @@
           $$
         </div>
         <p>
-          corresponds exactly to the Zariski topology on <span class="mathjax">$\text{Spec } A$</span>, <span class="mathjax">$\mathcal{V}(I)$</span>:<br/>
-          $<span class="mathjax">$\mathcal{V}(I) \cup \mathcal{V}(J) = \mathcal{V}(I \cap J) = \mathcal{V}(IJ)$</span>$
+          corresponds exactly to the Zariski topology on <span class="mathjax">$\text{Spec } A$</span>, <span class="mathjax">$\mathcal{V}(I)$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          \mathcal{V}(I) \cup \mathcal{V}(J) = \mathcal{V}(I \cap J) = \mathcal{V}(IJ)
+          $$
+        </div>
         <p>
           where <span class="mathjax">$\mathcal{V}(I) = {P \in \text{Spec A} \mid P \subset I}$</span>.
         </p>
