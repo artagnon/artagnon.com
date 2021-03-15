@@ -23,12 +23,15 @@ html lang="en"
     javascript:
       MathJax = {
         loader: {
-          load: ['[custom]/xypic.min.js'],
+          load: ['[custom]/xypic.js'],
           paths: {custom: '/lib'}
         },
         tex: {
           packages: {'[+]': ['xypic']},
           inlineMath: [['$', '$']]
+        },
+        chtml: {
+          fontURL: "/dist/woff"
         }
       };
 
