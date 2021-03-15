@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[ra/hw] Rings: Homework | artagnon.com</title>
+    <title>Rings: Homework | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -61,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [ra/hw] Rings: Homework
+          Rings: Homework
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2018-11-12" class="begin">Mon, 12 Nov 2018 13:42:40 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2018-11-12" class="begin">Mon, 12 Nov 2018 13:42:40 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:09:52 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -75,13 +75,21 @@
           Proof: Let us use the reductio ad absurdum technique, and assume that <span class="mathjax">$(x) \neq I \wedge I \neq R[x]$</span>. Then, <span class="mathjax">$f(x) \in I, f(x) \notin (x), f(x) \notin R[x]$</span>.
         </p>
         <p>
-          Since <span class="mathjax">$f(x)$</span> is a general polynomial, we can use the remainder theorem to obtain:<br/>
-          $<span class="mathjax">$f(x) = g(x)q(x) + r(x)$</span>$
+          Since <span class="mathjax">$f(x)$</span> is a general polynomial, we can use the remainder theorem to obtain:
         </p>
+        <div class="mathjax">
+          $$
+          f(x) = g(x)q(x) + r(x)
+          $$
+        </div>
         <p>
-          Now, since we're free to choose <span class="mathjax">$g$</span>, choose <span class="mathjax">$g(x) = x$</span>. Then <span class="mathjax">$r(x)$</span> must be of a lower degree, and hence a constant <span class="mathjax">$c$</span>.<br/>
-          $<span class="mathjax">$f(x) = x . q(x) + c$</span>$
+          Now, since we're free to choose <span class="mathjax">$g$</span>, choose <span class="mathjax">$g(x) = x$</span>. Then <span class="mathjax">$r(x)$</span> must be of a lower degree, and hence a constant <span class="mathjax">$c$</span>.
         </p>
+        <div class="mathjax">
+          $$
+          f(x) = x . q(x) + c
+          $$
+        </div>
         <p>
           There are two cases to consider: either <span class="mathjax">$c = 0$</span> or <span class="mathjax">$c$</span> is a nonzero constant. In the first case, since <span class="mathjax">$f(x) = x . q(x)$</span>, our assumption that <span class="mathjax">$f(x) \notin (x)$</span> breaks, and we have a contradiction. In the second, <span class="mathjax">$I$</span> would contain the unit ideal, and hence <span class="mathjax">$I = R[x]$</span>, breaking the assumption that <span class="mathjax">$I \neq R[x]$</span>. This leads to another contradiction, finishing off the proof <span class="mathjax">$\Box$</span>
         </p>
@@ -93,21 +101,35 @@
           Proof: Let us again use proof by contradiction, and assume that <span class="mathjax">$(x^2 + 1) \neq I \wedge I \neq R[x]$</span>. Then, <span class="mathjax">$f(x) \in I, f(x) \notin (x^2 + 1), f(x) \notin R[x]$</span>.
         </p>
         <p>
-          Since <span class="mathjax">$f(x)$</span> is a general polynomial, we can use the remainder theorem to obtain:<br/>
-          $<span class="mathjax">$f(x) = g(x)q(x) + r(x)$</span>$
+          Since <span class="mathjax">$f(x)$</span> is a general polynomial, we can use the remainder theorem to obtain:
         </p>
+        <div class="mathjax">
+          $$
+          f(x) = g(x)q(x) + r(x)
+          $$
+        </div>
         <p>
-          Now, choose <span class="mathjax">$g(x) = x + \alpha$</span>; <span class="mathjax">$r(x)$</span> can only be a zero, because if it were a nonzero constant, <span class="mathjax">$f(x)$</span> would contain <span class="mathjax">$1$</span>, and hence <span class="mathjax">$f(x) \in R[x]$</span> otherwise:<br/>
-          $<span class="mathjax">$f(x) = (x + \alpha)q(x)$</span>$
+          Now, choose <span class="mathjax">$g(x) = x + \alpha$</span>; <span class="mathjax">$r(x)$</span> can only be a zero, because if it were a nonzero constant, <span class="mathjax">$f(x)$</span> would contain <span class="mathjax">$1$</span>, and hence <span class="mathjax">$f(x) \in R[x]$</span> otherwise:
         </p>
+        <div class="mathjax">
+          $$
+          f(x) = (x + \alpha)q(x)
+          $$
+        </div>
         <p>
-          Since <span class="mathjax">$f(x) \in I$</span> from our assumption, we get <span class="mathjax">$I = (x + \alpha)$</span>. Note that <span class="mathjax">$x^2 + 1 \in I$</span>, from our hypothesis:<br/>
-          $<span class="mathjax">$x^2 + 1 = (x + \alpha)h(x)$</span>$
+          Since <span class="mathjax">$f(x) \in I$</span> from our assumption, we get <span class="mathjax">$I = (x + \alpha)$</span>. Note that <span class="mathjax">$x^2 + 1 \in I$</span>, from our hypothesis:
         </p>
+        <div class="mathjax">
+          $$
+          x^2 + 1 = (x + \alpha)h(x)
+          $$
+        </div>
         <p>
           But <span class="mathjax">$x^2 + 1$</span> is irreducible in <span class="mathjax">$R[x]$</span>; assume that it factors:<br/>
-          $<span class="mathjax">$x^2 + 1 = (x - a)(x - b) = x^2 - (a + b) . x + ab$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$\implies a + b = 0 \wedge ab = 1 \implies a^2 = -1$</span>$
+          $<span class="mathjax">$<br/>
+            x^2 + 1 = (x - a)(x - b) = x^2 - (a + b) . x + ab \\<br/>
+            \implies a + b = 0 \wedge ab = 1 \implies a^2 = -1<br/>
+          $</span>$
         </p>
         <p>
           This cannot happen in <span class="mathjax">$R[x]$</span>, and we hence arrive at a contradiction <span class="mathjax">$\Box$</span>
@@ -120,9 +142,13 @@
           Solution: Consider the ring of Gauss integers <span class="mathjax">$\mathbb{Z}[\sqrt{-5}]$</span>. Then <span class="mathjax">$6 = 2 . 3 = (1 + \sqrt{-5}) (1 + \sqrt{-5})$</span>, and this ring is not a unique factorization domain. Let us inspect <span class="mathjax">$2$</span>: it belongs to the multiplicative set containing <span class="mathjax">$2 . 3$</span>, but it does not divide either <span class="mathjax">$1 + \sqrt{-5}$</span> or <span class="mathjax">$1 - \sqrt{-5}$</span>.
         </p>
         <p>
-          Prime ideals are defined as <span class="mathjax">$A \backslash S$</span>, where <span class="mathjax">$S$</span> is a multiplicative set such that:<br/>
-          $<span class="mathjax">$fg \in S \implies f \in S \wedge g \in S$</span>$
+          Prime ideals are defined as <span class="mathjax">$A \backslash S$</span>, where <span class="mathjax">$S$</span> is a multiplicative set such that:
         </p>
+        <div class="mathjax">
+          $$
+          fg \in S \implies f \in S \wedge g \in S
+          $$
+        </div>
         <p>
           Now, <span class="mathjax">$\mathbb{Z}[\sqrt{-5}]$</span> does not cleave into <span class="mathjax">$S$</span> and <span class="mathjax">$A \backslash S$</span> cleanly when <span class="mathjax">$6 \in S$</span>. Since <span class="mathjax">$1 + \sqrt{-5}$</span> or <span class="mathjax">$1 - \sqrt{-5}$</span> are prime, <span class="mathjax">$2$</span> and <span class="mathjax">$3$</span> are disjoint from the set containing them, and so are in S. Hence, <span class="mathjax">$2$</span> is not prime, but is irreducible, as required <span class="mathjax">$\Box$</span>
         </p>
@@ -138,21 +164,37 @@
           Prove that every maximal ideal is a prime ideal in ring <span class="mathjax">$A$</span>.
         </p>
         <p>
-          Proof: The definition of a prime ideal <span class="mathjax">$P$</span> is:<br/>
-          $<span class="mathjax">$fg \in P \implies f \in P \vee g \in P$</span>$
+          Proof: The definition of a prime ideal <span class="mathjax">$P$</span> is:
         </p>
+        <div class="mathjax">
+          $$
+          fg \in P \implies f \in P \vee g \in P
+          $$
+        </div>
         <p>
-          The definition of a maximal ideal is:<br/>
-          $<span class="mathjax">$\not\exists I : M \subset I \subset A$</span>$
+          The definition of a maximal ideal is:
         </p>
+        <div class="mathjax">
+          $$
+          \not\exists I : M \subset I \subset A
+          $$
+        </div>
         <p>
-          From this definition, it should be clear that maximal ideals can never be the product of two different maximal ideals <span class="mathjax">$J$</span> and <span class="mathjax">$K$</span>, for if it were, then<br/>
-          $<span class="mathjax">$J \subset JK \subset A \text{ or } K \subset JK \subset A$</span>$
+          From this definition, it should be clear that maximal ideals can never be the product of two different maximal ideals <span class="mathjax">$J$</span> and <span class="mathjax">$K$</span>, for if it were, then
         </p>
+        <div class="mathjax">
+          $$
+          J \subset JK \subset A \text{ or } K \subset JK \subset A
+          $$
+        </div>
         <p>
-          contradicting the definition of a maximal ideal. i.e. for <span class="mathjax">$j \in J, k \in K$</span><br/>
-          $<span class="mathjax">$jk \in M \implies j \in M \vee k \in M$</span>$
+          contradicting the definition of a maximal ideal. i.e. for <span class="mathjax">$j \in J, k \in K$</span>
         </p>
+        <div class="mathjax">
+          $$
+          jk \in M \implies j \in M \vee k \in M
+          $$
+        </div>
         <p>
           This is precisely the definition of a prime ideal <span class="mathjax">$\Box$</span>
         </p>
@@ -178,23 +220,35 @@
           An integral domain is defined by <span class="mathjax">$pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/P$</span>.
         </p>
         <p>
-          Proof: Given that <span class="mathjax">$A/P$</span> is an integral domain, show that <span class="mathjax">$P$</span> is prime. Consider elements <span class="mathjax">$a, b \in A$</span>. Elements of <span class="mathjax">$A/P$</span> are then of the form <span class="mathjax">$a + P, b + P$</span>. Now, use the definition of an integral domain to write:<br/>
-          $<span class="mathjax">$(a + P)(b + P) = 0 + P \implies a + P = 0 + P \vee b + P = 0 + P$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$ab + P = 0 + P \implies a - 0 \in P \vee b - 0 \in P$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$ab \in P \implies a \in P \vee b \in P$</span>$
+          Proof: Given that <span class="mathjax">$A/P$</span> is an integral domain, show that <span class="mathjax">$P$</span> is prime. Consider elements <span class="mathjax">$a, b \in A$</span>. Elements of <span class="mathjax">$A/P$</span> are then of the form <span class="mathjax">$a + P, b + P$</span>. Now, use the definition of an integral domain to write:
         </p>
+        <div class="mathjax">
+          $$
+          (a + P)(b + P) = 0 + P \implies a + P = 0 + P \vee b + P = 0 + P \\
+          ab + P = 0 + P \implies a - 0 \in P \vee b - 0 \in P \\
+          ab \in P \implies a \in P \vee b \in P
+          $$
+        </div>
         <p>
           This is exactly the definition of a prime ideal, as required.
         </p>
         <p>
-          Proof, the other way: To show <span class="mathjax">$A/P$</span> is an integral domain, given that <span class="mathjax">$P$</span> is a prime ideal. First, consider the surjective homomorphism<br/>
-          $<span class="mathjax">$A \xrightarrow[]{\varphi} A/P$</span>$
+          Proof, the other way: To show <span class="mathjax">$A/P$</span> is an integral domain, given that <span class="mathjax">$P$</span> is a prime ideal. First, consider the surjective homomorphism
         </p>
+        <div class="mathjax">
+          $$
+          A \xrightarrow[]{\varphi} A/P
+          $$
+        </div>
         <p>
-          From isomorphism theorem, <span class="mathjax">$\text{ker}(\varphi) = P = \{a \mid \varphi(a) = 0\}$</span>. We know that:<br/>
-          $<span class="mathjax">$pq \in P \implies p \in P \vee q \in P$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$\varphi(p)\varphi(q) \in (0) \implies \varphi(p) \in (0) \vee \varphi(q) \in (0)$</span>$
+          From isomorphism theorem, <span class="mathjax">$\text{ker}(\varphi) = P = \{a \mid \varphi(a) = 0\}$</span>. We know that:
         </p>
+        <div class="mathjax">
+          $$
+          pq \in P \implies p \in P \vee q \in P \\
+          \varphi(p)\varphi(q) \in (0) \implies \varphi(p) \in (0) \vee \varphi(q) \in (0)
+          $$
+        </div>
         <p>
           This gives us the required condition for integral domain <span class="mathjax">$\Box$</span>
         </p>
@@ -206,22 +260,34 @@
           A field is defined by <span class="mathjax">$pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/M$</span> and <span class="mathjax">$\exists v^{-1}: v^{-1}v = vv^{-1} = 1 \mid v \in A/M$</span>.
         </p>
         <p>
-          Proof:  To show that <span class="mathjax">$M$</span> is maximal given that <span class="mathjax">$A/M$</span> is a field. For the zerodivisor proof, follow exactly. For the next part, assume <span class="mathjax">$w \in A$</span>:<br/>
-          $<span class="mathjax">$(v + M)(w + M) = 1 + M$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$vw - 1 \in M \implies vw \in 1 + M = (1)$</span>$
+          Proof:  To show that <span class="mathjax">$M$</span> is maximal given that <span class="mathjax">$A/M$</span> is a field. For the zerodivisor proof, follow exactly. For the next part, assume <span class="mathjax">$w \in A$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          (v + M)(w + M) = 1 + M
+          vw - 1 \in M \implies vw \in 1 + M = (1)
+          $$
+        </div>
         <p>
           hence <span class="mathjax">$vw$</span> is unit, which implies that <span class="mathjax">$w = v^{-1}$</span> as required.
         </p>
         <p>
-          Proof, the other way: To show that <span class="mathjax">$A/M$</span> is a field, given <span class="mathjax">$M$</span> is maximal. Consider the surjective homomorphism:<br/>
-          $<span class="mathjax">$A \xrightarrow[]{\varphi} A/M$</span>$
+          Proof, the other way: To show that <span class="mathjax">$A/M$</span> is a field, given <span class="mathjax">$M$</span> is maximal. Consider the surjective homomorphism:
         </p>
+        <div class="mathjax">
+          $$
+          A \xrightarrow[]{\varphi} A/M
+          $$
+        </div>
         <p>
-          Now, since <span class="mathjax">$A/M$</span> is a field, the only ideals are <span class="mathjax">$(0)$</span> and <span class="mathjax">$(1)$</span>; by isomorphism theorem, there is a bijective correspondence between ideals of <span class="mathjax">$A$</span> containing <span class="mathjax">$M$</span> and those of <span class="mathjax">$A/M$</span>.<br/>
-          $<span class="mathjax">$\varphi^{-1}(0) = ker(\varphi) = (0)$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$\varphi^{-1}(1) = A \backslash (0) = M$</span>$
+          Now, since <span class="mathjax">$A/M$</span> is a field, the only ideals are <span class="mathjax">$(0)$</span> and <span class="mathjax">$(1)$</span>; by isomorphism theorem, there is a bijective correspondence between ideals of <span class="mathjax">$A$</span> containing <span class="mathjax">$M$</span> and those of <span class="mathjax">$A/M$</span>.
         </p>
+        <div class="mathjax">
+          $$
+          \varphi^{-1}(0) = ker(\varphi) = (0)
+          \varphi^{-1}(1) = A \backslash (0) = M
+          $$
+        </div>
         <p>
           Since <span class="mathjax">$(0) \subset M \subset A$</span>, we have shown that <span class="mathjax">$M$</span> is maximal, as required <span class="mathjax">$\Box$</span>
         </p>
@@ -230,10 +296,14 @@
           For ideals <span class="mathjax">$P$</span> and <span class="mathjax">$Q$</span>, show that <span class="mathjax">$PQ$</span> is contained within <span class="mathjax">$P \cap Q$</span>.
         </p>
         <p>
-          Proof: From isomorphism theorem,<br/>
-          $<span class="mathjax">$(P + Q)/Q \cong P/(P \cap Q)$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$PQ/(P + Q) = P \cap Q$</span>$
+          Proof: From isomorphism theorem,
         </p>
+        <div class="mathjax">
+          $$
+          (P + Q)/Q \cong P/(P \cap Q) \\
+            PQ/(P + Q) = P \cap Q
+          $$
+        </div>
         <p>
           Since <span class="mathjax">$P + Q = \text{gcd}(P, Q)$</span>, we see that unless the gcd is <span class="mathjax">$1$</span>, <span class="mathjax">$PQ$</span> is strictly smaller than <span class="mathjax">$P \cap Q$</span> <span class="mathjax">$\Box$</span>
         </p>

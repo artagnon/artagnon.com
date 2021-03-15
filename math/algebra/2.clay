@@ -1,16 +1,25 @@
-[ac/2] Modules of fractions, Primary decomposition
+Modules of fractions, Primary decomposition
 
 # Rings of fractions
 
 Rings of fractions, and the associated localization process, correspond to the [algebro-geometric picture](/ag) of studying behavior of an open set or near a point. Using the way we construct $\mathbb{Q}$ from $\mathbb{Z}$, we can construct equivalence classes of $a, s$, where $(a, s) \in A, s \neq 0$, defined as follows:
-$$(a, s) \equiv (b, t) \iff at - bs = 0$$
+
+$$
+  (a, s) \equiv (b, t) \iff at - bs = 0
+$$
 
 but this definition only works if $A$ is an integral domain. A more general definition of equivalence involves using a `multiplicative subset` $S$ of $A$ and defining $\equiv$ over $A \times S$:
-$$(a, s) \equiv (b, t) \iff \exists u \in S : u(at - bs) = 0$$
+
+$$
+  (a, s) \equiv (b, t) \iff \exists u \in S : u(at - bs) = 0
+$$
 
 Let $a/s$ denote the equivalence class of $(a, s)$ and $S^{-1} A$ the set of all equivalence classes. We can endow $S^{-1} A$ with a ring structure by defining addition and multiplication as operations on fractions, as in elementry algebra:
-$$a/s + b/t = (at + bs)/st$$
-$$(a/s)(b/t) = ab/st$$
+
+$$
+  a/s + b/t = (at + bs)/st \\
+  (a/s)(b/t) = ab/st
+$$
 
 We also have the ring homomorphism $A \rightarrow S^{-1} A$ defined by $x \mapsto x/1$. It is not injective in general. $S^{-1} A$ is termed the `ring of fractions` of $A$ with respect to $S$.
 
@@ -36,10 +45,16 @@ Some examples follow:
 The same construction involving $S^{-1}$ can be carried out in modules instead of rings. Let $u : M \rightarrow N$ be an $A$-module homomorphism. This gives rise to an $S^{-1} A$-module homomorphism $S^{-1} M \rightarrow S^{-1} N$, such that $S^{-1} u$ maps $m/s$ to $u(m)/s$. We have $S^{-1} (v \circ u) = S^{-1}v \circ S^{-1}u$.
 
 $S^{-1}$ preserves exactness, in that if the following sequence is exact at $M$:
-$$L \xrightarrow{f} M \xrightarrow{g} N$$
+
+$$
+  L \xrightarrow{f} M \xrightarrow{g} N
+$$
 
 then, this sequence is exact at $S^{-1} M$:
-$$S^{-1} L \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} N$$
+
+$$
+  S^{-1} L \xrightarrow{S^{-1} f} S^{-1} M \xrightarrow{S^{-1} g} S^{-1} N
+$$
 
 This can proved by noticing that if $g \circ f = 0$, then so is $S^{-1} g \circ S^{-1} f = S^{-1} (0)$. Hence, $\text{Im}(S^{-1} f) \subseteq \text{Ker}(S^{-1} g)$. To prove inclusion in the other direction, let $m/s \in S^{-1} g$, then $g(m)/s \in S^{-1} N$, hence $\exists t : t g(m) = 0$ in $N$. But $t g(m) = g(tm)$, since $g$ is an $A$-module homomorphism, hence $t(m) \in \text{Ker}(g) = \text{Im}(f)$. Therefore, $\exists m' \in M : t(m) = f(m')$. Hence, in $S^{-1} M$, we have $m/s = f(m')/st = S^{-1} f(m'/st) \in \text{Im}(S^{-1} f)$. Hence, $\text{Ker}(S^{-1} g) \subseteq \text{Im}(S^{-1} f)$.
 
@@ -56,23 +71,38 @@ The first is obvious. To prove (ii), consider $y/s = z/t, y \in N, z \in P, s, t
 To prove (iii), apply $S^{-1}$ to the exact sequence $0 \rightarrow M \rightarrow N \rightarrow M/N \rightarrow 0$.
 
 Let $M$ be an $A$-module. Then, there exists a unique isomorphism $f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$ such that:
-$$f((a/s) \otimes m) = am/s \quad \forall a \in A, m \in M, s \in S$$
+
+$$
+  f((a/s) \otimes m) = am/s \quad \forall a \in A, m \in M, s \in S
+$$
 
 To prove this, notice that the mapping $S^{-1} A \rightarrow S^{-1} M$ given by $(a/s, m) \mapsto am/s$ is $A$-bilinear, and by universal property of the tensor product, induces the $A$-homomorphism:
-$$f : S^{-1} A \otimes_A M \rightarrow S^{-1} M$$
+
+$$
+  f : S^{-1} A \otimes_A M \rightarrow S^{-1} M
+$$
 
 $f$ is clearly surjective, and it remains to be proved that it is injective as well. Notice that every element of $S^{-1} A \otimes M$ is of the form $(1/s) \otimes m$. Suppose that $(1/s) \otimes m = 0$, then $m/s = 0$ and hence $\exists t : tm = 0$. Therefore:
-$$\frac{1}{s} \otimes m = \frac{t}{ts} \otimes m = \frac{1}{s} \otimes tm = 0$$
+
+$$
+  \frac{1}{s} \otimes m = \frac{t}{ts} \otimes m = \frac{1}{s} \otimes tm = 0
+$$
 
 Hence, $f$ is injective, and therefore an isomorphism.
 
 $S^{-1} A$ is a [flat](/ac/1#exactness-of-the-tensor-product) $A$-module, and this is immediately obvious.
 
 If $M, N$ are $A$-modules, there is an isomorphism of $S^{-1} A$-modules $f : S^{-1} M \otimes_{S^{-1} A} S^{-1} N \rightarrow S^{-1}(M \otimes_A N)$ such that:
-$$f((m/s) \otimes (n/t)) = (m \otimes n)/st$$
+
+$$
+  f((m/s) \otimes (n/t)) = (m \otimes n)/st
+$$
 
 In particular, if $\mathfrak{p}$ is a prime ideal:
-$$M_\mathfrak{p} \otimes_{A_\mathfrak{p}} N_\mathfrak{p} \cong (M \otimes_A N)_\mathfrak{p}$$
+
+$$
+  M_\mathfrak{p} \otimes_{A_\mathfrak{p}} N_\mathfrak{p} \cong (M \otimes_A N)_\mathfrak{p}
+$$
 
 # Local properties
 
@@ -99,10 +129,16 @@ Flatness is a local property. For any $A$-module $N$, the following statements a
 # Primary decomposition
 
 Just as prime ideals are generalizations of primes in $\mathbb{Z}$, in some sense, powers of primes can be generalized to primary ideals: ideal $Q$ of $A$ is primary if $Q \neq A$ and
-$$fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0$$
+
+$$
+  fg \in Q \implies f \in Q \text{ or } g^{n} \in Q \text{, for some } n > 0
+$$
 
 In other words, for $Q$ to be primary,
-$$A/Q \neq 0 \text{, and every zerodivisor in } A/Q \text{ is nilpotent}$$
+
+$$
+  A/Q \neq 0 \text{, and every zerodivisor in } A/Q \text{ is nilpotent}
+$$
 
 Clearly, every prime ideal is primary. Also, the contraction of a primary ideal is primary, for if $f : A \rightarrow B$ and $Q$ is primary in $B$, $A/Q^c \cong B/Q$.
 
@@ -127,7 +163,10 @@ Let $Q$ be $P$-primary, and $x \in A$. Then:
 Let us prove (iii), since (i) and (ii) are obvious. Let $y \in (Q : x)$ and $xy \in Q$, and hence, since $x \notin Q$, $y \in P$. Hence, $Q \subseteq (Q : x) \subseteq P$; taking radicals, we get $\sqrt{(Q : x)} = P$. Let $yz \in (Q : x)$ so that $y \notin P$; then $xyz \in Q$, hence $xz \in Q$ and $z \in (Q : x)$.
 
 The `primary decomposition` of ideal $I$ is given by finite intersection of primary ideals:
-$$I = \bigcap_i Q_i$$
+
+$$
+  I = \bigcap_i Q_i
+$$
 
 An ideal is said to be `decomposable` if such a decomposition exists.
 
@@ -136,7 +175,10 @@ An ideal is said to be `decomposable` if such a decomposition exists.
 Let $I$ be a decomposable ideal. Then, any prime ideal $P \supseteq I$ contains a minimal prime ideal belonging to $I$, and thus the minimal prime ideals of $I$ are exactly the minimal elements in the set of all prime ideals containing $I$.
 
 Let $I = \bigcap_i Q_i$ be a minimal primary primary decomposition, and $\sqrt{Q_i} = P_i$. Then,
-$$\bigcup_i P_i = \{x \in A \mid (I : x) \neq I\}$$
+
+$$
+  \bigcup_i P_i = \{x \in A \mid (I : x) \neq I\}
+$$
 
 In particular, if the zero ideal is decomposable, then the set $D$ of zero-divisors of $A$ is the union of prime ideals belonging to $0$.
 
@@ -146,7 +188,10 @@ Let $S$ be a multiplicatively closed subset of $A$, and let $Q$ be $P$-primary. 
 (ii) If $S \cap P = \phi$, then $S^{-1} Q$ is $S^{-1} P$-primary, and its contraction in $A$ is $Q$.
 
 Let $S$ be a multiplicatively closed subset of $A$, and $I = \bigcap_i Q_i$ be the minimal primary decomposition of $I$ in $A$. Let $P_i = \sqrt{Q_i}$, and suppose $Q_i$ is numbered so that $S$ meets $P_{m + 1} \ldots P_n$, but not $P_1 \ldots P_m$. Then:
-$$S^{-1} I = \bigcap_{i = 1}^m S^{-1} Q_i, \quad S(I) = \bigcap_{i = 1}^m Q_i$$
+
+$$
+  S^{-1} I = \bigcap_{i = 1}^m S^{-1} Q_i, \quad S(I) = \bigcap_{i = 1}^m Q_i
+$$
 
 Moreover, these are minimal primary decompositions.
 
@@ -157,10 +202,16 @@ The set $\Sigma$ of prime ideals belonging to $I$ is said to be `isolated` if it
 # Integral dependence
 
 Let $B$ be a ring, and $A$ a subring of $B$. Then, element $x$ of $B$ is said to be `integral over $A$` if $x$ is the root of the polynomial with coefficients in $A$, that is, if $x$ satisfies:
-$$x^n + a_1 x^{n - 1} + \ldots + a_n = 0$$
+
+$$
+  x^n + a_1 x^{n - 1} + \ldots + a_n = 0
+$$
 
 Let $A = \mathbb{Z}, B = \mathbb{Q}$. If a rational number $x = r/s$ is integral over $\mathbb{Z}$, where $r, s$ have no common factor, we have:
-$$r^n + a_1 r^{n - 1} s + \ldots + a_n s^n = 0$$
+
+$$
+  r^n + a_1 r^{n - 1} s + \ldots + a_n s^n = 0
+$$
 
 the $a_i$ being rational integers. Hence, $s$ divides $r^n$, $s = \pm 1$, and $x \in \mathbb{Z}$.
 
@@ -172,7 +223,10 @@ The following are equivalent:
 (iv) There exists a faithful $A[x]$-module $M$ which is finitely generated as an $A$-module.
 
 To prove (i) $\implies$ (ii), we have:
-$$x^{n + r} = -(a_1 x^{n + r - 1} + \ldots + a_n x^n)$$
+
+$$
+  x^{n + r} = -(a_1 x^{n + r - 1} + \ldots + a_n x^n)
+$$
 
 for all $r \geq 0$. Hence, by induction, all positive powers of $x$ lie in the $A$-module generated by $1, x, \ldots, x^{n - 1}$. Hence, $A[x]$ lie in the $A$-module generated by $1, x, \ldots, x^{n - 1}$. Hence, $A[x]$ is generated by $1, x, \ldots, x^{n - 1}$.
 
@@ -206,15 +260,9 @@ By convention, $v(0) = \infty$.
 Valuation ring of a discrete valuation $v$ is given by $A = \{x \in K \mid v(x) \geq 0\}$.
 
 For valuation ring $A$:
-$$A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}$$
-
-# Dedekind domains
-
-# Completions
-
-# Graded rings and modules
-
-# Associated graded ring
+$$
+  A \text{ is a DVR} \leftrightarrow A \text{ is Noetherian}
+$$
 
 # The Nullstellansatz
 
@@ -232,17 +280,25 @@ A variety is irreducible if it cannot be expressed as the union of two proper su
 $J(X) = J(X_1) \cup J(X_2) \Rightarrow X = X_1 \text{ or } X_2$; $X$ is a prime ideal.
 
 The following reverse-inclusions are obvious:
-$$X \subset Y \Rightarrow I(X) \supset I(Y)$$
-$$I \subset J \Rightarrow V(I) \supset V(J)$$
+
+$$
+  X \subset Y \Rightarrow I(X) \supset I(Y) \\
+  I \subset J \Rightarrow V(I) \supset V(J)
+$$
 
 # Zariski topology
 
 Zariski topology is a topology where the only closed sets are the algebraic ones, the zeros of polynomials. The Zariski topology on a variety is Noetherian.
 
-$$V(I) \cup V(J) = V(I \cap J) = V(IJ)$$
+$$
+  V(I) \cup V(J) = V(I \cap J) = V(IJ)
+$$
 
 corresponds exactly to the Zariski topology on $\text{Spec } A$, $\mathcal{V}(I)$:
-$$\mathcal{V}(I) \cup \mathcal{V}(J) = \mathcal{V}(I \cap J) = \mathcal{V}(IJ)$$
+
+$$
+  \mathcal{V}(I) \cup \mathcal{V}(J) = \mathcal{V}(I \cap J) = \mathcal{V}(IJ)
+$$
 
 where $\mathcal{V}(I) = {P \in \text{Spec A} \mid P \subset I}$.
 
