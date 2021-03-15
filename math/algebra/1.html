@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[ac/1] Ideals, Modules, Tensor products | artagnon.com</title>
+    <title>Ideals, Modules, Tensor products | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -26,9 +26,6 @@
         },
         chtml: {
           fontURL: "/dist/woff"
-        },
-        startup: {
-          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -64,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [ac/1] Ideals, Modules, Tensor products
+          Ideals, Modules, Tensor products
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2018-09-23" class="begin">Sun, 23 Sep 2018 07:05:52 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2018-09-23" class="begin">Sun, 23 Sep 2018 07:05:52 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:00:17 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -147,9 +144,13 @@
           The set of all nilpotent elements <span class="mathjax">$\mathfrak{N}$</span> of <span class="mathjax">$A$</span> is an ideal, and <span class="mathjax">$A/\mathfrak{N}$</span> does not have any nilpotent elements. To prove this, let <span class="mathjax">$x, y \in \mathfrak{N}$</span> be nilpotent elements of order <span class="mathjax">$m, n$</span>. By the binomial theorem, <span class="mathjax">$(x + y)^{m + n - 1}$</span> has terms of the form <span class="mathjax">$x^r y^s$</span>; but we cannot have both <span class="mathjax">$r &lt; m$</span> and <span class="mathjax">$s &lt; n$</span>, so each of these terms vanish, and <span class="mathjax">$(x + y)^{m + n - 1} = 0, x + y \in \mathfrak{N}$</span>. Let <span class="mathjax">$\bar{x^n} \in A/\mathfrak{N}$</span> be a representation of <span class="mathjax">$x^n$</span>. Then <span class="mathjax">$(x^n)^p = 0$</span>, and <span class="mathjax">$x \in \mathfrak{N} \implies \bar{x} = 0$</span>. Ideal <span class="mathjax">$\mathfrak{N}$</span> is called the <mark>nilradical</mark> of <span class="mathjax">$A$</span>.
         </p>
         <p>
-          The nilradical <span class="mathjax">$\mathfrak{N}$</span> of <span class="mathjax">$A$</span> is the intersection of all prime ideals of <span class="mathjax">$A$</span>. To prove this, let <span class="mathjax">$\mathfrak{N}'$</span> be the intersection of prime ideals. If <span class="mathjax">$f \in A$</span> is nilpotent, and <span class="mathjax">$P$</span> is a prime ideal, <span class="mathjax">$f^n = 0 \in P$</span> for some <span class="mathjax">$n$</span>, and hence <span class="mathjax">$f \in P$</span> (because <span class="mathjax">$P$</span> is prime) and <span class="mathjax">$f \in \mathfrak{N}'$</span>. Conversely, suppose that <span class="mathjax">$f$</span> is not nilpotent. Let <span class="mathjax">$\Sigma$</span> be the set of ideals <span class="mathjax">$I$</span> such that <span class="mathjax">$n \gt 0 \implies f^n \notin I$</span>. <span class="mathjax">$\Sigma$</span> is not zero, and by Zorn's lemma, there is some maximal element in <span class="mathjax">$\Sigma$</span>. Let <span class="mathjax">$P$</span> be this maximal element: it remains to be shown that <span class="mathjax">$P$</span> is a prime ideal. Let <span class="mathjax">$x, y \notin P$</span>, so <span class="mathjax">$P + (x), P + (y)$</span> contain <span class="mathjax">$P$</span>, and therefore do not belong to <span class="mathjax">$\Sigma$</span>. If:<br/>
-          $<span class="mathjax">$f^m = P + (x) \quad f^n = P + (y)$</span>$
+          The nilradical <span class="mathjax">$\mathfrak{N}$</span> of <span class="mathjax">$A$</span> is the intersection of all prime ideals of <span class="mathjax">$A$</span>. To prove this, let <span class="mathjax">$\mathfrak{N}'$</span> be the intersection of prime ideals. If <span class="mathjax">$f \in A$</span> is nilpotent, and <span class="mathjax">$P$</span> is a prime ideal, <span class="mathjax">$f^n = 0 \in P$</span> for some <span class="mathjax">$n$</span>, and hence <span class="mathjax">$f \in P$</span> (because <span class="mathjax">$P$</span> is prime) and <span class="mathjax">$f \in \mathfrak{N}'$</span>. Conversely, suppose that <span class="mathjax">$f$</span> is not nilpotent. Let <span class="mathjax">$\Sigma$</span> be the set of ideals <span class="mathjax">$I$</span> such that <span class="mathjax">$n \gt 0 \implies f^n \notin I$</span>. <span class="mathjax">$\Sigma$</span> is not zero, and by Zorn's lemma, there is some maximal element in <span class="mathjax">$\Sigma$</span>. Let <span class="mathjax">$P$</span> be this maximal element: it remains to be shown that <span class="mathjax">$P$</span> is a prime ideal. Let <span class="mathjax">$x, y \notin P$</span>, so <span class="mathjax">$P + (x), P + (y)$</span> contain <span class="mathjax">$P$</span>, and therefore do not belong to <span class="mathjax">$\Sigma$</span>. If:
         </p>
+        <div class="mathjax">
+          $$
+          f^m = P + (x) \quad f^n = P + (y)
+          $$
+        </div>
         <p>
           then, <span class="mathjax">$f^{m + n} \in P + (xy)$</span>, hence the ideal <span class="mathjax">$P + (xy) \notin \Sigma$</span>, and <span class="mathjax">$xy \notin P$</span>. Hence, we have a prime ideal <span class="mathjax">$P$</span>, and <span class="mathjax">$f \notin P, f \notin \mathfrak{N}'$</span>.
         </p>
@@ -256,9 +257,13 @@
           </li>
         </ol>
         <p>
-          If <span class="mathjax">$I$</span> is any ideal of <span class="mathjax">$A$</span>, then the <mark>radical</mark> of <span class="mathjax">$I$</span> is defined as:<br/>
-          $<span class="mathjax">$\sqrt{I} = \{x \in A \mid \exists n \gt 0 : x^n \in I\}$</span>$
+          If <span class="mathjax">$I$</span> is any ideal of <span class="mathjax">$A$</span>, then the <mark>radical</mark> of <span class="mathjax">$I$</span> is defined as:
         </p>
+        <div class="mathjax">
+          $$
+          \sqrt{I} = \{x \in A \mid \exists n \gt 0 : x^n \in I\}
+          $$
+        </div>
         <p>
           If <span class="mathjax">$\varphi : A \rightarrow A/I$</span> is a ring homomorphism, then <span class="mathjax">$\sqrt{I} = \varphi^{-1}(\mathfrak{N}_{A/I})$</span>, hence the radical of an ideal is an ideal.
         </p>
@@ -298,9 +303,13 @@
           Extensions and contractions
         </h2>
         <p>
-          Let <span class="mathjax">$f : A \rightarrow B$</span> be a ring homomorphism. Then for ideal <span class="mathjax">$I$</span>, <span class="mathjax">$f(I)$</span> is not necessarily an ideal in <span class="mathjax">$B$</span>. We define <mark>extension</mark> <span class="mathjax">$I^e$</span> to be the set <span class="mathjax">$Bf(I)$</span>, generated by <span class="mathjax">$B$</span>. Alternatively, if <span class="mathjax">$J$</span> is an ideal of <span class="mathjax">$B$</span>, then <span class="mathjax">$f^{-1}(J)$</span> is necessarily an ideal in <span class="mathjax">$A$</span>, and this is termed <mark>contraction</mark> <span class="mathjax">$J^c$</span>. We can hence factorize <span class="mathjax">$f$</span> as follows:<br/>
-          $<span class="mathjax">$A \xrightarrow{p} f(A) \xrightarrow{q} B$</span>$
+          Let <span class="mathjax">$f : A \rightarrow B$</span> be a ring homomorphism. Then for ideal <span class="mathjax">$I$</span>, <span class="mathjax">$f(I)$</span> is not necessarily an ideal in <span class="mathjax">$B$</span>. We define <mark>extension</mark> <span class="mathjax">$I^e$</span> to be the set <span class="mathjax">$Bf(I)$</span>, generated by <span class="mathjax">$B$</span>. Alternatively, if <span class="mathjax">$J$</span> is an ideal of <span class="mathjax">$B$</span>, then <span class="mathjax">$f^{-1}(J)$</span> is necessarily an ideal in <span class="mathjax">$A$</span>, and this is termed <mark>contraction</mark> <span class="mathjax">$J^c$</span>. We can hence factorize <span class="mathjax">$f$</span> as follows:
         </p>
+        <div class="mathjax">
+          $$
+          A \xrightarrow{p} f(A) \xrightarrow{q} B
+          $$
+        </div>
         <p>
           Here, <span class="mathjax">$p$</span> is surjective and <span class="mathjax">$q$</span> is injective. For <span class="mathjax">$p$</span>, the situation is very simple: there is a one-to-one correspondence between ideals of <span class="mathjax">$f(A)$</span> and ideals of <span class="mathjax">$A$</span> that contain <span class="mathjax">$\text{ker }(f)$</span>, and prime ideals correspond to prime ideals. For <span class="mathjax">$q$</span>, however, the situation is complicated.
         </p>
@@ -432,13 +441,21 @@
           $$
         </div>
         <p>
-          The cokernel of <span class="mathjax">$f$</span> is a quotient module of <span class="mathjax">$N$</span>, defined by:<br/>
-          $<span class="mathjax">$\text{Coker}(f) = N/Im(f)$</span>$
+          The cokernel of <span class="mathjax">$f$</span> is a quotient module of <span class="mathjax">$N$</span>, defined by:
         </p>
+        <div class="mathjax">
+          $$
+          \text{Coker}(f) = N/Im(f)
+          $$
+        </div>
         <p>
-          If <span class="mathjax">$M' \subseteq \text{Ker}(f)$</span>, then <span class="mathjax">$f$</span> gives rise to the homomorphism <span class="mathjax">$\bar{f} : M/M' \rightarrow N$</span>, where <span class="mathjax">$\text{Ker}(\bar{f}) = \text{Ker}(f)/M'$</span>. Taking <span class="mathjax">$M' = \text{Ker}(f)$</span>, we then have the following isomorphism of <span class="mathjax">$A$</span>-modules:<br/>
-          $<span class="mathjax">$M/Ker(f) \cong Im(f)$</span>$
+          If <span class="mathjax">$M' \subseteq \text{Ker}(f)$</span>, then <span class="mathjax">$f$</span> gives rise to the homomorphism <span class="mathjax">$\bar{f} : M/M' \rightarrow N$</span>, where <span class="mathjax">$\text{Ker}(\bar{f}) = \text{Ker}(f)/M'$</span>. Taking <span class="mathjax">$M' = \text{Ker}(f)$</span>, we then have the following isomorphism of <span class="mathjax">$A$</span>-modules:
         </p>
+        <div class="mathjax">
+          $$
+          M/Ker(f) \cong Im(f)
+          $$
+        </div>
         <h2 id="operations-on-submodules">
           Operations on submodules
         </h2>
@@ -483,21 +500,33 @@
           Direct sum and product
         </h2>
         <p>
-          If <span class="mathjax">$M, N$</span> are modules, then their <mark>direct sum</mark> <span class="mathjax">$M \oplus N$</span> is defined as the pairs <span class="mathjax">$(x, y)$</span> for <span class="mathjax">$x \in M, y \in N$</span>. Sum and scalar multiplication are defined in the usual way:<br/>
-          $<span class="mathjax">$(x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2)$</span><span class="mathjax">$<br/>
-          $</span><span class="mathjax">$a (x, y) = (ax, ay)$</span>$
+          If <span class="mathjax">$M, N$</span> are modules, then their <mark>direct sum</mark> <span class="mathjax">$M \oplus N$</span> is defined as the pairs <span class="mathjax">$(x, y)$</span> for <span class="mathjax">$x \in M, y \in N$</span>. Sum and scalar multiplication are defined in the usual way:
         </p>
+        <div class="mathjax">
+          $$
+          (x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2) \\
+          a (x, y) = (ax, ay)
+          $$
+        </div>
         <p>
           More generally, we can define the direct sum as <span class="mathjax">$\bigoplus_{q \in Q} M_q$</span> to have elements in the family <span class="mathjax">$(x_q)_{q \in Q}$</span>. For a finite index set <span class="mathjax">$Q$</span>, direct sum and <mark>direct product</mark>, <span class="mathjax">$\prod_{q \in Q} M_q$</span>, are the same thing, but not otherwise.
         </p>
         <p>
-          Suppose ring <span class="mathjax">$A$</span> is a direct product <span class="mathjax">$\prod_q A_q$</span>, then the set of elements of <span class="mathjax">$A$</span> of the form <span class="mathjax">$(0, \ldots a_q, \ldots 0)$</span> where <span class="mathjax">$a_q \in A$</span>, form an ideal <span class="mathjax">$I_q$</span>. This is not a subring in general, because it does not contain identity. By considering ring <span class="mathjax">$A$</span> as a module, we have its decomposition into the direct sum of ideals. Conversely, given a ideal decomposition of a ring:<br/>
-          $<span class="mathjax">$A = I_1 \oplus \ldots \oplus I_n$</span>$
+          Suppose ring <span class="mathjax">$A$</span> is a direct product <span class="mathjax">$\prod_q A_q$</span>, then the set of elements of <span class="mathjax">$A$</span> of the form <span class="mathjax">$(0, \ldots a_q, \ldots 0)$</span> where <span class="mathjax">$a_q \in A$</span>, form an ideal <span class="mathjax">$I_q$</span>. This is not a subring in general, because it does not contain identity. By considering ring <span class="mathjax">$A$</span> as a module, we have its decomposition into the direct sum of ideals. Conversely, given a ideal decomposition of a ring:
         </p>
+        <div class="mathjax">
+          $$
+          A = I_1 \oplus \ldots \oplus I_n
+          $$
+        </div>
         <p>
-          we have:<br/>
-          $<span class="mathjax">$A \cong \prod_q A/J_q$</span>$
+          we have:
         </p>
+        <div class="mathjax">
+          $$
+          A \cong \prod_q A/J_q
+          $$
+        </div>
         <p>
           where <span class="mathjax">$J_q = \bigoplus_{q \neq r} I_r$</span>. Each <span class="mathjax">$I_q$</span> is a ring isomorphic to <span class="mathjax">$A/J_q$</span>.
         </p>
@@ -511,13 +540,21 @@
           <span class="mathjax">$M$</span> is a finitely generated <span class="mathjax">$A$</span> module <span class="mathjax">$\iff M$</span> is isomorphic to the quotient of <span class="mathjax">$A^n$</span> for some <span class="mathjax">$n \gt 0$</span>. To prove this, let <span class="mathjax">$x_1, \ldots, x_n$</span> generate <span class="mathjax">$M$</span>, and <span class="mathjax">$\varphi : A^n \rightarrow M$</span> be defined by <span class="mathjax">$\varphi(x_1, \ldots, x_n) = a_1 x_1 + \ldots + a_n x_n$</span>. Then, <span class="mathjax">$\varphi$</span> is an <span class="mathjax">$A$</span>-module homomorphism onto <span class="mathjax">$M$</span> and <span class="mathjax">$M \cong A^n/\text{Ker}(\varphi)$</span>. Conversely, if <span class="mathjax">$e_i = (0, \ldots, 1, \ldots, 0)$</span>, with <span class="mathjax">$1$</span> being in the <span class="mathjax">$i^{\text{th}}$</span> place, then <span class="mathjax">$e_i$</span>s generate <span class="mathjax">$A^n$</span>, and hence <span class="mathjax">$\varphi(e_i)$</span> generate <span class="mathjax">$M$</span>.
         </p>
         <p>
-          Let <span class="mathjax">$M$</span> be a finitely generated <span class="mathjax">$A$</span>-module, <span class="mathjax">$I$</span> be an ideal of <span class="mathjax">$A$</span>, and <span class="mathjax">$\varphi$</span> be an <span class="mathjax">$A$</span>-module endomorphism such that <span class="mathjax">$\varphi(M) \subseteq IM$</span>. Then,<br/>
-          $<span class="mathjax">$\varphi^n + a_1 \varphi^{n - 1} + \ldots + a_n = 0$</span>$
+          Let <span class="mathjax">$M$</span> be a finitely generated <span class="mathjax">$A$</span>-module, <span class="mathjax">$I$</span> be an ideal of <span class="mathjax">$A$</span>, and <span class="mathjax">$\varphi$</span> be an <span class="mathjax">$A$</span>-module endomorphism such that <span class="mathjax">$\varphi(M) \subseteq IM$</span>. Then,
         </p>
+        <div class="mathjax">
+          $$
+          \varphi^n + a_1 \varphi^{n - 1} + \ldots + a_n = 0
+          $$
+        </div>
         <p>
-          where <span class="mathjax">$a_q \in I$</span>. To prove this, let <span class="mathjax">$x_1, \ldots, x_n$</span> be the generators of <span class="mathjax">$M$</span>. Then, each <span class="mathjax">$\varphi(x_q) \in IM$</span>, so that <span class="mathjax">$\varphi(x_q) = \sum_{r = 1}^n a_{qr} x_r$</span>. That is:<br/>
-          $<span class="mathjax">$\sum_{r = 1}^n (\delta_{qr} \varphi - a_{qr}) x_r = 0$</span>$
+          where <span class="mathjax">$a_q \in I$</span>. To prove this, let <span class="mathjax">$x_1, \ldots, x_n$</span> be the generators of <span class="mathjax">$M$</span>. Then, each <span class="mathjax">$\varphi(x_q) \in IM$</span>, so that <span class="mathjax">$\varphi(x_q) = \sum_{r = 1}^n a_{qr} x_r$</span>. That is:
         </p>
+        <div class="mathjax">
+          $$
+          \sum_{r = 1}^n (\delta_{qr} \varphi - a_{qr}) x_r = 0
+          $$
+        </div>
         <p>
           where <span class="mathjax">$\delta_{qr}$</span> is the Kronecker delta. Multiplying on the left by the adjoint of the matrix <span class="mathjax">$(\delta_{qr} \varphi - a_{qr})$</span>, we see that <span class="mathjax">$\text{det}(\delta_{qr} \varphi - a_{qr})$</span> annihilates each <span class="mathjax">$x_i$</span>; expanding out this determinant gives us the required result.
         </p>
@@ -572,10 +609,10 @@
         </p>
         <ol class="olitems" type="i" start="1">
           <li>
-            The sequence $<span class="mathjax">$L \xrightarrow{\alpha} M \xrightarrow{\beta} N \rightarrow 0$</span><span class="mathjax">$ is exact $</span>\iff<span class="mathjax">$ for any $</span>S<span class="mathjax">$, the sequence $</span><span class="mathjax">$0 \rightarrow \text{Hom}(N, S) \xrightarrow{\gamma} \text{Hom}(M, S) \xrightarrow{\delta} \text{Hom}(L, S)$</span><span class="mathjax">$ is exact.
+            The sequence <span class="mathjax">$L \xrightarrow{\alpha} M \xrightarrow{\beta} N \rightarrow 0$</span> is exact <span class="mathjax">$\iff$</span> for any <span class="mathjax">$S$</span>, the sequence <span class="mathjax">$0 \rightarrow \text{Hom}(N, S) \xrightarrow{\gamma} \text{Hom}(M, S) \xrightarrow{\delta} \text{Hom}(L, S)$</span> is exact.
           </li>
           <li>
-            The sequence $</span><span class="mathjax">$0 \rightarrow L \xrightarrow{\alpha} M \xrightarrow{\beta} N$</span><span class="mathjax">$ is exact $</span>\iff<span class="mathjax">$ for any $</span>S<span class="mathjax">$, the sequence $</span><span class="mathjax">$0 \rightarrow \text{Hom}(S, L) \xrightarrow{\gamma} \text{Hom}(S, M) \xrightarrow{\delta} \text{Hom}(S, N)$</span>$ is exact.
+            The sequence <span class="mathjax">$0 \rightarrow L \xrightarrow{\alpha} M \xrightarrow{\beta} N$</span> is exact <span class="mathjax">$\iff$</span> for any <span class="mathjax">$S$</span>, the sequence <span class="mathjax">$0 \rightarrow \text{Hom}(S, L) \xrightarrow{\gamma} \text{Hom}(S, M) \xrightarrow{\delta} \text{Hom}(S, N)$</span> is exact.
           </li>
         </ol>
         <p>
@@ -610,9 +647,13 @@
           Let <span class="mathjax">$C$</span> be a class of <span class="mathjax">$A$</span>-modules, and <span class="mathjax">$\lambda$</span> a function with values in abelian group <span class="mathjax">$G$</span>. <span class="mathjax">$\lambda$</span> is <mark>additive</mark> if, for each s.e.s with terms in <span class="mathjax">$C$</span>, we have <span class="mathjax">$\lambda(L) - \lambda(M) + \lambda(N) = 0$</span>. As an example, let <span class="mathjax">$A$</span> be a vector space <span class="mathjax">$k$</span>, and <span class="mathjax">$C$</span> be the class of all vector spaces <span class="mathjax">$V$</span>. Then <span class="mathjax">$V \mapsto \text{dim}(V)$</span> is additive.
         </p>
         <p>
-          Let <span class="mathjax">$0 \rightarrow M_1 \rightarrow \ldots \rightarrow M_n$</span> be an exact sequence with modules and kernels of all homomorphisms in class <span class="mathjax">$C$</span>. Then, for any additive function <span class="mathjax">$\lambda$</span>, we have:<br/>
-          $<span class="mathjax">$\sum_i (-1)^i \lambda(M_i) = 0$</span>$
+          Let <span class="mathjax">$0 \rightarrow M_1 \rightarrow \ldots \rightarrow M_n$</span> be an exact sequence with modules and kernels of all homomorphisms in class <span class="mathjax">$C$</span>. Then, for any additive function <span class="mathjax">$\lambda$</span>, we have:
         </p>
+        <div class="mathjax">
+          $$
+          \sum_i (-1)^i \lambda(M_i) = 0
+          $$
+        </div>
         <p>
           This is proved by splitting up the long exact sequence into short exact sequences.
         </p>
@@ -657,21 +698,37 @@
           </li>
         </ol>
         <p>
-          Let <span class="mathjax">$A, B$</span> be a rings, <span class="mathjax">$M$</span> an <span class="mathjax">$A$</span>-module, <span class="mathjax">$P$</span> a <span class="mathjax">$B$</span>-module, and <span class="mathjax">$N$</span> an <span class="mathjax">$(A, B)$</span>-module (i.e. it is simultaneously an <span class="mathjax">$A$</span>-module and <span class="mathjax">$B$</span>-module, and the two structures are compatible in that <span class="mathjax">$(ax)b = a(xb)$</span> for all <span class="mathjax">$a \in A, b \in B, x \in N$</span>). Then <span class="mathjax">$M \otimes_A P$</span> is naturally a <span class="mathjax">$B$</span>-module, <span class="mathjax">$N \otimes_B P$</span> is an <span class="mathjax">$A$</span>-module, and we have:<br/>
-          $<span class="mathjax">$(M \otimes_A N) \otimes_B P \cong M \otimes_A (N \otimes_B P)$</span>$
+          Let <span class="mathjax">$A, B$</span> be a rings, <span class="mathjax">$M$</span> an <span class="mathjax">$A$</span>-module, <span class="mathjax">$P$</span> a <span class="mathjax">$B$</span>-module, and <span class="mathjax">$N$</span> an <span class="mathjax">$(A, B)$</span>-module (i.e. it is simultaneously an <span class="mathjax">$A$</span>-module and <span class="mathjax">$B$</span>-module, and the two structures are compatible in that <span class="mathjax">$(ax)b = a(xb)$</span> for all <span class="mathjax">$a \in A, b \in B, x \in N$</span>). Then <span class="mathjax">$M \otimes_A P$</span> is naturally a <span class="mathjax">$B$</span>-module, <span class="mathjax">$N \otimes_B P$</span> is an <span class="mathjax">$A$</span>-module, and we have:
         </p>
+        <div class="mathjax">
+          $$
+          (M \otimes_A N) \otimes_B P \cong M \otimes_A (N \otimes_B P)
+          $$
+        </div>
         <p>
-          Let <span class="mathjax">$f : M \rightarrow M', g : N \rightarrow N'$</span> be two <span class="mathjax">$A$</span>-module homomorphisms. Define <span class="mathjax">$h : M \times N \rightarrow M' \otimes N'$</span> by <span class="mathjax">$h(x, y) = f(x) \otimes g(y)$</span>. Then, <span class="mathjax">$h$</span> is bilinear and induces the homomorphism:<br/>
-          $<span class="mathjax">$f \otimes g : M \times N \rightarrow M' \otimes N'$</span>$
+          Let <span class="mathjax">$f : M \rightarrow M', g : N \rightarrow N'$</span> be two <span class="mathjax">$A$</span>-module homomorphisms. Define <span class="mathjax">$h : M \times N \rightarrow M' \otimes N'$</span> by <span class="mathjax">$h(x, y) = f(x) \otimes g(y)$</span>. Then, <span class="mathjax">$h$</span> is bilinear and induces the homomorphism:
         </p>
+        <div class="mathjax">
+          $$
+          f \otimes g : M \times N \rightarrow M' \otimes N'
+          $$
+        </div>
         <p>
-          such that:<br/>
-          $<span class="mathjax">$(f \otimes g)(x \otimes y) = f(x) \otimes g(y) \quad x \in M, y \in N$</span>$
+          such that:
         </p>
+        <div class="mathjax">
+          $$
+          (f \otimes g)(x \otimes y) = f(x) \otimes g(y) \quad x \in M, y \in N
+          $$
+        </div>
         <p>
-          Let <span class="mathjax">$f' : M' \rightarrow M'', g' : N' \rightarrow N''$</span> be two <span class="mathjax">$A$</span>-module homomorphisms. Then, <span class="mathjax">$(f' \circ f) \otimes (g' \circ g)$</span> and <span class="mathjax">$(f' \otimes g') \circ (f \otimes g)$</span> agree on all elements of the form <span class="mathjax">$x \otimes y$</span> in <span class="mathjax">$M \otimes N$</span>. Since the elements generate <span class="mathjax">$M \otimes N$</span>, it follows that:<br/>
-          $<span class="mathjax">$(f' \circ f) \otimes (g' \circ g) = (f' \otimes g') \circ (f \otimes g)$</span>$
+          Let <span class="mathjax">$f' : M' \rightarrow M'', g' : N' \rightarrow N''$</span> be two <span class="mathjax">$A$</span>-module homomorphisms. Then, <span class="mathjax">$(f' \circ f) \otimes (g' \circ g)$</span> and <span class="mathjax">$(f' \otimes g') \circ (f \otimes g)$</span> agree on all elements of the form <span class="mathjax">$x \otimes y$</span> in <span class="mathjax">$M \otimes N$</span>. Since the elements generate <span class="mathjax">$M \otimes N$</span>, it follows that:
         </p>
+        <div class="mathjax">
+          $$
+          (f' \circ f) \otimes (g' \circ g) = (f' \otimes g') \circ (f \otimes g)
+          $$
+        </div>
         <h2 id="restriction-and-extension-of-scalars">
           Restriction and extension of scalars
         </h2>
@@ -691,13 +748,21 @@
           Exactness of the tensor product
         </h2>
         <p>
-          Let <span class="mathjax">$f : M \otimes N \rightarrow P$</span> be an <span class="mathjax">$A$</span>-bilinear mapping. Then, the mapping <span class="mathjax">$N \rightarrow P$</span> given by <span class="mathjax">$y \mapsto (x, y)$</span> is <span class="mathjax">$A$</span>-linear, and hence <span class="mathjax">$f$</span> gives rise to the mapping <span class="mathjax">$M \rightarrow \text{Hom}(N, P)$</span>, which is also <span class="mathjax">$A$</span>-linear, because <span class="mathjax">$f$</span> is linear in the variable <span class="mathjax">$x$</span>. Conversely, the <span class="mathjax">$A$</span>-homomorphism <span class="mathjax">$\varphi : M \rightarrow \text{Hom}_A(N, P)$</span> is a bilinear map given by <span class="mathjax">$(x, y) \rightarrow \varphi(x) \varphi(y)$</span>. Hence the set <span class="mathjax">$S$</span> of bilinear mappings <span class="mathjax">$M \times N \rightarrow P$</span> is in natural one-to-one correspondence with <span class="mathjax">$\text{Hom}(M, \text{Hom}(N, P))$</span>. On the other hand, <span class="mathjax">$S$</span> is in one-to-one correspondence with <span class="mathjax">$\text{Hom}(M \otimes N, P)$</span>, by definition of tensor product. Hence:<br/>
-          $<span class="mathjax">$\text{Hom}(M \otimes N, P) \cong \text{Hom}(M, \text{Hom}(N, P))$</span>$
+          Let <span class="mathjax">$f : M \otimes N \rightarrow P$</span> be an <span class="mathjax">$A$</span>-bilinear mapping. Then, the mapping <span class="mathjax">$N \rightarrow P$</span> given by <span class="mathjax">$y \mapsto (x, y)$</span> is <span class="mathjax">$A$</span>-linear, and hence <span class="mathjax">$f$</span> gives rise to the mapping <span class="mathjax">$M \rightarrow \text{Hom}(N, P)$</span>, which is also <span class="mathjax">$A$</span>-linear, because <span class="mathjax">$f$</span> is linear in the variable <span class="mathjax">$x$</span>. Conversely, the <span class="mathjax">$A$</span>-homomorphism <span class="mathjax">$\varphi : M \rightarrow \text{Hom}_A(N, P)$</span> is a bilinear map given by <span class="mathjax">$(x, y) \rightarrow \varphi(x) \varphi(y)$</span>. Hence the set <span class="mathjax">$S$</span> of bilinear mappings <span class="mathjax">$M \times N \rightarrow P$</span> is in natural one-to-one correspondence with <span class="mathjax">$\text{Hom}(M, \text{Hom}(N, P))$</span>. On the other hand, <span class="mathjax">$S$</span> is in one-to-one correspondence with <span class="mathjax">$\text{Hom}(M \otimes N, P)$</span>, by definition of tensor product. Hence:
         </p>
+        <div class="mathjax">
+          $$
+          \text{Hom}(M \otimes N, P) \cong \text{Hom}(M, \text{Hom}(N, P))
+          $$
+        </div>
         <p>
-          Consider the following exact sequence of <span class="mathjax">$A$</span>-module homomorphisms:<br/>
-          $<span class="mathjax">$M' \xrightarrow{f} M \xrightarrow{g} M'' \rightarrow 0$</span>$
+          Consider the following exact sequence of <span class="mathjax">$A$</span>-module homomorphisms:
         </p>
+        <div class="mathjax">
+          $$
+          M' \xrightarrow{f} M \xrightarrow{g} M'' \rightarrow 0
+          $$
+        </div>
         <p>
           Let <span class="mathjax">$N$</span> be any <span class="mathjax">$A$</span>-module. Then, the following sequence is also exact:
         </p>
@@ -713,9 +778,13 @@
           Let <span class="mathjax">$T(M) = M \otimes N, U(P) = \text{Hom}(N, P)$</span>. Then, <span class="mathjax">$\text{Hom}(T(M), P) = \text{Hom}(M, U(P))$</span> for all <span class="mathjax">$M, P$</span>. <span class="mathjax">$T$</span> is termed <mark>left adjoint</mark> of <span class="mathjax">$U$</span>, and <span class="mathjax">$U$</span> is termed <mark>right adjoint</mark> of <span class="mathjax">$T$</span>. From <a href="/category/3#adjunction">category theory</a>, any functor which is left adjoint is <mark>right exact</mark>, and right adjoint is <mark>left exact</mark>.
         </p>
         <p>
-          If tensoring with <span class="mathjax">$N$</span> translates all exact sequences into exact sequences, then <span class="mathjax">$N$</span> is said to be a <mark>flat</mark> <span class="mathjax">$A$</span>-module. This is not true in general, and can be illustrated with an example: consider the exact sequence <span class="mathjax">$0 \rightarrow \mathbb{Z} \xrightarrow{f} \mathbb{Z}$</span>, where <span class="mathjax">$f(x) = 2x$</span>. Tensoring with <span class="mathjax">$N = \mathbb{Z}/2\mathbb{Z}$</span> yields <span class="mathjax">$0 \rightarrow \mathbb{Z} \otimes N \xrightarrow{f \otimes 1} \mathbb{Z} \otimes N$</span>, which is not exact because, for any <span class="mathjax">$x \otimes y \in \mathbb{Z}$</span>:<br/>
-          $<span class="mathjax">$(f \otimes 1)(x \otimes y) = 2x \otimes y = x \otimes 2y = 0$</span>$
+          If tensoring with <span class="mathjax">$N$</span> translates all exact sequences into exact sequences, then <span class="mathjax">$N$</span> is said to be a <mark>flat</mark> <span class="mathjax">$A$</span>-module. This is not true in general, and can be illustrated with an example: consider the exact sequence <span class="mathjax">$0 \rightarrow \mathbb{Z} \xrightarrow{f} \mathbb{Z}$</span>, where <span class="mathjax">$f(x) = 2x$</span>. Tensoring with <span class="mathjax">$N = \mathbb{Z}/2\mathbb{Z}$</span> yields <span class="mathjax">$0 \rightarrow \mathbb{Z} \otimes N \xrightarrow{f \otimes 1} \mathbb{Z} \otimes N$</span>, which is not exact because, for any <span class="mathjax">$x \otimes y \in \mathbb{Z}$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          (f \otimes 1)(x \otimes y) = 2x \otimes y = x \otimes 2y = 0
+          $$
+        </div>
         <p>
           So <span class="mathjax">$f \otimes 1$</span> is the zero mapping, while <span class="mathjax">$\mathbb{Z} \otimes N$</span> is nonzero.
         </p>
@@ -769,28 +838,50 @@
           Tensor product of algebras
         </h2>
         <p>
-          Let <span class="mathjax">$B, C$</span> be two <span class="mathjax">$A$</span>-algebras, and <span class="mathjax">$f : A \rightarrow B, g : A \rightarrow C$</span> be two homomorphisms. Since <span class="mathjax">$B, C$</span> are two <span class="mathjax">$A$</span>-modules, we may form the tensor product <span class="mathjax">$D = B \otimes_A C$</span>, which is an <span class="mathjax">$A$</span>-module. Now, consider <span class="mathjax">$B \times C \times B \times C \rightarrow D$</span> defined by:<br/>
-          $<span class="mathjax">$(b, c, b', c') \rightarrow bb' \otimes cc'$</span>$
+          Let <span class="mathjax">$B, C$</span> be two <span class="mathjax">$A$</span>-algebras, and <span class="mathjax">$f : A \rightarrow B, g : A \rightarrow C$</span> be two homomorphisms. Since <span class="mathjax">$B, C$</span> are two <span class="mathjax">$A$</span>-modules, we may form the tensor product <span class="mathjax">$D = B \otimes_A C$</span>, which is an <span class="mathjax">$A$</span>-module. Now, consider <span class="mathjax">$B \times C \times B \times C \rightarrow D$</span> defined by:
         </p>
+        <div class="mathjax">
+          $$
+          (b, c, b', c') \rightarrow bb' \otimes cc'
+          $$
+        </div>
         <p>
-          This is <span class="mathjax">$A$</span>-linear, and therefore induces the <span class="mathjax">$A$</span>-homomorphism:<br/>
-          $<span class="mathjax">$B \otimes C \otimes B \otimes C \rightarrow D$</span>$
+          This is <span class="mathjax">$A$</span>-linear, and therefore induces the <span class="mathjax">$A$</span>-homomorphism:
         </p>
+        <div class="mathjax">
+          $$
+          B \otimes C \otimes B \otimes C \rightarrow D
+          $$
+        </div>
         <p>
-          And hence by <span class="mathjax">$A$</span>-module homomorphism,<br/>
-          $<span class="mathjax">$D \otimes D \rightarrow D$</span>$
+          And hence by <span class="mathjax">$A$</span>-module homomorphism,
         </p>
+        <div class="mathjax">
+          $$
+          D \otimes D \rightarrow D
+          $$
+        </div>
         <p>
-          This corresponds to the bilinear mapping:<br/>
-          $<span class="mathjax">$\mu : D \times D \rightarrow D$</span>$
+          This corresponds to the bilinear mapping:
         </p>
+        <div class="mathjax">
+          $$
+          \mu : D \times D \rightarrow D
+          $$
+        </div>
         <p>
-          which is such that:<br/>
-          $<span class="mathjax">$\mu(b \otimes c, b' \otimes c') = bb' \otimes cc'$</span>$
+          which is such that:
         </p>
+        <div class="mathjax">
+          $$
+          \mu(b \otimes c, b' \otimes c') = bb' \otimes cc'
+          $$
+        </div>
         <p>
           We have therefore defined multiplication on the tensor product <span class="mathjax">$D = B \otimes_A C$</span>; for elements of the form <span class="mathjax">$b \otimes c$</span>, this is given by:<br/>
-          $<span class="mathjax">$(b \otimes c) (b' \otimes c') \rightarrow bb' \otimes cc'$</span>$
+          $<span class="mathjax">$<br/>
+            (b \otimes c) (b' \otimes c') \rightarrow bb' \otimes cc'<br/>
+          $</span>$
         </p>
         <p>
           Furthermore <span class="mathjax">$D$</span> is an <span class="mathjax">$A$</span>-algebra, and the mapping <span class="mathjax">$a \mapsto f(a) \otimes g(a)$</span> is a ring homomorphism <span class="mathjax">$A \rightarrow D$</span>. We hence end up with the following commutative diagram:

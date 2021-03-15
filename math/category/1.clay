@@ -1,4 +1,4 @@
-[ct/1] Natural Transforms, Products, Free Categories
+Natural Transforms, Products, Free Categories
 
 For the product set $X \times Y$, given $W, f, g$, and projections $p : X \times Y \mapsto X$, $q : X \times Y \mapsto Y$, the following diagram commutes:
 
@@ -14,12 +14,17 @@ $$
 The unique function $h$ is given by $hw = \langle fw, gw \rangle$ for every $w \in W$.
 
 The correspondence $h \mapsto \langle ph, qh \rangle  = \langle f, g \rangle$ is given by the bijection:
-$$\text{hom}(W, X \times Y) \cong \text{hom}(\langle W, W \rangle, \langle X, Y \rangle)$$
+
+$$
+  \text{hom}(W, X \times Y) \cong \text{hom}(\langle W, W \rangle, \langle X, Y \rangle)
+$$
 
 We write $\text{hom}(\langle U, V \rangle, \langle X, Y \rangle)$ for the pair of arrows $U \rightarrow X$ and $V \rightarrow Y$. The construction involves two additional constructions: $\Delta W = \langle W, W \rangle$ and $\langle X, Y \rangle \rightarrow X \times Y$. $\Delta$ is said to be `left adjoint` to the product $X \times Y$.
 
 The one-point object $1 = \{0\}$ serves as identity for the "cartesian product" operation:
-$$1 \times X \xrightarrow{\lambda} X \xleftarrow[]{\rho} X \times 1$$
+$$
+  1 \times X \xrightarrow{\lambda} X \xleftarrow[]{\rho} X \times 1
+$$
 
 given by $\lambda : \langle 0, x \rangle \rightarrow x$, $\rho : \langle x, 0 \rangle \rightarrow x$.
 
@@ -76,7 +81,10 @@ xu \ar@{}[r]|{=} & x
 $$
 
 Then a category can be defined as a monoid with "product over $O$":
-$$A \times_0 A = \{\langle f, g \rangle \mid f, g \in A; \text{dom } f = \text{cod } g\}$$
+
+$$
+  A \times_0 A = \{\langle f, g \rangle \mid f, g \in A; \text{dom } f = \text{cod } g\}
+$$
 
 We describe a group as a monoid with the additional operation $\eta : M \rightarrow M$ corresponding to $x \rightarrow x^{-1}$:
 
@@ -102,7 +110,9 @@ $\Delta$ is a category with objects all finite ordinals, and arrows all order-pr
 # Functor
 
 A functor is a morphism of categories. Let $T : B \rightarrow C$ be a functor of two categories. Then, the object function assigns to each object $b \in B$, an object $Tb \in C$; the arrow function assigns each arrow $b \rightarrow b' \in B$ to the arrow $Tb \rightarrow Tb' \in C$, in such a way that:
-$$T_c(1) = 1_{Tc} \quad T(f \circ g) = Tf \circ Tg$$
+$$
+  T_c(1) = 1_{Tc} \quad T(f \circ g) = Tf \circ Tg
+$$
 
 the latter whenever $f \circ g$ is defined in $B$.
 
@@ -177,7 +187,10 @@ H\ar[r]^{p_H} & H/[H, H]
 $$
 
 The double character group yields an example in $\textbf{Ab}$. Let $D$ denote the character group of $G$ so that $D(G) = \text{hom}(G, \mathbb{R}/\mathbb{Z})$ is the set of all homomorphisms $G \rightarrow \mathbb{R}/\mathbb{Z}$ with the familiar group structure, so that $\mathbb{R}/\mathbb{Z}$ is the additive group of real numbers modulo $1$. Each arrow $f : G \rightarrow G'$ determines an arrow $Df : DG' \rightarrow DG$, in the opposite direction, in $\textbf{Ab}$, with $(D f) t = tf : G' \rightarrow \mathbb{R}/\mathbb{Z}$ for each $t$; for composable arrows $D (g \circ f) = Df \circ Dg$. For this reason, $D$ is a contravariant functor on $\textbf{Ab}$ to $\textbf{Ab}$. However, the twice iterated character group $G \mapsto D(DG)$ and identity $I(G) = G$ are both functors $\textbf{Ab} \rightarrow \textbf{Ab}$. For each group $G$, there is a homomorphism:
-$$\tau_G : G \rightarrow D(DG)$$
+
+$$
+  \tau_G : G \rightarrow D(DG)
+$$
 
 obtained in the familar way: To each $g \in G$, assign the function $\tau_G : DG \rightarrow \mathbb{R}/\mathbb{Z}$ given for any character $t \in DG$, $t \mapsto tg$. Thus, $(\tau_G g) t = g(t)$, and $\tau : I \overset{\bullet}{\rightarrow} DD$ is an NT.
 
@@ -227,7 +240,10 @@ $$
 (iv) For every object $b$, $1_b \in \text{hom}(b, b)$; the identity axiom
 
 An Ab-category or preaddive category is a category in which hom-sets are additive abelian groups, and composition is bilinear: given $f, f' : a \rightarrow b$, $g, g' : b \rightarrow c$,
-$$(f + f') \circ (g + g') = f \circ g + f \circ g' + f' \circ g + f' \circ g'$$
+
+$$
+  (f + f') \circ (g + g') = f \circ g + f \circ g' + f' \circ g + f' \circ g'
+$$
 
 $\textbf{Ab}, \textbf{R-Mod}, \textbf{Mod-R}$ are all Ab-categories. $\textbf{Ab-cat}$ is used the denote the category of all small Ab-categories.
 
@@ -238,19 +254,34 @@ We define $C^{op}$ to be the `opposite category`, with the same objects as $C$, 
 The opposite functor $F^{op} : B^{op} \rightarrow A^{op}$ is defined in the usual way. A functor $S : A^{op} \rightarrow B$ can be defined in terms of $A$ as $\bar{S}$, a contravariant functor. Then, $\bar{S}(m \circ n) = \bar{S}(n) \circ \bar{S}(m)$.
 
 Hom-sets provide an example of covariant and contravariant functors. For each object $a \in C$, the object function of the covariant hom-functor sends:
-$$C(a, -) = \text{hom}(a, -) : C \rightarrow \mathbf{Set}$$
+
+$$
+  C(a, -) = \text{hom}(a, -) : C \rightarrow \mathbf{Set}
+$$
 
 and the arrow function sends each arrow $k : b \rightarrow b'$ to:
-$$\text{hom}(a, k) : \text{hom}(a, b) \rightarrow \text{hom}(a, b')$$
+
+$$
+  \text{hom}(a, k) : \text{hom}(a, b) \rightarrow \text{hom}(a, b')
+$$
 
 For each object $b \in C$, the object function of the contravariant hom-functor sends:
-$$C(-, b) = \text{hom}(-, b) : C^{op} \rightarrow \mathbf{Set}$$
+
+$$
+  C(-, b) = \text{hom}(-, b) : C^{op} \rightarrow \mathbf{Set}
+$$
 
 and the arrow function sends each arrow $g : a \rightarrow a'$ to:
-$$\text{hom}(g, b) : \text{hom}(a', b) \rightarrow \text{hom}(a, b)$$
+
+$$
+  \text{hom}(g, b) : \text{hom}(a', b) \rightarrow \text{hom}(a, b)
+$$
 
 To simplify the noation, introduce $k_*$ for "composition with k on the left" or "composition induced by k", and $g^*$ for "composition with g" on the right:
-$$k_* f = k \circ f \quad g^* f = f \circ g$$
+
+$$
+  k_* f = k \circ f \quad g^* f = f \circ g
+$$
 
 For $k : a \rightarrow a'$ and $g : b \rightarrow b'$, we have:
 
@@ -291,12 +322,18 @@ X' & X' \times Y' \ar[l]_{P'}\ar[r]^{Q'} & Y'
 $$
 
 Thus, $\times$ is a pair of functions, assigning to each pair of categories $\langle X, Y \rangle$, the category $X \times Y$, and to each pair of functors $\langle U, V \rangle$, the functor $U \times V$. Moreover, when $U \circ U'$ and $V \circ V'$ are defined, we have $(U \times U') \circ (V \times V') = UU' \times VV'$. This makes $\times$ into a functor:
-$$\times : \textbf{Cat} \times \textbf{Cat} \rightarrow \textbf{Cat}$$
+
+$$
+  \times : \textbf{Cat} \times \textbf{Cat} \rightarrow \textbf{Cat}
+$$
 
 Functor $S : B \times C \rightarrow D$ is defined to be a `bifunctor` or a functor in two variable objects. Hom-sets may be described as bifunctors $\text{hom} : C^{op} \times C \rightarrow \textbf{Set}$.
 
 Consider an NT $\alpha$ between bifunctors $S, S' : B \times C \rightarrow D$. Let $\alpha$ be a function which assigns to every pair of objects $b \in B, c \in C$, the arrow $\alpha(b, c) : S(b, c) \rightarrow S'(b, c)$. $\alpha$ is called `natural` in $b$ if, for every $c \in C$:
-$$\alpha(-, c) : S(-, c) \overset{\bullet}{\rightarrow} S'(-, c)$$
+
+$$
+  \alpha(-, c) : S(-, c) \overset{\bullet}{\rightarrow} S'(-, c)
+$$
 
 For bifunctors $S, S'$, $\alpha$ is an NT of bifunctors $\alpha : S \rightarrow S'$, iff $\alpha(b, c)$ is natural in $b$ for every $c \in C$ and natural in $c$ for every $b \in B$.
 
@@ -314,7 +351,10 @@ C \times 0 & \bullet \ar[rr]\ar[ur]\ar[uu] & & \bullet \ar[uu]
 $$
 
 Here $T_0, T_1 : C \rightarrow C \times \mathbf{2}$ are functors from "bottom" to "top". $T_0 f = \langle f, 0 \rangle$, $T_1 f = \langle f, 1 \rangle$. If $\uparrow : 0 \rightarrow 1$ denotes the unique non-identity arrow in $\mathbf{2}$, then $T_0, T_1$ are defined by:
-$$\mu : T_0 \overset{\bullet}{\rightarrow} T_1 \quad \mu c = \langle c, \uparrow \rangle$$
+
+$$
+  \mu : T_0 \overset{\bullet}{\rightarrow} T_1 \quad \mu c = \langle c, \uparrow \rangle
+$$
 
 for any object $c$. It maps "bottom" to "top", and is natural. We call $\mu$ the `universal natural transform` from $C$.
 
@@ -333,7 +373,10 @@ Tc \ar[r]^{Tf} & Tc'
 $$
 
 The `functor category` may be written as $B^C = \text{Funct}(C, B)$, with objects the functors $T : C \rightarrow B$, and morphisms the NTs between two such functors. The hom-set for this category is:
-$$\text{Nat}(S, T) = B^C(S, T) = \{\tau \mid \tau : S \overset{\bullet}{\rightarrow} T\}$$
+
+$$
+  \text{Nat}(S, T) = B^C(S, T) = \{\tau \mid \tau : S \overset{\bullet}{\rightarrow} T\}
+$$
 
 If $B = \{0, 1\}$, the category $\{0, 1\}^C$ is isomorphic to the powerset of $C$, $\mathscr{P}C$. For any category $B$, $B^1$ is isomorphic to $B$, and $B^2$ is the category whose objects are arrows $f : a \rightarrow b$ of $B$, and whose arrows $f \rightarrow f'$ are those that, along with pair $\langle h, k \rangle$, make the following diagram commute:
 
@@ -360,7 +403,9 @@ $$
 
 The vertical and horizontal composities satisfy the interchange law:
 
-$$(\tau' \bullet \sigma') \circ (\tau \bullet \sigma) = (\tau' \circ \tau) \bullet (\sigma' \circ \sigma)$$
+$$
+  (\tau' \bullet \sigma') \circ (\tau \bullet \sigma) = (\tau' \circ \tau) \bullet (\sigma' \circ \sigma)
+$$
 
 The collection of all NTs is the set of arrows of two different categories under two different operations of composition, $\circ$ and $\bullet$, which satisfy the above interchange law. Moreover, any arrow that is identity for the composition $\circ$ is also identity for the composition $\bullet$. To prove this, notice that objects for the horizontal composition $\circ$ are the categories, for vertical composition, the functors. Notice that the objects and arrows of $C$ may be written as $c : \textbf{1} \rightarrow C$ and $f : \textbf{2} \rightarrow C$. Then, the symbols such as $\sigma \circ c = \sigma c$ have their accepted meaning in a situation such as:
 
@@ -435,12 +480,18 @@ A \ar@<-.5ex>[r]_{\partial_1} \ar@<.5ex>[r]^{\partial_0} & O & \partial_0 f = \t
 $$
 
 A morphism between graphs $D : G \rightarrow G'$ is a pair of functions $D_O : O \rightarrow O'$ and $D_A : A \rightarrow A'$ such that:
-$$D_O \partial_0 f = \partial_0 D_A f \quad D_O \partial_1 f = \partial_1 D_A f$$
+
+$$
+  D_O \partial_0 f = \partial_0 D_A f \quad D_O \partial_1 f = \partial_1 D_A f
+$$
 
 A forgetful functor $U : \textbf{Cat} \rightarrow \textbf{Grph}$ is defined as follows: for every $F : C \rightarrow C'$, there exists $UF : UC \rightarrow UC'$.
 
 Let $O$ be a fixed set. An O-graph has O as its objects; a morphism $D$ of $O$-graphs will be one with $D_O : O \rightarrow O$ as identity. If $A$ and $B$ are two $O$-graphs, then product over $O$ is defined as:
-$$A \times_O B = \{\langle f, g \rangle \mid \partial_0 f = \partial_1 g, f \in A, g \in B\}$$
+
+$$
+  A \times_O B = \{\langle f, g \rangle \mid \partial_0 f = \partial_1 g, f \in A, g \in B\}
+$$
 
 The definitions $\partial_0 \langle f, g \rangle = f, \partial_1 \langle f, g \rangle = g$ make this a graph.
 
@@ -473,7 +524,10 @@ G \ar[r]\ar[dr] & UB \ar@{.>}[d]|{\exists! UD} \\
 $$
 
 There is a bijective correspondence between categories and their underlying graphs:
-$$\textbf{Cat}(C_G, B) \cong \textbf{Grph}(C, UB)$$
+
+$$
+  \textbf{Cat}(C_G, B) \cong \textbf{Grph}(C, UB)
+$$
 
 # Quotient category
 

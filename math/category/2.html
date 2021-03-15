@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[ct/2] Universal Arrows, Yoneda Lemma, Limits | artagnon.com</title>
+    <title>Universal Arrows, Yoneda Lemma, Limits | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -26,9 +26,6 @@
         },
         chtml: {
           fontURL: "/dist/woff"
-        },
-        startup: {
-          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -64,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [ct/2] Universal Arrows, Yoneda Lemma, Limits
+          Universal Arrows, Yoneda Lemma, Limits
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2019-01-28" class="begin">Mon, 28 Jan 2019 16:50:22 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2019-01-28" class="begin">Mon, 28 Jan 2019 16:50:22 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 20:38:03 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -136,12 +133,16 @@
           Yoneda lemma
         </h2>
         <p>
-          The concept of universality can be formulated in terms of <a href="/category/1#hom-sets">hom-sets</a> as follows. Given functor <span class="mathjax">$S: A \rightarrow B$</span>, the pair <span class="mathjax">$\langle r, u : b \rightarrow Sr \rangle$</span> for <span class="mathjax">$r \in A$</span> is universal if and only if the function <span class="mathjax">$g : r \rightarrow a$</span> and the composition <span class="mathjax">$Sg \circ u : b \rightarrow Sa$</span> satisfies the bijection of hom-sets <span class="mathjax">$A(r, a) \cong B(b, Sa)$</span>. This is natural in <span class="mathjax">$A$</span>. If <span class="mathjax">$A, B$</span> have small hom-sets, then the functor <span class="mathjax">$B(b, S-)$</span> to <span class="mathjax">$\textbf{Set}$</span> is isomorphic to the covariant hom-functor <span class="mathjax">$A(r, -)$</span>. Such isomorphisms are called <mark>representations</mark>.
+          The concept of universality can be formulated in terms of <a href="1#hom-sets">hom-sets</a> as follows. Given functor <span class="mathjax">$S: A \rightarrow B$</span>, the pair <span class="mathjax">$\langle r, u : b \rightarrow Sr \rangle$</span> for <span class="mathjax">$r \in A$</span> is universal if and only if the function <span class="mathjax">$g : r \rightarrow a$</span> and the composition <span class="mathjax">$Sg \circ u : b \rightarrow Sa$</span> satisfies the bijection of hom-sets <span class="mathjax">$A(r, a) \cong B(b, Sa)$</span>. This is natural in <span class="mathjax">$A$</span>. If <span class="mathjax">$A, B$</span> have small hom-sets, then the functor <span class="mathjax">$B(b, S-)$</span> to <span class="mathjax">$\textbf{Set}$</span> is isomorphic to the covariant hom-functor <span class="mathjax">$A(r, -)$</span>. Such isomorphisms are called <mark>representations</mark>.
         </p>
         <p>
-          Let <span class="mathjax">$D$</span> be a category with small hom-sets. Then, <mark>representation</mark> of functor <span class="mathjax">$K : D \rightarrow \textbf{Set}$</span>, given <span class="mathjax">$r \in D$</span>, is the pair <span class="mathjax">$\langle r, \psi \rangle$</span> such that:<br/>
-          $<span class="mathjax">$\psi : D(r, -) \cong K$</span>$
+          Let <span class="mathjax">$D$</span> be a category with small hom-sets. Then, <mark>representation</mark> of functor <span class="mathjax">$K : D \rightarrow \textbf{Set}$</span>, given <span class="mathjax">$r \in D$</span>, is the pair <span class="mathjax">$\langle r, \psi \rangle$</span> such that:
         </p>
+        <div class="mathjax">
+          $$
+          \psi : D(r, -) \cong K
+          $$
+        </div>
         <p>
           <span class="mathjax">$r$</span> is called <mark>representing object</mark>, and <span class="mathjax">$K$</span> is termed <mark>representable</mark>, when such a representation exists. A representation is hence just a covariant hom-functor <span class="mathjax">$D(r, -)$</span>.
         </p>
@@ -152,9 +153,13 @@
           A universal arrow from <span class="mathjax">$b$</span> to <span class="mathjax">$S : A \rightarrow B$</span> can be written as the natural isomorphism <span class="mathjax">$A(r, a) \cong B(b, Sa)$</span>, or equivalently as representation of the functor <span class="mathjax">$B(b, S-) : A \rightarrow \textbf{Set}$</span>, or equally well as the universal element of the same functor.
         </p>
         <p>
-          Informally speaking, the <mark>Yoneda lemma</mark> states that an object can be recovered by knowing the maps into it. Formally, given category <span class="mathjax">$D$</span> with small hom-sets, <span class="mathjax">$r \in D$</span>, functor <span class="mathjax">$K : D \rightarrow \textbf{Set}$</span>, there is a bijection:<br/>
-          $<span class="mathjax">$\text{Nat}(D(r, -), K) \cong Kr$</span>$
+          Informally speaking, the <mark>Yoneda lemma</mark> states that an object can be recovered by knowing the maps into it. Formally, given category <span class="mathjax">$D$</span> with small hom-sets, <span class="mathjax">$r \in D$</span>, functor <span class="mathjax">$K : D \rightarrow \textbf{Set}$</span>, there is a bijection:
         </p>
+        <div class="mathjax">
+          $$
+          \text{Nat}(D(r, -), K) \cong Kr
+          $$
+        </div>
         <p>
           which sends each NT <span class="mathjax">$D(r, -) \overset{\bullet}{\rightarrow} K$</span> to <span class="mathjax">$\alpha_r 1_r$</span>, the identity <span class="mathjax">$r \rightarrow r$</span>. The proof is indicated as:
         </p>
@@ -169,9 +174,13 @@
           $$
         </div>
         <p>
-          The bijection <span class="mathjax">$y : \text{Nat}(D(r, -), K) \cong Kr$</span> is the natural isomorphism <span class="mathjax">$N \overset{\bullet}{\rightarrow} E : \textbf{Set}^D \times D \rightarrow \textbf{Set}$</span>. The object function <span class="mathjax">$r \mapsto D(r, -)$</span> and the arrow function:<br/>
-          $<span class="mathjax">$(f : s \rightarrow r) \mapsto D(f, -) : D(r, -) \mapsto D(s, -)$</span>$
+          The bijection <span class="mathjax">$y : \text{Nat}(D(r, -), K) \cong Kr$</span> is the natural isomorphism <span class="mathjax">$N \overset{\bullet}{\rightarrow} E : \textbf{Set}^D \times D \rightarrow \textbf{Set}$</span>. The object function <span class="mathjax">$r \mapsto D(r, -)$</span> and the arrow function:
         </p>
+        <div class="mathjax">
+          $$
+          (f : s \rightarrow r) \mapsto D(f, -) : D(r, -) \mapsto D(s, -)
+          $$
+        </div>
         <p>
           define a fully faithful functor <span class="mathjax">$Y : D^{op} \rightarrow \textbf{Set}^{D}$</span>, and this is called the <mark>Yoneda functor</mark>.
         </p>
@@ -192,20 +201,32 @@
           $$
         </div>
         <p>
-          The assignment <span class="mathjax">$\langle f, g \rangle \mapsto h$</span> is a bijection that is natural in <span class="mathjax">$d$</span>:<br/>
-          $<span class="mathjax">$C(a, d) \times C(b, d) \cong C(a \sqcup b, d)$</span>$
+          The assignment <span class="mathjax">$\langle f, g \rangle \mapsto h$</span> is a bijection that is natural in <span class="mathjax">$d$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          C(a, d) \times C(b, d) \cong C(a \sqcup b, d)
+          $$
+        </div>
         <p>
           Examples include the disjoint union in <span class="mathjax">$\textbf{Set}$</span>, wedge product in <span class="mathjax">$\textbf{Top}_*$</span>, and the tensor product in <span class="mathjax">$\textbf{CRng}$</span>.
         </p>
         <p>
-          For <mark>infinite coproducts</mark>, replace <span class="mathjax">$C^2$</span> with <span class="mathjax">$C^X$</span>, for any set <span class="mathjax">$X$</span>:<br/>
-          $<span class="mathjax">$C(\sqcup_x a_x, c) \cong \prod_x C(a_x, c)$</span>$
+          For <mark>infinite coproducts</mark>, replace <span class="mathjax">$C^2$</span> with <span class="mathjax">$C^X$</span>, for any set <span class="mathjax">$X$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          C(\sqcup_x a_x, c) \cong \prod_x C(a_x, c)
+          $$
+        </div>
         <p>
-          If <span class="mathjax">$a_x = b$</span> for all x, <mark>copower</mark> <span class="mathjax">$\sqcup_X b$</span> is written as <span class="mathjax">$X \bullet b$</span>:<br/>
-          $<span class="mathjax">$C(X \bullet b, c) \cong C(b, c)^X$</span>$
+          If <span class="mathjax">$a_x = b$</span> for all x, <mark>copower</mark> <span class="mathjax">$\sqcup_X b$</span> is written as <span class="mathjax">$X \bullet b$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          C(X \bullet b, c) \cong C(b, c)^X
+          $$
+        </div>
         <p>
           If <span class="mathjax">$C$</span> has a null object such that <span class="mathjax">$0: b \rightarrow z \rightarrow c$</span> is the zero arrow, <mark>cokernel</mark> of <span class="mathjax">$f : a \rightarrow b$</span> is given by <span class="mathjax">$u : b \rightarrow c$</span>:
         </p>
@@ -278,9 +299,13 @@
           $$
         </div>
         <p>
-          The <mark>coproduct over <span class="mathjax">$a$</span></mark>, also called <mark>cocartesian square</mark> or <mark>fibered sum</mark> is written as:<br/>
-          $<span class="mathjax">$r = b \sqcup_a c = b \sqcup_{\langle f, g \rangle} c$</span>$
+          The <mark>coproduct over <span class="mathjax">$a$</span></mark>, also called <mark>cocartesian square</mark> or <mark>fibered sum</mark> is written as:
         </p>
+        <div class="mathjax">
+          $$
+          r = b \sqcup_a c = b \sqcup_{\langle f, g \rangle} c
+          $$
+        </div>
         <p>
           The pushout of <span class="mathjax">$\langle f, g \rangle$</span> always exists in <span class="mathjax">$\textbf{Set}$</span>; it is the disjoint union <span class="mathjax">$a \sqcup b$</span> with elements identified with <span class="mathjax">$fx$</span> and <span class="mathjax">$gx$</span>, for <span class="mathjax">$x \in a$</span>.
         </p>
@@ -298,9 +323,13 @@
           $$
         </div>
         <p>
-          Let <span class="mathjax">$C$</span> be a category, and <span class="mathjax">$J$</span> be an index category. The diagonal functor<br/>
-          $<span class="mathjax">$\Delta : C \rightarrow C^J$</span>$
+          Let <span class="mathjax">$C$</span> be a category, and <span class="mathjax">$J$</span> be an index category. The diagonal functor
         </p>
+        <div class="mathjax">
+          $$
+          \Delta : C \rightarrow C^J
+          $$
+        </div>
         <p>
           sends each object <span class="mathjax">$c$</span> to the constant functor <span class="mathjax">$\Delta c$</span> - the functor which has the same value <span class="mathjax">$c$</span> for each object <span class="mathjax">$i \in J$</span>, and the value <span class="mathjax">$1_c$</span> at each arrow of <span class="mathjax">$J$</span>. Given <span class="mathjax">$f : c \rightarrow c'$</span>, <span class="mathjax">$\Delta f : \Delta c \overset{\bullet}{\rightarrow} \Delta c'$</span> is an NT. Arrows <span class="mathjax">$F : J \rightarrow C$</span> correspond to objects of <span class="mathjax">$C^J$</span>. The universal arrow <span class="mathjax">$\langle r, u \rangle$</span> from <span class="mathjax">$F$</span> to <span class="mathjax">$\Delta$</span> is called a <mark>colimit</mark> (or <mark>direct limit</mark>, <mark>inductive limit</mark>) diagram for <span class="mathjax">$F$</span>; it consits of an object <span class="mathjax">$r \in C$</span>, usually written <span class="mathjax">$r = \underset{\longrightarrow}{\text{Lim }} F$</span>, or <span class="mathjax">$r = \text{Colim } F$</span>, along with an NT <span class="mathjax">$u : F \overset{\bullet}{\rightarrow} \Delta r$</span> which is universal among NTs <span class="mathjax">$\tau : F \overset{\bullet}{\rightarrow} \Delta c$</span>. Pictorially, the following diagram commutes:
         </p>
@@ -363,27 +392,43 @@
           $$
         </div>
         <p>
-          For a discrete category <span class="mathjax">$J = \{1, 2\}$</span> and category <span class="mathjax">$C$</span>, limit of functor <span class="mathjax">$F : \{1, 2\} \rightarrow C$</span> consisting of pairs <span class="mathjax">$\langle a, b \rangle$</span>, is called <mark>product</mark> of <span class="mathjax">$a, b$</span> and written as <span class="mathjax">$a \times b$</span>. Then, we have projections <span class="mathjax">$p, q$</span> defined as:<br/>
-          $<span class="mathjax">$a \xleftarrow{p} a \times b \xrightarrow{q} b$</span>$
+          For a discrete category <span class="mathjax">$J = \{1, 2\}$</span> and category <span class="mathjax">$C$</span>, limit of functor <span class="mathjax">$F : \{1, 2\} \rightarrow C$</span> consisting of pairs <span class="mathjax">$\langle a, b \rangle$</span>, is called <mark>product</mark> of <span class="mathjax">$a, b$</span> and written as <span class="mathjax">$a \times b$</span>. Then, we have projections <span class="mathjax">$p, q$</span> defined as:
         </p>
+        <div class="mathjax">
+          $$
+          a \xleftarrow{p} a \times b \xrightarrow{q} b
+          $$
+        </div>
         <p>
-          They form a cone with vertex <span class="mathjax">$a \times b$</span>, and we have the bijection of sets natural in <span class="mathjax">$c$</span>:<br/>
-          $<span class="mathjax">$C(c, a \times b) \cong C(c, a) \times C(c, b)$</span>$
+          They form a cone with vertex <span class="mathjax">$a \times b$</span>, and we have the bijection of sets natural in <span class="mathjax">$c$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          C(c, a \times b) \cong C(c, a) \times C(c, b)
+          $$
+        </div>
         <p>
           We then define <span class="mathjax">$h = (f, g) : c \rightarrow a \times b$</span>, and <span class="mathjax">$f, g$</span> are called the <mark>components</mark> of <span class="mathjax">$h$</span>. In <span class="mathjax">$\textbf{Cat}, \textbf{Grp}, \textbf{Top}$</span>, this corresponds to direct product.
         </p>
         <p>
-          <mark>Infinite products</mark>. When <span class="mathjax">$J$</span> is a set (= discrete category, category with all arrows identities), <span class="mathjax">$F : J \rightarrow C$</span> is simply a <span class="mathjax">$J$</span>-indexed family of objects <span class="mathjax">$a_i \in C$</span>, while cone with vertex <span class="mathjax">$c$</span> and base <span class="mathjax">$a_j$</span> is a <span class="mathjax">$J$</span>-indexed family of arrows <span class="mathjax">$f_j : c \rightarrow a_j$</span>. We have <span class="mathjax">$f : c \rightarrow \prod_j a_j$</span> and the following bijection of sets natural in <span class="mathjax">$c$</span>:<br/>
-          $<span class="mathjax">$\prod_j C(c, a_j) \cong C(c, \prod_j a_j)$</span>$
+          <mark>Infinite products</mark>. When <span class="mathjax">$J$</span> is a set (= discrete category, category with all arrows identities), <span class="mathjax">$F : J \rightarrow C$</span> is simply a <span class="mathjax">$J$</span>-indexed family of objects <span class="mathjax">$a_i \in C$</span>, while cone with vertex <span class="mathjax">$c$</span> and base <span class="mathjax">$a_j$</span> is a <span class="mathjax">$J$</span>-indexed family of arrows <span class="mathjax">$f_j : c \rightarrow a_j$</span>. We have <span class="mathjax">$f : c \rightarrow \prod_j a_j$</span> and the following bijection of sets natural in <span class="mathjax">$c$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          \prod_j C(c, a_j) \cong C(c, \prod_j a_j)
+          $$
+        </div>
         <p>
           Products over any small set exist in <span class="mathjax">$\textbf{Set}$</span>, <span class="mathjax">$\textbf{Grp}$</span>, and <span class="mathjax">$\textbf{Top}$</span>; they are simply cartesian products.
         </p>
         <p>
-          If factors in a product are all equal, <span class="mathjax">$a_j = b$</span> for all <span class="mathjax">$j$</span>, then <span class="mathjax">$\prod_j a_j = \prod_j b$</span> is called <mark>power</mark>, and is written as <span class="mathjax">$\prod_j b = b^J$</span>. The following bijection of sets is natural in <span class="mathjax">$c$</span>:<br/>
-          $<span class="mathjax">$C(c, b)^J \cong C(c, b^J)$</span>$
+          If factors in a product are all equal, <span class="mathjax">$a_j = b$</span> for all <span class="mathjax">$j$</span>, then <span class="mathjax">$\prod_j a_j = \prod_j b$</span> is called <mark>power</mark>, and is written as <span class="mathjax">$\prod_j b = b^J$</span>. The following bijection of sets is natural in <span class="mathjax">$c$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          C(c, b)^J \cong C(c, b^J)
+          $$
+        </div>
         <p>
           Given <span class="mathjax">$J = \downarrow \downarrow$</span> and functor <span class="mathjax">$F : \downarrow \downarrow \rightarrow C$</span> defined by parallel arrows <span class="mathjax">$f, g : a \rightarrow b$</span>, the limit point <span class="mathjax">$d \in F$</span>, when it exists, is called an <mark>equalizer</mark> or <mark>difference kernel</mark> of <span class="mathjax">$f$</span> and <span class="mathjax">$g$</span>:
         </p>
@@ -426,13 +471,21 @@
           A category is said to have finite products if, for any finite number of objects <span class="mathjax">$c_1, c_2, \ldots c_n$</span>, there exists a product object <span class="mathjax">$c_1 \times c_2 \times \ldots c_n$</span> and projections <span class="mathjax">$p_i : c_1 \times c_2 \times \ldots c_n \rightarrow c_i$</span> for <span class="mathjax">$i = 1 \ldots n$</span>, with the usual universal property.
         </p>
         <p>
-          If <span class="mathjax">$C$</span> has a terminal object <span class="mathjax">$t$</span> and products <span class="mathjax">$a \leftarrow a \times b \rightarrow b$</span> for any two objects <span class="mathjax">$a, b$</span>, then <span class="mathjax">$C$</span> has all finite products. The products provide, by <span class="mathjax">$\langle a, b \rangle \mapsto a \times b$</span>, the bifunctor <span class="mathjax">$C \times C \rightarrow C$</span>. For any three objects, we have the isomorphism natural in <span class="mathjax">$a, b, c$</span>:<br/>
-          $<span class="mathjax">$\alpha = \alpha_{a, b, c} : (a \times b) \times c \cong a \times (b \times c)$</span>$
+          If <span class="mathjax">$C$</span> has a terminal object <span class="mathjax">$t$</span> and products <span class="mathjax">$a \leftarrow a \times b \rightarrow b$</span> for any two objects <span class="mathjax">$a, b$</span>, then <span class="mathjax">$C$</span> has all finite products. The products provide, by <span class="mathjax">$\langle a, b \rangle \mapsto a \times b$</span>, the bifunctor <span class="mathjax">$C \times C \rightarrow C$</span>. For any three objects, we have the isomorphism natural in <span class="mathjax">$a, b, c$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          \alpha = \alpha_{a, b, c} : (a \times b) \times c \cong a \times (b \times c)
+          $$
+        </div>
         <p>
-          For any object <span class="mathjax">$a$</span>, there are isomorphisms natural in <span class="mathjax">$c$</span>:<br/>
-          $<span class="mathjax">$\rho_a = \rho : t \times a \cong a \quad \lambda_a = \lambda : a \times t \cong a$</span>$
+          For any object <span class="mathjax">$a$</span>, there are isomorphisms natural in <span class="mathjax">$c$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          \rho_a = \rho : t \times a \cong a \quad \lambda_a = \lambda : a \times t \cong a
+          $$
+        </div>
         <p>
           The proof can be expressed as a commutative diagram:
         </p>
@@ -448,13 +501,21 @@
           $$
         </div>
         <p>
-          The dual result holds for a coproduct. A coproduct diagram consists of <span class="mathjax">$m$</span> injections <span class="mathjax">$i_j : a_j \rightarrow a_1 \sqcup a_2 \sqcup \ldots \sqcup a_m$</span> and a map <span class="mathjax">$f: a_1 \sqcup a_2 \sqcup \ldots \sqcup a_n \rightarrow c$</span> determined by its <span class="mathjax">$m$</span> cocomponents <span class="mathjax">$f \circ i_j : f_j = a_j \rightarrow c$</span> for <span class="mathjax">$j = 1, 2, \ldots m$</span>. If <span class="mathjax">$C$</span> has both finite products and finite coproducts, the arrows<br/>
-          $<span class="mathjax">$a_1 \sqcup \ldots \sqcup a_m \rightarrow b_1 \times \ldots \times b_n$</span>$
+          The dual result holds for a coproduct. A coproduct diagram consists of <span class="mathjax">$m$</span> injections <span class="mathjax">$i_j : a_j \rightarrow a_1 \sqcup a_2 \sqcup \ldots \sqcup a_m$</span> and a map <span class="mathjax">$f: a_1 \sqcup a_2 \sqcup \ldots \sqcup a_n \rightarrow c$</span> determined by its <span class="mathjax">$m$</span> cocomponents <span class="mathjax">$f \circ i_j : f_j = a_j \rightarrow c$</span> for <span class="mathjax">$j = 1, 2, \ldots m$</span>. If <span class="mathjax">$C$</span> has both finite products and finite coproducts, the arrows
         </p>
+        <div class="mathjax">
+          $$
+          a_1 \sqcup \ldots \sqcup a_m \rightarrow b_1 \times \ldots \times b_n
+          $$
+        </div>
         <p>
-          from coproducts to products is determined uniquely by an <span class="mathjax">$m \times n$</span> matrix of arrows <span class="mathjax">$f_{jk} = p_k f i_j : a_j \rightarrow b_k$</span>. In any category with a null object <span class="mathjax">$z$</span> and the zero arrow <span class="mathjax">$a \rightarrow b$</span> through <span class="mathjax">$z$</span>, finite coproducts, and finite products, there is a canonical arrow of the coproduct to the product:<br/>
-          $<span class="mathjax">$a_1 \sqcup \ldots \sqcup a_n \rightarrow a_1 \times \ldots \times a_n$</span>$
+          from coproducts to products is determined uniquely by an <span class="mathjax">$m \times n$</span> matrix of arrows <span class="mathjax">$f_{jk} = p_k f i_j : a_j \rightarrow b_k$</span>. In any category with a null object <span class="mathjax">$z$</span> and the zero arrow <span class="mathjax">$a \rightarrow b$</span> through <span class="mathjax">$z$</span>, finite coproducts, and finite products, there is a canonical arrow of the coproduct to the product:
         </p>
+        <div class="mathjax">
+          $$
+          a_1 \sqcup \ldots \sqcup a_n \rightarrow a_1 \times \ldots \times a_n
+          $$
+        </div>
         <p>
           This arrow is precisely the identity matrix of order <span class="mathjax">$n$</span>. It may be an isomorphism (in <span class="mathjax">$\textbf{Ab}, \textbf{R-Mod}$</span>), a proper monic (in <span class="mathjax">$\textbf{Top}, \textbf{Set}$</span>), or a proper epi (in <span class="mathjax">$\textbf{Grp}$</span>).
         </p>
@@ -515,13 +576,21 @@
           Colimits of representatable functors
         </h2>
         <p>
-          Any functor <span class="mathjax">$K : D \rightarrow \textbf{Sets}$</span>, from a small category <span class="mathjax">$D$</span> to the category of Sets, can be represented, in a canoical way, by the colimit of a diagram of representable functors <span class="mathjax">$\text{hom}(d, -)$</span>, where <span class="mathjax">$d \in D$</span>. First, given <span class="mathjax">$K$</span>, we construct a diagram category for the colimit <span class="mathjax">$J$</span>, the "category of elements" of <span class="mathjax">$K$</span>; that is the comma category <span class="mathjax">$1 \downarrow K$</span> of object pairs <span class="mathjax">$(d, x)$</span>, with <span class="mathjax">$d \in D, x \in K(d)$</span> as objects, and arrows <span class="mathjax">$f : (d, x) \rightarrow (d', x')$</span>, those arrows <span class="mathjax">$f: d \rightarrow d'$</span> for which <span class="mathjax">$K(f)x = x'$</span>. Then, <span class="mathjax">$K$</span> is the colimit of the diagram on <span class="mathjax">$1 \downarrow K$</span> given by the functor<br/>
-          $<span class="mathjax">$M : J^D \rightarrow \textbf{Sets}^D$</span>$
+          Any functor <span class="mathjax">$K : D \rightarrow \textbf{Sets}$</span>, from a small category <span class="mathjax">$D$</span> to the category of Sets, can be represented, in a canoical way, by the colimit of a diagram of representable functors <span class="mathjax">$\text{hom}(d, -)$</span>, where <span class="mathjax">$d \in D$</span>. First, given <span class="mathjax">$K$</span>, we construct a diagram category for the colimit <span class="mathjax">$J$</span>, the "category of elements" of <span class="mathjax">$K$</span>; that is the comma category <span class="mathjax">$1 \downarrow K$</span> of object pairs <span class="mathjax">$(d, x)$</span>, with <span class="mathjax">$d \in D, x \in K(d)$</span> as objects, and arrows <span class="mathjax">$f : (d, x) \rightarrow (d', x')$</span>, those arrows <span class="mathjax">$f: d \rightarrow d'$</span> for which <span class="mathjax">$K(f)x = x'$</span>. Then, <span class="mathjax">$K$</span> is the colimit of the diagram on <span class="mathjax">$1 \downarrow K$</span> given by the functor
         </p>
+        <div class="mathjax">
+          $$
+          M : J^D \rightarrow \textbf{Sets}^D
+          $$
+        </div>
         <p>
-          which sends each object <span class="mathjax">$(d, x)$</span> to the hom-functor <span class="mathjax">$D(d, -)$</span>, and each arrow <span class="mathjax">$f$</span> to the induced NT <span class="mathjax">$f_* : D(d', -) \rightarrow D(d, -)$</span>. Then, the Yoneda isomorphism on <span class="mathjax">$\textbf{Sets}^D$</span> yields a cone over base <span class="mathjax">$M$</span> to <span class="mathjax">$K$</span>:<br/>
-          $<span class="mathjax">$y^{-1} : K(D) \rightarrow \text{Nat}(D(d, -), K)$</span>$
+          which sends each object <span class="mathjax">$(d, x)$</span> to the hom-functor <span class="mathjax">$D(d, -)$</span>, and each arrow <span class="mathjax">$f$</span> to the induced NT <span class="mathjax">$f_* : D(d', -) \rightarrow D(d, -)$</span>. Then, the Yoneda isomorphism on <span class="mathjax">$\textbf{Sets}^D$</span> yields a cone over base <span class="mathjax">$M$</span> to <span class="mathjax">$K$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          y^{-1} : K(D) \rightarrow \text{Nat}(D(d, -), K)
+          $$
+        </div>
         <p>
           and we get the following diagram:
         </p>

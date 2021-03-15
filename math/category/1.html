@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>[ct/1] Natural Transforms, Products, Free Categories | artagnon.com</title>
+    <title>Natural Transforms, Products, Free Categories | artagnon.com</title>
     <meta charset="utf-8" />
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
     <meta name="HandheldFriendly" content="true" />
@@ -26,9 +26,6 @@
         },
         chtml: {
           fontURL: "/dist/woff"
-        },
-        startup: {
-          elements: ["div.mathjax", "span.mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -64,10 +61,10 @@
     <main>
       <header>
         <h1>
-          [ct/1] Natural Transforms, Products, Free Categories
+          Natural Transforms, Products, Free Categories
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2018-09-26" class="begin">Wed, 26 Sep 2018 13:06:28 +0530</time><span class="to">↪</span><time datetime="2020-12-16" class="end">Wed, 16 Dec 2020 10:34:05 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2018-09-26" class="begin">Wed, 26 Sep 2018 13:06:28 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 20:38:03 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -88,15 +85,21 @@
           The unique function <span class="mathjax">$h$</span> is given by <span class="mathjax">$hw = \langle fw, gw \rangle$</span> for every <span class="mathjax">$w \in W$</span>.
         </p>
         <p>
-          The correspondence <span class="mathjax">$h \mapsto \langle ph, qh \rangle  = \langle f, g \rangle$</span> is given by the bijection:<br/>
-          $<span class="mathjax">$\text{hom}(W, X \times Y) \cong \text{hom}(\langle W, W \rangle, \langle X, Y \rangle)$</span>$
+          The correspondence <span class="mathjax">$h \mapsto \langle ph, qh \rangle  = \langle f, g \rangle$</span> is given by the bijection:
         </p>
+        <div class="mathjax">
+          $$
+          \text{hom}(W, X \times Y) \cong \text{hom}(\langle W, W \rangle, \langle X, Y \rangle)
+          $$
+        </div>
         <p>
           We write <span class="mathjax">$\text{hom}(\langle U, V \rangle, \langle X, Y \rangle)$</span> for the pair of arrows <span class="mathjax">$U \rightarrow X$</span> and <span class="mathjax">$V \rightarrow Y$</span>. The construction involves two additional constructions: <span class="mathjax">$\Delta W = \langle W, W \rangle$</span> and <span class="mathjax">$\langle X, Y \rangle \rightarrow X \times Y$</span>. <span class="mathjax">$\Delta$</span> is said to be <mark>left adjoint</mark> to the product <span class="mathjax">$X \times Y$</span>.
         </p>
         <p>
           The one-point object <span class="mathjax">$1 = \{0\}$</span> serves as identity for the "cartesian product" operation:<br/>
-          $<span class="mathjax">$1 \times X \xrightarrow{\lambda} X \xleftarrow[]{\rho} X \times 1$</span>$
+          $<span class="mathjax">$<br/>
+            1 \times X \xrightarrow{\lambda} X \xleftarrow[]{\rho} X \times 1<br/>
+          $</span>$
         </p>
         <p>
           given by <span class="mathjax">$\lambda : \langle 0, x \rangle \rightarrow x$</span>, <span class="mathjax">$\rho : \langle x, 0 \rangle \rightarrow x$</span>.
@@ -163,9 +166,13 @@
           $$
         </div>
         <p>
-          Then a category can be defined as a monoid with "product over <span class="mathjax">$O$</span>":<br/>
-          $<span class="mathjax">$A \times_0 A = \{\langle f, g \rangle \mid f, g \in A; \text{dom } f = \text{cod } g\}$</span>$
+          Then a category can be defined as a monoid with "product over <span class="mathjax">$O$</span>":
         </p>
+        <div class="mathjax">
+          $$
+          A \times_0 A = \{\langle f, g \rangle \mid f, g \in A; \text{dom } f = \text{cod } g\}
+          $$
+        </div>
         <p>
           We describe a group as a monoid with the additional operation <span class="mathjax">$\eta : M \rightarrow M$</span> corresponding to <span class="mathjax">$x \rightarrow x^{-1}$</span>:
         </p>
@@ -196,7 +203,9 @@
         </h2>
         <p>
           A functor is a morphism of categories. Let <span class="mathjax">$T : B \rightarrow C$</span> be a functor of two categories. Then, the object function assigns to each object <span class="mathjax">$b \in B$</span>, an object <span class="mathjax">$Tb \in C$</span>; the arrow function assigns each arrow <span class="mathjax">$b \rightarrow b' \in B$</span> to the arrow <span class="mathjax">$Tb \rightarrow Tb' \in C$</span>, in such a way that:<br/>
-          $<span class="mathjax">$T_c(1) = 1_{Tc} \quad T(f \circ g) = Tf \circ Tg$</span>$
+          $<span class="mathjax">$<br/>
+            T_c(1) = 1_{Tc} \quad T(f \circ g) = Tf \circ Tg<br/>
+          $</span>$
         </p>
         <p>
           the latter whenever <span class="mathjax">$f \circ g$</span> is defined in <span class="mathjax">$B$</span>.
@@ -294,9 +303,13 @@
           $$
         </div>
         <p>
-          The double character group yields an example in <span class="mathjax">$\textbf{Ab}$</span>. Let <span class="mathjax">$D$</span> denote the character group of <span class="mathjax">$G$</span> so that <span class="mathjax">$D(G) = \text{hom}(G, \mathbb{R}/\mathbb{Z})$</span> is the set of all homomorphisms <span class="mathjax">$G \rightarrow \mathbb{R}/\mathbb{Z}$</span> with the familiar group structure, so that <span class="mathjax">$\mathbb{R}/\mathbb{Z}$</span> is the additive group of real numbers modulo <span class="mathjax">$1$</span>. Each arrow <span class="mathjax">$f : G \rightarrow G'$</span> determines an arrow <span class="mathjax">$Df : DG' \rightarrow DG$</span>, in the opposite direction, in <span class="mathjax">$\textbf{Ab}$</span>, with <span class="mathjax">$(D f) t = tf : G' \rightarrow \mathbb{R}/\mathbb{Z}$</span> for each <span class="mathjax">$t$</span>; for composable arrows <span class="mathjax">$D (g \circ f) = Df \circ Dg$</span>. For this reason, <span class="mathjax">$D$</span> is a contravariant functor on <span class="mathjax">$\textbf{Ab}$</span> to <span class="mathjax">$\textbf{Ab}$</span>. However, the twice iterated character group <span class="mathjax">$G \mapsto D(DG)$</span> and identity <span class="mathjax">$I(G) = G$</span> are both functors <span class="mathjax">$\textbf{Ab} \rightarrow \textbf{Ab}$</span>. For each group <span class="mathjax">$G$</span>, there is a homomorphism:<br/>
-          $<span class="mathjax">$\tau_G : G \rightarrow D(DG)$</span>$
+          The double character group yields an example in <span class="mathjax">$\textbf{Ab}$</span>. Let <span class="mathjax">$D$</span> denote the character group of <span class="mathjax">$G$</span> so that <span class="mathjax">$D(G) = \text{hom}(G, \mathbb{R}/\mathbb{Z})$</span> is the set of all homomorphisms <span class="mathjax">$G \rightarrow \mathbb{R}/\mathbb{Z}$</span> with the familiar group structure, so that <span class="mathjax">$\mathbb{R}/\mathbb{Z}$</span> is the additive group of real numbers modulo <span class="mathjax">$1$</span>. Each arrow <span class="mathjax">$f : G \rightarrow G'$</span> determines an arrow <span class="mathjax">$Df : DG' \rightarrow DG$</span>, in the opposite direction, in <span class="mathjax">$\textbf{Ab}$</span>, with <span class="mathjax">$(D f) t = tf : G' \rightarrow \mathbb{R}/\mathbb{Z}$</span> for each <span class="mathjax">$t$</span>; for composable arrows <span class="mathjax">$D (g \circ f) = Df \circ Dg$</span>. For this reason, <span class="mathjax">$D$</span> is a contravariant functor on <span class="mathjax">$\textbf{Ab}$</span> to <span class="mathjax">$\textbf{Ab}$</span>. However, the twice iterated character group <span class="mathjax">$G \mapsto D(DG)$</span> and identity <span class="mathjax">$I(G) = G$</span> are both functors <span class="mathjax">$\textbf{Ab} \rightarrow \textbf{Ab}$</span>. For each group <span class="mathjax">$G$</span>, there is a homomorphism:
         </p>
+        <div class="mathjax">
+          $$
+          \tau_G : G \rightarrow D(DG)
+          $$
+        </div>
         <p>
           obtained in the familar way: To each <span class="mathjax">$g \in G$</span>, assign the function <span class="mathjax">$\tau_G : DG \rightarrow \mathbb{R}/\mathbb{Z}$</span> given for any character <span class="mathjax">$t \in DG$</span>, <span class="mathjax">$t \mapsto tg$</span>. Thus, <span class="mathjax">$(\tau_G g) t = g(t)$</span>, and <span class="mathjax">$\tau : I \overset{\bullet}{\rightarrow} DD$</span> is an NT.
         </p>
@@ -386,9 +399,13 @@
           </li>
         </ol>
         <p>
-          An Ab-category or preaddive category is a category in which hom-sets are additive abelian groups, and composition is bilinear: given <span class="mathjax">$f, f' : a \rightarrow b$</span>, <span class="mathjax">$g, g' : b \rightarrow c$</span>,<br/>
-          $<span class="mathjax">$(f + f') \circ (g + g') = f \circ g + f \circ g' + f' \circ g + f' \circ g'$</span>$
+          An Ab-category or preaddive category is a category in which hom-sets are additive abelian groups, and composition is bilinear: given <span class="mathjax">$f, f' : a \rightarrow b$</span>, <span class="mathjax">$g, g' : b \rightarrow c$</span>,
         </p>
+        <div class="mathjax">
+          $$
+          (f + f') \circ (g + g') = f \circ g + f \circ g' + f' \circ g + f' \circ g'
+          $$
+        </div>
         <p>
           <span class="mathjax">$\textbf{Ab}, \textbf{R-Mod}, \textbf{Mod-R}$</span> are all Ab-categories. <span class="mathjax">$\textbf{Ab-cat}$</span> is used the denote the category of all small Ab-categories.
         </p>
@@ -402,25 +419,45 @@
           The opposite functor <span class="mathjax">$F^{op} : B^{op} \rightarrow A^{op}$</span> is defined in the usual way. A functor <span class="mathjax">$S : A^{op} \rightarrow B$</span> can be defined in terms of <span class="mathjax">$A$</span> as <span class="mathjax">$\bar{S}$</span>, a contravariant functor. Then, <span class="mathjax">$\bar{S}(m \circ n) = \bar{S}(n) \circ \bar{S}(m)$</span>.
         </p>
         <p>
-          Hom-sets provide an example of covariant and contravariant functors. For each object <span class="mathjax">$a \in C$</span>, the object function of the covariant hom-functor sends:<br/>
-          $<span class="mathjax">$C(a, -) = \text{hom}(a, -) : C \rightarrow \mathbf{Set}$</span>$
+          Hom-sets provide an example of covariant and contravariant functors. For each object <span class="mathjax">$a \in C$</span>, the object function of the covariant hom-functor sends:
         </p>
+        <div class="mathjax">
+          $$
+          C(a, -) = \text{hom}(a, -) : C \rightarrow \mathbf{Set}
+          $$
+        </div>
         <p>
-          and the arrow function sends each arrow <span class="mathjax">$k : b \rightarrow b'$</span> to:<br/>
-          $<span class="mathjax">$\text{hom}(a, k) : \text{hom}(a, b) \rightarrow \text{hom}(a, b')$</span>$
+          and the arrow function sends each arrow <span class="mathjax">$k : b \rightarrow b'$</span> to:
         </p>
+        <div class="mathjax">
+          $$
+          \text{hom}(a, k) : \text{hom}(a, b) \rightarrow \text{hom}(a, b')
+          $$
+        </div>
         <p>
-          For each object <span class="mathjax">$b \in C$</span>, the object function of the contravariant hom-functor sends:<br/>
-          $<span class="mathjax">$C(-, b) = \text{hom}(-, b) : C^{op} \rightarrow \mathbf{Set}$</span>$
+          For each object <span class="mathjax">$b \in C$</span>, the object function of the contravariant hom-functor sends:
         </p>
+        <div class="mathjax">
+          $$
+          C(-, b) = \text{hom}(-, b) : C^{op} \rightarrow \mathbf{Set}
+          $$
+        </div>
         <p>
-          and the arrow function sends each arrow <span class="mathjax">$g : a \rightarrow a'$</span> to:<br/>
-          $<span class="mathjax">$\text{hom}(g, b) : \text{hom}(a', b) \rightarrow \text{hom}(a, b)$</span>$
+          and the arrow function sends each arrow <span class="mathjax">$g : a \rightarrow a'$</span> to:
         </p>
+        <div class="mathjax">
+          $$
+          \text{hom}(g, b) : \text{hom}(a', b) \rightarrow \text{hom}(a, b)
+          $$
+        </div>
         <p>
-          To simplify the noation, introduce <span class="mathjax">$k_*$</span> for "composition with k on the left" or "composition induced by k", and <span class="mathjax">$g^*$</span> for "composition with g" on the right:<br/>
-          $<span class="mathjax">$k_* f = k \circ f \quad g^* f = f \circ g$</span>$
+          To simplify the noation, introduce <span class="mathjax">$k_*$</span> for "composition with k on the left" or "composition induced by k", and <span class="mathjax">$g^*$</span> for "composition with g" on the right:
         </p>
+        <div class="mathjax">
+          $$
+          k_* f = k \circ f \quad g^* f = f \circ g
+          $$
+        </div>
         <p>
           For <span class="mathjax">$k : a \rightarrow a'$</span> and <span class="mathjax">$g : b \rightarrow b'$</span>, we have:
         </p>
@@ -468,16 +505,24 @@
           $$
         </div>
         <p>
-          Thus, <span class="mathjax">$\times$</span> is a pair of functions, assigning to each pair of categories <span class="mathjax">$\langle X, Y \rangle$</span>, the category <span class="mathjax">$X \times Y$</span>, and to each pair of functors <span class="mathjax">$\langle U, V \rangle$</span>, the functor <span class="mathjax">$U \times V$</span>. Moreover, when <span class="mathjax">$U \circ U'$</span> and <span class="mathjax">$V \circ V'$</span> are defined, we have <span class="mathjax">$(U \times U') \circ (V \times V') = UU' \times VV'$</span>. This makes <span class="mathjax">$\times$</span> into a functor:<br/>
-          $<span class="mathjax">$\times : \textbf{Cat} \times \textbf{Cat} \rightarrow \textbf{Cat}$</span>$
+          Thus, <span class="mathjax">$\times$</span> is a pair of functions, assigning to each pair of categories <span class="mathjax">$\langle X, Y \rangle$</span>, the category <span class="mathjax">$X \times Y$</span>, and to each pair of functors <span class="mathjax">$\langle U, V \rangle$</span>, the functor <span class="mathjax">$U \times V$</span>. Moreover, when <span class="mathjax">$U \circ U'$</span> and <span class="mathjax">$V \circ V'$</span> are defined, we have <span class="mathjax">$(U \times U') \circ (V \times V') = UU' \times VV'$</span>. This makes <span class="mathjax">$\times$</span> into a functor:
         </p>
+        <div class="mathjax">
+          $$
+          \times : \textbf{Cat} \times \textbf{Cat} \rightarrow \textbf{Cat}
+          $$
+        </div>
         <p>
           Functor <span class="mathjax">$S : B \times C \rightarrow D$</span> is defined to be a <mark>bifunctor</mark> or a functor in two variable objects. Hom-sets may be described as bifunctors <span class="mathjax">$\text{hom} : C^{op} \times C \rightarrow \textbf{Set}$</span>.
         </p>
         <p>
-          Consider an NT <span class="mathjax">$\alpha$</span> between bifunctors <span class="mathjax">$S, S' : B \times C \rightarrow D$</span>. Let <span class="mathjax">$\alpha$</span> be a function which assigns to every pair of objects <span class="mathjax">$b \in B, c \in C$</span>, the arrow <span class="mathjax">$\alpha(b, c) : S(b, c) \rightarrow S'(b, c)$</span>. <span class="mathjax">$\alpha$</span> is called <mark>natural</mark> in <span class="mathjax">$b$</span> if, for every <span class="mathjax">$c \in C$</span>:<br/>
-          $<span class="mathjax">$\alpha(-, c) : S(-, c) \overset{\bullet}{\rightarrow} S'(-, c)$</span>$
+          Consider an NT <span class="mathjax">$\alpha$</span> between bifunctors <span class="mathjax">$S, S' : B \times C \rightarrow D$</span>. Let <span class="mathjax">$\alpha$</span> be a function which assigns to every pair of objects <span class="mathjax">$b \in B, c \in C$</span>, the arrow <span class="mathjax">$\alpha(b, c) : S(b, c) \rightarrow S'(b, c)$</span>. <span class="mathjax">$\alpha$</span> is called <mark>natural</mark> in <span class="mathjax">$b$</span> if, for every <span class="mathjax">$c \in C$</span>:
         </p>
+        <div class="mathjax">
+          $$
+          \alpha(-, c) : S(-, c) \overset{\bullet}{\rightarrow} S'(-, c)
+          $$
+        </div>
         <p>
           For bifunctors <span class="mathjax">$S, S'$</span>, <span class="mathjax">$\alpha$</span> is an NT of bifunctors <span class="mathjax">$\alpha : S \rightarrow S'$</span>, iff <span class="mathjax">$\alpha(b, c)$</span> is natural in <span class="mathjax">$b$</span> for every <span class="mathjax">$c \in C$</span> and natural in <span class="mathjax">$c$</span> for every <span class="mathjax">$b \in B$</span>.
         </p>
@@ -497,9 +542,13 @@
           $$
         </div>
         <p>
-          Here <span class="mathjax">$T_0, T_1 : C \rightarrow C \times \mathbf{2}$</span> are functors from "bottom" to "top". <span class="mathjax">$T_0 f = \langle f, 0 \rangle$</span>, <span class="mathjax">$T_1 f = \langle f, 1 \rangle$</span>. If <span class="mathjax">$\uparrow : 0 \rightarrow 1$</span> denotes the unique non-identity arrow in <span class="mathjax">$\mathbf{2}$</span>, then <span class="mathjax">$T_0, T_1$</span> are defined by:<br/>
-          $<span class="mathjax">$\mu : T_0 \overset{\bullet}{\rightarrow} T_1 \quad \mu c = \langle c, \uparrow \rangle$</span>$
+          Here <span class="mathjax">$T_0, T_1 : C \rightarrow C \times \mathbf{2}$</span> are functors from "bottom" to "top". <span class="mathjax">$T_0 f = \langle f, 0 \rangle$</span>, <span class="mathjax">$T_1 f = \langle f, 1 \rangle$</span>. If <span class="mathjax">$\uparrow : 0 \rightarrow 1$</span> denotes the unique non-identity arrow in <span class="mathjax">$\mathbf{2}$</span>, then <span class="mathjax">$T_0, T_1$</span> are defined by:
         </p>
+        <div class="mathjax">
+          $$
+          \mu : T_0 \overset{\bullet}{\rightarrow} T_1 \quad \mu c = \langle c, \uparrow \rangle
+          $$
+        </div>
         <p>
           for any object <span class="mathjax">$c$</span>. It maps "bottom" to "top", and is natural. We call <span class="mathjax">$\mu$</span> the <mark>universal natural transform</mark> from <span class="mathjax">$C$</span>.
         </p>
@@ -521,9 +570,13 @@
           $$
         </div>
         <p>
-          The <mark>functor category</mark> may be written as <span class="mathjax">$B^C = \text{Funct}(C, B)$</span>, with objects the functors <span class="mathjax">$T : C \rightarrow B$</span>, and morphisms the NTs between two such functors. The hom-set for this category is:<br/>
-          $<span class="mathjax">$\text{Nat}(S, T) = B^C(S, T) = \{\tau \mid \tau : S \overset{\bullet}{\rightarrow} T\}$</span>$
+          The <mark>functor category</mark> may be written as <span class="mathjax">$B^C = \text{Funct}(C, B)$</span>, with objects the functors <span class="mathjax">$T : C \rightarrow B$</span>, and morphisms the NTs between two such functors. The hom-set for this category is:
         </p>
+        <div class="mathjax">
+          $$
+          \text{Nat}(S, T) = B^C(S, T) = \{\tau \mid \tau : S \overset{\bullet}{\rightarrow} T\}
+          $$
+        </div>
         <p>
           If <span class="mathjax">$B = \{0, 1\}$</span>, the category <span class="mathjax">$\{0, 1\}^C$</span> is isomorphic to the powerset of <span class="mathjax">$C$</span>, <span class="mathjax">$\mathscr{P}C$</span>. For any category <span class="mathjax">$B$</span>, <span class="mathjax">$B^1$</span> is isomorphic to <span class="mathjax">$B$</span>, and <span class="mathjax">$B^2$</span> is the category whose objects are arrows <span class="mathjax">$f : a \rightarrow b$</span> of <span class="mathjax">$B$</span>, and whose arrows <span class="mathjax">$f \rightarrow f'$</span> are those that, along with pair <span class="mathjax">$\langle h, k \rangle$</span>, make the following diagram commute:
         </p>
@@ -649,16 +702,24 @@
           $$
         </div>
         <p>
-          A morphism between graphs <span class="mathjax">$D : G \rightarrow G'$</span> is a pair of functions <span class="mathjax">$D_O : O \rightarrow O'$</span> and <span class="mathjax">$D_A : A \rightarrow A'$</span> such that:<br/>
-          $<span class="mathjax">$D_O \partial_0 f = \partial_0 D_A f \quad D_O \partial_1 f = \partial_1 D_A f$</span>$
+          A morphism between graphs <span class="mathjax">$D : G \rightarrow G'$</span> is a pair of functions <span class="mathjax">$D_O : O \rightarrow O'$</span> and <span class="mathjax">$D_A : A \rightarrow A'$</span> such that:
         </p>
+        <div class="mathjax">
+          $$
+          D_O \partial_0 f = \partial_0 D_A f \quad D_O \partial_1 f = \partial_1 D_A f
+          $$
+        </div>
         <p>
           A forgetful functor <span class="mathjax">$U : \textbf{Cat} \rightarrow \textbf{Grph}$</span> is defined as follows: for every <span class="mathjax">$F : C \rightarrow C'$</span>, there exists <span class="mathjax">$UF : UC \rightarrow UC'$</span>.
         </p>
         <p>
-          Let <span class="mathjax">$O$</span> be a fixed set. An O-graph has O as its objects; a morphism <span class="mathjax">$D$</span> of <span class="mathjax">$O$</span>-graphs will be one with <span class="mathjax">$D_O : O \rightarrow O$</span> as identity. If <span class="mathjax">$A$</span> and <span class="mathjax">$B$</span> are two <span class="mathjax">$O$</span>-graphs, then product over <span class="mathjax">$O$</span> is defined as:<br/>
-          $<span class="mathjax">$A \times_O B = \{\langle f, g \rangle \mid \partial_0 f = \partial_1 g, f \in A, g \in B\}$</span>$
+          Let <span class="mathjax">$O$</span> be a fixed set. An O-graph has O as its objects; a morphism <span class="mathjax">$D$</span> of <span class="mathjax">$O$</span>-graphs will be one with <span class="mathjax">$D_O : O \rightarrow O$</span> as identity. If <span class="mathjax">$A$</span> and <span class="mathjax">$B$</span> are two <span class="mathjax">$O$</span>-graphs, then product over <span class="mathjax">$O$</span> is defined as:
         </p>
+        <div class="mathjax">
+          $$
+          A \times_O B = \{\langle f, g \rangle \mid \partial_0 f = \partial_1 g, f \in A, g \in B\}
+          $$
+        </div>
         <p>
           The definitions <span class="mathjax">$\partial_0 \langle f, g \rangle = f, \partial_1 \langle f, g \rangle = g$</span> make this a graph.
         </p>
@@ -695,9 +756,13 @@
           $$
         </div>
         <p>
-          There is a bijective correspondence between categories and their underlying graphs:<br/>
-          $<span class="mathjax">$\textbf{Cat}(C_G, B) \cong \textbf{Grph}(C, UB)$</span>$
+          There is a bijective correspondence between categories and their underlying graphs:
         </p>
+        <div class="mathjax">
+          $$
+          \textbf{Cat}(C_G, B) \cong \textbf{Grph}(C, UB)
+          $$
+        </div>
         <h2 id="quotient-category">
           Quotient category
         </h2>
