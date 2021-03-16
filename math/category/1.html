@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: [".mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -64,7 +67,7 @@
           Natural Transforms, Products, Free Categories
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2018-09-26" class="begin">Wed, 26 Sep 2018 13:06:28 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 20:38:03 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2018-09-26" class="begin">Wed, 26 Sep 2018 13:06:28 +0530</time><span class="to">↪</span><time datetime="2021-03-16" class="end">Tue, 16 Mar 2021 12:18:27 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -96,11 +99,13 @@
           We write <span class="mathjax">$\text{hom}(\langle U, V \rangle, \langle X, Y \rangle)$</span> for the pair of arrows <span class="mathjax">$U \rightarrow X$</span> and <span class="mathjax">$V \rightarrow Y$</span>. The construction involves two additional constructions: <span class="mathjax">$\Delta W = \langle W, W \rangle$</span> and <span class="mathjax">$\langle X, Y \rangle \rightarrow X \times Y$</span>. <span class="mathjax">$\Delta$</span> is said to be <mark>left adjoint</mark> to the product <span class="mathjax">$X \times Y$</span>.
         </p>
         <p>
-          The one-point object <span class="mathjax">$1 = \{0\}$</span> serves as identity for the "cartesian product" operation:<br/>
-          $<span class="mathjax">$<br/>
-            1 \times X \xrightarrow{\lambda} X \xleftarrow[]{\rho} X \times 1<br/>
-          $</span>$
+          The one-point object <span class="mathjax">$1 = \{0\}$</span> serves as identity for the "cartesian product" operation:
         </p>
+        <div class="mathjax">
+          $$
+          1 \times X \xrightarrow{\lambda} X \xleftarrow[]{\rho} X \times 1
+          $$
+        </div>
         <p>
           given by <span class="mathjax">$\lambda : \langle 0, x \rangle \rightarrow x$</span>, <span class="mathjax">$\rho : \langle x, 0 \rangle \rightarrow x$</span>.
         </p>
@@ -202,11 +207,13 @@
           Functor
         </h2>
         <p>
-          A functor is a morphism of categories. Let <span class="mathjax">$T : B \rightarrow C$</span> be a functor of two categories. Then, the object function assigns to each object <span class="mathjax">$b \in B$</span>, an object <span class="mathjax">$Tb \in C$</span>; the arrow function assigns each arrow <span class="mathjax">$b \rightarrow b' \in B$</span> to the arrow <span class="mathjax">$Tb \rightarrow Tb' \in C$</span>, in such a way that:<br/>
-          $<span class="mathjax">$<br/>
-            T_c(1) = 1_{Tc} \quad T(f \circ g) = Tf \circ Tg<br/>
-          $</span>$
+          A functor is a morphism of categories. Let <span class="mathjax">$T : B \rightarrow C$</span> be a functor of two categories. Then, the object function assigns to each object <span class="mathjax">$b \in B$</span>, an object <span class="mathjax">$Tb \in C$</span>; the arrow function assigns each arrow <span class="mathjax">$b \rightarrow b' \in B$</span> to the arrow <span class="mathjax">$Tb \rightarrow Tb' \in C$</span>, in such a way that:
         </p>
+        <div class="mathjax">
+          $$
+          T_c(1) = 1_{Tc} \quad T(f \circ g) = Tf \circ Tg
+          $$
+        </div>
         <p>
           the latter whenever <span class="mathjax">$f \circ g$</span> is defined in <span class="mathjax">$B$</span>.
         </p>

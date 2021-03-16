@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: [".mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -64,7 +67,7 @@
           Ideals, Modules, Tensor products
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2018-09-23" class="begin">Sun, 23 Sep 2018 07:05:52 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:09:58 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2018-09-23" class="begin">Sun, 23 Sep 2018 07:05:52 +0530</time><span class="to">↪</span><time datetime="2021-03-16" class="end">Tue, 16 Mar 2021 12:18:27 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -878,11 +881,13 @@
           $$
         </div>
         <p>
-          We have therefore defined multiplication on the tensor product <span class="mathjax">$D = B \otimes_A C$</span>; for elements of the form <span class="mathjax">$b \otimes c$</span>, this is given by:<br/>
-          $<span class="mathjax">$<br/>
-            (b \otimes c) (b' \otimes c') \rightarrow bb' \otimes cc'<br/>
-          $</span>$
+          We have therefore defined multiplication on the tensor product <span class="mathjax">$D = B \otimes_A C$</span>; for elements of the form <span class="mathjax">$b \otimes c$</span>, this is given by:
         </p>
+        <div class="mathjax">
+          $$
+          (b \otimes c) (b' \otimes c') \rightarrow bb' \otimes cc'
+          $$
+        </div>
         <p>
           Furthermore <span class="mathjax">$D$</span> is an <span class="mathjax">$A$</span>-algebra, and the mapping <span class="mathjax">$a \mapsto f(a) \otimes g(a)$</span> is a ring homomorphism <span class="mathjax">$A \rightarrow D$</span>. We hence end up with the following commutative diagram:
         </p>
