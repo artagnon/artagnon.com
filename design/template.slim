@@ -18,26 +18,6 @@ html lang="en"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"
 
-    // MathJaX and xyJaX
-    script defer=true src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
-    javascript:
-      MathJax = {
-        loader: {
-          load: ['[custom]/xypic.js'],
-          paths: {custom: '/lib'}
-        },
-        tex: {
-          packages: {'[+]': ['xypic']},
-          inlineMath: [['$', '$']]
-        },
-        chtml: {
-          fontURL: "/dist/woff"
-        },
-        startup: {
-          elements: [".mathjax", "li > a", "h1", "h2", "h3"]
-        }
-      };
-
     // preload hljs css, since solarized-light is heavy
     link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"
     noscript
