@@ -1,38 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+<!DOCTYPE html><html lang="en"><head>
     <title>Detecting loops | artagnon.com</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
-    <meta name="HandheldFriendly" content="true" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index,follow" />
-    <link rel="icon" href="/dist/artagnon.com.svg" />
-    <link rel="mask-icon" href="/dist/mask-icon.svg" color="#000000" />
-    <link rel="stylesheet" href="/dist/style.min.css" />
+    <meta charset="utf-8">
+    <meta name="description" content="Ramkumar Ramachandra's personal website">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" href="/dist/artagnon.com.svg">
+    <link rel="mask-icon" href="/dist/mask-icon.svg" color="#000000">
+    <link rel="stylesheet" href="/dist/style.min.css">
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
-    <script defer="" src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
-    <script>
-      MathJax = {
-        loader: {
-          load: ['[custom]/xypic.js'],
-          paths: {custom: '/lib'}
-        },
-        tex: {
-          packages: {'[+]': ['xypic']},
-          inlineMath: [['$', '$']]
-        },
-        chtml: {
-          fontURL: "/dist/woff"
-        },
-        startup: {
-          elements: [".mathjax", "li > a", "h1", "h2", "h3"]
-        }
-      };
-    </script>
-    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel=&#39;stylesheet&#39;" />
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" />
     </noscript>
@@ -41,11 +20,1338 @@
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/haskell.min.js"></script>
     <script defer="" src="/dist/script.min.js"></script>
-  </head>
+  <style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mrow {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-inferredMrow {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  padding: .001em 0;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  overflow: hidden;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.1em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-ms {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mspace {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mpadded {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-rbox {
+  display: inline-block;
+  position: relative;
+}
+
+mjx-menclose {
+  display: inline-block;
+  text-align: left;
+  position: relative;
+}
+
+mjx-menclose > mjx-dstrike {
+  display: inline-block;
+  left: 0;
+  top: 0;
+  position: absolute;
+  border-top: 0.067em solid;
+  transform-origin: top left;
+}
+
+mjx-menclose > mjx-ustrike {
+  display: inline-block;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  border-top: 0.067em solid;
+  transform-origin: bottom left;
+}
+
+mjx-menclose > mjx-hstrike {
+  border-top: 0.067em solid;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  transform: translateY(0.034em);
+}
+
+mjx-menclose > mjx-vstrike {
+  border-left: 0.067em solid;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(0.034em);
+}
+
+mjx-menclose > mjx-rbox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border: 0.067em solid;
+  border-radius: 0.267em;
+}
+
+mjx-menclose > mjx-cbox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border: 0.067em solid;
+  border-radius: 50%;
+}
+
+mjx-menclose > mjx-arrow {
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  height: 0;
+  width: 0;
+}
+
+mjx-menclose > mjx-arrow > * {
+  display: block;
+  position: absolute;
+  transform-origin: bottom;
+  border-left: 0.268em solid;
+  border-right: 0;
+  box-sizing: border-box;
+}
+
+mjx-menclose > mjx-arrow > mjx-aline {
+  left: 0;
+  top: -0.034em;
+  right: 0.201em;
+  height: 0;
+  border-top: 0.067em solid;
+  border-left: 0;
+}
+
+mjx-menclose > mjx-arrow[double] > mjx-aline {
+  left: 0.201em;
+  height: 0;
+}
+
+mjx-menclose > mjx-arrow > mjx-rthead {
+  transform: skewX(0.464rad);
+  right: 0;
+  bottom: -1px;
+  border-bottom: 1px solid transparent;
+  border-top: 0.134em solid transparent;
+}
+
+mjx-menclose > mjx-arrow > mjx-rbhead {
+  transform: skewX(-0.464rad);
+  transform-origin: top;
+  right: 0;
+  top: -1px;
+  border-top: 1px solid transparent;
+  border-bottom: 0.134em solid transparent;
+}
+
+mjx-menclose > mjx-arrow > mjx-lthead {
+  transform: skewX(-0.464rad);
+  left: 0;
+  bottom: -1px;
+  border-left: 0;
+  border-right: 0.268em solid;
+  border-bottom: 1px solid transparent;
+  border-top: 0.134em solid transparent;
+}
+
+mjx-menclose > mjx-arrow > mjx-lbhead {
+  transform: skewX(0.464rad);
+  transform-origin: top;
+  left: 0;
+  top: -1px;
+  border-left: 0;
+  border-right: 0.268em solid;
+  border-top: 1px solid transparent;
+  border-bottom: 0.134em solid transparent;
+}
+
+mjx-menclose > dbox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -0.3em;
+  width: 0.6em;
+  border: 0.067em solid;
+  border-radius: 50%;
+  clip-path: inset(0 0 0 0.3em);
+  box-sizing: border-box;
+}
+
+mjx-mfrac {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-frac {
+  display: inline-block;
+  vertical-align: 0.17em;
+  padding: 0 .22em;
+}
+
+mjx-frac[type="d"] {
+  vertical-align: .04em;
+}
+
+mjx-frac[delims] {
+  padding: 0 .1em;
+}
+
+mjx-frac[atop] {
+  padding: 0 .12em;
+}
+
+mjx-frac[atop][delims] {
+  padding: 0;
+}
+
+mjx-dtable {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-dtable > * {
+  font-size: 2000%;
+}
+
+mjx-dbox {
+  display: block;
+  font-size: 5%;
+}
+
+mjx-num {
+  display: block;
+  text-align: center;
+}
+
+mjx-den {
+  display: block;
+  text-align: center;
+}
+
+mjx-mfrac[bevelled] > mjx-num {
+  display: inline-block;
+}
+
+mjx-mfrac[bevelled] > mjx-den {
+  display: inline-block;
+}
+
+mjx-den[align="right"], mjx-num[align="right"] {
+  text-align: right;
+}
+
+mjx-den[align="left"], mjx-num[align="left"] {
+  text-align: left;
+}
+
+mjx-nstrut {
+  display: inline-block;
+  height: .054em;
+  width: 0;
+  vertical-align: -.054em;
+}
+
+mjx-nstrut[type="d"] {
+  height: .217em;
+  vertical-align: -.217em;
+}
+
+mjx-dstrut {
+  display: inline-block;
+  height: .505em;
+  width: 0;
+}
+
+mjx-dstrut[type="d"] {
+  height: .726em;
+}
+
+mjx-line {
+  display: block;
+  box-sizing: border-box;
+  min-height: 1px;
+  height: .06em;
+  border-top: .06em solid;
+  margin: .06em -.1em;
+  overflow: hidden;
+}
+
+mjx-line[type="d"] {
+  margin: .18em -.1em;
+}
+
+mjx-msqrt {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-root {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+mjx-surd {
+  display: inline-block;
+  vertical-align: top;
+}
+
+mjx-sqrt {
+  display: inline-block;
+  padding-top: .07em;
+}
+
+mjx-sqrt > mjx-box {
+  border-top: .07em solid;
+}
+
+mjx-sqrt.mjx-tall > mjx-box {
+  padding-left: .3em;
+  margin-left: -.3em;
+}
+
+mjx-mroot {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-msub {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-msup {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-msubsup {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-script {
+  display: inline-block;
+  padding-right: .05em;
+}
+
+mjx-script > * {
+  display: block;
+}
+
+mjx-munder {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-over {
+  text-align: left;
+}
+
+mjx-munder:not([limits="false"]) {
+  display: inline-table;
+}
+
+mjx-munder > mjx-row {
+  text-align: left;
+}
+
+mjx-under {
+  padding-bottom: .1em;
+}
+
+mjx-mover {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mover:not([limits="false"]) {
+  padding-top: .1em;
+}
+
+mjx-mover:not([limits="false"]) > * {
+  display: block;
+  text-align: left;
+}
+
+mjx-munderover {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-munderover:not([limits="false"]) {
+  padding-top: .1em;
+}
+
+mjx-munderover:not([limits="false"]) > * {
+  display: block;
+}
+
+mjx-mmultiscripts {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-prescripts {
+  display: inline-table;
+  padding-left: .05em;
+}
+
+mjx-scripts {
+  display: inline-table;
+  padding-right: .05em;
+}
+
+mjx-prescripts > mjx-row > mjx-cell {
+  text-align: right;
+}
+
+mjx-mfenced {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mtable {
+  display: inline-block;
+  text-align: center;
+  vertical-align: .25em;
+  position: relative;
+  box-sizing: border-box;
+}
+
+mjx-labels {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+mjx-table {
+  display: inline-block;
+  vertical-align: -.5ex;
+}
+
+mjx-table > mjx-itable {
+  vertical-align: middle;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+mjx-labels > mjx-itable {
+  position: absolute;
+  top: 0;
+}
+
+mjx-mtable[justify="left"] {
+  text-align: left;
+}
+
+mjx-mtable[justify="right"] {
+  text-align: right;
+}
+
+mjx-mtable[justify="left"][side="left"] {
+  padding-right: 0 ! important;
+}
+
+mjx-mtable[justify="left"][side="right"] {
+  padding-left: 0 ! important;
+}
+
+mjx-mtable[justify="right"][side="left"] {
+  padding-right: 0 ! important;
+}
+
+mjx-mtable[justify="right"][side="right"] {
+  padding-left: 0 ! important;
+}
+
+mjx-mtable[align] {
+  vertical-align: baseline;
+}
+
+mjx-mtable[align="top"] > mjx-table {
+  vertical-align: top;
+}
+
+mjx-mtable[align="bottom"] > mjx-table {
+  vertical-align: bottom;
+}
+
+mjx-mtable[side="right"] mjx-labels {
+  min-width: 100%;
+}
+
+mjx-mtr {
+  display: table-row;
+  text-align: left;
+}
+
+mjx-mtr[rowalign="top"] > mjx-mtd {
+  vertical-align: top;
+}
+
+mjx-mtr[rowalign="center"] > mjx-mtd {
+  vertical-align: middle;
+}
+
+mjx-mtr[rowalign="bottom"] > mjx-mtd {
+  vertical-align: bottom;
+}
+
+mjx-mtr[rowalign="baseline"] > mjx-mtd {
+  vertical-align: baseline;
+}
+
+mjx-mtr[rowalign="axis"] > mjx-mtd {
+  vertical-align: .25em;
+}
+
+mjx-mlabeledtr {
+  display: table-row;
+  text-align: left;
+}
+
+mjx-mlabeledtr[rowalign="top"] > mjx-mtd {
+  vertical-align: top;
+}
+
+mjx-mlabeledtr[rowalign="center"] > mjx-mtd {
+  vertical-align: middle;
+}
+
+mjx-mlabeledtr[rowalign="bottom"] > mjx-mtd {
+  vertical-align: bottom;
+}
+
+mjx-mlabeledtr[rowalign="baseline"] > mjx-mtd {
+  vertical-align: baseline;
+}
+
+mjx-mlabeledtr[rowalign="axis"] > mjx-mtd {
+  vertical-align: .25em;
+}
+
+mjx-mtd {
+  display: table-cell;
+  text-align: center;
+  padding: .215em .4em;
+}
+
+mjx-mtd:first-child {
+  padding-left: 0;
+}
+
+mjx-mtd:last-child {
+  padding-right: 0;
+}
+
+mjx-mtable > * > mjx-itable > *:first-child > mjx-mtd {
+  padding-top: 0;
+}
+
+mjx-mtable > * > mjx-itable > *:last-child > mjx-mtd {
+  padding-bottom: 0;
+}
+
+mjx-tstrut {
+  display: inline-block;
+  height: 1em;
+  vertical-align: -.25em;
+}
+
+mjx-labels[align="left"] > mjx-mtr > mjx-mtd {
+  text-align: left;
+}
+
+mjx-labels[align="right"] > mjx-mtr > mjx-mtd {
+  text-align: right;
+}
+
+mjx-mtr mjx-mtd[rowalign="top"], mjx-mlabeledtr mjx-mtd[rowalign="top"] {
+  vertical-align: top;
+}
+
+mjx-mtr mjx-mtd[rowalign="center"], mjx-mlabeledtr mjx-mtd[rowalign="center"] {
+  vertical-align: middle;
+}
+
+mjx-mtr mjx-mtd[rowalign="bottom"], mjx-mlabeledtr mjx-mtd[rowalign="bottom"] {
+  vertical-align: bottom;
+}
+
+mjx-mtr mjx-mtd[rowalign="baseline"], mjx-mlabeledtr mjx-mtd[rowalign="baseline"] {
+  vertical-align: baseline;
+}
+
+mjx-mtr mjx-mtd[rowalign="axis"], mjx-mlabeledtr mjx-mtd[rowalign="axis"] {
+  vertical-align: .25em;
+}
+
+mjx-maction {
+  display: inline-block;
+  text-align: left;
+  position: relative;
+}
+
+mjx-maction > mjx-tool {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  z-index: 500;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+mjx-maction[toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+mjx-mglyph {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mglyph > img {
+  display: inline-block;
+  border: 0;
+  padding: 0;
+}
+
+mjx-semantics {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-annotation {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-annotation-xml {
+  display: inline-block;
+  text-align: left;
+  font-family: initial;
+  line-height: normal;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-xypic {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c20::before {
+  padding: 0 0.25em 0 0;
+  content: " ";
+}
+
+mjx-c.mjx-c2D::before {
+  padding: 0.252em 0.333em 0 0;
+  content: "-";
+}
+
+mjx-c.mjx-c2F::before {
+  padding: 0.75em 0.5em 0.25em 0;
+  content: "/";
+}
+
+mjx-c.mjx-c31::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "1";
+}
+
+mjx-c.mjx-c32::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "2";
+}
+
+mjx-c.mjx-c33::before {
+  padding: 0.665em 0.5em 0.022em 0;
+  content: "3";
+}
+
+mjx-c.mjx-c34::before {
+  padding: 0.677em 0.5em 0 0;
+  content: "4";
+}
+
+mjx-c.mjx-c35::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "5";
+}
+
+mjx-c.mjx-c36::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "6";
+}
+
+mjx-c.mjx-c37::before {
+  padding: 0.676em 0.5em 0.022em 0;
+  content: "7";
+}
+
+mjx-c.mjx-c38::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "8";
+}
+
+mjx-c.mjx-c41::before {
+  padding: 0.716em 0.75em 0 0;
+  content: "A";
+}
+
+mjx-c.mjx-c42::before {
+  padding: 0.683em 0.708em 0 0;
+  content: "B";
+}
+
+mjx-c.mjx-c43::before {
+  padding: 0.705em 0.722em 0.021em 0;
+  content: "C";
+}
+
+mjx-c.mjx-c45::before {
+  padding: 0.68em 0.681em 0 0;
+  content: "E";
+}
+
+mjx-c.mjx-c4D::before {
+  padding: 0.683em 0.917em 0 0;
+  content: "M";
+}
+
+mjx-c.mjx-c4E::before {
+  padding: 0.683em 0.75em 0 0;
+  content: "N";
+}
+
+mjx-c.mjx-c53::before {
+  padding: 0.705em 0.556em 0.022em 0;
+  content: "S";
+}
+
+mjx-c.mjx-c61::before {
+  padding: 0.448em 0.5em 0.011em 0;
+  content: "a";
+}
+
+mjx-c.mjx-c62::before {
+  padding: 0.694em 0.556em 0.011em 0;
+  content: "b";
+}
+
+mjx-c.mjx-c63::before {
+  padding: 0.448em 0.444em 0.011em 0;
+  content: "c";
+}
+
+mjx-c.mjx-c64::before {
+  padding: 0.694em 0.556em 0.011em 0;
+  content: "d";
+}
+
+mjx-c.mjx-c65::before {
+  padding: 0.448em 0.444em 0.011em 0;
+  content: "e";
+}
+
+mjx-c.mjx-c66::before {
+  padding: 0.705em 0.372em 0 0;
+  content: "f";
+}
+
+[noIC] mjx-c.mjx-c66:last-child::before {
+  padding-right: 0.306em;
+}
+
+mjx-c.mjx-c67::before {
+  padding: 0.453em 0.5em 0.206em 0;
+  content: "g";
+}
+
+mjx-c.mjx-c68::before {
+  padding: 0.694em 0.556em 0 0;
+  content: "h";
+}
+
+mjx-c.mjx-c69::before {
+  padding: 0.669em 0.278em 0 0;
+  content: "i";
+}
+
+mjx-c.mjx-c6C::before {
+  padding: 0.694em 0.278em 0 0;
+  content: "l";
+}
+
+mjx-c.mjx-c6E::before {
+  padding: 0.442em 0.556em 0 0;
+  content: "n";
+}
+
+mjx-c.mjx-c6F::before {
+  padding: 0.448em 0.5em 0.01em 0;
+  content: "o";
+}
+
+mjx-c.mjx-c70::before {
+  padding: 0.442em 0.556em 0.194em 0;
+  content: "p";
+}
+
+mjx-c.mjx-c72::before {
+  padding: 0.442em 0.392em 0 0;
+  content: "r";
+}
+
+mjx-c.mjx-c73::before {
+  padding: 0.448em 0.394em 0.011em 0;
+  content: "s";
+}
+
+mjx-c.mjx-c74::before {
+  padding: 0.615em 0.389em 0.01em 0;
+  content: "t";
+}
+
+mjx-c.mjx-c75::before {
+  padding: 0.442em 0.556em 0.011em 0;
+  content: "u";
+}
+
+mjx-c.mjx-c78::before {
+  padding: 0.431em 0.528em 0 0;
+  content: "x";
+}
+
+mjx-c.mjx-c79::before {
+  padding: 0.431em 0.528em 0.204em 0;
+  content: "y";
+}
+</style></head>
   <body>
     <nav>
       <div>
-        <a href="/"><img src="/dist/artagnon.com.svg" alt="home" /></a>
+        <a href="/"><img src="/dist/artagnon.com.svg" alt="home"></a>
       </div>
       <div>
         <ul>
@@ -67,7 +1373,7 @@
           Detecting loops
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2016-07-16" class="begin">Sat, 16 Jul 2016 16:26:50 -0500</time><span class="to">↪</span><time datetime="2021-02-21" class="end">Sun, 21 Feb 2021 15:14:29 +0100</time></span><br /><span id="locations"><address>Paris, Chennai, Boston</address></span>
+          <span id="timestamp"><time datetime="2016-07-16" class="begin">Sat, 16 Jul 2016 16:26:50 -0500</time><span class="to">↪</span><time datetime="2021-02-21" class="end">Sun, 21 Feb 2021 15:14:29 +0100</time></span><br><span id="locations"><address>Paris, Chennai, Boston</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -78,58 +1384,19 @@
           There are five [†] reduced cases we must consider, where backedges are marked by dotted arrows:
         </p>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & 1 \ar[dl]\ar[dr] & \\
-          \text{No loops} & 2 \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & 3 \ar[dl] \\
-          & & 4 &
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.25em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-226.4 -73.3 1532.8 923.1" role="img" focusable="false" overflow="visible" style="width: 15.328em; height: 9.231em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(521.4,0) "></g><g transform="translate(881.4,0) "></g><line x1="821.4" y1="64.62" x2="581.4" y2="323.08" stroke-dasharray=""></line><g transform="translate(581.4,323.08) rotate(132.88) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="941.4" y1="64.62" x2="1181.4" y2="323.08" stroke-dasharray=""></line><g transform="translate(1181.4,323.08) rotate(47.12) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1241.4,0) "></g><g transform="translate(0,387.7) "></g><g transform="translate(521.4,387.7) "></g><line x1="581.4" y1="387.7" x2="1181.4" y2="387.7" stroke-dasharray=""></line><g transform="translate(1181.4,387.7) rotate(0) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,-70.96) "></g><line x1="581.4" y1="452.41" x2="821.4" y2="711.24" stroke-dasharray=""></line><g transform="translate(821.4,711.24) rotate(47.16) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(-130.94,121.41) "></g><g transform="translate(881.4,387.7) "></g><g transform="translate(1241.4,387.7) "></g><line x1="1181.4" y1="452.41" x2="941.4" y2="711.24" stroke-dasharray=""></line><g transform="translate(941.4,711.24) rotate(132.84) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,775.95) "></g><g transform="translate(521.4,775.95) "></g><g transform="translate(881.4,775.95) "></g><g transform="translate(1241.4,775.95) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 10.83em; top: 0.4em;" data-x="8.563999999999998" data-y="-0.333" data-xypic-id="2"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.17em;" data-x="-1.864" data-y="3.4330000000000007" data-xypic-id="4"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c4E"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c73"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 7.23em; top: 4.28em;" data-x="4.9639999999999995" data-y="3.5440000000000005" data-xypic-id="5"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 9.55em; top: 3.58em;" data-x="7.287356459418242" data-y="2.849182540694798" data-xypic-id="6"><mjx-mstyle size="s"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 6.44em; top: 7.45em;" data-x="4.177960526715115" data-y="6.714173096626068" data-xypic-id="7"><mjx-mstyle size="s"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 14.43em; top: 4.27em;" data-x="12.163999999999998" data-y="3.5335000000000005" data-xypic-id="9"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 10.83em; top: 8.15em;" data-x="8.563999999999998" data-y="7.421" data-xypic-id="12"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{header}\ar[dl] & \\
-          \text{Early exit} & \text{body}\ar[dr] & & \text{footer}\ar[dl]\ar@{.>}[ul] \\
-          & & \text{exit target} &
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.48em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-253.4 -75.25 2354.2 947.8" role="img" focusable="false" overflow="visible" style="width: 23.542em; height: 9.478em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(630.4,0) "></g><g transform="translate(1272.55,0) "></g><line x1="1156.93" y1="70.25" x2="761.91" y2="310.25" stroke-dasharray=""></line><g transform="translate(761.91,310.25) rotate(148.72) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1934.25,0) "></g><g transform="translate(0,390.15) "></g><g transform="translate(630.4,390.15) "></g><line x1="759.1" y1="470.05" x2="1145.7" y2="710.05" stroke-dasharray=""></line><g transform="translate(1145.7,710.05) rotate(31.83) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1272.55,390.15) "></g><g transform="translate(1934.25,390.15) "></g><line x1="1816.73" y1="460.95" x2="1403.26" y2="710.05" stroke-dasharray=""></line><g transform="translate(1403.26,710.05) rotate(148.93) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1814.17" y1="319.35" x2="1391.7" y2="70.25" stroke-dasharray="1 15"></line><g transform="translate(1391.7,70.25) rotate(-149.48) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,788.8) "></g><g transform="translate(630.4,788.8) "></g><g transform="translate(1272.55,788.8) "></g><g transform="translate(1934.25,788.8) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 13.81em; top: 0.4em;" data-x="11.279499999999999" data-y="-0.3525" data-xypic-id="16"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.21em;" data-x="-2.134" data-y="3.4525" data-xypic-id="18"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c45"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c78"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c74"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 7.77em; top: 4.21em;" data-x="5.234000000000001" data-y="3.4525" data-xypic-id="19"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c79"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 20.61em; top: 4.3em;" data-x="18.077" data-y="3.5435" data-xypic-id="21"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 13.01em; top: 8.2em;" data-x="10.474" data-y="7.4505" data-xypic-id="24"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c78"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c74"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{entry source}\ar[dl]\ar[dr] & \\
-          \text{Multi-entry} & \text{header}\ar[dr] & & \text{footer}\ar[ul]\ar@{.>}[ll] \\
-          & & \text{body}\ar[ur] &
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.56em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-293 -80.95 2587.2 961.5" role="img" focusable="false" overflow="visible" style="width: 25.872em; height: 9.615em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(707.6,0) "></g><g transform="translate(1426.65,0) "></g><line x1="1288.69" y1="75.95" x2="835.21" y2="325.6" stroke-dasharray=""></line><g transform="translate(835.21,325.6) rotate(151.17) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1561.15" y1="75.95" x2="2002.27" y2="325.05" stroke-dasharray=""></line><g transform="translate(2002.27,325.05) rotate(29.45) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(2127.65,0) "></g><g transform="translate(0,395.85) "></g><g transform="translate(707.6,395.85) "></g><line x1="833.95" y1="466.1" x2="1284.65" y2="716.7" stroke-dasharray=""></line><g transform="translate(1284.65,716.7) rotate(29.07) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1426.65,395.85) "></g><g transform="translate(2127.65,395.85) "></g><line x1="2002.27" y1="325.05" x2="1561.15" y2="75.95" stroke-dasharray=""></line><g transform="translate(1561.15,75.95) rotate(-150.55) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1966.1" y1="395.85" x2="887.2" y2="395.85" stroke-dasharray="1 15"></line><g transform="translate(887.2,395.85) rotate(-180) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,795.65) "></g><g transform="translate(707.6,795.65) "></g><g transform="translate(1426.65,795.65) "></g><line x1="1566.75" y1="715.75" x2="2003.51" y2="466.65" stroke-dasharray=""></line><g transform="translate(2003.51,466.65) rotate(-29.7) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(2127.65,795.65) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 14.55em; top: 0.4em;" data-x="11.622" data-y="-0.4094999999999999" data-xypic-id="28"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c75"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.32em;" data-x="-2.5300000000000002" data-y="3.5095" data-xypic-id="30"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c4D"></mjx-c><mjx-c class="mjx-c75"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c2D"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c79"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 8.56em; top: 4.42em;" data-x="5.630000000000001" data-y="3.606" data-xypic-id="31"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 22.94em; top: 4.41em;" data-x="20.011000000000003" data-y="3.6005000000000003" data-xypic-id="33"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 16.13em; top: 8.32em;" data-x="13.1965" data-y="7.5075" data-xypic-id="36"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c79"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{header A}\ar[dl] & \\
-          \text{Cuddled loops} & \text{body A or header B}\ar[rr] & & \text{footer A or body B}\ar@{.>}[ul]\ar[dl] \\
-          & & \text{footer B}\ar@{.>}[ul] &
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.35em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-347.3 -76.35 3654.1 936.3" role="img" focusable="false" overflow="visible" style="width: 36.541em; height: 9.363em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(1036.4,0) "></g><g transform="translate(1960.1,0) "></g><line x1="1792.12" y1="71.35" x2="1227.1" y2="311.35" stroke-dasharray=""></line><g transform="translate(1227.1,311.35) rotate(156.99) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(2865.75,0) "></g><g transform="translate(0,392.35) "></g><g transform="translate(1036.4,392.35) "></g><line x1="1490.5" y1="392.35" x2="2429.7" y2="392.35" stroke-dasharray=""></line><g transform="translate(2429.7,392.35) rotate(0) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1960.1,392.35) "></g><g transform="translate(2865.75,392.35) "></g><line x1="2678.78" y1="311.35" x2="2124.8" y2="71.35" stroke-dasharray="1 15"></line><g transform="translate(2124.8,71.35) rotate(-156.58) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="2678.52" y1="473.35" x2="2123.76" y2="713.35" stroke-dasharray=""></line><g transform="translate(2123.76,713.35) rotate(156.61) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,784.15) "></g><g transform="translate(1036.4,784.15) "></g><g transform="translate(1960.1,784.15) "></g><line x1="1793.18" y1="713.35" x2="1227.36" y2="473.35" stroke-dasharray="1 15"></line><g transform="translate(1227.36,473.35) rotate(-157.02) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(2865.75,784.15) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 21.13em; top: 0.4em;" data-x="17.654999999999998" data-y="-0.3635" data-xypic-id="40"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.24em;" data-x="-3.073" data-y="3.474" data-xypic-id="42"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c43"></mjx-c><mjx-c class="mjx-c75"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c73"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 9.65em; top: 4.23em;" data-x="6.173000000000001" data-y="3.4635000000000007" data-xypic-id="43"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c42"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 28.12em; top: 4.23em;" data-x="24.647" data-y="3.4635000000000007" data-xypic-id="45"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c42"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 21.33em; top: 8.25em;" data-x="17.856499999999997" data-y="7.4835" data-xypic-id="48"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c42"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          \text{Shared header} & & \text{shared header}\ar[dl] & \\
-          & \text{body}\ar[r] & \text{footer A}\ar@{.>}[u]\ar[r] & \text{footer B}\ar@{.>}[ul]
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -4.51em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-347.3 -76.35 2785.9 552.5" role="img" focusable="false" overflow="visible" style="width: 27.859em; height: 5.525em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(724.3,0) "></g><g transform="translate(1440.5,0) "></g><line x1="1311.9" y1="70.25" x2="866.3" y2="313.68" stroke-dasharray=""></line><g transform="translate(866.3,313.68) rotate(151.35) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(2224.15,0) "></g><g transform="translate(0,391.25) "></g><g transform="translate(724.3,391.25) "></g><line x1="866.3" y1="391.25" x2="1228.95" y2="391.25" stroke-dasharray=""></line><g transform="translate(1228.95,391.25) rotate(0) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1440.5,391.25) "></g><line x1="1440.5" y1="319.9" x2="1440.5" y2="70.25" stroke-dasharray="1 15"></line><g transform="translate(1440.5,70.25) rotate(-90) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1652.05" y1="391.25" x2="2014.7" y2="391.25" stroke-dasharray=""></line><g transform="translate(2014.7,391.25) rotate(0) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(2224.15,391.25) "></g><line x1="2082.34" y1="320.45" x2="1581.21" y2="70.25" stroke-dasharray="1 15"></line><g transform="translate(1581.21,70.25) rotate(-153.47) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 0.4em;" data-x="-3.0730000000000004" data-y="-0.3635" data-xypic-id="50"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 14.89em; top: 0.41em;" data-x="11.413" data-y="-0.3525" data-xypic-id="52"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 9.65em; top: 4.23em;" data-x="6.173000000000001" data-y="3.4635000000000002" data-xypic-id="55"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c79"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 16.11em; top: 4.31em;" data-x="12.6395" data-y="3.5490000000000004" data-xypic-id="56"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 23.97em; top: 4.32em;" data-x="20.496999999999996" data-y="3.5545" data-xypic-id="57"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c42"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <p>
           Now, let's employ a simple DFS:
@@ -145,58 +1412,19 @@
           We get the following start times and end times:
         </p>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{1/8} \ar[dl]\ar[dr] & \\
-          \text{No loops} & \text{6/7} \ar[rr]^{\text{cross edge}}\ar[dr]_{\text{cross edge}} & & \text{2/5} \ar[dl] \\
-          & & \text{3/4} &
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.85em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-226.4 -90 1832.8 1000" role="img" focusable="false" overflow="visible" style="width: 18.328em; height: 10em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(571.4,0) "></g><g transform="translate(1031.4,0) "></g><line x1="936.03" y1="85" x2="666.77" y2="325" stroke-dasharray=""></line><g transform="translate(666.77,325) rotate(138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1126.77" y1="85" x2="1396.03" y2="325" stroke-dasharray=""></line><g transform="translate(1396.03,325) rotate(41.71) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1491.4,0) "></g><g transform="translate(0,410) "></g><g transform="translate(571.4,410) "></g><line x1="681.4" y1="410" x2="1381.4" y2="410" stroke-dasharray=""></line><g transform="translate(1381.4,410) rotate(0) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,-70.96) "></g><line x1="666.77" y1="495" x2="936.03" y2="735" stroke-dasharray=""></line><g transform="translate(936.03,735) rotate(41.71) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(-113.31,127.13) "></g><g transform="translate(1031.4,410) "></g><g transform="translate(1491.4,410) "></g><line x1="1396.03" y1="495" x2="1126.77" y2="735" stroke-dasharray=""></line><g transform="translate(1126.77,735) rotate(138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,820) "></g><g transform="translate(571.4,820) "></g><g transform="translate(1031.4,820) "></g><g transform="translate(1491.4,820) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 11.83em; top: 0.4em;" data-x="9.563999999999998" data-y="-0.49999999999999994" data-xypic-id="60"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c38"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.56em;" data-x="-1.864" data-y="3.6559999999999997" data-xypic-id="62"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c4E"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c73"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 7.23em; top: 4.5em;" data-x="4.9639999999999995" data-y="3.5999999999999996" data-xypic-id="63"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c36"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 11.05em; top: 3.97em;" data-x="8.787356459418243" data-y="3.0721825406947976" data-xypic-id="64"><mjx-mstyle size="s"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 7.62em; top: 8em;" data-x="5.354234977924274" data-y="7.103108976483677" data-xypic-id="65"><mjx-mstyle size="s"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 16.43em; top: 4.5em;" data-x="14.163999999999998" data-y="3.5999999999999996" data-xypic-id="67"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 11.83em; top: 8.6em;" data-x="9.563999999999998" data-y="7.699999999999999" data-xypic-id="70"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{1/8}\ar[dl] & \\
-          \text{Early exit} & \text{2/7}\ar[dr] & & \text{4/5}\ar[dl]\ar@{.>}[ul] \\
-          & & \text{3/6} &
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.85em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-253.4 -90 1886.8 1000" role="img" focusable="false" overflow="visible" style="width: 18.868em; height: 10em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(598.4,0) "></g><g transform="translate(1058.4,0) "></g><line x1="963.03" y1="85" x2="693.77" y2="325" stroke-dasharray=""></line><g transform="translate(693.77,325) rotate(138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1518.4,0) "></g><g transform="translate(0,410) "></g><g transform="translate(598.4,410) "></g><line x1="693.77" y1="495" x2="963.03" y2="735" stroke-dasharray=""></line><g transform="translate(963.03,735) rotate(41.71) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1058.4,410) "></g><g transform="translate(1518.4,410) "></g><line x1="1423.03" y1="495" x2="1153.77" y2="735" stroke-dasharray=""></line><g transform="translate(1153.77,735) rotate(138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1423.03" y1="325" x2="1153.77" y2="85" stroke-dasharray="1 15"></line><g transform="translate(1153.77,85) rotate(-138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,820) "></g><g transform="translate(598.4,820) "></g><g transform="translate(1058.4,820) "></g><g transform="translate(1518.4,820) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 12.37em; top: 0.4em;" data-x="9.834" data-y="-0.49999999999999994" data-xypic-id="74"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c38"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.55em;" data-x="-2.134" data-y="3.651" data-xypic-id="76"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c45"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c78"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c74"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 7.77em; top: 4.5em;" data-x="5.234" data-y="3.5999999999999996" data-xypic-id="77"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 16.97em; top: 4.5em;" data-x="14.434" data-y="3.5999999999999996" data-xypic-id="79"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c34"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 12.37em; top: 8.6em;" data-x="9.834" data-y="7.699999999999999" data-xypic-id="82"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{1/8}\ar[dl]\ar[dr] & \\
-          \text{Multi-entry} & \text{4/5}\ar[dr] & & \text{2/7}\ar[ul]\ar@{.>}[ll] \\
-          & & \text{3/6}\ar[ur] &
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.85em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-293 -90 1966 1000" role="img" focusable="false" overflow="visible" style="width: 19.66em; height: 10em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(638,0) "></g><g transform="translate(1098,0) "></g><line x1="1002.63" y1="85" x2="733.37" y2="325" stroke-dasharray=""></line><g transform="translate(733.37,325) rotate(138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1193.37" y1="85" x2="1462.63" y2="325" stroke-dasharray=""></line><g transform="translate(1462.63,325) rotate(41.71) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1558,0) "></g><g transform="translate(0,410) "></g><g transform="translate(638,410) "></g><line x1="733.37" y1="495" x2="1002.63" y2="735" stroke-dasharray=""></line><g transform="translate(1002.63,735) rotate(41.71) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1098,410) "></g><g transform="translate(1558,410) "></g><line x1="1462.63" y1="325" x2="1193.37" y2="85" stroke-dasharray=""></line><g transform="translate(1193.37,85) rotate(-138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1448" y1="410" x2="748" y2="410" stroke-dasharray="1 15"></line><g transform="translate(748,410) rotate(-180) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,820) "></g><g transform="translate(638,820) "></g><g transform="translate(1098,820) "></g><line x1="1193.37" y1="735" x2="1462.63" y2="495" stroke-dasharray=""></line><g transform="translate(1462.63,495) rotate(-41.71) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1558,820) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 13.16em; top: 0.4em;" data-x="10.229999999999999" data-y="-0.49999999999999994" data-xypic-id="86"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c38"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.55em;" data-x="-2.5300000000000002" data-y="3.651" data-xypic-id="88"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c4D"></mjx-c><mjx-c class="mjx-c75"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c2D"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c79"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 8.56em; top: 4.5em;" data-x="5.63" data-y="3.5999999999999996" data-xypic-id="89"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c34"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 17.76em; top: 4.5em;" data-x="14.829999999999998" data-y="3.5999999999999996" data-xypic-id="91"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 13.16em; top: 8.6em;" data-x="10.229999999999999" data-y="7.699999999999999" data-xypic-id="94"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          & & \text{1/8}\ar[dl] & \\
-          \text{Cuddled loops} & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[ul]\ar[dl] \\
-          & & \text{4/5}\ar@{.>}[ul] &
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.85em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-347.3 -90 2074.6 1000" role="img" focusable="false" overflow="visible" style="width: 20.746em; height: 10em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(692.3,0) "></g><g transform="translate(1152.3,0) "></g><line x1="1056.93" y1="85" x2="787.67" y2="325" stroke-dasharray=""></line><g transform="translate(787.67,325) rotate(138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1612.3,0) "></g><g transform="translate(0,410) "></g><g transform="translate(692.3,410) "></g><line x1="802.3" y1="410" x2="1502.3" y2="410" stroke-dasharray=""></line><g transform="translate(1502.3,410) rotate(0) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1152.3,410) "></g><g transform="translate(1612.3,410) "></g><line x1="1516.93" y1="325" x2="1247.67" y2="85" stroke-dasharray="1 15"></line><g transform="translate(1247.67,85) rotate(-138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1516.93" y1="495" x2="1247.67" y2="735" stroke-dasharray=""></line><g transform="translate(1247.67,735) rotate(138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(0,820) "></g><g transform="translate(692.3,820) "></g><g transform="translate(1152.3,820) "></g><line x1="1056.93" y1="735" x2="787.67" y2="495" stroke-dasharray="1 15"></line><g transform="translate(787.67,495) rotate(-138.29) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1612.3,820) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 14.25em; top: 0.4em;" data-x="10.773" data-y="-0.49999999999999994" data-xypic-id="98"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c38"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.55em;" data-x="-3.073" data-y="3.6505" data-xypic-id="100"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c43"></mjx-c><mjx-c class="mjx-c75"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c73"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 9.65em; top: 4.5em;" data-x="6.173" data-y="3.5999999999999996" data-xypic-id="101"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 18.85em; top: 4.5em;" data-x="15.373000000000001" data-y="3.5999999999999996" data-xypic-id="103"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 14.25em; top: 8.6em;" data-x="10.773" data-y="7.699999999999999" data-xypic-id="106"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c34"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <div class="mathjax">
-          $$
-          \begin{xy}
-          \xymatrix{
-          \text{Shared header} & & & \text{1/8}\ar[dll] & & \\
-          & \text{2/7}\ar[rr] & & \text{3/6}\ar@{.>}[u]\ar[rr] & & \text{4/5}\ar@{.>}[ull]
-          }
-          \end{xy}
-          $$
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;" display="true"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -4.75em;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-347.3 -90 2614.6 590" role="img" focusable="false" overflow="visible" style="width: 26.146em; height: 5.9em;"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="4"><g transform="translate(0,0) "></g><g transform="translate(692.3,0) "></g><g transform="translate(1057.3,0) "></g><g transform="translate(1422.3,0) "></g><line x1="1312.3" y1="61.78" x2="802.3" y2="348.22" stroke-dasharray=""></line><g transform="translate(802.3,348.22) rotate(150.68) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1787.3,0) "></g><g transform="translate(2152.3,0) "></g><g transform="translate(0,410) "></g><g transform="translate(692.3,410) "></g><line x1="802.3" y1="410" x2="1312.3" y2="410" stroke-dasharray=""></line><g transform="translate(1312.3,410) rotate(0) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1057.3,410) "></g><g transform="translate(1422.3,410) "></g><line x1="1422.3" y1="325" x2="1422.3" y2="85" stroke-dasharray="1 15"></line><g transform="translate(1422.3,85) rotate(-90) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><line x1="1532.3" y1="410" x2="2042.3" y2="410" stroke-dasharray=""></line><g transform="translate(2042.3,410) rotate(0) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g><g transform="translate(1787.3,410) "></g><g transform="translate(2152.3,410) "></g><line x1="2042.3" y1="348.22" x2="1532.3" y2="61.78" stroke-dasharray="1 15"></line><g transform="translate(1532.3,61.78) rotate(-150.68) "><path d="M0,0 Q-22.2,2 -48.9,14.7"></path><path d="M0,0 Q-22.2,-2 -48.9,-14.7"></path></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 0.54em;" data-x="-3.0730000000000004" data-y="-0.3635" data-xypic-id="108"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 16.95em; top: 0.4em;" data-x="13.473" data-y="-0.49999999999999994" data-xypic-id="111"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c38"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 9.65em; top: 4.5em;" data-x="6.173" data-y="3.5999999999999996" data-xypic-id="115"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c37"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 16.95em; top: 4.5em;" data-x="13.473" data-y="3.5999999999999996" data-xypic-id="117"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 24.25em; top: 4.5em;" data-x="20.772999999999996" data-y="3.5999999999999996" data-xypic-id="119"><mjx-mstyle><mjx-mstyle><mjx-texatom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c34"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mtext></mjx-texatom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
         </div>
         <p>
           Let's call the first number "DFS number", and the second number "topo number", to indicate that this is the order that topological sort would have produced, in the absence of backedges (topological sort is meaningless when there are loops).
@@ -232,5 +1460,5 @@
         </footer>
       </article>
     </main>
-  </body>
-</html>
+  
+</body></html>
