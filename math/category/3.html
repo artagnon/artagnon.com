@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: [".mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -64,7 +67,7 @@
           Adjunctions
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2019-02-05" class="begin">Tue, 05 Feb 2019 13:23:20 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 20:38:03 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2019-02-05" class="begin">Tue, 05 Feb 2019 13:23:20 +0530</time><span class="to">↪</span><time datetime="2021-03-16" class="end">Tue, 16 Mar 2021 12:18:27 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -105,9 +108,13 @@
           $$
         </div>
         <p>
-          As another example, consider the <a href="1#graphs-and-free-categories">free category</a> over a small graph <span class="mathjax">$G$</span>, <span class="mathjax">$C = FG$</span>, and <span class="mathjax">$D : \textbf{Grph} \rightarrow \textbf{Cat}$</span> given by; it is related to the forgetful functor <span class="mathjax">$U : \textbf{Cat} \rightarrow \textbf{Grph}$</span> since <span class="mathjax">$D : G \rightarrow UB$</span> extends to <span class="mathjax">$D' : FG \rightarrow B$</span>. Moreover <span class="mathjax">$D \mapsto D'$</span> is a natural isomorphism:<br/>
-          $<span class="mathjax">$\textbf{Cat}(FG, B) \cong \textbf{Grph}(G, UB)$</span>$
+          As another example, consider the <a href="1#graphs-and-free-categories">free category</a> over a small graph <span class="mathjax">$G$</span>, <span class="mathjax">$C = FG$</span>, and <span class="mathjax">$D : \textbf{Grph} \rightarrow \textbf{Cat}$</span> given by; it is related to the forgetful functor <span class="mathjax">$U : \textbf{Cat} \rightarrow \textbf{Grph}$</span> since <span class="mathjax">$D : G \rightarrow UB$</span> extends to <span class="mathjax">$D' : FG \rightarrow B$</span>. Moreover <span class="mathjax">$D \mapsto D'$</span> is a natural isomorphism:
         </p>
+        <div class="mathjax">
+          $$
+          \textbf{Cat}(FG, B) \cong \textbf{Grph}(G, UB)
+          $$
+        </div>
         <p>
           In the category of small sets, the function <span class="mathjax">$g : T \times R \rightarrow S$</span>, a function of two variables, can be considered as <span class="mathjax">$\varphi g : T \rightarrow \text{Hom}(R, S)$</span>, a function of one variable, so that the following bijection holds:
         </p>
@@ -905,11 +912,13 @@
           $$
         </div>
         <p>
-          Moreover, this operation of horizontal composition is a bifunctor:<br/>
-          $<span class="mathjax">$<br/>
-            \textbf{Adj}(A, D) \times \textbf{Adj}(X, A) \cong \textbf{Adj}(X, D)<br/>
-          $</span>$
+          Moreover, this operation of horizontal composition is a bifunctor:
         </p>
+        <div class="mathjax">
+          $$
+          \textbf{Adj}(A, D) \times \textbf{Adj}(X, A) \cong \textbf{Adj}(X, D)
+          $$
+        </div>
         <p>
           This means that <span class="mathjax">$\textbf{Adj}$</span> is a <mark>two-dimensional category</mark> as is <span class="mathjax">$\textbf{Cat}$</span>.
         </p>

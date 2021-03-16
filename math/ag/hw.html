@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: [".mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -64,7 +67,7 @@
           Algebraic Geometry: Homework
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2019-02-26" class="begin">Tue, 26 Feb 2019 11:11:27 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:25:49 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2019-02-26" class="begin">Tue, 26 Feb 2019 11:11:27 +0530</time><span class="to">↪</span><time datetime="2021-03-16" class="end">Tue, 16 Mar 2021 12:18:27 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -350,7 +353,7 @@
             Show that <span class="mathjax">$\phi$</span> induces a map <span class="mathjax">$\text{Spec } k[y_1, \ldots, y_n]/I \rightarrow \text{Spec } k[x_1, \ldots, x_m]/J$</span> for ideals <span class="mathjax">$I \subset k[y_1, \ldots, y_n], J \subset k[x_1, \ldots, x_m]$</span> such that <span class="mathjax">$\phi(J) \subset I$</span>.
           </li>
           <li>
-            Show that the map of (a) sends the point <span class="mathjax">$[(x_1 - a_1, \ldots, x_m - a_m)] \in \text{Spec } k[x_1, \ldots, x_m]$</span> to: $<span class="mathjax">$(f_1(a_1, \ldots, a_m), \ldots, f_n(a_1, \ldots, a_m)) \in k^n$</span>$
+            Show that the map of (a) sends the point <span class="mathjax">$[(x_1 - a_1, \ldots, x_m - a_m)] \in \text{Spec } k[x_1, \ldots, x_m]$</span> to: <span class="mathjax">$(f_1(a_1, \ldots, a_m), \ldots, f_n(a_1, \ldots, a_m)) \in k^n$</span>
           </li>
         </ol>
         <hr class="horizrule" />
@@ -558,12 +561,14 @@
           $$
         </div>
         <p>
-          Introduce a new variable <span class="mathjax">$y$</span>, so that<br/>
-          $<span class="mathjax">$<br/>
-            J' = (J, fy - 1) \subset k[x_1 ... x_n, y] \\<br/>
-            (a_1 ... a_n, b) \in V(J')<br/>
-          $</span>$
+          Introduce a new variable <span class="mathjax">$y$</span>, so that
         </p>
+        <div class="mathjax">
+          $$
+          J' = (J, fy - 1) \subset k[x_1 ... x_n, y] \\
+            (a_1 ... a_n, b) \in V(J')
+          $$
+        </div>
         <p>
           such that <span class="mathjax">$bf(a_1 ... a_n) = 1$</span>. Then,
         </p>

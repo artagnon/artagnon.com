@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: [".mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -64,7 +67,7 @@
           Rings: Homework
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2018-11-12" class="begin">Mon, 12 Nov 2018 13:42:40 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 21:09:58 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2018-11-12" class="begin">Mon, 12 Nov 2018 13:42:40 +0530</time><span class="to">↪</span><time datetime="2021-03-16" class="end">Tue, 16 Mar 2021 12:18:27 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -125,12 +128,14 @@
           $$
         </div>
         <p>
-          But <span class="mathjax">$x^2 + 1$</span> is irreducible in <span class="mathjax">$R[x]$</span>; assume that it factors:<br/>
-          $<span class="mathjax">$<br/>
-            x^2 + 1 = (x - a)(x - b) = x^2 - (a + b) . x + ab \\<br/>
-            \implies a + b = 0 \wedge ab = 1 \implies a^2 = -1<br/>
-          $</span>$
+          But <span class="mathjax">$x^2 + 1$</span> is irreducible in <span class="mathjax">$R[x]$</span>; assume that it factors:
         </p>
+        <div class="mathjax">
+          $$
+          x^2 + 1 = (x - a)(x - b) = x^2 - (a + b) . x + ab \\
+            \implies a + b = 0 \wedge ab = 1 \implies a^2 = -1
+          $$
+        </div>
         <p>
           This cannot happen in <span class="mathjax">$R[x]$</span>, and we hence arrive at a contradiction <span class="mathjax">$\Box$</span>
         </p>

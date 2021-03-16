@@ -26,6 +26,9 @@
         },
         chtml: {
           fontURL: "/dist/woff"
+        },
+        startup: {
+          elements: [".mathjax", "li > a", "h1", "h2", "h3"]
         }
       };
     </script>
@@ -64,7 +67,7 @@
           Commutative Algebra: Homework
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2018-11-17" class="begin">Sat, 17 Nov 2018 12:44:34 +0530</time><span class="to">↪</span><time datetime="2021-03-15" class="end">Mon, 15 Mar 2021 20:38:03 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2018-11-17" class="begin">Sat, 17 Nov 2018 12:44:34 +0530</time><span class="to">↪</span><time datetime="2021-03-16" class="end">Tue, 16 Mar 2021 12:18:27 +0100</time></span><br /><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -72,10 +75,7 @@
           Ideals
         </h2>
         <p class="exercise">
-          Prove that a variety <span class="mathjax">$X$</span> is irreducible if <span class="mathjax">$I(X)$</span> is a prime ideal.
-        </p>
-        <p class="indent">
-          The definition of an irreducible variety is as follows. Let $X_1$ and $X_2$ be two varieties.
+          Prove that a variety <span class="mathjax">$X$</span> is irreducible if <span class="mathjax">$I(X)$</span> is a prime ideal. The definition of an irreducible variety is as follows. Let <span class="mathjax">$X_1$</span> and <span class="mathjax">$X_2$</span> be two varieties.
         </p>
         <div class="mathjax">
           $$
@@ -91,11 +91,13 @@
           $$
         </div>
         <p>
-          Then,<br/>
-          $<span class="mathjax">$<br/>
-            V(J_1) \subsetneq X, V(J_2) \subsetneq X<br/>
-          $</span>$
+          Then,
         </p>
+        <div class="mathjax">
+          $$
+          V(J_1) \subsetneq X, V(J_2) \subsetneq X
+          $$
+        </div>
         <p>
           which yields <span class="mathjax">$X = V_1 \cup V_2$</span>, a reducible, as required <span class="mathjax">$\Box$</span>
         </p>
@@ -208,10 +210,10 @@
             <span class="mathjax">$V(0) = X, V(1) = \phi$</span>.
           </li>
           <li>
-            If <span class="mathjax">$(E_q)_{q \in Q}$</span> is the family of subsets of <span class="mathjax">$A$</span> then: $<span class="mathjax">$V \left(\bigcup_{q \in Q} E_q \right)= \bigcap_{q \in Q} V(E_q)$</span><span class="mathjax">$
+            If <span class="mathjax">$(E_q)_{q \in Q}$</span> is the family of subsets of <span class="mathjax">$A$</span> then: <span class="mathjax">$V \left(\bigcup_{q \in Q} E_q \right)= \bigcap_{q \in Q} V(E_q)$</span>
           </li>
           <li>
-            $</span>V(I \cap J) = V(IJ) = V(I) \cup V(J)<span class="mathjax">$, for ideals $</span>I, J$.
+            <span class="mathjax">$V(I \cap J) = V(IJ) = V(I) \cup V(J)$</span>, for ideals <span class="mathjax">$I, J$</span>.
           </li>
         </ol>
         <p>
