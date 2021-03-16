@@ -80,7 +80,7 @@ html lang="en"
             - when :images
               figure
                 - for img in paragraph.split("\n")
-                  img src=img alt=img
+                  img src=img alt=img width="#{paragraph.prop.width}" height="#{paragraph.prop.height}"
             - when :horizrule
               hr class="#{paragraph.prop}"
             - when :mathjax
