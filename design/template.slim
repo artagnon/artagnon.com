@@ -46,9 +46,9 @@ html lang="en"
         h1 == title
         div id="metadata"
           span id="timestamp"
-            time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.rfc2822
+            time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
             span class="to" ↪
-            time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.rfc2822
+            time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
           br
           span id="locations"
             address = locations.join ", "
