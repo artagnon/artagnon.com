@@ -61,15 +61,15 @@ $$
   \mathbb{C}[x] \twoheadrightarrow \mathbb{C}[x]/(x^2) \twoheadrightarrow \mathbb{C}[x]/(x)
 $$
 
-$\mathbb{C}[x, y]/(x, y)^3$ can be pictured as a "circular fuzz" around origin remembering first and second derivatives, while $\mathbb{C}[x, y]/(x^2, y^2)$ can be thought of as a square fuzz around origin that is circumscribed by $\mathbb{C}[x, y]/(x, y)^3$, and inscribed by $\mathbb{C}[x, y]/(x, y)^2$. In fact, given two ideals $I, J$ of $A$, $\text{Spec } A/IJ$ should be pictured as the intersection of pictures $\text{Spec } A/I$ and $\text{Spec } A/J$ in $\text{Spec } A$. As another example, consider a polynomial in $\mathbb{C}[x, y]/(y^2, xy)$; knowing what it is is equivalent to knowing its values on the $x$-axis, as well as its first-derivative information around the origin.
+  $\mathbb{C}[x, y]/(x, y)^3$ can be pictured as a "circular fuzz" around origin remembering first and second derivatives, while $\mathbb{C}[x, y]/(x^2, y^2)$ can be thought of as a square fuzz around origin that is circumscribed by $\mathbb{C}[x, y]/(x, y)^3$, and inscribed by $\mathbb{C}[x, y]/(x, y)^2$. In fact, given two ideals $I, J$ of $A$, $\text{Spec } A/IJ$ should be pictured as the intersection of pictures $\text{Spec } A/I$ and $\text{Spec } A/J$ in $\text{Spec } A$. As another example, consider a polynomial in $\mathbb{C}[x, y]/(y^2, xy)$; knowing what it is is equivalent to knowing its values on the $x$-axis, as well as its first-derivative information around the origin.
 
 Next, consider the intersection of the parabola $y = x^2$ and the $x$-axis:
 
 $$
-\begin{align*}
-\text{Spec } \mathbb{C}[x, y]/(y - x^2) \cap \text{Spec } \mathbb{C}[x, y]/(y) &= \text{Spec } \mathbb{C}[x, y]/(y - x^2, y) \\
-&= \text{Spec } \mathbb{C}[x, y]/(x^2, y)
-\end{align*}
+  \begin{align*}
+  \text{Spec } \mathbb{C}[x, y]/(y - x^2) \cap \text{Spec } \mathbb{C}[x, y]/(y) &= \text{Spec } \mathbb{C}[x, y]/(y - x^2, y) \\
+  &= \text{Spec } \mathbb{C}[x, y]/(x^2, y)
+  \end{align*}
 $$
 
 We interpret this intersection as having multiplicity $2$ on the $x$-axis.
@@ -103,15 +103,11 @@ We say that a ringed space is a `locally ringed space` if all its stalks are loc
 
 Consider the point $[\mathfrak{p}]$ of an affine scheme $\text{Spec } A$. The residue field $A_\mathfrak{p}/\mathfrak{p} A_\mathfrak{p}$ is isomorphic to $K(A/\mathfrak{p})$, the fraction field of the quotient. Note that the following diagram commutes:
 
-$$
-\begin{xy}
-\xymatrix{
-& A_\mathfrak{p}\ar[dr]^{\text{quotient}} & \\
-A\ar[ur]^{\text{localize}}\ar[dr]_{\text{quotient}} & & A_\mathfrak{p}/\mathfrak{p} A_\mathfrak{p} = K(A/\mathfrak{p}) \\
-& A/\mathfrak{p}\ar[ur]_{\text{localize}} &
-}
-\end{xy}
-$$
+{{
+  & A_\mathfrak{p}\ar[dr]^{\text{quotient}} & \\
+  A\ar[ur]^{\text{localize}}\ar[dr]_{\text{quotient}} & & A_\mathfrak{p}/\mathfrak{p} A_\mathfrak{p} = K(A/\mathfrak{p}) \\
+  & A/\mathfrak{p}\ar[ur]_{\text{localize}} &
+}}
 
 Consider an example $(x^2 + y^2)/x(y^2 - x^5)$ in $\mathbb{A}_k^2 = k[x, y]$, in which $k$ is a field of characteristic not $2$. Then its value at $[(x - 2, y - 4)]$ is $(2^2 + 4^2)/2(4^2 - 2^5)$. Its value at the generic point on the $x$-axis is $x^2/(-x^6) = -1/x^4$, which we see by setting $y = 0$. Note that $A_\mathfrak{p}/\mathfrak{p} A_\mathfrak{p}$ is not algebraically closed, even when $A$ is a finitely-generated $\mathbb{C}$-algebra.
 
