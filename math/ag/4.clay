@@ -8,7 +8,11 @@ A scheme is said to be `quasiseparated` if the intersection of any two quasicomp
 
 Recall that a ring is said to be `reduced` if it has no nonzero nilpotents. A scheme is said to be reduced if $\mathscr{O}_X(U)$ is reduced for every open set $U$. The scheme $\text{Spec } k[x, y]/(y^2, xy)$ is nonreduced, as we have already seen as a fuzz around the origin.
 
-A scheme $X$ is said to be an `integral` if it is nonempty and if $\mathscr{O}_X(U)$ is an integral domain for every open subset $U$ of $X$. Be cautioned that integrality is not a stalk-local property, since $\text{Spec } A \sqcup \text{Spec } B = \text{Spec}(A \times B)$.
+A scheme $X$ is said to be an `integral` if it is nonempty and if $\mathscr{O}_X(U)$ is an integral domain for every open subset $U$ of $X$. Be cautioned that integrality is not a stalk-local property, since
+
+$$
+  \text{Spec } A \sqcup \text{Spec } B = \text{Spec}(A \times B)
+$$
 
 Irreducible varities have the convenient property that sections over different open subsets can be considered as subrings of the same ring. In particular, restriction maps are always considered inclusions, and gluing is easy: $f_i$ on a cover $U_i$ of $U$ glue iff they are the same element of $K(X)$.
 
@@ -64,7 +68,13 @@ Now, (b)(i) is clear: if $A$ is generated over $B$ as $r_1, \ldots, r_n$, then $
 
 # Normality and factoriality
 
-We define a property of schemes that are "not too far from smooth", normality. Locally Noetherian normal schemes satisfy Hartogs's lemma: functions defined away from a set of codimension $2$ extend over that set. As a consequence, rational functions that have no poles are defined everywhere. An integral domain $A$ is `integrally closed` iff the zeros in $K(A)$ to any monic polynomial in $A[x]$ must lie in $A$ itself. We say that scheme $X$ is `normal` if all of its stalks $\mathscr{O}_{X, p}$ are normal; i.e. are integral domains, and integrally closed in their fraction fields. By definition, normality is a stalk-local property, as is reducedness. If $A$ is an integrally closed domain, then $\text{Spec } A$ is normal. For quasicompact schemes, normality can be checked at closed points. For such schemes, any point is a generization of a closed point. Normal schemes, however, need not be integral. Thus, $\text{Spec } k \sqcup \text{Spec } k \cong \text{Spec}(k \times k) \cong \text{Spec } k[x]/x(x - 1)$ is normal, but its ring of global sections is not an integral domain.
+We define a property of schemes that are "not too far from smooth", normality. Locally Noetherian normal schemes satisfy Hartogs's lemma: functions defined away from a set of codimension $2$ extend over that set. As a consequence, rational functions that have no poles are defined everywhere. An integral domain $A$ is `integrally closed` iff the zeros in $K(A)$ to any monic polynomial in $A[x]$ must lie in $A$ itself. We say that scheme $X$ is `normal` if all of its stalks $\mathscr{O}_{X, p}$ are normal; i.e. are integral domains, and integrally closed in their fraction fields. By definition, normality is a stalk-local property, as is reducedness. If $A$ is an integrally closed domain, then $\text{Spec } A$ is normal. For quasicompact schemes, normality can be checked at closed points. For such schemes, any point is a generization of a closed point. Normal schemes, however, need not be integral. Thus,
+
+$$
+  \text{Spec } k \sqcup \text{Spec } k \cong \text{Spec}(k \times k) \cong \text{Spec } k[x]/x(x - 1)
+$$
+
+is normal, but its ring of global sections is not an integral domain.
 
 To quote a result from commutative algebra, if $A$ is an integral domain, then the following statements are equivalent:
 
@@ -127,7 +137,11 @@ The properties of associated prime ideals can be listed as follows. Given Noethe
 (a) The set $\text{Ass } M$ is finite and nonempty.
 (b) The natural map $M \rightarrow \prod_{\mathfrak{p} \in \text{Ass } M} M_\mathfrak{p}$ is an injection.
 (c) The set of zerodivisors of $M$ is $\bigcup_{\mathfrak{p} \in \text{Ass } M} \mathfrak{p}$.
-(d) Association commutes with localization. If $S$ is a multiplicative set then $\text{Ass}_{S^{-1} A} S^{-1} M = \text{Ass}_A M \cap \text{Spec } S^{-1} A$.
+(d) Association commutes with localization. If $S$ is a multiplicative set then
+
+$$
+  \text{Ass}_{S^{-1} A} S^{-1} M = \text{Ass}_A M \cap \text{Spec } S^{-1} A
+$$
 
 If $A$ is a Noetherian ring, then any element of any minimal prime $\mathfrak{p}$ is a zerodivisor. Suppose $s \in \mathfrak{p}$. Then, by minimality of $\mathfrak{p}$, $\mathfrak{p} A_\mathfrak{p}$ is a unique prime ideal in $A_\mathfrak{p}$, so the element $s/1$ of $A_\mathfrak{p}$ is nilpotent, because it is contained in all prime ideals of $A_\mathfrak{p}$. Thus, for $t \in A \backslash \mathfrak{p}$, $ts^n = 0$, so $s$ is a zerodivisor.
 
