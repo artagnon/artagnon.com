@@ -42,7 +42,7 @@ An order topology $\mathscr{B}$ is a collection of the following sets:
 
 If $\mathscr{B}$ has no smallest element, then there are no sets of type (ii), and if $\mathscr{B}$ has no largest element, then there are no sets of type (iii).
 
-If $X$ is an ordered set, and contains element $a$, the following four subsets are called rays determined by $a$: $(-\infty, a), (a, +\infty), (-\infty, a], [a, +\infty)$.
+If $X$ is an ordered set, and contains element $a$, the following four subsets are called rays determined by $a$: $(-\infty, a)$, $(a, +\infty)$, $(-\infty, a]$, $[a, +\infty)$.
 
 # Product topology
 
@@ -96,7 +96,13 @@ Let $X$ be an ordered set in the order topology, and $Y$ be a subset. The result
 
 # Closed sets
 
-A subset $A$ of a topological space $X$ is said to be closed if $X - A$ is open. As an example, consider the subset $[a, b] \in \mathbb{R}$. It is closed because $\mathbb{R} - [a, b] = (-\infty, a) \cup (b, +\infty)$ is open.
+A subset $A$ of a topological space $X$ is said to be closed if $X - A$ is open. As an example, consider the subset $[a, b] \in \mathbb{R}$. It is closed because
+
+$$
+  \mathbb{R} - [a, b] = (-\infty, a) \cup (b, +\infty)
+$$
+
+is open.
 
 To prove (i), notice that $X, \phi$ are complements of open sets $\phi, X$, and are hence closed. To prove (ii), apply De-Morgan's law to a collection of closed sets $\{A_\alpha\}_{\alpha \in J}$:
 
@@ -180,7 +186,11 @@ A metric on a set $X$ is given by a distance function $d : X \times X \rightarro
 
 (i) $d(x, y) \geq 0 \mid x, y \in X$
 (ii) $d(x, y) = d(y, x) \mid x, y \in X$
-(iii) (Triangle inequality) $d(x, y) + d(y, z) \geq d(x, z) \mid x, y, z \in X$
+(iii) (Triangle inequality)
+
+$$
+  d(x, y) + d(y, z) \geq d(x, z) \mid x, y, z \in X
+$$
 
 An $\epsilon$-ball centered at $x$ is defined as:
 
@@ -248,7 +258,14 @@ for all $x \in X$ and $n \gt N$. The uniform limit theorem additionally states t
 
 Three elementary theorems of calculus are:
 
-(i) `Intermediate value theorem`: for continuous function $f$ defined in $[a, b]$, $\exists r \in [a, b] : f(r) \in [f(a), f(b)]$. The property of a topological space satisfying this is connectedness.
+(i) `Intermediate value theorem`: for continuous function $f$ defined in $[a, b]$,
+
+$$
+  \exists r \in [a, b] : f(r) \in [f(a), f(b)]
+$$
+
+The property of a topological space satisfying this is connectedness.
+
 (ii) `Maximum value theorem`: for continuous function $f$, $\exists c : f(x) \leq f(c)$ for all $x \in [a, b]$. The property of a topological space satisfying this is compactness.
 (iii) `Uniform continuity theorem`: for continuous function $f$, every pair of numbers $x_1$ and $x_2$, and given $\epsilon \gt 0$, $|f(x_1) - f(x_2)| \lt \epsilon$, $\exists \delta \gt 0 : |x_1 - x_2| \lt \delta$. The property of a topological space satisfying this is compactness.
 

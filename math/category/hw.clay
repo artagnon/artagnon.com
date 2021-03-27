@@ -16,7 +16,13 @@ Solution: An integral domain $G$ is defined as having no zero-divisors other tha
 
 + Prove that there is no functor $T : \textbf{Grp} \rightarrow \textbf{Ab}$ sending each element of group $G$ to its `center`.
 
-Proof: We have $a \in G$, and the object function $T(a) = bab^{-1}, b \in G$. Then, the object function takes identity to identity: $T(1) = bb^{-1} = 1$. But there is a problem with the arrow function: take $f = g = \text{id}$, so that $f \circ g = \text{id}$. Then, $(Tf \circ Tg)(a) = cbab^{-1}c^{-1} \neq T(f \circ g)(a) = bab^{-1}$ $\Box$
+Proof: We have $a \in G$, and the object function $T(a) = bab^{-1}, b \in G$. Then, the object function takes identity to identity: $T(1) = bb^{-1} = 1$. But there is a problem with the arrow function: take $f = g = \text{id}$, so that $f \circ g = \text{id}$. Then,
+
+$$
+  (Tf \circ Tg)(a) = cbab^{-1}c^{-1} \neq T(f \circ g)(a) = bab^{-1}
+$$
+
+$\Box$
 
 --
 
@@ -68,7 +74,19 @@ Solution: $m : a \rightarrow b$ is such that $a \circ m = b \circ m \implies a =
 
 + If $f \circ g$ is monic, so is $g$. Is it true of $f$?
 
-Solution: The condition that $f \circ g$ is monic can be written as $(f \circ g) \circ a = (f \circ g) \circ b \implies a = b$, by cancelation of $f \circ g$. We know that $g$ is also monic, and this can be written as $g \circ a = g \circ b \implies a = b$. By comparing with the previous condition, we see that $f$ is also monic $\Box$
+Solution: The condition that $f \circ g$ is monic can be written as
+
+$$
+  (f \circ g) \circ a = (f \circ g) \circ b \implies a = b
+$$
+
+, by cancelation of $f \circ g$. We know that $g$ is also monic, and this can be written as
+
+$$
+  g \circ a = g \circ b \implies a = b
+$$
+
+By comparing with the previous condition, we see that $f$ is also monic $\Box$
 
 --
 

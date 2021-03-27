@@ -1,8 +1,16 @@
 Rings: Homework
 
-+ Prove that $(x)$ is a maximal ideal in $R[x]$. i.e. $(x) \subset I \subset R[x] \implies (x) = I \vee I = R[x]$.
++ Prove that $(x)$ is a maximal ideal in $R[x]$. i.e.
 
-Proof: Let us use the reductio ad absurdum technique, and assume that $(x) \neq I \wedge I \neq R[x]$. Then, $f(x) \in I, f(x) \notin (x), f(x) \notin R[x]$.
+$$
+  (x) \subset I \subset R[x] \implies (x) = I \vee I = R[x]
+$$
+
+Proof: Let us use the reductio ad absurdum technique, and assume that $(x) \neq I \wedge I \neq R[x]$. Then,
+
+$$
+  f(x) \in I, f(x) \notin (x), f(x) \notin R[x]
+$$
 
 Since $f(x)$ is a general polynomial, we can use the remainder theorem to obtain:
 
@@ -20,9 +28,17 @@ There are two cases to consider: either $c = 0$ or $c$ is a nonzero constant. In
 
 --
 
-+ Prove that $x^2 + 1$ is a maximal ideal in $R[x]$. i.e. $(x^2 + 1) \subset I \subset R[x] \implies (x^2 + 1) = I \vee I = R[x]$.
++ Prove that $x^2 + 1$ is a maximal ideal in $R[x]$. i.e.
 
-Proof: Let us again use proof by contradiction, and assume that $(x^2 + 1) \neq I \wedge I \neq R[x]$. Then, $f(x) \in I, f(x) \notin (x^2 + 1), f(x) \notin R[x]$.
+$$
+  (x^2 + 1) \subset I \subset R[x] \implies (x^2 + 1) = I \vee I = R[x]
+$$
+
+Proof: Let us again use proof by contradiction, and assume that $(x^2 + 1) \neq I \wedge I \neq R[x]$. Then,
+
+$$
+  f(x) \in I, f(x) \notin (x^2 + 1), f(x) \notin R[x]
+$$
 
 Since $f(x)$ is a general polynomial, we can use the remainder theorem to obtain:
 
@@ -55,7 +71,13 @@ This cannot happen in $R[x]$, and we hence arrive at a contradiction $\Box$
 
 + Provide an example of an irreducible element which is not prime, in a ring of your choosing.
 
-Solution: Consider the ring of Gauss integers $\mathbb{Z}[\sqrt{-5}]$. Then $6 = 2 . 3 = (1 + \sqrt{-5}) (1 + \sqrt{-5})$, and this ring is not a unique factorization domain. Let us inspect $2$: it belongs to the multiplicative set containing $2 . 3$, but it does not divide either $1 + \sqrt{-5}$ or $1 - \sqrt{-5}$.
+Solution: Consider the ring of Gauss integers $\mathbb{Z}[\sqrt{-5}]$. Then,
+
+$$
+  6 = 2 . 3 = (1 + \sqrt{-5}) (1 + \sqrt{-5})
+$$
+
+and this ring is not a unique factorization domain. Let us inspect $2$: it belongs to the multiplicative set containing $2 . 3$, but it does not divide either $1 + \sqrt{-5}$ or $1 - \sqrt{-5}$.
 
 Prime ideals are defined as $A \backslash S$, where $S$ is a multiplicative set such that:
 
@@ -117,7 +139,11 @@ Solution: The maximal ideals of $\mathbb{C}[x]$ are $(x - \alpha)$, while those 
 
 + Prove that $P$ is a prime ideal in ring $A$ iff $A/P$ is an integral domain.
 
-An integral domain is defined by $pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/P$.
+An integral domain is defined by
+
+$$
+  pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/P
+$$
 
 Proof: Given that $A/P$ is an integral domain, show that $P$ is prime. Consider elements $a, b \in A$. Elements of $A/P$ are then of the form $a + P, b + P$. Now, use the definition of an integral domain to write:
 
@@ -148,7 +174,17 @@ This gives us the required condition for integral domain $\Box$
 
 + Prove that $M$ is a maximal ideal in ring $A$ iff $A/M$ is a field.
 
-A field is defined by $pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/M$ and $\exists v^{-1}: v^{-1}v = vv^{-1} = 1 \mid v \in A/M$.
+A field is defined by
+
+$$
+  pq = 0 \implies p = 0 \vee q = 0 \mid p, q \in A/M
+$$
+
+and
+
+$$
+  \exists v^{-1}: v^{-1}v = vv^{-1} = 1 \mid v \in A/M
+$$
 
 Proof:  To show that $M$ is maximal given that $A/M$ is a field. For the zerodivisor proof, follow exactly. For the next part, assume $w \in A$:
 

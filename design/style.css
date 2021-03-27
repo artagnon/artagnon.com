@@ -1,6 +1,7 @@
 body {
   line-height: 1.3;
   font-weight: 420;
+  margin: 0;
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
   background-color: ivory;
@@ -32,8 +33,13 @@ a {
 /* Fullbleed: Josh Comeau */
 .wrapper > pre,
 .wrapper > .mathjax {
-  width: 100%;
+  object-fit: contain;
   grid-column: 1 / span 3;
+}
+
+.wrapper > .mathjax {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 #indexfill {
@@ -56,7 +62,7 @@ a {
 
 nav {
   display: grid;
-  grid-template-columns: 2;
+  grid-template-columns: 30% 70%;
   background-color: aliceblue;
   border: darkgray 0.2px dotted;
 }
@@ -87,20 +93,21 @@ nav > div:nth-child(1) {
 
 nav > div:nth-child(2) {
   grid-column: 2;
-  text-align: right;
 }
 
-nav > div:nth-child(1) img {
-  height: max(15vh, 8vh);
-  width: calc(0.8128 * max(15vh, 8vh));
+nav > div:nth-child(1) > a > img {
+  object-fit: contain;
+  height: max(15vh, 15vw);
+  width: calc(0.8128 * max(15vh, 15vw));
   padding: 0.5rem 0 0.5rem 0.5rem;
 }
 
 nav > div:nth-child(2) > ul {
+  text-align: right;
   list-style: none;
   padding-right: 0.5rem;
   font-weight: 560;
-  line-height: calc(max(15vh, 8vw) / 4);
+  line-height: calc(max(15vh, 15vw) / 4);
   font-size: 0.8rem;
 }
 
@@ -199,28 +206,27 @@ mark {
   background: #fdf6e3;
 }
 
-hr {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
+hr,
+footer {
   box-sizing: content-box;
-  overflow: visible;
   display: block;
-  color: olive;
 }
 
-hr.ellipses {
+hr.ellipses,
+footer {
   border: 0;
 }
 
-hr.ellipses::before {
+hr.ellipses::before,
+footer::before {
   content: '...';
-  display: inline-block;
   letter-spacing: 0.6rem;
-  top: -30px;
-  position: relative;
+  color: olive;
+  padding-top: 1rem;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 3rem;
+  position: relative;
+  display: inline-block;
 }
 
 pre {
@@ -294,16 +300,8 @@ a[href^="https://github.com"],
   background-size: 1rem;
 }
 
-footer::before {
-  content: '...';
-  letter-spacing: 0.3rem;
-  color: dimgray;
-  position: relative;
-  display: inline-block;
-}
-
 footer > p {
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   font-size: 70%;
 }
