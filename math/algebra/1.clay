@@ -177,8 +177,10 @@ where $f, g \in A$ and $m, n \in M$. What follows is a bunch of examples:
 Let $M, N$ be $A$-modules, and $f : M \rightarrow N$ be an `$A$-module homomorphism`, or `$A$-linear`. Then,
 
 $$
-  f(x + y) = f(x) + f(y) \\
-  f(ax) = a . f(x)
+  \begin{align*}
+    f(x + y) &= f(x) + f(y) \\
+    f(ax) &= a . f(x)
+  \end{align*}
 $$
 
 for all $a \in A; x, y \in M$. If $A$ is a field, then an $A$-module homomorphism is the same thing as linear transformation over vector spaces.
@@ -186,15 +188,19 @@ for all $a \in A; x, y \in M$. If $A$ is a field, then an $A$-module homomorphis
 The composition of any two $A$-module homomorphisms is again an $A$-module homomorphism. The set of all $A$-module homomorphisms from $M$ to $N$ can be turned into an $A$-module with the axioms:
 
 $$
-  (f + g)(x) = f(x) + g(x) \\
-  (af)(x) = a . f(x)
+  \begin{align*}
+    (f + g)(x) &= f(x) + g(x) \\
+    (af)(x) &= a . f(x)
+  \end{align*}
 $$
 
 This $A$-module is denoted by $\text{Hom}(M, N)$. Homomorphisms $u : M' \rightarrow M$ and $v : N \rightarrow N''$ induce the homomorphisms:
 
 $$
-  \bar{u} : \text{Hom}(M, N) \rightarrow \text{Hom}(M', N) \\
-  \bar{v} : \text{Hom}(M, N) \rightarrow \text{Hom}(M, N'')
+  \begin{align*}
+    \bar{u} &: \text{Hom}(M, N) \rightarrow \text{Hom}(M', N) \\
+    \bar{v} &: \text{Hom}(M, N) \rightarrow \text{Hom}(M, N'')
+  \end{align*}
 $$
 
 where:
@@ -212,7 +218,12 @@ Submodule $M'$ of $M$ is a subgroup of $M$ closed under multiplication by elemen
 If $f : M \rightarrow N$ is an $A$-module homomorphism, then its kernel and image are also submodules defined by:
 
 $$
-  \text{Ker}(f) = \{x \in M \mid f(x) = 0\} \\
+  \text{Ker}(f) = \{x \in M \mid f(x) = 0\}
+$$
+
+  and
+
+$$
   Im(f) = f(M)
 $$
 
@@ -255,8 +266,10 @@ If $M = \sum_i Ax_i$, then the $x_i$ are termed the set of `generators` of the m
 If $M, N$ are modules, then their `direct sum` $M \oplus N$ is defined as the pairs $(x, y)$ for $x \in M, y \in N$. Sum and scalar multiplication are defined in the usual way:
 
 $$
-(x_1, y_1) + (x_2, y_2) = (x_1 + x_2, y_1 + y_2) \\
-a (x, y) = (ax, ay)
+  \begin{align*}
+    (x_1, y_1) + (x_2, y_2) &= (x_1 + x_2, y_1 + y_2) \\
+    a (x, y) &= (ax, ay)
+  \end{align*}
 $$
 
 More generally, we can define the direct sum as $\bigoplus_{q \in Q} M_q$ to have elements in the family $(x_q)_{q \in Q}$. For a finite index set $Q$, direct sum and `direct product`, $\prod_{q \in Q} M_q$, are the same thing, but not otherwise.
@@ -513,12 +526,8 @@ $$
 
 Furthermore $D$ is an $A$-algebra, and the mapping $a \mapsto f(a) \otimes g(a)$ is a ring homomorphism $A \rightarrow D$. We hence end up with the following commutative diagram:
 
-$$
-\begin{xy}
-\xymatrix{
-& B\ar[dr]^u & \\
-A\ar[ur]^f\ar[dr]_g & & D \\
-& C\ar[ur]_v &
-}
-\end{xy}
-$$
+{{
+  & B\ar[dr]^u & \\
+  A\ar[ur]^f\ar[dr]_g & & D \\
+  & C\ar[ur]_v &
+}}
