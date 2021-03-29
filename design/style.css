@@ -2,8 +2,7 @@ body {
   line-height: 1.3;
   font-weight: 420;
   margin: 0;
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol';
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background-color: ivory;
 }
 
@@ -37,6 +36,13 @@ a {
   grid-column: 1 / span 3;
 }
 
+@media screen and (max-width: 500px) {
+  .wrapper > figure {
+    object-fit: contain;
+    grid-column: 1 / span 3;
+  }
+}
+
 .wrapper > .mathjax {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -56,7 +62,7 @@ a {
 }
 
 #indexfill > li::before {
-  content: '\00BB \0020';
+  content: "\00BB \0020";
   color: olive;
 }
 
@@ -196,7 +202,7 @@ h3 {
 
 .exercise::before {
   color: olive;
-  content: '§';
+  content: "§";
 }
 
 mark {
@@ -216,7 +222,7 @@ footer {
 
 hr.ellipses::before,
 footer::before {
-  content: '...';
+  content: "...";
   letter-spacing: 0.6rem;
   color: olive;
   padding-top: 1rem;
@@ -232,8 +238,15 @@ pre {
 }
 
 figure {
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: max(10vw, 13.3vh);
+  margin-right: max(10vw, 13.3vh);
+}
+
+@media screen and (max-width: 500px) {
+  figure {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 figure > img {
@@ -252,35 +265,35 @@ a {
   background-color: transparent;
 }
 
-a[href$='.pdf'] {
-  background-image: url('/dist/icon.pdf.svg');
+a[href$=".pdf"] {
+  background-image: url("/dist/icon.pdf.svg");
 }
 
 a[href^="https://youtube.com"]
 {
-  background-image: url('/dist/icon.youtube.svg');
+  background-image: url("/dist/icon.youtube.svg");
 }
 
-a[href^='mailto:'] {
-  background-image: url('/dist/icon.email.svg');
+a[href^="mailto:"] {
+  background-image: url("/dist/icon.email.svg");
 }
 
 a[href^="https://twitter.com"]
 {
-  background-image: url('/dist/icon.twitter.svg');
+  background-image: url("/dist/icon.twitter.svg");
 }
 
 a[href^="https://github.com/"]
 {
-  background-image: url('/dist/icon.github.svg');
+  background-image: url("/dist/icon.github.svg");
 }
 
 #metadata time.end {
-  background-image: url('/dist/icon.calendar.svg');
+  background-image: url("/dist/icon.calendar.svg");
 }
 
 #metadata address {
-  background-image: url('/dist/icon.location.svg');
+  background-image: url("/dist/icon.location.svg");
 }
 
 a[href$=".pdf"],
