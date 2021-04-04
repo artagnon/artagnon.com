@@ -55,8 +55,6 @@ html lang="en"
       article class="wrapper"
         - paragraphs.each do |paragraph|
           - case paragraph.type
-            - when :blurb
-              p class="blurb" == paragraph.to_s
             - when :plain
               p == paragraph.to_s
             - when :olitems
@@ -85,10 +83,8 @@ html lang="en"
               hr class="#{paragraph.prop}"
             - when :mathjax
               div class="mathjax" == paragraph.to_s
-            - when :exercise
-              p class="exercise" == paragraph.to_s
-            - when :indent
-              p class="indent" == paragraph.to_s
+            - else
+              p class="#{paragraph.type}" == paragraph.to_s
         - if subtopics && subtopics.any?
           ul id="indexfill"
             - subtopics.each do |st|
