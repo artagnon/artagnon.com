@@ -1,654 +1,32 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Incrementally updating the Dominator | artagnon.com</title>
-    <meta charset="utf-8">
-    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
-    <meta name="HandheldFriendly" content="true">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index,follow">
-    <link rel="icon" href="/dist/artagnon.com.svg">
-    <link rel="mask-icon" href="/dist/mask-icon.svg" color="#000000">
-    <link rel="stylesheet" href="/dist/style.min.css">
+    <meta charset="utf-8" />
+    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href="/dist/artagnon.com.svg" />
+    <link rel="mask-icon" href="/dist/mask-icon.svg" color="#000000" />
+    <link rel="stylesheet" href="/dist/style.min.css" />
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
-    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel=&#39;stylesheet&#39;" />
     <noscript>
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" />
     </noscript>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/haskell.min.js"></script>
     <script defer="" src="/dist/script.min.js"></script>
-  <style id="MJX-CHTML-styles">
-mjx-container[jax="CHTML"] {
-  line-height: 0;
-}
-
-mjx-container [space="1"] {
-  margin-left: .111em;
-}
-
-mjx-container [space="2"] {
-  margin-left: .167em;
-}
-
-mjx-container [space="3"] {
-  margin-left: .222em;
-}
-
-mjx-container [space="4"] {
-  margin-left: .278em;
-}
-
-mjx-container [space="5"] {
-  margin-left: .333em;
-}
-
-mjx-container [rspace="1"] {
-  margin-right: .111em;
-}
-
-mjx-container [rspace="2"] {
-  margin-right: .167em;
-}
-
-mjx-container [rspace="3"] {
-  margin-right: .222em;
-}
-
-mjx-container [rspace="4"] {
-  margin-right: .278em;
-}
-
-mjx-container [rspace="5"] {
-  margin-right: .333em;
-}
-
-mjx-container [size="s"] {
-  font-size: 70.7%;
-}
-
-mjx-container [size="ss"] {
-  font-size: 50%;
-}
-
-mjx-container [size="Tn"] {
-  font-size: 60%;
-}
-
-mjx-container [size="sm"] {
-  font-size: 85%;
-}
-
-mjx-container [size="lg"] {
-  font-size: 120%;
-}
-
-mjx-container [size="Lg"] {
-  font-size: 144%;
-}
-
-mjx-container [size="LG"] {
-  font-size: 173%;
-}
-
-mjx-container [size="hg"] {
-  font-size: 207%;
-}
-
-mjx-container [size="HG"] {
-  font-size: 249%;
-}
-
-mjx-container [width="full"] {
-  width: 100%;
-}
-
-mjx-box {
-  display: inline-block;
-}
-
-mjx-block {
-  display: block;
-}
-
-mjx-itable {
-  display: inline-table;
-}
-
-mjx-row {
-  display: table-row;
-}
-
-mjx-row > * {
-  display: table-cell;
-}
-
-mjx-mtext {
-  display: inline-block;
-  text-align: left;
-}
-
-mjx-mstyle {
-  display: inline-block;
-}
-
-mjx-merror {
-  display: inline-block;
-  color: red;
-  background-color: yellow;
-}
-
-mjx-mphantom {
-  visibility: hidden;
-}
-
-mjx-math {
-  display: inline-block;
-  text-align: left;
-  line-height: 0;
-  text-indent: 0;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 100%;
-  font-size-adjust: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  word-spacing: normal;
-  white-space: nowrap;
-  direction: ltr;
-  padding: 1px 0;
-}
-
-mjx-container[jax="CHTML"][display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-
-mjx-container[jax="CHTML"][display="true"][width="full"] {
-  display: flex;
-}
-
-mjx-container[jax="CHTML"][display="true"] mjx-math {
-  padding: 0;
-}
-
-mjx-container[jax="CHTML"][justify="left"] {
-  text-align: left;
-}
-
-mjx-container[jax="CHTML"][justify="right"] {
-  text-align: right;
-}
-
-mjx-TeXAtom {
-  display: inline-block;
-  text-align: left;
-}
-
-mjx-c {
-  display: inline-block;
-}
-
-mjx-utext {
-  display: inline-block;
-  padding: .75em 0 .2em 0;
-}
-
-mjx-xypic {
-  display: inline-block;
-  text-align: left;
-}
-
-mjx-c::before {
-  display: block;
-  width: 0;
-}
-
-.MJX-TEX {
-  font-family: MJXZERO, MJXTEX;
-}
-
-.TEX-B {
-  font-family: MJXZERO, MJXTEX-B;
-}
-
-.TEX-I {
-  font-family: MJXZERO, MJXTEX-I;
-}
-
-.TEX-MI {
-  font-family: MJXZERO, MJXTEX-MI;
-}
-
-.TEX-BI {
-  font-family: MJXZERO, MJXTEX-BI;
-}
-
-.TEX-S1 {
-  font-family: MJXZERO, MJXTEX-S1;
-}
-
-.TEX-S2 {
-  font-family: MJXZERO, MJXTEX-S2;
-}
-
-.TEX-S3 {
-  font-family: MJXZERO, MJXTEX-S3;
-}
-
-.TEX-S4 {
-  font-family: MJXZERO, MJXTEX-S4;
-}
-
-.TEX-A {
-  font-family: MJXZERO, MJXTEX-A;
-}
-
-.TEX-C {
-  font-family: MJXZERO, MJXTEX-C;
-}
-
-.TEX-CB {
-  font-family: MJXZERO, MJXTEX-CB;
-}
-
-.TEX-FR {
-  font-family: MJXZERO, MJXTEX-FR;
-}
-
-.TEX-FRB {
-  font-family: MJXZERO, MJXTEX-FRB;
-}
-
-.TEX-SS {
-  font-family: MJXZERO, MJXTEX-SS;
-}
-
-.TEX-SSB {
-  font-family: MJXZERO, MJXTEX-SSB;
-}
-
-.TEX-SSI {
-  font-family: MJXZERO, MJXTEX-SSI;
-}
-
-.TEX-SC {
-  font-family: MJXZERO, MJXTEX-SC;
-}
-
-.TEX-T {
-  font-family: MJXZERO, MJXTEX-T;
-}
-
-.TEX-V {
-  font-family: MJXZERO, MJXTEX-V;
-}
-
-.TEX-VB {
-  font-family: MJXZERO, MJXTEX-VB;
-}
-
-mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
-  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
-}
-
-@font-face /* 0 */ {
-  font-family: MJXZERO;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
-}
-
-@font-face /* 1 */ {
-  font-family: MJXTEX;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
-}
-
-@font-face /* 2 */ {
-  font-family: MJXTEX-B;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
-}
-
-@font-face /* 3 */ {
-  font-family: MJXTEX-I;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
-}
-
-@font-face /* 4 */ {
-  font-family: MJXTEX-MI;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
-}
-
-@font-face /* 5 */ {
-  font-family: MJXTEX-BI;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
-}
-
-@font-face /* 6 */ {
-  font-family: MJXTEX-S1;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
-}
-
-@font-face /* 7 */ {
-  font-family: MJXTEX-S2;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
-}
-
-@font-face /* 8 */ {
-  font-family: MJXTEX-S3;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
-}
-
-@font-face /* 9 */ {
-  font-family: MJXTEX-S4;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
-}
-
-@font-face /* 10 */ {
-  font-family: MJXTEX-A;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
-}
-
-@font-face /* 11 */ {
-  font-family: MJXTEX-C;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
-}
-
-@font-face /* 12 */ {
-  font-family: MJXTEX-CB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
-}
-
-@font-face /* 13 */ {
-  font-family: MJXTEX-FR;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
-}
-
-@font-face /* 14 */ {
-  font-family: MJXTEX-FRB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
-}
-
-@font-face /* 15 */ {
-  font-family: MJXTEX-SS;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
-}
-
-@font-face /* 16 */ {
-  font-family: MJXTEX-SSB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
-}
-
-@font-face /* 17 */ {
-  font-family: MJXTEX-SSI;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
-}
-
-@font-face /* 18 */ {
-  font-family: MJXTEX-SC;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
-}
-
-@font-face /* 19 */ {
-  font-family: MJXTEX-T;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
-}
-
-@font-face /* 20 */ {
-  font-family: MJXTEX-V;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
-}
-
-@font-face /* 21 */ {
-  font-family: MJXTEX-VB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
-}
-
-mjx-c.mjx-c20::before {
-  padding: 0 0.25em 0 0;
-  content: " ";
-}
-
-mjx-c.mjx-c28::before {
-  padding: 0.75em 0.389em 0.25em 0;
-  content: "(";
-}
-
-mjx-c.mjx-c29::before {
-  padding: 0.75em 0.389em 0.25em 0;
-  content: ")";
-}
-
-mjx-c.mjx-c2C::before {
-  padding: 0.121em 0.278em 0.194em 0;
-  content: ",";
-}
-
-mjx-c.mjx-c2F::before {
-  padding: 0.75em 0.5em 0.25em 0;
-  content: "/";
-}
-
-mjx-c.mjx-c30::before {
-  padding: 0.666em 0.5em 0.022em 0;
-  content: "0";
-}
-
-mjx-c.mjx-c31::before {
-  padding: 0.666em 0.5em 0 0;
-  content: "1";
-}
-
-mjx-c.mjx-c32::before {
-  padding: 0.666em 0.5em 0 0;
-  content: "2";
-}
-
-mjx-c.mjx-c33::before {
-  padding: 0.665em 0.5em 0.022em 0;
-  content: "3";
-}
-
-mjx-c.mjx-c34::before {
-  padding: 0.677em 0.5em 0 0;
-  content: "4";
-}
-
-mjx-c.mjx-c35::before {
-  padding: 0.666em 0.5em 0.022em 0;
-  content: "5";
-}
-
-mjx-c.mjx-c36::before {
-  padding: 0.666em 0.5em 0.022em 0;
-  content: "6";
-}
-
-mjx-c.mjx-c37::before {
-  padding: 0.676em 0.5em 0.022em 0;
-  content: "7";
-}
-
-mjx-c.mjx-c38::before {
-  padding: 0.666em 0.5em 0.022em 0;
-  content: "8";
-}
-
-mjx-c.mjx-c39::before {
-  padding: 0.666em 0.5em 0.022em 0;
-  content: "9";
-}
-
-mjx-c.mjx-c41::before {
-  padding: 0.716em 0.75em 0 0;
-  content: "A";
-}
-
-mjx-c.mjx-c42::before {
-  padding: 0.683em 0.708em 0 0;
-  content: "B";
-}
-
-mjx-c.mjx-c43::before {
-  padding: 0.705em 0.722em 0.021em 0;
-  content: "C";
-}
-
-mjx-c.mjx-c44::before {
-  padding: 0.683em 0.764em 0 0;
-  content: "D";
-}
-
-mjx-c.mjx-c45::before {
-  padding: 0.68em 0.681em 0 0;
-  content: "E";
-}
-
-mjx-c.mjx-c46::before {
-  padding: 0.68em 0.653em 0 0;
-  content: "F";
-}
-
-mjx-c.mjx-c49::before {
-  padding: 0.683em 0.361em 0 0;
-  content: "I";
-}
-
-mjx-c.mjx-c4C::before {
-  padding: 0.683em 0.625em 0 0;
-  content: "L";
-}
-
-mjx-c.mjx-c4D::before {
-  padding: 0.683em 0.917em 0 0;
-  content: "M";
-}
-
-mjx-c.mjx-c52::before {
-  padding: 0.683em 0.736em 0.022em 0;
-  content: "R";
-}
-
-mjx-c.mjx-c53::before {
-  padding: 0.705em 0.556em 0.022em 0;
-  content: "S";
-}
-
-mjx-c.mjx-c54::before {
-  padding: 0.677em 0.722em 0 0;
-  content: "T";
-}
-
-mjx-c.mjx-c61::before {
-  padding: 0.448em 0.5em 0.011em 0;
-  content: "a";
-}
-
-mjx-c.mjx-c62::before {
-  padding: 0.694em 0.556em 0.011em 0;
-  content: "b";
-}
-
-mjx-c.mjx-c63::before {
-  padding: 0.448em 0.444em 0.011em 0;
-  content: "c";
-}
-
-mjx-c.mjx-c64::before {
-  padding: 0.694em 0.556em 0.011em 0;
-  content: "d";
-}
-
-mjx-c.mjx-c65::before {
-  padding: 0.448em 0.444em 0.011em 0;
-  content: "e";
-}
-
-mjx-c.mjx-c66::before {
-  padding: 0.705em 0.372em 0 0;
-  content: "f";
-}
-
-[noIC] mjx-c.mjx-c66:last-child::before {
-  padding-right: 0.306em;
-}
-
-mjx-c.mjx-c67::before {
-  padding: 0.453em 0.5em 0.206em 0;
-  content: "g";
-}
-
-mjx-c.mjx-c68::before {
-  padding: 0.694em 0.556em 0 0;
-  content: "h";
-}
-
-mjx-c.mjx-c69::before {
-  padding: 0.669em 0.278em 0 0;
-  content: "i";
-}
-
-mjx-c.mjx-c6B::before {
-  padding: 0.694em 0.528em 0 0;
-  content: "k";
-}
-
-mjx-c.mjx-c6C::before {
-  padding: 0.694em 0.278em 0 0;
-  content: "l";
-}
-
-mjx-c.mjx-c6D::before {
-  padding: 0.442em 0.833em 0 0;
-  content: "m";
-}
-
-mjx-c.mjx-c6E::before {
-  padding: 0.442em 0.556em 0 0;
-  content: "n";
-}
-
-mjx-c.mjx-c6F::before {
-  padding: 0.448em 0.5em 0.01em 0;
-  content: "o";
-}
-
-mjx-c.mjx-c70::before {
-  padding: 0.442em 0.556em 0.194em 0;
-  content: "p";
-}
-
-mjx-c.mjx-c72::before {
-  padding: 0.442em 0.392em 0 0;
-  content: "r";
-}
-
-mjx-c.mjx-c73::before {
-  padding: 0.448em 0.394em 0.011em 0;
-  content: "s";
-}
-
-mjx-c.mjx-c74::before {
-  padding: 0.615em 0.389em 0.01em 0;
-  content: "t";
-}
-
-mjx-c.mjx-c75::before {
-  padding: 0.442em 0.556em 0.011em 0;
-  content: "u";
-}
-
-mjx-c.mjx-c79::before {
-  padding: 0.431em 0.528em 0.204em 0;
-  content: "y";
-}
-</style></head>
+  </head>
   <body>
     <nav>
       <div>
-        <a href="/"><img src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a>
+        <a href="/"><img src="/dist/artagnon.com.svg" alt="home" width="317" height="390" /></a>
       </div>
       <div>
         <ul>
@@ -670,7 +48,7 @@ mjx-c.mjx-c79::before {
           Incrementally updating the Dominator
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2016-10-09" class="begin">Sun, 9 Oct 2016 16:00:00 -0500</time><span class="to">→</span><time datetime="2021-02-21" class="end">Sun, 21 Feb 2021 15:00:00 +0100</time></span><br><span id="locations"><address>Paris, Chennai, Boston</address></span>
+          <span id="timestamp"><time datetime="2016-10-09" class="begin">Sun, 9 Oct 2016 16:00:00 -0500</time><span class="to">→</span><time datetime="2021-02-21" class="end">Sun, 21 Feb 2021 15:00:00 +0100</time></span><br /><span id="locations"><address>Paris, Chennai, Boston</address></span>
         </div>
       </header>
       <article class="wrapper">
@@ -681,13 +59,31 @@ mjx-c.mjx-c79::before {
           An input program function is represented using a Control Flow Graph (CFG). It's composed of different Statements, which decompose into Expressions, but we will not concern ourselves with Expressions. The main control flow constructs are SplitStatement and MergeStatement. The SplitStatement has outgoing edges to N (N = 2 in the case of IfStatement) other Statements, and the MergeStatement has incoming edges from M other Statements.
         </p>
         <div class="mathjax">
-          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%" display="true"><mjx-math display="true" style="margin-left: 0; margin-right: 0" class=" MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.45em"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-39.65 -13.59 541.68 152.77" role="img" focusable="false" overflow="visible" style="width: 33.855em; height: 9.548em"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="0.64"><g transform="translate(0,0) "></g><g transform="translate(115.76,0) "></g><g transform="translate(231.3,0) "></g><g transform="translate(347.28,0) "></g><line x1="325.22" y1="11.91" x2="252.43" y2="51.2" stroke-dasharray=""></line><g transform="translate(252.43,51.2) rotate(151.64) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="325.22" y1="5.96" x2="154.27" y2="52.19" stroke-dasharray=""></line><g transform="translate(154.27,52.19) rotate(164.87) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="325.22" y1="3.98" x2="38.85" y2="55.6" stroke-dasharray=""></line><g transform="translate(38.85,55.6) rotate(169.78) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="347.28" y1="12.79" x2="347.28" y2="51.37" stroke-dasharray=""></line><g transform="translate(347.28,51.37) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="369.34" y1="11.94" x2="442.17" y2="51.37" stroke-dasharray=""></line><g transform="translate(442.17,51.37) rotate(28.43) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(462.94,0) "></g><g transform="translate(542.03,0) "></g><g transform="translate(585.23,0) "></g><g transform="translate(0,62.61) "></g><line x1="21.05" y1="74.02" x2="91.84" y2="112.42" stroke-dasharray=""></line><g transform="translate(91.84,112.42) rotate(28.48) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(115.76,62.61) "></g><line x1="115.76" y1="73.85" x2="115.76" y2="112.42" stroke-dasharray=""></line><g transform="translate(115.76,112.42) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(231.3,62.61) "></g><line x1="210.31" y1="74.02" x2="139.64" y2="112.42" stroke-dasharray=""></line><g transform="translate(139.64,112.42) rotate(151.48) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(347.28,62.61) "></g><line x1="347.28" y1="73.85" x2="347.28" y2="112.69" stroke-dasharray=""></line><g transform="translate(347.28,112.69) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(462.94,62.61) "></g><line x1="442.23" y1="73.85" x2="370.69" y2="112.69" stroke-dasharray=""></line><g transform="translate(370.69,112.69) rotate(151.5) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(0,125.4) "></g><g transform="translate(115.76,125.4) "></g><g transform="translate(231.3,125.4) "></g><g transform="translate(347.28,125.4) "></g><g transform="translate(462.94,125.4) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 23.15em; top: 0.4em" data-x="20.676499999999997" data-y="-0.44949999999999996" data-xypic-id="3"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c74"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.4em" data-x="-2.0780000000000003" data-y="3.5495000000000005" data-xypic-id="7"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 7.66em; top: 4.41em" data-x="5.178" data-y="3.5605" data-xypic-id="8"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c42"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 14.87em; top: 4.4em" data-x="12.392" data-y="3.5500000000000003" data-xypic-id="9"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c43"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 22.1em; top: 4.41em" data-x="19.619999999999997" data-y="3.5605" data-xypic-id="10"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c44"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 29.37em; top: 4.41em" data-x="26.889999999999993" data-y="3.5605" data-xypic-id="11"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c45"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 7.86em; top: 8.23em" data-x="5.386500000000001" data-y="7.376500000000001" data-xypic-id="13"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c4D"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 22.36em; top: 8.24em" data-x="19.877499999999998" data-y="7.393000000000001" data-xypic-id="15"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c4D"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c42"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
+          $$
+          \begin{xy}
+          \xymatrix{
+          & & & \text{Split}\ar[dl]\ar[dll]\ar[dlll]\ar[d]\ar[dr] & & & \\
+          \text{Branch A}\ar[dr] & \text{Branch B}\ar[d] & \text{Branch C}\ar[dl] & \text{Branch D}\ar[d] & \text{Branch E}\ar[dl] \\
+          & \text{Merge A} & & \text{Merge B} &
+          }
+          \end{xy}
+          $$
         </div>
         <p>
           The Dominator is a data structure that holds "domination relationship" between any two Statements in the CFG. "A dominates B" means: all paths starting from the start of the CFG to end of the CFG, that flow through A, must necessarily flow through B. It's represented using a tree of things that progressively dominate their children. We want to incrementally update this structure.
         </p>
         <div class="mathjax">
-          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%" display="true"><mjx-math display="true" style="margin-left: 0; margin-right: 0" class=" MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -16.57em"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-75.86 -11.41 545.7 280.5" role="img" focusable="false" overflow="visible" style="width: 34.106em; height: 17.531em"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="0.64"><g transform="translate(0,0) "></g><g transform="translate(196.88,0) "></g><line x1="196.88" y1="10.61" x2="196.88" y2="49.01" stroke-dasharray=""></line><g transform="translate(196.88,49.01) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(393.87,0) "></g><g transform="translate(0,62.61) "></g><g transform="translate(196.88,62.61) "></g><line x1="156.06" y1="76.21" x2="40.82" y2="114.61" stroke-dasharray=""></line><g transform="translate(40.82,114.61) rotate(161.57) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="237.72" y1="76.21" x2="353.03" y2="114.61" stroke-dasharray=""></line><g transform="translate(353.03,114.61) rotate(18.42) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(393.87,62.61) "></g><g transform="translate(0,128.21) "></g><line x1="40.82" y1="141.81" x2="156.06" y2="180.21" stroke-dasharray=""></line><g transform="translate(156.06,180.21) rotate(18.43) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(196.88,128.21) "></g><g transform="translate(393.87,128.21) "></g><line x1="353.03" y1="141.81" x2="237.72" y2="180.21" stroke-dasharray=""></line><g transform="translate(237.72,180.21) rotate(161.58) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(0,193.81) "></g><g transform="translate(196.88,193.81) "></g><line x1="196.88" y1="207.41" x2="196.88" y2="245.81" stroke-dasharray=""></line><g transform="translate(196.88,245.81) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(393.87,193.81) "></g><g transform="translate(0,257.05) "></g><g transform="translate(196.88,257.05) "></g><g transform="translate(393.87,257.05) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 16.01em; top: 0.4em" data-x="11.273000000000001" data-y="-0.313" data-xypic-id="18"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c74"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 12.18em; top: 4.13em" data-x="7.441000000000002" data-y="3.4130000000000003" data-xypic-id="21"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c41"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c2C"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c43"></mjx-c><mjx-c class="mjx-c2C"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c44"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 8.23em" data-x="-4.341" data-y="7.513" data-xypic-id="23"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 25.01em; top: 8.23em" data-x="20.269000000000002" data-y="7.513" data-xypic-id="25"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c43"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 12.68em; top: 12.33em" data-x="7.936000000000002" data-y="11.613" data-xypic-id="27"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c44"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 16.27em; top: 16.43em" data-x="11.527000000000001" data-y="15.713" data-xypic-id="30"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c64"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
+          $$
+          \begin{xy}
+          \xymatrix{
+          & \text{start}\ar[d] & \\
+          & \text{A (dominates B, C, D)}\ar[dl]\ar[dr] & \\
+          \text{B (dominated by A)}\ar[dr] & & \text{C (dominated by A)}\ar[dl] \\
+          & \text{D (dominated by A)}\ar[d] & \\
+          & \text{end} &
+          }
+          \end{xy}
+          $$
         </div>
         <h2 id="motivation">
           Motivation
@@ -702,7 +98,15 @@ mjx-c.mjx-c79::before {
           The main supporting data structure we will use for this feat is the Program Structure Tree, which is incrementally updated. The PST is a tree representation of structured control flow: all Control Flow Graph nodes belong to a Region in a nesting of single-entry single-exit Regions. Any control-flow that cannot be classified is boxed in an UnstructuredRegion, which we will not handle.
         </p>
         <div class="mathjax">
-          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%" display="true"><mjx-math display="true" style="margin-left: 0; margin-right: 0" class=" MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.72em"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-90.34 -13.69 607.66 157.15" role="img" focusable="false" overflow="visible" style="width: 37.979em; height: 9.822em"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="0.64"><g transform="translate(0,0) "></g><g transform="translate(218.62,0) "></g><line x1="218.62" y1="12.89" x2="218.62" y2="51.29" stroke-dasharray=""></line><g transform="translate(218.62,51.29) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="261.49" y1="12.89" x2="389.82" y2="51.46" stroke-dasharray=""></line><g transform="translate(389.82,51.46) rotate(16.73) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(432.1,0) "></g><g transform="translate(0,64.18) "></g><g transform="translate(218.62,64.18) "></g><line x1="183.57" y1="74.58" x2="45.82" y2="115.46" stroke-dasharray=""></line><g transform="translate(45.82,115.46) rotate(163.47) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="218.62" y1="77.06" x2="218.62" y2="115.46" stroke-dasharray=""></line><g transform="translate(218.62,115.46) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(432.1,64.18) "></g><line x1="432.1" y1="76.89" x2="432.1" y2="115.46" stroke-dasharray=""></line><g transform="translate(432.1,115.46) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(0,129.06) "></g><g transform="translate(218.62,129.06) "></g><g transform="translate(432.1,129.06) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 16.5em; top: 0.4em" data-x="10.850499999999998" data-y="-0.45549999999999996" data-xypic-id="33"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c43"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c52"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6E"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 17.47em; top: 4.41em" data-x="11.822999999999999" data-y="3.5555000000000003" data-xypic-id="36"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c49"></mjx-c><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c52"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6E"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 29.28em; top: 4.42em" data-x="23.636499999999998" data-y="3.5665000000000004" data-xypic-id="37"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c46"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c4C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c52"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6E"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 8.42em" data-x="-5.246499999999999" data-y="7.5665" data-xypic-id="38"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c52"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c75"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 13.99em; top: 8.42em" data-x="8.346499999999999" data-y="7.5665" data-xypic-id="39"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c52"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 27.73em; top: 8.42em" data-x="22.0805" data-y="7.5665" data-xypic-id="40"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c52"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
+          $$
+          \begin{xy}
+          \xymatrix{
+          & \text{ChainRegion}\ar[d]\ar[dr] & \\
+          & \text{IfRegion}\ar[dl]\ar[d] & \text{ForLoopRegion}\ar[d] \\
+          \text{BBRegion (true branch)} & \text{BBRegion (false branch)} & \text{BBRegion(body of for)}
+          }
+          \end{xy}
+          $$
         </div>
         <p>
           This is a Region:
@@ -726,11 +130,18 @@ if (A &lt; 17)
   A = A + 3;
   goto jump;</code></pre>
         <p>
-          Updating a vanilla Dominator tree is relatively easy: simply add a child to the correct node. The problem at hand is that we have an O(1)-query Dominator object that we want to keep up to date as we make edits to the IR. How is it O(1)-query? Every node in the tree is assigned DFS start and end times: so if one interval nests within another, the corresponding node is dominated by the<br>
+          Updating a vanilla Dominator tree is relatively easy: simply add a child to the correct node. The problem at hand is that we have an O(1)-query Dominator object that we want to keep up to date as we make edits to the IR. How is it O(1)-query? Every node in the tree is assigned DFS start and end times: so if one interval nests within another, the corresponding node is dominated by the<br/>
           other node.
         </p>
         <div class="mathjax">
-          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%" display="true"><mjx-math display="true" style="margin-left: 0; margin-right: 0" class=" MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -4.75em"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-58.87 -14.4 438.64 94.4" role="img" focusable="false" overflow="visible" style="width: 27.415em; height: 5.9em"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="0.64"><g transform="translate(0,0) "></g><g transform="translate(159.21,0) "></g><line x1="126.2" y1="13.6" x2="33.01" y2="52" stroke-dasharray=""></line><g transform="translate(33.01,52) rotate(157.61) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="159.21" y1="13.6" x2="159.21" y2="52" stroke-dasharray=""></line><g transform="translate(159.21,52) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="192.47" y1="13.6" x2="286.39" y2="52" stroke-dasharray=""></line><g transform="translate(286.39,52) rotate(22.24) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(319.66,0) "></g><g transform="translate(0,65.6) "></g><g transform="translate(159.21,65.6) "></g><g transform="translate(319.66,65.6) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 11.07em; top: 0.4em" data-x="7.394500000000002" data-y="-0.49999999999999994" data-xypic-id="42"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c49"></mjx-c><mjx-c class="mjx-c66"></mjx-c><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c38"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.5em" data-x="-3.2795000000000005" data-y="3.5999999999999996" data-xypic-id="44"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c54"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c75"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 10.06em; top: 4.5em" data-x="6.379500000000001" data-y="3.5999999999999996" data-xypic-id="45"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c4D"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c34"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c35"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 20.3em; top: 4.5em" data-x="16.6215" data-y="3.5999999999999996" data-xypic-id="46"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c46"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c36"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c37"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
+          $$
+          \begin{xy}
+          \xymatrix{
+          & \text{IfStmt(1/8)}\ar[dl]\ar[d]\ar[dr] & \\
+          \text{TrueStmt(2/3)} & \text{MergeStmt(4/5)} & \text{FalseStmt(6/7)}
+          }
+          \end{xy}
+          $$
         </div>
         <p>
           Supporting arbitarary IR edits is both very hard and not a useful goal: we can reduce all our edits to two items, namely inserting a SESE Statement, and inserting a SESE PST Region. Removing a Statment or Region is not interesting, because it just leaves gaps in the numbering, and doesn't affect any existing Dominance relationships if we make no changes after removal. Modifying a Region can be easily expressed as the removal of the old Region/insertion of the new Region.
@@ -775,13 +186,39 @@ if (A &lt; 17)
           The intervals of the each of the outEdges ("branches") must stagger with each other so there's no false dominance relationship between them. Two intervals "staggering" means one not being nested within the other. In the case of Split-dominates-Merge, they must additionally stagger with the Merge.
         </p>
         <div class="mathjax">
-          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%" display="true"><mjx-math display="true" style="margin-left: 0; margin-right: 0" class=" MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -8.18em"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-38.43 -13.5 281.26 148.38" role="img" focusable="false" overflow="visible" style="width: 17.579em; height: 9.274em"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="0.64"><g transform="translate(0,0) "></g><g transform="translate(102.54,0) "></g><line x1="81.78" y1="12.66" x2="18.72" y2="51.1" stroke-dasharray=""></line><g transform="translate(18.72,51.1) rotate(148.63) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="123.3" y1="12.7" x2="186.36" y2="51.28" stroke-dasharray=""></line><g transform="translate(186.36,51.28) rotate(31.46) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(204.74,0) "></g><g transform="translate(0,62.52) "></g><line x1="19.29" y1="73.94" x2="84.17" y2="112.34" stroke-dasharray=""></line><g transform="translate(84.17,112.34) rotate(30.62) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(102.54,62.52) "></g><g transform="translate(204.74,62.52) "></g><line x1="185.81" y1="73.76" x2="120.85" y2="112.34" stroke-dasharray=""></line><g transform="translate(120.85,112.34) rotate(149.3) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(0,123.21) "></g><g transform="translate(102.54,123.21) "></g><g transform="translate(204.74,123.21) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 7.86em; top: 0.4em" data-x="5.461" data-y="-0.4439999999999999" data-xypic-id="48"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c74"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 4.39em" data-x="-2.002" data-y="3.544" data-xypic-id="50"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 13.22em; top: 4.4em" data-x="10.814999999999998" data-y="3.5549999999999997" data-xypic-id="52"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c42"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 7.5em; top: 8.22em" data-x="5.102" data-y="7.3709999999999996" data-xypic-id="54"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
+          $$
+          \begin{xy}
+          \xymatrix{
+          & \text{split}\ar[dl]\ar[dr] & \\
+          \text{branch A}\ar[dr] & & \text{branch B}\ar[dl] \\
+          & \text{merge} &
+          }
+          \end{xy}
+          $$
         </div>
         <div class="mathjax">
-          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%" display="true"><mjx-math display="true" style="margin-left: 0; margin-right: 0" class=" MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -12.49em"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-55.45 -11.67 309.9 215.47" role="img" focusable="false" overflow="visible" style="width: 19.369em; height: 13.467em"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="0.64"><g transform="translate(0,0) "></g><g transform="translate(123.77,0) "></g><line x1="123.77" y1="10.87" x2="123.77" y2="49.27" stroke-dasharray=""></line><g transform="translate(123.77,49.27) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(223.27,0) "></g><g transform="translate(0,62.23) "></g><g transform="translate(123.77,62.23) "></g><line x1="123.77" y1="75.19" x2="123.77" y2="113.59" stroke-dasharray=""></line><g transform="translate(123.77,113.59) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(223.27,62.23) "></g><g transform="translate(0,126.3) "></g><g transform="translate(123.77,126.3) "></g><line x1="103.01" y1="137.01" x2="24.79" y2="177.4" stroke-dasharray=""></line><g transform="translate(24.79,177.4) rotate(152.69) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="143.55" y1="139" x2="203.37" y2="177.42" stroke-dasharray=""></line><g transform="translate(203.37,177.42) rotate(32.71) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(223.27,126.3) "></g><g transform="translate(0,190.2) "></g><g transform="translate(123.77,190.2) "></g><g transform="translate(223.27,190.2) "></g><line x1="216.58" y1="177.42" x2="129.46" y2="10.87" stroke-dasharray=""></line><g transform="translate(129.46,10.87) rotate(-117.62) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(25.98,-13.59) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 9.89em; top: 0.4em" data-x="6.429" data-y="-0.32950000000000007" data-xypic-id="57"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 9.63em; top: 4.16em" data-x="6.165500000000001" data-y="3.4295" data-xypic-id="60"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c41"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 10.25em; top: 8.18em" data-x="6.788" data-y="7.4495" data-xypic-id="63"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c74"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 12.17em" data-x="-3.0654999999999997" data-y="11.437499999999998" data-xypic-id="65"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c75"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c52"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6E"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 15.87em; top: 12.17em" data-x="12.405499999999998" data-y="11.438499999999998" data-xypic-id="67"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c20"></mjx-c><mjx-c class="mjx-c42"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 14.53em; top: 5.51em" data-x="11.06457481864496" data-y="4.776007049829628" data-xypic-id="68"><mjx-mstyle size="s"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c62"></mjx-c><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c63"></mjx-c><mjx-c class="mjx-c6B"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
+          $$
+          \begin{xy}
+          \xymatrix{
+          & \text{merge}\ar[d] & \\
+          & \text{body A}\ar[d] & \\
+          & \text{split}\ar[dl]\ar[dr] & \\
+          \text{outsideRegion} & & \text{body B}\ar[uuul]_{\text{backedge}}
+          }
+          \end{xy}
+          $$
         </div>
         <div class="mathjax">
-          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%" display="true"><mjx-math display="true" style="margin-left: 0; margin-right: 0" class=" MJX-TEX"><mjx-xypic style="position: relative; vertical-align: -12.95em"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-47.62 -14.4 451.26 225.6" role="img" focusable="false" overflow="visible" style="width: 28.204em; height: 14.1em"><g fill="none" stroke="black" stroke-linecap="round" stroke-width="0.64"><g transform="translate(0,0) "></g><g transform="translate(151.96,0) "></g><line x1="151.96" y1="13.6" x2="151.96" y2="52" stroke-dasharray=""></line><g transform="translate(151.96,52) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(329.97,0) "></g><g transform="translate(0,65.6) "></g><g transform="translate(151.96,65.6) "></g><line x1="151.96" y1="79.2" x2="151.96" y2="117.6" stroke-dasharray=""></line><g transform="translate(151.96,117.6) rotate(90) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(329.97,65.6) "></g><g transform="translate(0,131.2) "></g><g transform="translate(151.96,131.2) "></g><line x1="120.46" y1="144.8" x2="31.5" y2="183.2" stroke-dasharray=""></line><g transform="translate(31.5,183.2) rotate(156.65) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><line x1="188.86" y1="144.8" x2="293.06" y2="183.2" stroke-dasharray=""></line><g transform="translate(293.06,183.2) rotate(20.23) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(329.97,131.2) "></g><g transform="translate(0,196.8) "></g><g transform="translate(151.96,196.8) "></g><g transform="translate(329.97,196.8) "></g></g></svg><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 8.65em; top: 0.4em" data-x="5.676500000000002" data-y="-0.49999999999999994" data-xypic-id="70"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c4D"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 9.63em; top: 4.5em" data-x="6.650000000000002" data-y="3.5999999999999996" data-xypic-id="73"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c41"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 8.97em; top: 8.6em" data-x="5.996500000000002" data-y="7.699999999999999" data-xypic-id="76"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 0.4em; top: 12.7em" data-x="-2.5765000000000002" data-y="11.799999999999999" data-xypic-id="78"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c53"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c6D"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c42"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c34"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c37"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object><mjx-xypic-object style="text-align: center; position: absolute; color: black; left: 19.4em; top: 12.7em" data-x="16.418500000000005" data-y="11.799999999999999" data-xypic-id="80"><mjx-mstyle><mjx-mstyle><mjx-TeXAtom texclass="ORD"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c75"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c73"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c52"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c28"></mjx-c><mjx-c class="mjx-c38"></mjx-c><mjx-c class="mjx-c2F"></mjx-c><mjx-c class="mjx-c39"></mjx-c><mjx-c class="mjx-c29"></mjx-c></mjx-mtext></mjx-TeXAtom></mjx-mstyle></mjx-mstyle></mjx-xypic-object></mjx-xypic></mjx-math></mjx-container>
+          $$
+          \begin{xy}
+          \xymatrix{
+          & \text{MergeStmt(1/12)}\ar[d] & \\
+          & \text{StmtA(2/11)}\ar[d] & \\
+          & \text{SplitStmt(3/10)}\ar[dl]\ar[dr] & \\
+          \text{StmtB(4/7)} & & \text{outsideRegion(8/9)}
+          }
+          \end{xy}
+          $$
         </div>
         <p>
           Our API looks like:
