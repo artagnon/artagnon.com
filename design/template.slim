@@ -18,12 +18,7 @@ html lang="en"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"
 
-    // preload hljs css, since solarized-light is heavy
-    link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"
-    noscript
-      link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css"
-
-    // the js components of hljs
+    // hljs
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"
@@ -31,28 +26,20 @@ html lang="en"
 
     // our js, compiled from js files in design/
     script defer=true src="/dist/script.min.js"
-  body
-    nav
-      div
-        a href="/"
-          img src="/dist/artagnon.com.svg" alt="home" width="317" height="390"
-      div
-        ul
-          - topics.each do |topic|
-            li
-              a href="/#{topic}" = topic
+  body class="wrapper"
     main
       header
         h1 == title
         div id="metadata"
           span id="timestamp"
             time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
-            span class="to" →
+            span class="to"
+              img src="dist/icon.arrow.svg"
             time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
           br
           span id="locations"
             address = locations.join ", "
-      article class="wrapper"
+      article
         - paragraphs.each do |paragraph|
           - case paragraph.type
             - when :plain
@@ -96,3 +83,12 @@ html lang="en"
               - st.content_pages.each do |cp|
                 li
                   a href="/#{cp.permalink}" = cp.title
+    nav
+      div
+        a href="/"
+          img src="/dist/artagnon.com.svg" alt="home" width="317" height="390"
+      div
+        ul
+          - topics.each do |topic|
+            li
+              a href="/#{topic}" = topic
