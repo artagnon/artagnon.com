@@ -1,0 +1,398 @@
+// Color palette
+$main-bg: #F9F9F7
+$nav-bg: #F1E7E4
+$pre-bg: #F8F3F2
+$mark-bg: #FEF4EB
+$main-fg: #191919
+$nav-fg: #6A6A4E
+$nav-hover: #52523D
+$heading-fg: #000000
+$metadata-fg: #8C8C8C
+$link-fg: #794C3E
+$blurb-fg: #757557
+$marker-fg: #A26753
+
+// hljs specific
+$hljs-string: $blurb-fg
+$hljs-number: $marker-fg
+$hljs-function: #268BD2
+$hljs-inbuilt: #8D8D68
+
+// Gutter
+$gutter-width: 64px
+
+body
+  margin: 0
+  font-size: 21.95px
+  font-family: AvenirNext-Regular
+  color: $main-fg
+  background-color: $main-bg
+
+h1
+  font-size: 2rem
+  text-transform: capitalize
+
+article
+  font-size: 1.2rem
+
+a
+  color: $link-fg
+  text-decoration: none
+
+.wrapper
+  display: grid
+  grid-template-columns: 75ch auto
+  column-gap: $gutter-width
+
+  & > main
+    object-fit: contain
+    grid-column: 1
+    padding-left: $gutter-width
+    padding-top: $gutter-width
+    padding-bottom: $gutter-width
+
+  & > nav
+    object-fit: contain
+    grid-column: 2
+    padding-left: calc(#{$gutter-width} / 2)
+    padding-right: calc(#{$gutter-width} / 2)
+    padding-top: $gutter-width
+    padding-bottom: $gutter-width
+
+#indexfill
+  list-style: none
+  text-transform: capitalize
+  margin-left: 0
+  padding-left: 1em
+  text-indent: -1em
+
+  & > li
+    padding-bottom: 1rem
+
+  & > li::before
+    content: "\00BB \0020"
+    color: $marker-fg
+
+// The nav bar
+nav
+  display: grid
+  grid-template-rows: 207px auto
+  row-gap: $gutter-width
+  align-items: start
+  justify-items: center
+  background-color: $nav-bg
+  transition: all .35s ease
+
+  & > :first-child
+    grid-row: 1
+
+  & > :last-child
+    grid-row: 2
+
+nav > ul
+  margin: 0
+
+nav li a
+  font-size: 1.4rem
+  text-transform: capitalize
+  display: block
+  color: $nav-fg
+
+  position: relative
+  transition: all .35s ease
+
+  &::before
+    content: ""
+    position: absolute
+    width: 100%
+    height: 2px
+    bottom: 0
+    left: 0
+    background-color: $nav-hover
+    visibility: hidden
+    -webkit-transform: scaleX(0)
+    transform: scaleX(0)
+    -webkit-transition: all 0.3s ease-in-out 0s
+    transition: all 0.3s ease-in-out 0s
+
+  &:hover
+    color: $nav-hover
+
+    &::before
+      visibility: visible
+      -webkit-transform: scaleX(1)
+      transform: scaleX(1)
+
+pre
+  font-family: Monaco
+
+main
+  display: block
+
+nav > div:nth-child(1) > a > img
+  object-fit: contain
+  height: max(15vh, 15vw)
+  width: calc(0.8128 * max(15vh, 15vw))
+  padding: 0.5rem 0 0.5rem 0.5rem
+
+nav > div:nth-child(2) > ul
+  list-style: none
+  padding: 0
+  font-weight: 560
+  line-height: calc(max(15vh, 15vw) / 6)
+  font-size: 0.8rem
+
+@media print
+  main
+    float: none
+    width: 100%
+    padding-left: 20px
+    padding-right: 20px
+
+  nav
+    visibility: none !important
+    float: none
+    width: 0px
+
+#metadata
+  font-size: 14px
+  color: $metadata-fg
+  text-align: right
+
+  & span.to
+    padding-left: 5px
+    padding-right: 5px
+
+    & > img
+      color: $metadata-fg
+      height: 0.6em
+
+h1
+  font-family: AvenirNext-Bold
+  font-size: 2.4rem
+  color: $heading-fg
+
+h2
+  font-family: AvenirNext-Bold
+  font-size: 1.8rem
+  color: $heading-fg
+
+h3
+  font-family: AvenirNext-Bold
+  font-weight: 500
+  font-size: 1.4rem
+  color: $heading-fg
+
+.olitems
+  list-style-position: outside
+  padding-left: 2rem
+
+.blurb
+  text-align: center
+  padding: 0rem 2rem 1rem
+  color: $blurb-fg
+  font-size: 1.5rem
+  font-style: oblique 20deg
+
+.exercise,
+.indent
+  text-indent: -2rem
+
+.exercise
+  padding-left: 2rem
+
+  &::before
+    color: $marker-fg
+    content: "§"
+
+mark
+  background: $mark-bg
+
+hr,
+footer
+  box-sizing: content-box
+  display: block
+
+hr.ellipses,
+footer
+  border: 0
+
+hr.ellipses::before,
+footer::before
+  content: "..."
+  letter-spacing: 0.6rem
+  color: $blurb-fg
+  padding-top: 1rem
+  font-weight: 400
+  font-size: 3rem
+  position: relative
+  display: inline-block
+
+pre
+  width: 100%
+
+figure
+  margin-left: 10vw
+  margin-right: 10vw
+
+@media screen and (max-width: 500px)
+  figure
+    margin-left: 10px
+    margin-right: 10px
+
+figure > img
+  object-fit: contain
+  width: 100%
+  height: auto
+
+div.mathjax
+  overflow-x: auto
+  background-color: $pre-bg
+  padding-left: 1rem
+  padding-right: 1rem
+
+a[href$=".pdf"]
+  background-image: url("/dist/icon.pdf.svg")
+
+a[href^="https://youtube.com"]
+
+  background-image: url("/dist/icon.youtube.svg")
+
+a[href^="mailto:"]
+  background-image: url("/dist/icon.email.svg")
+
+a[href^="https://twitter.com"]
+
+  background-image: url("/dist/icon.twitter.svg")
+
+a[href^="https://github.com/"]
+
+  background-image: url("/dist/icon.github.svg")
+
+#metadata time.end
+  background-image: url("/dist/icon.calendar.svg")
+
+#metadata address
+  background-image: url("/dist/icon.location.svg")
+
+a[href$=".pdf"],
+a[href^="https://youtube.com"],
+a[href^="mailto:"],
+a[href^="https://twitter.com"],
+a[href^="https://github.com"],
+#metadata time.end,
+#metadata address
+  background-repeat: no-repeat
+  background-position: center right
+  padding-right: 1.3rem
+  max-height: 1rem
+  background-size: 1rem
+
+footer > p
+  margin-top: 1rem
+  margin-bottom: 1rem
+  font-size: 70%
+
+// hljs
+
+pre code.hljs
+  display: block
+  overflow-x: auto
+  padding: 1em
+
+code.hljs
+  padding: 3px 5px
+
+.hljs
+  color: $main-fg
+  background: $pre-bg
+
+/* purposely do not highlight these things */
+
+  &-formula,
+  &-params,
+  .hljs-property
+
+/* base03 -  Comments, Invisibles, Line Highlighting */
+.hljs-comment
+  color: $metadata-fg
+
+/* base04 -  Dark Foreground (Used for status bars) */
+.hljs-tag
+  color: #657b83
+
+/* base05 -  Default Foreground, Caret, Delimiters, Operators */
+.hljs-subst,
+.hljs-punctuation,
+.hljs-operator
+  color: #586e75
+
+  &
+    opacity: 0.7
+
+/* base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+.hljs-bullet,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-selector-tag,
+.hljs-name,
+.hljs-deletion
+  color: #dc322f
+
+/* base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+.hljs-symbol,
+.hljs-number,
+.hljs-link,
+.hljs-attr,
+.hljs-variable.constant_,
+.hljs-literal
+  color: $hljs-number
+
+/* base0A - Classes, Markup Bold, Search Text Background */
+.hljs-title,
+.hljs-class .hljs-title,
+.hljs-title.class_
+
+  color: #b58900
+
+.hljs-strong
+  font-weight: bold
+  color: #b58900
+
+/* base0B - Strings, Inherited Class, Markup Code, Diff Inserted */
+.hljs-code,
+.hljs-addition,
+.hljs-title.class_.inherited__,
+.hljs-string
+  color: $hljs-string
+
+/* base0C - Support, Regular Expressions, Escape Characters, Markup Quotes */
+.hljs-built_in,
+.hljs-doctag, // guessing
+.hljs-quote,
+.hljs-keyword.hljs-atrule,
+.hljs-regexp
+  color: $hljs-inbuilt
+
+/* base0D - Functions, Methods, Attribute IDs, Headings */
+.hljs-function .hljs-title,
+.hljs-attribute,
+.ruby .hljs-property,
+.hljs-title.function_,
+.hljs-section
+  color: $hljs-function
+
+/* base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed */
+.hljs-type,
+/* .hljs-selector-id, */
+/* .hljs-selector-class, */
+/* .hljs-selector-attr, */
+/* .hljs-selector-pseudo, */
+.hljs-template-tag,
+.diff .hljs-meta,
+.hljs-keyword
+  color: #6c71c4
+
+.hljs-emphasis
+  color: #6c71c4
+  font-style: italic

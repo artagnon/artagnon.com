@@ -12,10 +12,6 @@
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
-    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css">
-    </noscript>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"></script>
@@ -1336,38 +1332,17 @@ mjx-c.mjx-c2217.TEX-B::before {
   content: "\2217";
 }
 </style></head>
-  <body>
-    <nav>
-      <div>
-        <a href="/"><img src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a>
-      </div>
-      <div>
-        <ul>
-          <li>
-            <a href="/articles">articles</a>
-          </li>
-          <li>
-            <a href="/computing">computing</a>
-          </li>
-          <li>
-            <a href="/math">math</a>
-          </li>
-          <li>
-            <a href="/publications">publications</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <body class="wrapper">
     <main>
       <header>
         <h1>
           Natural Transforms, Products, Free Categories
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2018-09-26" class="begin">Wed, 26 Sep 2018 13:00:00 +0530</time><span class="to">→</span><time datetime="2021-03-16" class="end">Tue, 16 Mar 2021 12:00:00 +0100</time></span><br><span id="locations"><address>Paris, Chennai</address></span>
+          <span id="timestamp"><time datetime="2018-09-26" class="begin">Wed, 26 Sep 2018 13:00:00 +0530</time><span class="to"><img src="dist/icon.arrow.svg"></span><time datetime="2021-03-16" class="end">Tue, 16 Mar 2021 12:00:00 +0100</time></span><br><span id="locations"><address>Paris, Chennai</address></span>
         </div>
       </header>
-      <article class="wrapper">
+      <article>
         <p>
           For the product set <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D44C TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>, given <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44A TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D454 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>, and projections <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3A"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D44C TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c21A6"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>, <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3A"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D44C TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c21A6"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44C TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>, the following diagram commutes:
         </p>
@@ -1834,5 +1809,26 @@ mjx-c.mjx-c2217.TEX-B::before {
         </p>
       </article>
     </main>
+    <nav>
+      <div>
+        <a href="/"><img src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="/articles">articles</a>
+          </li>
+          <li>
+            <a href="/computing">computing</a>
+          </li>
+          <li>
+            <a href="/math">math</a>
+          </li>
+          <li>
+            <a href="/publications">publications</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </body>
 </html>
