@@ -138,9 +138,6 @@ nav > div:nth-child(1) > a > img
 nav > div:nth-child(2) > ul
   list-style: none
   padding: 0
-  font-weight: 560
-  line-height: calc(max(15vh, 15vw) / 6)
-  font-size: 0.8rem
 
 @media print
   main
@@ -272,7 +269,7 @@ a[href^="https://github.com/"]
 #metadata time.end
   background-image: url("/dist/icon.calendar.svg")
 
-#metadata address
+#locations
   background-image: url("/dist/icon.location.svg")
 
 a[href$=".pdf"],
@@ -281,7 +278,7 @@ a[href^="mailto:"],
 a[href^="https://twitter.com"],
 a[href^="https://github.com"],
 #metadata time.end,
-#metadata address
+#locations
   background-repeat: no-repeat
   background-position: center right
   padding-right: 1.3rem
@@ -396,3 +393,11 @@ code.hljs
 .hljs-emphasis
   color: #6c71c4
   font-style: italic
+
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string
+  color: #d33682
+
+.hljs-meta .hljs-keyword
+  font-weight: bold
