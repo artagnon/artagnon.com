@@ -19,10 +19,10 @@ html lang="en"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"
 
     // hljs
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/haskell.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/coq.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/cpp.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/haskell.min.js"
 
     // our js, compiled from js files in design/
     script defer=true src="/dist/script.min.js"
@@ -34,11 +34,15 @@ html lang="en"
           span id="timestamp"
             time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
             span class="to"
-              img src="dist/icon.arrow.svg"
+              img src="/dist/icon.arrow.svg"
             time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
           br
           span id="locations"
-            address = locations.join ", "
+            - locations.reverse[..-2].each do |loc|
+                = loc
+                span class="to"
+                  img src="/dist/icon.arrow.svg"
+            = locations[0]
       article
         - paragraphs.each do |paragraph|
           - case paragraph.type
