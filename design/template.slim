@@ -26,21 +26,21 @@ html lang="en"
 
     // our js, compiled from js files in design/
     script defer=true src="/dist/script.min.js"
-  body class="wrapper"
+  body.wrapper
     main
       header
         h1 == title
-        div id="metadata"
-          span id="timestamp"
-            time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
-            span class="to"
+        div#metadata
+          span#timestamp
+            time.begin datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
+            span.to
               img src="/dist/icon.arrow.svg"
-            time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
+            time.end datetime="#{lastmod.strftime('%F')}" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
           br
-          span id="locations"
+          span#locations
             - locations.reverse[..-2].each do |loc|
                 = loc
-                span class="to"
+                span.to
                   img src="/dist/icon.arrow.svg"
             = locations[0]
       article
@@ -49,7 +49,7 @@ html lang="en"
             - when :plain
               p == paragraph.to_s
             - when :olitems
-              ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.olstart}"
+              ol.olitems type="#{paragraph.prop}" start="#{paragraph.olstart}"
                 - for item in paragraph.split "\n"
                   li == item
             - when :subheading
@@ -73,11 +73,11 @@ html lang="en"
             - when :horizrule
               hr class="#{paragraph.prop}"
             - when :mathjax
-              div class="mathjax" == paragraph.to_s
+              div.mathjax == paragraph.to_s
             - else
               p class="#{paragraph.type}" == paragraph.to_s
         - if subtopics && subtopics.any?
-          ul id="indexfill"
+          ul#indexfill
             - subtopics.each do |st|
               - if st.title
                 - if st.begints.to_date.year == st.endts.year
