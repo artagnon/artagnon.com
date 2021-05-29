@@ -90,9 +90,13 @@ html lang="en"
     nav
       div
         a href="/"
-          img src="/dist/artagnon.com.svg" alt="home" width="317" height="390"
+          img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
       div
         ul
-          - topics.each do |topic|
+          - topics.each_with_index do |topic, idx|
+            span#navidx = "0#{idx + 1}"
             li
-              a href="/#{topic}" = topic
+              - if permalink == topic
+                a#navcur href="/#{topic}" = topic
+              - else
+                a href="/#{topic}" = topic

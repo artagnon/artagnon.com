@@ -73,8 +73,17 @@ nav > :last-child {
   grid-row: 2;
 }
 
-nav > ul {
+nav ul {
   margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+nav img#logo {
+  object-fit: contain;
+  height: max(15vh, 15vw);
+  width: calc(0.8128 * max(15vh, 15vw));
+  padding: 0.5rem 0 0.5rem 0.5rem;
 }
 
 nav li a {
@@ -84,6 +93,9 @@ nav li a {
   color: #6A6A4E;
   position: relative;
   transition: all 0.35s ease;
+}
+nav li a.navcur {
+  border-bottom: 2px #52523D;
 }
 nav li a::before {
   content: "";
@@ -116,30 +128,13 @@ main {
   display: block;
 }
 
-nav > div:nth-child(1) > a > img {
-  object-fit: contain;
-  height: max(15vh, 15vw);
-  width: calc(0.8128 * max(15vh, 15vw));
-  padding: 0.5rem 0 0.5rem 0.5rem;
-}
-
-nav > div:nth-child(2) > ul {
-  list-style: none;
-  padding: 0;
-}
-
 @media print {
   main {
-    float: none;
     width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   nav {
     visibility: none !important;
-    float: none;
-    width: 0px;
   }
 }
 #metadata {
