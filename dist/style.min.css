@@ -29,12 +29,14 @@ a {
 .wrapper > main {
   object-fit: contain;
   grid-column: 1;
+  height: max(100%, 100vh);
   padding-left: 64px;
   padding-top: 64px;
   padding-bottom: 64px;
 }
 .wrapper > nav {
   object-fit: contain;
+  height: max(100%, 100vh);
   grid-column: 2;
   padding-left: calc(64px / 2);
   padding-right: calc(64px / 2);
@@ -86,16 +88,34 @@ nav img#logo {
   padding: 0.5rem 0 0.5rem 0.5rem;
 }
 
-nav li a {
-  font-size: 1.4rem;
+nav li > span.navidx {
+  display: inline-block;
+  color: #6A6A4E;
+  font-family: AndaleMono;
+  padding-right: 1em;
+}
+nav li > span#navcur {
+  position: relative;
+  display: inline-block;
   text-transform: capitalize;
-  display: block;
+  color: #52523D;
+}
+nav li > span#navcur::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #52523D;
+}
+
+nav li a {
+  text-transform: capitalize;
+  display: inline-block;
   color: #6A6A4E;
   position: relative;
   transition: all 0.35s ease;
-}
-nav li a.navcur {
-  border-bottom: 2px #52523D;
 }
 nav li a::before {
   content: "";

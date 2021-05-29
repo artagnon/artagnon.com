@@ -89,14 +89,17 @@ html lang="en"
                   a href="/#{cp.permalink}" = cp.title
     nav
       div
-        a href="/"
+        - if permalink == "index"
           img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
+        - else
+          a href="/"
+            img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
       div
         ul
           - topics.each_with_index do |topic, idx|
-            span#navidx = "0#{idx + 1}"
             li
+              span.navidx = "0#{idx + 1}"
               - if permalink == topic
-                a#navcur href="/#{topic}" = topic
+                span#navcur = topic
               - else
                 a href="/#{topic}" = topic

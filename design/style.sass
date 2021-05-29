@@ -47,12 +47,14 @@ a
   & > main
     object-fit: contain
     grid-column: 1
+    height: max(100%, 100vh)
     padding-left: $gutter-width
     padding-top: $gutter-width
     padding-bottom: $gutter-width
 
   & > nav
     object-fit: contain
+    height: max(100%, 100vh)
     grid-column: 2
     padding-left: calc(#{$gutter-width} / 2)
     padding-right: calc(#{$gutter-width} / 2)
@@ -100,17 +102,34 @@ nav img#logo
   width: calc(0.8128 * max(15vh, 15vw))
   padding: 0.5rem 0 0.5rem 0.5rem
 
-nav li a
-  font-size: 1.4rem
-  text-transform: capitalize
-  display: block
-  color: $nav-fg
+nav li
+  & > span.navidx
+    display: inline-block
+    color: $nav-fg
+    font-family: AndaleMono
+    padding-right: 1em
 
+  & > span#navcur
+    position: relative
+    display: inline-block
+    text-transform: capitalize
+    color: $nav-hover
+
+    &::before
+      content: ""
+      position: absolute
+      width: 100%
+      height: 2px
+      bottom: 0
+      left: 0
+      background-color: $nav-hover
+
+nav li a
+  text-transform: capitalize
+  display: inline-block
+  color: $nav-fg
   position: relative
   transition: all .35s ease
-
-  &.navcur
-    border-bottom: 2px $nav-hover
 
   &::before
     content: ""
