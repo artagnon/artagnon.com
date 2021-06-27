@@ -21,6 +21,13 @@ $hljs-inbuilt: #8D8D68
 // Gutter
 $gutter-width: 64px
 
+// Responsive design variables
+$mobile-max: 575.98px
+$mobile-min: 576px
+
+// The size of the images in the nav bar, or the nav bar height on mobile
+$nav-height: max(18vw, 18vh)
+
 // Fonts
 @font-face
   font-family: AvenirNext-Regular
@@ -41,24 +48,19 @@ body
   color: $main-fg
   background-color: $main-bg
 
-h1
-  font-size: 2rem
-  text-transform: capitalize
-
 article
-  font-size: 1.2rem
+  font-size: 1.1rem
 
 a
   color: $link-fg
   text-decoration: none
 
-// Mobile: display rows
-@media screen and (max-width: 575.98px)
+// Mobile: display wrapper as rows
+@media screen and (max-width: $mobile-max)
   .wrapper
     display: grid
     grid-template-rows: auto auto
     row-gap: $gutter-width
-    width: 100vw
 
     & > nav
       object-fit: contain
@@ -76,8 +78,8 @@ a
       padding-left: $gutter-width
       padding-right: $gutter-width
 
-// Non-mobile: display columns
-@media screen and (min-width: 576px)
+// Non-mobile: display wrapper as columns
+@media screen and (min-width: $mobile-min)
   .wrapper
     display: grid
     grid-template-columns: auto auto
@@ -85,7 +87,6 @@ a
     height: max(100%, 100vh)
     align-items: start
     justify-items: center
-    width: 100vw
 
     & > nav
       object-fit: contain
@@ -101,13 +102,15 @@ a
       padding-left: calc(#{$gutter-width} / 2)
       padding-right: $gutter-width
 
-// The size of the images in the nav bar
-$nav-img-sz: max(15vw, 15vh)
+// Stretch the nav vertically on non-mobile
+@media screen and (min-width: $mobile-min)
+  nav
+    height: max(100%, 100vh)
 
-// The nav bar
+// Common nav
 nav
   display: grid
-  grid-template-rows: $nav-img-sz max-content
+  grid-template-rows: calc(#{$nav-height} - #{$gutter-width}) auto
   row-gap: $gutter-width
   background-color: $nav-bg
   justify-items: start
@@ -120,16 +123,22 @@ nav
   & > :last-child
     grid-row: 2
 
+// The nav bar on non-mobile requires some extra padding-top for the ul
+@media screen and (min-width: $mobile-min)
+  nav
+    & > :last-child
+      padding-top: $gutter-width
+
 // Common code for nav children
 nav img#logo
   object-fit: contain
-  height: $nav-img-sz
-  width: calc(0.8128 * #{$nav-img-sz})
+  height: $nav-height
+  width: calc(0.8128 * #{$nav-height})
 
 nav img#more
   object-fit: contain
-  height: $nav-img-sz
-  width: calc(0.21622 * #{$nav-img-sz})
+  height: $nav-height
+  width: calc(0.21622 * #{$nav-height})
 
 nav ul
   margin: 0
@@ -137,7 +146,7 @@ nav ul
   list-style: none
 
 // Mobile nav children: show nav img#more, css hover ul
-@media screen and (max-width: 575.98px)
+@media screen and (max-width: $mobile-max)
   nav img#more
     & + ul
       visibility: hidden
@@ -150,10 +159,10 @@ nav ul
       visibility: visible
       display: block
       background-color: $nav-bg
-      width: 100%
+      width: 100vw
 
 // Non-mobile nav children: hide img#more, show nav ul
-@media screen and (min-width: 576px)
+@media screen and (min-width: $mobile-min)
   nav img#more
     visibility: hidden
 
@@ -230,12 +239,14 @@ pre
 main
   display: block
 
-@media print
+// Hide the nav bar when printing
+@media only print
   main
     width: 100%
 
   nav
     visibility: none !important
+    display: none
 
 #metadata
   font-size: 1rem
@@ -253,18 +264,19 @@ main
 
 h1
   font-family: AvenirNext-Bold
-  font-size: 2.4rem
+  text-transform: capitalize
+  font-size: 1.7rem
   color: $heading-fg
 
 h2
   font-family: AvenirNext-Bold
-  font-size: 1.8rem
+  font-size: 1.5rem
   color: $heading-fg
 
 h3
   font-family: AvenirNext-Bold
   font-weight: 500
-  font-size: 1.4rem
+  font-size: 1.3rem
   color: $heading-fg
 
 .olitems
