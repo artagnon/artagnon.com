@@ -19,10 +19,7 @@ $hljs-function: #268BD2
 $hljs-inbuilt: #8D8D68
 
 // Gutter
-$gutter-width: 32px
-
-@media screen and (min-width: 576px)
-  $gutter-width: 64px
+$gutter-width: 64px
 
 // Fonts
 @font-face
@@ -59,8 +56,8 @@ a
 @media screen and (max-width: 575.98px)
   .wrapper
     display: grid
-    grid-template-rows: max(17vw, 17vh) auto
-    column-gap: $gutter-width
+    grid-template-rows: auto auto
+    row-gap: $gutter-width
     width: 100vw
 
     & > nav
@@ -83,9 +80,12 @@ a
 @media screen and (min-width: 576px)
   .wrapper
     display: grid
-    grid-template-columns: auto 75ch
+    grid-template-columns: auto auto
     column-gap: $gutter-width
     height: max(100%, 100vh)
+    align-items: start
+    justify-items: center
+    width: 100vw
 
     & > nav
       object-fit: contain
@@ -101,19 +101,21 @@ a
       padding-left: calc(#{$gutter-width} / 2)
       padding-right: $gutter-width
 
+// The size of the images in the nav bar
+$nav-img-sz: max(15vw, 15vh)
+
 // The nav bar
 nav
   display: grid
-  grid-template-rows: max(17vw, 17vh) auto
+  grid-template-rows: $nav-img-sz max-content
   row-gap: $gutter-width
   background-color: $nav-bg
-  transition: all .35s ease
-  justify-items: center
+  justify-items: start
+  align-items: start
 
   & > :first-child,
   & > :nth-child(2)
     grid-row: 1
-    justify-items: center
 
   & > :last-child
     grid-row: 2
@@ -121,31 +123,25 @@ nav
 // Common code for nav children
 nav img#logo
   object-fit: contain
-  height: max(15vh, 15vw)
-  width: calc(0.8128 * max(15vh, 15vw))
+  height: $nav-img-sz
+  width: calc(0.8128 * #{$nav-img-sz})
 
 nav img#more
   object-fit: contain
-  height: max(15vh, 15vw)
-  width: calc(0.8128 * max(15vh, 15vw))
+  height: $nav-img-sz
+  width: calc(0.21622 * #{$nav-img-sz})
 
 nav ul
   margin: 0
-  list-style: none
   padding: 0
+  list-style: none
 
-// Mobile-only nav children: show nav img#more, css dropdown nav ul
+// Mobile nav children: show nav img#more, css hover ul
 @media screen and (max-width: 575.98px)
-  nav img#logo
-    float: left
-
   nav img#more
-    float: right
-
     & + ul
       visibility: hidden
       position: absolute
-      transition: all 0.35s ease
       display: none
 
     &:hover + ul,
@@ -153,6 +149,8 @@ nav ul
     & + ul:hover
       visibility: visible
       display: block
+      background-color: $nav-bg
+      width: 100%
 
 // Non-mobile nav children: hide img#more, show nav ul
 @media screen and (min-width: 576px)
