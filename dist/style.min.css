@@ -33,11 +33,9 @@ a {
 }
 .wrapper > nav {
   flex: 1 0 auto;
-  padding-left: calc(64px / 2);
-  padding-right: calc(64px / 2);
 }
 .wrapper > main {
-  flex: 1 10 auto;
+  flex: 1 1 auto;
   overflow-x: hidden;
   min-width: 0;
   padding-left: calc(64px / 2);
@@ -50,14 +48,12 @@ a {
     row-gap: calc(64px / 2);
   }
   .wrapper > nav {
-    object-fit: contain;
     padding-top: calc(64px / 4);
     padding-bottom: calc(64px / 4);
   }
   .wrapper > main {
-    object-fit: contain;
     padding-top: calc(64px / 4);
-    padding-bottom: calc(64px / 2);
+    padding-bottom: calc(64px / 4);
   }
 }
 @media screen and (min-width: 576px) {
@@ -78,23 +74,27 @@ nav {
   background-color: #F1E7E4;
 }
 nav > :first-child {
-  flex: 1 0 auto;
+  display: block;
+  flex: 1 1 auto;
 }
 nav > :last-child {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
 }
 
 @media screen and (max-width: 575.98px) {
   nav {
-    width: calc(100vw - 64px);
+    width: 100vw;
     flex-flow: row;
   }
   nav > :first-child {
-    align-self: start;
+    justify-self: start;
+    justify-content: start;
+    padding-left: calc(32px);
   }
   nav > :nth-child(2) {
-    flex: 1 0 auto;
-    align-self: end;
+    flex: 1 1 auto;
+    justify-self: end;
+    padding-right: calc(32px);
   }
 }
 @media screen and (min-width: 576px) {
@@ -102,22 +102,28 @@ nav > :last-child {
     height: max(100%, 100vh);
     flex-flow: column;
   }
+  nav > :first-child {
+    align-self: center;
+    justify-self: center;
+  }
 }
-nav img#logo {
-  height: max(15vw, 15vh);
-  width: calc(0.8128 * max(15vw, 15vh));
+nav > :first-child,
+nav > :first-child > img#logo,
+nav > img#logo {
+  height: max(10vw, 10vh);
+  width: calc(0.8128 * max(10vw, 10vh));
 }
 
 nav img#more {
-  height: max(15vw, 15vh);
-  width: calc(0.21622 * max(15vw, 15vh));
+  height: max(10vw, 10vh);
+  width: calc(0.21622 * max(10vw, 10vh));
 }
 
 nav ul {
   justify-self: flex-start;
   margin: 0;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: calc(64px / 2);
+  padding-right: calc(64px / 2);
   padding-top: calc(64px / 4);
   padding-bottom: calc(64px / 4);
   list-style: none;
@@ -133,11 +139,15 @@ nav ul {
     visibility: visible;
     display: block;
     background-color: #F1E7E4;
-    width: calc(100% - 64px);
+    width: 100vw;
   }
 }
 @media screen and (min-width: 576px) {
-  nav img#more {
+  nav {
+    padding-left: calc(64px / 2);
+    padding-right: calc(64px / 2);
+  }
+  nav > img#more {
     visibility: hidden;
     display: none;
   }
