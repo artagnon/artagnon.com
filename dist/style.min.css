@@ -19,10 +19,6 @@ body {
   background-color: #F9F9F7;
 }
 
-article {
-  font-size: 1.1rem;
-}
-
 a {
   color: #794C3E;
   text-decoration: none;
@@ -33,7 +29,6 @@ a {
     display: grid;
     grid-template-rows: auto auto;
     row-gap: calc(64px / 2);
-    width: 100vw;
   }
   .wrapper > nav {
     object-fit: contain;
@@ -57,10 +52,9 @@ a {
     display: grid;
     grid-template-columns: auto auto;
     column-gap: 64px;
-    height: max(100%, 100vh);
+    min-height: 100vh;
     align-items: start;
     justify-items: center;
-    width: 100vw;
   }
   .wrapper > nav {
     object-fit: contain;
@@ -79,7 +73,7 @@ a {
 }
 @media screen and (min-width: 576px) {
   nav {
-    height: max(100%, 100vh);
+    min-height: 100vh;
   }
 }
 nav {
@@ -208,10 +202,6 @@ nav li a:hover::before {
   color: #A26753;
 }
 
-pre {
-  font-family: Monaco;
-}
-
 main {
   display: block;
 }
@@ -239,6 +229,15 @@ main {
   color: #8C8C8C;
   height: 0.6em;
   width: calc(1.19512 * 0.6em);
+}
+
+main > article {
+  object-fit: contain;
+  font-size: 1.1rem;
+}
+main > article > pre, main > article > div.mathjax {
+  object-fit: contain;
+  overflow-x: auto;
 }
 
 h1 {
@@ -314,8 +313,7 @@ footer::before {
 }
 
 pre {
-  width: 100%;
-  overflow-x: auto;
+  font-family: Monaco;
 }
 
 figure {
@@ -324,13 +322,11 @@ figure {
 
 figure > img {
   object-fit: contain;
-  width: 100%;
+  width: 100vw;
   height: auto;
 }
 
 div.mathjax {
-  object-fit: contain;
-  overflow-x: auto;
   background-color: #F8F3F2;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -385,9 +381,7 @@ footer > p {
 }
 
 pre code.hljs {
-  object-fit: contain;
   display: block;
-  overflow-x: auto;
   padding: 1em;
 }
 
