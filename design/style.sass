@@ -59,12 +59,13 @@ a
   align-items: start
   justify-items: center
   display: flex
+
   & > nav
     flex: 1 0 auto
 
   & > main
     flex: 1 1 auto
-    overflow-x: hidden
+    overflow: hidden
     min-width: 0
     padding-left: calc(#{$gutter-width} / 2)
     padding-right: calc(#{$gutter-width} / 2)
@@ -80,6 +81,7 @@ a
       padding-bottom: calc(#{$gutter-width} / 4)
 
     & > main
+      align-self: stretch
       padding-top: calc(#{$gutter-width} / 4)
       padding-bottom: calc(#{$gutter-width} / 4)
 
@@ -127,7 +129,6 @@ nav
 // On non-mobile, render the nav vertically
 @media screen and (min-width: $mobile-min)
   nav
-    height: max(100%, 100vh)
     flex-flow: column
 
     & > :first-child
@@ -146,7 +147,7 @@ nav img#more
   width: calc(0.21622 * #{$nav-height})
 
 nav ul
-  justify-self: flex-start
+  justify-self: flex
   margin: 0
   padding-left: calc(#{$gutter-width} / 2)
   padding-right: calc(#{$gutter-width} / 2)
