@@ -52,24 +52,31 @@ a
   color: $link-fg
   text-decoration: none
 
+// Common wrapper code
+.wrapper
+  height: max(100%, 100vh)
+  width: 100vw
+  align-items: start
+  justify-items: center
+  display: flex
+
 // Mobile: display wrapper as rows; set $gutter-width to half its value
 @media screen and (max-width: $mobile-max)
   .wrapper
-    display: grid
-    grid-template-rows: auto auto
+    flex-flow: column
     row-gap: calc(#{$gutter-width} / 2)
 
     & > nav
+      flex: 1 0 auto
       object-fit: contain
-      grid-row: 1
       padding-top: calc(#{$gutter-width} / 4)
       padding-bottom: calc(#{$gutter-width} / 4)
       padding-left: calc(#{$gutter-width} / 2)
       padding-right: calc(#{$gutter-width} / 2)
 
     & > main
+      flex: 1 1 auto
       object-fit: contain
-      grid-row: 2
       padding-top: calc(#{$gutter-width} / 4)
       padding-bottom: $gutter-width
       padding-left: calc(#{$gutter-width} / 2)
@@ -78,62 +85,63 @@ a
 // Non-mobile: display wrapper as columns
 @media screen and (min-width: $mobile-min)
   .wrapper
-    display: grid
-    grid-template-columns: auto auto
-    column-gap: $gutter-width
-    min-height: 100vh
-    align-items: start
-    justify-items: center
+    flex-flow: row
+    column-gap: calc(#{$gutter-width} / 2)
 
     & > nav
-      object-fit: contain
-      grid-column: 1
+      flex: 1 1 auto
       padding-top: $gutter-width
       padding-left: calc(#{$gutter-width} / 2)
       padding-right: calc(#{$gutter-width} / 2)
 
     & > main
-      object-fit: contain
-      grid-column: 2
+      flex: 1 1 auto
       padding-top: $gutter-width
       padding-left: calc(#{$gutter-width} / 2)
       padding-right: $gutter-width
 
-// Stretch the nav vertically on non-mobile
-@media screen and (min-width: $mobile-min)
-  nav
-    min-height: 100vh
-
 // Common nav
 nav
-  display: grid
-  grid-template-rows: calc(#{$nav-height} - #{$gutter-width}) auto
+  display: flex
   row-gap: $gutter-width
   background-color: $nav-bg
-  align-items: start
 
-  & > :first-child,
-  & > :nth-child(2)
-    grid-row: 1
+  & > :first-child
+    flex: 1 0 auto
 
   & > :last-child
-    grid-row: 2
+    flex: 1 1 auto
+
+// On mobile, render the nav horizontally
+@media screen and (max-width: $mobile-max)
+  nav
+    width: calc(100vw - #{$gutter-width})
+    flex-flow: row
+
+    & > :first-child
+      align-self: start
+
+    & > :nth-child(2)
+      flex: 1 0 auto
+      align-self: end
+
+// On non-mobile, render the nav vertically
+@media screen and (min-width: $mobile-min)
+  nav
+    height: max(100%, 100vh)
+    flex-flow: column
 
 // Common code for nav children
 nav img#logo
-  justify-self: self-start
-  object-fit: contain
   height: $nav-height
   width: calc(0.8128 * #{$nav-height})
 
 nav img#more
-  justify-self: self-end
-  object-fit: contain
   height: $nav-height
   width: calc(0.21622 * #{$nav-height})
 
 nav ul
-  object-fit: contain
+  justify-self: start
   margin: 0
   padding-left: 0
   padding-right: 0
@@ -161,6 +169,7 @@ nav ul
 @media screen and (min-width: $mobile-min)
   nav img#more
     visibility: hidden
+    display: none
 
 nav li
   line-height: 30px
@@ -256,12 +265,10 @@ main
       width: calc(1.19512 * 0.6em)
 
 main > article
-  object-fit: contain
   font-size: 1.1rem
 
   & > pre,
   & > div.mathjax
-    object-fit: contain
     overflow-x: auto
 
 h1
@@ -332,8 +339,7 @@ figure
   margin: 0
 
 figure > img
-  object-fit: contain
-  width: 100vw
+  width: 100%
   height: auto
 
 div.mathjax
