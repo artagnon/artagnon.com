@@ -28,21 +28,20 @@ html lang="en"
     script defer=true src="/dist/script.min.js"
   body.wrapper
     nav
-      div
-        - if permalink == "index"
+      - if permalink == "index"
+        img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
+      - else
+        a href="/"
           img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
-        - else
-          a href="/"
-            img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
-      div
-        ul
-          - topics.each_with_index do |topic, idx|
-            li
-              span.navidx = "0#{idx + 1}"
-              - if permalink == topic
-                span#navcur = topic
-              - else
-                a href="/#{topic}" = topic
+      img#more src="/dist/icon.more.svg" alt="menu" width="49" height="41"
+      ul
+        - topics.each_with_index do |topic, idx|
+          li
+            span.navidx = "0#{idx + 1}"
+            - if permalink == topic
+              span#navcur = topic
+            - else
+              a href="/#{topic}" = topic
     main
       header
         h1 == title
@@ -50,14 +49,14 @@ html lang="en"
           span#timestamp
             time.begin datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
             span.to
-              img src="/dist/icon.arrow.svg"
+              img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"
             time.end datetime="#{lastmod.strftime('%F')}" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
           br
           span#locations
             - locations.reverse[..-2].each do |loc|
                 = loc
                 span.to
-                  img src="/dist/icon.arrow.svg"
+                  img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"
             = locations[0]
       article
         - paragraphs.each do |paragraph|

@@ -19,7 +19,10 @@ $hljs-function: #268BD2
 $hljs-inbuilt: #8D8D68
 
 // Gutter
-$gutter-width: 64px
+$gutter-width: 32px
+
+@media screen and (min-width: 576px)
+  $gutter-width: 64px
 
 // Fonts
 @font-face
@@ -36,6 +39,7 @@ $gutter-width: 64px
 
 body
   margin: 0
+  font-size: 1em
   font-family: AvenirNext-Regular
   color: $main-fg
   background-color: $main-bg
@@ -51,75 +55,116 @@ a
   color: $link-fg
   text-decoration: none
 
-.wrapper
-  display: grid
-  grid-template-columns: auto 75ch
-  column-gap: $gutter-width
+// Mobile: display rows
+@media screen and (max-width: 575.98px)
+  .wrapper
+    display: grid
+    grid-template-rows: max(17vw, 17vh) auto
+    column-gap: $gutter-width
+    width: 100vw
 
-  & > nav
-    object-fit: contain
+    & > nav
+      object-fit: contain
+      grid-row: 1
+      padding-top: calc(#{$gutter-width} / 2)
+      padding-bottom: calc(#{$gutter-width} / 2)
+      padding-left: $gutter-width
+      padding-right: $gutter-width
+
+    & > main
+      object-fit: contain
+      grid-row: 2
+      padding-top: calc(#{$gutter-width} / 2)
+      padding-bottom: $gutter-width
+      padding-left: $gutter-width
+      padding-right: $gutter-width
+
+// Non-mobile: display columns
+@media screen and (min-width: 576px)
+  .wrapper
+    display: grid
+    grid-template-columns: auto 75ch
+    column-gap: $gutter-width
     height: max(100%, 100vh)
-    grid-column: 1
-    padding-left: calc(#{$gutter-width} / 2)
-    padding-right: calc(#{$gutter-width} / 2)
-    padding-top: $gutter-width
 
-  & > main
-    object-fit: contain
-    grid-column: 2
-    height: max(100%, 100vh)
-    padding-left: calc(#{$gutter-width} / 2)
-    padding-right: $gutter-width
-    padding-top: $gutter-width
+    & > nav
+      object-fit: contain
+      grid-column: 1
+      padding-top: $gutter-width
+      padding-left: calc(#{$gutter-width} / 2)
+      padding-right: calc(#{$gutter-width} / 2)
 
-#indexfill
-  list-style: none
-  text-transform: capitalize
-  margin-left: 0
-  padding-left: 1em
-  text-indent: -1em
-
-  & > li
-    padding-bottom: 1rem
-
-  & > li::before
-    content: "\00BB \0020"
-    color: $marker-fg
+    & > main
+      object-fit: contain
+      grid-column: 2
+      padding-top: $gutter-width
+      padding-left: calc(#{$gutter-width} / 2)
+      padding-right: $gutter-width
 
 // The nav bar
 nav
   display: grid
-  grid-template-rows: 207px auto
+  grid-template-rows: max(17vw, 17vh) auto
   row-gap: $gutter-width
-  align-items: start
-  justify-items: center
   background-color: $nav-bg
   transition: all .35s ease
+  justify-items: center
 
-  & > :first-child
+  & > :first-child,
+  & > :nth-child(2)
     grid-row: 1
+    justify-items: center
 
   & > :last-child
     grid-row: 2
+
+// Common code for nav children
+nav img#logo
+  object-fit: contain
+  height: max(15vh, 15vw)
+  width: calc(0.8128 * max(15vh, 15vw))
+
+nav img#more
+  object-fit: contain
+  height: max(15vh, 15vw)
+  width: calc(0.8128 * max(15vh, 15vw))
 
 nav ul
   margin: 0
   list-style: none
   padding: 0
 
-nav img#logo
-  object-fit: contain
-  height: max(15vh, 15vw)
-  width: calc(0.8128 * max(15vh, 15vw))
-  padding: 0.5rem 0 0.5rem 0.5rem
+// Mobile-only nav children: show nav img#more, css dropdown nav ul
+@media screen and (max-width: 575.98px)
+  nav img#logo
+    float: left
+
+  nav img#more
+    float: right
+
+    & + ul
+      visibility: hidden
+      position: absolute
+      transition: all 0.35s ease
+      display: none
+
+    &:hover + ul,
+    &:focus-within + ul,
+    & + ul:hover
+      visibility: visible
+      display: block
+
+// Non-mobile nav children: hide img#more, show nav ul
+@media screen and (min-width: 576px)
+  nav img#more
+    visibility: hidden
 
 nav li
-  line-height: 20px
-  vertical-align: center
-  display: inline-block
+  line-height: 30px
+  font-size: 1.4rem
 
   & > span.navidx
-    font-size: 88%
+    font-size: 1.2rem
     color: $nav-fg
     font-family: AndaleMono
     padding-right: 1em
@@ -167,6 +212,20 @@ nav li a
       -webkit-transform: scaleX(1)
       transform: scaleX(1)
 
+#indexfill
+  list-style: none
+  text-transform: capitalize
+  margin-left: 0
+  padding-left: 1em
+  text-indent: -1em
+
+  & > li
+    padding-bottom: 1rem
+
+  & > li::before
+    content: "\00BB \0020"
+    color: $marker-fg
+
 pre
   font-family: Monaco
 
@@ -181,7 +240,7 @@ main
     visibility: none !important
 
 #metadata
-  font-size: 14px
+  font-size: 1rem
   color: $metadata-fg
   text-align: right
 
@@ -192,6 +251,7 @@ main
     & > img
       color: $metadata-fg
       height: 0.6em
+      width: calc(1.19512 * 0.6em)
 
 h1
   font-family: AvenirNext-Bold
@@ -258,13 +318,7 @@ pre
   width: 100%
 
 figure
-  margin-left: 10vw
-  margin-right: 10vw
-
-@media screen and (max-width: 500px)
-  figure
-    margin-left: 10px
-    margin-right: 10px
+  margin: 0
 
 figure > img
   object-fit: contain
@@ -310,14 +364,14 @@ a[href^="https://github.com"],
 #locations
   background-repeat: no-repeat
   background-position: center right
-  padding-right: 1.3rem
-  max-height: 1rem
-  background-size: 1rem
+  padding-right: 1.3em
+  max-height: 1em
+  background-size: 1em
 
 footer > p
   margin-top: 1rem
   margin-bottom: 1rem
-  font-size: 70%
+  font-size: 0.7rem
 
 // hljs
 
