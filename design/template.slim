@@ -18,47 +18,53 @@ html lang="en"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"
 
-    // preload hljs css, since solarized-light is heavy
-    link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"
-    noscript
-      link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css"
-
-    // the js components of hljs
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/haskell.min.js"
+    // hljs
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/coq.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/cpp.min.js"
+    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/haskell.min.js"
 
     // our js, compiled from js files in design/
     script defer=true src="/dist/script.min.js"
-  body
+  body.wrapper
     nav
-      div
+      - if permalink == "index"
+        img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
+      - else
         a href="/"
-          img src="/dist/artagnon.com.svg" alt="home" width="317" height="390"
-      div
-        ul
-          - topics.each do |topic|
-            li
+          img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
+      img#more src="/dist/icon.more.svg" alt="menu" width="16" height="74"
+      ul
+        - topics.each_with_index do |topic, idx|
+          li
+            span.navidx = "0#{idx + 1}"
+            - if permalink == topic
+              span#navcur = topic
+            - else
               a href="/#{topic}" = topic
     main
       header
         h1 == title
-        div id="metadata"
-          span id="timestamp"
-            time datetime="#{crdate.strftime('%F')}" class="begin" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
-            span class="to" →
-            time datetime="#{lastmod.strftime('%F')}" class="end" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
+        div#metadata
+          span#timestamp
+            time.begin datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
+            span.to
+              img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"
+            time.end datetime="#{lastmod.strftime('%F')}" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
           br
-          span id="locations"
-            address = locations.join ", "
-      article class="wrapper"
+          span#locations
+            - locations.reverse[..-2].each do |loc|
+                = loc
+                span.to
+                  img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"
+            = locations[0]
+      article
         - paragraphs.each do |paragraph|
           - case paragraph.type
             - when :plain
               p == paragraph.to_s
             - when :olitems
-              ol class="olitems" type="#{paragraph.prop}" start="#{paragraph.olstart}"
+              ol.olitems type="#{paragraph.prop}" start="#{paragraph.olstart}"
                 - for item in paragraph.split "\n"
                   li == item
             - when :subheading
@@ -82,11 +88,11 @@ html lang="en"
             - when :horizrule
               hr class="#{paragraph.prop}"
             - when :mathjax
-              div class="mathjax" == paragraph.to_s
+              div.mathjax == paragraph.to_s
             - else
               p class="#{paragraph.type}" == paragraph.to_s
         - if subtopics && subtopics.any?
-          ul id="indexfill"
+          ul#indexfill
             - subtopics.each do |st|
               - if st.title
                 - if st.begints.to_date.year == st.endts.year

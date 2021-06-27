@@ -12,14 +12,10 @@
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
-    <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/solarized-light.min.css">
-    </noscript>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/coq.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/cpp.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/haskell.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/coq.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/cpp.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/haskell.min.js"></script>
     <script defer="" src="/dist/script.min.js"></script>
   <style id="MJX-CHTML-styles">
 mjx-container[jax="CHTML"] {
@@ -405,27 +401,22 @@ mjx-c.mjx-c25FB.TEX-A::before {
   content: "\25A1";
 }
 </style></head>
-  <body>
-    <nav>
-      <div>
-        <a href="/"><img src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a>
-      </div>
-      <div>
-        <ul>
-          <li>
-            <a href="/articles">articles</a>
-          </li>
-          <li>
-            <a href="/computing">computing</a>
-          </li>
-          <li>
-            <a href="/math">math</a>
-          </li>
-          <li>
-            <a href="/publications">publications</a>
-          </li>
-        </ul>
-      </div>
+  <body class="wrapper">
+    <nav><a href="/"><img id="logo" src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
+      <ul>
+        <li>
+          <span class="navidx">01</span><a href="/articles">articles</a>
+        </li>
+        <li>
+          <span class="navidx">02</span><a href="/computing">computing</a>
+        </li>
+        <li>
+          <span class="navidx">03</span><a href="/math">math</a>
+        </li>
+        <li>
+          <span class="navidx">04</span><a href="/publications">publications</a>
+        </li>
+      </ul>
     </nav>
     <main>
       <header>
@@ -433,10 +424,10 @@ mjx-c.mjx-c25FB.TEX-A::before {
           What machines can and can't do
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time datetime="2020-12-01" class="begin">Tue, 1 Dec 2020 07:00:00 +0100</time><span class="to">→</span><time datetime="2020-12-03" class="end">Thu, 3 Dec 2020 08:00:00 +0100</time></span><br><span id="locations"><address>Paris</address></span>
+          <span id="timestamp"><time class="begin" datetime="2020-12-01">Tue, 1 Dec 2020 07:00:00 +0100</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2020-12-03">Thu, 3 Dec 2020 08:00:00 +0100</time></span><br><span id="locations">Paris</span>
         </div>
       </header>
-      <article class="wrapper">
+      <article>
         <p class="blurb">
           We investigate the limitions of statistical methods, a subclass of which is called "machine learning", taking the opportunity to touch on several aspects of the industry, including the future of employment, various industry practices, and privacy. It's written as a wide-audience article, and only assumes a passing familiarity with software and statistics. We start from a seemingly hardline stance, and follow a line of flawed reasoning leading up to the point where humans become near-obselete, an event commonly known as the "singularity". Finally, we step back to see where we stumbled.
         </p>
