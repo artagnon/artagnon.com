@@ -27,6 +27,22 @@ html lang="en"
     // our js, compiled from js files in design/
     script defer=true src="/dist/script.min.js"
   body.wrapper
+    nav
+      div
+        - if permalink == "index"
+          img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
+        - else
+          a href="/"
+            img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
+      div
+        ul
+          - topics.each_with_index do |topic, idx|
+            li
+              span.navidx = "0#{idx + 1}"
+              - if permalink == topic
+                span#navcur = topic
+              - else
+                a href="/#{topic}" = topic
     main
       header
         h1 == title
@@ -87,19 +103,3 @@ html lang="en"
               - st.content_pages.each do |cp|
                 li
                   a href="/#{cp.permalink}" = cp.title
-    nav
-      div
-        - if permalink == "index"
-          img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
-        - else
-          a href="/"
-            img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
-      div
-        ul
-          - topics.each_with_index do |topic, idx|
-            li
-              span.navidx = "0#{idx + 1}"
-              - if permalink == topic
-                span#navcur = topic
-              - else
-                a href="/#{topic}" = topic

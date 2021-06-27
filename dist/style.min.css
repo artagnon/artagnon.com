@@ -1,7 +1,18 @@
 @charset "UTF-8";
+@font-face {
+  font-family: AvenirNext-Regular;
+  src: url("/dist/AvenirNext/AvenirNextLTPro-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: AvenirNext-Bold;
+  src: url("/dist/AvenirNext/AvenirNextLTPro-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: AndaleMono;
+  src: url("/dist/AndaleMono/AndaleMono.otf") format("opentype");
+}
 body {
   margin: 0;
-  font-size: 21.95px;
   font-family: AvenirNext-Regular;
   color: #191919;
   background-color: #F9F9F7;
@@ -23,25 +34,24 @@ a {
 
 .wrapper {
   display: grid;
-  grid-template-columns: 75ch auto;
+  grid-template-columns: auto 75ch;
   column-gap: 64px;
-}
-.wrapper > main {
-  object-fit: contain;
-  grid-column: 1;
-  height: max(100%, 100vh);
-  padding-left: 64px;
-  padding-top: 64px;
-  padding-bottom: 64px;
 }
 .wrapper > nav {
   object-fit: contain;
   height: max(100%, 100vh);
-  grid-column: 2;
+  grid-column: 1;
   padding-left: calc(64px / 2);
   padding-right: calc(64px / 2);
   padding-top: 64px;
-  padding-bottom: 64px;
+}
+.wrapper > main {
+  object-fit: contain;
+  grid-column: 2;
+  height: max(100%, 100vh);
+  padding-left: calc(64px / 2);
+  padding-right: 64px;
+  padding-top: 64px;
 }
 
 #indexfill {
