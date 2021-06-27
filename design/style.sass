@@ -26,7 +26,7 @@ $mobile-max: 575.98px
 $mobile-min: 576px
 
 // The size of the images in the nav bar, or the nav bar height on mobile
-$nav-height: max(15vw, 15vh)
+$nav-height: max(10vw, 10vh)
 
 // Fonts
 @font-face
@@ -61,11 +61,9 @@ a
   display: flex
   & > nav
     flex: 1 0 auto
-    padding-left: calc(#{$gutter-width} / 2)
-    padding-right: calc(#{$gutter-width} / 2)
 
   & > main
-    flex: 1 10 auto
+    flex: 1 1 auto
     overflow-x: hidden
     min-width: 0
     padding-left: calc(#{$gutter-width} / 2)
@@ -78,14 +76,12 @@ a
     row-gap: calc(#{$gutter-width} / 2)
 
     & > nav
-      object-fit: contain
       padding-top: calc(#{$gutter-width} / 4)
       padding-bottom: calc(#{$gutter-width} / 4)
 
     & > main
-      object-fit: contain
       padding-top: calc(#{$gutter-width} / 4)
-      padding-bottom: calc(#{$gutter-width} / 2)
+      padding-bottom: calc(#{$gutter-width} / 4)
 
 // Non-mobile: display wrapper as columns
 @media screen and (min-width: $mobile-min)
@@ -106,23 +102,27 @@ nav
   background-color: $nav-bg
 
   & > :first-child
-    flex: 1 0 auto
+    display: block
+    flex: 1 1 auto
 
   & > :last-child
-    flex: 1 1 auto
+    flex: 0 0 auto
 
 // On mobile, render the nav horizontally
 @media screen and (max-width: $mobile-max)
   nav
-    width: calc(100vw - #{$gutter-width})
+    width: 100vw
     flex-flow: row
 
     & > :first-child
-      align-self: start
+      justify-self: start
+      justify-content: start
+      padding-left: calc(#{$gutter-width / 2})
 
     & > :nth-child(2)
-      flex: 1 0 auto
-      align-self: end
+      flex: 1 1 auto
+      justify-self: end
+      padding-right: calc(#{$gutter-width / 2})
 
 // On non-mobile, render the nav vertically
 @media screen and (min-width: $mobile-min)
@@ -130,8 +130,14 @@ nav
     height: max(100%, 100vh)
     flex-flow: column
 
+    & > :first-child
+      align-self: center
+      justify-self: center
+
 // Common code for nav children
-nav img#logo
+nav > :first-child,
+nav > :first-child > img#logo,
+nav > img#logo
   height: $nav-height
   width: calc(0.8128 * #{$nav-height})
 
@@ -142,8 +148,8 @@ nav img#more
 nav ul
   justify-self: flex-start
   margin: 0
-  padding-left: 0
-  padding-right: 0
+  padding-left: calc(#{$gutter-width} / 2)
+  padding-right: calc(#{$gutter-width} / 2)
   padding-top: calc(#{$gutter-width} / 4)
   padding-bottom: calc(#{$gutter-width} / 4)
   list-style: none
@@ -162,13 +168,17 @@ nav ul
       visibility: visible
       display: block
       background-color: $nav-bg
-      width: calc(100% - #{$gutter-width})
+      width: 100vw
 
 // Non-mobile nav children: hide img#more, show nav ul
 @media screen and (min-width: $mobile-min)
-  nav img#more
-    visibility: hidden
-    display: none
+  nav
+    padding-left: calc(#{$gutter-width} / 2)
+    padding-right: calc(#{$gutter-width} / 2)
+
+    & > img#more
+      visibility: hidden
+      display: none
 
 nav li
   line-height: 30px
