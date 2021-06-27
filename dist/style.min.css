@@ -13,6 +13,7 @@
 }
 body {
   margin: 0;
+  font-size: 1em;
   font-family: AvenirNext-Regular;
   color: #191919;
   background-color: #F9F9F7;
@@ -32,57 +33,78 @@ a {
   text-decoration: none;
 }
 
-.wrapper {
-  display: grid;
-  grid-template-columns: auto 75ch;
-  column-gap: 64px;
+@media screen and (max-width: 575.98px) {
+  .wrapper {
+    display: grid;
+    grid-template-rows: max(17vw, 17vh) auto;
+    column-gap: 32px;
+    width: 100vw;
+  }
+  .wrapper > nav {
+    object-fit: contain;
+    grid-row: 1;
+    padding-top: calc(32px / 2);
+    padding-bottom: calc(32px / 2);
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .wrapper > main {
+    object-fit: contain;
+    grid-row: 2;
+    padding-top: calc(32px / 2);
+    padding-bottom: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
-.wrapper > nav {
-  object-fit: contain;
-  height: max(100%, 100vh);
-  grid-column: 1;
-  padding-left: calc(64px / 2);
-  padding-right: calc(64px / 2);
-  padding-top: 64px;
+@media screen and (min-width: 576px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: auto 75ch;
+    column-gap: 32px;
+    height: max(100%, 100vh);
+  }
+  .wrapper > nav {
+    object-fit: contain;
+    grid-column: 1;
+    padding-top: 32px;
+    padding-left: calc(32px / 2);
+    padding-right: calc(32px / 2);
+  }
+  .wrapper > main {
+    object-fit: contain;
+    grid-column: 2;
+    padding-top: 32px;
+    padding-left: calc(32px / 2);
+    padding-right: 32px;
+  }
 }
-.wrapper > main {
-  object-fit: contain;
-  grid-column: 2;
-  height: max(100%, 100vh);
-  padding-left: calc(64px / 2);
-  padding-right: 64px;
-  padding-top: 64px;
-}
-
-#indexfill {
-  list-style: none;
-  text-transform: capitalize;
-  margin-left: 0;
-  padding-left: 1em;
-  text-indent: -1em;
-}
-#indexfill > li {
-  padding-bottom: 1rem;
-}
-#indexfill > li::before {
-  content: "» ";
-  color: #A26753;
-}
-
 nav {
   display: grid;
-  grid-template-rows: 207px auto;
-  row-gap: 64px;
-  align-items: start;
-  justify-items: center;
+  grid-template-rows: max(17vw, 17vh) auto;
+  row-gap: 32px;
   background-color: #F1E7E4;
   transition: all 0.35s ease;
+  justify-items: center;
 }
-nav > :first-child {
+nav > :first-child, nav > :nth-child(2) {
   grid-row: 1;
+  justify-items: center;
 }
 nav > :last-child {
   grid-row: 2;
+}
+
+nav img#logo {
+  object-fit: contain;
+  height: max(15vh, 15vw);
+  width: calc(0.8128 * max(15vh, 15vw));
+}
+
+nav img#more {
+  object-fit: contain;
+  height: max(15vh, 15vw);
+  width: calc(0.8128 * max(15vh, 15vw));
 }
 
 nav ul {
@@ -91,20 +113,36 @@ nav ul {
   padding: 0;
 }
 
-nav img#logo {
-  object-fit: contain;
-  height: max(15vh, 15vw);
-  width: calc(0.8128 * max(15vh, 15vw));
-  padding: 0.5rem 0 0.5rem 0.5rem;
-}
+@media screen and (max-width: 575.98px) {
+  nav img#logo {
+    float: left;
+  }
 
+  nav img#more {
+    float: right;
+  }
+  nav img#more + ul {
+    visibility: hidden;
+    position: absolute;
+    transition: all 0.35s ease;
+    display: none;
+  }
+  nav img#more:hover + ul, nav img#more:focus-within + ul, nav img#more + ul:hover {
+    visibility: visible;
+    display: block;
+  }
+}
+@media screen and (min-width: 576px) {
+  nav img#more {
+    visibility: hidden;
+  }
+}
 nav li {
-  line-height: 20px;
-  vertical-align: center;
-  display: inline-block;
+  line-height: 30px;
+  font-size: 1.4rem;
 }
 nav li > span.navidx {
-  font-size: 88%;
+  font-size: 1.2rem;
   color: #6A6A4E;
   font-family: AndaleMono;
   padding-right: 1em;
@@ -154,6 +192,21 @@ nav li a:hover::before {
   transform: scaleX(1);
 }
 
+#indexfill {
+  list-style: none;
+  text-transform: capitalize;
+  margin-left: 0;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+#indexfill > li {
+  padding-bottom: 1rem;
+}
+#indexfill > li::before {
+  content: "» ";
+  color: #A26753;
+}
+
 pre {
   font-family: Monaco;
 }
@@ -172,7 +225,7 @@ main {
   }
 }
 #metadata {
-  font-size: 14px;
+  font-size: 1rem;
   color: #8C8C8C;
   text-align: right;
 }
@@ -183,6 +236,7 @@ main {
 #metadata span.to > img {
   color: #8C8C8C;
   height: 0.6em;
+  width: calc(1.19512 * 0.6em);
 }
 
 h1 {
@@ -262,16 +316,9 @@ pre {
 }
 
 figure {
-  margin-left: 10vw;
-  margin-right: 10vw;
+  margin: 0;
 }
 
-@media screen and (max-width: 500px) {
-  figure {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-}
 figure > img {
   object-fit: contain;
   width: 100%;
@@ -322,15 +369,15 @@ a[href^="https://github.com"],
 #locations {
   background-repeat: no-repeat;
   background-position: center right;
-  padding-right: 1.3rem;
-  max-height: 1rem;
-  background-size: 1rem;
+  padding-right: 1.3em;
+  max-height: 1em;
+  background-size: 1em;
 }
 
 footer > p {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  font-size: 70%;
+  font-size: 0.7rem;
 }
 
 pre code.hljs {
