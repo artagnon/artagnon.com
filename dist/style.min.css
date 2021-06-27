@@ -19,13 +19,8 @@ body {
   background-color: #F9F9F7;
 }
 
-h1 {
-  font-size: 2rem;
-  text-transform: capitalize;
-}
-
 article {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 a {
@@ -38,7 +33,6 @@ a {
     display: grid;
     grid-template-rows: auto auto;
     row-gap: 64px;
-    width: 100vw;
   }
   .wrapper > nav {
     object-fit: contain;
@@ -65,7 +59,6 @@ a {
     height: max(100%, 100vh);
     align-items: start;
     justify-items: center;
-    width: 100vw;
   }
   .wrapper > nav {
     object-fit: contain;
@@ -82,9 +75,14 @@ a {
     padding-right: 64px;
   }
 }
+@media screen and (min-width: 576px) {
+  nav {
+    height: max(100%, 100vh);
+  }
+}
 nav {
   display: grid;
-  grid-template-rows: max(15vw, 15vh) max-content;
+  grid-template-rows: calc(max(18vw, 18vh) - 64px) auto;
   row-gap: 64px;
   background-color: #F1E7E4;
   justify-items: start;
@@ -97,16 +95,21 @@ nav > :last-child {
   grid-row: 2;
 }
 
+@media screen and (min-width: 576px) {
+  nav > :last-child {
+    padding-top: 64px;
+  }
+}
 nav img#logo {
   object-fit: contain;
-  height: max(15vw, 15vh);
-  width: calc(0.8128 * max(15vw, 15vh));
+  height: max(18vw, 18vh);
+  width: calc(0.8128 * max(18vw, 18vh));
 }
 
 nav img#more {
   object-fit: contain;
-  height: max(15vw, 15vh);
-  width: calc(0.21622 * max(15vw, 15vh));
+  height: max(18vw, 18vh);
+  width: calc(0.21622 * max(18vw, 18vh));
 }
 
 nav ul {
@@ -125,7 +128,7 @@ nav ul {
     visibility: visible;
     display: block;
     background-color: #F1E7E4;
-    width: 100%;
+    width: 100vw;
   }
 }
 @media screen and (min-width: 576px) {
@@ -211,13 +214,14 @@ main {
   display: block;
 }
 
-@media print {
+@media only print {
   main {
     width: 100%;
   }
 
   nav {
     visibility: none !important;
+    display: none;
   }
 }
 #metadata {
@@ -237,20 +241,21 @@ main {
 
 h1 {
   font-family: AvenirNext-Bold;
-  font-size: 2.4rem;
+  text-transform: capitalize;
+  font-size: 1.7rem;
   color: #000000;
 }
 
 h2 {
   font-family: AvenirNext-Bold;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: #000000;
 }
 
 h3 {
   font-family: AvenirNext-Bold;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #000000;
 }
 
