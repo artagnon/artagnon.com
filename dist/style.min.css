@@ -32,23 +32,24 @@ a {
   .wrapper {
     display: grid;
     grid-template-rows: auto auto;
-    row-gap: 64px;
+    row-gap: calc(64px / 2);
+    width: 100vw;
   }
   .wrapper > nav {
     object-fit: contain;
     grid-row: 1;
-    padding-top: calc(64px / 2);
-    padding-bottom: calc(64px / 2);
-    padding-left: 64px;
-    padding-right: 64px;
+    padding-top: calc(64px / 4);
+    padding-bottom: calc(64px / 4);
+    padding-left: calc(64px / 2);
+    padding-right: calc(64px / 2);
   }
   .wrapper > main {
     object-fit: contain;
     grid-row: 2;
-    padding-top: calc(64px / 2);
+    padding-top: calc(64px / 4);
     padding-bottom: 64px;
-    padding-left: 64px;
-    padding-right: 64px;
+    padding-left: calc(64px / 2);
+    padding-right: calc(64px / 2);
   }
 }
 @media screen and (min-width: 576px) {
@@ -59,6 +60,7 @@ a {
     height: max(100%, 100vh);
     align-items: start;
     justify-items: center;
+    width: 100vw;
   }
   .wrapper > nav {
     object-fit: contain;
@@ -82,10 +84,9 @@ a {
 }
 nav {
   display: grid;
-  grid-template-rows: calc(max(18vw, 18vh) - 64px) auto;
+  grid-template-rows: calc(max(15vw, 15vh) - 64px) auto;
   row-gap: 64px;
   background-color: #F1E7E4;
-  justify-items: start;
   align-items: start;
 }
 nav > :first-child, nav > :nth-child(2) {
@@ -95,26 +96,27 @@ nav > :last-child {
   grid-row: 2;
 }
 
-@media screen and (min-width: 576px) {
-  nav > :last-child {
-    padding-top: 64px;
-  }
-}
 nav img#logo {
+  justify-self: self-start;
   object-fit: contain;
-  height: max(18vw, 18vh);
-  width: calc(0.8128 * max(18vw, 18vh));
+  height: max(15vw, 15vh);
+  width: calc(0.8128 * max(15vw, 15vh));
 }
 
 nav img#more {
+  justify-self: self-end;
   object-fit: contain;
-  height: max(18vw, 18vh);
-  width: calc(0.21622 * max(18vw, 18vh));
+  height: max(15vw, 15vh);
+  width: calc(0.21622 * max(15vw, 15vh));
 }
 
 nav ul {
+  object-fit: contain;
   margin: 0;
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: calc(64px / 4);
+  padding-bottom: calc(64px / 4);
   list-style: none;
 }
 
@@ -128,7 +130,7 @@ nav ul {
     visibility: visible;
     display: block;
     background-color: #F1E7E4;
-    width: 100vw;
+    width: calc(100% - 64px);
   }
 }
 @media screen and (min-width: 576px) {
@@ -266,7 +268,6 @@ h3 {
 
 .blurb {
   text-align: center;
-  padding: 0rem 2rem 1rem;
   color: #757557;
   font-size: 1.5rem;
   font-style: oblique 20deg;
@@ -314,6 +315,7 @@ footer::before {
 
 pre {
   width: 100%;
+  overflow-x: auto;
 }
 
 figure {
@@ -327,6 +329,7 @@ figure > img {
 }
 
 div.mathjax {
+  object-fit: contain;
   overflow-x: auto;
   background-color: #F8F3F2;
   padding-left: 1rem;
@@ -382,6 +385,7 @@ footer > p {
 }
 
 pre code.hljs {
+  object-fit: contain;
   display: block;
   overflow-x: auto;
   padding: 1em;
