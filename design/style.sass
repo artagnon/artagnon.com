@@ -26,7 +26,7 @@ $mobile-max: 575.98px
 $mobile-min: 576px
 
 // The size of the images in the nav bar, or the nav bar height on mobile
-$nav-height: max(18vw, 18vh)
+$nav-height: max(15vw, 15vh)
 
 // Fonts
 @font-face
@@ -55,28 +55,29 @@ a
   color: $link-fg
   text-decoration: none
 
-// Mobile: display wrapper as rows
+// Mobile: display wrapper as rows; set $gutter-width to half its value
 @media screen and (max-width: $mobile-max)
   .wrapper
     display: grid
     grid-template-rows: auto auto
-    row-gap: $gutter-width
+    row-gap: calc(#{$gutter-width} / 2)
+    width: 100vw
 
     & > nav
       object-fit: contain
       grid-row: 1
-      padding-top: calc(#{$gutter-width} / 2)
-      padding-bottom: calc(#{$gutter-width} / 2)
-      padding-left: $gutter-width
-      padding-right: $gutter-width
+      padding-top: calc(#{$gutter-width} / 4)
+      padding-bottom: calc(#{$gutter-width} / 4)
+      padding-left: calc(#{$gutter-width} / 2)
+      padding-right: calc(#{$gutter-width} / 2)
 
     & > main
       object-fit: contain
       grid-row: 2
-      padding-top: calc(#{$gutter-width} / 2)
+      padding-top: calc(#{$gutter-width} / 4)
       padding-bottom: $gutter-width
-      padding-left: $gutter-width
-      padding-right: $gutter-width
+      padding-left: calc(#{$gutter-width} / 2)
+      padding-right: calc(#{$gutter-width} / 2)
 
 // Non-mobile: display wrapper as columns
 @media screen and (min-width: $mobile-min)
@@ -87,6 +88,7 @@ a
     height: max(100%, 100vh)
     align-items: start
     justify-items: center
+    width: 100vw
 
     & > nav
       object-fit: contain
@@ -113,7 +115,6 @@ nav
   grid-template-rows: calc(#{$nav-height} - #{$gutter-width}) auto
   row-gap: $gutter-width
   background-color: $nav-bg
-  justify-items: start
   align-items: start
 
   & > :first-child,
@@ -123,26 +124,26 @@ nav
   & > :last-child
     grid-row: 2
 
-// The nav bar on non-mobile requires some extra padding-top for the ul
-@media screen and (min-width: $mobile-min)
-  nav
-    & > :last-child
-      padding-top: $gutter-width
-
 // Common code for nav children
 nav img#logo
+  justify-self: self-start
   object-fit: contain
   height: $nav-height
   width: calc(0.8128 * #{$nav-height})
 
 nav img#more
+  justify-self: self-end
   object-fit: contain
   height: $nav-height
   width: calc(0.21622 * #{$nav-height})
 
 nav ul
+  object-fit: contain
   margin: 0
-  padding: 0
+  padding-left: 0
+  padding-right: 0
+  padding-top: calc(#{$gutter-width} / 4)
+  padding-bottom: calc(#{$gutter-width} / 4)
   list-style: none
 
 // Mobile nav children: show nav img#more, css hover ul
@@ -159,7 +160,7 @@ nav ul
       visibility: visible
       display: block
       background-color: $nav-bg
-      width: 100vw
+      width: calc(100% - #{$gutter-width})
 
 // Non-mobile nav children: hide img#more, show nav ul
 @media screen and (min-width: $mobile-min)
@@ -285,7 +286,6 @@ h3
 
 .blurb
   text-align: center
-  padding: 0rem 2rem 1rem
   color: $blurb-fg
   font-size: 1.5rem
   font-style: oblique 20deg
@@ -326,6 +326,7 @@ footer::before
 
 pre
   width: 100%
+  overflow-x: auto
 
 figure
   margin: 0
@@ -336,6 +337,7 @@ figure > img
   height: auto
 
 div.mathjax
+  object-fit: contain
   overflow-x: auto
   background-color: $pre-bg
   padding-left: 1rem
@@ -384,8 +386,8 @@ footer > p
   font-size: 0.7rem
 
 // hljs
-
 pre code.hljs
+  object-fit: contain
   display: block
   overflow-x: auto
   padding: 1em
