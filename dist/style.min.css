@@ -31,6 +31,18 @@ a {
   justify-items: center;
   display: flex;
 }
+.wrapper > nav {
+  flex: 1 0 auto;
+  padding-left: calc(64px / 2);
+  padding-right: calc(64px / 2);
+}
+.wrapper > main {
+  flex: 1 10 auto;
+  overflow-x: hidden;
+  min-width: 0;
+  padding-left: calc(64px / 2);
+  padding-right: calc(64px / 2);
+}
 
 @media screen and (max-width: 575.98px) {
   .wrapper {
@@ -38,20 +50,14 @@ a {
     row-gap: calc(64px / 2);
   }
   .wrapper > nav {
-    flex: 1 0 auto;
     object-fit: contain;
     padding-top: calc(64px / 4);
     padding-bottom: calc(64px / 4);
-    padding-left: calc(64px / 2);
-    padding-right: calc(64px / 2);
   }
   .wrapper > main {
-    flex: 1 1 auto;
     object-fit: contain;
     padding-top: calc(64px / 4);
-    padding-bottom: 64px;
-    padding-left: calc(64px / 2);
-    padding-right: calc(64px / 2);
+    padding-bottom: calc(64px / 2);
   }
 }
 @media screen and (min-width: 576px) {
@@ -60,16 +66,10 @@ a {
     column-gap: calc(64px / 2);
   }
   .wrapper > nav {
-    flex: 1 1 auto;
     padding-top: 64px;
-    padding-left: calc(64px / 2);
-    padding-right: calc(64px / 2);
   }
   .wrapper > main {
-    flex: 1 1 auto;
     padding-top: 64px;
-    padding-left: calc(64px / 2);
-    padding-right: 64px;
   }
 }
 nav {
@@ -114,7 +114,7 @@ nav img#more {
 }
 
 nav ul {
-  justify-self: start;
+  justify-self: flex-start;
   margin: 0;
   padding-left: 0;
   padding-right: 0;
