@@ -48,9 +48,6 @@ body
   color: $main-fg
   background-color: $main-bg
 
-article
-  font-size: 1.1rem
-
 a
   color: $link-fg
   text-decoration: none
@@ -61,7 +58,6 @@ a
     display: grid
     grid-template-rows: auto auto
     row-gap: calc(#{$gutter-width} / 2)
-    width: 100vw
 
     & > nav
       object-fit: contain
@@ -85,10 +81,9 @@ a
     display: grid
     grid-template-columns: auto auto
     column-gap: $gutter-width
-    height: max(100%, 100vh)
+    min-height: 100vh
     align-items: start
     justify-items: center
-    width: 100vw
 
     & > nav
       object-fit: contain
@@ -107,7 +102,7 @@ a
 // Stretch the nav vertically on non-mobile
 @media screen and (min-width: $mobile-min)
   nav
-    height: max(100%, 100vh)
+    min-height: 100vh
 
 // Common nav
 nav
@@ -234,9 +229,6 @@ nav li a
     content: "\00BB \0020"
     color: $marker-fg
 
-pre
-  font-family: Monaco
-
 main
   display: block
 
@@ -262,6 +254,15 @@ main
       color: $metadata-fg
       height: 0.6em
       width: calc(1.19512 * 0.6em)
+
+main > article
+  object-fit: contain
+  font-size: 1.1rem
+
+  & > pre,
+  & > div.mathjax
+    object-fit: contain
+    overflow-x: auto
 
 h1
   font-family: AvenirNext-Bold
@@ -325,20 +326,17 @@ footer::before
   display: inline-block
 
 pre
-  width: 100%
-  overflow-x: auto
+  font-family: Monaco
 
 figure
   margin: 0
 
 figure > img
   object-fit: contain
-  width: 100%
+  width: 100vw
   height: auto
 
 div.mathjax
-  object-fit: contain
-  overflow-x: auto
   background-color: $pre-bg
   padding-left: 1rem
   padding-right: 1rem
@@ -387,9 +385,7 @@ footer > p
 
 // hljs
 pre code.hljs
-  object-fit: contain
   display: block
-  overflow-x: auto
   padding: 1em
 
 code.hljs
