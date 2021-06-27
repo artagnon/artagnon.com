@@ -36,7 +36,7 @@ a {
 }
 .wrapper > main {
   flex: 1 1 auto;
-  overflow-x: hidden;
+  overflow: hidden;
   min-width: 0;
   padding-left: calc(64px / 2);
   padding-right: calc(64px / 2);
@@ -52,6 +52,7 @@ a {
     padding-bottom: calc(64px / 4);
   }
   .wrapper > main {
+    align-self: stretch;
     padding-top: calc(64px / 4);
     padding-bottom: calc(64px / 4);
   }
@@ -99,7 +100,6 @@ nav > :last-child {
 }
 @media screen and (min-width: 576px) {
   nav {
-    height: max(100%, 100vh);
     flex-flow: column;
   }
   nav > :first-child {
@@ -120,7 +120,7 @@ nav img#more {
 }
 
 nav ul {
-  justify-self: flex-start;
+  justify-self: flex;
   margin: 0;
   padding-left: calc(64px / 2);
   padding-right: calc(64px / 2);
