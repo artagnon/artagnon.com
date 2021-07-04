@@ -61,14 +61,14 @@ a
   display: flex
 
   & > nav
-    flex: 1 0 auto
+    flex: 0 0 content
 
   & > main
-    flex: 1 1 auto
+    flex: 0 1 80ch
     overflow: hidden
     min-width: 0
     padding-left: calc(#{$gutter-width} / 2)
-    padding-right: calc(#{$gutter-width} / 2)
+    padding-right: $gutter-width
 
 // Mobile: display wrapper as rows; set $gutter-width to half its value
 @media screen and (max-width: $mobile-max)
@@ -397,7 +397,7 @@ a[href^="https://github.com"],
 footer > p
   margin-top: 1rem
   margin-bottom: 1rem
-  font-size: 0.7rem
+  font-size: 0.85rem
 
 // hljs
 pre code.hljs
