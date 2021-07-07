@@ -141,6 +141,10 @@ mjx-mphantom {
   visibility: hidden;
 }
 
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
 mjx-math {
   display: inline-block;
   text-align: left;
@@ -185,6 +189,15 @@ mjx-mi {
   text-align: left;
 }
 
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
 mjx-mo {
   display: inline-block;
   text-align: left;
@@ -207,12 +220,12 @@ mjx-stretchy-h > * > mjx-c {
 
 mjx-stretchy-h > * > mjx-c::before {
   display: inline-block;
-  padding: .001em 0;
   width: initial;
 }
 
 mjx-stretchy-h > mjx-ext {
-  overflow: hidden;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: clip visible;
   width: 100%;
 }
 
@@ -259,15 +272,17 @@ mjx-stretchy-v > mjx-ext {
   height: 100%;
   box-sizing: border-box;
   border: 0px solid transparent;
-  overflow: hidden;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: visible clip;
 }
 
 mjx-stretchy-v > mjx-ext > mjx-c::before {
   width: initial;
+  box-sizing: border-box;
 }
 
 mjx-stretchy-v > mjx-ext > mjx-c {
-  transform: scaleY(500) translateY(.1em);
+  transform: scaleY(500) translateY(.075em);
   overflow: visible;
 }
 
@@ -281,7 +296,7 @@ mjx-mn {
   text-align: left;
 }
 
-mjx-msub {
+mjx-xypic {
   display: inline-block;
   text-align: left;
 }
@@ -291,16 +306,7 @@ mjx-TeXAtom {
   text-align: left;
 }
 
-mjx-c {
-  display: inline-block;
-}
-
-mjx-utext {
-  display: inline-block;
-  padding: .75em 0 .2em 0;
-}
-
-mjx-xypic {
+mjx-msub {
   display: inline-block;
   text-align: left;
 }
@@ -508,198 +514,9 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
 
-mjx-c.mjx-c21::before {
-  padding: 0.716em 0.278em 0 0;
-  content: "!";
-}
-
-mjx-c.mjx-c28::before {
-  padding: 0.75em 0.389em 0.25em 0;
-  content: "(";
-}
-
-mjx-c.mjx-c29::before {
-  padding: 0.75em 0.389em 0.25em 0;
-  content: ")";
-}
-
-mjx-c.mjx-c2C::before {
-  padding: 0.121em 0.278em 0.194em 0;
-  content: ",";
-}
-
-mjx-c.mjx-c30::before {
-  padding: 0.666em 0.5em 0.022em 0;
-  content: "0";
-}
-
-mjx-c.mjx-c31::before {
-  padding: 0.666em 0.5em 0 0;
-  content: "1";
-}
-
-mjx-c.mjx-c3A::before {
-  padding: 0.43em 0.278em 0 0;
-  content: ":";
-}
-
-mjx-c.mjx-c3D::before {
-  padding: 0.583em 0.778em 0.082em 0;
-  content: "=";
-}
-
-mjx-c.mjx-c41::before {
-  padding: 0.716em 0.75em 0 0;
-  content: "A";
-}
-
-mjx-c.mjx-c62::before {
-  padding: 0.694em 0.556em 0.011em 0;
-  content: "b";
-}
-
-mjx-c.mjx-c210E.TEX-I::before {
-  padding: 0.694em 0.576em 0.011em 0;
-  content: "h";
-}
-
-mjx-c.mjx-c2192::before {
-  padding: 0.511em 1em 0.011em 0;
-  content: "\2192";
-}
-
-mjx-c.mjx-c21C9.TEX-A::before {
-  padding: 0.583em 1em 0.083em 0;
-  content: "\21C9";
-}
-
-mjx-c.mjx-c2203::before {
-  padding: 0.694em 0.556em 0 0;
-  content: "\2203";
-}
-
-mjx-c.mjx-c2208::before {
-  padding: 0.54em 0.667em 0.04em 0;
-  content: "\2208";
-}
-
-mjx-c.mjx-c2212::before {
-  padding: 0.583em 0.778em 0.082em 0;
-  content: "\2212";
-}
-
-mjx-c.mjx-c2217::before {
-  padding: 0.465em 0.5em 0 0;
-  content: "\2217";
-}
-
-mjx-c.mjx-c1D406.TEX-B::before {
-  padding: 0.697em 0.904em 0.01em 0;
-  content: "G";
-}
-
-mjx-c.mjx-c1D412.TEX-B::before {
-  padding: 0.697em 0.639em 0.011em 0;
-  content: "S";
-}
-
-mjx-c.mjx-c1D413.TEX-B::before {
-  padding: 0.675em 0.8em 0 0;
-  content: "T";
-}
-
-mjx-c.mjx-c1D41E.TEX-B::before {
-  padding: 0.452em 0.527em 0.006em 0;
-  content: "e";
-}
-
-mjx-c.mjx-c1D428.TEX-B::before {
-  padding: 0.452em 0.575em 0.005em 0;
-  content: "o";
-}
-
-mjx-c.mjx-c1D429.TEX-B::before {
-  padding: 0.45em 0.639em 0.194em 0;
-  content: "p";
-}
-
-mjx-c.mjx-c1D42B.TEX-B::before {
-  padding: 0.45em 0.474em 0 0;
-  content: "r";
-}
-
-mjx-c.mjx-c1D42D.TEX-B::before {
-  padding: 0.635em 0.447em 0.005em 0;
-  content: "t";
-}
-
-mjx-c.mjx-c1D434.TEX-I::before {
-  padding: 0.716em 0.75em 0 0;
-  content: "A";
-}
-
 mjx-c.mjx-c1D436.TEX-I::before {
   padding: 0.705em 0.76em 0.022em 0;
   content: "C";
-}
-
-[noIC] mjx-c.mjx-c1D436.TEX-I:last-child::before {
-  padding-right: 0.715em;
-}
-
-mjx-c.mjx-c1D43A.TEX-I::before {
-  padding: 0.705em 0.786em 0.022em 0;
-  content: "G";
-}
-
-mjx-c.mjx-c1D43B.TEX-I::before {
-  padding: 0.683em 0.888em 0 0;
-  content: "H";
-}
-
-[noIC] mjx-c.mjx-c1D43B.TEX-I:last-child::before {
-  padding-right: 0.831em;
-}
-
-mjx-c.mjx-c1D43C.TEX-I::before {
-  padding: 0.683em 0.504em 0 0;
-  content: "I";
-}
-
-[noIC] mjx-c.mjx-c1D43C.TEX-I:last-child::before {
-  padding-right: 0.44em;
-}
-
-mjx-c.mjx-c1D441.TEX-I::before {
-  padding: 0.683em 0.888em 0 0;
-  content: "N";
-}
-
-[noIC] mjx-c.mjx-c1D441.TEX-I:last-child::before {
-  padding-right: 0.803em;
-}
-
-mjx-c.mjx-c1D443.TEX-I::before {
-  padding: 0.683em 0.751em 0 0;
-  content: "P";
-}
-
-[noIC] mjx-c.mjx-c1D443.TEX-I:last-child::before {
-  padding-right: 0.642em;
-}
-
-mjx-c.mjx-c1D444.TEX-I::before {
-  padding: 0.704em 0.791em 0.194em 0;
-  content: "Q";
-}
-
-mjx-c.mjx-c1D446.TEX-I::before {
-  padding: 0.705em 0.645em 0.022em 0;
-  content: "S";
-}
-
-[noIC] mjx-c.mjx-c1D446.TEX-I:last-child::before {
-  padding-right: 0.613em;
 }
 
 mjx-c.mjx-c1D44E.TEX-I::before {
@@ -707,14 +524,29 @@ mjx-c.mjx-c1D44E.TEX-I::before {
   content: "a";
 }
 
+mjx-c.mjx-c2C::before {
+  padding: 0.121em 0.278em 0.194em 0;
+  content: ",";
+}
+
 mjx-c.mjx-c1D44F.TEX-I::before {
   padding: 0.694em 0.429em 0.011em 0;
   content: "b";
 }
 
-mjx-c.mjx-c1D450.TEX-I::before {
-  padding: 0.442em 0.433em 0.011em 0;
-  content: "c";
+mjx-c.mjx-c2208::before {
+  padding: 0.54em 0.667em 0.04em 0;
+  content: "\2208";
+}
+
+mjx-c.mjx-c2192::before {
+  padding: 0.511em 1em 0.011em 0;
+  content: "\2192";
+}
+
+mjx-c.mjx-c1D467.TEX-I::before {
+  padding: 0.442em 0.465em 0.011em 0;
+  content: "z";
 }
 
 mjx-c.mjx-c1D453.TEX-I::before {
@@ -722,13 +554,19 @@ mjx-c.mjx-c1D453.TEX-I::before {
   content: "f";
 }
 
-[noIC] mjx-c.mjx-c1D453.TEX-I:last-child::before {
-  padding-right: 0.49em;
+mjx-c.mjx-c3A::before {
+  padding: 0.43em 0.278em 0 0;
+  content: ":";
 }
 
-mjx-c.mjx-c1D454.TEX-I::before {
-  padding: 0.442em 0.477em 0.205em 0;
-  content: "g";
+mjx-c.mjx-c30::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "0";
+}
+
+mjx-c.mjx-c21C9.TEX-A::before {
+  padding: 0.583em 1em 0.083em 0;
+  content: "\21C9";
 }
 
 mjx-c.mjx-c1D458.TEX-I::before {
@@ -741,14 +579,154 @@ mjx-c.mjx-c1D460.TEX-I::before {
   content: "s";
 }
 
+mjx-c.mjx-c3D::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "=";
+}
+
+mjx-c.mjx-c210E.TEX-I::before {
+  padding: 0.694em 0.576em 0.011em 0;
+  content: "h";
+}
+
+mjx-c.mjx-c1D450.TEX-I::before {
+  padding: 0.442em 0.433em 0.011em 0;
+  content: "c";
+}
+
+mjx-c.mjx-c2203::before {
+  padding: 0.694em 0.556em 0 0;
+  content: "\2203";
+}
+
+mjx-c.mjx-c21::before {
+  padding: 0.716em 0.278em 0 0;
+  content: "!";
+}
+
+mjx-c.mjx-c1D406.TEX-B::before {
+  padding: 0.697em 0.904em 0.01em 0;
+  content: "G";
+}
+
+mjx-c.mjx-c1D42B.TEX-B::before {
+  padding: 0.45em 0.474em 0 0;
+  content: "r";
+}
+
+mjx-c.mjx-c1D429.TEX-B::before {
+  padding: 0.45em 0.639em 0.194em 0;
+  content: "p";
+}
+
+mjx-c.mjx-c1D43C.TEX-I::before {
+  padding: 0.683em 0.504em 0 0;
+  content: "I";
+}
+
+mjx-c.mjx-c1D43A.TEX-I::before {
+  padding: 0.705em 0.786em 0.022em 0;
+  content: "G";
+}
+
+mjx-c.mjx-c1D43B.TEX-I::before {
+  padding: 0.683em 0.888em 0 0;
+  content: "H";
+}
+
+mjx-c.mjx-c1D441.TEX-I::before {
+  padding: 0.683em 0.888em 0 0;
+  content: "N";
+}
+
 mjx-c.mjx-c1D465.TEX-I::before {
   padding: 0.442em 0.572em 0.011em 0;
   content: "x";
 }
 
-mjx-c.mjx-c1D467.TEX-I::before {
-  padding: 0.442em 0.465em 0.011em 0;
-  content: "z";
+mjx-c.mjx-c31::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "1";
+}
+
+mjx-c.mjx-c1D412.TEX-B::before {
+  padding: 0.697em 0.639em 0.011em 0;
+  content: "S";
+}
+
+mjx-c.mjx-c1D41E.TEX-B::before {
+  padding: 0.452em 0.527em 0.006em 0;
+  content: "e";
+}
+
+mjx-c.mjx-c1D42D.TEX-B::before {
+  padding: 0.635em 0.447em 0.005em 0;
+  content: "t";
+}
+
+mjx-c.mjx-c2217::before {
+  padding: 0.465em 0.5em 0 0;
+  content: "\2217";
+}
+
+mjx-c.mjx-c1D443.TEX-I::before {
+  padding: 0.683em 0.751em 0 0;
+  content: "P";
+}
+
+mjx-c.mjx-c1D444.TEX-I::before {
+  padding: 0.704em 0.791em 0.194em 0;
+  content: "Q";
+}
+
+mjx-c.mjx-c1D446.TEX-I::before {
+  padding: 0.705em 0.645em 0.022em 0;
+  content: "S";
+}
+
+mjx-c.mjx-c1D413.TEX-B::before {
+  padding: 0.675em 0.8em 0 0;
+  content: "T";
+}
+
+mjx-c.mjx-c1D428.TEX-B::before {
+  padding: 0.452em 0.575em 0.005em 0;
+  content: "o";
+}
+
+mjx-c.mjx-c41::before {
+  padding: 0.716em 0.75em 0 0;
+  content: "A";
+}
+
+mjx-c.mjx-c62::before {
+  padding: 0.694em 0.556em 0.011em 0;
+  content: "b";
+}
+
+mjx-c.mjx-c1D434.TEX-I::before {
+  padding: 0.716em 0.75em 0 0;
+  content: "A";
+}
+
+mjx-c.mjx-c28::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: "(";
+}
+
+mjx-c.mjx-c29::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: ")";
+}
+
+mjx-c.mjx-c1D454.TEX-I::before {
+  padding: 0.442em 0.477em 0.205em 0;
+  content: "g";
+}
+
+mjx-c.mjx-c2212::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "\2212";
 }
 </style></head>
   <body class="wrapper">
@@ -797,7 +775,7 @@ mjx-c.mjx-c1D467.TEX-I::before {
           For example, in <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D406 TEX-B"></mjx-c><mjx-c class="mjx-c1D42B TEX-B"></mjx-c><mjx-c class="mjx-c1D429 TEX-B"></mjx-c></mjx-mtext></mjx-math></mjx-container> with just one element (the identity element <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>) is a null object, and for any two groups with zero morphism, <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43A TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D43B TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is the unique morphism which sends all of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43A TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> to the identity in <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43B TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>. The kernel of an arbirary morphism <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3A"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D43A TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D43B TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is the insertion <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D43A TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> of the usual kernel <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo></mjx-math></mjx-container> all <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> in <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43A TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> with <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math></mjx-container>. Note that <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is the normal subgroup, and that in <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D406 TEX-B"></mjx-c><mjx-c class="mjx-c1D42B TEX-B"></mjx-c><mjx-c class="mjx-c1D429 TEX-B"></mjx-c></mjx-mtext></mjx-math></mjx-container>, all kernels are monic, but there are monics which are not kernels.
         </p>
         <p>
-          In the category <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D412 TEX-B"></mjx-c><mjx-c class="mjx-c1D41E TEX-B"></mjx-c><mjx-c class="mjx-c1D42D TEX-B"></mjx-c></mjx-mtext><mjx-script style="vertical-align: -0.15em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container> of pointed sets, the one-point set is a null object, and zero map <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is the function taking all of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> to the base <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mo class="mjx-n" noIC="true"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo><mjx-script style="vertical-align: -0.15em"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container> in <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>. For any morphism <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3A"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> of pointed sets, its kernel <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is the insertion of the subset <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> of those <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2208"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> with <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mo class="mjx-n" noIC="true"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo><mjx-script style="vertical-align: -0.15em"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container>, where base point of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is identical with base point <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>. The same discussion gives kernels in <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D413 TEX-B"></mjx-c><mjx-c class="mjx-c1D428 TEX-B"></mjx-c><mjx-c class="mjx-c1D429 TEX-B"></mjx-c></mjx-mtext><mjx-script style="vertical-align: -0.229em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container>. In <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D406 TEX-B"></mjx-c><mjx-c class="mjx-c1D42B TEX-B"></mjx-c><mjx-c class="mjx-c1D429 TEX-B"></mjx-c></mjx-mtext></mjx-math></mjx-container>, an epimorphism is determined by its kernel, but this is not the case for <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D412 TEX-B"></mjx-c><mjx-c class="mjx-c1D41E TEX-B"></mjx-c><mjx-c class="mjx-c1D42D TEX-B"></mjx-c></mjx-mtext><mjx-script style="vertical-align: -0.15em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container> or <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D413 TEX-B"></mjx-c><mjx-c class="mjx-c1D428 TEX-B"></mjx-c><mjx-c class="mjx-c1D429 TEX-B"></mjx-c></mjx-mtext><mjx-script style="vertical-align: -0.229em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container>.
+          In the category <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D412 TEX-B"></mjx-c><mjx-c class="mjx-c1D41E TEX-B"></mjx-c><mjx-c class="mjx-c1D42D TEX-B"></mjx-c></mjx-mtext><mjx-script style="vertical-align: -0.15em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container> of pointed sets, the one-point set is a null object, and zero map <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is the function taking all of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> to the base <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo><mjx-script style="vertical-align: -0.15em"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container> in <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>. For any morphism <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3A"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> of pointed sets, its kernel <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is the insertion of the subset <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> of those <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2208"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> with <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D465 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo><mjx-script style="vertical-align: -0.15em"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container>, where base point of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is identical with base point <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>. The same discussion gives kernels in <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D413 TEX-B"></mjx-c><mjx-c class="mjx-c1D428 TEX-B"></mjx-c><mjx-c class="mjx-c1D429 TEX-B"></mjx-c></mjx-mtext><mjx-script style="vertical-align: -0.229em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container>. In <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D406 TEX-B"></mjx-c><mjx-c class="mjx-c1D42B TEX-B"></mjx-c><mjx-c class="mjx-c1D429 TEX-B"></mjx-c></mjx-mtext></mjx-math></mjx-container>, an epimorphism is determined by its kernel, but this is not the case for <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D412 TEX-B"></mjx-c><mjx-c class="mjx-c1D41E TEX-B"></mjx-c><mjx-c class="mjx-c1D42D TEX-B"></mjx-c></mjx-mtext><mjx-script style="vertical-align: -0.15em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container> or <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-mtext class="mjx-b"><mjx-c class="mjx-c1D413 TEX-B"></mjx-c><mjx-c class="mjx-c1D428 TEX-B"></mjx-c><mjx-c class="mjx-c1D429 TEX-B"></mjx-c></mjx-mtext><mjx-script style="vertical-align: -0.229em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container>.
         </p>
         <p>
           In an <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c41"></mjx-c><mjx-c class="mjx-c62"></mjx-c></mjx-mtext></mjx-math></mjx-container>-category <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>, all equalizers are kernels. Indeed, in such a category, each hom-set <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container> is an abelian group. Given parallel arrows <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D454 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3A"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> and arrow <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c210E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3A"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44F TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>, such that <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c210E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D454 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c210E TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> iff <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D454 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c210E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math></mjx-container>. Therefore, the universal <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c210E TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> can either be described as the equalizer of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D454 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>, or kernel of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D454 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>. The dual notion gives rise to cokernel, as <a href="2#coproducts-and-colimits">already discussed</a>.

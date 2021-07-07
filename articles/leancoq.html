@@ -140,6 +140,10 @@ mjx-mphantom {
   visibility: hidden;
 }
 
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
 mjx-math {
   display: inline-block;
   text-align: left;
@@ -184,6 +188,15 @@ mjx-mi {
   text-align: left;
 }
 
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
 mjx-mo {
   display: inline-block;
   text-align: left;
@@ -206,12 +219,12 @@ mjx-stretchy-h > * > mjx-c {
 
 mjx-stretchy-h > * > mjx-c::before {
   display: inline-block;
-  padding: .001em 0;
   width: initial;
 }
 
 mjx-stretchy-h > mjx-ext {
-  overflow: hidden;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: clip visible;
   width: 100%;
 }
 
@@ -258,30 +271,23 @@ mjx-stretchy-v > mjx-ext {
   height: 100%;
   box-sizing: border-box;
   border: 0px solid transparent;
-  overflow: hidden;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: visible clip;
 }
 
 mjx-stretchy-v > mjx-ext > mjx-c::before {
   width: initial;
+  box-sizing: border-box;
 }
 
 mjx-stretchy-v > mjx-ext > mjx-c {
-  transform: scaleY(500) translateY(.1em);
+  transform: scaleY(500) translateY(.075em);
   overflow: visible;
 }
 
 mjx-mark {
   display: inline-block;
   height: 0px;
-}
-
-mjx-c {
-  display: inline-block;
-}
-
-mjx-utext {
-  display: inline-block;
-  padding: .75em 0 .2em 0;
 }
 
 mjx-c::before {
@@ -487,11 +493,6 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
 
-mjx-c.mjx-cD7::before {
-  padding: 0.491em 0.778em 0 0;
-  content: "\D7";
-}
-
 mjx-c.mjx-c221E::before {
   padding: 0.442em 1em 0.011em 0;
   content: "\221E";
@@ -502,17 +503,14 @@ mjx-c.mjx-c1D44B.TEX-I::before {
   content: "X";
 }
 
-[noIC] mjx-c.mjx-c1D44B.TEX-I:last-child::before {
-  padding-right: 0.828em;
+mjx-c.mjx-cD7::before {
+  padding: 0.491em 0.778em 0 0;
+  content: "\D7";
 }
 
 mjx-c.mjx-c1D44C.TEX-I::before {
   padding: 0.683em 0.763em 0 0;
   content: "Y";
-}
-
-[noIC] mjx-c.mjx-c1D44C.TEX-I:last-child::before {
-  padding-right: 0.581em;
 }
 </style></head>
   <body class="wrapper">

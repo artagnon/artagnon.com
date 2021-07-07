@@ -141,6 +141,10 @@ mjx-mphantom {
   visibility: hidden;
 }
 
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
 mjx-math {
   display: inline-block;
   text-align: left;
@@ -180,12 +184,17 @@ mjx-container[jax="CHTML"][justify="right"] {
   text-align: right;
 }
 
-mjx-mn {
+mjx-xypic {
   display: inline-block;
   text-align: left;
 }
 
 mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mn {
   display: inline-block;
   text-align: left;
 }
@@ -197,11 +206,6 @@ mjx-c {
 mjx-utext {
   display: inline-block;
   padding: .75em 0 .2em 0;
-}
-
-mjx-xypic {
-  display: inline-block;
-  text-align: left;
 }
 
 mjx-c::before {
@@ -407,29 +411,69 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
 
-mjx-c.mjx-c20::before {
-  padding: 0 0.25em 0 0;
-  content: " ";
-}
-
-mjx-c.mjx-c2D::before {
-  padding: 0.252em 0.333em 0 0;
-  content: "-";
-}
-
-mjx-c.mjx-c2F::before {
-  padding: 0.75em 0.5em 0.25em 0;
-  content: "/";
-}
-
 mjx-c.mjx-c31::before {
   padding: 0.666em 0.5em 0 0;
   content: "1";
 }
 
+mjx-c.mjx-c4E::before {
+  padding: 0.683em 0.75em 0 0;
+  content: "N";
+}
+
+mjx-c.mjx-c6F::before {
+  padding: 0.448em 0.5em 0.01em 0;
+  content: "o";
+}
+
+mjx-c.mjx-c20::before {
+  padding: 0 0.25em 0 0;
+  content: " ";
+}
+
+mjx-c.mjx-c6C::before {
+  padding: 0.694em 0.278em 0 0;
+  content: "l";
+}
+
+mjx-c.mjx-c70::before {
+  padding: 0.442em 0.556em 0.194em 0;
+  content: "p";
+}
+
+mjx-c.mjx-c73::before {
+  padding: 0.448em 0.394em 0.011em 0;
+  content: "s";
+}
+
 mjx-c.mjx-c32::before {
   padding: 0.666em 0.5em 0 0;
   content: "2";
+}
+
+mjx-c.mjx-c63::before {
+  padding: 0.448em 0.444em 0.011em 0;
+  content: "c";
+}
+
+mjx-c.mjx-c72::before {
+  padding: 0.442em 0.392em 0 0;
+  content: "r";
+}
+
+mjx-c.mjx-c65::before {
+  padding: 0.448em 0.444em 0.011em 0;
+  content: "e";
+}
+
+mjx-c.mjx-c64::before {
+  padding: 0.694em 0.556em 0.011em 0;
+  content: "d";
+}
+
+mjx-c.mjx-c67::before {
+  padding: 0.453em 0.5em 0.206em 0;
+  content: "g";
 }
 
 mjx-c.mjx-c33::before {
@@ -442,9 +486,99 @@ mjx-c.mjx-c34::before {
   content: "4";
 }
 
-mjx-c.mjx-c35::before {
+mjx-c.mjx-c68::before {
+  padding: 0.694em 0.556em 0 0;
+  content: "h";
+}
+
+mjx-c.mjx-c61::before {
+  padding: 0.448em 0.5em 0.011em 0;
+  content: "a";
+}
+
+mjx-c.mjx-c45::before {
+  padding: 0.68em 0.681em 0 0;
+  content: "E";
+}
+
+mjx-c.mjx-c79::before {
+  padding: 0.431em 0.528em 0.204em 0;
+  content: "y";
+}
+
+mjx-c.mjx-c78::before {
+  padding: 0.431em 0.528em 0 0;
+  content: "x";
+}
+
+mjx-c.mjx-c69::before {
+  padding: 0.669em 0.278em 0 0;
+  content: "i";
+}
+
+mjx-c.mjx-c74::before {
+  padding: 0.615em 0.389em 0.01em 0;
+  content: "t";
+}
+
+mjx-c.mjx-c62::before {
+  padding: 0.694em 0.556em 0.011em 0;
+  content: "b";
+}
+
+mjx-c.mjx-c66::before {
+  padding: 0.705em 0.372em 0 0;
+  content: "f";
+}
+
+mjx-c.mjx-c6E::before {
+  padding: 0.442em 0.556em 0 0;
+  content: "n";
+}
+
+mjx-c.mjx-c75::before {
+  padding: 0.442em 0.556em 0.011em 0;
+  content: "u";
+}
+
+mjx-c.mjx-c4D::before {
+  padding: 0.683em 0.917em 0 0;
+  content: "M";
+}
+
+mjx-c.mjx-c2D::before {
+  padding: 0.252em 0.333em 0 0;
+  content: "-";
+}
+
+mjx-c.mjx-c41::before {
+  padding: 0.716em 0.75em 0 0;
+  content: "A";
+}
+
+mjx-c.mjx-c43::before {
+  padding: 0.705em 0.722em 0.021em 0;
+  content: "C";
+}
+
+mjx-c.mjx-c42::before {
+  padding: 0.683em 0.708em 0 0;
+  content: "B";
+}
+
+mjx-c.mjx-c53::before {
+  padding: 0.705em 0.556em 0.022em 0;
+  content: "S";
+}
+
+mjx-c.mjx-c2F::before {
+  padding: 0.75em 0.5em 0.25em 0;
+  content: "/";
+}
+
+mjx-c.mjx-c38::before {
   padding: 0.666em 0.5em 0.022em 0;
-  content: "5";
+  content: "8";
 }
 
 mjx-c.mjx-c36::before {
@@ -457,143 +591,9 @@ mjx-c.mjx-c37::before {
   content: "7";
 }
 
-mjx-c.mjx-c38::before {
+mjx-c.mjx-c35::before {
   padding: 0.666em 0.5em 0.022em 0;
-  content: "8";
-}
-
-mjx-c.mjx-c41::before {
-  padding: 0.716em 0.75em 0 0;
-  content: "A";
-}
-
-mjx-c.mjx-c42::before {
-  padding: 0.683em 0.708em 0 0;
-  content: "B";
-}
-
-mjx-c.mjx-c43::before {
-  padding: 0.705em 0.722em 0.021em 0;
-  content: "C";
-}
-
-mjx-c.mjx-c45::before {
-  padding: 0.68em 0.681em 0 0;
-  content: "E";
-}
-
-mjx-c.mjx-c4D::before {
-  padding: 0.683em 0.917em 0 0;
-  content: "M";
-}
-
-mjx-c.mjx-c4E::before {
-  padding: 0.683em 0.75em 0 0;
-  content: "N";
-}
-
-mjx-c.mjx-c53::before {
-  padding: 0.705em 0.556em 0.022em 0;
-  content: "S";
-}
-
-mjx-c.mjx-c61::before {
-  padding: 0.448em 0.5em 0.011em 0;
-  content: "a";
-}
-
-mjx-c.mjx-c62::before {
-  padding: 0.694em 0.556em 0.011em 0;
-  content: "b";
-}
-
-mjx-c.mjx-c63::before {
-  padding: 0.448em 0.444em 0.011em 0;
-  content: "c";
-}
-
-mjx-c.mjx-c64::before {
-  padding: 0.694em 0.556em 0.011em 0;
-  content: "d";
-}
-
-mjx-c.mjx-c65::before {
-  padding: 0.448em 0.444em 0.011em 0;
-  content: "e";
-}
-
-mjx-c.mjx-c66::before {
-  padding: 0.705em 0.372em 0 0;
-  content: "f";
-}
-
-[noIC] mjx-c.mjx-c66:last-child::before {
-  padding-right: 0.306em;
-}
-
-mjx-c.mjx-c67::before {
-  padding: 0.453em 0.5em 0.206em 0;
-  content: "g";
-}
-
-mjx-c.mjx-c68::before {
-  padding: 0.694em 0.556em 0 0;
-  content: "h";
-}
-
-mjx-c.mjx-c69::before {
-  padding: 0.669em 0.278em 0 0;
-  content: "i";
-}
-
-mjx-c.mjx-c6C::before {
-  padding: 0.694em 0.278em 0 0;
-  content: "l";
-}
-
-mjx-c.mjx-c6E::before {
-  padding: 0.442em 0.556em 0 0;
-  content: "n";
-}
-
-mjx-c.mjx-c6F::before {
-  padding: 0.448em 0.5em 0.01em 0;
-  content: "o";
-}
-
-mjx-c.mjx-c70::before {
-  padding: 0.442em 0.556em 0.194em 0;
-  content: "p";
-}
-
-mjx-c.mjx-c72::before {
-  padding: 0.442em 0.392em 0 0;
-  content: "r";
-}
-
-mjx-c.mjx-c73::before {
-  padding: 0.448em 0.394em 0.011em 0;
-  content: "s";
-}
-
-mjx-c.mjx-c74::before {
-  padding: 0.615em 0.389em 0.01em 0;
-  content: "t";
-}
-
-mjx-c.mjx-c75::before {
-  padding: 0.442em 0.556em 0.011em 0;
-  content: "u";
-}
-
-mjx-c.mjx-c78::before {
-  padding: 0.431em 0.528em 0 0;
-  content: "x";
-}
-
-mjx-c.mjx-c79::before {
-  padding: 0.431em 0.528em 0.204em 0;
-  content: "y";
+  content: "5";
 }
 </style></head>
   <body class="wrapper">
