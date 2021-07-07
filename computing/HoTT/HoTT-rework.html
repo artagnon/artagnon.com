@@ -140,6 +140,10 @@ mjx-mphantom {
   visibility: hidden;
 }
 
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
 mjx-math {
   display: inline-block;
   text-align: left;
@@ -179,9 +183,28 @@ mjx-container[jax="CHTML"][justify="right"] {
   text-align: right;
 }
 
+mjx-msub {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
 mjx-mi {
   display: inline-block;
   text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
 }
 
 mjx-mo {
@@ -206,12 +229,12 @@ mjx-stretchy-h > * > mjx-c {
 
 mjx-stretchy-h > * > mjx-c::before {
   display: inline-block;
-  padding: .001em 0;
   width: initial;
 }
 
 mjx-stretchy-h > mjx-ext {
-  overflow: hidden;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: clip visible;
   width: 100%;
 }
 
@@ -258,40 +281,23 @@ mjx-stretchy-v > mjx-ext {
   height: 100%;
   box-sizing: border-box;
   border: 0px solid transparent;
-  overflow: hidden;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: visible clip;
 }
 
 mjx-stretchy-v > mjx-ext > mjx-c::before {
   width: initial;
+  box-sizing: border-box;
 }
 
 mjx-stretchy-v > mjx-ext > mjx-c {
-  transform: scaleY(500) translateY(.1em);
+  transform: scaleY(500) translateY(.075em);
   overflow: visible;
 }
 
 mjx-mark {
   display: inline-block;
   height: 0px;
-}
-
-mjx-msub {
-  display: inline-block;
-  text-align: left;
-}
-
-mjx-TeXAtom {
-  display: inline-block;
-  text-align: left;
-}
-
-mjx-c {
-  display: inline-block;
-}
-
-mjx-utext {
-  display: inline-block;
-  padding: .75em 0 .2em 0;
 }
 
 mjx-c::before {
@@ -497,14 +503,14 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
 
-mjx-c.mjx-c2217::before {
-  padding: 0.465em 0.5em 0 0;
-  content: "\2217";
-}
-
 mjx-c.mjx-c1D54B.TEX-A::before {
   padding: 0.683em 0.667em 0 0;
   content: "T";
+}
+
+mjx-c.mjx-c2217::before {
+  padding: 0.465em 0.5em 0 0;
+  content: "\2217";
 }
 </style></head>
   <body class="wrapper">
@@ -527,7 +533,7 @@ mjx-c.mjx-c1D54B.TEX-A::before {
     <main>
       <header>
         <h1>
-          Is there a type theory for <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c1D54B TEX-A"></mjx-c></mjx-mi><mjx-mi class="mjx-ds mjx-b"><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0" variant="double-struck">𝕠</mjx-utext></mjx-mi><mjx-mi class="mjx-ds mjx-b"><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0" variant="double-struck">𝕡</mjx-utext></mjx-mi></mjx-TeXAtom><mjx-script style="vertical-align: -0.235em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container>?
+          Is there a type theory for <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c1D54B TEX-A"></mjx-c><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0" variant="double-struck">𝕠</mjx-utext><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0" variant="double-struck">𝕡</mjx-utext></mjx-mi></mjx-TeXAtom><mjx-script style="vertical-align: -0.235em"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container>?
         </h1>
         <div id="metadata">
           <span id="timestamp"><time class="begin" datetime="2021-02-21">Sun, 21 Feb 2021 16:00:00 +0100</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2021-05-06">Thu, 6 May 2021 17:00:00 +0200</time></span><br><span id="locations">Paris</span>
