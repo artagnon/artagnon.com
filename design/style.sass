@@ -66,11 +66,10 @@ a
     flex: 0 0 content
 
   & > main
-    flex: 0 1 80ch
     overflow: hidden
     min-width: 0
     padding-left: math.div($gutter-width, 2)
-    padding-right: $gutter-width
+    padding-right: math.div($gutter-width, 2)
 
 // Mobile: display wrapper as rows; set $gutter-width to half its value
 @media screen and (max-width: $mobile-max)
@@ -83,6 +82,7 @@ a
       padding-bottom: math.div($gutter-width, 4)
 
     & > main
+      flex: 0 1 auto
       align-self: stretch
       padding-top: math.div($gutter-width, 4)
       padding-bottom: math.div($gutter-width, 4)
@@ -97,6 +97,7 @@ a
       padding-top: $gutter-width
 
     & > main
+      flex: 0 1 80ch
       padding-top: $gutter-width
 
 // Common nav
