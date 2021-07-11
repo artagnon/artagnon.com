@@ -726,6 +726,11 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
 
+mjx-c.mjx-c221E::before {
+  padding: 0.442em 1em 0.011em 0;
+  content: "\221E";
+}
+
 mjx-c.mjx-c1D445.TEX-I::before {
   padding: 0.683em 0.759em 0.021em 0;
   content: "R";
@@ -1264,7 +1269,7 @@ mjx-c.mjx-c2265::before {
           An outline for studying higher category theory
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time class="begin" datetime="2020-09-09">Wed, 9 Sep 2020 21:00:00 +0200</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2021-03-07">Sun, 7 Mar 2021 14:00:00 +0100</time></span><br><span id="locations">Paris</span>
+          <span id="timestamp"><time class="begin" datetime="2020-09-09">Wed, 9 Sep 2020 21:00:00 +0200</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2021-07-11">Sun, 11 Jul 2021 14:00:00 +0200</time></span><br><span id="locations">Paris</span>
         </div>
       </header>
       <article>
@@ -1272,11 +1277,14 @@ mjx-c.mjx-c2265::before {
           Overture
         </h2>
         <p>
-          The aim of this article is to provide a mathematics student an outline for studying various textbooks, leading up to an understanding of higher categories, and its applications to algebraic topology. It is divided into four modules, and each module is a 6-week period of intense study. The approach we've taken is to introduce homological algebra in the first module, elementary topological notions in the second, model categories in the third unifying notions from the first two modules, finally leading up to higher categories in the last.
+          The aim of this article is to collect various resources for an audience wishing to embark on higher categories, and its applications to algebraic topology. It is divided into three modules, with a timeline of six weeks for each module. The approach we've taken is to introduce homological algebra in the first module, elementary topological notions in the second, and model categories in the third. The modules should prepare the student sufficiently to embark on <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories, at which point the student can choose to emark on research in stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories.
         </p>
         <p>
           Prerequisites:
         </p>
+        <h3 id="groundwork">
+          Groundwork
+        </h3>
         <ol class="olitems" type="a" start="1">
           <li>
             Basics of mathematical reasoning. Tao's Analaysis I; chapter 12: appendix on the basics of mathematical logic.
@@ -1288,11 +1296,13 @@ mjx-c.mjx-c2265::before {
             Groups. Artin's Algebra; chapters on group theory taught from a linear algebra perspective.
           </li>
           <li>
-            Rings and Modules. Dummit &amp; Foote; chapters in Part II.
+            Rings, modules, and vector spaces. Dummit &amp; Foote; chapters in Part II.
           </li>
-          <li>
-            Abelian categories. Mac Lane's Categories for the Working Mathematician, in brief.
-          </li>
+        </ol>
+        <h3 id="algebraic-topology">
+          Algebraic topology
+        </h3>
+        <ol class="olitems" type="a" start="5">
           <li>
             Basic notions of point-set topology. Munkres' Topology, chapters 2-4.
           </li>
@@ -1300,18 +1310,26 @@ mjx-c.mjx-c2265::before {
             Basic notions in classical algebraic topology. Hatcher's Algebraic Topology, chapters 0 and 1.
           </li>
         </ol>
+        <h3 id="category-theory">
+          Category theory
+        </h3>
+        <ol class="olitems" type="a" start="7">
+          <li>
+            Yoneda Lemma, adjunctions and limits in category theory. Mac Lane's Categories for the Working Mathematician, chapters 1 through 5.
+          </li>
+        </ol>
         <h2 id="module-i-homological-algebra">
           Module I: Homological Algebra
         </h2>
         <ol class="olitems" type="a" start="1">
           <li>
-            Mac Lane's Homology.
+            Mac Lane's Categories for the Working Mathematician, chapter 8: Abelian categories.
           </li>
           <li>
-            <a href="weibel.pdf">Weibel's Homological Algebra with my annotations</a>.
+            Weibel's Homological Algebra; chapters 1 and 2.
           </li>
           <li>
-            Hatcher's Algebraic Topology; Chapter 2: singular and cellular homology.
+            Hatcher's Algebraic Topology; chapter 2: singular and cellular homology.
           </li>
         </ol>
         <h3 id="1.-algebra-of-r-modules">
@@ -1481,19 +1499,22 @@ mjx-c.mjx-c2265::before {
         <p>
           See (c).
         </p>
-        <h2 id="module-ii-simplicial-homotopy">
-          Module II: Simplicial homotopy
+        <h2 id="module-ii-homotopy">
+          Module II: Homotopy
         </h2>
         <ol class="olitems" type="a" start="1">
           <li>
-            <a href="bruno.pdf">Bruno Vallette's notes with my annnotations</a>.
+            <a href="/math/inf/outline/bruno.pdf">Bruno Vallette's notes with my annnotations</a>.
           </li>
           <li>
-            Friedmann's survery article on Simplicial Sets.
+            <a href="https://arxiv.org/pdf/0809.4221.pdf">Friedmann's survery article on Simplicial Sets</a>.
+          </li>
+          <li>
+            <a href="https://math.jhu.edu/~eriehl/ssets.pdf">Riehl's Leisurely Introduction to Simplicial Sets</a>.
           </li>
         </ol>
-        <h3 id="1.-elementary-homotopy-theory-cylinders-and-cones">
-          1. Elementary homotopy theory: cylinders and cones
+        <h3 id="1.-elementary-homotopy-theory">
+          1. Elementary homotopy theory
         </h3>
         <p>
           See (a).
@@ -1510,14 +1531,20 @@ mjx-c.mjx-c2265::before {
         <p>
           See (a).
         </p>
-        <h3 id="4.-cw-complexes">
-          4. CW complexes
+        <h3 id="4.-fiber-bundles">
+          4. Fiber bundles
         </h3>
         <p>
           See (a).
         </p>
-        <h3 id="5.-simplicial-sets">
-          5. Simplicial sets
+        <h3 id="5.-cw-complexes">
+          5. CW complexes
+        </h3>
+        <p>
+          See (a).
+        </p>
+        <h3 id="6.-simplicial-sets">
+          6. Simplicial sets
         </h3>
         <p>
           See (b) before proceeding.
@@ -1527,7 +1554,7 @@ mjx-c.mjx-c2265::before {
         </h2>
         <ol class="olitems" type="a" start="1">
           <li>
-            <a href="dwyer-spalinksi.pdf">Dwyer-Spalinski's Model Categories with my annnotations</a>.
+            <a href="https://hopf.math.purdue.edu/Dwyer-Spalinski/theories.pdf">Dwyer-Spalinski's Model Categories</a>.
           </li>
           <li>
             <a href="https://youtube.com/watch?v=cilKcPVEnX0&amp;list=PLTt5PyNwzdilR4GnUNxvTBGlKzma9imTf">Najib Idrissi's series of 12 video lectures</a>.
@@ -1608,12 +1635,29 @@ mjx-c.mjx-c2265::before {
         <h3 id="7.-anodyne-extensions-and-simplicial-homotopy-groups">
           7. Anodyne extensions and simplicial homotopy groups
         </h3>
-        <h3 id="8.-some-rational-homotopy-theory-with-applications-cgdas-and-sullivan-algebras">
-          8. Some rational homotopy theory, with applications: CGDAs, and Sullivan algebras
-        </h3>
-        <h2 id="module-iv-higher-categories">
-          Module IV: Higher categories
+        <p>
+          See (c).
+        </p>
+        <h2 id="infty-categories-and-beyond">
+          <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories and beyond
         </h2>
+        <ol class="olitems" type="a" start="1">
+          <li>
+            Monoidal categories. Lurie's Higher Topos Theory, appendix A.1.3.
+          </li>
+          <li>
+            Enrichment in category theory. Riehl's Categorical Homotopy Theory, the beginnings of chapter 3; Lurie's Higher Topos Theory, appendix A.1.4.
+          </li>
+          <li>
+            Basics of Kan Extensions. Riehl's Category Theory in Context, chapter 6.
+          </li>
+          <li>
+            Basics of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories. Lurie's Higher Topos Theory; a thorough study of chapter 1, and a cursory study of chapters 2 and 3.
+          </li>
+          <li>
+            Basics of stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories. Lurie's Higher Algebra; a thorough study of chapter 1.
+          </li>
+        </ol>
       </article>
     </main>
   </body>
