@@ -45,19 +45,20 @@ html lang="en"
     main
       header
         h1 == title
-        div#metadata
-          span#timestamp
-            time.begin datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
-            span.to
-              img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"
-            time.end datetime="#{lastmod.strftime('%F')}" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
-          br
-          span#locations
-            - locations.reverse[..-2].each do |loc|
-                = loc
-                span.to
-                  img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"
-            = locations[0]
+        - if instance_of? Clayoven::Toplevel::ContentPage or permalink == "index"
+          div#metadata
+            span#timestamp
+              time.begin datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
+              span.to
+                img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"
+              time.end datetime="#{lastmod.strftime('%F')}" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
+            br
+            span#locations
+              - locations.reverse[..-2].each do |loc|
+                  = loc
+                  span.to
+                    img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"
+              = locations[0]
       article
         - paragraphs.each do |paragraph|
           - case paragraph.type
