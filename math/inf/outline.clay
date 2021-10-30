@@ -2,290 +2,52 @@ An outline for studying higher category theory
 
 # Overture
 
-The aim of this article is to collect various resources for an audience wishing to embark on higher categories, and its applications to algebraic topology. It is divided into three modules, with a timeline of six weeks for each module. The approach we've taken is to introduce homological algebra in the first module, elementary topological notions in the second, and model categories in the third. The modules should prepare the student sufficiently to embark on $\infty$-categories, at which point the student can choose to emark on research in stable $\infty$-categories.
-
-Prerequisites:
-
-## Groundwork
-
-(a) Basics of mathematical reasoning. Tao's Analaysis I; chapter 12: appendix on the basics of mathematical logic.
-(b) Set theory. Johnstone's Notes on Set Theory and Logic, in its entirety.
-(c) Groups. Artin's Algebra; chapters on group theory taught from a linear algebra perspective.
-(d) Rings, modules, and vector spaces. Dummit & Foote; chapters in Part II.
-
-## Algebraic topology
-
-(e) Basic notions of point-set topology. Munkres' Topology, chapters 2-4.
-(f) Basic notions in classical algebraic topology. Hatcher's Algebraic Topology, chapters 0 and 1.
-
-## Category theory
-
-(g) Yoneda Lemma, adjunctions and limits in category theory. Mac Lane's Categories for the Working Mathematician, chapters 1 through 5.
+The aim of this article is to collect various resources for an audience wishing to embark on higher categories, and its applications to algebraic topology. It is divided into four modules, with a timeline of six weeks for each module. The approach we've taken is to introduce homological algebra in the first module, elementary topological notions in the second, model categories in the third, and higher categories in the last.
 
 # Module I: Homological Algebra
 
-(a) Mac Lane's Categories for the Working Mathematician, chapter 8: Abelian categories.
-(b) Weibel's Homological Algebra; chapters 1 and 2.
-(c) Hatcher's Algebraic Topology; chapter 2: singular and cellular homology.
+Syallabus:
 
-## 1. Algebra of $R$-modules
+(a) Calculus of $R$-modules.
+(b) Chain complexes, projectives, and injectives.
+(c) Tensor product.
+(d) Resolutions, derived functors.
+(e) Cohomology of groups, algebraic topology.
 
-$R$-modules are abelian groups associated with the ring $R$. Let $M$ be one such abelian group. Then, the following axioms are satisfied for $r \in R$, $\lambda \in M$:
+References:
 
-$$
-  \begin{align}
-    r 1 = r & \tag{identity} \\
-    (r_1 r_2) \lambda = r_1 (r_2 \lambda) & \tag{associativity of product} \\
-    (r_1 + r_2) \lambda = r_1 \lambda + r_2 \lambda & \tag{distributivity over ring} \\
-    r (\lambda_1 + \lambda_2) = r \lambda_1 + r \lambda_2 & \tag{distributivity over abelian group} \\
-  \end{align}
-$$
+(a) Schapira's notes with my annotations; the chapters on additive and abelian categories.
+(b) Hilton-Stammbach's book on homological algebra; injective and projective modules from chapter 1.
+(c) Weibel's Homological Algebra; chapters 1, 2, and 6 (group cohomology).
+(d) Hatcher's Algebraic Topology; chapter 2: singular and cellular homology.
 
-This is the definition of a left $R$-module; to obtain the definition of a right $R$-module, simply swap $r$ and $\lambda$ in the equations. An $RS$-bimodule is simultaneously a left $R$-module and right-$S$ module.
-
-Ideals are the prime examples of submodules. A submodule $J$ of an $R$-module a subset of $R$, which is closed under multiplication with an element of the ring:
-
-$$
-  \begin{align}
-    rJ \in J & \tag{closure}
-  \end{align}
-$$
-
-A module can be quotiented with a submodule to obtain a quotient module. Quotienting with submodules works exactly like quotienting with ideals:
-
-$$
-  \begin{align}
-    R/J = r + J & \tag{quotient module, or coset} \\
-    (r_1 + J) + (r_2 + J) = (r_1 + r_2) + J \tag{addition of cosets} \\
-    (r_1 + J) (r_2 + J) = r_1 r_2 + J & \tag{multiplication of cosets} \\
-  \end{align}
-$$
-
-It is trivial to verify that $R/J$ is a module:
-
-$$
-  r' ((r_1 + J) + (r_2 + J)) = (r' r_1 + J) + (r' r_2 J) = r' (r_1 + r_2) + J
-$$
-
-Broadly speaking, there are three operations on modules:
-
-(a) Direct sum and direct product, $\oplus_i M_i$ and $\Pi_i M_i$, coincide when the sum or product is finite. Direct sums of modules yield free modules, and these are used to build free resolutions.
-(b) Tensor product, $M_1 \otimes M_2$, yields a third module. $- \otimes D$ and $D \otimes -$ are a covariant right-exact functors in the general case, and if $D$ is a flat module, tensoring with it preserves exactness.
-(c) Hom functor, $\textrm{Hom}(M_1, M_2)$, yields a third module. $\textrm{Hom}(-, D)$ and $\textrm{Hom}(D, -)$ are left-exact functors, for fixed module $D$. $\textrm{Hom}(D, -)$ is a covariant functor and $\textrm{Hom}(-, D)$ is a contravariant functor.
-
-There exists an additional connection between the tensor product and the Hom functor: $- \otimes M$ and $\textrm{Hom}(M, -)$ form an adjoint pair.
-
-## 2. Calculus of chain complexes
-
-A category with modules as objects and module morphisms as morphisms turns into an abelian category, in which every morphism admits a kernel and cokernel, every monic is a kernel, and every epi is a cokernel. A chain complex is defined as a sequence of morphisms satisfying the condition $\partial_n \partial_{n + 1} = 0, \forall n$, often abbreviated as $\partial^2 = 0$:
-
-{{
-  \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots
-}}
-
-Equivalently, $\textrm{im}(\partial_{n + 1}) \subset \textrm{ker}(\partial_n)$. With this condition, it is possible to define the $n^\textrm{th}$ homology group $H_n = \textrm{ker}(\partial_n)/\textrm{im}(\partial_{n + 1})$.
-
-The chain is said to be exact at $C_n$ if $\textrm{ker}(\partial_n) = \textrm{im}(\partial_{n + 1})$. A long exact sequence is exact at every $n$:
-
-{{
-  0\ar[r] & \ldots\ar[r] & C_{n + 1}\ar[r]^{\partial_{n + 1}} & C_n\ar[r]^{\partial_n} & \ldots\ar[r] & 0
-}}
-
-To make them easier to work with, every l.e.s. can be broken up into short exact sequences:
-
-{{
-  0\ar[r] & \bullet\ar@{^{(}->}[r] & \bullet\ar@{->>}[r] & \bullet\ar[r] & 0
-}}
-
-## 3. Resolutions
-
-Resolutions are exact sequences that turn modules into complexes.
-
-A module $P$ is defined to be projective if:
-
-{{
-  P\ar[d]\ar@{.>}[dr]|{\exists!} \\
-  \bullet\ar@{->>}[r] & \bullet\ar[r] & 0 \\
-}}
-
-A module $I$ is defined to be injective if:
-
-{{
-  0\ar[r] & \bullet\ar@{^{(}->}[r]\ar[d] & \bullet\ar@{.>}[dl]|{\exists!} \\
-  & I
-}}
-
-A free $R$-module is one that can be written as a direct sum of isomorphic copies of $R$. A free resolution of module $M$ is the following exact sequence:
-
-{{
-  \ldots\ar[r] & F_2\ar[r] & F_1\ar[r] & F_0\ar[r] & M\ar[r] & 0
-}}
-
-The free resolution is a prime example of a projective resolution, since every free module is projective.
-
-{{
-  \ldots\ar[r] & P_2\ar[r] & P_1\ar[r] & P_0\ar[r] & M\ar[r] & 0
-}}
-
-Any two projective resolutions of a module are chain homotopic:
-
-{{
-  \ldots\ar[r] & P_2\ar[r]\ar[d] & P_1\ar[r]\ar[d] & P_0\ar[r]\ar[d] & M\ar[r]\ar@{=}[d] & 0 \\
-  \ldots\ar[r] & P_2'\ar[r] & P_1'\ar[r] & P_0'\ar[r] & M\ar[r] & 0
-}}
-
-Dually, we can form an injective coresolution of a module using injectives:
-
-{{
-  0 & M\ar[l] & I^0\ar[l] & I^1\ar[l] & I^2\ar[l] & \ldots\ar[l]
-}}
-
-Any two injective coresolutions of a module are chain homotopic:
-
-{{
-  0 & M\ar[l]\ar@{=}[d] & I^0\ar[l]\ar[d] & I^1\ar[l]\ar[d] & I^2\ar[l]\ar[d] & \ldots\ar[l] \\
-  0 & M\ar[l] & I'^0 \ar[l] & I'^1\ar[l] & I'^2\ar[l] & \ldots\ar[l]
-}}
-
-## 4. Derived functors
-
-Given either right-exact or left-exact functor $\mathscr{F}$, we can define left or right derived functors as (co)homology groups of $\mathscr{F}$ lifting a projective or injective (co)chain.
-
-$$
-  \begin{align}
-    L_i \mathscr{F}(X) = H_i \mathscr{F}(P_\bullet) & \tag{left derived functor} \\
-    R^i \mathscr{F}(X) = H^i \mathscr{F}(I^\bullet) & \tag{right derived functor}
-  \end{align}
-$$
-
-$\textrm{Tor}$ is the prime example of a left derived functor, obtained by setting $\mathscr{F} = \otimes$, and $\textrm{Ext}$ is the prime example of a right derived functor, obtained by setting $\mathscr{F}= \textrm{Hom}$.
-
-## 5. Homology of abelian groups
-
-First, note that $\mathbb{Z}$ can be viewed as a $\mathbb{Z}-\mathbb{Z}G$ bimodule.
-
-To compute $\textrm{Tor}$ and $\textrm{Ext}$ for some simple cases, consider the standard projective resolution of $\mathbb{Z}$:
-
-{{
-  0 \ar[r] & \mathbb{Z} \ar[r]^p & \mathbb{Z} \ar[r] & \mathbb{Z}/p \ar[r] & 0
-}}
-
-Now, to compute $\textrm{Tor}^n(\mathbb{Z}/p, B)$, with $B$ an abelian group, tensor with $B$ to obtain the following projective chain:
-
-{{
-  0 \ar[r] & B \ar[r]^p & B \ar[r] & 0
-}}
-
-Hence, $\textrm{Tor}^0(\mathbb{Z}/p, B) = B/Bp$, $\textrm{Tor}^1(\mathbb{Z}/p, B) = {}_pB$, with $\textrm{Tor}$ vanishing for all higher $n$. Flipping arrows, we obtain the injective resolution, and applying functor $\textrm{Hom}(B, -)$, we obtain $\textrm{Ext}^0(\mathbb{Z}/p, B) = {}_pB$ and $\textrm{Ext}^1(\mathbb{Z}/p, B) = B/Bp$, similarly vanishing for all higher $n$.
-
-An extension $\epsilon$ of $B$ by $A$ is defined to be:
-
-{{
-  A\ar[r] & E\ar[r] & B
-}}
-
-We write $H^n(G; B)$ to mean "homology of group G, with coefficients in B", and it is defined to be $\textrm{Tor}^n_{\mathbb{Z}G}(\mathbb{Z}, B)$. Cohomology of groups can be defined similarly, in terms of $\textrm{Ext}$.
-
-## 6. Singular and cellular homology
-
-See (c).
+Annotated pieces of textbooks, along with worked-out problems available [here](/math/inf/outline/ha-annotated.pdf).
 
 # Module II: Homotopy
+
+Syllabus:
+
+(a) Suspension and loop functors, fiber and cofiber sequences.
+(b) Fibrations and cofibrations.
+(c) CW complexes.
+(d) Simplicial sets.
+(e) Dold-Kan correspondence, nerve.
+
+References:
 
 (a) [Bruno Vallette's notes with my annnotations](/math/inf/outline/bruno.pdf).
 (b) [Friedmann's survery article on Simplicial Sets](https://arxiv.org/pdf/0809.4221.pdf).
 (c) [Riehl's Leisurely Introduction to Simplicial Sets](https://math.jhu.edu/~eriehl/ssets.pdf).
 
-## 1. Elementary homotopy theory
-
-See (a).
-
-## 2. Fiber and cofiber sequences
-
-See (a).
-
-## 3. Fibrations and cofibrations
-
-See (a).
-
-## 4. Fiber bundles
-
-See (a).
-
-## 5. CW complexes
-
-See (a).
-
-## 6. Simplicial sets
-
-See (b) before proceeding.
-
 # Module III: Model categories
 
 (a) [Dwyer-Spalinski's Model Categories](https://hopf.math.purdue.edu/Dwyer-Spalinski/theories.pdf).
-(b) [Najib Idrissi's series of 12 video lectures](https://youtube.com/watch?v=cilKcPVEnX0&list=PLTt5PyNwzdilR4GnUNxvTBGlKzma9imTf).
-(c) Hirschorn's Model Categories; chapters on cofibrantly-generated model categories and simplicial model structure.
+(b) Riehl's manuscript on Homotopical Theories.
+(c) [Najib Idrissi's series of 12 video lectures](https://youtube.com/watch?v=cilKcPVEnX0&list=PLTt5PyNwzdilR4GnUNxvTBGlKzma9imTf).
 
-## 1. Motivation for model categories
-
-Watch the first lecture in (b).
-
-## 2. Definition of a model category with brief examples
-
-See (a).
-
-+ $f$ is a `retract` of $g$ iff $pq = rs = 1$.
-
-{{
-  A\ar[r]^s\ar[d]^f & C\ar[r]^r\ar[d]^g & A\ar[d]^f \\
-  B\ar[r]^q & D\ar[r]^p & B
-}}
-
-+ A `functorial factorization` is an ordered pair $(\alpha, \beta)$ of functors $\texttt{Map } \mathscr{C} \rightarrow \texttt{Map } \mathscr{C}$ such that $f = \beta(f) \circ \alpha(f)$ for all $f \in \mathscr{C}$. In particular, the domain of $\alpha(f)$ is the domain of $f$, the codomain of $\alpha(f)$ is the domain of $\beta(f)$, and the codomain of $\beta(f)$ is the codomain of $f$.
-
-+ $i$ has `left-lifting property` with respect to $p$ if there is a lift $h : B \rightarrow X$ such that $hi = f$ and $ph = g$.
-
-{{
-  A\ar[r]^f\ar[d]^i & X\ar[d]^p \\
-  B\ar[r]^g\ar@{.>}[ru]^h & Y \\
-}}
-
-Category $\mathscr{C}$ is a model category if it is equipped with three classes of morphisms $(\mathscr{W}. \mathscr{C}, \mathscr{F})$ that satisfy the following axioms:
-
-$\textbf{(MC1)}$ [(Co)complete] $\mathscr{C}$ is complete and cocomplete.
-
-$\textbf{(MC2)}$ [2 out of 3] If $(f, g, g \circ f)$ are three morphisms such that any two are in $\mathscr{W}$, then so is the third.
-
-$\textbf{(MC3)}$ [Retracts]
-
-$\textbf{(MC4)}$ [Lifting]
-
-$\textbf{(MC5)}$ [Functorial factorization]
-
-## 3. The homotopy category: constructions of $C_c$, $C_f$, and $C_{cf}$
-
-See (a).
-
-## 4. Showing that $Ch_{\geq 0}(R)$ is a model category
-
-(MC1)-(MC4) are easily checked, but the "small object argument" is required to check (MC5). See (a).
-
-## 5. Cofibrantly generated model categories and Quillen adjunctions
-
-See (c).
-
-## 6. Simplicial sets and the Quillen model structure
-
-See (c).
-
-## 7. Anodyne extensions and simplicial homotopy groups
-
-See (c).
-
-# $\infty$-categories and beyond
+# Modules IV: Higher categories
 
 (a) Monoidal categories. Lurie's Higher Topos Theory, appendix A.1.3.
-(b) Enrichment in category theory. Riehl's Categorical Homotopy Theory, the beginnings of chapter 3; Lurie's Higher Topos Theory, appendix A.1.4.
+(b) Enrichment in category theory. Lurie's Higher Topos Theory, appendix A.1.4.
 (c) Basics of Kan Extensions. Riehl's Category Theory in Context, chapter 6.
 (d) Basics of $\infty$-categories. Lurie's Higher Topos Theory; a thorough study of chapter 1, and a cursory study of chapters 2 and 3.
-(e) Basics of stable $\infty$-categories. Lurie's Higher Algebra; a thorough study of chapter 1.
