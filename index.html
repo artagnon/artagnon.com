@@ -144,6 +144,59 @@ _::-webkit-full-page-media, _:future, :root mjx-container {
   will-change: opacity;
 }
 
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
 mjx-c::before {
   display: block;
   width: 0;
@@ -346,6 +399,11 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   font-family: MJXTEX-VB;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
+
+mjx-c.mjx-c221E::before {
+  padding: 0.442em 1em 0.011em 0;
+  content: "\221E";
+}
 </style></head>
   <body class="wrapper">
     <nav>
@@ -371,24 +429,27 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           Ramkumar Ramachandra
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time class="begin" datetime="2013-02-12">Tue, 12 Feb 2013 18:00:00 +0530</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2021-10-30">Sat, 30 Oct 2021 13:00:00 +0200</time></span><br><span id="locations">NY<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Boston<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Chennai<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Paris</span>
+          <span id="timestamp"><time class="begin" datetime="2013-02-12">Tue, 12 Feb 2013 18:00:00 +0530</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2021-11-20">Sat, 20 Nov 2021 05:00:00 +0100</time></span><br><span id="locations">NY<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Boston<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Chennai<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Paris</span>
         </div>
       </header>
       <article>
         <p>
-          I'm an Advanced Masters (M2) student at Université de Paris, in the algebraic topology track. In a year-long ongoing project with <a href="http://pauillac.inria.fr/~herbelin/">Hugo Herbelin</a>, we are working on formalizing semi-cubical sets in Coq.
+          I'm an Advanced Masters (M2) student at Université de Paris, and I study algebraic topology. My primary research interest is derived algebraic geometry. Over the summer of this year, I worked with <a href="http://math.univ-lille1.fr/~touze/">Antoine Touzé</a> to produce an exposé on stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories. In another pursuit, <a href="http://pauillac.inria.fr/~herbelin/">Hugo Herbelin</a> and I are working on a paper formalizing semi-cubical sets in Coq.
         </p>
         <p>
-          Prior to this, I worked with <a href="https://prosecco.gforge.inria.fr/personal/hritcu/">Cătălin Hrițcu</a> and <a href="https://kenji.maillard.blue">Kenji Maillard</a> at Inria Paris for a year, writing Coq for formal verification of effectful programs.
+          Prior to my Masters, I worked with <a href="https://prosecco.gforge.inria.fr/personal/hritcu/">Cătălin Hrițcu</a> and <a href="https://kenji.maillard.blue">Kenji Maillard</a> at Inria Paris for a year, writing Coq for <a href="https://arxiv.org/abs/1903.01237">formal verification of effectful programs</a>.
         </p>
         <p>
-          Prior to that, I'd worked in the US software industry for three and a half years, most significantly at MathWorks for two and a half, as a compiler engineer writing middle-end compiler transforms. This was after completing my second Masters degree in Computer Engineering at Columbia University, notably producing <a href="https://github.com/artagnon/rhine-ml">rhine-ml</a> as part of my compilers course.
+          Before arriving in Paris, I'd worked in the US software industry for three and a half years, most significantly at MathWorks for two and a half, as a compiler engineer writing middle-end compiler optimizations. I graduated from Columbia University in New York in 2014, earning my second Masters degree, notably producing <a href="https://github.com/artagnon/rhine-ml">rhine-ml</a> as part of my compilers course.
         </p>
         <p>
-          My first Masters degree was in Physics at the Indian Institute of Technology, Kharagpur. Over the course of my summer vacations as a student there, I completed two Summer of Code projects with the Git community, the first in which led me to author <a href="http://svnbook.red-bean.com/en/1.7/svn.ref.svnrdump.html">svnrdump</a>, and the second in which I authored <a href="https://github.com/git/git/blob/master/sequencer.c">sequencer.c</a>. I'd been an active member of the community for almost four years, landing 200 commits.
+          I earned my first Masters degree at the Indian Institute of Technology in Kharagpur, in Physics. Over the course of my summer vacations as a student there, I completed two Summer of Code projects with the Git community, the first in which I wrote <a href="http://svnbook.red-bean.com/en/1.7/svn.ref.svnrdump.html">svnrdump</a> for the Subversion community, and the second in which I authored <a href="https://github.com/git/git/blob/master/sequencer.c">sequencer.c</a>. I'd been an active member of the community for almost four years, participating in mailing-list discussions. I have been writing software since middle school, and have contributed to a <a href="https://www.openhub.net/accounts/artagnon/positions">variety of open source projects</a>.
         </p>
         <p>
-          I have been writing software since middle school, and have contributed to a <a href="https://www.openhub.net/accounts/artagnon/positions">variety of open source projects</a>, and my interest in mathematics stemmed from working with the <a href="http://isl.gforge.inria.fr">Integer Set Library</a> at MathWorks and in my late twenties, once I was an accomplished software engineer. I have self-taught myself mathematics upto the beginner-graduate level, with some guidance from <a href="https://www.cmi.ac.in/~krishna/">Krishna Hanumanthu</a> at the Chennai Mathematical Institute, in late 2018 ~ early 2019.
+          My interest in mathematics stems from working with the <a href="http://isl.gforge.inria.fr">Integer Set Library</a>, and from reading Poincaré's <a href="https://www.maths.ed.ac.uk/~v1ranick/papers/poincare2009.pdf">Analysis Situs</a>, in my late twenties. The turning point was <a href="https://www.math.ias.edu/~lurie/">Jacob Lurie</a>'s books, whence I decided to quit software engineering, and pursue mathematics.
+        </p>
+        <p>
+          I have self-taught myself mathematics upto the beginner-graduate level, with some guidance from <a href="https://www.cmi.ac.in/~krishna/">Krishna Hanumanthu</a> at the Chennai Mathematical Institute, in the late 2018 ~ early 2019 period.
         </p>
         <footer>
           <p>
