@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en">
   <head>
-    <title>Initiating the study of stable \infty-categories | artagnon.com</title>
+    <title>An exposé on stable \infty-categories | artagnon.com</title>
     <meta charset="utf-8">
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
     <meta name="HandheldFriendly" content="true">
@@ -195,6 +195,16 @@ mjx-c {
 mjx-utext {
   display: inline-block;
   padding: .75em 0 .2em 0;
+}
+
+mjx-msub {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
 }
 
 mjx-c::before {
@@ -404,6 +414,11 @@ mjx-c.mjx-c221E::before {
   padding: 0.442em 1em 0.011em 0;
   content: "\221E";
 }
+
+mjx-c.mjx-c1D53C.TEX-A::before {
+  padding: 0.683em 0.667em 0 0;
+  content: "E";
+}
 </style></head>
   <body class="wrapper">
     <nav><a href="/"><img id="logo" src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
@@ -425,18 +440,39 @@ mjx-c.mjx-c221E::before {
     <main>
       <header>
         <h1>
-          Initiating the study of stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories
+          An exposé on stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time class="begin" datetime="2021-10-25">Mon, 25 Oct 2021 17:00:00 +0200</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2021-10-25">Mon, 25 Oct 2021 17:00:00 +0200</time></span><br><span id="locations">Paris</span>
+          <span id="timestamp"><time class="begin" datetime="2021-10-25">Mon, 25 Oct 2021 17:00:00 +0200</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2021-11-20">Sat, 20 Nov 2021 05:00:00 +0100</time></span><br><span id="locations">Paris</span>
         </div>
       </header>
       <article>
         <p class="blurb">
-          Here, we present work that was done in collaboration with Antoine Touzé.
+          This work was done over a six-month period of study with Antoine Touzé. Please be warned that it contains errors.
         </p>
         <p>
-          <a href="/math/inf/memoir.pdf">The document</a> was written over the course of six months of study.
+          The raison d'être is presented below, and the full document can be found <a href="/math/inf/memoir.pdf">here</a>.
+        </p>
+        <p>
+          Allow us to address a couple of questions before we begin on our journey. First, why you, as the reader, should be interested in stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories. Second, what the contribution of this particular memoir is, and how it aims to achieve this.
+        </p>
+        <p>
+          Stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories are beautiful mathematical objects that unify the study of homology and homotopy, and address shortcomings of classical stable homotopy theory. Its study is a particular flavor of modern homotopy theory that involves an enormous number of moving parts with thousands of definitions and results, although each definition or result is succint. In short, we are embarking on an area of mathematics that's arranged like a huge jigsaw puzzle with lots of tiny pieces, with this memoir serving as the guide. The memoir completes just enough of the puzzle for the reader to form a coherent idea on stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories. It hopes to ignite their imagination and curiosity to complete more pieces, and embark on the journey to scale Higher Algebra and Spectral Algebraic Geometry, piecewise.
+        </p>
+        <p>
+          Jacob Lurie's first book, Higher Topos Theory, collects several results on <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories, and chapters I-IV mainly serve as reference on <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories. His second book, Higher Algebra introduces stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories in its first chapter to replace the commutative algebra object in the category of abelian groups by a higher analog of spectra, yielding a theory of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c1D53C TEX-A"></mjx-c></mjx-mi></mjx-TeXAtom><mjx-script style="vertical-align: -0.15em"><mjx-mi class="mjx-n" size="s"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container>-rings. This, in turn, lays the foundation for his third book, Spectral Algebraic Geometry, where he replaces differential-graded commutative algebras by <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c1D53C TEX-A"></mjx-c></mjx-mi></mjx-TeXAtom><mjx-script style="vertical-align: -0.15em"><mjx-mi class="mjx-n" size="s"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container>-rings in schemes yielding the theory of spectral schemes. Lurie's works are pure works of art, not textbooks in the traditional sense.
+        </p>
+        <p>
+          Modern homotopy theory, and Lurie's writing in particular, place heavy emphasis on simple and elegant definitions, with consequences that are far-reaching. Indeed, what this manuscript focuses on, is not on the definitions and consequences, but rather the motivations: why something is defined the way it is.
+        </p>
+        <p>
+          The memoir opens with the two main prerequisites to understanding <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories, category theory and simplicial sets. We focus on abelian categories and enrichment in category theory, in the first chapter, and on constructions required to understand the nerve functor, in the second. Our attention then shifts to homotopical theories, in a rather modern and exciting third chapter, for which Emily Riehl's recent manuscript has served as the primary reference. Chapter IV dedicates itself to studying the basics of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories, with this firm foundation. The final chapter then delivers on the promise of initiating the reader in the study of stable <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories, presenting extensive motivation and commentary on material that appears in the first chapter of Higher Algebra.
+        </p>
+        <p>
+          Being a memoir, this manuscript aims to be relatively self-contained, and a cursory look at the first two chapters is sufficient for the seasoned mathematician. Familiarity with basic notions of category theory, simplicial sets, algebraic topology, and model categories is assumed.
+        </p>
+        <p>
+          The author is grateful to Antoine Touzé for the excellent guidance and supervision.
         </p>
       </article>
     </main>
