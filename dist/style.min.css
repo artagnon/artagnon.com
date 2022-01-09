@@ -89,8 +89,8 @@ nav > :last-child {
     flex-flow: row;
   }
   nav > :first-child {
-    justify-self: start;
-    justify-content: start;
+    justify-self: flex-start;
+    justify-content: flex-start;
     padding-left: 32px;
   }
   nav > :nth-child(2) {
@@ -109,8 +109,9 @@ nav > :last-child {
   }
 }
 nav > :first-child,
-nav > :first-child > img#logo,
-nav > img#logo {
+nav > :first-child > img#logo {
+  object-fit: contain;
+  object-position: top left;
   height: max(10vw, 10vh);
   width: calc(0.8128 * max(10vw, 10vh));
 }
