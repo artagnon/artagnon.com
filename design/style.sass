@@ -120,8 +120,8 @@ nav
     flex-flow: row
 
     & > :first-child
-      justify-self: start
-      justify-content: start
+      justify-self: flex-start
+      justify-content: flex-start
       padding-left: math.div($gutter-width, 2)
 
     & > :nth-child(2)
@@ -140,8 +140,9 @@ nav
 
 // Common code for nav children
 nav > :first-child,
-nav > :first-child > img#logo,
-nav > img#logo
+nav > :first-child > img#logo
+  object-fit: contain
+  object-position: top left
   height: $nav-height
   width: calc(0.8128 * #{$nav-height})
 
