@@ -4,25 +4,25 @@ We are going to be discussing LLVM's Fast Register Allocator: you might like to 
 
 FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses `PhysRegState` to keep track of the state of various physical registers: they can be 0 (`regDisabled`), 1 (`regFree`), 2 (`regReserved`), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like `LR.LastUse`); a register can either be a `<def>` or a use. If `IsImplicit` is flipped, it could also be a implicit-def (`<imp-def>`) or implicit-use (`<imp-use>`).
 
-```cpp
+```asm
 %vreg349<def> = MOVZX32rm8 %vreg351, 1, %noreg, 0, %noreg
 ```
 
 turns into
 
-```cpp
+```asm
 %ESI<def> = MOVZX32rm8 %RDX<kill>, 1, %noreg, 0, %noreg
 ```
 
 after allocation. The `<kill>` indicates that the instruction is the last use of `%RDX`. In another example,
 
-```cpp
+```asm
 CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use>
 ```
 
 turns into
 
-```cpp
+```asm
 CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use,kill>
 ```
 
@@ -33,7 +33,7 @@ indicates that the value defined is used no longer.
 
 `AllocateBasicBlock`, which operates on `MachineBasicBlock`, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the `LiveIns` (registers coming in live from the previous `MBB`) as `regReserved` so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls `usePhysReg` on them. At this stage, the physical register must be either `regDisabled`, `regReserved`, or `regFree`. It cannot be allocated to a virtual register. Why? Imagine you see:
 
-```cpp
+```asm
 CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use>
 ```
 
@@ -46,14 +46,14 @@ The third scan operates on physical and virtual registers that are Defs. If the 
 
 To think about the problem, if we have,
 
-```cpp
+```asm
 %RAX<def> = COPY %vreg342
 ```
 
 we should always `regReserve` `%RAX`, right? Except if `%RAX` is dead. What
 about if it's an `<imp-def>`?
 
-```cpp
+```asm
 CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use>
 ```
 

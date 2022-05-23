@@ -12,10 +12,6 @@
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/coq.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/cpp.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/haskell.min.js"></script>
     <script defer="" src="/dist/script.min.js"></script>
   <style id="MJX-CHTML-styles">
 mjx-container[jax="CHTML"] {
@@ -380,36 +376,528 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           Historically speaking, Coq started out with making <mark>Set</mark> impredicative and they still carry around the flag <mark>--set-impredicative</mark> to maintain impredicativity in Sets. Let's check it quickly:
         </p>
-        <pre><code class="hljs coq">(* Set is predicative. *)
-Fail Definition SetPred := (forall X : Set, X) : Set.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Set is predicative. *)</span><span class="w">
+</span><span class="no">Fail</span><span class="w"> </span><span class="k">Definition</span><span class="w"> </span><span class="no">SetPred</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">.</span></code></pre>
         <p>
           We use a little macro to check the impredicativity of various types, since an equivalent definition wouldn't type-check:
         </p>
-        <pre><code class="hljs coq">(* Checks that all inhabitants of U are of type V. *)
-Notation "'check' U V" := ((forall X : U, X) : V) (at level 0, U, V at level 0).</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Checks that all inhabitants of U are of type V. *)</span><span class="w">
+</span><span class="k">Notation</span><span class="w"> </span><span class="s2">"'check' U V"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">U</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">V</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="no">U</span><span class="o">,</span><span class="w"> </span><span class="no">V</span><span class="w"> </span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">0</span><span class="o">).</span></code></pre>
         <p>
           All inhabitants of <mark>Prop</mark> are of type Prop, for good reason.
         </p>
-        <pre><code class="hljs coq">(* Prop is impredicative. *)
-Definition PropImpr := check Prop Prop.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Prop is impredicative. *)</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">PropImpr</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="kr">Prop</span><span class="o">.</span></code></pre>
         <p>
           Attempt to check the predicativity of <mark>Type</mark> naïvely:
         </p>
-        <pre><code class="hljs coq">(* Is Type impredicative? This is misleading. *)
-Definition TypeNaive := (forall X : Type, X) : Type.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Is Type impredicative? This is misleading. *)</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">TypeNaive</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">.</span></code></pre>
         <p>
           The previous example was misleading, and we clarify it in the next example:
         </p>
-        <pre><code class="hljs coq">(* In the previous definition, Type is really Type@{i},
- * and the following definition fails with: Universe {Predicativity.153} is unbound. *)
-Fail Definition TypePred@{i} := check Type@{i} Type@{i}.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* In the previous definition, Type is really Type@{i},
+ * and the following definition fails with: Universe {Predicativity.153} is unbound. *)</span><span class="w">
+</span><span class="no">Fail</span><span class="w"> </span><span class="k">Definition</span><span class="w"> </span><span class="no">TypePred</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">}.</span></code></pre>
         <p>
           The Type universe is cumulative, not impredicative. We show the cumulativity using algebraic universe notation:
         </p>
-        <pre><code class="hljs coq">(* Fails due to a bug in Coq: Unable to handle arbitrary u+k &lt;= v constraints? *)
-Definition TypePred'@{i} := ((forall X : Type@{i}, X) : Type@{i+1}).
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Fails due to a bug in Coq: Unable to handle arbitrary u+k &lt;= v constraints? *)</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">TypePred'</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">},</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">+</span><span class="mi">1</span><span class="o">}).</span><span class="w">
 
-Definition TypePred'@{i} := check Type@{i} Type@{i+1}.</code></pre>
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">TypePred'</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">+</span><span class="mi">1</span><span class="o">}.</span></code></pre>
         <footer>
           <p>
             ‡ <a href="https://github.com/SkySkimmer">Gaëtan Gilbert</a>: intricacies of universes in Coq

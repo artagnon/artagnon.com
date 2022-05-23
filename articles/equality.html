@@ -12,10 +12,6 @@
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/coq.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/cpp.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/haskell.min.js"></script>
     <script defer="" src="/dist/script.min.js"></script>
   <style id="MJX-CHTML-styles">
 mjx-container[jax="CHTML"] {
@@ -651,9 +647,91 @@ mjx-c.mjx-c1D45A.TEX-I::before {
         <p>
           First, let us briefly talk about the cumulative universe of Coq. <mark>Prop</mark> is a <mark>Set</mark> that can be promoted to <mark>Type</mark> seamlessly. The reason for the distinction between <mark>Prop</mark> and <mark>Set</mark> is an engineering one: <mark>Prop</mark> is impredicative, while <mark>Set</mark> is not, and proofs are erased during extraction.
         </p>
-        <pre><code class="hljs coq">Definition SetTypeIncl (A : Set) : Type := A.
-Definition PropTypeIncl (A : Prop) : Type := A.
-Definition PropSetIncl (A : Prop) : Set := A.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Definition</span><span class="w"> </span><span class="no">SetTypeIncl</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">A</span><span class="pi">.</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">PropTypeIncl</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">A</span><span class="pi">.</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">PropSetIncl</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">A</span><span class="o">.</span></code></pre>
         <p>
           There is an <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container> hierarchy within the <mark>Type</mark> universe, and types of Types are Types themselves.
         </p>
@@ -666,26 +744,354 @@ Definition PropSetIncl (A : Prop) : Set := A.</code></pre>
         <p>
           There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
         </p>
-        <pre><code class="hljs coq">Axiom PropositionalProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="no">Axiom</span><span class="w"> </span><span class="no">PropositionalProofIrrelevance</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="o">),</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">b</span><span class="o">.</span></code></pre>
         <p>
           We then get a proof obligation which we discharge using the axiom:
         </p>
-        <pre><code class="hljs coq">Theorem PropEquality (P : Prop) (a b : P) : a = b.
-Proof.
-  by apply PropositionalProofIrrelevance.
-Qed.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">PropEquality</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">b</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">by</span><span class="w"> </span><span class="kp">apply</span><span class="w"> </span><span class="no">PropositionalProofIrrelevance</span><span class="pi">.</span><span class="w">
+</span><span class="k">Qed</span><span class="o">.</span></code></pre>
         <p>
           In the general case, two different inhabitants of <mark>Prop</mark> are unequal. There is, however, a propositional equality existing between two equal propositions:
         </p>
-        <pre><code class="hljs coq">Theorem PropRefl (P : Prop) (x : P): x = x.
-Proof.
-  exact eq_refl.
-Qed.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">PropRefl</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="o">)</span><span class="p">:</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">x</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="ne">exact</span><span class="w"> </span><span class="no">eq_refl</span><span class="pi">.</span><span class="w">
+</span><span class="k">Qed</span><span class="o">.</span></code></pre>
         <p>
           where <mark>eq_refl</mark> is simply the sole inhabitant of an Inductive:
         </p>
-        <pre><code class="hljs coq">Inductive eq (A : Type) (x : A) : A -&gt; Prop :=
-  eq_refl : eq A x x.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Inductive</span><span class="w"> </span><span class="no">eq</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+  </span><span class="no">eq_refl</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">eq</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">x</span><span class="o">.</span></code></pre>
         <h2 id="the-proof-irrelevant-sprop">
           The proof-irrelevant SProp
         </h2>
@@ -695,19 +1101,183 @@ Qed.</code></pre>
         <p>
           Unfortunately, <mark>=</mark> doesn't work as expected:
         </p>
-        <pre><code class="hljs coq">Theorem SPropIrr (P : SProp) (x y : P) : x = y.
-Proof.
-  by reflexivity.
-Abort. (* Type-check fails at Qed.
-        * (=) : ∀ A, A -&gt; A -&gt; Prop, but we want to return an SProp. *)</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">SPropIrr</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">SProp</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="no">y</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">y</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">by</span><span class="w"> </span><span class="ne">reflexivity</span><span class="pi">.</span><span class="w">
+</span><span class="no">Abort</span><span class="pi">.</span><span class="w"> </span><span class="c">(* Type-check fails at Qed.
+        * (=) : ∀ A, A -&gt; A -&gt; Prop, but we want to return an SProp. *)</span></code></pre>
         <p>
           This is because the <mark>SProp</mark> universe is disjoint from the <mark>Prop</mark> universe:
         </p>
-        <pre><code class="hljs coq">Theorem SPropToProp : SProp -&gt; Prop.
-Proof.
-  by intros x; exact x.
-Abort. (* Type-check fails at Qed.
-        * SProp is not convertible to Prop. *)</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">SPropToProp</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">SProp</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">by</span><span class="w"> </span><span class="kp">intros</span><span class="w"> </span><span class="no">x</span><span class="p">;</span><span class="w"> </span><span class="ne">exact</span><span class="w"> </span><span class="no">x</span><span class="pi">.</span><span class="w">
+</span><span class="no">Abort</span><span class="pi">.</span><span class="w"> </span><span class="c">(* Type-check fails at Qed.
+        * SProp is not convertible to Prop. *)</span></code></pre>
         <p>
           Fortunately, we can do better.
         </p>
@@ -728,16 +1298,180 @@ Abort. (* Type-check fails at Qed.
             <mark>hSet</mark> is the <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>-truncated Type.
           </li>
         </ol>
-        <pre><code class="hljs coq">Notation Contr := (IsTrunc minus_two).
-Notation IsHProp := (IsTrunc minus_two.+1).
-Notation IsHSet := (IsTrunc minus_two.+2).</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Notation</span><span class="w"> </span><span class="no">Contr</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">IsTrunc</span><span class="w"> </span><span class="no">minus_two</span><span class="o">).</span><span class="w">
+</span><span class="k">Notation</span><span class="w"> </span><span class="no">IsHProp</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">IsTrunc</span><span class="w"> </span><span class="no">minus_two</span><span class="o">.+</span><span class="mi">1</span><span class="o">).</span><span class="w">
+</span><span class="k">Notation</span><span class="w"> </span><span class="no">IsHSet</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">IsTrunc</span><span class="w"> </span><span class="no">minus_two</span><span class="o">.+</span><span class="mi">2</span><span class="o">).</span></code></pre>
         <p>
           The notion of truncation is central to HoTT, where <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3A"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-n"><mjx-c class="mjx-c54"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mi></mjx-TeXAtom><mjx-script style="vertical-align: -0.239em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container> can be truncated to a <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-n"><mjx-c class="mjx-c54"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c70"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mi></mjx-TeXAtom><mjx-script style="vertical-align: -0.239em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container>, whence higher-than-<mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> morphisms are rendered uninteresting. Any two hProps are propositionally equal:
         </p>
-        <pre><code class="hljs coq">Theorem hPropEquality (P : hProp) (a b : P) : a = b.
-Proof.
-  by apply path_ishprop.
-Qed.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">hPropEquality</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">hProp</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">b</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="no">by</span><span class="w"> </span><span class="kp">apply</span><span class="w"> </span><span class="no">path_ishprop</span><span class="pi">.</span><span class="w">
+</span><span class="k">Qed</span><span class="o">.</span></code></pre>
         <p>
           Conceptually, this is as simple and elegant as <mark>PropEquality</mark>.
         </p>

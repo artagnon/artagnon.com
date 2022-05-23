@@ -12,10 +12,6 @@
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/coq.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/cpp.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/haskell.min.js"></script>
     <script defer="" src="/dist/script.min.js"></script>
   <style id="MJX-CHTML-styles">
 mjx-container[jax="CHTML"] {
@@ -898,15 +894,179 @@ mjx-c.mjx-c1D466.TEX-I::before {
         <p>
           What the following proposition says, is that, for every inhabitant of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c2115 TEX-A"></mjx-c></mjx-mi></mjx-TeXAtom></mjx-math></mjx-container> that you supply, <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D453 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> will supply an inhabitant of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-ds mjx-b"><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0;" variant="double-struck">𝟙</mjx-utext></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>:
         </p>
-        <pre><code class="hljs coq">Theorem f : nat -&gt; unit.
-Proof.
-  intros x.
-  exact tt.
-Qed.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">f</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">unit</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="kp">intros</span><span class="w"> </span><span class="no">x</span><span class="pi">.</span><span class="w">
+  </span><span class="ne">exact</span><span class="w"> </span><span class="no">tt</span><span class="pi">.</span><span class="w">
+</span><span class="k">Qed</span><span class="o">.</span></code></pre>
         <p>
           The proof is witness that we can always supply an inhabitant of the type <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c2115 TEX-A"></mjx-c></mjx-mi></mjx-TeXAtom><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2192"></mjx-c></mjx-mo><mjx-TeXAtom space="4" texclass="ORD"><mjx-mn class="mjx-ds mjx-b"><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0;" variant="double-struck">𝟙</mjx-utext></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>. By Curry-Howard isomorphism:
         </p>
-        <pre><code class="hljs coq">Definition f' : nat -&gt; unit := fun _ =&gt; tt.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Definition</span><span class="w"> </span><span class="no">f'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">unit</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="kr">fun</span><span class="w"> </span><span class="p">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="no">tt</span><span class="o">.</span></code></pre>
         <p>
           In type theory, a function is just a non-dependent version of the <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c3A0"></mjx-c></mjx-mi></mjx-math></mjx-container> type, where the codomain <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D435 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is fixed:
         </p>
@@ -937,28 +1097,274 @@ Qed.</code></pre>
         <p>
           This is in line with the general philosophy of constructive mathematics, where non-existence of an inhabitant of a type cannot be proved; to supply a witness is to supply a construction of the inhabitant, and indeed, no such construction might exist. Nevertheless, an axiom of excluded middle can be axiomatized and used to construct-via-contradiction, just like any other axiom:
         </p>
-        <pre><code class="hljs coq">Axiom LEM : forall (P : Prop), P \/ ~P.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="no">Axiom</span><span class="w"> </span><span class="no">LEM</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">),</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">\/</span><span class="w"> </span><span class="nv">~P</span><span class="o">.</span></code></pre>
         <p>
           To understand this better, let us take the example of the constructive equivalent of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-ds mjx-b"><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0;" variant="double-struck">𝟘</mjx-utext></mjx-mn></mjx-TeXAtom><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c21D2"></mjx-c></mjx-mo><mjx-mtext class="mjx-n" space="4"><mjx-c class="mjx-c61"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c79"></mjx-c><mjx-c class="mjx-c74"></mjx-c><mjx-c class="mjx-c68"></mjx-c><mjx-c class="mjx-c69"></mjx-c><mjx-c class="mjx-c6E"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mtext></mjx-math></mjx-container> in classical mathematics:
         </p>
-        <pre><code class="hljs coq">Theorem FalseImpliesAnything : forall A, False -&gt; A.
-Proof.
-  intros A.
-  exact (fun x : False =&gt; match x with end).
-Qed.</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">FalseImpliesAnything</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="no">A</span><span class="o">,</span><span class="w"> </span><span class="no">False</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">A</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="kp">intros</span><span class="w"> </span><span class="no">A</span><span class="pi">.</span><span class="w">
+  </span><span class="ne">exact</span><span class="w"> </span><span class="o">(</span><span class="kr">fun</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">False</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kr">match</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="kp">with</span><span class="w"> </span><span class="kr">end</span><span class="o">).</span><span class="w">
+</span><span class="k">Qed</span><span class="o">.</span></code></pre>
         <p>
           Since <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-ds mjx-b"><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0;" variant="double-struck">𝟘</mjx-utext></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container> has no inhabitants, the construction of any inhabitant of any type can be proved from it.
         </p>
         <p>
           It is perhaps prudent to supply another example of a classical statement to illustrate Coq's typechecker:
         </p>
-        <pre><code class="hljs coq">Theorem TrueDoesNotImplyFalse : True -&gt; False.
-Proof.
-  (* Due to enforced exhaustive pattern-matching on inhabitants of the LHS,
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">TrueDoesNotImplyFalse</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">True</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">False</span><span class="pi">.</span><span class="w">
+</span><span class="k">Proof</span><span class="pi">.</span><span class="w">
+  </span><span class="c">(* Due to enforced exhaustive pattern-matching on inhabitants of the LHS,
    * we'd need to match up an inhabitant of True (there is only I)
    * to some inhabitant of False, but there are no inhabitants of False.
-   *)
-Abort.</code></pre>
+   *)</span><span class="w">
+</span><span class="no">Abort</span><span class="o">.</span></code></pre>
         <p>
           In category theory, <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-ds mjx-b"><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0;" variant="double-struck">𝟘</mjx-utext></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container> would be the inital object, and there is at most one arrow from the initial object to every other object in the category; <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-ds mjx-b"><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0;" variant="double-struck">𝟙</mjx-utext></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container> would be the final object, and there is at most one arrow from every other object in the category to it. The above theorem hypothesizes the existence of a morphism from the final object to the initial object, which of course, cannot exist.
         </p>

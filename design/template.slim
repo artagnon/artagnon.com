@@ -13,16 +13,10 @@ html lang="en"
     // synchronously load our stylesheet, compiled from various css files in design/
     link rel="stylesheet" href="/dist/style.min.css"
 
-    // cash, dayjs, mathjax, xypic
+    // cash and dayjs
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"
     script defer=true src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"
-
-    // hljs
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/coq.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/cpp.min.js"
-    script defer=true src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/haskell.min.js"
 
     // our js, compiled from js files in design/
     script defer=true src="/dist/script.min.js"
@@ -80,8 +74,10 @@ html lang="en"
                 - for item in paragraph.split "\n"
                   p == item
             - when :codeblock
+              style == paragraph.prop
               pre
-                code class="hljs #{paragraph.prop}" == paragraph.to_s
+                code class="highlight"
+                  == paragraph.to_s
             - when :images
               figure
                 - for img in paragraph.split("\n")
