@@ -14,12 +14,6 @@ $link-fg: #794C3E
 $blurb-fg: #757557
 $marker-fg: #A26753
 
-// hljs specific
-$hljs-string: $blurb-fg
-$hljs-number: $marker-fg
-$hljs-function: #268BD2
-$hljs-inbuilt: #8D8D68
-
 // Gutter
 $gutter-width: 64px
 
@@ -408,112 +402,13 @@ footer > p
   margin-bottom: 1rem
   font-size: 0.85rem
 
-// hljs
-pre code.hljs
+// syntax highlighting via rouge
+pre code.highlight
   display: block
   padding: 1em
 
-code.hljs
+code.highlight
   padding: 3px 5px
 
-.hljs
-  color: $main-fg
+.highlight
   background: $pre-bg
-
-/* purposely do not highlight these things */
-
-  &-formula,
-  &-params,
-  .hljs-property
-
-/* base03 -  Comments, Invisibles, Line Highlighting */
-.hljs-comment
-  color: $metadata-fg
-
-/* base04 -  Dark Foreground (Used for status bars) */
-.hljs-tag
-  color: #657b83
-
-/* base05 -  Default Foreground, Caret, Delimiters, Operators */
-.hljs-subst,
-.hljs-punctuation,
-.hljs-operator
-  color: #586e75
-
-  &
-    opacity: 0.7
-
-/* base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
-.hljs-bullet,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-selector-tag,
-.hljs-name,
-.hljs-deletion
-  color: #dc322f
-
-/* base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url */
-.hljs-symbol,
-.hljs-number,
-.hljs-link,
-.hljs-attr,
-.hljs-variable.constant_,
-.hljs-literal
-  color: $hljs-number
-
-/* base0A - Classes, Markup Bold, Search Text Background */
-.hljs-title,
-.hljs-class .hljs-title,
-.hljs-title.class_
-
-  color: #b58900
-
-.hljs-strong
-  font-weight: bold
-  color: #b58900
-
-/* base0B - Strings, Inherited Class, Markup Code, Diff Inserted */
-.hljs-code,
-.hljs-addition,
-.hljs-title.class_.inherited__,
-.hljs-string
-  color: $hljs-string
-
-/* base0C - Support, Regular Expressions, Escape Characters, Markup Quotes */
-.hljs-built_in,
-.hljs-doctag, // guessing
-.hljs-quote,
-.hljs-keyword.hljs-atrule,
-.hljs-regexp
-  color: $hljs-inbuilt
-
-/* base0D - Functions, Methods, Attribute IDs, Headings */
-.hljs-function .hljs-title,
-.hljs-attribute,
-.ruby .hljs-property,
-.hljs-title.function_,
-.hljs-section
-  color: $hljs-function
-
-/* base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed */
-.hljs-type,
-/* .hljs-selector-id, */
-/* .hljs-selector-class, */
-/* .hljs-selector-attr, */
-/* .hljs-selector-pseudo, */
-.hljs-template-tag,
-.diff .hljs-meta,
-.hljs-keyword
-  color: #6c71c4
-
-.hljs-emphasis
-  color: #6c71c4
-  font-style: italic
-
-.hljs-meta,
-.hljs-meta .hljs-keyword,
-.hljs-meta .hljs-string
-  color: #d33682
-
-.hljs-meta .hljs-keyword
-  font-weight: bold

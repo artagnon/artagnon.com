@@ -12,10 +12,6 @@
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/coq.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/cpp.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/haskell.min.js"></script>
     <script defer="" src="/dist/script.min.js"></script>
   <style id="MJX-CHTML-styles">
 mjx-container[jax="CHTML"] {
@@ -1307,29 +1303,193 @@ mjx-c.mjx-c2F::before {
         <p>
           C++ templates are incredibly powerful, and with the introduction of compile-time expressions, vast portions of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:
         </p>
-        <pre><code class="hljs cpp">template &lt;size_t i, typename... Ts, typename CurTy&gt;
-void recurseFillChildren(CurTy &amp;E)
-{
-  using PackTy = std::variant&lt;Ts...&gt;;
-  using TyL = std::variant_alternative_t&lt;i - 1, PackTy&gt;;
-  static_assert(std::is_same_v&lt;CurTy, TyL&gt;);
-  using TyR = std::variant_alternative_t&lt;i, PackTy&gt;;
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">template</span> <span class="o">&lt;</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="k">typename</span><span class="o">...</span> <span class="nc">Ts</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">CurTy</span><span class="p">&gt;</span>
+<span class="kt">void</span> <span class="nf">recurseFillChildren</span><span class="p">(</span><span class="n">CurTy</span> <span class="o">&amp;</span><span class="n">E</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="n">PackTy</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">variant</span><span class="o">&lt;</span><span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="k">using</span> <span class="n">TyL</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">variant_alternative_t</span><span class="o">&lt;</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">PackTy</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_same_v</span><span class="o">&lt;</span><span class="n">CurTy</span><span class="p">,</span> <span class="n">TyL</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="k">using</span> <span class="n">TyR</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">variant_alternative_t</span><span class="o">&lt;</span><span class="n">i</span><span class="p">,</span> <span class="n">PackTy</span><span class="o">&gt;</span><span class="p">;</span>
 
-  for (i32 j = 0; j &lt; E.NChildren; ++j)
-  {
-    E.Children.push_back(miniParser&lt;TyR&gt;());
-    if constexpr (i + 1 &lt; sizeof...(Ts))
-      recurseFillChildren&lt;i + 1, Ts...&gt;(E.Children.back());
-  }
-};</code></pre>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i32</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">E</span><span class="p">.</span><span class="n">NChildren</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">E</span><span class="p">.</span><span class="n">Children</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">miniParser</span><span class="o">&lt;</span><span class="n">TyR</span><span class="o">&gt;</span><span class="p">());</span>
+    <span class="k">if</span> <span class="k">constexpr</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">...(</span><span class="n">Ts</span><span class="p">))</span>
+      <span class="n">recurseFillChildren</span><span class="o">&lt;</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">E</span><span class="p">.</span><span class="n">Children</span><span class="p">.</span><span class="n">back</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">};</span></code></pre>
         <p class="exercise">
           Is there anything that Rust can do that C++ can't?
         </p>
         <p>
           Rust didn't restrict what macros can do as much as C++ did. As a result, it's possible to do more with them. The particular example of the Pest parser is especially enlightening:
         </p>
-        <pre><code class="hljs rs">#[derive(Parser)]
-#[grammar = "grammar.pest"]</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="nd">#[derive(Parser)]</span>
+<span class="nd">#[grammar</span> <span class="nd">=</span> <span class="s">"grammar.pest"</span><span class="nd">]</span></code></pre>
         <p>
           Essentially, "grammar.pest" is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust's macros are very slow, and your compile-times blow up if you have recursive macros. <mark>std::embed</mark> in C++23 will probably do it right.
         </p>
@@ -1368,35 +1528,363 @@ void recurseFillChildren(CurTy &amp;E)
             How many more language features are missing?
           </li>
         </ol>
-        <pre><code class="hljs hs">{-# LANGUAGE MagicHash #-}
-{-# LANGUAGE TypeFamilies #-}
-{-# LANGUAGE TypeInType #-}
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="cp">{-# LANGUAGE MagicHash #-}</span>
+<span class="cp">{-# LANGUAGE TypeFamilies #-}</span>
+<span class="cp">{-# LANGUAGE TypeInType #-}</span>
 
-import GHC.Exts
+<span class="kr">import</span> <span class="nn">GHC.Exts</span>
 
-type family MatchInt (f :: Int) :: () where
-  MatchInt ('I# _) = '()</code></pre>
-        <pre><code class="hljs hs">{-# LANGUAGE PolyKinds #-}
-{-# LANGUAGE RankNTypes #-}
+<span class="kr">type</span> <span class="n">family</span> <span class="kt">MatchInt</span> <span class="p">(</span><span class="n">f</span> <span class="o">::</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">::</span> <span class="nb">()</span> <span class="kr">where</span>
+  <span class="kt">MatchInt</span> <span class="p">(</span><span class="kt">'I</span><span class="o">#</span> <span class="kr">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">'</span><span class="nb">()</span></code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="cp">{-# LANGUAGE PolyKinds #-}</span>
+<span class="cp">{-# LANGUAGE RankNTypes #-}</span>
 
-f = undefined :: (forall (a :: k) m. m a -&gt; Int) -&gt; Int</code></pre>
-        <pre><code class="hljs hs">{-# LANGUAGE PolyKinds #-}
+<span class="n">f</span> <span class="o">=</span> <span class="n">undefined</span> <span class="o">::</span> <span class="p">(</span><span class="n">forall</span> <span class="p">(</span><span class="n">a</span> <span class="o">::</span> <span class="n">k</span><span class="p">)</span> <span class="n">m</span><span class="o">.</span> <span class="n">m</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="cp">{-# LANGUAGE PolyKinds #-}</span>
 
-data Proxy a = Proxy
+<span class="kr">data</span> <span class="kt">Proxy</span> <span class="n">a</span> <span class="o">=</span> <span class="kt">Proxy</span>
 
-class Foo (t :: k) where foo :: Proxy (a :: t)</code></pre>
-        <pre><code class="hljs hs">{-# LANGUAGE DataKinds              #-}
-{-# LANGUAGE FlexibleContexts       #-}
-{-# LANGUAGE PolyKinds              #-}
-{-# LANGUAGE TypeFamilyDependencies #-}
-{-# LANGUAGE TypeOperators, AllowAmbiguousTypes          #-}
+<span class="kr">class</span> <span class="kt">Foo</span> <span class="p">(</span><span class="n">t</span> <span class="o">::</span> <span class="n">k</span><span class="p">)</span> <span class="kr">where</span> <span class="n">foo</span> <span class="o">::</span> <span class="kt">Proxy</span> <span class="p">(</span><span class="n">a</span> <span class="o">::</span> <span class="n">t</span><span class="p">)</span></code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="cp">{-# LANGUAGE DataKinds              #-}</span>
+<span class="cp">{-# LANGUAGE FlexibleContexts       #-}</span>
+<span class="cp">{-# LANGUAGE PolyKinds              #-}</span>
+<span class="cp">{-# LANGUAGE TypeFamilyDependencies #-}</span>
+<span class="cp">{-# LANGUAGE TypeOperators, AllowAmbiguousTypes          #-}</span>
 
-type family Dim v
+<span class="kr">type</span> <span class="n">family</span> <span class="kt">Dim</span> <span class="n">v</span>
 
-type family v `OfDim` (n :: Dim v) = r | r -&gt; n
+<span class="kr">type</span> <span class="n">family</span> <span class="n">v</span> <span class="p">`</span><span class="kt">OfDim</span><span class="p">`</span> <span class="p">(</span><span class="n">n</span> <span class="o">::</span> <span class="kt">Dim</span> <span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="n">r</span> <span class="o">|</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">n</span>
 
-(!*^) :: Dim m `OfDim` j -&gt; Dim m `OfDim` i
-(!*^) = undefined</code></pre>
+<span class="p">(</span><span class="o">!*^</span><span class="p">)</span> <span class="o">::</span> <span class="kt">Dim</span> <span class="n">m</span> <span class="p">`</span><span class="kt">OfDim</span><span class="p">`</span> <span class="n">j</span> <span class="o">-&gt;</span> <span class="kt">Dim</span> <span class="n">m</span> <span class="p">`</span><span class="kt">OfDim</span><span class="p">`</span> <span class="n">i</span>
+<span class="p">(</span><span class="o">!*^</span><span class="p">)</span> <span class="o">=</span> <span class="n">undefined</span></code></pre>
         <p class="exercise">
           Doesn't Go feature a solid compiler/runtime?
         </p>

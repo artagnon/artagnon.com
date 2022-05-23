@@ -12,10 +12,6 @@
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
     <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/coq.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/cpp.min.js"></script>
-    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/languages/haskell.min.js"></script>
     <script defer="" src="/dist/script.min.js"></script>
   <style id="MJX-CHTML-styles">
 mjx-container[jax="CHTML"] {
@@ -394,30 +390,276 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           The corresponding C++ code (is actually specialized with short) is:
         </p>
-        <pre><code class="hljs cpp">template &lt;typename T&gt;
-FORCEINLINE T operator()(T a, T b) const
-{
-   return (a &gt;= b ? a : b);
-}</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="n">FORCEINLINE</span> <span class="n">T</span> <span class="nf">operator</span><span class="p">()(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+   <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span><span class="p">);</span>
+<span class="err">}</span></code></pre>
         <p>
           While in lldb, the assembly instructions look like:
         </p>
-        <pre><code class="hljs cpp">--------------- [XCode 5]
--&gt; 0x108af1930:  pushq  %rbp
-   0x108af1931:  movq   %rsp, %rbp
-   0x108af1934:  cmpw   %si, %di
-   0x108af1937:  cmovgew %di, %si
-   0x108af193b:  movswl %si, %eax
-   0x108af193e:  popq   %rbp
-   0x108af193f:  retq</code></pre>
-        <pre><code class="hljs cpp">--------------- [XCode 6]
--&gt; 0x108d1ac10:  pushq  %rbp
-   0x108d1ac11:  movq   %rsp, %rbp
-   0x108d1ac14:  cmpl   %esi, %edi
-   0x108d1ac16:  cmovgew %di, %si
-   0x108d1ac1a:  movswl %si, %eax
-   0x108d1ac1d:  popq   %rbp
-   0x108d1ac1e:  retq</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="o">---------------</span> <span class="p">[</span><span class="n">XCode</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">-&gt;</span> <span class="mh">0x108af1930</span><span class="o">:</span>  <span class="n">pushq</span>  <span class="o">%</span><span class="n">rbp</span>
+   <span class="mh">0x108af1931</span><span class="o">:</span>  <span class="n">movq</span>   <span class="o">%</span><span class="n">rsp</span><span class="p">,</span> <span class="o">%</span><span class="n">rbp</span>
+   <span class="mh">0x108af1934</span><span class="o">:</span>  <span class="n">cmpw</span>   <span class="o">%</span><span class="n">si</span><span class="p">,</span> <span class="o">%</span><span class="n">di</span>
+   <span class="mh">0x108af1937</span><span class="o">:</span>  <span class="n">cmovgew</span> <span class="o">%</span><span class="n">di</span><span class="p">,</span> <span class="o">%</span><span class="n">si</span>
+   <span class="mh">0x108af193b</span><span class="o">:</span>  <span class="n">movswl</span> <span class="o">%</span><span class="n">si</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="mh">0x108af193e</span><span class="o">:</span>  <span class="n">popq</span>   <span class="o">%</span><span class="n">rbp</span>
+   <span class="mh">0x108af193f</span><span class="o">:</span>  <span class="n">retq</span></code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="o">---------------</span> <span class="p">[</span><span class="n">XCode</span> <span class="mi">6</span><span class="p">]</span>
+<span class="o">-&gt;</span> <span class="mh">0x108d1ac10</span><span class="o">:</span>  <span class="n">pushq</span>  <span class="o">%</span><span class="n">rbp</span>
+   <span class="mh">0x108d1ac11</span><span class="o">:</span>  <span class="n">movq</span>   <span class="o">%</span><span class="n">rsp</span><span class="p">,</span> <span class="o">%</span><span class="n">rbp</span>
+   <span class="mh">0x108d1ac14</span><span class="o">:</span>  <span class="n">cmpl</span>   <span class="o">%</span><span class="n">esi</span><span class="p">,</span> <span class="o">%</span><span class="n">edi</span>
+   <span class="mh">0x108d1ac16</span><span class="o">:</span>  <span class="n">cmovgew</span> <span class="o">%</span><span class="n">di</span><span class="p">,</span> <span class="o">%</span><span class="n">si</span>
+   <span class="mh">0x108d1ac1a</span><span class="o">:</span>  <span class="n">movswl</span> <span class="o">%</span><span class="n">si</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="mh">0x108d1ac1d</span><span class="o">:</span>  <span class="n">popq</span>   <span class="o">%</span><span class="n">rbp</span>
+   <span class="mh">0x108d1ac1e</span><span class="o">:</span>  <span class="n">retq</span></code></pre>
         <p>
           So, it's comparing the extended registers, but cmpl/cmpw difference is<br>
           messing up somehow.
@@ -425,41 +667,287 @@ FORCEINLINE T operator()(T a, T b) const
         <p>
           After execution of the cmpl/cmpw:
         </p>
-        <pre><code class="hljs cpp">--------------- [XCode 5]
-(lldb) register read --format int16_t[] di
-      di = {-48}
-(lldb) register read --format int16_t[] si
-      si = {34}
-(lldb) register read --format int16_t[] edi
-     edi = {-48 7103}
-(lldb) register read --format int16_t[] esi
-     esi = {34 7103}
-(lldb) register read --format b rflags
-  rflags = 0b0000000000000000000000000000000000000000000000000000001010010010</code></pre>
-        <pre><code class="hljs cpp">--------------- [XCode 6]
-(lldb) register read --format int16_t[] di
-      di = {-48}
-(lldb) register read --format int16_t[] si
-      si = {34}
-(lldb) register read --format int16_t[] edi
-     edi = {-48 0}
-(lldb) register read --format int16_t[] esi
-     esi = {34 0}
-(lldb) register read --format b rflags
-  rflags = 0b0000000000000000000000000000000000000000000000000000001000010010
-                                                                     ^
-                                                             Sign flag different</code></pre>
-        <pre><code class="hljs cpp">--------------- [XCode 6, with C code calling max]
-(lldb) register read --format int16_t[] di
-      di = {-48}
-(lldb) register read --format int16_t[] si
-      si = {34}
-(lldb) register read --format int16_t[] edi
-     edi = {-48 -1}
-                 ^
-         In the LLVM call, this is zero
-(lldb) register read --format int16_t[] esi
-     esi = {34 0}</code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="o">---------------</span> <span class="p">[</span><span class="n">XCode</span> <span class="mi">5</span><span class="p">]</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">di</span>
+      <span class="n">di</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">48</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">si</span>
+      <span class="n">si</span> <span class="o">=</span> <span class="p">{</span><span class="mi">34</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">edi</span>
+     <span class="n">edi</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">48</span> <span class="mi">7103</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">esi</span>
+     <span class="n">esi</span> <span class="o">=</span> <span class="p">{</span><span class="mi">34</span> <span class="mi">7103</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="n">b</span> <span class="n">rflags</span>
+  <span class="n">rflags</span> <span class="o">=</span> <span class="mb">0b0000000000000000000000000000000000000000000000000000001010010010</span></code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="o">---------------</span> <span class="p">[</span><span class="n">XCode</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">di</span>
+      <span class="n">di</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">48</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">si</span>
+      <span class="n">si</span> <span class="o">=</span> <span class="p">{</span><span class="mi">34</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">edi</span>
+     <span class="n">edi</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">48</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">esi</span>
+     <span class="n">esi</span> <span class="o">=</span> <span class="p">{</span><span class="mi">34</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="n">b</span> <span class="n">rflags</span>
+  <span class="n">rflags</span> <span class="o">=</span> <span class="mb">0b0000000000000000000000000000000000000000000000000000001000010010</span>
+                                                                     <span class="o">^</span>
+                                                             <span class="n">Sign</span> <span class="n">flag</span> <span class="n">different</span></code></pre>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="o">---------------</span> <span class="p">[</span><span class="n">XCode</span> <span class="mi">6</span><span class="p">,</span> <span class="n">with</span> <span class="n">C</span> <span class="n">code</span> <span class="n">calling</span> <span class="n">max</span><span class="p">]</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">di</span>
+      <span class="n">di</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">48</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">si</span>
+      <span class="n">si</span> <span class="o">=</span> <span class="p">{</span><span class="mi">34</span><span class="p">}</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">edi</span>
+     <span class="n">edi</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">48</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+                 <span class="o">^</span>
+         <span class="n">In</span> <span class="n">the</span> <span class="n">LLVM</span> <span class="n">call</span><span class="p">,</span> <span class="k">this</span> <span class="n">is</span> <span class="n">zero</span>
+<span class="p">(</span><span class="n">lldb</span><span class="p">)</span> <span class="k">register</span> <span class="n">read</span> <span class="o">--</span><span class="n">format</span> <span class="kt">int16_t</span><span class="p">[]</span> <span class="n">esi</span>
+     <span class="n">esi</span> <span class="o">=</span> <span class="p">{</span><span class="mi">34</span> <span class="mi">0</span><span class="p">}</span></code></pre>
         <p>
           In conclusion, this is a Clang/LLVM version mismatch. It's compiling muIntScalarMax_sint16 to emit a compl instead of a compw. The fact that the bug only reproduces with LLVM is because: LLVM doesn't set up the extended form of the register correctly for negative numbers, when calling a function with a word-sized register.
         </p>
