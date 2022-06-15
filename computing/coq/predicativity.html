@@ -1,0 +1,915 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <title>Predicativity in Coq | artagnon.com</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" href="/dist/artagnon.com.svg">
+    <link rel="mask-icon" href="/dist/mask-icon.svg" color="#000000">
+    <link rel="stylesheet" href="/dist/style.min.css">
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/cash/6.0.1/cash.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/dayjs.min.js"></script>
+    <script defer="" src="//cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.35/plugin/relativeTime.min.js"></script>
+    <script defer="" src="/dist/script.min.js"></script>
+  <style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+  <body class="wrapper">
+    <nav><a href="/"><img id="logo" src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
+      <ul>
+        <li>
+          <span class="navidx">01</span><a href="/art">art</a>
+        </li>
+        <li>
+          <span class="navidx">02</span><a href="/computing">computing</a>
+        </li>
+        <li>
+          <span class="navidx">03</span><a href="/logic">logic</a>
+        </li>
+        <li>
+          <span class="navidx">04</span><a href="/math">math</a>
+        </li>
+        <li>
+          <span class="navidx">05</span><a href="/publications">publications</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <header>
+        <h1>
+          Predicativity in Coq
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time class="begin" datetime="2020-03-08">Sun, 8 Mar 2020 07:00:00 +0100</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2022-06-15">Wed, 15 Jun 2022 17:00:00 +0200</time></span><br><span id="locations">Paris</span>
+        </div>
+      </header>
+      <article>
+        <p class="blurb">
+          Today, we write a quick specialized note on what impredicativity exactly means, for those reasonably familiar with the Coq syntax.
+        </p>
+        <p>
+          Historically speaking, Coq started out with making <mark>Set</mark> impredicative and they still carry around the flag <mark>--set-impredicative</mark> to maintain impredicativity in Sets. Let's check it quickly:
+        </p>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Set is predicative. *)</span><span class="w">
+</span><span class="no">Fail</span><span class="w"> </span><span class="k">Definition</span><span class="w"> </span><span class="no">SetPred</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">.</span></code></pre>
+        <p>
+          We use a little macro to check the impredicativity of various types, since an equivalent definition wouldn't type-check:
+        </p>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Checks that all inhabitants of U are of type V. *)</span><span class="w">
+</span><span class="k">Notation</span><span class="w"> </span><span class="s2">"'check' U V"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">U</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">V</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="no">U</span><span class="o">,</span><span class="w"> </span><span class="no">V</span><span class="w"> </span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">0</span><span class="o">).</span></code></pre>
+        <p>
+          All inhabitants of <mark>Prop</mark> are of type Prop, for good reason.
+        </p>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Prop is impredicative. *)</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">PropImpr</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="kr">Prop</span><span class="o">.</span></code></pre>
+        <p>
+          Attempt to check the predicativity of <mark>Type</mark> naïvely:
+        </p>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Is Type impredicative? This is misleading. *)</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">TypeNaive</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">.</span></code></pre>
+        <p>
+          The previous example was misleading, and we clarify it in the next example:
+        </p>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* In the previous definition, Type is really Type@{i},
+ * and the following definition fails with: Universe {Predicativity.153} is unbound. *)</span><span class="w">
+</span><span class="no">Fail</span><span class="w"> </span><span class="k">Definition</span><span class="w"> </span><span class="no">TypePred</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">}.</span></code></pre>
+        <p>
+          The Type universe is cumulative, not impredicative. We show the cumulativity using algebraic universe notation:
+        </p>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="c">(* Fails due to a bug in Coq: Unable to handle arbitrary u+k &lt;= v constraints? *)</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">TypePred'</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">},</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">+</span><span class="mi">1</span><span class="o">}).</span><span class="w">
+
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">TypePred'</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">+</span><span class="mi">1</span><span class="o">}.</span></code></pre>
+        <footer>
+          <p>
+            ‡ <a href="https://github.com/SkySkimmer">Gaëtan Gilbert</a>: intricacies of universes in Coq
+          </p>
+          <p>
+            § <a href="http://pauillac.inria.fr/~herbelin/">Hugo Herbelin</a>: syntactic mastery over Coq
+          </p>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>
