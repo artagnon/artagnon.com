@@ -366,7 +366,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           Inside a register allocator
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time class="begin" datetime="2016-03-24">Thu, 24 Mar 2016 17:00:00 -0500</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2022-05-23">Mon, 23 May 2022 14:00:00 +0200</time></span><br><span id="locations">Boston<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Chennai<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Paris</span>
+          <span id="timestamp"><time class="begin" datetime="2016-03-24">Thu, 24 Mar 2016 17:00:00 -0500</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2022-06-16">Thu, 16 Jun 2022 11:00:00 +0200</time></span><br><span id="locations">Boston<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Chennai<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Paris</span>
         </div>
       </header>
       <article>
@@ -721,8 +721,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend <mark>%RAX</mark> into <mark>%RDX</mark> (not any other register) for use in a later <mark>IDIV</mark>. Remember that <mark>IDIV</mark> operates on <mark>%RDX:%RAX</mark> as the numerator, and writes the quotient in <mark>%RAX</mark>, reminder in <mark>%RDX</mark>.
         </p>
         <p>
-          The instruction is modeled as <mark>MachineInstr</mark>, and the operands as <mark>MachineOperand</mark>. Note that a <mark>MO</mark> doesn't have to be a register: it could also be an immediate value; we use <mark>MO.isReg()</mark> to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, <mark>MO</mark> can also be <mark>EarlyClobber</mark>, <mark>Dead</mark>, or <mark>Undef</mark>. A Dead <mark>MO</mark> implies Def, and<br>
-          indicates that the value defined is used no longer.
+          The instruction is modeled as <mark>MachineInstr</mark>, and the operands as <mark>MachineOperand</mark>. Note that a <mark>MO</mark> doesn't have to be a register: it could also be an immediate value; we use <mark>MO.isReg()</mark> to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, <mark>MO</mark> can also be <mark>EarlyClobber</mark>, <mark>Dead</mark>, or <mark>Undef</mark>. A Dead <mark>MO</mark> implies Def, and indicates that the value defined is used no longer.
         </p>
         <p>
           <mark>AllocateBasicBlock</mark>, which operates on <mark>MachineBasicBlock</mark>, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the <mark>LiveIns</mark> (registers coming in live from the previous <mark>MBB</mark>) as <mark>regReserved</mark> so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls <mark>usePhysReg</mark> on them. At this stage, the physical register must be either <mark>regDisabled</mark>, <mark>regReserved</mark>, or <mark>regFree</mark>. It cannot be allocated to a virtual register. Why? Imagine you see:
@@ -814,7 +813,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           Now, if <mark>%RAX</mark> were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as <mark>regFree</mark>, and move on: we have done our part by completing the use of the register that was reserved earlier.
         </p>
         <p>
-          The second scan operates only on virtual register Uses. We add the register to <mark>LiveVirtRegs</mark>, via <mark>reloadVirtReg</mark>. If it didn't already exist in the map, we <mark>allocVirtReg</mark> it, which essentially gets the first <mark>regFree</mark> register not used in an instruction, and calls <mark>assignVirtToPhysReg</mark> on it. <mark>assignVirtToPhysReg</mark> is very simple: it just updates the <mark>PhysRegState</mark> mapping. Finally,<br>
+          The second scan operates only on virtual register Uses. We add the register to <mark>LiveVirtRegs</mark>, via <mark>reloadVirtReg</mark>. If it didn't already exist in the map, we <mark>allocVirtReg</mark> it, which essentially gets the first <mark>regFree</mark> register not used in an instruction, and calls <mark>assignVirtToPhysReg</mark> on it. <mark>assignVirtToPhysReg</mark> is very simple: it just updates the <mark>PhysRegState</mark> mapping. Finally,
           <mark>reloadVirtReg</mark> updates the <mark>UsedInInstr</mark> map.
         </p>
         <p>
@@ -907,8 +906,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         </style>
         <pre><code class="highlight"><span class="cp">%RAX&lt;def&gt; = COPY %vreg342</span></code></pre>
         <p>
-          we should always <mark>regReserve</mark> <mark>%RAX</mark>, right? Except if <mark>%RAX</mark> is dead. What<br>
-          about if it's an <mark>&lt;imp-def&gt;</mark>?
+          we should always <mark>regReserve</mark> <mark>%RAX</mark>, right? Except if <mark>%RAX</mark> is dead. What about if it's an <mark>&lt;imp-def&gt;</mark>?
         </p>
         <style>
           .highlight table td { padding: 5px; }

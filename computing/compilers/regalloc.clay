@@ -28,8 +28,7 @@ CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use,kill>
 
 Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend `%RAX` into `%RDX` (not any other register) for use in a later `IDIV`. Remember that `IDIV` operates on `%RDX:%RAX` as the numerator, and writes the quotient in `%RAX`, reminder in `%RDX`.
 
-The instruction is modeled as `MachineInstr`, and the operands as `MachineOperand`. Note that a `MO` doesn't have to be a register: it could also be an immediate value; we use `MO.isReg()` to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, `MO` can also be `EarlyClobber`, `Dead`, or `Undef`. A Dead `MO` implies Def, and
-indicates that the value defined is used no longer.
+The instruction is modeled as `MachineInstr`, and the operands as `MachineOperand`. Note that a `MO` doesn't have to be a register: it could also be an immediate value; we use `MO.isReg()` to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, `MO` can also be `EarlyClobber`, `Dead`, or `Undef`. A Dead `MO` implies Def, and indicates that the value defined is used no longer.
 
 `AllocateBasicBlock`, which operates on `MachineBasicBlock`, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the `LiveIns` (registers coming in live from the previous `MBB`) as `regReserved` so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls `usePhysReg` on them. At this stage, the physical register must be either `regDisabled`, `regReserved`, or `regFree`. It cannot be allocated to a virtual register. Why? Imagine you see:
 
@@ -50,8 +49,7 @@ To think about the problem, if we have,
 %RAX<def> = COPY %vreg342
 ```
 
-we should always `regReserve` `%RAX`, right? Except if `%RAX` is dead. What
-about if it's an `<imp-def>`?
+we should always `regReserve` `%RAX`, right? Except if `%RAX` is dead. What about if it's an `<imp-def>`?
 
 ```asm
 CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use>
