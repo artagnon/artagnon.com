@@ -75,8 +75,9 @@ html lang="en"
                 h4 id="#{paragraph.bookmark}" = paragraph.to_s
             - when :footer
               footer
-                - for item in paragraph.split "\n"
-                  p == item
+                ul.footer
+                  - for item in paragraph.split "\n"
+                    li == item
             - when :codeblock
               style == paragraph.prop
               pre

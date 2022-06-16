@@ -295,6 +295,16 @@ h3 {
   padding-left: 2rem;
 }
 
+.footer {
+  list-style-position: outside;
+  list-style: none;
+  padding-left: 0rem;
+}
+.footer > li::before {
+  content: "†";
+  color: #A26753;
+}
+
 .blurb {
   text-align: justify;
   color: #757557;
@@ -302,14 +312,12 @@ h3 {
   font-style: oblique 10deg;
 }
 
-.exercise,
-.indent {
+.exercise {
   padding-left: 2rem;
 }
-.exercise::before,
-.indent::before {
-  color: #A26753;
+.exercise::before {
   content: "§";
+  color: #A26753;
 }
 
 mark {

@@ -309,19 +309,27 @@ h3
   list-style: none
   padding-left: 2rem
 
+.footer
+  list-style-position: outside
+  list-style: none
+  padding-left: 0rem
+
+  & > li::before
+    content: "†"
+    color: $marker-fg
+
 .blurb
   text-align: justify
   color: $blurb-fg
   font-size: 1.0rem
   font-style: oblique 10deg
 
-.exercise,
-.indent
+.exercise
   padding-left: 2rem
 
   &::before
-    color: $marker-fg
     content: "§"
+    color: $marker-fg
 
 mark
   background: $mark-bg
