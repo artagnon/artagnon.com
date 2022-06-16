@@ -73,8 +73,7 @@ if (A < 17)
   goto jump;
 ```
 
-Updating a vanilla Dominator tree is relatively easy: simply add a child to the correct node. The problem at hand is that we have an O(1)-query Dominator object that we want to keep up to date as we make edits to the IR. How is it O(1)-query? Every node in the tree is assigned DFS start and end times: so if one interval nests within another, the corresponding node is dominated by the
-other node.
+Updating a vanilla Dominator tree is relatively easy: simply add a child to the correct node. The problem at hand is that we have an O(1)-query Dominator object that we want to keep up to date as we make edits to the IR. How is it O(1)-query? Every node in the tree is assigned DFS start and end times: so if one interval nests within another, the corresponding node is dominated by the other node.
 
 $$
 \begin{xy}
