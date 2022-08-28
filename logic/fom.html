@@ -181,20 +181,6 @@ mjx-container[jax="CHTML"][justify="right"] {
   text-align: right;
 }
 
-mjx-mi {
-  display: inline-block;
-  text-align: left;
-}
-
-mjx-c {
-  display: inline-block;
-}
-
-mjx-utext {
-  display: inline-block;
-  padding: .75em 0 .2em 0;
-}
-
 mjx-mo {
   display: inline-block;
   text-align: left;
@@ -288,7 +274,21 @@ mjx-mark {
   height: 0px;
 }
 
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
 mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mi {
   display: inline-block;
   text-align: left;
 }
@@ -673,11 +673,6 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
 
-mjx-c.mjx-c221E::before {
-  padding: 0.442em 1em 0.011em 0;
-  content: "\221E";
-}
-
 mjx-c.mjx-c223C::before {
   padding: 0.367em 0.778em 0 0;
   content: "\223C";
@@ -866,12 +861,12 @@ mjx-c.mjx-c1D466.TEX-I::before {
           An inquiry into the Foundations of Mathematics
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time class="begin" datetime="2020-02-02">Sun, 2 Feb 2020 11:00:00 +0100</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2022-06-15">Wed, 15 Jun 2022 17:00:00 +0200</time></span><br><span id="locations">Paris</span>
+          <span id="timestamp"><time class="begin" datetime="2020-02-02">Sun, 2 Feb 2020 11:00:00 +0100</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2022-08-28">Sun, 28 Aug 2022 11:00:00 +0200</time></span><br><span id="locations">Paris</span>
         </div>
       </header>
       <article>
         <p class="blurb">
-          Starting from the question of what consequence Gödel's incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for these new foundations in Coq. We conclude by linking to recent work in <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories and HoTT.
+          Starting from the question of what consequence Gödel's incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for these new foundations in Coq.
         </p>
         <p>
           Mathematics can be thought of as a game where you start with some objects (say, sets), some axioms on the objects (typically, ZFC), and use a calculus of logical deductions (such as classical logic) to prove things. To mechanize this game in a proof assistant, one would either use a proof-search or tactic system, and check subject reduction. However, mechanized mathematics is done differently from classical mathematics, and we first investigate whether building new foundations is justifiable.
@@ -1380,12 +1375,6 @@ mjx-c.mjx-c1D466.TEX-I::before {
         </div>
         <p>
           The answer, as supplied by HoTT, is: yes, proofs are relevant, and <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> is different from <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45E TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>; a proof is viewed as a homotopy path between two homotopy types, and there is a notion of homotopy equivalence between homotopy paths. In classical mathematics, <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> would always be equal to <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45E TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>.
-        </p>
-        <h2 id="recent-work-in-the-field">
-          Recent work in the field
-        </h2>
-        <p>
-          We now provide references to recent constructive mathematics, in the area of higher categories. Jacob Lurie's <a href="https://www.math.ias.edu/~lurie/papers/HTT.pdf">Higher Topos Theory</a> from 2009 builds the theory of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories in the setting of quasi-categories, and more recently, Emily Riehl's <a href="http://www.math.jhu.edu/~eriehl/elements.pdf">Elements of <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-Category Theory</a> extends the theory to complete Segal spaces. Shulman's 2019 work, <a href="https://arxiv.org/pdf/1904.07004.pdf">All (<mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>, 1)-Toposes have Strict Univalent Universes</a>, ties the <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-category work to HoTT. Most of this work can be considered modern Algebraic Topology, although Lurie is currently developing <a href="https://www.math.ias.edu/~lurie/papers/SAG-rootfile.pdf">Spectral Algebraic Geometry</a>, with <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categoric foundations.
         </p>
       </article>
     </main>
