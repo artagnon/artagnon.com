@@ -628,7 +628,7 @@ mjx-c.mjx-c35::before {
           Detecting loops
         </h1>
         <div id="metadata">
-          <span id="timestamp"><time class="begin" datetime="2016-07-16">Sat, 16 Jul 2016 16:00:00 -0500</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2021-02-21">Sun, 21 Feb 2021 15:00:00 +0100</time></span><br><span id="locations">Boston<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Chennai<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Paris</span>
+          <span id="timestamp"><time class="begin" datetime="2016-07-16">Sat, 16 Jul 2016 16:00:00 -0500</time><span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span><time class="end" datetime="2022-12-28">Wed, 28 Dec 2022 14:00:00 +0100</time></span><br><span id="locations">Boston<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Chennai<span class="to"><img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"></span>Paris</span>
         </div>
       </header>
       <article>
@@ -782,7 +782,7 @@ mjx-c.mjx-c35::before {
           In the early exit case, <mark>2/7</mark> and <mark>4/5</mark> are nested within <mark>1/8</mark>, and we never reach <mark>exit target</mark> by walking backward from the source of the backedge.
         </p>
         <p>
-          In the multi-entry case, we correctly detect that <mark>1/8</mark> is not nested within <mark>2/7</mark>, while <mark>3/6</mark> and <mark>4/5</mark> are: when a node reached via a backward walk doesn't nest within the header, the loop is classified as *irreducible*.
+          In the multi-entry case, we correctly detect that <mark>1/8</mark> is not nested within <mark>2/7</mark>, while <mark>3/6</mark> and <mark>4/5</mark> are: when a node reached via a backward walk doesn't nest within the header, the loop is classified as <em>irreducible</em>.
         </p>
         <p>
           In the cuddled loops case, everything nests within <mark>1/8</mark>, and the inner loop consists of <mark>4/5</mark>, <mark>3/6</mark>, and <mark>2/7</mark>, all of which nest within <mark>2/7</mark>. Finally, the shared header case is detected as two nested loops as well: a loop is identified by a unique backedge, not a unique header [‡]. The analysis is weak in that these cases are indistinguishable from normal nested loops.
