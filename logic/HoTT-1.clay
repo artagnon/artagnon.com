@@ -4,12 +4,12 @@ HoTT I: The type theory
 This brief exposé lays the foundations for studying homotopy type theory; the concepts from here will re-appear in [HoTT/2](/HoTT/2), with fresh interpretations. It corresponds exactly to Ch.1 of the HoTT book.
 ...
 
-To specify a new type in HoTT, we need to specify four different rules: formation, introduction, elimintion, computation (FIEC).
+To specify a new type in HoTT, we need to specify four different rules: formation, introduction, elimination, computation (FIEC).
 
 (i) How to form a new type of this kind. For example $\Pi_{(x : A)} B(x)$
 (ii) How to construct elements of this kind. For example, a function type has one constructor: $f(x) :\equiv 2x$.
 (iii) How to use elements of this type. These are called eliminators or `elimination rules`. For instance, a function type has one eliminator, namely function application.
-(iv) How the eliminator acts on the constructor. For example, $(\lambda x . \phi)(a)$ is judgementally equal to the expanded function $\lambda f . f(x)$.
+(iv) How the eliminator acts on the constructor. For example, $(\lambda x . \phi)(a)$ is judgmentally equal to the expanded function $\lambda f . f(x)$.
 (v) An optional uniqueness principle which expresses uniqueness into or out of the type. Every element of the type is uniquely determined by results of applying type eliminators to it. It is often a provable propositional equality: in this case, we call it `propositional uniqueness principle`.
 
 Broadly speaking, there are two kinds of types: $\Pi$ (which turns out to be a degenerate case of an inductive type, which we will see later) and $\Sigma$.
@@ -32,7 +32,7 @@ $$
 
 In order to be able to write dependent functions over the product type, we can define function $f : \Pi_{x : A \times B} C(x)$ by providing $g : \Pi_{x : A} \Pi_{x : B} C((x, y))$ with the defining equation $f((x, y)) = g(x)(y)$.
 
-To prove a property for all elements of a prduct, it is enough to prove it for its canonical elements (the ordered pairs). In the universal case, we call the resulting function induction for product types:
+To prove a property for all elements of a product, it is enough to prove it for its canonical elements (the ordered pairs). In the universal case, we call the resulting function induction for product types:
 
 $$
   ind_{A \times B} : \Pi_{C : A \times B \rightarrow U} (\Pi_{x : A}\Pi_{y : B} C((x, y))) \rightarrow \Pi_{x : A \rightarrow B} C(x)
@@ -90,7 +90,7 @@ $$
   \lambda x . pr_2(g(x)) : \Pi_{x : A} R(x, pr_1(g(x)))
 $$
 
-In English, this reads: if $\forall x : A$, there is a $y : B$ such that $R(x, y)$, then $\exists f : A \rightarrow B$ such that $\forall x : A$, we have $R(x, f(x))$. We will provide a more familar axiom of choice later.
+In English, this reads: if $\forall x : A$, there is a $y : B$ such that $R(x, y)$, then $\exists f : A \rightarrow B$ such that $\forall x : A$, we have $R(x, f(x))$. We will provide a more familiar axiom of choice later.
 
 Let's also provide an example of the magma type, in which the second component depends on the first component:
 

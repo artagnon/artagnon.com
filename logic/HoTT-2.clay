@@ -8,7 +8,7 @@ The central idea is that types can be interpreted as higher-dimensional groupoid
 
 The `fundamental group` of a fundamental $\infty$-groupoid of a space will agree with the classical definition of a fundamental group of the space: this correspondence illustrates how homotopy theory and higher-dimensional category theory are intimately related.
 
-We will refer to $x =_A y$ as a path between the `start point` $x$ and `endpoint` $y$. $r : p =_{x =_A y} q$ can be thought of as a homotopy or a 2-path or 2-dimensional path. All of the basic constructions and axoims arises automatically from the induction principle for identity types. In other words, given the dependent funtions:
+We will refer to $x =_A y$ as a path between the `start point` $x$ and `endpoint` $y$. $r : p =_{x =_A y} q$ can be thought of as a homotopy or a 2-path or 2-dimensional path. All of the basic constructions and axioms arises automatically from the induction principle for identity types. In other words, given the dependent functions:
 
 (i) $D : \Pi_{x, y : A} (x = y) \rightarrow \mathscr{U}$
 (ii) $d : \Pi_{a : A} D(a, a, \texttt{refl}_a)$
@@ -25,9 +25,9 @@ $$
   ind_{=A}(D, d, a, a, \texttt{refl}_a) \equiv d(a)
 $$
 
-Informally, the induction principle for identity types says that if we want to construct an object which depends on an inhabitant $p : x =_A y$ of an identity type, then it suffices to perform the construction in the special case when $x, y$ are judgementally the same, and $p$ is the reflexivity element $\texttt{refl}_x x = x$.
+Informally, the induction principle for identity types says that if we want to construct an object which depends on an inhabitant $p : x =_A y$ of an identity type, then it suffices to perform the construction in the special case when $x, y$ are judgmentally the same, and $p$ is the reflexivity element $\texttt{refl}_x x = x$.
 
-The induction principle endows each type with the structure of an $\infty$-groupoid, and each function between two types with the structure of the an $\infty$-functor betwen two such groupoids.
+The induction principle endows each type with the structure of an $\infty$-groupoid, and each function between two types with the structure of the an $\infty$-functor between two such groupoids.
 
 # Types are higher groupoids
 
@@ -202,7 +202,7 @@ $$
   \texttt{transport}^P(p, -) : P(x) \rightarrow P(y)
 $$
 
-Topologically, the transport lemma can be viewed as a "path lifting" operation on a fibration. We think of a type famiy $P : A \rightarrow \mathscr{U}$ as a fibration with base space $A$, with $P(x)$ being the fiber over $x$, and with $\Sigma_{x : A} P(x)$ being the `total space` of the fibration, with first projection $\Sigma_{x : A} P(x) \rightarrow A$.
+Topologically, the transport lemma can be viewed as a "path lifting" operation on a fibration. We think of a type family $P : A \rightarrow \mathscr{U}$ as a fibration with base space $A$, with $P(x)$ being the fiber over $x$, and with $\Sigma_{x : A} P(x)$ being the `total space` of the fibration, with first projection $\Sigma_{x : A} P(x) \rightarrow A$.
 
 The defining property of a fibration is that given a path $p : x = y$ in the base space $A$ and a point $u : P(x)$ in a fiber over $x$, we may lift we may lift the path $p$ to a total space starting at $u$, and this lifting can be done continuously. The point $p_\star(u)$ can be thought of as the other endpoint of this lifted path.
 
