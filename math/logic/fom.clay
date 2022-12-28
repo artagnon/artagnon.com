@@ -1,12 +1,12 @@
 An inquiry into the Foundations of Mathematics
 
 ...
-Starting from the question of what consequence Gödel's incompletness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for these new foundations in Coq.
+Starting from the question of what consequence Gödel's incompleteness theorem has on the foundations of mathematics, we argue for new foundations, and build some intuition for these new foundations in Coq.
 ...
 
 Mathematics can be thought of as a game where you start with some objects (say, sets), some axioms on the objects (typically, ZFC), and use a calculus of logical deductions (such as classical logic) to prove things. To mechanize this game in a proof assistant, one would either use a proof-search or tactic system, and check subject reduction. However, mechanized mathematics is done differently from classical mathematics, and we first investigate whether building new foundations is justifiable.
 
-Gödel's second incompleteness theorem states that any formal system, that can express elementary arithmetic, cannot prove its own consistency, assuming à priori that the system is consistent. It doesn't destroy the platonic view of mathematics as such, but does destroy the view that there is only one correct foundation for mathematics. Further, one would argue that it is precisely this result that makes mathematics exciting: we can keep rewriting foundations to better suit our abstract intutions, and build higher abstractions, without worrying about whether there is "one true foundation".
+Gödel's second incompleteness theorem states that any formal system, that can express elementary arithmetic, cannot prove its own consistency, assuming à priori that the system is consistent. It doesn't destroy the platonic view of mathematics as such, but does destroy the view that there is only one correct foundation for mathematics. Further, one would argue that it is precisely this result that makes mathematics exciting: we can keep rewriting foundations to better suit our abstract intuitions, and build higher abstractions, without worrying about whether there is "one true foundation".
 
 # Departing from ZFC foundations
 
@@ -90,7 +90,7 @@ Proof.
 Abort.
 ```
 
-In category theory, $\mathbb{0}$ would be the inital object, and there is at most one arrow from the initial object to every other object in the category; $\mathbb{1}$ would be the final object, and there is at most one arrow from every other object in the category to it. The above theorem hypothesizes the existence of a morphism from the final object to the initial object, which of course, cannot exist.
+In category theory, $\mathbb{0}$ would be the initial object, and there is at most one arrow from the initial object to every other object in the category; $\mathbb{1}$ would be the final object, and there is at most one arrow from every other object in the category to it. The above theorem hypothesizes the existence of a morphism from the final object to the initial object, which of course, cannot exist.
 
 $$
   \begin{matrix}

@@ -116,7 +116,7 @@ $$
   \texttt{isProp}(P) :\equiv \Pi_{x, y : P} x = y
 $$
 
-Thus, to assert that $P$ is a mere proposition means to exhibit an inhabitant of $\texttt{isProp}(P)$, which is a dependent function connecting any two elements of $P$ by a path. The continuity/naturality of this function impiles not only that any two elements of $P$ are equal, but also that $P$ contains no higher homotopies either.
+Thus, to assert that $P$ is a mere proposition means to exhibit an inhabitant of $\texttt{isProp}(P)$, which is a dependent function connecting any two elements of $P$ by a path. The continuity/naturality of this function implies not only that any two elements of $P$ are equal, but also that $P$ contains no higher homotopies either.
 
 + If $P$ is a mere proposition, and $x_0 : P$, then $P \simeq \mathbb{1}$.
 
@@ -232,7 +232,7 @@ However, the former cannot be an equivalence, as making it so would remind us of
 
 It essentially says that any mere proposition in universe $\mathscr{U}_{i + 1}$ can be resized to an equivalent one in $\mathscr{U}_i$. It follows automatically if $\mathscr{U}_{i + 1}$ satisfies LEM. This is a form of `impredicativity` for mere propositions, and by avoiding its use, our type theory will remain predicative.
 
-In practice, however, what we want is a slightly different statement, that a universe $\mathscr{U}$ under consideration contains a type which "classifies all mere propositions". In other words, we want a type $\Omega : \mathscr{U}$ together with an $\Omega$-indexed family of mere propositions, which contains every mere proposition, upto equivalence. This follows from the propositional resizing axiom, if $\mathscr{U}$ is not the smallest univese $\mathscr{U}_0$, then we can define $\Omega :\equiv \texttt{Prop}_{\mathscr{U}_0}$.
+In practice, however, what we want is a slightly different statement, that a universe $\mathscr{U}$ under consideration contains a type which "classifies all mere propositions". In other words, we want a type $\Omega : \mathscr{U}$ together with an $\Omega$-indexed family of mere propositions, which contains every mere proposition, upto equivalence. This follows from the propositional resizing axiom, if $\mathscr{U}$ is not the smallest universe $\mathscr{U}_0$, then we can define $\Omega :\equiv \texttt{Prop}_{\mathscr{U}_0}$.
 
 In the absence of propositional resizing, the definition of `power set` depends on the choice of $\mathscr{U}$. In its presence, however, one can define the power set to be:
 
@@ -268,11 +268,11 @@ More precisely, given type $A$, there is a type $||A||$ with two constructors:
 (i) For any $a : A$, we have $|a| : ||A||$.
 (ii) For any $x, y : ||A||$, we have $x = y$.
 
-The first constructor means that if $A$ is inhabitated, so is $||A||$. The second ensures that $||A||$ is a mere proposition; usually we leave the witness of this fact nameless.
+The first constructor means that if $A$ is inhabited, so is $||A||$. The second ensures that $||A||$ is a mere proposition; usually we leave the witness of this fact nameless.
 
 The recursion principle of $||A||$ says that: if $B$ is a mere proposition, and we have $f : A \rightarrow B$, then there is an induced $g : ||A|| \rightarrow B$ such that $g(|a|) = f(a)$ for all $a : A$.
 
-In other words, any mere proposition that follows from $A$ already follows from $||A||$. Thus, $||A||$, as a mere proposition, contains no more information than the inhabitatedness of $A$.
+In other words, any mere proposition that follows from $A$ already follows from $||A||$. Thus, $||A||$, as a mere proposition, contains no more information than the inhabitedness of $A$.
 
 With propositional truncation, we can extend the "logic of mere propositions" to cover disjunction and existential quantification. Specifically, $||A + B|||$ is a mere propositional version of "A or B", which does not remember which disjunct is true.
 
