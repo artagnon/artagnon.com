@@ -8,7 +8,6 @@ html lang="en"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     meta name="robots" content="index,follow"
     link rel="icon" href="/dist/artagnon.com.svg"
-    link rel="mask-icon" href="/dist/mask-icon.svg" color="#000000"
 
     // synchronously load our stylesheet, compiled from various css files in design/
     link rel="stylesheet" href="/dist/style.min.css"
@@ -23,10 +22,10 @@ html lang="en"
   body.wrapper
     nav
       - if permalink == "index"
-        img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
+        img#logo src="/dist/artagnon.com.svg" alt="home" width="317" height="390"
       - else
         a href="/"
-          img#logo src="/dist/artagnon.com.shadow.svg" alt="home" width="317" height="390"
+          img#logo src="/dist/artagnon.com.svg" alt="home" width="317" height="390"
       img#more src="/dist/icon.more.svg" alt="menu" width="16" height="74"
       ul
         - topics.each_with_index do |topic, idx|
