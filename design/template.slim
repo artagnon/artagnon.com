@@ -42,7 +42,7 @@ html lang="en"
     main
       header
         h1 == title
-        - if instance_of? Clayoven::Toplevel::ContentPage or permalink == "index"
+        - if permalink == "index"
           div#metadata
             span#timestamp
               time.begin datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
@@ -56,6 +56,10 @@ html lang="en"
                   span.to
                     img src="/dist/icon.arrow.svg" alt="arrow" width="40" height="82"
               = locations[0]
+        - elsif instance_of? Clayoven::Toplevel::ContentPage
+          div#metadata
+            span#timestamp
+              time.end datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
       article
         - paragraphs.each do |paragraph|
           - case paragraph.type
