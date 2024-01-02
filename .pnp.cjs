@@ -33,7 +33,7 @@ const RAW_RUNTIME_STATE =
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
           ["sass", "npm:1.69.6"],\
-          ["svgo", "npm:3.1.0"],\
+          ["svgo", "npm:3.2.0"],\
           ["yargs", "npm:17.7.2"]\
         ],\
         "linkType": "SOFT"\
@@ -294,7 +294,7 @@ const RAW_RUNTIME_STATE =
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
           ["sass", "npm:1.69.6"],\
-          ["svgo", "npm:3.1.0"],\
+          ["svgo", "npm:3.2.0"],\
           ["yargs", "npm:17.7.2"]\
         ],\
         "linkType": "SOFT"\
@@ -1545,10 +1545,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["svgo", [\
-      ["npm:3.1.0", {\
-        "packageLocation": "../../../../cache/others/berry/cache/svgo-npm-3.1.0-eaba60e8d2-10c0.zip/node_modules/svgo/",\
+      ["npm:3.2.0", {\
+        "packageLocation": "../../../../cache/others/berry/cache/svgo-npm-3.2.0-3ad9c97efb-10c0.zip/node_modules/svgo/",\
         "packageDependencies": [\
-          ["svgo", "npm:3.1.0"],\
+          ["svgo", "npm:3.2.0"],\
           ["@trysound/sax", "npm:0.2.0"],\
           ["commander", "npm:7.2.0"],\
           ["css-select", "npm:5.1.0"],\
