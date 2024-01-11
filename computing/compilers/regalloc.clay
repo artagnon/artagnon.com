@@ -1,6 +1,6 @@
 Inside a register allocator
 
-We are going to be discussing LLVM's Fast Register Allocator: you might like to open [RegAllocFast.cpp](https://github.com/llvm-mirror/llvm/blob/master/lib/CodeGen/RegAllocFast.cpp) and refer to it as we go through the article.
+We are going to be discussing LLVM's Fast Register Allocator: you might like to open [RegAllocFast.cpp](https://github.com/llvm/llvm-project/blob/master/llvm/lib/CodeGen/RegAllocFast.cpp) and refer to it as we go through the article.
 
 FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses `PhysRegState` to keep track of the state of various physical registers: they can be 0 (`regDisabled`), 1 (`regFree`), 2 (`regReserved`), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like `LR.LastUse`); a register can either be a `<def>` or a use. If `IsImplicit` is flipped, it could also be a implicit-def (`<imp-def>`) or implicit-use (`<imp-use>`).
 
