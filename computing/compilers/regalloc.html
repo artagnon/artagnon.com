@@ -374,7 +374,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
       </header>
       <article>
         <p>
-          We are going to be discussing LLVM's Fast Register Allocator: you might like to open <a href="https://github.com/llvm/llvm-project/blob/master/llvm/lib/CodeGen/RegAllocFast.cpp">RegAllocFast.cpp</a> and refer to it as we go through the article.
+          We are going to be discussing LLVM's Fast Register Allocator: you might like to open <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/CodeGen/RegAllocFast.cpp">RegAllocFast.cpp</a> and refer to it as we go through the article.
         </p>
         <p>
           FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses <mark>PhysRegState</mark> to keep track of the state of various physical registers: they can be 0 (<mark>regDisabled</mark>), 1 (<mark>regFree</mark>), 2 (<mark>regReserved</mark>), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like <mark>LR.LastUse</mark>); a register can either be a <mark>&lt;def&gt;</mark> or a use. If <mark>IsImplicit</mark> is flipped, it could also be a implicit-def (<mark>&lt;imp-def&gt;</mark>) or implicit-use (<mark>&lt;imp-use&gt;</mark>).
