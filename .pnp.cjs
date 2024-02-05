@@ -165,7 +165,7 @@ const RAW_RUNTIME_STATE =
           ["agent-base", "npm:7.1.0"],\
           ["http-proxy-agent", "npm:7.0.0"],\
           ["https-proxy-agent", "npm:7.0.2"],\
-          ["lru-cache", "npm:10.1.0"],\
+          ["lru-cache", "npm:10.2.0"],\
           ["socks-proxy-agent", "npm:8.0.2"]\
         ],\
         "linkType": "HARD"\
@@ -364,7 +364,7 @@ const RAW_RUNTIME_STATE =
           ["@npmcli/fs", "npm:3.1.0"],\
           ["fs-minipass", "npm:3.0.3"],\
           ["glob", "npm:10.3.10"],\
-          ["lru-cache", "npm:10.1.0"],\
+          ["lru-cache", "npm:10.2.0"],\
           ["minipass", "npm:7.0.4"],\
           ["minipass-collect", "npm:2.0.1"],\
           ["minipass-flush", "npm:1.0.5"],\
@@ -867,10 +867,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["immutable", [\
-      ["npm:4.3.4", {\
-        "packageLocation": "../../../../cache/others/berry/cache/immutable-npm-4.3.4-2f54cf641b-10c0.zip/node_modules/immutable/",\
+      ["npm:4.3.5", {\
+        "packageLocation": "../../../../cache/others/berry/cache/immutable-npm-4.3.5-5958499808-10c0.zip/node_modules/immutable/",\
         "packageDependencies": [\
-          ["immutable", "npm:4.3.4"]\
+          ["immutable", "npm:4.3.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -986,10 +986,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["lru-cache", [\
-      ["npm:10.1.0", {\
-        "packageLocation": "../../../../cache/others/berry/cache/lru-cache-npm-10.1.0-f3d3a0f0ab-10c0.zip/node_modules/lru-cache/",\
+      ["npm:10.2.0", {\
+        "packageLocation": "../../../../cache/others/berry/cache/lru-cache-npm-10.2.0-b9f6b44740-10c0.zip/node_modules/lru-cache/",\
         "packageDependencies": [\
-          ["lru-cache", "npm:10.1.0"]\
+          ["lru-cache", "npm:10.2.0"]\
         ],\
         "linkType": "HARD"\
       }],\
@@ -1281,7 +1281,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../cache/others/berry/cache/path-scurry-npm-1.10.1-52bd946f2e-10c0.zip/node_modules/path-scurry/",\
         "packageDependencies": [\
           ["path-scurry", "npm:1.10.1"],\
-          ["lru-cache", "npm:10.1.0"],\
+          ["lru-cache", "npm:10.2.0"],\
           ["minipass", "npm:7.0.4"]\
         ],\
         "linkType": "HARD"\
@@ -1377,7 +1377,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["sass", "npm:1.70.0"],\
           ["chokidar", "npm:3.5.3"],\
-          ["immutable", "npm:4.3.4"],\
+          ["immutable", "npm:4.3.5"],\
           ["source-map-js", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
