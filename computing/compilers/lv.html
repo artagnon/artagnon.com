@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en">
   <head>
-    <title>Computing | artagnon.com</title>
+    <title>Deficiencies in LLVM&#39;s LoopVectorize | artagnon.com</title>
     <meta charset="utf-8">
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
     <meta name="HandheldFriendly" content="true">
@@ -353,7 +353,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           <span class="navidx">01</span><a href="/art">art</a>
         </li>
         <li>
-          <span class="navidx">02</span><span id="navcur">computing</span>
+          <span class="navidx">02</span><a href="/computing">computing</a>
         </li>
         <li>
           <span class="navidx">03</span><a href="/logic">logic</a>
@@ -366,45 +366,48 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
     <main>
       <header>
         <h1>
-          Computing
+          Deficiencies in LLVM's LoopVectorize
         </h1>
+        <div id="metadata">
+          <span id="timestamp"><time class="end" datetime="2024-06-24">Mon, 24 Jun 2024 22:00:00 +0100</time></span>
+        </div>
       </header>
       <article>
-        <p class="blurb">
-          The author possesses high engineering skill in compiler technology, and decent engineering skill in formalization with Coq.
+        <p>
+          Most modern general purpose CPUs have a vector processing unit (VPU). Major instruction set architectures have vector extensions, and dedicated instructions that target the VPU. Examples include x86's SSE/SSE2, Arm's SME, AArch64's SVE/Neon, and the latest entrant is RISC-V's RVV. In order to generate vector instructions, the programmer doesn’t have to do anything special: the source language is lowered to LLVM IR, and LLVM automatically detects patterns of instructions that can be vectorized, and emits vector instructions. This happens in multiple stages: the target-independent LLVM IR has support for representing vectors, which are then lowered to Machine IR after Instruction Selection selects the right instructions for the target, and this is finally passed off to the rest of the backend to generate the assembly. There are two major middle-end transforms that turn LLVM IR without vectors in them to that with vectors in them: SLPVectorize and LoopVectorize. The former targets code written in straight-line patterns, and the latter targets code written within loops. The topic of this article is LoopVectorize.
         </p>
-        <ul id="indexfill">
-          <h2>
-            compilers (2015 — 2024)
-          </h2>
+        <p>
+          Let us broadly sketch the pieces of infrastructure that LoopVectorize depends on. First, there is ScalarEvolution that is a core middle-end analysis for analyzing scalars that evolve in loops, i.e. scalars that depend on the loop induction variable. Next, we need an analysis to determine whether or not something is legal to vectorize, depending on the memory access patterns, and to insert runtime checks in ambiguous cases: this is LoopAccessAnalysis. Next, if the loop is legal to vectorize, the VPlan infrastructure kicks in that makes several candidate plans for vectorizing the loop, querying the CostModel analysis to find out the cost of each plan. Finally, LoopVectorize chooses the best plan from the candidate plans, and if the vectorization is profitable with this plan, it executes the VPlan, emitting the final LLVM IR.
+        </p>
+        <p>
+          Now, LoopVectorize is quite sophisticated, and is worked on actively. It performs roughly on-par with GCC’s equivalent transform. However, it suffers from several deficiencies, generating sub-optimal vector code, or missing opportunities for vectorization.
+        </p>
+        <p>
+          The reason for sub-optimal code is the logic within VPlan, or within LoopVectorize. In this category, there is one big <a href="https://discourse.llvm.org/t/rfc-improved-vplan-native-path/73152">deficiency</a>: LoopVectorize cannot vectorize outer loops.
+        </p>
+        <p>
+          The reasons for missed opportunities broadly fall into five buckets:
+        </p>
+        <ol class="olitems" type="none" start="1">
           <li>
-            <a href="/computing/compilers/lv">Deficiencies in LLVM's LoopVectorize</a>
+            Missing patterns in LoopVectorize. For <a href="https://github.com/llvm/llvm-project/pull/67812">example</a>, loops with conditionals involving the induction variable aren't vectorized.
           </li>
           <li>
-            <a href="/computing/compilers/incrd">Incrementally updating the Dominator</a>
+            Deficiencies in ScalarEvolution. For <a href="https://github.com/llvm/llvm-project/pull/92560">example</a>, std::reverse isn't vectorized.
           </li>
           <li>
-            <a href="/computing/compilers/loops">Detecting loops</a>
+            Deficiencies in LoopAccessAnalysis. The analysis relies on <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Analysis/LoopAccessAnalysis.cpp#L869-L885">ad-hoc logic</a> on ScalarEvolution expressions to determine dependent accesses, which is certainly sub-optimal.
           </li>
           <li>
-            <a href="/computing/compilers/regalloc">Inside a register allocator</a>
+            Lack of supporting transforms. GCC has a transform which distributes a loop to remove dependent accesses, so it can be vectorized. LLVM's <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Transforms/Scalar/LoopDistribute.cpp">LoopDistribute</a> is just a stub that has hardly been worked on since it was checked in, and is turned off by default.
           </li>
           <li>
-            <a href="/computing/compilers/abibug">An ABI-mismatch bug</a>
+            Certain patterns that arise due to the ordering of transforms, that are very difficult to fix. See <a href="https://discourse.llvm.org/t/rfc-what-are-the-blockers-to-turning-on-gvnsink-by-default/72326">this dicussion</a> for an example.
           </li>
-          <h2>
-            coq (2020)
-          </h2>
-          <li>
-            <a href="/computing/coq/predicativity">Predicativity in Coq</a>
-          </li>
-          <li>
-            <a href="/computing/coq/equality">Equality in Mechanized Mathematics</a>
-          </li>
-          <li>
-            <a href="/computing/coq/leancoq">Lean versus Coq: The cultural chasm</a>
-          </li>
-        </ul>
+        </ol>
+        <p>
+          There is also one big <a href="https://discourse.llvm.org/t/rfc-moving-mlir-presburger-into-llvm/79399">project</a> in progress that could have a significant impact on several parts of LLVM, especially LoopAccessAnalysis. The goal of the project is to get a Presburger library within LLVM, and replace the ad-hoc logic in LoopAccessAnalysis with a principled approach to computing dependencies. The library would operate on affine expressions (that is to say, linear expressions with integer division, and this arithmetic is called Presburger arithmetic) with a constraints (say, equal to 0), and would solve systems of these constraints. To learn more about Presburger arithmetic, see <a href="https://libisl.sourceforge.io/tutorial.pdf">this tutorial</a>.
+        </p>
       </article>
     </main>
   </body>
