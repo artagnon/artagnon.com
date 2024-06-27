@@ -563,7 +563,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           This process of hand-vectorizing code is very difficult and error-prone for non-trivial programs. The process is analogous to hand-writing assembly instead of directly writing the source langauge and letting the compiler generate assembly. Indeed, compilers today auto-vectorize code, and for the purposes of illustration, let us take Clang/LLVM as an example. First, the source language is lowered to target-independent LLVM IR by Clang, which is the frontend. Next, the vectorizers in the middle-end of LLVM operate on this LLVM IR without vectors in them, and produce LLVM IR with vectors in them. The vectorized LLVM IR is finally lowered to target-specific assembly by the backend of LLVM.
         </p>
         <p>
-          Let us take the same example of index arithmetic, and see how the loop looks in LLVM IR without vectorization:
+          Let us take the same example of <mark>saxpy_golden</mark>, and see how the loop looks in LLVM IR without vectorization:
         </p>
         <style>
           
