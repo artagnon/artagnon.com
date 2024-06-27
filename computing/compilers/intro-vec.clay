@@ -69,3 +69,12 @@ loop:
 ```
 
 The vectorizer has turned the loop, each iteration of which adds two floats at a time, to a loop in which each iteration adds two vectors of four floats at a time.
+
+Whether or not a candidate loop will be successfully auto-vectorized depends on several factors:
+
+1. The iteration count. In most real-world code, the exact iteration count is unknown and the auto-vectorizers can deal with this. Auto-vectorizers can also deal with non-power-of-2 iteration counts by inserting a scalar epilogue with the remaining iterations. However, if the iteration count of the loop is computable and is too small, it might be unprofitable to vectorize.
+2. Aliasing information. If there isn't sufficient information to determine whether arrays in the loop are aliased to each other, runtime checks may be generated, or auto-vectorization might fail completely. A good practice is to mark non-aliased pointers with `restrict` in the source code.
+3. Alignment of pointers. Auto-vectorization depends on data being aligned before it is loaded into the vector register. If this is not possible, auto-vectorization might altogether fail.
+4. Conditionals within the loop. Certain `if` statements are possible to vectorize by masking values in the vector using the condition. A good rule of thumb is to have simple conditionals trivially convertible to conditionals using the ternary operator.
+5. Whether the loop is canonical. If, for instance, the loop has multiple exits, LLVM cannot auto-vectorize it. This is not a fundamental limitation, but rather a limitation of LLVM's vectorizer.
+6. Function calls within the loop. Except for calls to LLVM intrinsics (like the @llvm.fmuladd in the above example), the auto-vectorizer will fail if there are function calls within the loop.

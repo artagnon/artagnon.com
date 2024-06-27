@@ -608,6 +608,29 @@ loop:
         <p>
           The vectorizer has turned the loop, each iteration of which adds two floats at a time, to a loop in which each iteration adds two vectors of four floats at a time.
         </p>
+        <p>
+          Whether or not a candidate loop will be successfully auto-vectorized depends on several factors:
+        </p>
+        <ol class="olitems" type="none" start="1">
+          <li>
+            The iteration count. In most real-world code, the exact iteration count is unknown and the auto-vectorizers can deal with this. Auto-vectorizers can also deal with non-power-of-2 iteration counts by inserting a scalar epilogue with the remaining iterations. However, if the iteration count of the loop is computable and is too small, it might be unprofitable to vectorize.
+          </li>
+          <li>
+            Aliasing information. If there isn't sufficient information to determine whether arrays in the loop are aliased to each other, runtime checks may be generated, or auto-vectorization might fail completely. A good practice is to mark non-aliased pointers with <mark>restrict</mark> in the source code.
+          </li>
+          <li>
+            Alignment of pointers. Auto-vectorization depends on data being aligned before it is loaded into the vector register. If this is not possible, auto-vectorization might altogether fail.
+          </li>
+          <li>
+            Conditionals within the loop. Certain <mark>if</mark> statements are possible to vectorize by masking values in the vector using the condition. A good rule of thumb is to have simple conditionals trivially convertible to conditionals using the ternary operator.
+          </li>
+          <li>
+            Whether the loop is canonical. If, for instance, the loop has multiple exits, LLVM cannot auto-vectorize it. This is not a fundamental limitation, but rather a limitation of LLVM's vectorizer.
+          </li>
+          <li>
+            Function calls within the loop. Except for calls to LLVM intrinsics (like the @llvm.fmuladd in the above example), the auto-vectorizer will fail if there are function calls within the loop.
+          </li>
+        </ol>
       </article>
     </main>
   </body>
