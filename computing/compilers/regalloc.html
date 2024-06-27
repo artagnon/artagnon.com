@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" sizes="167x167" href="/dist/touch-icon-ipad-retina.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/dist/touch-icon-iphone-retina.png">
     <link rel="stylesheet" href="/dist/style.min.css">
+    <link rel="stylesheet" href="/dist/rouge.min.css">
     <script defer="" src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"></script>
     <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
@@ -379,30 +380,18 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses <mark>PhysRegState</mark> to keep track of the state of various physical registers: they can be 0 (<mark>regDisabled</mark>), 1 (<mark>regFree</mark>), 2 (<mark>regReserved</mark>), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like <mark>LR.LastUse</mark>); a register can either be a <mark>&lt;def&gt;</mark> or a use. If <mark>IsImplicit</mark> is flipped, it could also be a implicit-def (<mark>&lt;imp-def&gt;</mark>) or implicit-use (<mark>&lt;imp-use&gt;</mark>).
         </p>
-        <style>
-          
-        </style>
         <pre><code class="highlight">%vreg349<def> = MOVZX32rm8 %vreg351, 1, %noreg, 0, %noreg</def></code></pre>
         <p>
           turns into
         </p>
-        <style>
-          
-        </style>
         <pre><code class="highlight">%ESI<def> = MOVZX32rm8 %RDX<kill>, 1, %noreg, 0, %noreg</kill></def></code></pre>
         <p>
           after allocation. The <mark>&lt;kill&gt;</mark> indicates that the instruction is the last use of <mark>%RDX</mark>. In another example,
         </p>
-        <style>
-          
-        </style>
         <pre><code class="highlight">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></imp-use></imp-def></imp-def></code></pre>
         <p>
           turns into
         </p>
-        <style>
-          
-        </style>
         <pre><code class="highlight">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use,kill></imp-use,kill></imp-def></imp-def></code></pre>
         <p>
           Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend <mark>%RAX</mark> into <mark>%RDX</mark> (not any other register) for use in a later <mark>IDIV</mark>. Remember that <mark>IDIV</mark> operates on <mark>%RDX:%RAX</mark> as the numerator, and writes the quotient in <mark>%RAX</mark>, reminder in <mark>%RDX</mark>.
@@ -413,9 +402,6 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           <mark>AllocateBasicBlock</mark>, which operates on <mark>MachineBasicBlock</mark>, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the <mark>LiveIns</mark> (registers coming in live from the previous <mark>MBB</mark>) as <mark>regReserved</mark> so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls <mark>usePhysReg</mark> on them. At this stage, the physical register must be either <mark>regDisabled</mark>, <mark>regReserved</mark>, or <mark>regFree</mark>. It cannot be allocated to a virtual register. Why? Imagine you see:
         </p>
-        <style>
-          
-        </style>
         <pre><code class="highlight">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></imp-use></imp-def></imp-def></code></pre>
         <p>
           Now, if <mark>%RAX</mark> were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as <mark>regFree</mark>, and move on: we have done our part by completing the use of the register that was reserved earlier.
@@ -430,16 +416,10 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           To think about the problem, if we have,
         </p>
-        <style>
-          
-        </style>
         <pre><code class="highlight">%RAX<def> = COPY %vreg342</def></code></pre>
         <p>
           we should always <mark>regReserve</mark> <mark>%RAX</mark>, right? Except if <mark>%RAX</mark> is dead. What about if it's an <mark>&lt;imp-def&gt;</mark>?
         </p>
-        <style>
-          
-        </style>
         <pre><code class="highlight">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></imp-use></imp-def></imp-def></code></pre>
         <p>
           We didn't pass <mark>CQO</mark> <mark>%RAX</mark> explicitly, but that doesn't mean that a later instruction (for instance, <mark>IDIV</mark>) is not relying on this register's value. If we have an instruction between <mark>CQO</mark> and <mark>IDIV</mark>, that can potentially clobber <mark>%RAX</mark>, leading to a regalloc crash. Hence, we <mark>regReserve</mark> even if <mark>MO.isImplicit()</mark>.

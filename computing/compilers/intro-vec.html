@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" sizes="167x167" href="/dist/touch-icon-ipad-retina.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/dist/touch-icon-iphone-retina.png">
     <link rel="stylesheet" href="/dist/style.min.css">
+    <link rel="stylesheet" href="/dist/rouge.min.css">
     <script defer="" src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"></script>
     <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
@@ -379,88 +380,6 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           Major instruction set architectures have vector extensions, and dedicated instructions that target the VPU. Examples include x86's SSE/AVX, AArch64's SVE/Neon, and the latest entrant is RISC-V's RVV. In order to generate vector instructions, the programmer could adapt their code to use standarized vector intrinsics. To illustrate, suppose the programmer had the following source code:
         </p>
-        <style>
-          .highlight table td { padding: 5px; }
-          .highlight table pre { margin: 0; }
-          .highlight, .highlight .w {
-            color: #586e75;
-          }
-          .highlight .err {
-            color: #002b36;
-            background-color: #dc322f;
-          }
-          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
-            color: #657b83;
-          }
-          .highlight .cp {
-            color: #b58900;
-          }
-          .highlight .nt {
-            color: #b58900;
-          }
-          .highlight .o, .highlight .ow {
-            color: #93a1a1;
-          }
-          .highlight .p, .highlight .pi {
-            color: #93a1a1;
-          }
-          .highlight .gi {
-            color: #859900;
-          }
-          .highlight .gd {
-            color: #dc322f;
-          }
-          .highlight .gh {
-            color: #268bd2;
-            background-color: #002b36;
-            font-weight: bold;
-          }
-          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-            color: #6c71c4;
-          }
-          .highlight .kc {
-            color: #cb4b16;
-          }
-          .highlight .kt {
-            color: #cb4b16;
-          }
-          .highlight .kd {
-            color: #cb4b16;
-          }
-          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-            color: #859900;
-          }
-          .highlight .sa {
-            color: #6c71c4;
-          }
-          .highlight .sr {
-            color: #2aa198;
-          }
-          .highlight .si {
-            color: #d33682;
-          }
-          .highlight .se {
-            color: #d33682;
-          }
-          .highlight .nn {
-            color: #b58900;
-          }
-          .highlight .nc {
-            color: #b58900;
-          }
-          .highlight .no {
-            color: #b58900;
-          }
-          .highlight .na {
-            color: #268bd2;
-          }
-          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
-            color: #859900;
-          }
-          .highlight .ss {
-            color: #859900;
-          }
-        </style>
         <pre><code class="highlight"><span class="kt">void</span> <span class="nf">saxpy_golden</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
@@ -469,88 +388,6 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           If they wanted to use <a href="https://github.com/riscv-non-isa/rvv-intrinsic-doc">RISC-V vector intrinsics</a> to vectorize it, this is how they would adapt the code:
         </p>
-        <style>
-          .highlight table td { padding: 5px; }
-          .highlight table pre { margin: 0; }
-          .highlight, .highlight .w {
-            color: #586e75;
-          }
-          .highlight .err {
-            color: #002b36;
-            background-color: #dc322f;
-          }
-          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
-            color: #657b83;
-          }
-          .highlight .cp {
-            color: #b58900;
-          }
-          .highlight .nt {
-            color: #b58900;
-          }
-          .highlight .o, .highlight .ow {
-            color: #93a1a1;
-          }
-          .highlight .p, .highlight .pi {
-            color: #93a1a1;
-          }
-          .highlight .gi {
-            color: #859900;
-          }
-          .highlight .gd {
-            color: #dc322f;
-          }
-          .highlight .gh {
-            color: #268bd2;
-            background-color: #002b36;
-            font-weight: bold;
-          }
-          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-            color: #6c71c4;
-          }
-          .highlight .kc {
-            color: #cb4b16;
-          }
-          .highlight .kt {
-            color: #cb4b16;
-          }
-          .highlight .kd {
-            color: #cb4b16;
-          }
-          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-            color: #859900;
-          }
-          .highlight .sa {
-            color: #6c71c4;
-          }
-          .highlight .sr {
-            color: #2aa198;
-          }
-          .highlight .si {
-            color: #d33682;
-          }
-          .highlight .se {
-            color: #d33682;
-          }
-          .highlight .nn {
-            color: #b58900;
-          }
-          .highlight .nc {
-            color: #b58900;
-          }
-          .highlight .no {
-            color: #b58900;
-          }
-          .highlight .na {
-            color: #268bd2;
-          }
-          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
-            color: #859900;
-          }
-          .highlight .ss {
-            color: #859900;
-          }
-        </style>
         <pre><code class="highlight"><span class="kt">void</span> <span class="nf">saxpy_vec</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">vl</span><span class="p">;</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">-=</span> <span class="n">vl</span><span class="p">,</span> <span class="n">x</span> <span class="o">+=</span> <span class="n">vl</span><span class="p">,</span> <span class="n">y</span> <span class="o">+=</span> <span class="n">vl</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">vl</span> <span class="o">=</span> <span class="n">__riscv_vsetvl_e32m8</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
@@ -565,46 +402,40 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           Let us take the same example of <mark>saxpy_golden</mark>, and see how the loop looks in LLVM IR without vectorization:
         </p>
-        <style>
-          
-        </style>
-        <pre><code class="highlight">loop:
-  %iv = phi i64 [ 0, %entry ], [ %iv.next, %loop ]
-  %gep.x = getelementptr inbounds float, ptr %x, i64 %iv
-  %load.x = load float, ptr %gep.x
-  %gep.y = getelementptr inbounds float, ptr %y, i64 %iv
-  %load.y = load float, ptr %gep.y
-  %fmuladd = tail call float @llvm.fmuladd.f32(
-    float %a, float %load.x, float %load.y)
-  store float %fmuladd, ptr %gep.y
-  %iv.next = add nuw i64 %iv, 1
-  %exitcond = icmp eq i64 %iv.next, %n
-  br i1 %exitcond, label %exit, label %loop</code></pre>
+        <pre><code class="highlight"><span class="nl">loop:</span>
+  <span class="nv">%iv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%entry</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%loop</span> <span class="p">]</span>
+  <span class="nv">%gep.x</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%x</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
+  <span class="nv">%load.x</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.x</span>
+  <span class="nv">%gep.y</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
+  <span class="nv">%load.y</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
+  <span class="nv">%fmuladd</span> <span class="p">=</span> <span class="k">tail</span> <span class="k">call</span> <span class="kt">float</span> <span class="vg">@llvm.fmuladd.f32</span><span class="p">(</span>
+    <span class="kt">float</span> <span class="nv">%a</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%load.x</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%load.y</span><span class="p">)</span>
+  <span class="k">store</span> <span class="kt">float</span> <span class="nv">%fmuladd</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
+  <span class="nv">%iv.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">1</span>
+  <span class="nv">%exitcond</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%n</span>
+  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exitcond</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%loop</span></code></pre>
         <p>
           After vectorization:
         </p>
-        <style>
-          
-        </style>
-        <pre><code class="highlight">loop.preaheder:
-  %n.and.minus4 = and i64 %n, -4
-  %a.vec.tmp = insertelement &lt;4 x float&gt; poison, float %a, i64 0
-  %a.vec = shufflevector &lt;4 x float&gt; %a.vec.tmp,
-    &lt;4 x float&gt; poison, &lt;4 x i32&gt; zeroinitializer
-  br label %loop
+        <pre><code class="highlight"><span class="nl">loop.preaheder:</span>
+  <span class="nv">%n.and.minus4</span> <span class="p">=</span> <span class="k">and</span> <span class="kt">i64</span> <span class="nv">%n</span><span class="p">,</span> <span class="m">-4</span>
+  <span class="nv">%a.vec.tmp</span> <span class="p">=</span> <span class="k">insertelement</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="err">poison</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%a</span><span class="p">,</span> <span class="kt">i64</span> <span class="m">0</span>
+  <span class="nv">%a.vec</span> <span class="p">=</span> <span class="k">shufflevector</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="nv">%a.vec.tmp</span><span class="p">,</span>
+    <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="err">poison</span><span class="p">,</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">i32</span><span class="p">&gt;</span> <span class="k">zeroinitializer</span>
+  <span class="k">br</span> <span class="kt">label</span> <span class="nv">%loop</span>
 
-loop:
-  %iv = phi i64 [ 0, %loop.preaheder ], [ %iv.next, %loop ]
-  %gep.x = getelementptr inbounds float, ptr %x, i64 %iv
-  %load.x = load &lt;4 x float&gt;, ptr %gep.x
-  %gep.y = getelementptr inbounds float, ptr %y, i64 %iv
-  %load.y = load &lt;4 x float&gt;, ptr %gep.y
-  %fmuladd = tail call &lt;4 x float&gt; @llvm.fmuladd.v4f32(
-    &lt;4 x float&gt; %a.vec, &lt;4 x float&gt; %load.x, &lt;4 x float&gt; %load.y)
-  store &lt;4 x float&gt; %fmuladd, ptr %gep.y
-  %iv.next = add nuw i64 %iv, 4
-  %exitcond = icmp eq i64 %iv.next, %n.and.minus4
-  br i1 %exitcond, label %exit, label %loop</code></pre>
+<span class="nl">loop:</span>
+  <span class="nv">%iv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%loop.preaheder</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%loop</span> <span class="p">]</span>
+  <span class="nv">%gep.x</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%x</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
+  <span class="nv">%load.x</span> <span class="p">=</span> <span class="k">load</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;,</span> <span class="err">ptr</span> <span class="nv">%gep.x</span>
+  <span class="nv">%gep.y</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
+  <span class="nv">%load.y</span> <span class="p">=</span> <span class="k">load</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
+  <span class="nv">%fmuladd</span> <span class="p">=</span> <span class="k">tail</span> <span class="k">call</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="vg">@llvm.fmuladd.v4f32</span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="nv">%a.vec</span><span class="p">,</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="nv">%load.x</span><span class="p">,</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="nv">%load.y</span><span class="p">)</span>
+  <span class="k">store</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="nv">%fmuladd</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
+  <span class="nv">%iv.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">4</span>
+  <span class="nv">%exitcond</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%n.and.minus4</span>
+  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exitcond</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%loop</span></code></pre>
         <p>
           The vectorizer has turned the loop, each iteration of which adds two floats at a time, to a loop in which each iteration adds two vectors of four floats at a time.
         </p>
