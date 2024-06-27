@@ -29,7 +29,7 @@ This process of hand-vectorizing code is very difficult and error-prone for non-
 
 Let us take the same example of `saxpy_golden`, and see how the loop looks in LLVM IR without vectorization:
 
-```
+```llvm
 loop:
   %iv = phi i64 [ 0, %entry ], [ %iv.next, %loop ]
   %gep.x = getelementptr inbounds float, ptr %x, i64 %iv
@@ -46,7 +46,7 @@ loop:
 
 After vectorization:
 
-```
+```llvm
 loop.preaheder:
   %n.and.minus4 = and i64 %n, -4
   %a.vec.tmp = insertelement <4 x float> poison, float %a, i64 0

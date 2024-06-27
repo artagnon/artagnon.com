@@ -17,6 +17,7 @@ html lang="en"
 
     // synchronously load our stylesheet, compiled from various css files in design/
     link rel="stylesheet" href="/dist/style.min.css"
+    link rel="stylesheet" href="/dist/rouge.min.css"
 
     // cash and dayjs
     script defer=true src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"
@@ -88,7 +89,6 @@ html lang="en"
                   - for item in paragraph.split "\n"
                     li == item
             - when :codeblock
-              style == paragraph.prop
               pre
                 code class="highlight"
                   == paragraph.to_s
