@@ -1,0 +1,614 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <title>An introduction to auto-vectorization | artagnon.com</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" type="image/x-icon" href="/dist/favicon.ico">
+    <link rel="apple-touch-icon" sizes="58x58" href="/dist/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/dist/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/dist/touch-icon-ipad-retina.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/touch-icon-iphone-retina.png">
+    <link rel="stylesheet" href="/dist/style.min.css">
+    <script defer="" src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"></script>
+    <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
+    <script defer="" src="/dist/script.min.js"></script>
+  <style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+  <body class="wrapper">
+    <nav><a href="/"><img id="logo" src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
+      <ul>
+        <li>
+          <span class="navidx">01</span><a href="/art">art</a>
+        </li>
+        <li>
+          <span class="navidx">02</span><a href="/computing">computing</a>
+        </li>
+        <li>
+          <span class="navidx">03</span><a href="/logic">logic</a>
+        </li>
+        <li>
+          <span class="navidx">04</span><a href="/math">math</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <header>
+        <h1>
+          An introduction to auto-vectorization
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time class="end" datetime="2024-06-27">Thu, 27 Jun 2024 20:00:00 +0100</time></span>
+        </div>
+      </header>
+      <article>
+        <p>
+          Most modern general purpose CPUs have a vector processing unit (VPU). The purpose of this unit is to perform <a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data">SIMD computations</a>: given two vector registers containing N (where N is a power of 2 bounded by vector register width on the machine) floats each, the VPU can perform a single instruction to operate on these two vector registers and store the result in another vector register; without a VPU, this operation would require N instructions operating on two floating-point registers each.
+        </p>
+        <p>
+          Major instruction set architectures have vector extensions, and dedicated instructions that target the VPU. Examples include x86's SSE/AVX, AArch64's SVE/Neon, and the latest entrant is RISC-V's RVV. In order to generate vector instructions, the programmer could adapt their code to use standarized vector intrinsics. To illustrate, suppose the programmer had the following source code:
+        </p>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="kt">void</span> <span class="nf">saxpy_golden</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+        <p>
+          If they wanted to use <a href="https://github.com/riscv-non-isa/rvv-intrinsic-doc">RISC-V vector intrinsics</a> to vectorize it, this is how they would adapt the code:
+        </p>
+        <style>
+          .highlight table td { padding: 5px; }
+          .highlight table pre { margin: 0; }
+          .highlight, .highlight .w {
+            color: #586e75;
+          }
+          .highlight .err {
+            color: #002b36;
+            background-color: #dc322f;
+          }
+          .highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+            color: #657b83;
+          }
+          .highlight .cp {
+            color: #b58900;
+          }
+          .highlight .nt {
+            color: #b58900;
+          }
+          .highlight .o, .highlight .ow {
+            color: #93a1a1;
+          }
+          .highlight .p, .highlight .pi {
+            color: #93a1a1;
+          }
+          .highlight .gi {
+            color: #859900;
+          }
+          .highlight .gd {
+            color: #dc322f;
+          }
+          .highlight .gh {
+            color: #268bd2;
+            background-color: #002b36;
+            font-weight: bold;
+          }
+          .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+            color: #6c71c4;
+          }
+          .highlight .kc {
+            color: #cb4b16;
+          }
+          .highlight .kt {
+            color: #cb4b16;
+          }
+          .highlight .kd {
+            color: #cb4b16;
+          }
+          .highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+            color: #859900;
+          }
+          .highlight .sa {
+            color: #6c71c4;
+          }
+          .highlight .sr {
+            color: #2aa198;
+          }
+          .highlight .si {
+            color: #d33682;
+          }
+          .highlight .se {
+            color: #d33682;
+          }
+          .highlight .nn {
+            color: #b58900;
+          }
+          .highlight .nc {
+            color: #b58900;
+          }
+          .highlight .no {
+            color: #b58900;
+          }
+          .highlight .na {
+            color: #268bd2;
+          }
+          .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+            color: #859900;
+          }
+          .highlight .ss {
+            color: #859900;
+          }
+        </style>
+        <pre><code class="highlight"><span class="kt">void</span> <span class="nf">saxpy_vec</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">vl</span><span class="p">;</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">-=</span> <span class="n">vl</span><span class="p">,</span> <span class="n">x</span> <span class="o">+=</span> <span class="n">vl</span><span class="p">,</span> <span class="n">y</span> <span class="o">+=</span> <span class="n">vl</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vl</span> <span class="o">=</span> <span class="n">__riscv_vsetvl_e32m8</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">vfloat32m8_t</span> <span class="n">vx</span> <span class="o">=</span> <span class="n">__riscv_vle32_v_f32m8</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">vl</span><span class="p">);</span>
+    <span class="n">vfloat32m8_t</span> <span class="n">vy</span> <span class="o">=</span> <span class="n">__riscv_vle32_v_f32m8</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">vl</span><span class="p">);</span>
+    <span class="n">__riscv_vse32_v_f32m8</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">__riscv_vfmacc_vf_f32m8</span><span class="p">(</span><span class="n">vy</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">vx</span><span class="p">,</span> <span class="n">vl</span><span class="p">),</span> <span class="n">vl</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+        <p>
+          This process of hand-vectorizing code is very difficult and error-prone for non-trivial programs. The process is analogous to hand-writing assembly instead of directly writing the source langauge and letting the compiler generate assembly. Indeed, compilers today auto-vectorize code, and for the purposes of illustration, let us take Clang/LLVM as an example, and describe the high-level process. First, the source language is lowered to target-independent LLVM IR by Clang, which is the frontend. Next, the vectorizers in the middle-end of LLVM operate on this LLVM IR without vectors in them, and produce LLVM IR with vectors in them. The vectorized LLVM IR is finally lowered to target-specific assembly by the backend of LLVM.
+        </p>
+        <p>
+          Let us take the same example of index arithmetic, and see how the loop looks in LLVM IR without vectorization:
+        </p>
+        <style>
+          
+        </style>
+        <pre><code class="highlight">loop:
+  %iv = phi i64 [ 0, %entry ], [ %iv.next, %loop ]
+  %gep.x = getelementptr inbounds float, ptr %x, i64 %iv
+  %load.x = load float, ptr %gep.x
+  %gep.y = getelementptr inbounds float, ptr %y, i64 %iv
+  %load.y = load float, ptr %gep.y
+  %fmuladd = tail call float @llvm.fmuladd.f32(
+    float %a, float %load.x, float %load.y)
+  store float %fmuladd, ptr %gep.y
+  %iv.next = add nuw i64 %iv, 1
+  %exitcond = icmp eq i64 %iv.next, %n
+  br i1 %exitcond, label %exit, label %loop</code></pre>
+        <p>
+          After vectorization:
+        </p>
+        <style>
+          
+        </style>
+        <pre><code class="highlight">loop.preaheder:
+  %n.and.minus4 = and i64 %n, -4
+  %a.vec.tmp = insertelement &lt;4 x float&gt; poison, float %a, i64 0
+  %a.vec = shufflevector &lt;4 x float&gt; %a.vec.tmp,
+    &lt;4 x float&gt; poison, &lt;4 x i32&gt; zeroinitializer
+  br label %loop
+
+loop:
+  %iv = phi i64 [ 0, %loop.preaheder ], [ %iv.next, %loop ]
+  %gep.x = getelementptr inbounds float, ptr %x, i64 %iv
+  %load.x = load &lt;4 x float&gt;, ptr %gep.x
+  %gep.y = getelementptr inbounds float, ptr %y, i64 %iv
+  %load.y = load &lt;4 x float&gt;, ptr %gep.y
+  %fmuladd = tail call &lt;4 x float&gt; @llvm.fmuladd.v4f32(
+    &lt;4 x float&gt; %a.vec, &lt;4 x float&gt; %load.x, &lt;4 x float&gt; %load.y)
+  store &lt;4 x float&gt; %fmuladd, ptr %gep.y
+  %iv.next = add nuw i64 %iv, 4
+  %exitcond = icmp eq i64 %iv.next, %n.and.minus4
+  br i1 %exitcond, label %exit, label %loop</code></pre>
+        <p>
+          The vectorizer has turned the loop, each iteration of which adds two floats at a time, to a loop in which each iteration adds two vectors of four floats at a time.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>

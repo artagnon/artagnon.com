@@ -1,0 +1,71 @@
+An introduction to auto-vectorization
+
+Most modern general purpose CPUs have a vector processing unit (VPU). The purpose of this unit is to perform [SIMD computations](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data): given two vector registers containing N (where N is a power of 2 bounded by vector register width on the machine) floats each, the VPU can perform a single instruction to operate on these two vector registers and store the result in another vector register; without a VPU, this operation would require N instructions operating on two floating-point registers each.
+
+Major instruction set architectures have vector extensions, and dedicated instructions that target the VPU. Examples include x86's SSE/AVX, AArch64's SVE/Neon, and the latest entrant is RISC-V's RVV. In order to generate vector instructions, the programmer could adapt their code to use standarized vector intrinsics. To illustrate, suppose the programmer had the following source code:
+
+```c
+void saxpy_golden(size_t n, const float a, const float *x, float *y) {
+  for (size_t i = 0; i < n; ++i) {
+    y[i] = a * x[i] + y[i];
+  }
+}
+```
+
+If they wanted to use [RISC-V vector intrinsics](https://github.com/riscv-non-isa/rvv-intrinsic-doc) to vectorize it, this is how they would adapt the code:
+
+```c
+void saxpy_vec(size_t n, const float a, const float *x, float *y) {
+  for (size_t vl; n > 0; n -= vl, x += vl, y += vl) {
+    vl = __riscv_vsetvl_e32m8(n);
+    vfloat32m8_t vx = __riscv_vle32_v_f32m8(x, vl);
+    vfloat32m8_t vy = __riscv_vle32_v_f32m8(y, vl);
+    __riscv_vse32_v_f32m8(y, __riscv_vfmacc_vf_f32m8(vy, a, vx, vl), vl);
+  }
+}
+```
+
+This process of hand-vectorizing code is very difficult and error-prone for non-trivial programs. The process is analogous to hand-writing assembly instead of directly writing the source langauge and letting the compiler generate assembly. Indeed, compilers today auto-vectorize code, and for the purposes of illustration, let us take Clang/LLVM as an example, and describe the high-level process. First, the source language is lowered to target-independent LLVM IR by Clang, which is the frontend. Next, the vectorizers in the middle-end of LLVM operate on this LLVM IR without vectors in them, and produce LLVM IR with vectors in them. The vectorized LLVM IR is finally lowered to target-specific assembly by the backend of LLVM.
+
+Let us take the same example of index arithmetic, and see how the loop looks in LLVM IR without vectorization:
+
+```
+loop:
+  %iv = phi i64 [ 0, %entry ], [ %iv.next, %loop ]
+  %gep.x = getelementptr inbounds float, ptr %x, i64 %iv
+  %load.x = load float, ptr %gep.x
+  %gep.y = getelementptr inbounds float, ptr %y, i64 %iv
+  %load.y = load float, ptr %gep.y
+  %fmuladd = tail call float @llvm.fmuladd.f32(
+    float %a, float %load.x, float %load.y)
+  store float %fmuladd, ptr %gep.y
+  %iv.next = add nuw i64 %iv, 1
+  %exitcond = icmp eq i64 %iv.next, %n
+  br i1 %exitcond, label %exit, label %loop
+```
+
+After vectorization:
+
+```
+loop.preaheder:
+  %n.and.minus4 = and i64 %n, -4
+  %a.vec.tmp = insertelement <4 x float> poison, float %a, i64 0
+  %a.vec = shufflevector <4 x float> %a.vec.tmp,
+    <4 x float> poison, <4 x i32> zeroinitializer
+  br label %loop
+
+loop:
+  %iv = phi i64 [ 0, %loop.preaheder ], [ %iv.next, %loop ]
+  %gep.x = getelementptr inbounds float, ptr %x, i64 %iv
+  %load.x = load <4 x float>, ptr %gep.x
+  %gep.y = getelementptr inbounds float, ptr %y, i64 %iv
+  %load.y = load <4 x float>, ptr %gep.y
+  %fmuladd = tail call <4 x float> @llvm.fmuladd.v4f32(
+    <4 x float> %a.vec, <4 x float> %load.x, <4 x float> %load.y)
+  store <4 x float> %fmuladd, ptr %gep.y
+  %iv.next = add nuw i64 %iv, 4
+  %exitcond = icmp eq i64 %iv.next, %n.and.minus4
+  br i1 %exitcond, label %exit, label %loop
+```
+
+The vectorizer has turned the loop, each iteration of which adds two floats at a time, to a loop in which each iteration adds two vectors of four floats at a time.
