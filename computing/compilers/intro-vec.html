@@ -456,12 +456,14 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           To illustrate, let's modify <mark>saxpy_golden</mark> as follows:
         </p>
-        <pre><code class="highlight"><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">iv</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">iv</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">iv</span><span class="p">)</span>
-  <span class="n">y</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">iv</span><span class="p">];</span></code></pre>
+        <pre><code class="highlight"><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+  <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">];</span></code></pre>
         <p>
           Then, running <mark>clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll</mark> followed by <mark>opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output</mark> outputs (abbreviated):
         </p>
-        <pre><code class="highlight">LV: Found a loop with a very small trip count. This loop is worth vectorizing only if no scalar iteration overheads are incurred.
+        <pre><code class="highlight">LV: Found a loop with a very small trip count.
+  This loop is worth vectorizing only if no
+  scalar iteration overheads are incurred.
 LV: Found trip count: 3
 LV: Not vectorizing</code></pre>
         <p>
@@ -469,7 +471,7 @@ LV: Not vectorizing</code></pre>
         </p>
         <pre><code class="highlight"><span class="kt">void</span> <span class="n">test</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">)</span></code></pre>
         <p>
-          Even if we were to ramp up the iteration count to <mark>17</mark>, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using <mark>-fno-unroll-loops</mark> as before results in successful vectorization. If you want to analyze the vectorized code, run control-flow-graph simplification after loop-vectorize to get simplified output as <mark>opt -passes=loop-vectorize,cfgsimplify -S test.ll -o test.vec.ll</mark> and inspect <mark>test.vec.ll</mark> to see the <mark>scalar.ph</mark> scalar epilogue, which is required as 17 isn't divisible by 4.
+          Even if we were to ramp up the iteration count to <mark>17</mark>, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using <mark>-fno-unroll-loops</mark> as before results in successful vectorization. If you want to analyze the vectorized code, run control-flow-graph simplification after loop-vectorize to get simplified output as <mark>opt -passes=loop-vectorize,cfgsimplify -S test.ll -o test.vec.ll</mark> ‡ and inspect <mark>test.vec.ll</mark> to see a scalar version of the loop, which is required as 17 isn't divisible by 4.
         </p>
         <ol class="olitems" type="none" start="3">
           <li>
@@ -498,7 +500,7 @@ LV: Not vectorizing</code></pre>
         <pre><code class="highlight">LV: Can't vectorize due to memory conflicts</code></pre>
         <ol class="olitems" type="none" start="4">
           <li>
-            Conditionals within the loop. Certain <mark>if</mark> statements are possible to vectorize by masking values in the vector using the condition. A good rule of thumb is to have simple conditionals trivially convertible to conditionals using the ternary operator.
+            Conditionals within the loop. Certain <mark>if</mark> statements are possible to vectorize by masking values in the vector using the condition. There is no way to tell if a certain conditional will be vectorized in advance.
           </li>
         </ol>
         <p>
@@ -519,14 +521,15 @@ return rdx;</code></pre>
         <p>
           Not vectorized:
         </p>
-        <pre><code class="highlight">LV: Not vectorizing: Found an unidentified PHI   %10 = phi i64 [ %16, %8 ], [ 3, %.preheader ]</code></pre>
+        <pre><code class="highlight">LV: Not vectorizing: Found an unidentified PHI
+  %10 = phi i64 [ %16, %8 ], [ 3, %.preheader ]</code></pre>
         <ol class="olitems" type="none" start="5">
           <li>
-            Whether the loop is canonical. If, for instance, the loop has multiple exits, LLVM cannot auto-vectorize it. This is not a fundamental limitation, but rather a limitation of LLVM's vectorizer.
+            Whether the loop is canonical. If, for instance, the loop has multiple exits, LLVM cannot auto-vectorize it.
           </li>
         </ol>
         <p>
-          To illustrate, the following code isn't vectorized:
+          Simple example:
         </p>
         <pre><code class="highlight"><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
@@ -534,7 +537,7 @@ return rdx;</code></pre>
     <span class="k">break</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
         <p>
-          The reason is as follows:
+          Reason:
         </p>
         <pre><code class="highlight">LV: Not vectorizing: could not determine number of loop iterations.</code></pre>
         <ol class="olitems" type="none" start="6">
@@ -545,12 +548,22 @@ return rdx;</code></pre>
         <p>
           Simple example of this:
         </p>
-        <pre><code class="highlight">for (size_t i = 0; i &lt; n; ++i)
-  printf("%f\n", a * x[i]);</code></pre>
+        <pre><code class="highlight"><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"%f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span></code></pre>
         <p>
           The reason:
         </p>
-        <pre><code class="highlight">LV: Not vectorizing: Found a non-intrinsic callsite   %13 = tail call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) @.str, double noundef %12)</code></pre>
+        <pre><code class="highlight">LV: Not vectorizing: Found a non-intrinsic callsite
+  %13 = tail call i32 (ptr, ...) @printf(
+    ptr noundef nonnull dereferenceable(1) @.str,
+    double noundef %12)</code></pre>
+        <footer>
+          <ul class="footer">
+            <li>
+              Note that <mark>opt</mark> isn't part of a standard <mark>clang</mark> installation, and morever, <mark>-debug-only</mark> only works with a debug-build of LLVM.
+            </li>
+          </ul>
+        </footer>
       </article>
     </main>
   </body>

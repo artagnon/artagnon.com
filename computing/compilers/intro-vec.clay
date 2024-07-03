@@ -79,14 +79,16 @@ Whether or not a candidate loop will be successfully auto-vectorized depends on 
 To illustrate, let's modify `saxpy_golden` as follows:
 
 ```c
-for (size_t iv = 0; iv < 3; ++iv)
-  y[iv] += a * x[iv];
+for (size_t i = 0; i < 3; ++i)
+  y[i] += a * x[i];
 ```
 
 Then, running `clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll` followed by `opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output` outputs (abbreviated):
 
 ```
-LV: Found a loop with a very small trip count. This loop is worth vectorizing only if no scalar iteration overheads are incurred.
+LV: Found a loop with a very small trip count.
+  This loop is worth vectorizing only if no
+  scalar iteration overheads are incurred.
 LV: Found trip count: 3
 LV: Not vectorizing
 ```
@@ -97,7 +99,7 @@ Adding `restrict` to the pointers would remove the overhead, and allow it to be 
 void test(const float a, const float *restrict x, float *restrict y)
 ```
 
-Even if we were to ramp up the iteration count to `17`, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using `-fno-unroll-loops` as before results in successful vectorization. If you want to analyze the vectorized code, run control-flow-graph simplification after loop-vectorize to get simplified output as `opt -passes=loop-vectorize,cfgsimplify -S test.ll -o test.vec.ll` and inspect `test.vec.ll` to see the `scalar.ph` scalar epilogue, which is required as 17 isn't divisible by 4.
+Even if we were to ramp up the iteration count to `17`, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using `-fno-unroll-loops` as before results in successful vectorization. If you want to analyze the vectorized code, run control-flow-graph simplification after loop-vectorize to get simplified output as `opt -passes=loop-vectorize,cfgsimplify -S test.ll -o test.vec.ll` ‡ and inspect `test.vec.ll` to see a scalar version of the loop, which is required as 17 isn't divisible by 4.
 
 3. The access pattern. A good rule of thumb write loops with uniform row-major access, and avoid complex indexing arithmetic.
 
@@ -126,7 +128,7 @@ Not vectorized:
 LV: Can't vectorize due to memory conflicts
 ```
 
-4. Conditionals within the loop. Certain `if` statements are possible to vectorize by masking values in the vector using the condition. A good rule of thumb is to have simple conditionals trivially convertible to conditionals using the ternary operator.
+4. Conditionals within the loop. Certain `if` statements are possible to vectorize by masking values in the vector using the condition. There is no way to tell if a certain conditional will be vectorized in advance.
 
 To illustrate, let's change `saxpy_golden` as follows:
 
@@ -149,12 +151,13 @@ return rdx;
 Not vectorized:
 
 ```
-LV: Not vectorizing: Found an unidentified PHI   %10 = phi i64 [ %16, %8 ], [ 3, %.preheader ]
+LV: Not vectorizing: Found an unidentified PHI
+  %10 = phi i64 [ %16, %8 ], [ 3, %.preheader ]
 ```
 
-5. Whether the loop is canonical. If, for instance, the loop has multiple exits, LLVM cannot auto-vectorize it. This is not a fundamental limitation, but rather a limitation of LLVM's vectorizer.
+5. Whether the loop is canonical. If, for instance, the loop has multiple exits, LLVM cannot auto-vectorize it.
 
-To illustrate, the following code isn't vectorized:
+Simple example:
 
 ```c
 for (size_t i = 0; i < n; ++i) {
@@ -164,7 +167,7 @@ for (size_t i = 0; i < n; ++i) {
 }
 ```
 
-The reason is as follows:
+Reason:
 
 ```
 LV: Not vectorizing: could not determine number of loop iterations.
@@ -174,7 +177,7 @@ LV: Not vectorizing: could not determine number of loop iterations.
 
 Simple example of this:
 
-```
+```c
 for (size_t i = 0; i < n; ++i)
   printf("%f\n", a * x[i]);
 ```
@@ -182,5 +185,10 @@ for (size_t i = 0; i < n; ++i)
 The reason:
 
 ```
-LV: Not vectorizing: Found a non-intrinsic callsite   %13 = tail call i32 (ptr, ...) @printf(ptr noundef nonnull dereferenceable(1) @.str, double noundef %12)
+LV: Not vectorizing: Found a non-intrinsic callsite
+  %13 = tail call i32 (ptr, ...) @printf(
+    ptr noundef nonnull dereferenceable(1) @.str,
+    double noundef %12)
 ```
+
+‡ Note that `opt` isn't part of a standard `clang` installation, and morever, `-debug-only` only works with a debug-build of LLVM.
