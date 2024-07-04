@@ -353,9 +353,6 @@ footer::before
   position: relative
   display: inline-block
 
-code
-  font-family: HackNerdMono
-
 figure
   margin: 0
   padding-top: 1rem
@@ -370,6 +367,16 @@ div.mathjax
   overflow-x: auto
   padding-left: 1rem
   padding-right: 1rem
+
+pre
+    & > code.highlight
+      background-color: $pre-bg
+      overflow-x: auto
+      display: block
+
+code.highlight
+  padding: 5px
+  font-family: HackNerdMono
 
 a[href$=".pdf"]
   background-image: url("/dist/icon.pdf.svg")
@@ -404,13 +411,3 @@ footer > p
   margin-top: 1rem
   margin-bottom: 1rem
   font-size: 0.85rem
-
-// syntax highlighting via rouge
-pre
-    & > code.highlight
-      background-color: $pre-bg
-      overflow-x: auto
-      display: block
-
-code.highlight
-  padding: 5px
