@@ -1,4 +1,4 @@
-An introduction to auto-vectorization
+An introduction to auto-vectorization with LLVM
 
 Most modern general purpose CPUs have a vector processing unit (VPU). This unit contains vector registers that can hold multiple integers or floats, and instructions that operate on vector registers. Given two vector registers containing N floats each, the VPU can perform a single instruction to operate on these two vector registers and store the result in another vector register. Without a VPU, this operation would require N instructions operating on two floating-point registers each, relying on the floating-point unit (FPU), or arithmetic logic unit (ALU) in the case of integers.
 
@@ -72,7 +72,36 @@ loop:
 
 Now, the loop has a `loop.preheader` block containing an `%n.and.minus4` to handle the case when `n` is not a multiple of four. It also contains an `insertelement` and `shufflevector`, which essentially fill the vector (that has type `<4 x float>`) `%a.vec` with four copies of `%a`. The difference in the loop is that `%iv.next` is now `%iv + 4`, since it operates on four floats at a time, cutting the number of iterations by a factor of four. The `load` instructions are now loading four floats at a time, and the variant of `@llvm.fmuladd.f32`, which is `@llvm.fmuladd.v4f32`, does a `%a.vec * %load.x + %load.y`, operating on a vector of four floats at a time.
 
-Whether or not a candidate loop will be successfully auto-vectorized depends on several factors:
+The vectorizer in LLVM is quite sophisticated, and it is fascinating how it manages to vectorize non-trivial examples. To walk through a simple but non-trivial example, consider:
+
+```c
+for (size_t i = 0; i < n; ++i)
+  y[i] += a * x[i] + i % 2 ? 0 : y[i];
+```
+
+Inspecting the [output](https://godbolt.org/z/qq39c1PT7), we can see what the vectorizer has done. First, we see a new `phi`:
+
+```llvm
+%vec.ind = phi <4 x i64> [ <i64 0, i64 1, i64 2, i64 3>, %vector.ph ],
+  [ %vec.ind.next, %vector.body ]
+```
+
+It has created a new vector induction variable vector, corresponding to `i`, with four elements, since it has decided to vectorize choosing a factor of 4. Since `%vec.ind` is an integer, and the vectors are `float`, it has done a integer to floating-point conversion:
+
+```llvm
+%10 = uitofp <4 x i64> %9 to <4 x float>
+```
+
+For the conditional itself, it has used a `select` between `0` and the loaded value:
+
+```llvm
+%15 = select <4 x i1> %12, <4 x float> zeroinitializer,
+  <4 x float> %wide.load1
+```
+
+..
+
+For the rest of this article, let us inspect some factors that could get in the way when the programmer expects the loop to be vectorized, omitting cases where the loop is either obviously impossible or unprofitable to vectorize.
 
 1. The iteration count. In most real-world code, the exact iteration count is unknown and the auto-vectorizers can deal with this. Auto-vectorizers can also deal with non-power-of-2 iteration counts by inserting a scalar epilogue with the remaining iterations. However, if the iteration count of the loop is computable and too small, the loop might get unrolled instead of vectorized.
 2. Aliasing information. If there isn't sufficient information to determine whether arrays in the loop are aliased to each other, runtime checks may be generated, or auto-vectorization might fail completely because insertion of runtime checks make it unprofitable to vectorize.
@@ -127,16 +156,16 @@ This is unfortunately not vectorized by LLVM, but there is no reason this is not
 LAA: We can't vectorize because we can't find the array bounds.
 ```
 
-4. Conditionals within the loop. Certain `if` statements are possible to vectorize by masking values in the vector using the condition. There is no way to tell if a certain conditional will be vectorized in advance, and depends on whether the pattern is implemented in LLVM's vectorizer.
+4. Conditionals within the loop. Certain conditionals are possible to vectorize by either using `select`, or masking values in the vector using the condition. There is no way to tell if a certain conditional will be vectorized in advance, and depends on whether the pattern is implemented in LLVM's vectorizer.
 
-LLVM is able to vectorize this:
+LLVM is able to vectorize the example discussed previously:
 
 ```c
 for (size_t i = 0; i < n; ++i)
-  y[i] = a * x[i] + i > x[i] ? x[i] : y[i];
+  y[i] += a * x[i] + i % 2 ? 0 : y[i];
 ```
 
-Unfortunately, due to a deficiency, LLVM is unable to vectorize this:
+Unfortunately, LLVM is unable to vectorize this:
 
 ```c
 size_t rdx = 3;
