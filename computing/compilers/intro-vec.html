@@ -376,14 +376,14 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
       </header>
       <article>
         <p>
-          Most modern general purpose CPUs have a vector processing unit (VPU). This unit contains vector registers that can hold multiple integers or floats, and instructions that operate on vector registers. Given two vector registers containing N (where N is a power of 2 bounded by vector register width on the machine) floats each, the VPU can perform a single instruction to operate on these two vector registers and store the result in another vector register. Without a VPU, this operation would require N instructions operating on two floating-point registers each, relying on the floating-point unit (FPU) or arithmetic logic unit (ALU) in the case of integers.
+          Most modern general purpose CPUs have a vector processing unit (VPU). This unit contains vector registers that can hold multiple integers or floats, and instructions that operate on vector registers. Given two vector registers containing N floats each, the VPU can perform a single instruction to operate on these two vector registers and store the result in another vector register. Without a VPU, this operation would require N instructions operating on two floating-point registers each, relying on the floating-point unit (FPU), or arithmetic logic unit (ALU) in the case of integers.
         </p>
         <p>
           Major instruction set architectures have vector extensions, and corresponding instructions for the VPU. Examples include x86's SSE/AVX, AArch64's SVE/Neon, and the latest entrant is RISC-V's RVV. In order to generate vector instructions, the programmer could adapt their code to use standarized vector intrinsics. To illustrate, suppose the programmer had the following source code:
         </p>
         <pre><code class="highlight"><span class="kt">void</span> <span class="nf">saxpy_golden</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">iv</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">iv</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">iv</span><span class="p">)</span>
-    <span class="n">y</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">iv</span><span class="p">];</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">iv</span><span class="p">];</span>
 <span class="p">}</span></code></pre>
         <p>
           If they wanted to use <a href="https://github.com/riscv-non-isa/rvv-intrinsic-doc">RISC-V vector intrinsics</a> to vectorize it, this is how they would adapt the code:
@@ -397,7 +397,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
         <p>
-          This process of hand-vectorizing code is very difficult and error-prone for non-trivial programs. The process is analogous to hand-writing assembly instead of directly writing the source langauge and letting the compiler generate assembly. Indeed, compilers today auto-vectorize code, and for the purposes of illustration, let us take Clang/LLVM as an example. First, the source language is lowered to target-independent LLVM IR by Clang, which is the frontend. Next, the vectorizers in the middle-end of LLVM operate on this LLVM IR without vectors in them, and produce LLVM IR with vectors in them. The vectorized LLVM IR is finally lowered to target-specific assembly by the backend of LLVM.
+          This process of hand-vectorizing code is very difficult and error-prone for non-trivial programs. The process is analogous to writing assembly instead of writing the source langauge and letting the compiler generate assembly. Indeed, compilers today auto-vectorize code, and for the purposes of illustration, let us take Clang/LLVM as an example. First, the source language is lowered to target-independent LLVM IR by Clang, which is the frontend. Next, the vectorizers in the middle-end of LLVM operate on this LLVM IR without vectors in them, and produce LLVM IR with vectors in them. The vectorized LLVM IR is finally lowered to target-specific assembly by the backend of LLVM.
         </p>
         <p>
           Let us take the same example of <mark>saxpy_golden</mark>, and see how the loop looks in LLVM IR without vectorization:
@@ -415,7 +415,8 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   <span class="nv">%exitcond</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%n</span>
   <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exitcond</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%loop</span></code></pre>
         <p>
-          Except for the <mark>loop:</mark> label and the <mark>phi</mark> node, every line of this IR is an instruction operating on variables (prefixed with <mark>%</mark>), most of which return something, and another variable is assigned the result. The last instruction, <mark>br</mark>, is a branching statement which jumps to either the <mark>exit</mark> label (not shown), or to the <mark>loop</mark> label, depending on the <mark>i1</mark> (integer with one bit, or boolean) <mark>%exitcond</mark>. Now, <mark>%exitcond</mark> is computed as an integer-equal-comparison between <mark>%iv.next</mark>, and <mark>%n</mark>: what this means is that <mark>%exitcond</mark> is the exit-condition for the loop, when the loop induction variable, after the increment reaches the parameter <mark>n</mark> in the original program, the total number of iterations. <mark>%iv.next</mark> is the "next value" of the induction variable, which is computed as <mark>%iv + 1</mark>. The reason for the fresh variable is that this IR is in single-static-assignment (SSA) form, which means that there is only ever a single definition of a value, relying on <mark>phi</mark> nodes to merge incoming values from different points. <mark>%iv</mark> is the phi node that merges the incoming value <mark>0</mark> when coming from the <mark>entry:</mark> label (not shown; preamble of the program with a branch into <mark>loop</mark> block), and <mark>iv.next</mark>, when coming from the back-edge of the loop. Since <mark>x</mark> and <mark>y</mark> are pointers, the IR has <mark>getelementptr</mark> and <mark>load</mark> instructions that essentially do the array-indexing <mark>x[iv]</mark> and <mark>y[iv]</mark>. Finally the computation on these two elements of the array are performed by <mark>@llvm.fmuladd.f32</mark>, which does <mark>a * x[iv] + y[iv]</mark>, before the final result is stored again in <mark>y[iv]</mark>.
+          The first line, <mark>loop:</mark>, is like a label in C, to which branch instructions (<mark>br</mark>) can jump to.
+          The next line is creating a new variable <mark>%iv</mark> using a <mark>phi</mark> to select either <mark>0</mark> when jumping from the <mark>entry</mark> block (not shown), or <mark>%iv.next</mark> when jumping from the back-edge of the loop: this is the induction variable of the loop. Since <mark>x</mark> and <mark>y</mark> are pointers (marked by the type <mark>ptr</mark>), we see <mark>getelementptr</mark> instructions that act as the address computations: so, <mark>%gep.x</mark> is <mark>%x + %iv</mark>, and <mark>%gep.y</mark> is <mark>%y + %iv</mark>. The <mark>load</mark> instructions derefence the pointer: so, <mark>%load.x</mark> is <mark>x[iv]</mark> and <mark>load.y</mark> is <mark>y[iv]</mark>; both are of type <mark>f32</mark>, or <mark>float</mark>. <mark>@llvm.fmuladd.f32</mark> is the computation, which does a <mark>a * x[iv] + y[iv]</mark>, and the <mark>store</mark> writes the result <mark>%fmuladd</mark> back into <mark>%gep.y</mark>. The last three instructions make the <mark>loop</mark> block a loop: <mark>%iv.next = %iv + 1</mark> is the "next value" of the loop induction variable, and <mark>%exitcond</mark> is a boolean (marked by type <mark>i1</mark>, integer with bitwidth 1) that acts as the exit-condition of the loop. <mark>%exitcond</mark> is computed as an integer-equal-comparison between <mark>%iv.next</mark> and <mark>%n</mark>, the total number of iterations of the loop. Finally, there is a branch instruction that jumps to either the <mark>exit</mark> block (not shown), or back to the <mark>loop</mark> block (this is the back-edge of the loop), depending on the exit condtion.
         </p>
         <p>
           This is how it changes after vectorization:
@@ -440,7 +441,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   <span class="nv">%exitcond</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%n.and.minus4</span>
   <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exitcond</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%loop</span></code></pre>
         <p>
-          Now, the loop has a <mark>loop.preheader</mark> block containing an <mark>insertelement</mark> and <mark>shufflevector</mark>, which essentially fill the vector (that has type <mark>&lt;4 x float&gt;</mark>) <mark>%a.vec</mark> with four copies of <mark>%a</mark>. The difference in the loop is that <mark>%iv.next</mark> is now <mark>%iv + 4</mark>, since it operates on four floats at a time, cutting the number of iterations by a factor of four. The <mark>load</mark> instructions are now loading four floats at a time, and the variant of <mark>@llvm.fmuladd.f32</mark> is <mark>@llvm.fmuladd.v4f32</mark> that does a <mark>%a.vec * %load.x + %load.y</mark>, operating on a vector of four floats at a time.
+          Now, the loop has a <mark>loop.preheader</mark> block containing an <mark>%n.and.minus4</mark> to handle the case when <mark>n</mark> is not a multiple of four. It also contains an <mark>insertelement</mark> and <mark>shufflevector</mark>, which essentially fill the vector (that has type <mark>&lt;4 x float&gt;</mark>) <mark>%a.vec</mark> with four copies of <mark>%a</mark>. The difference in the loop is that <mark>%iv.next</mark> is now <mark>%iv + 4</mark>, since it operates on four floats at a time, cutting the number of iterations by a factor of four. The <mark>load</mark> instructions are now loading four floats at a time, and the variant of <mark>@llvm.fmuladd.f32</mark>, which is <mark>@llvm.fmuladd.v4f32</mark>, does a <mark>%a.vec * %load.x + %load.y</mark>, operating on a vector of four floats at a time.
         </p>
         <p>
           Whether or not a candidate loop will be successfully auto-vectorized depends on several factors:
@@ -450,7 +451,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
             The iteration count. In most real-world code, the exact iteration count is unknown and the auto-vectorizers can deal with this. Auto-vectorizers can also deal with non-power-of-2 iteration counts by inserting a scalar epilogue with the remaining iterations. However, if the iteration count of the loop is computable and too small, the loop might get unrolled instead of vectorized.
           </li>
           <li>
-            Aliasing information. If there isn't sufficient information to determine whether arrays in the loop are aliased to each other, runtime checks may be generated, or auto-vectorization might fail completely. A good practice is to mark non-aliased pointers with <mark>restrict</mark> in the source code.
+            Aliasing information. If there isn't sufficient information to determine whether arrays in the loop are aliased to each other, runtime checks may be generated, or auto-vectorization might fail completely because insertion of runtime checks make it unprofitable to vectorize.
           </li>
         </ol>
         <p>
@@ -459,7 +460,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <pre><code class="highlight"><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
   <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">];</span></code></pre>
         <p>
-          Then, running <mark>clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll</mark> followed by <mark>opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output</mark> outputs (abbreviated):
+          Then, running <mark>clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll</mark> followed by <mark>opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output</mark> outputs:
         </p>
         <pre><code class="highlight">LV: Found a loop with a very small trip count.
   This loop is worth vectorizing only if no
@@ -467,11 +468,11 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
 LV: Found trip count: 3
 LV: Not vectorizing</code></pre>
         <p>
-          Adding <mark>restrict</mark> to the pointers would remove the overhead, and allow it to be vectorized:
+          The overhead it is talking about is runtime checks it needs to add. Adding <mark>restrict</mark> to the pointers would remove the overhead, and allow it to be vectorized:
         </p>
-        <pre><code class="highlight"><span class="kt">void</span> <span class="n">test</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">)</span></code></pre>
+        <pre><code class="highlight"><span class="kt">void</span> <span class="n">saxpy_golden</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">)</span></code></pre>
         <p>
-          Even if we were to ramp up the iteration count to <mark>17</mark>, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using <mark>-fno-unroll-loops</mark> as before results in successful vectorization. If you want to analyze the vectorized code, run control-flow-graph simplification after loop-vectorize to get simplified output as <mark>opt -passes=loop-vectorize,cfgsimplify -S test.ll -o test.vec.ll</mark> ‡ and inspect <mark>test.vec.ll</mark> to see a scalar version of the loop, which is required as 17 isn't divisible by 4.
+          Even if we were to ramp up the iteration count to <mark>17</mark>, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using <mark>-fno-unroll-loops</mark> as before results in successful vectorization. The final output contains a scalar version of the loop as well, maked by <mark>scalar.ph</mark>, which is required as 17 isn't divisible by 4.
         </p>
         <ol class="olitems" type="none" start="3">
           <li>
@@ -479,47 +480,41 @@ LV: Not vectorizing</code></pre>
           </li>
         </ol>
         <p>
-          To illustrate, let's modify <mark>saxpy_golden</mark> as follows:
+          The vectorizer has no issues with the following case:
         </p>
         <pre><code class="highlight"><span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">m</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span>
-                  <span class="k">const</span> <span class="kt">float</span> <span class="o">**</span><span class="kr">restrict</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">**</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">const</span> <span class="kt">float</span> <span class="o">**</span><span class="kr">restrict</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">**</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
       <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
 <span class="p">}</span></code></pre>
         <p>
-          Vectorized just fine.
-        </p>
-        <p>
           Now, let's change the assignment statement in the loop to:
         </p>
         <pre><code class="highlight"><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">];</span></code></pre>
         <p>
-          Not vectorized:
+          This is unfortunately not vectorized by LLVM, but is vectorized by gcc. The reason for this is that an analysis that is used to prove legality of vectorization in LLVM, called LoopAccessAnalysis, is unable to find the bounds of the memory access. Running <mark>opt -passes=loop-vectorize test.ll -disable-output -debug-only=loop-accesses</mark> outputs:
         </p>
-        <pre><code class="highlight">LV: Can't vectorize due to memory conflicts</code></pre>
+        <pre><code class="highlight">LAA: We can't vectorize because we can't find the array bounds.</code></pre>
         <ol class="olitems" type="none" start="4">
           <li>
-            Conditionals within the loop. Certain <mark>if</mark> statements are possible to vectorize by masking values in the vector using the condition. There is no way to tell if a certain conditional will be vectorized in advance.
+            Conditionals within the loop. Certain <mark>if</mark> statements are possible to vectorize by masking values in the vector using the condition. There is no way to tell if a certain conditional will be vectorized in advance, and depends on whether the pattern is implemented in LLVM's vectorizer.
           </li>
         </ol>
         <p>
-          To illustrate, let's change <mark>saxpy_golden</mark> as follows:
+          LLVM is able to vectorize this:
         </p>
         <pre><code class="highlight"><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
   <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">?</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">:</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">];</span></code></pre>
         <p>
-          Vectorized just fine.
+          Unfortunately, due to a deficiency, LLVM is unable to vectorize this:
         </p>
+        <pre><code class="highlight"><span class="kt">size_t</span> <span class="n">rdx</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+  <span class="n">rdx</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">?</span> <span class="n">i</span> <span class="o">:</span> <span class="n">rdx</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">rdx</span><span class="p">;</span></code></pre>
         <p>
-          Now, change it to:
-        </p>
-        <pre><code class="highlight">size_t rdx = 3;
-for (size_t i = 0; i &lt; n; ++i)
-  rdx = (y[i] &gt; x[i]) ? i : rdx;
-return rdx;</code></pre>
-        <p>
-          Not vectorized:
+          The reason is as good as "it is unimplemented":
         </p>
         <pre><code class="highlight">LV: Not vectorizing: Found an unidentified PHI
   %10 = phi i64 [ %16, %8 ], [ 3, %.preheader ]</code></pre>
@@ -529,15 +524,15 @@ return rdx;</code></pre>
           </li>
         </ol>
         <p>
-          Simple example of this:
+          LLVM struggles with early-exit loops, although there is no reason this is not possible to vectorize:
         </p>
-        <pre><code class="highlight"><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span>
+        <pre><code class="highlight"><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">a</span><span class="p">)</span>
     <span class="k">break</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+<span class="k">return</span> <span class="n">i</span><span class="p">;</span></code></pre>
         <p>
-          Reason:
+          The reason is as good as "it is unimplemented":
         </p>
         <pre><code class="highlight">LV: Not vectorizing: could not determine number of loop iterations.</code></pre>
         <ol class="olitems" type="none" start="6">
@@ -546,24 +541,17 @@ return rdx;</code></pre>
           </li>
         </ol>
         <p>
-          Simple example of this:
+          LLVM cannot vectorize:
         </p>
         <pre><code class="highlight"><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">"%f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span></code></pre>
         <p>
-          The reason:
+          However, icc can vectorize this, because there are vector instructions for <mark>printf</mark> available on X86, but AArch64 and RISC-V haven't bothered including it in their vector instruction set.
         </p>
         <pre><code class="highlight">LV: Not vectorizing: Found a non-intrinsic callsite
   %13 = tail call i32 (ptr, ...) @printf(
     ptr noundef nonnull dereferenceable(1) @.str,
     double noundef %12)</code></pre>
-        <footer>
-          <ul class="footer">
-            <li>
-              Note that <mark>opt</mark> isn't part of a standard <mark>clang</mark> installation, and morever, <mark>-debug-only</mark> only works with a debug-build of LLVM.
-            </li>
-          </ul>
-        </footer>
       </article>
     </main>
   </body>
