@@ -1,13 +1,13 @@
 An introduction to auto-vectorization
 
-Most modern general purpose CPUs have a vector processing unit (VPU). This unit contains vector registers that can hold multiple integers or floats, and instructions that operate on vector registers. Given two vector registers containing N (where N is a power of 2 bounded by vector register width on the machine) floats each, the VPU can perform a single instruction to operate on these two vector registers and store the result in another vector register. Without a VPU, this operation would require N instructions operating on two floating-point registers each, relying on the floating-point unit (FPU) or arithmetic logic unit (ALU) in the case of integers.
+Most modern general purpose CPUs have a vector processing unit (VPU). This unit contains vector registers that can hold multiple integers or floats, and instructions that operate on vector registers. Given two vector registers containing N floats each, the VPU can perform a single instruction to operate on these two vector registers and store the result in another vector register. Without a VPU, this operation would require N instructions operating on two floating-point registers each, relying on the floating-point unit (FPU), or arithmetic logic unit (ALU) in the case of integers.
 
 Major instruction set architectures have vector extensions, and corresponding instructions for the VPU. Examples include x86's SSE/AVX, AArch64's SVE/Neon, and the latest entrant is RISC-V's RVV. In order to generate vector instructions, the programmer could adapt their code to use standarized vector intrinsics. To illustrate, suppose the programmer had the following source code:
 
 ```c
 void saxpy_golden(size_t n, const float a, const float *x, float *y) {
   for (size_t iv = 0; iv < n; ++iv)
-    y[iv] += a * x[iv];
+    y[iv] = a * x[iv] + y[iv];
 }
 ```
 
@@ -24,7 +24,7 @@ void saxpy_vec(size_t n, const float a, const float *x, float *y) {
 }
 ```
 
-This process of hand-vectorizing code is very difficult and error-prone for non-trivial programs. The process is analogous to hand-writing assembly instead of directly writing the source langauge and letting the compiler generate assembly. Indeed, compilers today auto-vectorize code, and for the purposes of illustration, let us take Clang/LLVM as an example. First, the source language is lowered to target-independent LLVM IR by Clang, which is the frontend. Next, the vectorizers in the middle-end of LLVM operate on this LLVM IR without vectors in them, and produce LLVM IR with vectors in them. The vectorized LLVM IR is finally lowered to target-specific assembly by the backend of LLVM.
+This process of hand-vectorizing code is very difficult and error-prone for non-trivial programs. The process is analogous to writing assembly instead of writing the source langauge and letting the compiler generate assembly. Indeed, compilers today auto-vectorize code, and for the purposes of illustration, let us take Clang/LLVM as an example. First, the source language is lowered to target-independent LLVM IR by Clang, which is the frontend. Next, the vectorizers in the middle-end of LLVM operate on this LLVM IR without vectors in them, and produce LLVM IR with vectors in them. The vectorized LLVM IR is finally lowered to target-specific assembly by the backend of LLVM.
 
 Let us take the same example of `saxpy_golden`, and see how the loop looks in LLVM IR without vectorization:
 
@@ -43,7 +43,8 @@ loop:
   br i1 %exitcond, label %exit, label %loop
 ```
 
-Except for the `loop:` label and the `phi` node, every line of this IR is an instruction operating on variables (prefixed with `%`), most of which return something, and another variable is assigned the result. The last instruction, `br`, is a branching statement which jumps to either the `exit` label (not shown), or to the `loop` label, depending on the `i1` (integer with one bit, or boolean) `%exitcond`. Now, `%exitcond` is computed as an integer-equal-comparison between `%iv.next`, and `%n`: what this means is that `%exitcond` is the exit-condition for the loop, when the loop induction variable, after the increment reaches the parameter `n` in the original program, the total number of iterations. `%iv.next` is the "next value" of the induction variable, which is computed as `%iv + 1`. The reason for the fresh variable is that this IR is in single-static-assignment (SSA) form, which means that there is only ever a single definition of a value, relying on `phi` nodes to merge incoming values from different points. `%iv` is the phi node that merges the incoming value `0` when coming from the `entry:` label (not shown; preamble of the program with a branch into `loop` block), and `iv.next`, when coming from the back-edge of the loop. Since `x` and `y` are pointers, the IR has `getelementptr` and `load` instructions that essentially do the array-indexing `x[iv]` and `y[iv]`. Finally the computation on these two elements of the array are performed by `@llvm.fmuladd.f32`, which does `a * x[iv] + y[iv]`, before the final result is stored again in `y[iv]`.
+The first line, `loop:`, is like a label in C, to which branch instructions (`br`) can jump to.
+The next line is creating a new variable `%iv` using a `phi` to select either `0` when jumping from the `entry` block (not shown), or `%iv.next` when jumping from the back-edge of the loop: this is the induction variable of the loop. Since `x` and `y` are pointers (marked by the type `ptr`), we see `getelementptr` instructions that act as the address computations: so, `%gep.x` is `%x + %iv`, and `%gep.y` is `%y + %iv`. The `load` instructions derefence the pointer: so, `%load.x` is `x[iv]` and `load.y` is `y[iv]`; both are of type `f32`, or `float`. `@llvm.fmuladd.f32` is the computation, which does a `a * x[iv] + y[iv]`, and the `store` writes the result `%fmuladd` back into `%gep.y`. The last three instructions make the `loop` block a loop: `%iv.next = %iv + 1` is the "next value" of the loop induction variable, and `%exitcond` is a boolean (marked by type `i1`, integer with bitwidth 1) that acts as the exit-condition of the loop. `%exitcond` is computed as an integer-equal-comparison between `%iv.next` and `%n`, the total number of iterations of the loop. Finally, there is a branch instruction that jumps to either the `exit` block (not shown), or back to the `loop` block (this is the back-edge of the loop), depending on the exit condtion.
 
 This is how it changes after vectorization:
 
@@ -69,12 +70,12 @@ loop:
   br i1 %exitcond, label %exit, label %loop
 ```
 
-Now, the loop has a `loop.preheader` block containing an `insertelement` and `shufflevector`, which essentially fill the vector (that has type `<4 x float>`) `%a.vec` with four copies of `%a`. The difference in the loop is that `%iv.next` is now `%iv + 4`, since it operates on four floats at a time, cutting the number of iterations by a factor of four. The `load` instructions are now loading four floats at a time, and the variant of `@llvm.fmuladd.f32` is `@llvm.fmuladd.v4f32` that does a `%a.vec * %load.x + %load.y`, operating on a vector of four floats at a time.
+Now, the loop has a `loop.preheader` block containing an `%n.and.minus4` to handle the case when `n` is not a multiple of four. It also contains an `insertelement` and `shufflevector`, which essentially fill the vector (that has type `<4 x float>`) `%a.vec` with four copies of `%a`. The difference in the loop is that `%iv.next` is now `%iv + 4`, since it operates on four floats at a time, cutting the number of iterations by a factor of four. The `load` instructions are now loading four floats at a time, and the variant of `@llvm.fmuladd.f32`, which is `@llvm.fmuladd.v4f32`, does a `%a.vec * %load.x + %load.y`, operating on a vector of four floats at a time.
 
 Whether or not a candidate loop will be successfully auto-vectorized depends on several factors:
 
 1. The iteration count. In most real-world code, the exact iteration count is unknown and the auto-vectorizers can deal with this. Auto-vectorizers can also deal with non-power-of-2 iteration counts by inserting a scalar epilogue with the remaining iterations. However, if the iteration count of the loop is computable and too small, the loop might get unrolled instead of vectorized.
-2. Aliasing information. If there isn't sufficient information to determine whether arrays in the loop are aliased to each other, runtime checks may be generated, or auto-vectorization might fail completely. A good practice is to mark non-aliased pointers with `restrict` in the source code.
+2. Aliasing information. If there isn't sufficient information to determine whether arrays in the loop are aliased to each other, runtime checks may be generated, or auto-vectorization might fail completely because insertion of runtime checks make it unprofitable to vectorize.
 
 To illustrate, let's modify `saxpy_golden` as follows:
 
@@ -83,7 +84,7 @@ for (size_t i = 0; i < 3; ++i)
   y[i] += a * x[i];
 ```
 
-Then, running `clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll` followed by `opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output` outputs (abbreviated):
+Then, running `clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll` followed by `opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output` outputs:
 
 ```
 LV: Found a loop with a very small trip count.
@@ -93,28 +94,26 @@ LV: Found trip count: 3
 LV: Not vectorizing
 ```
 
-Adding `restrict` to the pointers would remove the overhead, and allow it to be vectorized:
+The overhead it is talking about is runtime checks it needs to add. Adding `restrict` to the pointers would remove the overhead, and allow it to be vectorized:
 
 ```c
-void test(const float a, const float *restrict x, float *restrict y)
+void saxpy_golden(const float a, const float *restrict x, float *restrict y)
 ```
 
-Even if we were to ramp up the iteration count to `17`, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using `-fno-unroll-loops` as before results in successful vectorization. If you want to analyze the vectorized code, run control-flow-graph simplification after loop-vectorize to get simplified output as `opt -passes=loop-vectorize,cfgsimplify -S test.ll -o test.vec.ll` ‡ and inspect `test.vec.ll` to see a scalar version of the loop, which is required as 17 isn't divisible by 4.
+Even if we were to ramp up the iteration count to `17`, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using `-fno-unroll-loops` as before results in successful vectorization. The final output contains a scalar version of the loop as well, maked by `scalar.ph`, which is required as 17 isn't divisible by 4.
 
 3. The access pattern. A good rule of thumb write loops with uniform row-major access, and avoid complex indexing arithmetic.
 
-To illustrate, let's modify `saxpy_golden` as follows:
+The vectorizer has no issues with the following case:
 
 ```c
 void test(size_t n, size_t m, const float a,
-                  const float **restrict x, float **restrict y) {
+          const float **restrict x, float **restrict y) {
   for (size_t i = 0; i < n; ++i)
     for (size_t j = i; j < m; ++j)
       y[i][j] += a * x[i][j];
 }
 ```
-
-Vectorized just fine.
 
 Now, let's change the assignment statement in the loop to:
 
@@ -122,33 +121,31 @@ Now, let's change the assignment statement in the loop to:
 y[i][j] += a * x[j][i];
 ```
 
-Not vectorized:
+This is unfortunately not vectorized by LLVM, but is vectorized by gcc. The reason for this is that an analysis that is used to prove legality of vectorization in LLVM, called LoopAccessAnalysis, is unable to find the bounds of the memory access. Running `opt -passes=loop-vectorize test.ll -disable-output -debug-only=loop-accesses` outputs:
 
 ```
-LV: Can't vectorize due to memory conflicts
+LAA: We can't vectorize because we can't find the array bounds.
 ```
 
-4. Conditionals within the loop. Certain `if` statements are possible to vectorize by masking values in the vector using the condition. There is no way to tell if a certain conditional will be vectorized in advance.
+4. Conditionals within the loop. Certain `if` statements are possible to vectorize by masking values in the vector using the condition. There is no way to tell if a certain conditional will be vectorized in advance, and depends on whether the pattern is implemented in LLVM's vectorizer.
 
-To illustrate, let's change `saxpy_golden` as follows:
+LLVM is able to vectorize this:
 
 ```c
 for (size_t i = 0; i < n; ++i)
   y[i] = a * x[i] + i > x[i] ? x[i] : y[i];
 ```
 
-Vectorized just fine.
+Unfortunately, due to a deficiency, LLVM is unable to vectorize this:
 
-Now, change it to:
-
-```
+```c
 size_t rdx = 3;
 for (size_t i = 0; i < n; ++i)
   rdx = (y[i] > x[i]) ? i : rdx;
 return rdx;
 ```
 
-Not vectorized:
+The reason is as good as "it is unimplemented":
 
 ```
 LV: Not vectorizing: Found an unidentified PHI
@@ -157,17 +154,17 @@ LV: Not vectorizing: Found an unidentified PHI
 
 5. Whether the loop is canonical. If, for instance, the loop has multiple exits, LLVM cannot auto-vectorize it.
 
-Simple example of this:
+LLVM struggles with early-exit loops, although there is no reason this is not possible to vectorize:
 
 ```c
-for (size_t i = 0; i < n; ++i) {
-  y[i] += a * x[i];
-  if (x[i] > n)
+size_t i = 0;
+for (; i < n; ++i)
+  if (x[i] == a)
     break;
-}
+return i;
 ```
 
-Reason:
+The reason is as good as "it is unimplemented":
 
 ```
 LV: Not vectorizing: could not determine number of loop iterations.
@@ -175,14 +172,14 @@ LV: Not vectorizing: could not determine number of loop iterations.
 
 6. Function calls within the loop. Except for calls to LLVM intrinsics (like the `@llvm.fmuladd` in the above example), the auto-vectorizer will fail if there are function calls within the loop that it didn't inline.
 
-Simple example of this:
+LLVM cannot vectorize:
 
 ```c
 for (size_t i = 0; i < n; ++i)
   printf("%f\n", a * x[i]);
 ```
 
-The reason:
+However, icc can vectorize this, because there are vector instructions for `printf` available on X86, but AArch64 and RISC-V haven't bothered including it in their vector instruction set.
 
 ```
 LV: Not vectorizing: Found a non-intrinsic callsite
@@ -190,5 +187,3 @@ LV: Not vectorizing: Found a non-intrinsic callsite
     ptr noundef nonnull dereferenceable(1) @.str,
     double noundef %12)
 ```
-
-‡ Note that `opt` isn't part of a standard `clang` installation, and morever, `-debug-only` only works with a debug-build of LLVM.
