@@ -286,10 +286,6 @@ main
 main > article
   font-size: 1.0em
 
-  & > pre,
-  & > div.mathjax
-    overflow-x: auto
-
 h1
   font-family: Futura
   font-size: 1.4rem
@@ -371,6 +367,7 @@ figure > img
 
 div.mathjax
   background-color: $pre-bg
+  overflow-x: auto
   padding-left: 1rem
   padding-right: 1rem
 
@@ -409,12 +406,11 @@ footer > p
   font-size: 0.85rem
 
 // syntax highlighting via rouge
-pre code.highlight
-  display: block
-  padding: 1em
+pre
+    & > code.highlight
+      background-color: $pre-bg
+      overflow-x: auto
+      display: block
 
 code.highlight
-  padding: 3px 5px
-
-.highlight
-  background: $pre-bg
+  padding: 5px
