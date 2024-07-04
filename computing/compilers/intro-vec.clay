@@ -84,7 +84,7 @@ for (size_t i = 0; i < 3; ++i)
   y[i] += a * x[i];
 ```
 
-Then, running `clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll` followed by `opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output` outputs:
+Then, running `clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll` followed by `opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output` [outputs](https://godbolt.org/z/8jn95qbxT):
 
 ```
 LV: Found a loop with a very small trip count.
@@ -100,7 +100,7 @@ The overhead it is talking about is runtime checks it needs to add. Adding `rest
 void saxpy_golden(const float a, const float *restrict x, float *restrict y)
 ```
 
-Even if we were to ramp up the iteration count to `17`, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using `-fno-unroll-loops` as before results in successful vectorization. The final output contains a scalar version of the loop as well, maked by `scalar.ph`, which is required as 17 isn't divisible by 4.
+Even if we were to ramp up the iteration count to `17`, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using `-fno-unroll-loops` as before results in successful vectorization. The final [output](https://godbolt.org/z/3Torh4ddE) contains a scalar version of the loop as well, maked by `scalar.ph`, which is required as 17 isn't divisible by 4.
 
 3. The access pattern. A good rule of thumb write loops with uniform row-major access, and avoid complex indexing arithmetic.
 
@@ -121,7 +121,7 @@ Now, let's change the assignment statement in the loop to:
 y[i][j] += a * x[j][i];
 ```
 
-This is unfortunately not vectorized by LLVM, but is vectorized by gcc. The reason for this is that an analysis that is used to prove legality of vectorization in LLVM, called LoopAccessAnalysis, is unable to find the bounds of the memory access. Running `opt -passes=loop-vectorize test.ll -disable-output -debug-only=loop-accesses` outputs:
+This is unfortunately not vectorized by LLVM, but there is no reason this is not theoretically vectorizible. The reason for this is that an analysis that is used to prove legality of vectorization in LLVM, called LoopAccessAnalysis, is unable to find the bounds of the memory access. Running `opt -passes=loop-vectorize test.ll -disable-output -debug-only=loop-accesses` [outputs](https://godbolt.org/z/5T9docTfq):
 
 ```
 LAA: We can't vectorize because we can't find the array bounds.
@@ -145,7 +145,7 @@ for (size_t i = 0; i < n; ++i)
 return rdx;
 ```
 
-The reason is as good as "it is unimplemented":
+The [reason](https://godbolt.org/z/Wfjr6ofrf) is as good as "it is unimplemented":
 
 ```
 LV: Not vectorizing: Found an unidentified PHI

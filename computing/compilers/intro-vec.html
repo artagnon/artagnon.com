@@ -460,7 +460,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <pre><code class="highlight"><span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
   <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">];</span></code></pre>
         <p>
-          Then, running <mark>clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll</mark> followed by <mark>opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output</mark> outputs:
+          Then, running <mark>clang -O3 -fno-unroll-loops -mllvm -vectorize-loops=false -emit-llvm -S test.c -o test.ll</mark> followed by <mark>opt -passes=loop-vectorize -debug-only=loop-vectorize test.ll -disable-output</mark> <a href="https://godbolt.org/z/8jn95qbxT">outputs</a>:
         </p>
         <pre><code class="highlight">LV: Found a loop with a very small trip count.
   This loop is worth vectorizing only if no
@@ -472,7 +472,7 @@ LV: Not vectorizing</code></pre>
         </p>
         <pre><code class="highlight"><span class="kt">void</span> <span class="n">saxpy_golden</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">)</span></code></pre>
         <p>
-          Even if we were to ramp up the iteration count to <mark>17</mark>, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using <mark>-fno-unroll-loops</mark> as before results in successful vectorization. The final output contains a scalar version of the loop as well, maked by <mark>scalar.ph</mark>, which is required as 17 isn't divisible by 4.
+          Even if we were to ramp up the iteration count to <mark>17</mark>, unrolling the loop would be preferred over vectorization. Forcing it not to unroll loops using <mark>-fno-unroll-loops</mark> as before results in successful vectorization. The final <a href="https://godbolt.org/z/3Torh4ddE">output</a> contains a scalar version of the loop as well, maked by <mark>scalar.ph</mark>, which is required as 17 isn't divisible by 4.
         </p>
         <ol class="olitems" type="none" start="3">
           <li>
@@ -493,7 +493,7 @@ LV: Not vectorizing</code></pre>
         </p>
         <pre><code class="highlight"><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">];</span></code></pre>
         <p>
-          This is unfortunately not vectorized by LLVM, but is vectorized by gcc. The reason for this is that an analysis that is used to prove legality of vectorization in LLVM, called LoopAccessAnalysis, is unable to find the bounds of the memory access. Running <mark>opt -passes=loop-vectorize test.ll -disable-output -debug-only=loop-accesses</mark> outputs:
+          This is unfortunately not vectorized by LLVM, but there is no reason this is not theoretically vectorizible. The reason for this is that an analysis that is used to prove legality of vectorization in LLVM, called LoopAccessAnalysis, is unable to find the bounds of the memory access. Running <mark>opt -passes=loop-vectorize test.ll -disable-output -debug-only=loop-accesses</mark> <a href="https://godbolt.org/z/5T9docTfq">outputs</a>:
         </p>
         <pre><code class="highlight">LAA: We can't vectorize because we can't find the array bounds.</code></pre>
         <ol class="olitems" type="none" start="4">
@@ -514,7 +514,7 @@ LV: Not vectorizing</code></pre>
   <span class="n">rdx</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">?</span> <span class="n">i</span> <span class="o">:</span> <span class="n">rdx</span><span class="p">;</span>
 <span class="k">return</span> <span class="n">rdx</span><span class="p">;</span></code></pre>
         <p>
-          The reason is as good as "it is unimplemented":
+          The <a href="https://godbolt.org/z/Wfjr6ofrf">reason</a> is as good as "it is unimplemented":
         </p>
         <pre><code class="highlight">LV: Not vectorizing: Found an unidentified PHI
   %10 = phi i64 [ %16, %8 ], [ 3, %.preheader ]</code></pre>
