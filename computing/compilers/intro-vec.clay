@@ -210,7 +210,7 @@ for (size_t i = 0; i < n; ++i)
   printf("%f\n", a * x[i]);
 ```
 
-However, icc can vectorize this, because there are vector instructions for `printf` available on X86, but AArch64 and RISC-V don't include it in their vector instruction set, and this is a fundamental limitation of the instruction set.
+AArch64 and RISC-V don't include a vector instruction for `printf` in their instruction set, and this is a fundamental limitation of the instruction set.
 
 ```
 LV: Not vectorizing: Found a non-intrinsic callsite
