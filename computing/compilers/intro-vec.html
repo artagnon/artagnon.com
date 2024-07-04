@@ -376,7 +376,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
       </header>
       <article>
         <p>
-          Most modern general purpose CPUs have a vector processing unit (VPU). This unit contains vector registers that can hold multiple integers or floats, and instructions that operate on vector registers. Given two vector registers containing N floats each §, the VPU can perform a single instruction to operate on these two vector registers and store the result in another vector register. Without a VPU, this operation would require N instructions operating on two floating-point registers each relying on the floating-point unit (FPU), or arithmetic logic unit (ALU) in the case of integers.
+          Most modern general purpose CPUs have a vector processing unit (VPU). This unit contains vector registers that can hold multiple integers or floats, and instructions that operate on vector registers. Given two vector registers containing N floats each ‡, the VPU can perform a single instruction to operate on these two vector registers and store the result in another vector register. Without a VPU, this operation would require N instructions operating on two floating-point registers each relying on the floating-point unit (FPU), or arithmetic logic unit (ALU) in the case of integers.
         </p>
         <p>
           Major instruction set architectures have vector extensions, and corresponding instructions for the VPU. Examples include x86's SSE/AVX, AArch64's SVE/Neon, and the latest entrant is RISC-V's RVV. In order to generate vector instructions, the programmer could adapt their code to use standardized vector intrinsics. To illustrate, suppose the programmer had the following source code:
@@ -581,9 +581,13 @@ LV: Not vectorizing: could not determine number of loop iterations.</code></pre>
   <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
     <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">lrint</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="p">}</span></code></pre>
-        <p class="exercise">
-          N is a power of two, bounded by vector register width.
-        </p>
+        <footer>
+          <ul class="footer">
+            <li>
+              N is a power of two, bounded by vector register width.
+            </li>
+          </ul>
+        </footer>
       </article>
     </main>
   </body>
