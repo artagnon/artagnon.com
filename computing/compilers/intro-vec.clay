@@ -219,7 +219,7 @@ LV: Not vectorizing: Found a non-intrinsic callsite
     double noundef %12)
 ```
 
-An example of a vector instruction that's included in both AArch64 and RISC-V is `lrint`, and vectorizing a program with it will use the vector variant of the `@llvm.lrint` intrinsic in the target-independent LLVM IR:
+An example of a vector instruction that's included in both AArch64 and RISC-V is `lrint`, and vectorizing a program with it will use the vector variant of the `@llvm.lrint` intrinsic in the target-independent LLVM IR. The output can be inspected [here](https://godbolt.org/z/foG7GsxYh).
 
 ```c
 void test(size_t n, const float a, const float *x, long *y) {
