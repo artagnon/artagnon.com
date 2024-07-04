@@ -575,7 +575,7 @@ LV: Not vectorizing: could not determine number of loop iterations.</code></pre>
     ptr noundef nonnull dereferenceable(1) @.str,
     double noundef %12)</code></pre>
         <p>
-          An example of a vector instruction that's included in both AArch64 and RISC-V is <mark>lrint</mark>, and vectorizing a program with it will use the vector variant of the <mark>@llvm.lrint</mark> intrinsic in the target-independent LLVM IR:
+          An example of a vector instruction that's included in both AArch64 and RISC-V is <mark>lrint</mark>, and vectorizing a program with it will use the vector variant of the <mark>@llvm.lrint</mark> intrinsic in the target-independent LLVM IR. The output can be inspected <a href="https://godbolt.org/z/foG7GsxYh">here</a>.
         </p>
         <pre><code class="highlight"><span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
