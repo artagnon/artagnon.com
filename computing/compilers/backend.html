@@ -1,0 +1,590 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <title>A quick tour of the LLVM backend | artagnon.com</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" type="image/x-icon" href="/dist/favicon.ico">
+    <link rel="apple-touch-icon" sizes="58x58" href="/dist/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/dist/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/dist/touch-icon-ipad-retina.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/touch-icon-iphone-retina.png">
+    <link rel="stylesheet" href="/dist/style.min.css">
+    <link rel="stylesheet" href="/dist/rouge.min.css">
+    <script defer="" src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"></script>
+    <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
+    <script defer="" src="/dist/script.min.js"></script>
+    <script defer="" data-domain="artagnon.com" src="https://analytics.artagnon.com/js/script.js"></script>
+  <style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+  <body class="wrapper">
+    <nav><a href="/"><img id="logo" src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
+      <ul>
+        <li>
+          <span class="navidx">01</span><a href="/art">art</a>
+        </li>
+        <li>
+          <span class="navidx">02</span><a href="/computing">computing</a>
+        </li>
+        <li>
+          <span class="navidx">03</span><a href="/logic">logic</a>
+        </li>
+        <li>
+          <span class="navidx">04</span><a href="/math">math</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <header>
+        <h1>
+          A quick tour of the LLVM backend
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time class="end" datetime="2024-08-04">Sun, 4 Aug 2024 21:00:00 +0100</time></span>
+        </div>
+      </header>
+      <article>
+        <p>
+          In this article, we provide a quick tour of the main components of a compiler's back-end, using LLVM as the reference compiler. We will explain the target-independent backend infrastructure, and use the RISC-V target to concretely show what the target-specific parts do. Let's take a simple C program as our guiding example, and have a look at each step of the lowering after running the entire middle-end optimization pipeline, until we get the final assembly.
+        </p>
+        <pre><code class="highlight"><span class="kt">void</span> <span class="nf">example</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">64</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span></code></pre>
+        <p>
+          First, we run the full middle-end optimization pipeline to obtain the optimized LLVM IR that's handed off to the backend. Running <mark>clang --target=riscv64 -march=rv64gc -O3 -emit-llvm -S</mark> emits:
+        </p>
+        <pre><code class="highlight"><span class="k">define</span> <span class="kt">void</span> <span class="vg">@example</span><span class="p">(</span><span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%x</span><span class="p">,</span> <span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%y</span><span class="p">)</span> <span class="p">{</span>
+<span class="nl">entry:</span>
+  <span class="k">br</span> <span class="kt">label</span> <span class="nv">%loop</span>
+
+<span class="nl">loop:</span>
+  <span class="nv">%iv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%entry</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%loop</span> <span class="p">]</span>
+  <span class="nv">%gep.x</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%x</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
+  <span class="nv">%load.x</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.x</span>
+  <span class="nv">%gep.y</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
+  <span class="nv">%load.y</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
+  <span class="nv">%fadd</span> <span class="p">=</span> <span class="k">fadd</span> <span class="kt">float</span> <span class="nv">%load.x</span><span class="p">,</span> <span class="nv">%load.y</span>
+  <span class="k">store</span> <span class="kt">float</span> <span class="nv">%fadd</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
+  <span class="nv">%iv.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">1</span>
+  <span class="nv">%exit.cond</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="m">64</span>
+  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exit.cond</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%loop</span>
+
+<span class="nl">exit:</span>
+  <span class="k">ret</span> <span class="kt">void</span>
+<span class="p">}</span></code></pre>
+        <p>
+          The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use <mark>-march=rv64gc</mark> instead of <mark>-march=rv64gcv</mark>) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed in depth <a href="/computing/compilers/intro-vec">previously</a>.
+        </p>
+        <p>
+          The first thing to notice is that the body of the function is cleanly separated into three basic blocks: entry, loop, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like <mark>%iv</mark> are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh <mark>%iv.next</mark> variable is created, and <mark>%iv</mark> is a <mark>phi</mark> node that selects between the values <mark>0</mark> when jumping into the <mark>loop</mark> block from <mark>entry</mark>, and <mark>%iv.next</mark> when jumping to the <mark>loop</mark> block from the back-edge of the loop. All the instructions (load, getelementptr, store, fadd etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
+        </p>
+        <p>
+          The first step in the lowering process is instruction selection. We can look at the output after this step by running <mark>llc --print-after-isel</mark>:
+        </p>
+        <pre><code class="highlight">Function Live Ins: $x10 in %5, $x11 in %6
+
+bb.0 (%ir-block.2):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+  liveins: $x10, $x11
+  %6:gpr = COPY $x11
+  %5:gpr = COPY $x10
+  %0:gpr = ADDI %6:gpr, 256
+  PseudoBR %bb.1
+
+bb.1 (%ir-block.3):
+  successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+              %bb.2(3.12%), %bb.1(96.88%)
+
+  %1:gpr = PHI %5:gpr, %bb.0, %4:gpr, %bb.1
+  %2:gpr = PHI %6:gpr, %bb.0, %3:gpr, %bb.1
+  %7:fpr32 = FLW %1:gpr, 0
+  %8:fpr32 = FLW %2:gpr, 0
+  %9:fpr32 = nofpexcept FADD_S killed %7:fpr32, killed %8:fpr32, 7,
+    implicit $frm
+  FSW killed %9:fpr32, %2:gpr, 0
+  %3:gpr = ADDI %2:gpr, 4
+  %4:gpr = ADDI %1:gpr, 4
+  BEQ %3:gpr, %0:gpr, %bb.2
+  PseudoBR %bb.1
+
+bb.2 (%ir-block.7):
+  PseudoRET</code></pre>
+        <p>
+          No analysis is performed at this stage, and what we see a straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. Notice that the variables are now suffixed with register classes (<mark>gpr</mark> stands for general-purpose register, and <mark>fpr</mark> stands for floating-point register): they're now virtual registers. The next thing to notice is the annotations on the virtual registers, <mark>killed</mark> and <mark>implicit</mark>. The operands of the <mark>FADD_S</mark>, <mark>%7:fpr32</mark> and <mark>%8:fpr32</mark>, are marked as <mark>killed</mark>, meaning that this is the final definition/use of those registers, and this information is useful to the register allocator (the annotations are actually wrong, because this is a loop: an analysis will correct it at a later stage). The pass also marks the register <mark>$frm</mark> as <mark>implicit</mark>, meaning that it implicitly uses the floating-point rounding-mode register: we won't see this register in the final assembly. There is additional information in this MIR: the function live-ins, or virtual registers that are live when the function is called, that the function uses; and the branch frequency information: <mark>bb.1</mark> is going to be the successor basic-block of <mark>bb.1</mark> 97% of the time.
+        </p>
+        <p>
+          There is quite a bit of target-specific information here. All the information about the registers available on on RISC-V are defined in the specification <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td">RISCVRegisterInfo.td</a>. The instructions themselves come out of another specification, <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td">RISCVInstrInfo.td</a>. The target-independent infrastructure that does the instruction selection is SelectionDAG †, and the target-specific code that specifies how instructions should be lowered via SelectionDAG is in <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp">RISCVISelLowering.cpp</a>.
+        </p>
+        <p>
+          In order to understand the various steps after instruction selection, let us <a href="https://godbolt.org/z/8cGGn63Eh">inspect the diffs</a> produced by running <mark>llc -print-changed=diff</mark>.
+        </p>
+        <p>
+          The first significant pass to run after the instruction selection is <mark>livevars</mark>, which analyzes live variables, and marks variables as <mark>killed</mark> aggressively (this will be undone by a later analysis). The next pass is <mark>phi-node-elimination</mark>, which removes PHI nodes, leaving the MIR in SSA form by inserting dummy COPY instructions:
+        </p>
+        <pre><code class="highlight"> Function Live Ins: $x10 in %5, $x11 in %6
+
+ bb.0 (%ir-block.2):
+   successors: %bb.1(0x80000000); %bb.1(100.00%)
+   liveins: $x10, $x11
+   %6:gpr = COPY killed $x11
+   %5:gpr = COPY killed $x10
+   %0:gpr = ADDI %6:gpr, 256
+<span class="gi">+  %10:gpr = COPY killed %5:gpr
++  %11:gpr = COPY killed %6:gpr
+</span>   PseudoBR %bb.2
+
+ bb.1 (%ir-block.3):
+   successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+               %bb.2(3.12%), %bb.1(96.88%)
+
+-  %1:gpr = PHI %5:gpr, %bb.0, %4:gpr, %bb.1
+<span class="gd">-  %2:gpr = PHI %6:gpr, %bb.0, %3:gpr, %bb.1
+</span><span class="gi">+  %2:gpr = COPY killed %11:gpr
++  %1:gpr = COPY killed %10:gpr
+</span>   %7:fpr32 = FLW %1:gpr, 0
+   %8:fpr32 = FLW %2:gpr, 0
+   %9:fpr32 = nofpexcept FADD_S killed %7:fpr32, killed %8:fpr32, 7,
+     implicit $frm
+   FSW killed %9:fpr32, %2:gpr, 0
+   %3:gpr = ADDI killed %2:gpr, 4
+   %4:gpr = ADDI killed %1:gpr, 4
+<span class="gd">-  BEQ %3:gpr, %0:gpr, %bb.2
+</span><span class="gi">+  %10:gpr = COPY killed %4:gpr
++  %11:gpr = COPY %3:gpr
++  BEQ killed %3:gpr, %0:gpr, %bb.2
+</span>   PseudoBR %bb.1
+
+ bb.2 (%ir-block.7):
+   PseudoRET</code></pre>
+        <p>
+          The next pass is <mark>liveintervals</mark>, which undoes the aggressive <mark>killed</mark> annotations inserted by <mark>livevars</mark>, by performing a more sophisticated analysis to determine that none of the virtual registers are actually killed in the loop.
+        </p>
+        <p>
+          Next, we have the instruction scheduler, or <mark>machine-scheduler</mark>, whose purpose is to re-order instructions to minimize hazards and stalls. It is important that the MIR is in SSA form at this stage, as the scheduler performs a sophisticated analysis and re-ordering. The exact schedule depends on micro-architectural details, and an example of a scheduler descriptor file is <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td">RISCVSchedSiFive7.td</a> for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used; unfortunately, the instruction scheduler doesn't produce a diff for our example.
+        </p>
+        <p>
+          The final preparatory step before register allocation is <mark>register-coalescer</mark>, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
+        </p>
+        <pre><code class="highlight"> Function Live Ins: $x10 in %5, $x11 in %6
+
+ bb.0 (%ir-block.2):
+   successors: %bb.1(0x80000000); %bb.1(100.00%)
+   liveins: $x10, $x11
+<span class="gd">-  %6:gpr = COPY $x11
+-  %5:gpr = COPY $x10
+-  %0:gpr = ADDI %6:gpr, 256
+-  %10:gpr = COPY %5:gpr
+-  %11:gpr = COPY %6:gpr
+</span><span class="gi">+  %11:gpr = COPY $x11
++  %10:gpr = COPY $x10
++  %0:gpr = ADDI %11:gpr, 256
+</span>
+ bb.1 (%ir-block.3):
+   successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+               %bb.2(3.12%), %bb.1(96.88%)
+
+-  %2:gpr = COPY %11:gpr
+<span class="gd">-  %1:gpr = COPY %10:gpr
+-  %7:fpr32 = FLW %1:gpr, 0
+-  %8:fpr32 = FLW %2:gpr, 0
+</span><span class="gi">+  %7:fpr32 = FLW %10:gpr, 0
++  %8:fpr32 = FLW %11:gpr, 0
+</span>   %9:fpr32 = nofpexcept FADD_S %7:fpr32, %8:fpr32, 7, implicit $frm
+<span class="gd">-  FSW %9:fpr32, %2:gpr, 0
+-  %3:gpr = ADDI %2:gpr, 4
+-  %4:gpr = ADDI %1:gpr, 4
+-  %10:gpr = COPY %4:gpr
+-  %11:gpr = COPY %3:gpr
+-  BNE %3:gpr, %0:gpr, %bb.1
+</span><span class="gi">+  FSW %9:fpr32, %11:gpr, 0
++  %11:gpr = ADDI %11:gpr, 4
++  %10:gpr = ADDI %10:gpr, 4
++  BNE %11:gpr, %0:gpr, %bb.1
+</span>   PseudoBR %bb.2
+
+ bb.2 (%ir-block.7):
+   PseudoRET</code></pre>
+        <p>
+          The register allocation infrastructure consists of two main bits: <mark>greedy</mark> implements a greedy algorithm for register allocation †, and <mark>virtregrewriter</mark> replaces virtual registers with real registers, yielding the following final MIR, after a small control-flow optimization:
+        </p>
+        <pre><code class="highlight">Function Live Ins: $x10, $x11
+
+bb.0 (%ir-block.2):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+  liveins: $x10, $x11
+  renamable $x12 = ADDI renamable $x11, 256
+
+bb.1 (%ir-block.3):
+  successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+              %bb.2(3.12%), %bb.1(96.88%)
+  liveins: $x10, $x11, $x12
+  renamable $f15_f = FLW renamable $x10, 0
+  renamable $f14_f = FLW renamable $x11, 0
+  renamable $f15_f = nofpexcept FADD_S killed renamable $f15_f,
+    killed renamable $f14_f, 7, implicit $frm
+  FSW killed renamable $f15_f, renamable $x11, 0
+  renamable $x11 = ADDI killed renamable $x11, 4
+  renamable $x10 = ADDI killed renamable $x10, 4
+  BNE renamable $x11, renamable $x12, %bb.1
+
+bb.2 (%ir-block.7):
+  PseudoRET</code></pre>
+        <p>
+          In the final step, assembly is produced by AsmPrinter, which can be checked against the <a href="https://github.com/riscv/riscv-isa-manual/">RISC-V ISA manual</a>:
+        </p>
+        <pre><code class="highlight">example:                                # @example
+# %bb.0:
+  addi  a2, a1, 256
+.LBB0_1:                                # =&gt;This Inner Loop Header: Depth=1
+  flw   fa5, 0(a0)
+  flw   fa4, 0(a1)
+  fadd.s  fa5, fa5, fa4
+  fsw   fa5, 0(a1)
+  addi  a1, a1, 4
+  addi  a0, a0, 4
+  bne   a1, a2, .LBB0_1
+# %bb.2:
+  ret</code></pre>
+        <footer>
+          <ul class="footer">
+            <li>
+              There is an alternative instruction selection framework called GlobalISel, and alternative register allocation algorithms in LLVM.
+            </li>
+          </ul>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>
