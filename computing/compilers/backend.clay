@@ -1,0 +1,212 @@
+A quick tour of the LLVM backend
+
+In this article, we provide a quick tour of the main components of a compiler's back-end, using LLVM as the reference compiler. We will explain the target-independent backend infrastructure, and use the RISC-V target to concretely show what the target-specific parts do. Let's take a simple C program as our guiding example, and have a look at each step of the lowering after running the entire middle-end optimization pipeline, until we get the final assembly.
+
+```c
+void example(const float *restrict x, float *restrict y) {
+  for (size_t i = 0; i < 64; ++i)
+    y[i] = x[i] + y[i];
+}
+```
+
+First, we run the full middle-end optimization pipeline to obtain the optimized LLVM IR that's handed off to the backend. Running `clang --target=riscv64 -march=rv64gc -O3 -emit-llvm -S` emits:
+
+```llvm
+define void @example(ptr noalias %x, ptr noalias %y) {
+entry:
+  br label %loop
+
+loop:
+  %iv = phi i64 [ 0, %entry ], [ %iv.next, %loop ]
+  %gep.x = getelementptr inbounds float, ptr %x, i64 %iv
+  %load.x = load float, ptr %gep.x
+  %gep.y = getelementptr inbounds float, ptr %y, i64 %iv
+  %load.y = load float, ptr %gep.y
+  %fadd = fadd float %load.x, %load.y
+  store float %fadd, ptr %gep.y
+  %iv.next = add nuw nsw i64 %iv, 1
+  %exit.cond = icmp eq i64 %iv.next, 64
+  br i1 %exit.cond, label %exit, label %loop
+
+exit:
+  ret void
+}
+```
+
+The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use `-march=rv64gc` instead of `-march=rv64gcv`) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed in depth [previously](/computing/compilers/intro-vec).
+
+The first thing to notice is that the body of the function is cleanly separated into three basic blocks: entry, loop, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like `%iv` are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh `%iv.next` variable is created, and `%iv` is a `phi` node that selects between the values `0` when jumping into the `loop` block from `entry`, and `%iv.next` when jumping to the `loop` block from the back-edge of the loop. All the instructions (load, getelementptr, store, fadd etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
+
+The first step in the lowering process is instruction selection. We can look at the output after this step by running `llc --print-after-isel`:
+
+```
+Function Live Ins: $x10 in %5, $x11 in %6
+
+bb.0 (%ir-block.2):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+  liveins: $x10, $x11
+  %6:gpr = COPY $x11
+  %5:gpr = COPY $x10
+  %0:gpr = ADDI %6:gpr, 256
+  PseudoBR %bb.1
+
+bb.1 (%ir-block.3):
+  successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+              %bb.2(3.12%), %bb.1(96.88%)
+
+  %1:gpr = PHI %5:gpr, %bb.0, %4:gpr, %bb.1
+  %2:gpr = PHI %6:gpr, %bb.0, %3:gpr, %bb.1
+  %7:fpr32 = FLW %1:gpr, 0
+  %8:fpr32 = FLW %2:gpr, 0
+  %9:fpr32 = nofpexcept FADD_S killed %7:fpr32, killed %8:fpr32, 7,
+    implicit $frm
+  FSW killed %9:fpr32, %2:gpr, 0
+  %3:gpr = ADDI %2:gpr, 4
+  %4:gpr = ADDI %1:gpr, 4
+  BEQ %3:gpr, %0:gpr, %bb.2
+  PseudoBR %bb.1
+
+bb.2 (%ir-block.7):
+  PseudoRET
+```
+
+No analysis is performed at this stage, and what we see a straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. Notice that the variables are now suffixed with register classes (`gpr` stands for general-purpose register, and `fpr` stands for floating-point register): they're now virtual registers. The next thing to notice is the annotations on the virtual registers, `killed` and `implicit`. The operands of the `FADD_S`, `%7:fpr32` and `%8:fpr32`, are marked as `killed`, meaning that this is the final definition/use of those registers, and this information is useful to the register allocator (the annotations are actually wrong, because this is a loop: an analysis will correct it at a later stage). The pass also marks the register `$frm` as `implicit`, meaning that it implicitly uses the floating-point rounding-mode register: we won't see this register in the final assembly. There is additional information in this MIR: the function live-ins, or virtual registers that are live when the function is called, that the function uses; and the branch frequency information: `bb.1` is going to be the successor basic-block of `bb.1` 97% of the time.
+
+There is quite a bit of target-specific information here. All the information about the registers available on on RISC-V are defined in the specification [RISCVRegisterInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td). The instructions themselves come out of another specification, [RISCVInstrInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td). The target-independent infrastructure that does the instruction selection is SelectionDAG †, and the target-specific code that specifies how instructions should be lowered via SelectionDAG is in [RISCVISelLowering.cpp](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp).
+
+In order to understand the various steps after instruction selection, let us [inspect the diffs](https://godbolt.org/z/8cGGn63Eh) produced by running `llc -print-changed=diff`.
+
+The first significant pass to run after the instruction selection is `livevars`, which analyzes live variables, and marks variables as `killed` aggressively (this will be undone by a later analysis). The next pass is `phi-node-elimination`, which removes PHI nodes, leaving the MIR in SSA form by inserting dummy COPY instructions:
+
+```diff
+ Function Live Ins: $x10 in %5, $x11 in %6
+
+ bb.0 (%ir-block.2):
+   successors: %bb.1(0x80000000); %bb.1(100.00%)
+   liveins: $x10, $x11
+   %6:gpr = COPY killed $x11
+   %5:gpr = COPY killed $x10
+   %0:gpr = ADDI %6:gpr, 256
++  %10:gpr = COPY killed %5:gpr
++  %11:gpr = COPY killed %6:gpr
+   PseudoBR %bb.2
+
+ bb.1 (%ir-block.3):
+   successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+               %bb.2(3.12%), %bb.1(96.88%)
+
+-  %1:gpr = PHI %5:gpr, %bb.0, %4:gpr, %bb.1
+-  %2:gpr = PHI %6:gpr, %bb.0, %3:gpr, %bb.1
++  %2:gpr = COPY killed %11:gpr
++  %1:gpr = COPY killed %10:gpr
+   %7:fpr32 = FLW %1:gpr, 0
+   %8:fpr32 = FLW %2:gpr, 0
+   %9:fpr32 = nofpexcept FADD_S killed %7:fpr32, killed %8:fpr32, 7,
+     implicit $frm
+   FSW killed %9:fpr32, %2:gpr, 0
+   %3:gpr = ADDI killed %2:gpr, 4
+   %4:gpr = ADDI killed %1:gpr, 4
+-  BEQ %3:gpr, %0:gpr, %bb.2
++  %10:gpr = COPY killed %4:gpr
++  %11:gpr = COPY %3:gpr
++  BEQ killed %3:gpr, %0:gpr, %bb.2
+   PseudoBR %bb.1
+
+ bb.2 (%ir-block.7):
+   PseudoRET
+```
+
+The next pass is `liveintervals`, which undoes the aggressive `killed` annotations inserted by `livevars`, by performing a more sophisticated analysis to determine that none of the virtual registers are actually killed in the loop.
+
+Next, we have the instruction scheduler, or `machine-scheduler`, whose purpose is to re-order instructions to minimize hazards and stalls. It is important that the MIR is in SSA form at this stage, as the scheduler performs a sophisticated analysis and re-ordering. The exact schedule depends on micro-architectural details, and an example of a scheduler descriptor file is [RISCVSchedSiFive7.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td) for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used; unfortunately, the instruction scheduler doesn't produce a diff for our example.
+
+The final preparatory step before register allocation is `register-coalescer`, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
+
+```diff
+ Function Live Ins: $x10 in %5, $x11 in %6
+
+ bb.0 (%ir-block.2):
+   successors: %bb.1(0x80000000); %bb.1(100.00%)
+   liveins: $x10, $x11
+-  %6:gpr = COPY $x11
+-  %5:gpr = COPY $x10
+-  %0:gpr = ADDI %6:gpr, 256
+-  %10:gpr = COPY %5:gpr
+-  %11:gpr = COPY %6:gpr
++  %11:gpr = COPY $x11
++  %10:gpr = COPY $x10
++  %0:gpr = ADDI %11:gpr, 256
+
+ bb.1 (%ir-block.3):
+   successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+               %bb.2(3.12%), %bb.1(96.88%)
+
+-  %2:gpr = COPY %11:gpr
+-  %1:gpr = COPY %10:gpr
+-  %7:fpr32 = FLW %1:gpr, 0
+-  %8:fpr32 = FLW %2:gpr, 0
++  %7:fpr32 = FLW %10:gpr, 0
++  %8:fpr32 = FLW %11:gpr, 0
+   %9:fpr32 = nofpexcept FADD_S %7:fpr32, %8:fpr32, 7, implicit $frm
+-  FSW %9:fpr32, %2:gpr, 0
+-  %3:gpr = ADDI %2:gpr, 4
+-  %4:gpr = ADDI %1:gpr, 4
+-  %10:gpr = COPY %4:gpr
+-  %11:gpr = COPY %3:gpr
+-  BNE %3:gpr, %0:gpr, %bb.1
++  FSW %9:fpr32, %11:gpr, 0
++  %11:gpr = ADDI %11:gpr, 4
++  %10:gpr = ADDI %10:gpr, 4
++  BNE %11:gpr, %0:gpr, %bb.1
+   PseudoBR %bb.2
+
+ bb.2 (%ir-block.7):
+   PseudoRET
+```
+
+The register allocation infrastructure consists of two main bits: `greedy` implements a greedy algorithm for register allocation †, and `virtregrewriter` replaces virtual registers with real registers, yielding the following final MIR, after a small control-flow optimization:
+
+```
+Function Live Ins: $x10, $x11
+
+bb.0 (%ir-block.2):
+  successors: %bb.1(0x80000000); %bb.1(100.00%)
+  liveins: $x10, $x11
+  renamable $x12 = ADDI renamable $x11, 256
+
+bb.1 (%ir-block.3):
+  successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+              %bb.2(3.12%), %bb.1(96.88%)
+  liveins: $x10, $x11, $x12
+  renamable $f15_f = FLW renamable $x10, 0
+  renamable $f14_f = FLW renamable $x11, 0
+  renamable $f15_f = nofpexcept FADD_S killed renamable $f15_f,
+    killed renamable $f14_f, 7, implicit $frm
+  FSW killed renamable $f15_f, renamable $x11, 0
+  renamable $x11 = ADDI killed renamable $x11, 4
+  renamable $x10 = ADDI killed renamable $x10, 4
+  BNE renamable $x11, renamable $x12, %bb.1
+
+bb.2 (%ir-block.7):
+  PseudoRET
+```
+
+In the final step, assembly is produced by AsmPrinter, which can be checked against the [RISC-V ISA manual](https://github.com/riscv/riscv-isa-manual/):
+
+```
+example:                                # @example
+# %bb.0:
+  addi  a2, a1, 256
+.LBB0_1:                                # =>This Inner Loop Header: Depth=1
+  flw   fa5, 0(a0)
+  flw   fa4, 0(a1)
+  fadd.s  fa5, fa5, fa4
+  fsw   fa5, 0(a1)
+  addi  a1, a1, 4
+  addi  a0, a0, 4
+  bne   a1, a2, .LBB0_1
+# %bb.2:
+  ret
+```
+
+† There is an alternative instruction selection framework called GlobalISel, and alternative register allocation algorithms in LLVM.
