@@ -1,8 +1,8 @@
 A tour of the LLVM backend
 
-Any modern compiler has three main components: a front-end that parses the source language, and translates it to a middle-end intermediate representation, a middle-end that operates on this IR, performing target-independent optimizations with a bit of target-specific information, and a backend that takes the final optimized middle-end IR and emits target-specific assembly. In this article, we illustrate the operation of a the main components of a compiler's backend, namely instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. LLVM is especially good for the purposes of illustration, as it has, in addition to a clean human-readable middle-end IR, a relatively clean human-readable backend IR. We use the RISC-V target for the purposes of concrete illustration, chosen again for its clean design, to simplify the exposition.
+Any modern compiler has three main components: a front-end that parses the source language, and translates it to a middle-end intermediate representation, a middle-end that operates on this IR, performing target-independent optimizations with a bit of target-specific information, and a backend that takes the final optimized middle-end IR and emits target-specific assembly. In this article, we illustrate the operation of a the main components of a compiler's backend, namely instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. LLVM is especially good for the purposes of illustration, as it has, in addition to a clean human-readable middle-end IR, a relatively clean human-readable backend IR. We use the RISC-V target for the purposes of concrete illustration, chosen again for its clean design.
 
-Let's start with a simple C program as our guiding example, and have a look at each step of the backend lowering after running the entire middle-end optimization pipeline, all the way up to the final assembly.
+Let us start with a simple C program as our guiding example, and have a look at each step of the backend lowering after running the entire middle-end optimization pipeline, all the way up to the final assembly.
 
 ```c
 #define N 64
@@ -71,7 +71,7 @@ The astute reader will note that we have strategically omitted the vector extens
 
 The first thing to notice is that the body of the function is cleanly separated into basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like `%iv` are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh `%iv.next` variable is created, and `%iv` is a `phi` node that selects between the values `0` when jumping into the `loop` block from `entry`, and `%iv.next` when jumping to the `inner.loop` block from the back-edge of the inner loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
 
-The first step in the lowering process is instruction selection. We can look at the output after this step by running `llc --print-after-isel`:
+The first step in the lowering process is instruction selection. We can look at the output of this step by running `llc --print-after-isel`:
 
 ```
 Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
@@ -148,7 +148,7 @@ bb.6 (%ir-block.21):
 
 What we see is a relatively straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. The purpose of instruction selection is to select a combination of instructions available on the target that optimally represents the middle-end semantics. Its two primary functions are to replace middle-end SSA variables by virtual registers, and to replace middle-end instructions by target-specific instructions.
 
-Each virtual register has a suffix of either gpr (general-purpose register), or fpr (floating-point register). There are also physical registers in this MIR: `$x0`, `$x10`, `$x11`, `$x12`, `$frm`. Per RISC-V calling convention, the first three arguments to a function are in general-purpose registers `$x10`, `$x11`, and `$x12` (pretty-printed as `a0`, `a1`, and `a2`). `$x0` is a special register on RISC-V that always holds the value `0`. `$frm` is the floating-point rounding-mode register. None of these can be virtual registers. A minor point to notice is the annotations on the virtual registers, `killed` and `implicit`. The operands of the `FMADD_S`, `%30:fpr32` and `%31:fpr32`, are marked as `killed`, meaning that this is the final definition/use of those registers (these annotations are preliminary: the final annotations will be determined at a later stage). The register `$frm` is marked as `implicit`, meaning that it implicitly uses this register, and that this argument will be absent in the final assembly. The virtual registers must be turned into physical registers by the register allocator before emitting the final assembly.
+Each virtual register has a suffix of either gpr (general-purpose register) or fpr (floating-point register). There are also physical registers in this MIR: `$x0`, `$x10`, `$x11`, `$x12`, `$frm`. Per the RISC-V calling convention, the first three arguments to a function are in general-purpose registers `$x10`, `$x11`, and `$x12` (pretty-printed as `a0`, `a1`, and `a2`). `$x0` is a special register on RISC-V that always holds the value `0`. `$frm` is the floating-point rounding-mode register. None of these can be virtual registers. A minor point to notice is the annotations on the virtual registers, `killed` and `implicit`. The operands of the `FMADD_S`, `%30:fpr32` and `%31:fpr32`, are marked as `killed`, meaning that this is the final definition/use of those registers (these annotations are preliminary: the final annotations will be determined at a later stage). The register `$frm` is marked as `implicit`, meaning that it implicitly uses this register, and that this argument will be absent in the final assembly. The virtual registers must be turned into physical registers by the register allocator before emitting the final assembly.
 
 Middle-end instructions like `@llvm.fmadd` have been replaced by target-specific instructions like `FMADD_S` (pretty-printed as `fmadd.s`), and several pseudo-instructions like `PseudoBR` and `PseudoRET` have been inserted in the process. The pseudo-instructions must be lowered to real instructions before emitting the final assembly.
 
@@ -259,7 +259,7 @@ The first significant pass to run after the instruction selection is `early-mach
    PseudoBR %bb.6
 ```
 
-The next pass is `liveintervals`, which undoes many of the `killed` annotations inserted by `livevars`, by performing a more sophisticated analysis to determine the actual virtual registers killed in the loop-nest.
+The next pass `liveintervals` undoes many of the `killed` annotations inserted by `livevars`, by performing a more sophisticated analysis to determine the actual virtual registers killed in the loop-nest.
 
 The final preparatory step before instruction scheduling and register allocation is `register-coalescer`, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
 
@@ -549,9 +549,9 @@ We're now ready to run the `greedy` register allocator †, whose purpose is to 
 Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after the `branch-folder` and `postrapseduos` passes is:
 
 ```
- Function Live Ins: $x10, $x11, $x12
+Function Live Ins: $x10, $x11, $x12
 
- bb.0 (%ir-block.3):
+bb.0 (%ir-block.3):
   successors: %bb.1(0x80000000); %bb.1(100.00%)
   liveins: $x10, $x11, $x12
   $x16 = ADDI $x0, 0

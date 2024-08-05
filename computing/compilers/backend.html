@@ -376,10 +376,10 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
       </header>
       <article>
         <p>
-          Any modern compiler has three main components: a front-end that parses the source language, and translates it to a middle-end intermediate representation, a middle-end that operates on this IR, performing target-independent optimizations with a bit of target-specific information, and a backend that takes the final optimized middle-end IR and emits target-specific assembly. In this article, we illustrate the operation of a the main components of a compiler's backend, namely instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. LLVM is especially good for the purposes of illustration, as it has, in addition to a clean human-readable middle-end IR, a relatively clean human-readable backend IR. We use the RISC-V target for the purposes of concrete illustration, chosen again for its clean design, to simplify the exposition.
+          Any modern compiler has three main components: a front-end that parses the source language, and translates it to a middle-end intermediate representation, a middle-end that operates on this IR, performing target-independent optimizations with a bit of target-specific information, and a backend that takes the final optimized middle-end IR and emits target-specific assembly. In this article, we illustrate the operation of a the main components of a compiler's backend, namely instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. LLVM is especially good for the purposes of illustration, as it has, in addition to a clean human-readable middle-end IR, a relatively clean human-readable backend IR. We use the RISC-V target for the purposes of concrete illustration, chosen again for its clean design.
         </p>
         <p>
-          Let's start with a simple C program as our guiding example, and have a look at each step of the backend lowering after running the entire middle-end optimization pipeline, all the way up to the final assembly.
+          Let us start with a simple C program as our guiding example, and have a look at each step of the backend lowering after running the entire middle-end optimization pipeline, all the way up to the final assembly.
         </p>
         <pre><code class="highlight"><span class="cp">#define N 64
 </span>
@@ -446,7 +446,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           The first thing to notice is that the body of the function is cleanly separated into basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like <mark>%iv</mark> are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh <mark>%iv.next</mark> variable is created, and <mark>%iv</mark> is a <mark>phi</mark> node that selects between the values <mark>0</mark> when jumping into the <mark>loop</mark> block from <mark>entry</mark>, and <mark>%iv.next</mark> when jumping to the <mark>inner.loop</mark> block from the back-edge of the inner loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
         </p>
         <p>
-          The first step in the lowering process is instruction selection. We can look at the output after this step by running <mark>llc --print-after-isel</mark>:
+          The first step in the lowering process is instruction selection. We can look at the output of this step by running <mark>llc --print-after-isel</mark>:
         </p>
         <pre><code class="highlight">Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
 
@@ -522,7 +522,7 @@ bb.6 (%ir-block.21):
           What we see is a relatively straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. The purpose of instruction selection is to select a combination of instructions available on the target that optimally represents the middle-end semantics. Its two primary functions are to replace middle-end SSA variables by virtual registers, and to replace middle-end instructions by target-specific instructions.
         </p>
         <p>
-          Each virtual register has a suffix of either gpr (general-purpose register), or fpr (floating-point register). There are also physical registers in this MIR: <mark>$x0</mark>, <mark>$x10</mark>, <mark>$x11</mark>, <mark>$x12</mark>, <mark>$frm</mark>. Per RISC-V calling convention, the first three arguments to a function are in general-purpose registers <mark>$x10</mark>, <mark>$x11</mark>, and <mark>$x12</mark> (pretty-printed as <mark>a0</mark>, <mark>a1</mark>, and <mark>a2</mark>). <mark>$x0</mark> is a special register on RISC-V that always holds the value <mark>0</mark>. <mark>$frm</mark> is the floating-point rounding-mode register. None of these can be virtual registers. A minor point to notice is the annotations on the virtual registers, <mark>killed</mark> and <mark>implicit</mark>. The operands of the <mark>FMADD_S</mark>, <mark>%30:fpr32</mark> and <mark>%31:fpr32</mark>, are marked as <mark>killed</mark>, meaning that this is the final definition/use of those registers (these annotations are preliminary: the final annotations will be determined at a later stage). The register <mark>$frm</mark> is marked as <mark>implicit</mark>, meaning that it implicitly uses this register, and that this argument will be absent in the final assembly. The virtual registers must be turned into physical registers by the register allocator before emitting the final assembly.
+          Each virtual register has a suffix of either gpr (general-purpose register) or fpr (floating-point register). There are also physical registers in this MIR: <mark>$x0</mark>, <mark>$x10</mark>, <mark>$x11</mark>, <mark>$x12</mark>, <mark>$frm</mark>. Per the RISC-V calling convention, the first three arguments to a function are in general-purpose registers <mark>$x10</mark>, <mark>$x11</mark>, and <mark>$x12</mark> (pretty-printed as <mark>a0</mark>, <mark>a1</mark>, and <mark>a2</mark>). <mark>$x0</mark> is a special register on RISC-V that always holds the value <mark>0</mark>. <mark>$frm</mark> is the floating-point rounding-mode register. None of these can be virtual registers. A minor point to notice is the annotations on the virtual registers, <mark>killed</mark> and <mark>implicit</mark>. The operands of the <mark>FMADD_S</mark>, <mark>%30:fpr32</mark> and <mark>%31:fpr32</mark>, are marked as <mark>killed</mark>, meaning that this is the final definition/use of those registers (these annotations are preliminary: the final annotations will be determined at a later stage). The register <mark>$frm</mark> is marked as <mark>implicit</mark>, meaning that it implicitly uses this register, and that this argument will be absent in the final assembly. The virtual registers must be turned into physical registers by the register allocator before emitting the final assembly.
         </p>
         <p>
           Middle-end instructions like <mark>@llvm.fmadd</mark> have been replaced by target-specific instructions like <mark>FMADD_S</mark> (pretty-printed as <mark>fmadd.s</mark>), and several pseudo-instructions like <mark>PseudoBR</mark> and <mark>PseudoRET</mark> have been inserted in the process. The pseudo-instructions must be lowered to real instructions before emitting the final assembly.
@@ -637,7 +637,7 @@ bb.6 (%ir-block.21):
 +  BEQ killed %16:gpr, %5:gpr, %bb.5
 </span>   PseudoBR %bb.6</code></pre>
         <p>
-          The next pass is <mark>liveintervals</mark>, which undoes many of the <mark>killed</mark> annotations inserted by <mark>livevars</mark>, by performing a more sophisticated analysis to determine the actual virtual registers killed in the loop-nest.
+          The next pass <mark>liveintervals</mark> undoes many of the <mark>killed</mark> annotations inserted by <mark>livevars</mark>, by performing a more sophisticated analysis to determine the actual virtual registers killed in the loop-nest.
         </p>
         <p>
           The final preparatory step before instruction scheduling and register allocation is <mark>register-coalescer</mark>, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
@@ -921,9 +921,9 @@ bb.6 (%ir-block.21):
         <p>
           Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after the <mark>branch-folder</mark> and <mark>postrapseduos</mark> passes is:
         </p>
-        <pre><code class="highlight"> Function Live Ins: $x10, $x11, $x12
+        <pre><code class="highlight">Function Live Ins: $x10, $x11, $x12
 
- bb.0 (%ir-block.3):
+bb.0 (%ir-block.3):
   successors: %bb.1(0x80000000); %bb.1(100.00%)
   liveins: $x10, $x11, $x12
   $x16 = ADDI $x0, 0
