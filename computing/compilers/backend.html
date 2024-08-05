@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en">
   <head>
-    <title>A quick tour of the LLVM backend | artagnon.com</title>
+    <title>A tour of the LLVM backend | artagnon.com</title>
     <meta charset="utf-8">
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
     <meta name="HandheldFriendly" content="true">
@@ -368,7 +368,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
     <main>
       <header>
         <h1>
-          A quick tour of the LLVM backend
+          A tour of the LLVM backend
         </h1>
         <div id="metadata">
           <span id="timestamp"><time class="end" datetime="2024-08-04">Sun, 4 Aug 2024 21:00:00 +0100</time></span>
@@ -376,73 +376,146 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
       </header>
       <article>
         <p>
-          In this article, we provide a quick tour of the main components of a compiler's back-end, using LLVM as the reference compiler. We will explain the target-independent backend infrastructure, and use the RISC-V target to concretely show what the target-specific parts do. Let's take a simple C program as our guiding example, and have a look at each step of the lowering after running the entire middle-end optimization pipeline, until we get the final assembly.
+          In this article, we illustrate the operation of a the main components of a compiler's backend, with emphasis on instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. We use the RISC-V target for the purposes of concrete illustrations. Let's take a simple C program as our guiding example, and have a look at each step of the lowering after running the entire middle-end optimization pipeline, until we get the final assembly.
         </p>
-        <pre><code class="highlight"><span class="kt">void</span> <span class="nf">example</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">64</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <pre><code class="highlight"><span class="cp">#define N 64
+</span>
+<span class="kt">void</span> <span class="nf">matmul</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">,</span>
+            <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">N</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">N</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">N</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="n">j</span><span class="p">];</span>
 <span class="p">}</span></code></pre>
         <p>
           First, we run the full middle-end optimization pipeline to obtain the optimized LLVM IR that's handed off to the backend. Running <mark>clang --target=riscv64 -march=rv64gc -O3 -emit-llvm -S</mark> emits:
         </p>
-        <pre><code class="highlight"><span class="k">define</span> <span class="kt">void</span> <span class="vg">@example</span><span class="p">(</span><span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%x</span><span class="p">,</span> <span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%y</span><span class="p">)</span> <span class="p">{</span>
+        <pre><code class="highlight"><span class="k">define</span> <span class="kt">void</span> <span class="vg">@matmul</span><span class="p">(</span><span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%x</span><span class="p">,</span> <span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%y</span><span class="p">,</span> <span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%res</span><span class="p">)</span> <span class="p">{</span>
 <span class="nl">entry:</span>
-  <span class="k">br</span> <span class="kt">label</span> <span class="nv">%loop</span>
+  <span class="k">br</span> <span class="kt">label</span> <span class="nv">%ph</span>
 
-<span class="nl">loop:</span>
-  <span class="nv">%iv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%entry</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%loop</span> <span class="p">]</span>
-  <span class="nv">%gep.x</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%x</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
-  <span class="nv">%load.x</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.x</span>
-  <span class="nv">%gep.y</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
-  <span class="nv">%load.y</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
-  <span class="nv">%fadd</span> <span class="p">=</span> <span class="k">fadd</span> <span class="kt">float</span> <span class="nv">%load.x</span><span class="p">,</span> <span class="nv">%load.y</span>
-  <span class="k">store</span> <span class="kt">float</span> <span class="nv">%fadd</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
-  <span class="nv">%iv.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">1</span>
-  <span class="nv">%exit.cond</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="m">64</span>
-  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exit.cond</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%loop</span>
+<span class="nl">ph:</span>
+  <span class="nv">%iv.outer</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%entry</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.outer.next</span><span class="p">,</span> <span class="nv">%common.exit</span> <span class="p">]</span>
+  <span class="nv">%shl</span> <span class="p">=</span> <span class="k">shl</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv.outer</span><span class="p">,</span> <span class="m">6</span>
+  <span class="k">br</span> <span class="kt">label</span> <span class="nv">%common.ph</span>
 
 <span class="nl">exit:</span>
   <span class="k">ret</span> <span class="kt">void</span>
+
+<span class="nl">common.ph:</span>
+  <span class="nv">%iv.middle</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%ph</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.middle.next</span><span class="p">,</span> <span class="nv">%inner.loop.exit</span> <span class="p">]</span>
+  <span class="nv">%or</span> <span class="p">=</span> <span class="k">or</span> <span class="err">disjoint</span> <span class="kt">i64</span> <span class="nv">%iv.middle</span><span class="p">,</span> <span class="nv">%shl</span>
+  <span class="nv">%gep.res</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%res</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%or</span>
+  <span class="nv">%load</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.res</span>
+  <span class="nv">%gep.y</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv.middle</span>
+  <span class="k">br</span> <span class="kt">label</span> <span class="nv">%inner.loop</span>
+
+<span class="nl">common.exit:</span>
+  <span class="nv">%iv.outer.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv.outer</span><span class="p">,</span> <span class="m">1</span>
+  <span class="nv">%exit.cond.outer</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.outer.next</span><span class="p">,</span> <span class="m">64</span>
+  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exit.cond.outer</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%ph</span>
+
+<span class="nl">inner.loop.exit:</span>
+  <span class="k">store</span> <span class="kt">float</span> <span class="nv">%conv.next</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.res</span>
+  <span class="err">iv</span><span class="p">.</span><span class="err">middle</span><span class="p">.</span><span class="err">next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv.middle</span><span class="p">,</span> <span class="m">1</span>
+  <span class="nv">%exit.cond.middle</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.middle.next</span><span class="p">,</span> <span class="m">64</span>
+  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exit.cond.middle</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%common.exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%common.ph</span>
+
+<span class="nl">inner.loop:</span>
+  <span class="nv">%iv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%common.ph</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%inner.loop</span> <span class="p">]</span>
+  <span class="nv">%conv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">float</span> <span class="p">[</span> <span class="nv">%load</span><span class="p">,</span> <span class="nv">%common.ph</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%conv.next</span><span class="p">,</span> <span class="nv">%inner.loop</span> <span class="p">]</span>
+  <span class="nv">%or</span> <span class="p">=</span> <span class="k">or</span> <span class="err">disjoint</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="nv">%shl</span>
+  <span class="nv">%gep.x</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%x</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%or</span>
+  <span class="nv">%load.x</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.x</span>
+  <span class="nv">%shl.iv</span> <span class="p">=</span> <span class="k">shl</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">6</span>
+  <span class="nv">%gep.y.2</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%shl.iv</span>
+  <span class="nv">%load.y</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y.2</span>
+  <span class="nv">%conv.next</span> <span class="p">=</span> <span class="k">tail</span> <span class="k">call</span> <span class="kt">float</span> <span class="vg">@llvm.fmuladd.f32</span><span class="p">(</span><span class="kt">float</span> <span class="nv">%load.x</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%load.y</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%conv</span><span class="p">)</span>
+  <span class="nv">%iv.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">1</span>
+  <span class="nv">%exit.cond</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="m">64</span>
+  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exit.cond</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%inner.loop.exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%inner.loop</span>
 <span class="p">}</span></code></pre>
         <p>
           The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use <mark>-march=rv64gc</mark> instead of <mark>-march=rv64gcv</mark>) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed in depth <a href="/computing/compilers/intro-vec">previously</a>.
         </p>
         <p>
-          The first thing to notice is that the body of the function is cleanly separated into three basic blocks: entry, loop, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like <mark>%iv</mark> are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh <mark>%iv.next</mark> variable is created, and <mark>%iv</mark> is a <mark>phi</mark> node that selects between the values <mark>0</mark> when jumping into the <mark>loop</mark> block from <mark>entry</mark>, and <mark>%iv.next</mark> when jumping to the <mark>loop</mark> block from the back-edge of the loop. All the instructions (load, getelementptr, store, fadd etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
+          The first thing to notice is that the body of the function is cleanly separated into three basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like <mark>%iv</mark> are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh <mark>%iv.next</mark> variable is created, and <mark>%iv</mark> is a <mark>phi</mark> node that selects between the values <mark>0</mark> when jumping into the <mark>loop</mark> block from <mark>entry</mark>, and <mark>%iv.next</mark> when jumping to the <mark>loop</mark> block from the back-edge of the loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
         </p>
         <p>
           The first step in the lowering process is instruction selection. We can look at the output after this step by running <mark>llc --print-after-isel</mark>:
         </p>
-        <pre><code class="highlight">Function Live Ins: $x10 in %5, $x11 in %6
+        <pre><code class="highlight">Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
 
-bb.0 (%ir-block.2):
+bb.0 (%ir-block.3):
   successors: %bb.1(0x80000000); %bb.1(100.00%)
-  liveins: $x10, $x11
-  %6:gpr = COPY $x11
-  %5:gpr = COPY $x10
-  %0:gpr = ADDI %6:gpr, 256
-  PseudoBR %bb.1
+  liveins: $x10, $x11, $x12
+  %20:gpr = COPY $x12
+  %19:gpr = COPY $x11
+  %18:gpr = COPY $x10
+  %22:gpr = COPY $x0
+  %21:gpr = COPY %22:gpr
 
-bb.1 (%ir-block.3):
-  successors: %bb.2(0x04000000), %bb.1(0x7c000000);
-              %bb.2(3.12%), %bb.1(96.88%)
-
-  %1:gpr = PHI %5:gpr, %bb.0, %4:gpr, %bb.1
-  %2:gpr = PHI %6:gpr, %bb.0, %3:gpr, %bb.1
-  %7:fpr32 = FLW %1:gpr, 0
-  %8:fpr32 = FLW %2:gpr, 0
-  %9:fpr32 = nofpexcept FADD_S killed %7:fpr32, killed %8:fpr32, 7,
-    implicit $frm
-  FSW killed %9:fpr32, %2:gpr, 0
-  %3:gpr = ADDI %2:gpr, 4
-  %4:gpr = ADDI %1:gpr, 4
-  BEQ %3:gpr, %0:gpr, %bb.2
-  PseudoBR %bb.1
+bb.1 (%ir-block.4):
+  successors: %bb.3(0x80000000); %bb.3(100.00%)
+  %0:gpr = PHI %18:gpr, %bb.0, %9:gpr, %bb.4
+  %1:gpr = PHI %21:gpr, %bb.0, %8:gpr, %bb.4
+  %2:gpr = nuw nsw SLLI %1:gpr, 6
+  %24:gpr = COPY $x0
+  %23:gpr = COPY %24:gpr
+  PseudoBR %bb.3
 
 bb.2 (%ir-block.7):
-  PseudoRET</code></pre>
+  PseudoRET
+
+bb.3 (%ir-block.8):
+  successors: %bb.6(0x80000000); %bb.6(100.00%)
+  %3:gpr = PHI %19:gpr, %bb.1, %11:gpr, %bb.5
+  %4:gpr = PHI %23:gpr, %bb.1, %10:gpr, %bb.5
+  %25:gpr = nuw nsw SLLI %4:gpr, 2
+  %26:gpr = ADD killed %25:gpr, %19:gpr
+  %27:gpr = LUI 4
+  %5:gpr = ADD killed %26:gpr, killed %27:gpr
+  %28:gpr = OR %4:gpr, %2:gpr
+  %29:gpr = SLLI killed %28:gpr, 2
+  %6:gpr = ADD %20:gpr, killed %29:gpr
+  %7:fpr32 = FLW %6:gpr, 0
+  PseudoBR %bb.6
+
+bb.4 (%ir-block.15):
+  successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+              %bb.2(3.12%), %bb.1(96.88%)
+  %8:gpr = nuw nsw ADDI %1:gpr, 1
+  %9:gpr = ADDI %0:gpr, 256
+  %33:gpr = ADDI $x0, 64
+  BEQ %8:gpr, killed %33:gpr, %bb.2
+  PseudoBR %bb.1
+
+bb.5 (%ir-block.18):
+  successors: %bb.4(0x04000000), %bb.3(0x7c000000);
+              %bb.4(3.12%), %bb.3(96.88%)
+  FSW %15:fpr32, %6:gpr, 0
+  %10:gpr = nuw nsw ADDI %4:gpr, 1
+  %11:gpr = ADDI %3:gpr, 4
+  %32:gpr = ADDI $x0, 64
+  BEQ %10:gpr, killed %32:gpr, %bb.4
+  PseudoBR %bb.3
+
+bb.6 (%ir-block.21):
+  successors: %bb.5(0x04000000), %bb.6(0x7c000000);
+              %bb.5(3.12%), %bb.6(96.88%)
+  %12:gpr = PHI %0:gpr, %bb.3, %17:gpr, %bb.6
+  %13:gpr = PHI %3:gpr, %bb.3, %16:gpr, %bb.6
+  %14:fpr32 = PHI %7:fpr32, %bb.3, %15:fpr32, %bb.6
+  %30:fpr32 = FLW %12:gpr, 0
+  %31:fpr32 = FLW %13:gpr, 0
+  %15:fpr32 = nofpexcept FMADD_S killed %30:fpr32,
+              killed %31:fpr32, %14:fpr32, 7, implicit $frm
+  %16:gpr = ADDI %13:gpr, 256
+  %17:gpr = ADDI %12:gpr, 4
+  BEQ %16:gpr, %5:gpr, %bb.5
+  PseudoBR %bb.6</code></pre>
         <p>
-          No analysis is performed at this stage, and what we see a straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. Notice that the variables are now suffixed with register classes (<mark>gpr</mark> stands for general-purpose register, and <mark>fpr</mark> stands for floating-point register): they're now virtual registers. The next thing to notice is the annotations on the virtual registers, <mark>killed</mark> and <mark>implicit</mark>. The operands of the <mark>FADD_S</mark>, <mark>%7:fpr32</mark> and <mark>%8:fpr32</mark>, are marked as <mark>killed</mark>, meaning that this is the final definition/use of those registers, and this information is useful to the register allocator (the annotations are actually wrong, because this is a loop: an analysis will correct it at a later stage). The pass also marks the register <mark>$frm</mark> as <mark>implicit</mark>, meaning that it implicitly uses the floating-point rounding-mode register: we won't see this register in the final assembly. There is additional information in this MIR: the function live-ins, or virtual registers that are live when the function is called, that the function uses; and the branch frequency information: <mark>bb.1</mark> is going to be the successor basic-block of <mark>bb.1</mark> 97% of the time.
+          No analysis is performed at this stage, and what we see a straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. Notice that the variables are now suffixed with register classes (<mark>gpr</mark> stands for general-purpose register, and <mark>fpr</mark> stands for floating-point register): they're now virtual registers. There are also real registers in this output: <mark>$x0</mark>, <mark>$x10</mark>, <mark>$x11</mark>, <mark>$x12</mark>, and <mark>$frm</mark>. Since the RISC-V calling convention specifies that the first three arguments to any function are in general-purpose registers <mark>$x10</mark>, <mark>$x11</mark>, and <mark>$x12</mark> (or <mark>a0</mark>, <mark>a1</mark>, and <mark>a2</mark>), these cannot be virtual registers; neither can the floating-point rounding-mode register <mark>$frm</mark>. The next thing to notice is the annotations on the virtual registers, <mark>killed</mark> and <mark>implicit</mark>. The operands of the <mark>FMADD_S</mark>, <mark>%30:fpr32</mark> and <mark>%21:fpr32</mark>, are marked as <mark>killed</mark>, meaning that this is the final definition/use of those registers, and this information is useful to the register allocator (the annotations are actually wrong, because this is a loop: an analysis will correct it at a later stage). The pass also marks the register <mark>$frm</mark> as <mark>implicit</mark>, meaning that it implicitly uses the floating-point rounding-mode register: we won't see this register in the final assembly. There is additional information in this MIR: the function live-ins, or virtual registers that are live when the function is called, that the function uses; and the branch frequency information: <mark>bb.1</mark> is going to be the successor basic-block of <mark>bb.1</mark> 97% of the time.
         </p>
         <p>
           There is quite a bit of target-specific information here. All the information about the registers available on on RISC-V are defined in the specification <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td">RISCVRegisterInfo.td</a>. The instructions themselves come out of another specification, <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td">RISCVInstrInfo.td</a>. The target-independent infrastructure that does the instruction selection is SelectionDAG †, and the target-specific code that specifies how instructions should be lowered via SelectionDAG is in <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp">RISCVISelLowering.cpp</a>.
@@ -451,131 +524,494 @@ bb.2 (%ir-block.7):
           In order to understand the various steps after instruction selection, let us <a href="https://godbolt.org/z/8cGGn63Eh">inspect the diffs</a> produced by running <mark>llc -print-changed=diff</mark>.
         </p>
         <p>
-          The first significant pass to run after the instruction selection is <mark>livevars</mark>, which analyzes live variables, and marks variables as <mark>killed</mark> aggressively (this will be undone by a later analysis). The next pass is <mark>phi-node-elimination</mark>, which removes PHI nodes, leaving the MIR in SSA form by inserting dummy COPY instructions:
+          The first significant pass to run after the instruction selection is <mark>early-machinelicm</mark>, which is just a backend version of the middle-end loop invariant code motion transform. Next, we have <mark>livevars</mark>, which analyzes live variables, and marks variables as <mark>killed</mark> aggressively (many of these annotations will be undone by a later analysis). The next pass is <mark>phi-node-elimination</mark>, which removes PHI nodes, leaving the MIR in SSA form by inserting dummy COPY instructions:
         </p>
-        <pre><code class="highlight"> Function Live Ins: $x10 in %5, $x11 in %6
+        <pre><code class="highlight">  Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
 
- bb.0 (%ir-block.2):
+  bb.0 (%ir-block.3):
    successors: %bb.1(0x80000000); %bb.1(100.00%)
-   liveins: $x10, $x11
-   %6:gpr = COPY killed $x11
-   %5:gpr = COPY killed $x10
-   %0:gpr = ADDI %6:gpr, 256
-<span class="gi">+  %10:gpr = COPY killed %5:gpr
-+  %11:gpr = COPY killed %6:gpr
-</span>   PseudoBR %bb.2
+   liveins: $x10, $x11, $x12
+   %20:gpr = COPY killed $x12
+   %19:gpr = COPY killed $x11
+   %18:gpr = COPY killed $x10
+   %22:gpr = COPY $x0
+   %21:gpr = COPY killed %22:gpr
+   %27:gpr = LUI 4
+   %32:gpr = ADDI $x0, 64
+<span class="gi">+  %36:gpr = COPY killed %18:gpr
++  %37:gpr = COPY killed %21:gpr
+</span>
+ bb.1 (%ir-block.4):
+   successors: %bb.3(0x80000000); %bb.3(100.00%)
+<span class="gd">-  %0:gpr = PHI %18:gpr, %bb.0, %9:gpr, %bb.4
+-  %1:gpr = PHI %21:gpr, %bb.0, %8:gpr, %bb.4
+</span><span class="gi">+  %1:gpr = COPY killed %37:gpr
++  %0:gpr = COPY killed %36:gpr
+</span>   %2:gpr = nuw nsw SLLI %1:gpr, 6
+   %24:gpr = COPY $x0
+   %23:gpr = COPY killed %24:gpr
+<span class="gi">+  %38:gpr = COPY %19:gpr
++  %39:gpr = COPY killed %23:gpr
+</span>   PseudoBR %bb.3
 
- bb.1 (%ir-block.3):
+ bb.2 (%ir-block.7):
+   PseudoRET
+
+ bb.3 (%ir-block.8):
+   successors: %bb.6(0x80000000); %bb.6(100.00%)
+<span class="gd">-  %3:gpr = PHI %19:gpr, %bb.1, %11:gpr, %bb.5
+-  %4:gpr = PHI %23:gpr, %bb.1, %10:gpr, %bb.5
+</span><span class="gi">+  %4:gpr = COPY killed %39:gpr
++  %3:gpr = COPY killed %38:gpr
+</span>   %25:gpr = nuw nsw SLLI %4:gpr, 2
+   %26:gpr = ADD killed %25:gpr, %19:gpr
+   %5:gpr = ADD killed %26:gpr, %27:gpr
+   %28:gpr = OR %4:gpr, %2:gpr
+   %29:gpr = SLLI killed %28:gpr, 2
+   %6:gpr = ADD %20:gpr, killed %29:gpr
+   %7:fpr32 = FLW %6:gpr, 0
+<span class="gi">+  %40:gpr = COPY %0:gpr
++  %41:gpr = COPY %3:gpr
++  %42:fpr32 = COPY killed %7:fpr32
+</span>   PseudoBR %bb.6
+
+ bb.4 (%ir-block.15):
    successors: %bb.2(0x04000000), %bb.1(0x7c000000);
                %bb.2(3.12%), %bb.1(96.88%)
-
--  %1:gpr = PHI %5:gpr, %bb.0, %4:gpr, %bb.1
-<span class="gd">-  %2:gpr = PHI %6:gpr, %bb.0, %3:gpr, %bb.1
-</span><span class="gi">+  %2:gpr = COPY killed %11:gpr
-+  %1:gpr = COPY killed %10:gpr
-</span>   %7:fpr32 = FLW %1:gpr, 0
-   %8:fpr32 = FLW %2:gpr, 0
-   %9:fpr32 = nofpexcept FADD_S killed %7:fpr32, killed %8:fpr32, 7,
-     implicit $frm
-   FSW killed %9:fpr32, %2:gpr, 0
-   %3:gpr = ADDI killed %2:gpr, 4
-   %4:gpr = ADDI killed %1:gpr, 4
-<span class="gd">-  BEQ %3:gpr, %0:gpr, %bb.2
-</span><span class="gi">+  %10:gpr = COPY killed %4:gpr
-+  %11:gpr = COPY %3:gpr
-+  BEQ killed %3:gpr, %0:gpr, %bb.2
+   %8:gpr = nuw nsw ADDI killed %1:gpr, 1
+   %9:gpr = ADDI killed %0:gpr, 256
+<span class="gd">-  BEQ %8:gpr, %32:gpr, %bb.2
+</span><span class="gi">+  %36:gpr = COPY killed %9:gpr
++  %37:gpr = COPY %8:gpr
++  BEQ killed %8:gpr, %32:gpr, %bb.2
 </span>   PseudoBR %bb.1
 
- bb.2 (%ir-block.7):
-   PseudoRET</code></pre>
-        <p>
-          The next pass is <mark>liveintervals</mark>, which undoes the aggressive <mark>killed</mark> annotations inserted by <mark>livevars</mark>, by performing a more sophisticated analysis to determine that none of the virtual registers are actually killed in the loop.
-        </p>
-        <p>
-          Next, we have the instruction scheduler, or <mark>machine-scheduler</mark>, whose purpose is to re-order instructions to minimize hazards and stalls. It is important that the MIR is in SSA form at this stage, as the scheduler performs a sophisticated analysis and re-ordering. The exact schedule depends on micro-architectural details, and an example of a scheduler descriptor file is <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td">RISCVSchedSiFive7.td</a> for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used; unfortunately, the instruction scheduler doesn't produce a diff for our example.
-        </p>
-        <p>
-          The final preparatory step before register allocation is <mark>register-coalescer</mark>, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
-        </p>
-        <pre><code class="highlight"> Function Live Ins: $x10 in %5, $x11 in %6
+ bb.5 (%ir-block.18):
+   successors: %bb.4(0x04000000), %bb.3(0x7c000000);
+               %bb.4(3.12%), %bb.3(96.88%)
+   FSW killed %15:fpr32, killed %6:gpr, 0
+   %10:gpr = nuw nsw ADDI killed %4:gpr, 1
+   %11:gpr = ADDI killed %3:gpr, 4
+<span class="gd">-  BEQ %10:gpr, %32:gpr, %bb.4
+</span><span class="gi">+  %38:gpr = COPY killed %11:gpr
++  %39:gpr = COPY %10:gpr
++  BEQ killed %10:gpr, %32:gpr, %bb.4
+</span>   PseudoBR %bb.3
 
- bb.0 (%ir-block.2):
+ bb.6 (%ir-block.21):
+   successors: %bb.5(0x04000000), %bb.6(0x7c000000);
+               %bb.5(3.12%), %bb.6(96.88%)
+<span class="gd">-  %12:gpr = PHI %0:gpr, %bb.3, %17:gpr, %bb.6
+-  %13:gpr = PHI %3:gpr, %bb.3, %16:gpr, %bb.6
+-  %14:fpr32 = PHI %7:fpr32, %bb.3, %15:fpr32, %bb.6
+</span><span class="gi">+  %14:fpr32 = COPY killed %42:fpr32
++  %13:gpr = COPY killed %41:gpr
++  %12:gpr = COPY killed %40:gpr
+</span>   %30:fpr32 = FLW %12:gpr, 0
+   %31:fpr32 = FLW %13:gpr, 0
+   %15:fpr32 = nofpexcept FMADD_S killed %30:fpr32,
+               killed %31:fpr32, killed %14:fpr32,
+               7, implicit $frm
+   %16:gpr = ADDI killed %13:gpr, 256
+   %17:gpr = ADDI killed %12:gpr, 4
+<span class="gd">-  BEQ %16:gpr, %5:gpr, %bb.5
+</span><span class="gi">+  %40:gpr = COPY killed %17:gpr
++  %41:gpr = COPY %16:gpr
++  %42:fpr32 = COPY %15:fpr32
++  BEQ killed %16:gpr, %5:gpr, %bb.5
+</span>   PseudoBR %bb.6</code></pre>
+        <p>
+          The next pass is <mark>liveintervals</mark>, which undoes many of the <mark>killed</mark> annotations inserted by <mark>livevars</mark>, by performing a more sophisticated analysis to determine the actual virtual registers killed in the loop-nest.
+        </p>
+        <p>
+          The final preparatory step before instruction scheduling is <mark>register-coalescer</mark>, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
+        </p>
+        <pre><code class="highlight"> Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
+
+ bb.0 (%ir-block.3):
    successors: %bb.1(0x80000000); %bb.1(100.00%)
-   liveins: $x10, $x11
-<span class="gd">-  %6:gpr = COPY $x11
--  %5:gpr = COPY $x10
--  %0:gpr = ADDI %6:gpr, 256
--  %10:gpr = COPY %5:gpr
--  %11:gpr = COPY %6:gpr
-</span><span class="gi">+  %11:gpr = COPY $x11
-+  %10:gpr = COPY $x10
-+  %0:gpr = ADDI %11:gpr, 256
+   liveins: $x10, $x11, $x12
+   %20:gpr = COPY $x12
+   %19:gpr = COPY $x11
+<span class="gd">-  %18:gpr = COPY $x10
+-  %22:gpr = COPY $x0
+-  %21:gpr = COPY %22:gpr
+</span><span class="gi">+  %0:gpr = COPY $x10
+</span>   %27:gpr = LUI 4
+   %32:gpr = ADDI $x0, 64
+<span class="gd">-  %36:gpr = COPY %18:gpr
+-  %37:gpr = COPY %21:gpr
+</span><span class="gi">+  %1:gpr = COPY $x0
 </span>
- bb.1 (%ir-block.3):
+ bb.1 (%ir-block.4):
+   successors: %bb.3(0x80000000); %bb.3(100.00%)
+<span class="gd">-  %1:gpr = COPY %37:gpr
+-  %0:gpr = COPY %36:gpr
+</span>   %2:gpr = nuw nsw SLLI %1:gpr, 6
+<span class="gd">-  %24:gpr = COPY $x0
+-  %23:gpr = COPY %24:gpr
+-  %38:gpr = COPY %19:gpr
+-  %39:gpr = COPY %23:gpr
+</span><span class="gi">+  %3:gpr = COPY %19:gpr
++  %4:gpr = COPY $x0
+</span>   PseudoBR %bb.3
+
+ bb.2 (%ir-block.7):
+   PseudoRET
+
+ bb.3 (%ir-block.8):
+   successors: %bb.6(0x80000000); %bb.6(100.00%)
+<span class="gd">-  %4:gpr = COPY %39:gpr
+-  %3:gpr = COPY %38:gpr
+</span>   %25:gpr = nuw nsw SLLI %4:gpr, 2
+   %26:gpr = ADD %25:gpr, %19:gpr
+   %5:gpr = ADD %26:gpr, %27:gpr
+   %28:gpr = OR %4:gpr, %2:gpr
+   %29:gpr = SLLI %28:gpr, 2
+   %6:gpr = ADD %20:gpr, %29:gpr
+<span class="gd">-  %7:fpr32 = FLW %6:gpr, 0
+</span><span class="gi">+  %42:fpr32 = FLW %6:gpr, 0
+</span>   %40:gpr = COPY %0:gpr
+   %41:gpr = COPY %3:gpr
+<span class="gd">-  %42:fpr32 = COPY %7:fpr32
+</span>   PseudoBR %bb.6
+
+ bb.4 (%ir-block.15):
    successors: %bb.2(0x04000000), %bb.1(0x7c000000);
                %bb.2(3.12%), %bb.1(96.88%)
+<span class="gd">-  %8:gpr = nuw nsw ADDI %1:gpr, 1
+-  %9:gpr = ADDI %0:gpr, 256
+-  %36:gpr = COPY %9:gpr
+-  %37:gpr = COPY %8:gpr
+-  BEQ %8:gpr, %32:gpr, %bb.2
+</span><span class="gi">+  %1:gpr = nuw nsw ADDI %1:gpr, 1
++  %0:gpr = ADDI %0:gpr, 256
++  BEQ %1:gpr, %32:gpr, %bb.2
+</span>   PseudoBR %bb.1
 
--  %2:gpr = COPY %11:gpr
-<span class="gd">-  %1:gpr = COPY %10:gpr
--  %7:fpr32 = FLW %1:gpr, 0
--  %8:fpr32 = FLW %2:gpr, 0
-</span><span class="gi">+  %7:fpr32 = FLW %10:gpr, 0
-+  %8:fpr32 = FLW %11:gpr, 0
-</span>   %9:fpr32 = nofpexcept FADD_S %7:fpr32, %8:fpr32, 7, implicit $frm
-<span class="gd">-  FSW %9:fpr32, %2:gpr, 0
--  %3:gpr = ADDI %2:gpr, 4
--  %4:gpr = ADDI %1:gpr, 4
--  %10:gpr = COPY %4:gpr
--  %11:gpr = COPY %3:gpr
--  BNE %3:gpr, %0:gpr, %bb.1
-</span><span class="gi">+  FSW %9:fpr32, %11:gpr, 0
-+  %11:gpr = ADDI %11:gpr, 4
-+  %10:gpr = ADDI %10:gpr, 4
-+  BNE %11:gpr, %0:gpr, %bb.1
-</span>   PseudoBR %bb.2
+ bb.5 (%ir-block.18):
+   successors: %bb.4(0x04000000), %bb.3(0x7c000000);
+               %bb.4(3.12%), %bb.3(96.88%)
+<span class="gd">-  FSW %15:fpr32, %6:gpr, 0
+-  %10:gpr = nuw nsw ADDI %4:gpr, 1
+-  %11:gpr = ADDI %3:gpr, 4
+-  %38:gpr = COPY %11:gpr
+-  %39:gpr = COPY %10:gpr
+-  BEQ %10:gpr, %32:gpr, %bb.4
+</span><span class="gi">+  FSW %42:fpr32, %6:gpr, 0
++  %4:gpr = nuw nsw ADDI %4:gpr, 1
++  %3:gpr = ADDI %3:gpr, 4
++  BEQ %4:gpr, %32:gpr, %bb.4
+</span>   PseudoBR %bb.3
+
+ bb.6 (%ir-block.21):
+   successors: %bb.5(0x04000000), %bb.6(0x7c000000);
+               %bb.5(3.12%), %bb.6(96.88%)
+<span class="gd">-  %14:fpr32 = COPY %42:fpr32
+-  %13:gpr = COPY %41:gpr
+-  %12:gpr = COPY %40:gpr
+-  %30:fpr32 = FLW %12:gpr, 0
+-  %31:fpr32 = FLW %13:gpr, 0
+-  %15:fpr32 = nofpexcept FMADD_S %30:fpr32,
+</span>               %31:fpr32, %14:fpr32, 7, implicit $frm
+<span class="gd">-  %16:gpr = ADDI %13:gpr, 256
+-  %17:gpr = ADDI %12:gpr, 4
+-  %40:gpr = COPY %17:gpr
+-  %41:gpr = COPY %16:gpr
+-  %42:fpr32 = COPY %15:fpr32
+-  BEQ %16:gpr, %5:gpr, %bb.5
+</span><span class="gi">+  %30:fpr32 = FLW %40:gpr, 0
++  %31:fpr32 = FLW %41:gpr, 0
++  %42:fpr32 = nofpexcept FMADD_S %30:fpr32,
+</span>               %31:fpr32, %42:fpr32, 7, implicit $frm
+<span class="gi">+  %41:gpr = ADDI %41:gpr, 256
++  %40:gpr = ADDI %40:gpr, 4
++  BEQ %41:gpr, %5:gpr, %bb.5
+</span>   PseudoBR %bb.6</code></pre>
+        <p>
+          The purpose of the instruction scheduler, <mark>machine-scheduler</mark>, is to re-order instructions to minimize hazards and stalls. The exact schedule depends on micro-architectural details, and an example of a scheduler descriptor file is <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td">RISCVSchedSiFive7.td</a> for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used. Its operation is shown in the following diff:
+        </p>
+        <pre><code class="highlight"> bb.0 (%ir-block.3):
+   successors: %bb.1(0x80000000); %bb.1(100.00%)
+   liveins: $x10, $x11, $x12
+   %20:gpr = COPY $x12
+   %19:gpr = COPY $x11
+   %0:gpr = COPY $x10
+<span class="gi">+  %1:gpr = COPY $x0
+</span>   %27:gpr = LUI 4
+   %32:gpr = ADDI $x0, 64
+<span class="gd">-  %1:gpr = COPY $x0
+</span>
+ bb.1 (%ir-block.4):
+   successors: %bb.3(0x80000000); %bb.3(100.00%)
+<span class="gi">+  %4:gpr = COPY $x0
+</span>   %2:gpr = nuw nsw SLLI %1:gpr, 6
+   %3:gpr = COPY %19:gpr
+<span class="gd">-  %4:gpr = COPY $x0
+</span>   PseudoBR %bb.3
 
  bb.2 (%ir-block.7):
-   PseudoRET</code></pre>
+   PseudoRET
+
+ bb.3 (%ir-block.8):
+   successors: %bb.6(0x80000000); %bb.6(100.00%)
+<span class="gd">-  %25:gpr = nuw nsw SLLI %4:gpr, 2
+-  %26:gpr = ADD %25:gpr, %19:gpr
+-  %5:gpr = ADD %26:gpr, %27:gpr
+</span>   %28:gpr = OR %4:gpr, %2:gpr
+   %29:gpr = SLLI %28:gpr, 2
+   %6:gpr = ADD %20:gpr, %29:gpr
+   %42:fpr32 = FLW %6:gpr, 0
+<span class="gi">+  %25:gpr = nuw nsw SLLI %4:gpr, 2
++  %26:gpr = ADD %25:gpr, %19:gpr
++  %5:gpr = ADD %26:gpr, %27:gpr
+</span>   %40:gpr = COPY %0:gpr
+   %41:gpr = COPY %3:gpr
+   PseudoBR %bb.6
+
+ bb.4 (%ir-block.15):
+   successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+               %bb.2(3.12%), %bb.1(96.88%)
+   %1:gpr = nuw nsw ADDI %1:gpr, 1
+   %0:gpr = ADDI %0:gpr, 256
+   BEQ %1:gpr, %32:gpr, %bb.2
+   PseudoBR %bb.1
+
+ bb.5 (%ir-block.18):
+   successors: %bb.4(0x04000000), %bb.3(0x7c000000);
+               %bb.4(3.12%), %bb.3(96.88%)
+   FSW %42:fpr32, %6:gpr, 0
+   %4:gpr = nuw nsw ADDI %4:gpr, 1
+   %3:gpr = ADDI %3:gpr, 4
+   BEQ %4:gpr, %32:gpr, %bb.4
+   PseudoBR %bb.3
+
+ bb.6 (%ir-block.21):
+   successors: %bb.5(0x04000000), %bb.6(0x7c000000);
+               %bb.5(3.12%), %bb.6(96.88%)
+   %30:fpr32 = FLW %40:gpr, 0
+   %31:fpr32 = FLW %41:gpr, 0
+   %42:fpr32 = nofpexcept FMADD_S %30:fpr32, %31:fpr32,
+               %42:fpr32, 7, implicit $frm
+   %41:gpr = ADDI %41:gpr, 256
+   %40:gpr = ADDI %40:gpr, 4
+   BEQ %41:gpr, %5:gpr, %bb.5
+   PseudoBR %bb.6</code></pre>
         <p>
-          The register allocation infrastructure consists of two main bits: <mark>greedy</mark> implements a greedy algorithm for register allocation †, and <mark>virtregrewriter</mark> replaces virtual registers with real registers, yielding the following final MIR, after a small control-flow optimization:
+          We're now ready to run the <mark>greedy</mark> register allocator †, and replace the virtual registers via physical registers using the <mark>virtregrewriter</mark> pass:
         </p>
-        <pre><code class="highlight">Function Live Ins: $x10, $x11
+        <pre><code class="highlight"> Function Live Ins: $x10, $x11, $x12
 
-bb.0 (%ir-block.2):
+ bb.0 (%ir-block.3):
+   successors: %bb.1(0x80000000); %bb.1(100.00%)
+   liveins: $x10, $x11, $x12
+<span class="gd">-  %20:gpr = COPY $x12
+-  %19:gpr = COPY $x11
+-  %0:gpr = COPY $x10
+-  %1:gpr = COPY $x0
+-  %27:gpr = LUI 4
+-  %32:gpr = ADDI $x0, 64
+</span><span class="gi">+  renamable $x16 = COPY $x0
++  renamable $x17 = LUI 4
++  renamable $x5 = ADDI $x0, 64
+</span>
+ bb.1 (%ir-block.4):
+   successors: %bb.3(0x80000000); %bb.3(100.00%)
+<span class="gd">-  %4:gpr = COPY $x0
+-  %2:gpr = nuw nsw SLLI %1:gpr, 6
+-  %3:gpr = COPY %19:gpr
+</span><span class="gi">+  liveins: $x5, $x10, $x11, $x12, $x16, $x17
++  renamable $x29 = COPY $x0
++  renamable $x6 = nuw nsw SLLI renamable $x16, 6
++  renamable $x28 = COPY renamable $x11
+</span>   PseudoBR %bb.3
+
+ bb.2 (%ir-block.7):
+ ; predecessors: %bb.4
+
+   PseudoRET
+
+ bb.3 (%ir-block.8):
+   successors: %bb.6(0x80000000); %bb.6(100.00%)
+<span class="gd">-  %28:gpr = OR %4:gpr, %2:gpr
+-  %29:gpr = SLLI %28:gpr, 2
+-  %6:gpr = ADD %20:gpr, %29:gpr
+-  %42:fpr32 = FLW %6:gpr, 0
+-  %25:gpr = nuw nsw SLLI %4:gpr, 2
+-  %26:gpr = ADD %25:gpr, %19:gpr
+-  %5:gpr = ADD %26:gpr, %27:gpr
+-  %40:gpr = COPY %0:gpr
+-  %41:gpr = COPY %3:gpr
+</span><span class="gi">+  liveins: $x5, $x6, $x10, $x11, $x12, $x16, $x17, $x28, $x29
++  renamable $x13 = OR renamable $x29, renamable $x6
++  renamable $x13 = SLLI killed renamable $x13, 2
++  renamable $x7 = ADD renamable $x12, killed renamable $x13
++  renamable $f15_f = FLW renamable $x7, 0
++  renamable $x13 = nuw nsw SLLI renamable $x29, 2
++  renamable $x13 = ADD killed renamable $x13, renamable $x11
++  renamable $x14 = ADD killed renamable $x13, renamable $x17
++  renamable $x15 = COPY renamable $x10
++  renamable $x13 = COPY renamable $x28
+</span>   PseudoBR %bb.6
+
+ bb.4 (%ir-block.15):
+   successors: %bb.2(0x04000000), %bb.1(0x7c000000);
+               %bb.2(3.12%), %bb.1(96.88%)
+<span class="gd">-  %1:gpr = nuw nsw ADDI %1:gpr, 1
+-  %0:gpr = ADDI %0:gpr, 256
+-  BEQ %1:gpr, %32:gpr, %bb.2
+</span><span class="gi">+  liveins: $x5, $x10, $x11, $x12, $x16, $x17
++  renamable $x16 = nuw nsw ADDI killed renamable $x16, 1
++  renamable $x10 = ADDI killed renamable $x10, 256
++  BEQ renamable $x16, renamable $x5, %bb.2
+</span>   PseudoBR %bb.1
+
+ bb.5 (%ir-block.18):
+   successors: %bb.4(0x04000000), %bb.3(0x7c000000);
+               %bb.4(3.12%), %bb.3(96.88%)
+<span class="gd">-  FSW %42:fpr32, %6:gpr, 0
+-  %4:gpr = nuw nsw ADDI %4:gpr, 1
+-  %3:gpr = ADDI %3:gpr, 4
+-  BEQ %4:gpr, %32:gpr, %bb.4
+</span><span class="gi">+  liveins: $x5, $x6, $x7, $x10, $x11, $x12, $x16,
+</span>            $x17, $x28, $x29, $f15_f
+<span class="gi">+  FSW killed renamable $f15_f, killed renamable $x7, 0
++  renamable $x29 = nuw nsw ADDI killed renamable $x29, 1
++  renamable $x28 = ADDI killed renamable $x28, 4
++  BEQ renamable $x29, renamable $x5, %bb.4
+</span>   PseudoBR %bb.3
+
+ bb.6 (%ir-block.21):
+   successors: %bb.5(0x04000000), %bb.6(0x7c000000);
+               %bb.5(3.12%), %bb.6(96.88%)
+<span class="gd">-  %30:fpr32 = FLW %40:gpr, 0
+-  %31:fpr32 = FLW %41:gpr, 0
+-  %42:fpr32 = nofpexcept FMADD_S %30:fpr32, %31:fpr32,
+</span>               %42:fpr32, 7, implicit $frm
+<span class="gd">-  %41:gpr = ADDI %41:gpr, 256
+-  %40:gpr = ADDI %40:gpr, 4
+-  BEQ %41:gpr, %5:gpr, %bb.5
+</span><span class="gi">+  liveins: $x5, $x6, $x7, $x10, $x11, $x12, $x13, $x14,
+</span>            $x15, $x16, $x17, $x28, $x29, $f15_f
+<span class="gi">+  renamable $f14_f = FLW renamable $x15, 0
++  renamable $f13_f = FLW renamable $x13, 0
++  renamable $f15_f = nofpexcept FMADD_S killed renamable $f14_f,
+</span>                      killed renamable $f13_f, killed renamable $f15_f,
+                      7, implicit $frm
+<span class="gi">+  renamable $x13 = ADDI killed renamable $x13, 256
++  renamable $x15 = ADDI killed renamable $x15, 4
++  BEQ renamable $x13, renamable $x14, %bb.5
+</span>   PseudoBR %bb.6</code></pre>
+        <p>
+          Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat, and second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after the <mark>branch-folder</mark> and <mark>postrapseduos</mark> passes is:
+        </p>
+        <pre><code class="highlight"> Function Live Ins: $x10, $x11, $x12
+
+ bb.0 (%ir-block.3):
   successors: %bb.1(0x80000000); %bb.1(100.00%)
-  liveins: $x10, $x11
-  renamable $x12 = ADDI renamable $x11, 256
-
-bb.1 (%ir-block.3):
-  successors: %bb.2(0x04000000), %bb.1(0x7c000000);
-              %bb.2(3.12%), %bb.1(96.88%)
   liveins: $x10, $x11, $x12
-  renamable $f15_f = FLW renamable $x10, 0
-  renamable $f14_f = FLW renamable $x11, 0
-  renamable $f15_f = nofpexcept FADD_S killed renamable $f15_f,
-    killed renamable $f14_f, 7, implicit $frm
-  FSW killed renamable $f15_f, renamable $x11, 0
-  renamable $x11 = ADDI killed renamable $x11, 4
-  renamable $x10 = ADDI killed renamable $x10, 4
-  BNE renamable $x11, renamable $x12, %bb.1
+  $x16 = ADDI $x0, 0
+  renamable $x17 = LUI 4
+  renamable $x5 = ADDI $x0, 64
 
-bb.2 (%ir-block.7):
+bb.1 (%ir-block.4):
+  successors: %bb.2(0x80000000); %bb.2(100.00%)
+  liveins: $x5, $x10, $x11, $x12, $x16, $x17
+  $x29 = ADDI $x0, 0
+  renamable $x6 = nuw nsw SLLI renamable $x16, 6
+  $x28 = ADDI $x11, 0
+
+bb.2 (%ir-block.8):
+  successors: %bb.3(0x80000000); %bb.3(100.00%)
+  liveins: $x5, $x6, $x10, $x11, $x12, $x16, $x17, $x28, $x29
+  renamable $x13 = OR renamable $x29, renamable $x6
+  renamable $x13 = SLLI killed renamable $x13, 2
+  renamable $x7 = ADD renamable $x12, killed renamable $x13
+  renamable $f15_f = FLW renamable $x7, 0
+  renamable $x13 = nuw nsw SLLI renamable $x29, 2
+  renamable $x13 = ADD killed renamable $x13, renamable $x11
+  renamable $x14 = ADD killed renamable $x13, renamable $x17
+  $x15 = ADDI $x10, 0
+  $x13 = ADDI $x28, 0
+
+bb.3 (%ir-block.21):
+  successors: %bb.4(0x04000000), %bb.3(0x7c000000);
+              %bb.4(3.12%), %bb.3(96.88%)
+  liveins: $x5, $x6, $x7, $x10, $x11, $x12, $x13, $x14,
+           $x15, $x16, $x17, $x28, $x29, $f15_f
+  renamable $f14_f = FLW renamable $x15, 0
+  renamable $f13_f = FLW renamable $x13, 0
+  renamable $f15_f = nofpexcept FMADD_S killed renamable $f14_f,
+                     killed renamable $f13_f, killed renamable $f15_f,
+                     7, implicit $frm
+  renamable $x13 = ADDI killed renamable $x13, 256
+  renamable $x15 = ADDI killed renamable $x15, 4
+  BNE renamable $x13, renamable $x14, %bb.3
+
+bb.4 (%ir-block.18):
+  successors: %bb.5(0x04000000), %bb.2(0x7c000000);
+              %bb.5(3.12%), %bb.2(96.88%)
+  liveins: $x5, $x6, $x7, $x10, $x11, $x12, $x16, $x17, $x28, $x29, $f15_f
+  FSW killed renamable $f15_f, killed renamable $x7, 0
+  renamable $x29 = nuw nsw ADDI killed renamable $x29, 1
+  renamable $x28 = ADDI killed renamable $x28, 4
+  BNE renamable $x29, renamable $x5, %bb.2
+
+bb.5 (%ir-block.15):
+  successors: %bb.6(0x04000000), %bb.1(0x7c000000);
+              %bb.6(3.12%), %bb.1(96.88%)
+  liveins: $x5, $x10, $x11, $x12, $x16, $x17
+  renamable $x16 = nuw nsw ADDI killed renamable $x16, 1
+  renamable $x10 = ADDI killed renamable $x10, 256
+  BNE renamable $x16, renamable $x5, %bb.1
+
+bb.6 (%ir-block.7):
   PseudoRET</code></pre>
         <p>
-          In the final step, assembly is produced by AsmPrinter, which can be checked against the <a href="https://github.com/riscv/riscv-isa-manual/">RISC-V ISA manual</a>:
+          In the final step, assembly is produced by AsmPrinter, which just pretty-prints registers (<mark>$x10</mark> is <mark>a0</mark>, <mark>$x11</mark> is <mark>a1</mark>), and instructions (<mark>FMADD_S</mark> is <mark>fmadd.s</mark>), dropping auxiliary information. This output can be checked against the <a href="https://github.com/riscv/riscv-isa-manual/">RISC-V ISA manual</a>.
         </p>
-        <pre><code class="highlight">example:                                # @example
+        <pre><code class="highlight">matmul:                                 # @matmul
 # %bb.0:
-  addi  a2, a1, 256
-.LBB0_1:                                # =&gt;This Inner Loop Header: Depth=1
-  flw   fa5, 0(a0)
-  flw   fa4, 0(a1)
-  fadd.s  fa5, fa5, fa4
-  fsw   fa5, 0(a1)
-  addi  a1, a1, 4
-  addi  a0, a0, 4
-  bne   a1, a2, .LBB0_1
-# %bb.2:
+  li a6, 0
+  lui   a7, 4
+  li t0, 64
+.LBB0_1:                                # =&gt;This Loop Header: Depth=1
+                                        #     Child Loop BB0_2 Depth 2
+                                        #       Child Loop BB0_3 Depth 3
+  li t4, 0
+  slli  t1, a6, 6
+  mv t3, a1
+.LBB0_2:                                #   Parent Loop BB0_1 Depth=1
+                                        # =&gt;  This Loop Header: Depth=2
+                                        #       Child Loop BB0_3 Depth 3
+  or a3, t4, t1
+  slli  a3, a3, 2
+  add   t2, a2, a3
+  flw   fa5, 0(t2)
+  slli  a3, t4, 2
+  add   a3, a3, a1
+  add   a4, a3, a7
+  mv a5, a0
+  mv a3, t3
+.LBB0_3:                                #   Parent Loop BB0_1 Depth=1
+                                        #     Parent Loop BB0_2 Depth=2
+                                        # =&gt;    This Inner Loop Header: Depth=3
+  flw   fa4, 0(a5)
+  flw   fa3, 0(a3)
+  fmadd.s fa5, fa4, fa3, fa5
+  addi  a3, a3, 256
+  addi  a5, a5, 4
+  bne   a3, a4, .LBB0_3
+# %bb.4:                                #   in Loop: Header=BB0_2 Depth=2
+  fsw   fa5, 0(t2)
+  addi  t4, t4, 1
+  addi  t3, t3, 4
+  bne   t4, t0, .LBB0_2
+# %bb.5:                                #   in Loop: Header=BB0_1 Depth=1
+  addi  a6, a6, 1
+  addi  a0, a0, 256
+  bne   a6, t0, .LBB0_1
+# %bb.6:
   ret</code></pre>
         <footer>
           <ul class="footer">
