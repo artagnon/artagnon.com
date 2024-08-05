@@ -35,7 +35,7 @@ common.ph:
   %iv.middle = phi i64 [ 0, %ph ], [ %iv.middle.next, %inner.loop.exit ]
   %or = or disjoint i64 %iv.middle, %shl
   %gep.res = getelementptr inbounds float, ptr %res, i64 %or
-  %load = load float, ptr %gep.res
+  %load.res = load float, ptr %gep.res
   %gep.y = getelementptr float, ptr %y, i64 %iv.middle
   br label %inner.loop
 
@@ -52,7 +52,7 @@ inner.loop.exit:
 
 inner.loop:
   %iv = phi i64 [ 0, %common.ph ], [ %iv.next, %inner.loop ]
-  %conv = phi float [ %load, %common.ph ], [ %conv.next, %inner.loop ]
+  %conv = phi float [ %load.res, %common.ph ], [ %conv.next, %inner.loop ]
   %or = or disjoint i64 %iv, %shl
   %gep.x = getelementptr inbounds float, ptr %x, i64 %or
   %load.x = load float, ptr %gep.x
@@ -69,7 +69,7 @@ inner.loop:
 
 The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use `-march=rv64gc` instead of `-march=rv64gcv`) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed [previously](/computing/compilers/intro-vec).
 
-The first thing to notice is that the body of the function is cleanly separated into basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like `%iv` are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh `%iv.next` variable is created, and `%iv` is a `phi` node that selects between the values `0` when jumping into the `loop` block from `entry`, and `%iv.next` when jumping to the `loop` block from the back-edge of the loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
+The first thing to notice is that the body of the function is cleanly separated into basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like `%iv` are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh `%iv.next` variable is created, and `%iv` is a `phi` node that selects between the values `0` when jumping into the `loop` block from `entry`, and `%iv.next` when jumping to the `inner.loop` block from the back-edge of the inner loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
 
 The first step in the lowering process is instruction selection. We can look at the output after this step by running `llc --print-after-isel`:
 
@@ -154,7 +154,7 @@ Middle-end instructions like `@llvm.fmadd` have been replaced by target-specific
 
 There is some minor additional information in this MIR: the live-ins, or registers that are live at the point of entry, and the branch frequency information: `bb.6` is going to be the successor basic-block of `bb.6` 97% of the time.
 
-Although the instruction selection infrastructure, or SelectionDAG †, is target-independent, we can see that our MIR is clearly specialized for RISC-V. All the information about the registers available on RISC-V are defined in [RISCVRegisterInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td). The instructions on RISC-V themselves come out of the specification [RISCVInstrInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td), and the target-specific code that specifies how middle-end instructions should be lowered to instructions in this specification via SelectionDAG is [RISCVISelLowering.cpp](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp).
+Although the instruction selection infrastructure, SelectionDAG †, is target-independent, we can see that our MIR is clearly specialized for RISC-V. All the information about the registers available on RISC-V are defined in [RISCVRegisterInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td). The RISC-V instructions themselves come out of the specification [RISCVInstrInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td), and the target-specific code that specifies how middle-end instructions should be lowered to instructions in this specification via SelectionDAG is [RISCVISelLowering.cpp](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp).
 
 In order to understand the various steps after instruction selection, let us [inspect the diffs](https://godbolt.org/z/TxzjEMr5M) produced by running `llc -print-changed=diff`.
 
