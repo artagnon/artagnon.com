@@ -1,6 +1,8 @@
 A tour of the LLVM backend
 
-In this article, we illustrate the operation of a the main components of a compiler's backend, with emphasis on instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. We use the RISC-V target for the purposes of concrete illustrations. Let's take a simple C program as our guiding example, and have a look at each step of the lowering after running the entire middle-end optimization pipeline, until we get the final assembly.
+Any modern compiler has three main components: a front-end that parses the source language, and translates it to a middle-end intermediate representation, a middle-end that operates on this IR, performing target-independent optimizations with a bit of target-specific information, and a backend that takes the final optimized middle-end IR and emits target-specific assembly. In this article, we illustrate the operation of a the main components of a compiler's backend, namely instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. LLVM is especially good for the purposes of illustration, as it has, in addition to a clean human-readable middle-end IR, a relatively clean human-readable backend IR. We use the RISC-V target for the purposes of concrete illustration, chosen again for its clean design, to simplify the exposition.
+
+Let's start with a simple C program as our guiding example, and have a look at each step of the backend lowering after running the entire middle-end optimization pipeline, all the way up to the final assembly.
 
 ```c
 #define N 64
@@ -14,7 +16,7 @@ void matmul(const float *restrict x, const float *restrict y,
 }
 ```
 
-First, we run the full middle-end optimization pipeline to obtain the optimized LLVM IR that's handed off to the backend. Running `clang --target=riscv64 -march=rv64gc -O3 -emit-llvm -S` emits:
+First, we run the front-end, and the full middle-end optimization pipeline to obtain the optimized LLVM IR that's handed off to the backend. Running `clang --target=riscv64 -march=rv64gc -O3 -emit-llvm -S` emits:
 
 ```llvm
 define void @matmul(ptr noalias %x, ptr noalias %y, ptr noalias %res) {
@@ -65,9 +67,9 @@ inner.loop:
 }
 ```
 
-The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use `-march=rv64gc` instead of `-march=rv64gcv`) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed in depth [previously](/computing/compilers/intro-vec).
+The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use `-march=rv64gc` instead of `-march=rv64gcv`) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed [previously](/computing/compilers/intro-vec).
 
-The first thing to notice is that the body of the function is cleanly separated into three basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like `%iv` are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh `%iv.next` variable is created, and `%iv` is a `phi` node that selects between the values `0` when jumping into the `loop` block from `entry`, and `%iv.next` when jumping to the `loop` block from the back-edge of the loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
+The first thing to notice is that the body of the function is cleanly separated into basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like `%iv` are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh `%iv.next` variable is created, and `%iv` is a `phi` node that selects between the values `0` when jumping into the `loop` block from `entry`, and `%iv.next` when jumping to the `loop` block from the back-edge of the loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
 
 The first step in the lowering process is instruction selection. We can look at the output after this step by running `llc --print-after-isel`:
 
@@ -144,19 +146,19 @@ bb.6 (%ir-block.21):
   PseudoBR %bb.6
 ```
 
-What we see is a relatively straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. The purpose of the instruction selection framework is to select a combination of instructions available on the target that optimally represents the middle-end semantics. Its two primary functions are to replace middle-end SSA variables by virtual registers, and replace middle-end instructions by target-specific instructions.
+What we see is a relatively straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. The purpose of instruction selection is to select a combination of instructions available on the target that optimally represents the middle-end semantics. Its two primary functions are to replace middle-end SSA variables by virtual registers, and to replace middle-end instructions by target-specific instructions.
 
-Each virtual register has a suffix of either gpr, or general-purpose register, and fpr, or floating-point register. There are also real registers in this MIR: `$x0`, `$x10`, `$x11`, `$x12`, `$frm`. Per RISC-V calling convention, the first three arguments to a function are in general-purpose registers `$x10`, `$x11`, and `$x12` (pretty-printed as `a0`, `a1`, and `a2`). `$x0` is a special register on RISC-V that always holds the value `0`. `$frm` is the floating-point rounding-mode register. None of these can be virtual registers. A minor point to notice is the annotations on the virtual registers, `killed` and `implicit`. The operands of the `FMADD_S`, `%30:fpr32` and `%21:fpr32`, are marked as `killed`, meaning that this is the final definition/use of those registers (these annotations are preliminary: the final annotations will be determined at a later stage). The register `$frm` is marked as `implicit`, meaning that it implicitly uses this register, and this argument will be absent in the final assembly.
+Each virtual register has a suffix of either gpr (general-purpose register), or fpr (floating-point register). There are also physical registers in this MIR: `$x0`, `$x10`, `$x11`, `$x12`, `$frm`. Per RISC-V calling convention, the first three arguments to a function are in general-purpose registers `$x10`, `$x11`, and `$x12` (pretty-printed as `a0`, `a1`, and `a2`). `$x0` is a special register on RISC-V that always holds the value `0`. `$frm` is the floating-point rounding-mode register. None of these can be virtual registers. A minor point to notice is the annotations on the virtual registers, `killed` and `implicit`. The operands of the `FMADD_S`, `%30:fpr32` and `%31:fpr32`, are marked as `killed`, meaning that this is the final definition/use of those registers (these annotations are preliminary: the final annotations will be determined at a later stage). The register `$frm` is marked as `implicit`, meaning that it implicitly uses this register, and that this argument will be absent in the final assembly. The virtual registers must be turned into physical registers by the register allocator before emitting the final assembly.
 
-Middle-end instructions like `@llvm.fmadd` have been replaced by target-specific instructions like `FMADD_S` (pretty-printed as `fmadd.s`), and several pseudo-instructions like `PseudoBR` and `PHI` which will not be present in the final assembly have been inserted in the process.
+Middle-end instructions like `@llvm.fmadd` have been replaced by target-specific instructions like `FMADD_S` (pretty-printed as `fmadd.s`), and several pseudo-instructions like `PseudoBR` and `PseudoRET` have been inserted in the process. The pseudo-instructions must be lowered to real instructions before emitting the final assembly.
 
-There is some minor additional information in this MIR: the live-ins, or registers that are live at the point of entry; and the branch frequency information: `bb.6` is going to be the successor basic-block of `bb.6` 97% of the time.
+There is some minor additional information in this MIR: the live-ins, or registers that are live at the point of entry, and the branch frequency information: `bb.6` is going to be the successor basic-block of `bb.6` 97% of the time.
 
 Although the instruction selection infrastructure, or SelectionDAG †, is target-independent, we can see that our MIR is clearly specialized for RISC-V. All the information about the registers available on RISC-V are defined in [RISCVRegisterInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td). The instructions on RISC-V themselves come out of the specification [RISCVInstrInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td), and the target-specific code that specifies how middle-end instructions should be lowered to instructions in this specification via SelectionDAG is [RISCVISelLowering.cpp](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp).
 
 In order to understand the various steps after instruction selection, let us [inspect the diffs](https://godbolt.org/z/TxzjEMr5M) produced by running `llc -print-changed=diff`.
 
-The first significant pass to run after the instruction selection is `early-machinelicm`, which is just a backend version of the middle-end loop invariant code motion transform. Next, we have `livevars`, which analyzes live variables, and marks variables as `killed` aggressively (many of these annotations will be undone by a later analysis).
+The first significant pass to run after the instruction selection is `early-machinelicm`, which is just a backend version of the middle-end loop invariant code motion transform. Next, we have `livevars`, which analyzes live variables, and marks registers as `killed` aggressively.
 
 `phi-node-elimination` runs next, which removes PHI nodes, leaving the MIR in SSA form by inserting pseudo COPY instructions:
 
@@ -366,7 +368,7 @@ The final preparatory step before instruction scheduling and register allocation
    PseudoBR %bb.6
 ```
 
-The purpose of the instruction scheduler, `machine-scheduler`, is to re-order instructions to minimize hazards and stalls. The exact schedule depends on micro-architectural details, and an example of a scheduler descriptor file is [RISCVSchedSiFive7.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td) for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used. Its operation is shown in the following diff:
+The purpose of the instruction scheduler, `machine-scheduler`, is to re-order instructions to minimize hazards and stalls. The optimal schedule depends on micro-architectural details, and an example of a scheduler descriptor is [RISCVSchedSiFive7.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td), for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used. The optimal schedule can be seen in the following diff:
 
 ```diff
  bb.0 (%ir-block.3):
@@ -611,7 +613,7 @@ bb.6 (%ir-block.7):
   PseudoRET
 ```
 
-The final assembly is produced by AsmPrinter, which doesn't do much more than pretty-printing registers (`$x10` is `a0`, `$x11` is `a1`), and instructions (`FMADD_S` is `fmadd.s`, `$x16 = ADDI $x0, 0` is `li a6, 0`), dropping auxiliary information. This output can be checked against the [RISC-V ISA manual](https://github.com/riscv/riscv-isa-manual/).
+The final assembly is produced by AsmPrinter, which doesn't do much more than pretty-printing registers (`$x10` is `a0`, `$x11` is `a1`), and instructions (`FMADD_S` is `fmadd.s`), dropping auxiliary information. This output can be checked against the [RISC-V ISA manual](https://github.com/riscv/riscv-isa-manual/).
 
 ```
 matmul:                                 # @matmul
