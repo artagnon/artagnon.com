@@ -57,7 +57,8 @@ inner.loop:
   %shl.iv = shl nuw nsw i64 %iv, 6
   %gep.y.2 = getelementptr float, ptr %gep.y, i64 %shl.iv
   %load.y = load float, ptr %gep.y.2
-  %conv.next = tail call float @llvm.fmuladd.f32(float %load.x, float %load.y, float %conv)
+  %conv.next = tail call float @llvm.fmuladd.f32(
+               float %load.x, float %load.y, float %conv)
   %iv.next = add nuw nsw i64 %iv, 1
   %exit.cond = icmp eq i64 %iv.next, 64
   br i1 %exit.cond, label %inner.loop.exit, label %inner.loop
@@ -143,13 +144,21 @@ bb.6 (%ir-block.21):
   PseudoBR %bb.6
 ```
 
-No analysis is performed at this stage, and what we see a straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. Notice that the variables are now suffixed with register classes (`gpr` stands for general-purpose register, and `fpr` stands for floating-point register): they're now virtual registers. There are also real registers in this output: `$x0`, `$x10`, `$x11`, `$x12`, and `$frm`. Since the RISC-V calling convention specifies that the first three arguments to any function are in general-purpose registers `$x10`, `$x11`, and `$x12` (or `a0`, `a1`, and `a2`), these cannot be virtual registers; neither can the floating-point rounding-mode register `$frm`. The next thing to notice is the annotations on the virtual registers, `killed` and `implicit`. The operands of the `FMADD_S`, `%30:fpr32` and `%21:fpr32`, are marked as `killed`, meaning that this is the final definition/use of those registers, and this information is useful to the register allocator (the annotations are actually wrong, because this is a loop: an analysis will correct it at a later stage). The pass also marks the register `$frm` as `implicit`, meaning that it implicitly uses the floating-point rounding-mode register: we won't see this register in the final assembly. There is additional information in this MIR: the function live-ins, or virtual registers that are live when the function is called, that the function uses; and the branch frequency information: `bb.1` is going to be the successor basic-block of `bb.1` 97% of the time.
+What we see is a relatively straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. The purpose of the instruction selection framework is to select a combination of instructions available on the target that optimally represents the middle-end semantics. Its two primary functions are to replace middle-end SSA variables by virtual registers, and replace middle-end instructions by target-specific instructions.
 
-There is quite a bit of target-specific information here. All the information about the registers available on on RISC-V are defined in the specification [RISCVRegisterInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td). The instructions themselves come out of another specification, [RISCVInstrInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td). The target-independent infrastructure that does the instruction selection is SelectionDAG †, and the target-specific code that specifies how instructions should be lowered via SelectionDAG is in [RISCVISelLowering.cpp](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp).
+Each virtual register has a suffix of either gpr, or general-purpose register, and fpr, or floating-point register. There are also real registers in this MIR: `$x0`, `$x10`, `$x11`, `$x12`, `$frm`. Per RISC-V calling convention, the first three arguments to a function are in general-purpose registers `$x10`, `$x11`, and `$x12` (pretty-printed as `a0`, `a1`, and `a2`). `$x0` is a special register on RISC-V that always holds the value `0`. `$frm` is the floating-point rounding-mode register. None of these can be virtual registers. A minor point to notice is the annotations on the virtual registers, `killed` and `implicit`. The operands of the `FMADD_S`, `%30:fpr32` and `%21:fpr32`, are marked as `killed`, meaning that this is the final definition/use of those registers (these annotations are preliminary: the final annotations will be determined at a later stage). The register `$frm` is marked as `implicit`, meaning that it implicitly uses this register, and this argument will be absent in the final assembly.
 
-In order to understand the various steps after instruction selection, let us [inspect the diffs](https://godbolt.org/z/8cGGn63Eh) produced by running `llc -print-changed=diff`.
+Middle-end instructions like `@llvm.fmadd` have been replaced by target-specific instructions like `FMADD_S` (pretty-printed as `fmadd.s`), and several pseudo-instructions like `PseudoBR` and `PHI` which will not be present in the final assembly have been inserted in the process.
 
-The first significant pass to run after the instruction selection is `early-machinelicm`, which is just a backend version of the middle-end loop invariant code motion transform. Next, we have `livevars`, which analyzes live variables, and marks variables as `killed` aggressively (many of these annotations will be undone by a later analysis). The next pass is `phi-node-elimination`, which removes PHI nodes, leaving the MIR in SSA form by inserting dummy COPY instructions:
+There is some minor additional information in this MIR: the live-ins, or registers that are live at the point of entry; and the branch frequency information: `bb.6` is going to be the successor basic-block of `bb.6` 97% of the time.
+
+Although the instruction selection infrastructure, or SelectionDAG †, is target-independent, we can see that our MIR is clearly specialized for RISC-V. All the information about the registers available on RISC-V are defined in [RISCVRegisterInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td). The instructions on RISC-V themselves come out of the specification [RISCVInstrInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td), and the target-specific code that specifies how middle-end instructions should be lowered to instructions in this specification via SelectionDAG is [RISCVISelLowering.cpp](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp).
+
+In order to understand the various steps after instruction selection, let us [inspect the diffs](https://godbolt.org/z/TxzjEMr5M) produced by running `llc -print-changed=diff`.
+
+The first significant pass to run after the instruction selection is `early-machinelicm`, which is just a backend version of the middle-end loop invariant code motion transform. Next, we have `livevars`, which analyzes live variables, and marks variables as `killed` aggressively (many of these annotations will be undone by a later analysis).
+
+`phi-node-elimination` runs next, which removes PHI nodes, leaving the MIR in SSA form by inserting pseudo COPY instructions:
 
 ```diff
   Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
@@ -250,7 +259,7 @@ The first significant pass to run after the instruction selection is `early-mach
 
 The next pass is `liveintervals`, which undoes many of the `killed` annotations inserted by `livevars`, by performing a more sophisticated analysis to determine the actual virtual registers killed in the loop-nest.
 
-The final preparatory step before instruction scheduling is `register-coalescer`, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
+The final preparatory step before instruction scheduling and register allocation is `register-coalescer`, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
 
 ```diff
  Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
@@ -428,7 +437,7 @@ The purpose of the instruction scheduler, `machine-scheduler`, is to re-order in
    PseudoBR %bb.6
 ```
 
-We're now ready to run the `greedy` register allocator †, and replace the virtual registers via physical registers using the `virtregrewriter` pass:
+We're now ready to run the `greedy` register allocator †, whose purpose is to assign every virtual register a physical register, while re-using the limited number of physical registers on the machine, and minimizing register spills. The actual replacement is done by the `virtregrewriter` pass:
 
 ```diff
  Function Live Ins: $x10, $x11, $x12
@@ -535,7 +544,7 @@ We're now ready to run the `greedy` register allocator †, and replace the virt
    PseudoBR %bb.6
 ```
 
-Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat, and second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after the `branch-folder` and `postrapseduos` passes is:
+Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after the `branch-folder` and `postrapseduos` passes is:
 
 ```
  Function Live Ins: $x10, $x11, $x12
@@ -602,7 +611,7 @@ bb.6 (%ir-block.7):
   PseudoRET
 ```
 
-In the final step, assembly is produced by AsmPrinter, which just pretty-prints registers (`$x10` is `a0`, `$x11` is `a1`), and instructions (`FMADD_S` is `fmadd.s`), dropping auxiliary information. This output can be checked against the [RISC-V ISA manual](https://github.com/riscv/riscv-isa-manual/).
+The final assembly is produced by AsmPrinter, which doesn't do much more than pretty-printing registers (`$x10` is `a0`, `$x11` is `a1`), and instructions (`FMADD_S` is `fmadd.s`, `$x16 = ADDI $x0, 0` is `li a6, 0`), dropping auxiliary information. This output can be checked against the [RISC-V ISA manual](https://github.com/riscv/riscv-isa-manual/).
 
 ```
 matmul:                                 # @matmul
