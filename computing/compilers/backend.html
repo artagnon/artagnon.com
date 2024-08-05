@@ -747,7 +747,9 @@ bb.6 (%ir-block.21):
         <p>
           The purpose of the instruction scheduler, <mark>machine-scheduler</mark>, is to re-order instructions to minimize hazards and stalls. The optimal schedule depends on micro-architectural details, and an example of a scheduler descriptor is <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td">RISCVSchedSiFive7.td</a>, for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used. The optimal schedule can be seen in the following diff:
         </p>
-        <pre><code class="highlight"> bb.0 (%ir-block.3):
+        <pre><code class="highlight"> Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
+
+ bb.0 (%ir-block.3):
    successors: %bb.1(0x80000000); %bb.1(100.00%)
    liveins: $x10, $x11, $x12
    %20:gpr = COPY $x12
