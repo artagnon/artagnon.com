@@ -376,7 +376,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
       </header>
       <article>
         <p>
-          Any modern compiler has three main components: a front-end that parses the source language, and translates it to a middle-end intermediate representation, a middle-end that operates on this IR, performing target-independent optimizations with a bit of target-specific information, and a backend that takes the final optimized middle-end IR and emits target-specific assembly. In this article, we illustrate the operation of a the main components of a compiler's backend, namely instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. LLVM is especially good for the purposes of illustration, as it has, in addition to a clean human-readable middle-end IR, a relatively clean human-readable backend IR. We use the RISC-V target for the purposes of concrete illustration, chosen again for its clean design.
+          Any modern compiler has three main components: a front-end that parses the source language, and translates it to a middle-end intermediate representation, a middle-end that operates on this IR, performing target-independent optimizations with a bit of target-specific information, and a backend that takes the final optimized middle-end IR and emits target-specific assembly. In this article, we illustrate the operation of a the main components of a compiler's backend, namely instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. LLVM is especially good for the purposes of illustration, as it has, in addition to a clean human-readable middle-end IR, a relatively clean human-readable backend IR. We use the RISC-V target for the purposes of concrete illustration, chosen once again for its clean design.
         </p>
         <p>
           Let us start with a simple C program as our guiding example, and have a look at each step of the backend lowering after running the entire middle-end optimization pipeline, all the way up to the final assembly.
@@ -534,7 +534,7 @@ bb.6 (%ir-block.21):
           Although the instruction selection infrastructure, SelectionDAG †, is target-independent, we can see that our MIR is clearly specialized for RISC-V. All the information about the registers available on RISC-V are defined in <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td">RISCVRegisterInfo.td</a>. The RISC-V instructions themselves come out of the specification <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td">RISCVInstrInfo.td</a>, and the target-specific code that specifies how middle-end instructions should be lowered to instructions in this specification via SelectionDAG is <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp">RISCVISelLowering.cpp</a>.
         </p>
         <p>
-          In order to understand the various steps after instruction selection, let us <a href="https://godbolt.org/z/TxzjEMr5M">inspect the diffs</a> produced by running <mark>llc -print-changed=diff</mark>.
+          In order to understand the various steps after instruction selection, let us <a href="https://godbolt.org/z/TxzjEMr5M">inspect the diffs</a> produced at each step by running <mark>llc -print-changed=diff</mark>.
         </p>
         <p>
           The first significant pass to run after the instruction selection is <mark>early-machinelicm</mark>, which is just a backend version of the middle-end loop invariant code motion transform. Next, we have <mark>livevars</mark>, which analyzes live variables, and marks registers as <mark>killed</mark> aggressively.
@@ -816,7 +816,7 @@ bb.6 (%ir-block.21):
    BEQ %41:gpr, %5:gpr, %bb.5
    PseudoBR %bb.6</code></pre>
         <p>
-          We're now ready to run the <mark>greedy</mark> register allocator †, whose purpose is to assign every virtual register a physical register, while re-using the limited number of physical registers on the machine, and minimizing register spills. The actual replacement is done by the <mark>virtregrewriter</mark> pass:
+          We're now ready to run the <mark>greedy</mark> register allocator †, whose purpose is to assign every virtual register a physical register, while re-using the limited number of physical registers on the machine, and minimizing register spills. The actual replacement is done by <mark>virtregrewriter</mark>:
         </p>
         <pre><code class="highlight"> Function Live Ins: $x10, $x11, $x12
 
@@ -921,7 +921,7 @@ bb.6 (%ir-block.21):
 +  BEQ renamable $x13, renamable $x14, %bb.5
 </span>   PseudoBR %bb.6</code></pre>
         <p>
-          Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after the <mark>branch-folder</mark> and <mark>postrapseduos</mark> passes is:
+          Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after <mark>branch-folder</mark> and <mark>postrapseduos</mark> is:
         </p>
         <pre><code class="highlight">Function Live Ins: $x10, $x11, $x12
 
@@ -986,7 +986,7 @@ bb.5 (%ir-block.15):
 bb.6 (%ir-block.7):
   PseudoRET</code></pre>
         <p>
-          The final assembly is produced by AsmPrinter, which doesn't do much more than pretty-printing registers (<mark>$x10</mark> is <mark>a0</mark>, <mark>$x11</mark> is <mark>a1</mark>), and instructions (<mark>FMADD_S</mark> is <mark>fmadd.s</mark>), dropping auxiliary information. This output can be checked against the <a href="https://github.com/riscv/riscv-isa-manual/">RISC-V ISA manual</a>.
+          The assembly is produced from the final MIR by AsmPrinter, which doesn't do much more than pretty-printing registers (<mark>$x10</mark> is <mark>a0</mark>, <mark>$x11</mark> is <mark>a1</mark>), and instructions (<mark>FMADD_S</mark> is <mark>fmadd.s</mark>), while dropping auxiliary information. This output can be checked against the <a href="https://github.com/riscv/riscv-isa-manual/">RISC-V ISA manual</a>.
         </p>
         <pre><code class="highlight">matmul:                                 # @matmul
 # %bb.0:

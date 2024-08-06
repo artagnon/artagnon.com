@@ -1,6 +1,6 @@
 A tour of the LLVM backend
 
-Any modern compiler has three main components: a front-end that parses the source language, and translates it to a middle-end intermediate representation, a middle-end that operates on this IR, performing target-independent optimizations with a bit of target-specific information, and a backend that takes the final optimized middle-end IR and emits target-specific assembly. In this article, we illustrate the operation of a the main components of a compiler's backend, namely instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. LLVM is especially good for the purposes of illustration, as it has, in addition to a clean human-readable middle-end IR, a relatively clean human-readable backend IR. We use the RISC-V target for the purposes of concrete illustration, chosen again for its clean design.
+Any modern compiler has three main components: a front-end that parses the source language, and translates it to a middle-end intermediate representation, a middle-end that operates on this IR, performing target-independent optimizations with a bit of target-specific information, and a backend that takes the final optimized middle-end IR and emits target-specific assembly. In this article, we illustrate the operation of a the main components of a compiler's backend, namely instruction selection, instruction scheduling, and register allocation, using LLVM as the reference compiler. LLVM is especially good for the purposes of illustration, as it has, in addition to a clean human-readable middle-end IR, a relatively clean human-readable backend IR. We use the RISC-V target for the purposes of concrete illustration, chosen once again for its clean design.
 
 Let us start with a simple C program as our guiding example, and have a look at each step of the backend lowering after running the entire middle-end optimization pipeline, all the way up to the final assembly.
 
@@ -156,7 +156,7 @@ There is some minor additional information in this MIR: the live-ins, or registe
 
 Although the instruction selection infrastructure, SelectionDAG †, is target-independent, we can see that our MIR is clearly specialized for RISC-V. All the information about the registers available on RISC-V are defined in [RISCVRegisterInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td). The RISC-V instructions themselves come out of the specification [RISCVInstrInfo.td](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td), and the target-specific code that specifies how middle-end instructions should be lowered to instructions in this specification via SelectionDAG is [RISCVISelLowering.cpp](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp).
 
-In order to understand the various steps after instruction selection, let us [inspect the diffs](https://godbolt.org/z/TxzjEMr5M) produced by running `llc -print-changed=diff`.
+In order to understand the various steps after instruction selection, let us [inspect the diffs](https://godbolt.org/z/TxzjEMr5M) produced at each step by running `llc -print-changed=diff`.
 
 The first significant pass to run after the instruction selection is `early-machinelicm`, which is just a backend version of the middle-end loop invariant code motion transform. Next, we have `livevars`, which analyzes live variables, and marks registers as `killed` aggressively.
 
@@ -441,7 +441,7 @@ The purpose of the instruction scheduler, `machine-scheduler`, is to re-order in
    PseudoBR %bb.6
 ```
 
-We're now ready to run the `greedy` register allocator †, whose purpose is to assign every virtual register a physical register, while re-using the limited number of physical registers on the machine, and minimizing register spills. The actual replacement is done by the `virtregrewriter` pass:
+We're now ready to run the `greedy` register allocator †, whose purpose is to assign every virtual register a physical register, while re-using the limited number of physical registers on the machine, and minimizing register spills. The actual replacement is done by `virtregrewriter`:
 
 ```diff
  Function Live Ins: $x10, $x11, $x12
@@ -548,7 +548,7 @@ We're now ready to run the `greedy` register allocator †, whose purpose is to 
    PseudoBR %bb.6
 ```
 
-Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after the `branch-folder` and `postrapseduos` passes is:
+Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after `branch-folder` and `postrapseduos` is:
 
 ```
 Function Live Ins: $x10, $x11, $x12
@@ -615,7 +615,7 @@ bb.6 (%ir-block.7):
   PseudoRET
 ```
 
-The final assembly is produced by AsmPrinter, which doesn't do much more than pretty-printing registers (`$x10` is `a0`, `$x11` is `a1`), and instructions (`FMADD_S` is `fmadd.s`), dropping auxiliary information. This output can be checked against the [RISC-V ISA manual](https://github.com/riscv/riscv-isa-manual/).
+The assembly is produced from the final MIR by AsmPrinter, which doesn't do much more than pretty-printing registers (`$x10` is `a0`, `$x11` is `a1`), and instructions (`FMADD_S` is `fmadd.s`), while dropping auxiliary information. This output can be checked against the [RISC-V ISA manual](https://github.com/riscv/riscv-isa-manual/).
 
 ```
 matmul:                                 # @matmul
