@@ -921,7 +921,7 @@ bb.6 (%ir-block.21):
 +  BEQ renamable $x13, renamable $x14, %bb.5
 </span>   PseudoBR %bb.6</code></pre>
         <p>
-          Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after <mark>branch-folder</mark> and <mark>postrapseduos</mark> is:
+          Before we emit the assembly, there are two pending steps: first, basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after <mark>branch-folder</mark> and <mark>postrapseduos</mark> is:
         </p>
         <pre><code class="highlight">Function Live Ins: $x10, $x11, $x12
 
