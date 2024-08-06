@@ -548,7 +548,7 @@ We're now ready to run the `greedy` register allocator †, whose purpose is to 
    PseudoBR %bb.6
 ```
 
-Before we emit the assembly, there are two pending steps: first, the basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, the pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after `branch-folder` and `postrapseduos` is:
+Before we emit the assembly, there are two pending steps: first, basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after `branch-folder` and `postrapseduos` is:
 
 ```
 Function Live Ins: $x10, $x11, $x12
