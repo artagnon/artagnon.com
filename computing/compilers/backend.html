@@ -729,8 +729,8 @@ bb.6 (%ir-block.21):
 -  %30:fpr32 = FLW %12:gpr, 0
 -  %31:fpr32 = FLW %13:gpr, 0
 -  %15:fpr32 = nofpexcept FMADD_S %30:fpr32,
-</span>               %31:fpr32, %14:fpr32, 7, implicit $frm
-<span class="gd">-  %16:gpr = ADDI %13:gpr, 256
+-              %31:fpr32, %14:fpr32, 7, implicit $frm
+-  %16:gpr = ADDI %13:gpr, 256
 -  %17:gpr = ADDI %12:gpr, 4
 -  %40:gpr = COPY %17:gpr
 -  %41:gpr = COPY %16:gpr
@@ -739,8 +739,8 @@ bb.6 (%ir-block.21):
 </span><span class="gi">+  %30:fpr32 = FLW %40:gpr, 0
 +  %31:fpr32 = FLW %41:gpr, 0
 +  %42:fpr32 = nofpexcept FMADD_S %30:fpr32,
-</span>               %31:fpr32, %42:fpr32, 7, implicit $frm
-<span class="gi">+  %41:gpr = ADDI %41:gpr, 256
++              %31:fpr32, %42:fpr32, 7, implicit $frm
++  %41:gpr = ADDI %41:gpr, 256
 +  %40:gpr = ADDI %40:gpr, 4
 +  BEQ %41:gpr, %5:gpr, %bb.5
 </span>   PseudoBR %bb.6</code></pre>
@@ -892,8 +892,8 @@ bb.6 (%ir-block.21):
 -  %3:gpr = ADDI %3:gpr, 4
 -  BEQ %4:gpr, %32:gpr, %bb.4
 </span><span class="gi">+  liveins: $x5, $x6, $x7, $x10, $x11, $x12, $x16,
-</span>            $x17, $x28, $x29, $f15_f
-<span class="gi">+  FSW killed renamable $f15_f, killed renamable $x7, 0
++           $x17, $x28, $x29, $f15_f
++  FSW killed renamable $f15_f, killed renamable $x7, 0
 +  renamable $x29 = nuw nsw ADDI killed renamable $x29, 1
 +  renamable $x28 = ADDI killed renamable $x28, 4
 +  BEQ renamable $x29, renamable $x5, %bb.4
@@ -905,18 +905,18 @@ bb.6 (%ir-block.21):
 <span class="gd">-  %30:fpr32 = FLW %40:gpr, 0
 -  %31:fpr32 = FLW %41:gpr, 0
 -  %42:fpr32 = nofpexcept FMADD_S %30:fpr32, %31:fpr32,
-</span>               %42:fpr32, 7, implicit $frm
-<span class="gd">-  %41:gpr = ADDI %41:gpr, 256
+-              %42:fpr32, 7, implicit $frm
+-  %41:gpr = ADDI %41:gpr, 256
 -  %40:gpr = ADDI %40:gpr, 4
 -  BEQ %41:gpr, %5:gpr, %bb.5
 </span><span class="gi">+  liveins: $x5, $x6, $x7, $x10, $x11, $x12, $x13, $x14,
-</span>            $x15, $x16, $x17, $x28, $x29, $f15_f
-<span class="gi">+  renamable $f14_f = FLW renamable $x15, 0
++           $x15, $x16, $x17, $x28, $x29, $f15_f
++  renamable $f14_f = FLW renamable $x15, 0
 +  renamable $f13_f = FLW renamable $x13, 0
 +  renamable $f15_f = nofpexcept FMADD_S killed renamable $f14_f,
-</span>                      killed renamable $f13_f, killed renamable $f15_f,
-                      7, implicit $frm
-<span class="gi">+  renamable $x13 = ADDI killed renamable $x13, 256
++                     killed renamable $f13_f, killed renamable $f15_f,
++                     7, implicit $frm
++  renamable $x13 = ADDI killed renamable $x13, 256
 +  renamable $x15 = ADDI killed renamable $x15, 4
 +  BEQ renamable $x13, renamable $x14, %bb.5
 </span>   PseudoBR %bb.6</code></pre>
