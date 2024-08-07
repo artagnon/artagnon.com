@@ -351,7 +351,7 @@ The final preparatory step before instruction scheduling and register allocation
 -  %30:fpr32 = FLW %12:gpr, 0
 -  %31:fpr32 = FLW %13:gpr, 0
 -  %15:fpr32 = nofpexcept FMADD_S %30:fpr32,
-               %31:fpr32, %14:fpr32, 7, implicit $frm
+-              %31:fpr32, %14:fpr32, 7, implicit $frm
 -  %16:gpr = ADDI %13:gpr, 256
 -  %17:gpr = ADDI %12:gpr, 4
 -  %40:gpr = COPY %17:gpr
@@ -361,7 +361,7 @@ The final preparatory step before instruction scheduling and register allocation
 +  %30:fpr32 = FLW %40:gpr, 0
 +  %31:fpr32 = FLW %41:gpr, 0
 +  %42:fpr32 = nofpexcept FMADD_S %30:fpr32,
-               %31:fpr32, %42:fpr32, 7, implicit $frm
++              %31:fpr32, %42:fpr32, 7, implicit $frm
 +  %41:gpr = ADDI %41:gpr, 256
 +  %40:gpr = ADDI %40:gpr, 4
 +  BEQ %41:gpr, %5:gpr, %bb.5
@@ -518,7 +518,7 @@ We're now ready to run the `greedy` register allocator †, whose purpose is to 
 -  %3:gpr = ADDI %3:gpr, 4
 -  BEQ %4:gpr, %32:gpr, %bb.4
 +  liveins: $x5, $x6, $x7, $x10, $x11, $x12, $x16,
-            $x17, $x28, $x29, $f15_f
++           $x17, $x28, $x29, $f15_f
 +  FSW killed renamable $f15_f, killed renamable $x7, 0
 +  renamable $x29 = nuw nsw ADDI killed renamable $x29, 1
 +  renamable $x28 = ADDI killed renamable $x28, 4
@@ -531,17 +531,17 @@ We're now ready to run the `greedy` register allocator †, whose purpose is to 
 -  %30:fpr32 = FLW %40:gpr, 0
 -  %31:fpr32 = FLW %41:gpr, 0
 -  %42:fpr32 = nofpexcept FMADD_S %30:fpr32, %31:fpr32,
-               %42:fpr32, 7, implicit $frm
+-              %42:fpr32, 7, implicit $frm
 -  %41:gpr = ADDI %41:gpr, 256
 -  %40:gpr = ADDI %40:gpr, 4
 -  BEQ %41:gpr, %5:gpr, %bb.5
 +  liveins: $x5, $x6, $x7, $x10, $x11, $x12, $x13, $x14,
-            $x15, $x16, $x17, $x28, $x29, $f15_f
++           $x15, $x16, $x17, $x28, $x29, $f15_f
 +  renamable $f14_f = FLW renamable $x15, 0
 +  renamable $f13_f = FLW renamable $x13, 0
 +  renamable $f15_f = nofpexcept FMADD_S killed renamable $f14_f,
-                      killed renamable $f13_f, killed renamable $f15_f,
-                      7, implicit $frm
++                     killed renamable $f13_f, killed renamable $f15_f,
++                     7, implicit $frm
 +  renamable $x13 = ADDI killed renamable $x13, 256
 +  renamable $x15 = ADDI killed renamable $x15, 4
 +  BEQ renamable $x13, renamable $x14, %bb.5
