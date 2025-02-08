@@ -12,7 +12,7 @@ Gödel's second incompleteness theorem states that any formal system, that can e
 
 Some mathematicians would then argue that we've settled on ZFC and classical logic as foundations, but this is only true of $\sim$80% of recent mathematical literature. Category theory, in particular, breaks away from set-theoretic foundations; objects and morphisms aren't sets. Indeed, set-theoretic questions about categories are ill-formed, although one can encode boolean algebras using topoi.
 
-Moreover, one should aim for a foundation that is conducive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Veovodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, which we will refer to henceforth as [HoTT](https://github.com/HoTT/HoTT). It is formalized in Coq, whose foundations are based in Martin-Löf Type Theory.
+Moreover, one should aim for a foundation that is conducive to mechanization, so proofs can be checked for correctness in an automated fashion. The strategy that Voevodsky et al. used was to extend Martin-Löf type theory, and build a branch of mechanized mathematics, homotopy type theory, which we will refer to henceforth as [HoTT](https://github.com/HoTT/HoTT). It is formalized in Coq, whose foundations are based in Martin-Löf Type Theory.
 
 # Preliminaries
 
@@ -78,7 +78,7 @@ Qed.
 
 Since $\mathbb{0}$ has no inhabitants, the construction of any inhabitant of any type can be proved from it.
 
-It is perhaps prudent to supply another example of a classical statement to illustrate Coq's typechecker:
+It is perhaps prudent to supply another example of a classical statement to illustrate Coq's type-checker:
 
 ```coq
 Theorem TrueDoesNotImplyFalse : True -> False.
