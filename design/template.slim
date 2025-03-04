@@ -40,9 +40,9 @@ html lang="en"
           li
             span.navidx = "0#{idx + 1}"
             - if permalink == topic
-              span#navcur = topic
+              span#navcur = topic.capitalize()
             - else
-              a href="/#{topic}" = topic
+              a href="/#{topic}" = topic.capitalize()
     main
       header
         h1 == title
