@@ -30,10 +30,10 @@ const RAW_RUNTIME_STATE =
           ["@node-minify/core", "npm:9.0.2"],\
           ["@node-minify/terser", "npm:9.0.1"],\
           ["colors", "npm:1.4.0"],\
-          ["glob", "npm:11.0.1"],\
+          ["glob", "npm:11.0.2"],\
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
-          ["sass", "npm:1.84.0"],\
+          ["sass", "npm:1.88.0"],\
           ["svgo", "npm:3.3.2"],\
           ["yargs", "npm:17.7.2"]\
         ],\
@@ -424,10 +424,10 @@ const RAW_RUNTIME_STATE =
           ["@node-minify/core", "npm:9.0.2"],\
           ["@node-minify/terser", "npm:9.0.1"],\
           ["colors", "npm:1.4.0"],\
-          ["glob", "npm:11.0.1"],\
+          ["glob", "npm:11.0.2"],\
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
-          ["sass", "npm:1.84.0"],\
+          ["sass", "npm:1.88.0"],\
           ["svgo", "npm:3.3.2"],\
           ["yargs", "npm:17.7.2"]\
         ],\
@@ -905,10 +905,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["npm:11.0.1", {\
-        "packageLocation": "../../.yarn/berry/cache/glob-npm-11.0.1-2249503635-10c0.zip/node_modules/glob/",\
+      ["npm:11.0.2", {\
+        "packageLocation": "../../.yarn/berry/cache/glob-npm-11.0.2-cd5db3a299-10c0.zip/node_modules/glob/",\
         "packageDependencies": [\
-          ["glob", "npm:11.0.1"],\
+          ["glob", "npm:11.0.2"],\
           ["foreground-child", "npm:3.1.1"],\
           ["jackspeak", "npm:4.0.2"],\
           ["minimatch", "npm:10.0.1"],\
@@ -1554,10 +1554,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["sass", [\
-      ["npm:1.84.0", {\
-        "packageLocation": "../../.yarn/berry/cache/sass-npm-1.84.0-01fbeb0b2d-10c0.zip/node_modules/sass/",\
+      ["npm:1.88.0", {\
+        "packageLocation": "../../.yarn/berry/cache/sass-npm-1.88.0-ab12725694-10c0.zip/node_modules/sass/",\
         "packageDependencies": [\
-          ["sass", "npm:1.84.0"],\
+          ["sass", "npm:1.88.0"],\
           ["@parcel/watcher", "npm:2.5.1"],\
           ["chokidar", "npm:4.0.3"],\
           ["immutable", "npm:5.0.3"],\
