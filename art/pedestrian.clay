@@ -1,0 +1,160 @@
+The pedestrian technology underneath the hype
+
+...
+We argue that, underneath all the large-language model hype, there is a pedestrian technology that has the potential to automate a class of problems that classical software can never do.
+...
+
+To study the capabilities of large-language models in the context of writing code, we study two extreme cases. First, the application to a critical project with high cognitive complexity, consisting of 40 million lines of code, and second, the application to a simple from-scratch toy project.
+
+For the first study, I tried incorporating the technology into everyday-contributions to LLVM. The suggestions have over a 95% reject-rate, and the good suggestions appear when you're editing one instance of a mechanical pattern, and want to change all instances.
+
+For example, consider the following transformation:
+
+```cpp
+    if (match(I, m_c_Xor(
+          m_CombineOr(m_ZextOrTrunc(m_Specific(P1)), m_Specific(P1)),
+          m_CombineOr(m_ZextOrTrunc(m_Specific(P1)), m_Specific(P2)))))
+```
+
+to:
+
+```cpp
+    if (match(I, m_c_Xor(m_CastOrSelf(m_Specific(P1)),
+                         m_CastOrSelf(m_Specific(P2)))))
+```
+
+This can, in theory, be done by a find-and-replace with a regex, but nobody ever does that for a couple instances.
+
+As another example, consider updating argument names and corresponding comments like:
+
+```cpp
+/// Checks that \p L and \p R are used together in an XOR in the use-def chain
+/// of \p SI's condition, ignoring any casts. The purpose of this function is to
+/// ensure that LHSAux from the SimpleRecurrence is used correctly in the CRC
+/// computation. We cannot check the correctness of casts at this point, and
+/// rely on the KnownBits propagation to check correctness of the CRC
+/// computation.
+static bool isConditionalOnXorOfPHIs(const SelectInst *SI, const PHINode *L,
+                                     const PHINode *R, const Loop &Lp);
+```
+
+to:
+
+```cpp
+/// Checks that \p P1 and \p P2 are used together in an XOR in the use-def chain
+/// of \p SI's condition, ignoring any casts. The purpose of this function is to
+/// ensure that LHSAux from the SimpleRecurrence is used correctly in the CRC
+/// computation. We cannot check the correctness of casts at this point, and
+/// rely on the KnownBits propagation to check correctness of the CRC
+/// computation.
+static bool isConditionalOnXorOfPHIs(const SelectInst *SI, const PHINode *P1,
+                                     const PHINode *P2, const Loop &L);
+```
+
+A find-and-replace would match the `L` in the `Loop` argument, erroneously replacing it with `P1`.
+
+You could say that all the automation boils down to a smart and automatic find-and-replace in this study, but it is important to note this class of problems can never be automated by classical software.
+
+..
+
+For the second study, I tried applying the technology to writing a tree-sitter based LLVM IR parser. The entire task is a mechanical chore of reading docs and ample examples in the test suite, and encoding the knowledge in the parser. To study the limitations, I tried generating the entire parser using a prompt, but the result was entirely unusable. When writing the parser from a clean-slate, the suggestions were actually quite good. Consider the auto-complete with the following snippet:
+
+```
+    binary_instruction: ($) =>
+```
+
+to:
+
+```js
+    binary_instruction: ($) =>
+      seq($._binary_op, $._type, $.ssa_value, $.ssa_value),
+    _binary_op: () =>
+      token(
+        choice(
+          "add",
+          "sub",
+          "mul",
+          "div",
+          "mod",
+          "shl",
+          "shr",
+          "and",
+          "or",
+          "xor",
+        ),
+      ),
+    call_instruction: ($) =>
+      seq(
+        optional("tail"),
+        "call",
+        $._type,
+        $.atname,
+        "(",
+        optional($.fn_args),
+        ")",
+      ),
+    compare_instruction: ($) =>
+      seq($._compare_op, $._type, $.ssa_value, $.ssa_value),
+    _compare_op: () =>
+      token(
+        choice(
+          "eq",
+          "ne",
+          "slt",
+          "sgt",
+          "sle",
+          "sge",
+          "ult",
+          "ugt",
+          "ule",
+          "uge",
+        ),
+      ),
+    cast_instruction: ($) =>
+      seq($._cast_op, $._type, $.ssa_value, optional(seq("to", $._type))),
+    _cast_op: () =>
+      token(
+        choice(
+          "trunc",
+          "zext",
+          "sext",
+          "fptrunc",
+          "fpext",
+          "fp_to_ui",
+          "fp_to_si",
+          "uitofp",
+          "sitofp",
+          "ptrtoint",
+          "inttoptr",
+          "bitcast",
+        ),
+      ),
+    extract_instruction: ($) =>
+      seq(token("extractvalue"), $._type, $.ssa_value, "[", $.ssa_value, "]"),
+    insert_instruction: ($) =>
+      seq(
+        token("insertvalue"),
+        $._type,
+        $.ssa_value,
+        $.ssa_value,
+        "[",
+        $.ssa_value,
+        "]",
+      ),
+    load_instruction: ($) => seq(token("load"), $._type, $.ssa_value),
+    phi_instruction: ($) =>
+      seq(token("phi"), $._type, $.ssa_value, $.ssa_value),
+    store_instruction: ($) =>
+      seq(token("store"), $._type, $.ssa_value, $.ssa_value),
+    switch_instruction: ($) =>
+      seq(token("switch"), $._type, $.ssa_value, $.ssa_value),
+    branch_instruction: ($) => seq(token("br"), $._type, $.ssa_value),
+    return_instruction: ($) => seq(token("ret"), $._type, $.ssa_value),
+    unreachable_instruction: ($) => token("unreachable"),
+```
+
+which is actually a smarter version of a copy-paste with some knowledge from the internet. Of course the code needs editing, but this is the kind of copy-pasting you'd normally do before making edits.
+
+The technology was also able to generate 300 tests to exercise the parser, and the tests needed little tweaking to pass: this task can be boiled down to copying reduced-case LLVM IR from the test-suite, and matching them with parser nodes. Of course the generated tests aren't high-quality, but about half the tests are usable as-is, and a lot of tedium has been eliminated.
+
+To conclude, the technology is at alpha-stage, as the automation comes at the cost of putting up with bad visual feedback and fighting the auto-complete nearly all the time, but promises a new class of mechanical automation, whose utility is higher in small codebases following mechanical patterns.
