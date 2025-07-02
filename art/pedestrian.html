@@ -1,0 +1,534 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <title>The pedestrian technology underneath the hype | artagnon.com</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" type="image/x-icon" href="/dist/favicon.ico">
+    <link rel="apple-touch-icon" sizes="58x58" href="/dist/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/dist/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/dist/touch-icon-ipad-retina.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/touch-icon-iphone-retina.png">
+    <link rel="stylesheet" href="/dist/style.min.css">
+    <link rel="stylesheet" href="/dist/rouge.min.css">
+    <script defer="" src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"></script>
+    <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
+    <script defer="" src="/dist/script.min.js"></script>
+    <script defer="" data-domain="artagnon.com" src="https://analytics.artagnon.com/js/script.js"></script>
+  <style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+  <body class="wrapper">
+    <nav><a href="/"><img id="logo" src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
+      <ul>
+        <li>
+          <span class="navidx">01</span><a href="/art">Art</a>
+        </li>
+        <li>
+          <span class="navidx">02</span><a href="/computing">Computing</a>
+        </li>
+        <li>
+          <span class="navidx">03</span><a href="/logic">Logic</a>
+        </li>
+        <li>
+          <span class="navidx">04</span><a href="/math">Math</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <header>
+        <h1>
+          The pedestrian technology underneath the hype
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time class="end" datetime="2025-07-02">Wed, 2 Jul 2025 14:00:00 +0100</time></span>
+        </div>
+      </header>
+      <article>
+        <p class="blurb">
+          We argue that, underneath all the large-language model hype, there is a pedestrian technology that has the potential to automate a class of problems that classical software can never do.
+        </p>
+        <p>
+          To study the capabilities of large-language models in the context of writing code, we study two extreme cases. First, the application to a critical project with high cognitive complexity, consisting of 40 million lines of code, and second, the application to a simple from-scratch toy project.
+        </p>
+        <p>
+          For the first study, I tried incorporating the technology into everyday-contributions to LLVM. The suggestions have over a 95% reject-rate, and the good suggestions appear when you're editing one instance of a mechanical pattern, and want to change all instances.
+        </p>
+        <p>
+          For example, consider the following transformation:
+        </p>
+        <pre><code class="highlight">    <span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">m_c_Xor</span><span class="p">(</span>
+          <span class="n">m_CombineOr</span><span class="p">(</span><span class="n">m_ZextOrTrunc</span><span class="p">(</span><span class="n">m_Specific</span><span class="p">(</span><span class="n">P1</span><span class="p">)),</span> <span class="n">m_Specific</span><span class="p">(</span><span class="n">P1</span><span class="p">)),</span>
+          <span class="n">m_CombineOr</span><span class="p">(</span><span class="n">m_ZextOrTrunc</span><span class="p">(</span><span class="n">m_Specific</span><span class="p">(</span><span class="n">P1</span><span class="p">)),</span> <span class="n">m_Specific</span><span class="p">(</span><span class="n">P2</span><span class="p">)))))</span></code></pre>
+        <p>
+          to:
+        </p>
+        <pre><code class="highlight">    <span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">m_c_Xor</span><span class="p">(</span><span class="n">m_CastOrSelf</span><span class="p">(</span><span class="n">m_Specific</span><span class="p">(</span><span class="n">P1</span><span class="p">)),</span>
+                         <span class="n">m_CastOrSelf</span><span class="p">(</span><span class="n">m_Specific</span><span class="p">(</span><span class="n">P2</span><span class="p">)))))</span></code></pre>
+        <p>
+          This can, in theory, be done by a find-and-replace with a regex, but nobody ever does that for a couple instances.
+        </p>
+        <p>
+          As another example, consider updating argument names and corresponding comments like:
+        </p>
+        <pre><code class="highlight"><span class="c1">/// Checks that \p L and \p R are used together in an XOR in the use-def chain</span>
+<span class="c1">/// of \p SI's condition, ignoring any casts. The purpose of this function is to</span>
+<span class="c1">/// ensure that LHSAux from the SimpleRecurrence is used correctly in the CRC</span>
+<span class="c1">/// computation. We cannot check the correctness of casts at this point, and</span>
+<span class="c1">/// rely on the KnownBits propagation to check correctness of the CRC</span>
+<span class="c1">/// computation.</span>
+<span class="k">static</span> <span class="kt">bool</span> <span class="nf">isConditionalOnXorOfPHIs</span><span class="p">(</span><span class="k">const</span> <span class="n">SelectInst</span> <span class="o">*</span><span class="n">SI</span><span class="p">,</span> <span class="k">const</span> <span class="n">PHINode</span> <span class="o">*</span><span class="n">L</span><span class="p">,</span>
+                                     <span class="k">const</span> <span class="n">PHINode</span> <span class="o">*</span><span class="n">R</span><span class="p">,</span> <span class="k">const</span> <span class="n">Loop</span> <span class="o">&amp;</span><span class="n">Lp</span><span class="p">);</span></code></pre>
+        <p>
+          to:
+        </p>
+        <pre><code class="highlight"><span class="c1">/// Checks that \p P1 and \p P2 are used together in an XOR in the use-def chain</span>
+<span class="c1">/// of \p SI's condition, ignoring any casts. The purpose of this function is to</span>
+<span class="c1">/// ensure that LHSAux from the SimpleRecurrence is used correctly in the CRC</span>
+<span class="c1">/// computation. We cannot check the correctness of casts at this point, and</span>
+<span class="c1">/// rely on the KnownBits propagation to check correctness of the CRC</span>
+<span class="c1">/// computation.</span>
+<span class="k">static</span> <span class="kt">bool</span> <span class="nf">isConditionalOnXorOfPHIs</span><span class="p">(</span><span class="k">const</span> <span class="n">SelectInst</span> <span class="o">*</span><span class="n">SI</span><span class="p">,</span> <span class="k">const</span> <span class="n">PHINode</span> <span class="o">*</span><span class="n">P1</span><span class="p">,</span>
+                                     <span class="k">const</span> <span class="n">PHINode</span> <span class="o">*</span><span class="n">P2</span><span class="p">,</span> <span class="k">const</span> <span class="n">Loop</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">);</span></code></pre>
+        <p>
+          A find-and-replace would match the <mark>L</mark> in the <mark>Loop</mark> argument, erroneously replacing it with <mark>P1</mark>.
+        </p>
+        <p>
+          You could say that all the automation boils down to a smart and automatic find-and-replace in this study, but it is important to note this class of problems can never be automated by classical software.
+        </p>
+        <hr class="ellipses">
+        <p>
+          For the second study, I tried applying the technology to writing a tree-sitter based LLVM IR parser. The entire task is a mechanical chore of reading docs and ample examples in the test suite, and encoding the knowledge in the parser. To study the limitations, I tried generating the entire parser using a prompt, but the result was entirely unusable. When writing the parser from a clean-slate, the suggestions were actually quite good. Consider the auto-complete with the following snippet:
+        </p>
+        <pre><code class="highlight">    binary_instruction: ($) =&gt;</code></pre>
+        <p>
+          to:
+        </p>
+        <pre><code class="highlight">    <span class="nx">binary_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">seq</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">_binary_op</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">),</span>
+    <span class="nx">_binary_op</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span>
+      <span class="nx">token</span><span class="p">(</span>
+        <span class="nx">choice</span><span class="p">(</span>
+          <span class="dl">"</span><span class="s2">add</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">sub</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">mul</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">mod</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">shl</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">shr</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">and</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">or</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">xor</span><span class="dl">"</span><span class="p">,</span>
+        <span class="p">),</span>
+      <span class="p">),</span>
+    <span class="nx">call_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">seq</span><span class="p">(</span>
+        <span class="nx">optional</span><span class="p">(</span><span class="dl">"</span><span class="s2">tail</span><span class="dl">"</span><span class="p">),</span>
+        <span class="dl">"</span><span class="s2">call</span><span class="dl">"</span><span class="p">,</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">atname</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">(</span><span class="dl">"</span><span class="p">,</span>
+        <span class="nx">optional</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">fn_args</span><span class="p">),</span>
+        <span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">),</span>
+    <span class="nx">compare_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">seq</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">_compare_op</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">),</span>
+    <span class="nx">_compare_op</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span>
+      <span class="nx">token</span><span class="p">(</span>
+        <span class="nx">choice</span><span class="p">(</span>
+          <span class="dl">"</span><span class="s2">eq</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">ne</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">slt</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">sgt</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">sle</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">sge</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">ult</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">ugt</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">ule</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">uge</span><span class="dl">"</span><span class="p">,</span>
+        <span class="p">),</span>
+      <span class="p">),</span>
+    <span class="nx">cast_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">seq</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">_cast_op</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span> <span class="nx">optional</span><span class="p">(</span><span class="nx">seq</span><span class="p">(</span><span class="dl">"</span><span class="s2">to</span><span class="dl">"</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">))),</span>
+    <span class="nx">_cast_op</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span>
+      <span class="nx">token</span><span class="p">(</span>
+        <span class="nx">choice</span><span class="p">(</span>
+          <span class="dl">"</span><span class="s2">trunc</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">zext</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">sext</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">fptrunc</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">fpext</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">fp_to_ui</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">fp_to_si</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">uitofp</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">sitofp</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">ptrtoint</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">inttoptr</span><span class="dl">"</span><span class="p">,</span>
+          <span class="dl">"</span><span class="s2">bitcast</span><span class="dl">"</span><span class="p">,</span>
+        <span class="p">),</span>
+      <span class="p">),</span>
+    <span class="nx">extract_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">seq</span><span class="p">(</span><span class="nx">token</span><span class="p">(</span><span class="dl">"</span><span class="s2">extractvalue</span><span class="dl">"</span><span class="p">),</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span> <span class="dl">"</span><span class="s2">[</span><span class="dl">"</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span> <span class="dl">"</span><span class="s2">]</span><span class="dl">"</span><span class="p">),</span>
+    <span class="nx">insert_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">seq</span><span class="p">(</span>
+        <span class="nx">token</span><span class="p">(</span><span class="dl">"</span><span class="s2">insertvalue</span><span class="dl">"</span><span class="p">),</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">[</span><span class="dl">"</span><span class="p">,</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">]</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">),</span>
+    <span class="nx">load_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">seq</span><span class="p">(</span><span class="nx">token</span><span class="p">(</span><span class="dl">"</span><span class="s2">load</span><span class="dl">"</span><span class="p">),</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">),</span>
+    <span class="nx">phi_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">seq</span><span class="p">(</span><span class="nx">token</span><span class="p">(</span><span class="dl">"</span><span class="s2">phi</span><span class="dl">"</span><span class="p">),</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">),</span>
+    <span class="nx">store_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">seq</span><span class="p">(</span><span class="nx">token</span><span class="p">(</span><span class="dl">"</span><span class="s2">store</span><span class="dl">"</span><span class="p">),</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">),</span>
+    <span class="nx">switch_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">seq</span><span class="p">(</span><span class="nx">token</span><span class="p">(</span><span class="dl">"</span><span class="s2">switch</span><span class="dl">"</span><span class="p">),</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">),</span>
+    <span class="nx">branch_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">seq</span><span class="p">(</span><span class="nx">token</span><span class="p">(</span><span class="dl">"</span><span class="s2">br</span><span class="dl">"</span><span class="p">),</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">),</span>
+    <span class="nx">return_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">seq</span><span class="p">(</span><span class="nx">token</span><span class="p">(</span><span class="dl">"</span><span class="s2">ret</span><span class="dl">"</span><span class="p">),</span> <span class="nx">$</span><span class="p">.</span><span class="nx">_type</span><span class="p">,</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ssa_value</span><span class="p">),</span>
+    <span class="nx">unreachable_instruction</span><span class="p">:</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">token</span><span class="p">(</span><span class="dl">"</span><span class="s2">unreachable</span><span class="dl">"</span><span class="p">),</span></code></pre>
+        <p>
+          which is actually a smarter version of a copy-paste with some knowledge from the internet. Of course the code needs editing, but this is the kind of copy-pasting you'd normally do before making edits.
+        </p>
+        <p>
+          The technology was also able to generate 300 tests to exercise the parser, and the tests needed little tweaking to pass: this task can be boiled down to copying reduced-case LLVM IR from the test-suite, and matching them with parser nodes. Of course the generated tests aren't high-quality, but about half the tests are usable as-is, and a lot of tedium has been eliminated.
+        </p>
+        <p>
+          To conclude, the technology is at alpha-stage, as the automation comes at the cost of putting up with bad visual feedback and fighting the auto-complete nearly all the time, but promises a new class of mechanical automation, whose utility is higher in small codebases following mechanical patterns.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>
