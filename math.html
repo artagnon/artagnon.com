@@ -209,6 +209,99 @@ mjx-msub {
   text-align: left;
 }
 
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  /* IE */ overflow: hidden;
+  /* others */ overflow: clip visible;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: visible clip;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+  box-sizing: border-box;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.075em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
 mjx-c::before {
   display: block;
   width: 0;
@@ -436,6 +529,11 @@ mjx-c.mjx-c1D6AB.TEX-B::before {
   padding: 0.698em 0.958em 0 0;
   content: "\394";
 }
+
+mjx-c.mjx-c2217::before {
+  padding: 0.465em 0.5em 0 0;
+  content: "\2217";
+}
 </style></head>
   <body class="wrapper">
     <nav><a href="/"><img id="logo" src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
@@ -447,10 +545,7 @@ mjx-c.mjx-c1D6AB.TEX-B::before {
           <span class="navidx">02</span><a href="/computing">Computing</a>
         </li>
         <li>
-          <span class="navidx">03</span><a href="/logic">Logic</a>
-        </li>
-        <li>
-          <span class="navidx">04</span><span id="navcur">Math</span>
+          <span class="navidx">03</span><span id="navcur">Math</span>
         </li>
       </ul>
     </nav>
@@ -503,6 +598,27 @@ mjx-c.mjx-c1D6AB.TEX-B::before {
           </li>
           <li>
             <a href="/math/inf/outline">An outline for studying higher category theory</a>
+          </li>
+          <h2>
+            logic (2020 — 2021)
+          </h2>
+          <li>
+            <a href="/math/logic/HoTT-rework">Is there a type theory for <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-msub><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c1D54B TEX-A"></mjx-c><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0;" variant="double-struck">𝕠</mjx-utext><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0;" variant="double-struck">𝕡</mjx-utext></mjx-mi></mjx-TeXAtom><mjx-script style="vertical-align: -0.235em;"><mjx-mo class="mjx-n" size="s"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo></mjx-script></mjx-msub></mjx-math></mjx-container>?</a>
+          </li>
+          <li>
+            <a href="/math/logic/HoTT-3">HoTT III: Sets and Logic</a>
+          </li>
+          <li>
+            <a href="/math/logic/HoTT-2">HoTT II: The essentials</a>
+          </li>
+          <li>
+            <a href="/math/logic/HoTT-1">HoTT I: The type theory</a>
+          </li>
+          <li>
+            <a href="/math/logic/fom">An inquiry into the Foundations of Mathematics</a>
+          </li>
+          <li>
+            <a href="/math/logic/zfc">ZFC and propositional logic</a>
           </li>
           <h2>
             topoi (2019)
