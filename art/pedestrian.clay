@@ -13,7 +13,7 @@ For example, consider the following transformation:
 ```cpp
     if (match(I, m_c_Xor(
           m_CombineOr(m_ZextOrTrunc(m_Specific(P1)), m_Specific(P1)),
-          m_CombineOr(m_ZextOrTrunc(m_Specific(P1)), m_Specific(P2)))))
+          m_CombineOr(m_ZextOrTrunc(m_Specific(P2)), m_Specific(P2)))))
 ```
 
 to:
