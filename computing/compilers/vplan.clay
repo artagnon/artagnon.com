@@ -60,7 +60,7 @@ vector.body:
 
 First, we notice that each variable has an `ir<>` or `vp<>` annotation. The `ir` variables are variables present in the original LLVM IR, and the `vp` variables are fresh variables that are created in the VPlan. Next, we notice new annotations like `EMIT`, `CLONE`, and `WIDEN` in each line in the vector loop: these are termed "recipes", from which the final LLVM IR will be emitted, post transformations.
 
-Near the beginning of the vector loop, we can see that the vectorizer has analyzed the trip-count of the original loop, along with a canonical induction-variable (`i` in the original C program), and emitted a `CANONICAL-INDUCTION` recipe along with a `SCALAR-STEPS` that increments it by `VF` to account for the fact that the vectorized loop has width VF, and executes 1024 / VF times. This means that certain instructions must either be width VF, or duplicated VF number of times with different steps for correctness: in our snippet, we see that loads and stores were widened, along with the intrinsic `fmuladd`. `getelementptr` should not be widened: it should add VF times the original offset to the base pointer, and this is indeed what is done. For instructions that should not be widened, we see an `EMIT`/`CLONE`, or "replicate" recipes. This is also where the interleaving-factor would have come in, in a different example, when something that needs to be widened couldn't be widened.
+Near the beginning of the vector loop, we can see that the vectorizer has analyzed the trip-count of the original loop (1024), along with a canonical induction-variable (`i` in the original C program), and emitted a `CANONICAL-INDUCTION` recipe along with a `SCALAR-STEPS` that increments it by `VF` to account for the fact that the vectorized loop has width VF, and executes 1024 / VF times. This means that certain instructions must either be width VF, or duplicated VF number of times with different steps for correctness: in our snippet, we see that loads and stores were widened, along with the intrinsic `fmuladd`. `getelementptr` should not be widened: it should add VF times the original offset to the base pointer, and this is indeed what is done. For instructions that should not be widened, we see an `EMIT`/`CLONE`, or "replicate" recipes. This is also where the interleaving-factor would have come in, in a different example, when something that needs to be widened couldn't be widened.
 
 Notice that the final line, `branch-on-count`, is predicated on an abstract vector-trip-count: since the vectorizer could make different decisions about VF and UF as it plans, the vector-trip-count is only materialized after a decision is made.
 
@@ -71,9 +71,7 @@ The final VPlan is produced post optimizations and materializations:
 ```
 VPlan 'Final VPlan for VF={4},UF={1}' {
 vector.ph:
-  EMIT vp<%n.mod.vf> = urem ir<1024>, ir<4>
-  EMIT vp<%n.vec> = sub ir<1024>, vp<%n.mod.vf>
-  EMIT vp<%3> = broadcast ir<%a>
+  EMIT vp<%1> = broadcast ir<%a>
 Successor(s): vector.body
 
 vector.body:
@@ -87,13 +85,13 @@ vector.body:
     vp<%3>, ir<%load.x>, ir<%load.y>)
   WIDEN store ir<%gep.y>, ir<%fmuladd>
   EMIT vp<%index.next> = add nuw vp<%index>, ir<4>
-  EMIT branch-on-count vp<%index.next>, vp<%n.vec>
+  EMIT branch-on-count vp<%index.next>, ir<1024>
 }
 ```
 
 Notice that the first operand of the `fmuladd` is now a broadcast of `%a`, which is essentially a way to fill a vector with a scalar.
 
-At this point, the VPlan is "executed" to produce the final LLVM IR. The full example can be seen on [Godbolt](https://godbolt.org/z/hnjYcrn3o).
+At this point, the VPlan is "executed" to produce the final LLVM IR. The full example can be seen on [Godbolt](https://godbolt.org/z/Ga3E4b7jT).
 
 ..
 

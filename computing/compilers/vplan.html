@@ -429,7 +429,7 @@ vector.body:
           First, we notice that each variable has an <mark>ir&lt;&gt;</mark> or <mark>vp&lt;&gt;</mark> annotation. The <mark>ir</mark> variables are variables present in the original LLVM IR, and the <mark>vp</mark> variables are fresh variables that are created in the VPlan. Next, we notice new annotations like <mark>EMIT</mark>, <mark>CLONE</mark>, and <mark>WIDEN</mark> in each line in the vector loop: these are termed "recipes", from which the final LLVM IR will be emitted, post transformations.
         </p>
         <p>
-          Near the beginning of the vector loop, we can see that the vectorizer has analyzed the trip-count of the original loop, along with a canonical induction-variable (<mark>i</mark> in the original C program), and emitted a <mark>CANONICAL-INDUCTION</mark> recipe along with a <mark>SCALAR-STEPS</mark> that increments it by <mark>VF</mark> to account for the fact that the vectorized loop has width VF, and executes 1024 / VF times. This means that certain instructions must either be width VF, or duplicated VF number of times with different steps for correctness: in our snippet, we see that loads and stores were widened, along with the intrinsic <mark>fmuladd</mark>. <mark>getelementptr</mark> should not be widened: it should add VF times the original offset to the base pointer, and this is indeed what is done. For instructions that should not be widened, we see an <mark>EMIT</mark>/<mark>CLONE</mark>, or "replicate" recipes. This is also where the interleaving-factor would have come in, in a different example, when something that needs to be widened couldn't be widened.
+          Near the beginning of the vector loop, we can see that the vectorizer has analyzed the trip-count of the original loop (1024), along with a canonical induction-variable (<mark>i</mark> in the original C program), and emitted a <mark>CANONICAL-INDUCTION</mark> recipe along with a <mark>SCALAR-STEPS</mark> that increments it by <mark>VF</mark> to account for the fact that the vectorized loop has width VF, and executes 1024 / VF times. This means that certain instructions must either be width VF, or duplicated VF number of times with different steps for correctness: in our snippet, we see that loads and stores were widened, along with the intrinsic <mark>fmuladd</mark>. <mark>getelementptr</mark> should not be widened: it should add VF times the original offset to the base pointer, and this is indeed what is done. For instructions that should not be widened, we see an <mark>EMIT</mark>/<mark>CLONE</mark>, or "replicate" recipes. This is also where the interleaving-factor would have come in, in a different example, when something that needs to be widened couldn't be widened.
         </p>
         <p>
           Notice that the final line, <mark>branch-on-count</mark>, is predicated on an abstract vector-trip-count: since the vectorizer could make different decisions about VF and UF as it plans, the vector-trip-count is only materialized after a decision is made.
@@ -442,9 +442,7 @@ vector.body:
         </p>
         <pre><code class="highlight">VPlan 'Final VPlan for VF={4},UF={1}' {
 vector.ph:
-  EMIT vp&lt;%n.mod.vf&gt; = urem ir&lt;1024&gt;, ir&lt;4&gt;
-  EMIT vp&lt;%n.vec&gt; = sub ir&lt;1024&gt;, vp&lt;%n.mod.vf&gt;
-  EMIT vp&lt;%3&gt; = broadcast ir&lt;%a&gt;
+  EMIT vp&lt;%1&gt; = broadcast ir&lt;%a&gt;
 Successor(s): vector.body
 
 vector.body:
@@ -458,13 +456,13 @@ vector.body:
     vp&lt;%3&gt;, ir&lt;%load.x&gt;, ir&lt;%load.y&gt;)
   WIDEN store ir&lt;%gep.y&gt;, ir&lt;%fmuladd&gt;
   EMIT vp&lt;%index.next&gt; = add nuw vp&lt;%index&gt;, ir&lt;4&gt;
-  EMIT branch-on-count vp&lt;%index.next&gt;, vp&lt;%n.vec&gt;
+  EMIT branch-on-count vp&lt;%index.next&gt;, ir&lt;1024&gt;
 }</code></pre>
         <p>
           Notice that the first operand of the <mark>fmuladd</mark> is now a broadcast of <mark>%a</mark>, which is essentially a way to fill a vector with a scalar.
         </p>
         <p>
-          At this point, the VPlan is "executed" to produce the final LLVM IR. The full example can be seen on <a href="https://godbolt.org/z/hnjYcrn3o">Godbolt</a>.
+          At this point, the VPlan is "executed" to produce the final LLVM IR. The full example can be seen on <a href="https://godbolt.org/z/Ga3E4b7jT">Godbolt</a>.
         </p>
         <hr class="ellipses">
         <p>
