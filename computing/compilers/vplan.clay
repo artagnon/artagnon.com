@@ -1,0 +1,165 @@
+The Vectorization-Planner (VPlan) in LLVM
+
+In a follow-up to the [introductory article on auto-vectorization](/computing/compilers/intro-vec), we discuss how the loop vectorizer works internally. Nearly all transforms in LLVM work by directly manipulating IR, using the results of various analyses on the IR, while the loop vectorizer operates on a layer of abstraction above the IR: it lifts the LLVM IR to an overlay IR, analyzes and transforms the overlay IR, and finally removes the original IR entirely, replacing it with a final LLVM IR from the direct concretization of the final overlay IR. It also plans various vectorization strategies, costing each one until it finds a winning strategy. This infrastructure is called VPlan.
+
+Let us start with a variant of the example program from the previous article:
+
+```c
+void saxpy(const float a, const float *x, float *restrict y) {
+  for (size_t iv = 0; iv < 1024; ++iv)
+    y[iv] = a * x[iv] + y[iv];
+}
+```
+
+As the vectorizer runs near the end of the pipeline, LLVM applies various scalar transforms to yield target-independent IR that the vectorizer gets as input:
+
+```llvm
+loop:
+  %iv = phi i64 [ 0, %entry ], [ %iv.next, %loop ]
+  %gep.x = getelementptr inbounds float, ptr %x, i64 %iv
+  %load.x = load float, ptr %gep.x
+  %gep.y = getelementptr inbounds float, ptr %y, i64 %iv
+  %load.y = load float, ptr %gep.y
+  %fmuladd = tail call float @llvm.fmuladd.f32(
+    float %a, float %load.x, float %load.y)
+  store float %fmuladd, ptr %gep.y
+  %iv.next = add nuw i64 %iv, 1
+  %exitcond = icmp eq i64 %iv.next, 1024
+  br i1 %exitcond, label %exit, label %loop
+```
+
+The planning stage of the vectorizer normally decides two key factors when attempting to find the winning plan: the vectorization factor (VF), which determines the width of the instructions on the VPU, and interleave count (UF, referring to the old name "unrolling factor"), which determines how many copies of each vector instruction to create. These decisions are predicated on the cost of the final instructions, which only makes sense when a specific target is provided: for the purposes of this article, let us force the vectorizer to run in a target-independent fashion without interleaving using `-force-vector-width=4 -force-vector-interleave=1`, and inspect the lifting of the LLVM IR to the VPlan:
+
+```
+VPlan 'Initial VPlan for VF={4},UF>=1' {
+Live-in vp<%0> = VF
+Live-in vp<%1> = VF * UF
+Live-in vp<%2> = vector-trip-count
+Live-in ir<1024> = original trip-count
+
+vector.ph:
+Successor(s): vector.body
+
+vector.body:
+  EMIT vp<%3> = CANONICAL-INDUCTION ir<0>, vp<%index.next>
+  vp<%4> = SCALAR-STEPS vp<%3>, ir<1>, vp<%0>
+  CLONE ir<%gep.x> = getelementptr inbounds ir<%x>, vp<%4>
+  vp<%5> = vector-pointer ir<%gep.x>
+  WIDEN ir<%load.x> = load vp<%5>
+  CLONE ir<%gep.y> = getelementptr inbounds ir<%y>, vp<%4>
+  vp<%6> = vector-pointer ir<%gep.y>
+  WIDEN ir<%load.y> = load vp<%6>
+  WIDEN-INTRINSIC ir<%fmuladd> =
+    call llvm.fmuladd(ir<%a>, ir<%load.x>, ir<%load.y>)
+  vp<%7> = vector-pointer ir<%gep.y>
+  WIDEN store vp<%7>, ir<%fmuladd>
+  EMIT vp<%index.next> = add nuw vp<%3>, vp<%1>
+  EMIT branch-on-count vp<%index.next>, vp<%2>
+}
+```
+
+First, we notice that each variable has an `ir<>` or `vp<>` annotation. The `ir` variables are variables present in the original LLVM IR, and the `vp` variables are fresh variables that are created in the VPlan. Next, we notice new annotations like `EMIT`, `CLONE`, and `WIDEN` in each line in the vector loop: these are termed "recipes", from which the final LLVM IR will be emitted, post transformations.
+
+Near the beginning of the vector loop, we can see that the vectorizer has analyzed the trip-count of the original loop, along with a canonical induction-variable (`i` in the original C program), and emitted a `CANONICAL-INDUCTION` recipe along with a `SCALAR-STEPS` that increments it by `VF` to account for the fact that the vectorized loop has width VF, and executes 1024 / VF times. This means that certain instructions must either be width VF, or duplicated VF number of times with different steps for correctness: in our snippet, we see that loads and stores were widened, along with the intrinsic `fmuladd`. `getelementptr` should not be widened: it should add VF times the original offset to the base pointer, and this is indeed what is done. For instructions that should not be widened, we see an `EMIT`/`CLONE`, or "replicate" recipes. This is also where the interleaving-factor would have come in, in a different example, when something that needs to be widened couldn't be widened.
+
+Notice that the final line, `branch-on-count`, is predicated on an abstract vector-trip-count: since the vectorizer could make different decisions about VF and UF as it plans, the vector-trip-count is only materialized after a decision is made.
+
+We see some cryptic `vector-pointer` recipes, but these will be optimized out by the time we get to the final VPlan. Also notice a minor detail in the operands of `fmuladd`: the first operand is `%a`, which is a scalar, while the other two operands, `%load.x` and `%load.y` are widened; if the first operand isn't fixed up, vectorization of the entire loop would be inhibited for correctness reasons.
+
+The final VPlan is produced post optimizations and materializations:
+
+```
+VPlan 'Final VPlan for VF={4},UF={1}' {
+vector.ph:
+  EMIT vp<%n.mod.vf> = urem ir<1024>, ir<4>
+  EMIT vp<%n.vec> = sub ir<1024>, vp<%n.mod.vf>
+  EMIT vp<%3> = broadcast ir<%a>
+Successor(s): vector.body
+
+vector.body:
+  EMIT-SCALAR vp<%index> =
+    phi [ ir<0>, vector.ph ], [ vp<%index.next>, vector.body ]
+  CLONE ir<%gep.x> = getelementptr inbounds ir<%x>, vp<%index>
+  WIDEN ir<%load.x> = load ir<%gep.x>
+  CLONE ir<%gep.y> = getelementptr inbounds ir<%y>, vp<%index>
+  WIDEN ir<%load.y> = load ir<%gep.y>
+  WIDEN-INTRINSIC ir<%fmuladd> = call llvm.fmuladd(
+    vp<%3>, ir<%load.x>, ir<%load.y>)
+  WIDEN store ir<%gep.y>, ir<%fmuladd>
+  EMIT vp<%index.next> = add nuw vp<%index>, ir<4>
+  EMIT branch-on-count vp<%index.next>, vp<%n.vec>
+}
+```
+
+Notice that the first operand of the `fmuladd` is now a broadcast of `%a`, which is essentially a way to fill a vector with a scalar.
+
+At this point, the VPlan is "executed" to produce the final LLVM IR. The full example can be seen on [Godbolt](https://godbolt.org/z/hnjYcrn3o).
+
+..
+
+Let us briefly consider a more complicated example, just to see what VPlan is capable of representing:
+
+```llvm
+define i64 @iv_select_cmp(ptr %a) {
+entry:
+  br label %loop
+
+loop:
+  %iv = phi i64 [ %iv.next, %loop ], [ 0, %entry ]
+  %rdx = phi i64 [ %sel, %loop ], [ 3, %entry ]
+  %gep.a.iv = getelementptr inbounds i64, ptr %a, i64 %iv
+  %load.a = load i64, ptr %gep.a.iv, align 8
+  %cmp.a.3 = icmp eq i64 %load.a, 3
+  %sel = select i1 %cmp.a.3, i64 %iv, i64 %rdx
+  %iv.next = add nuw nsw i64 %iv, 1
+  %exitcond.not = icmp eq i64 %iv.next, 1024
+  br i1 %exitcond.not, label %exit, label %loop
+
+exit:
+  ret i64 %sel
+}
+```
+
+In [this VPlan](https://godbolt.org/z/8nWGv4v43), we see:
+
+```llvm
+VPlan 'Final VPlan for VF={4},UF={1}' {
+vector.ph:
+  EMIT vp<%1> = step-vector i64
+  EMIT vp<%2> = broadcast ir<0>
+  EMIT vp<%3> = broadcast ir<1>
+  EMIT vp<%4> = mul vp<%1>, vp<%3>
+  EMIT vp<%induction> = add vp<%2>, vp<%4>
+  EMIT vp<%5> = broadcast ir<4>
+Successor(s): vector.body
+
+vector.body:
+  EMIT-SCALAR vp<%index> =
+    phi [ ir<0>, vector.ph ], [ vp<%index.next>, vector.body ]
+  WIDEN-PHI ir<%iv> =
+    phi [ vp<%induction>, vector.ph ], [ vp<%vec.ind.next>, vector.body ]
+  WIDEN-REDUCTION-PHI ir<%rdx> = phi ir<-9223372036854775808>, ir<%sel>
+  CLONE ir<%gep.a.iv> = getelementptr inbounds ir<%a>, vp<%index>
+  WIDEN ir<%load.a> = load ir<%gep.a.iv>
+  WIDEN ir<%cmp.a.3> = icmp eq ir<%load.a>, ir<3>
+  WIDEN-SELECT ir<%sel> = select  ir<%cmp.a.3>, ir<%iv>, ir<%rdx>
+  EMIT vp<%index.next> = add nuw vp<%index>, ir<4>
+  EMIT vp<%vec.ind.next> = add ir<%iv>, vp<%5>
+  EMIT branch-on-count vp<%index.next>, ir<1024>
+Successor(s): middle.block, vector.body
+
+middle.block:
+  EMIT vp<%7> = compute-find-iv-result ir<%rdx>, ir<3>,
+    ir<-9223372036854775808>, ir<%sel>
+```
+
+Here, the `compute-find-iv-result` in `middle.block` is a single semantic recipe that lowers to the following sequence of instructions:
+
+```llvm
+middle.block:
+  %4 = call i64 @llvm.vector.reduce.smax.v4i64(<4 x i64> %2)
+  %rdx.select.cmp = icmp ne i64 %4, -9223372036854775808
+  %rdx.select = select i1 %rdx.select.cmp, i64 %4, i64 3
+```
+
+To conclude, VPlan allows us to focus on semantic details of the vectorization, and operate at an abstraction level that is easier to inspect and optimize, and less error-prone, than concrete LLVM IR.

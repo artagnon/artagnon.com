@@ -1,0 +1,535 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <title>The Vectorization-Planner (VPlan) in LLVM | artagnon.com</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" type="image/x-icon" href="/dist/favicon.ico">
+    <link rel="apple-touch-icon" sizes="58x58" href="/dist/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/dist/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/dist/touch-icon-ipad-retina.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/touch-icon-iphone-retina.png">
+    <link rel="stylesheet" href="/dist/style.min.css">
+    <link rel="stylesheet" href="/dist/rouge.min.css">
+    <script defer="" src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"></script>
+    <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script defer="" src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
+    <script defer="" src="/dist/script.min.js"></script>
+    <script defer="" data-domain="artagnon.com" src="https://analytics.artagnon.com/js/script.js"></script>
+  <style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+  <body class="wrapper">
+    <nav><a href="/"><img id="logo" src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
+      <ul>
+        <li>
+          <span class="navidx">01</span><a href="/art">Art</a>
+        </li>
+        <li>
+          <span class="navidx">02</span><a href="/computing">Computing</a>
+        </li>
+        <li>
+          <span class="navidx">03</span><a href="/math">Math</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <header>
+        <h1>
+          The Vectorization-Planner (VPlan) in LLVM
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time class="end" datetime="2025-09-19">Fri, 19 Sep 2025 20:00:00 +0100</time></span>
+        </div>
+      </header>
+      <article>
+        <p>
+          In a follow-up to the <a href="/computing/compilers/intro-vec">introductory article on auto-vectorization</a>, we discuss how the loop vectorizer works internally. Nearly all transforms in LLVM work by directly manipulating IR, using the results of various analyses on the IR, while the loop vectorizer operates on a layer of abstraction above the IR: it lifts the LLVM IR to an overlay IR, analyzes and transforms the overlay IR, and finally removes the original IR entirely, replacing it with a final LLVM IR from the direct concretization of the final overlay IR. It also plans various vectorization strategies, costing each one until it finds a winning strategy. This infrastructure is called VPlan.
+        </p>
+        <p>
+          Let us start with a variant of the example program from the previous article:
+        </p>
+        <pre><code class="highlight"><span class="kt">void</span> <span class="nf">saxpy</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">iv</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">iv</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">;</span> <span class="o">++</span><span class="n">iv</span><span class="p">)</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">iv</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">iv</span><span class="p">];</span>
+<span class="p">}</span></code></pre>
+        <p>
+          As the vectorizer runs near the end of the pipeline, LLVM applies various scalar transforms to yield target-independent IR that the vectorizer gets as input:
+        </p>
+        <pre><code class="highlight"><span class="nl">loop:</span>
+  <span class="nv">%iv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%entry</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%loop</span> <span class="p">]</span>
+  <span class="nv">%gep.x</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%x</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
+  <span class="nv">%load.x</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.x</span>
+  <span class="nv">%gep.y</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
+  <span class="nv">%load.y</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
+  <span class="nv">%fmuladd</span> <span class="p">=</span> <span class="k">tail</span> <span class="k">call</span> <span class="kt">float</span> <span class="vg">@llvm.fmuladd.f32</span><span class="p">(</span>
+    <span class="kt">float</span> <span class="nv">%a</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%load.x</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%load.y</span><span class="p">)</span>
+  <span class="k">store</span> <span class="kt">float</span> <span class="nv">%fmuladd</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span>
+  <span class="nv">%iv.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">1</span>
+  <span class="nv">%exitcond</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="m">1024</span>
+  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exitcond</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%loop</span></code></pre>
+        <p>
+          The planning stage of the vectorizer normally decides two key factors when attempting to find the winning plan: the vectorization factor (VF), which determines the width of the instructions on the VPU, and interleave count (UF, referring to the old name "unrolling factor"), which determines how many copies of each vector instruction to create. These decisions are predicated on the cost of the final instructions, which only makes sense when a specific target is provided: for the purposes of this article, let us force the vectorizer to run in a target-independent fashion without interleaving using <mark>-force-vector-width=4 -force-vector-interleave=1</mark>, and inspect the lifting of the LLVM IR to the VPlan:
+        </p>
+        <pre><code class="highlight">VPlan 'Initial VPlan for VF={4},UF&gt;=1' {
+Live-in vp&lt;%0&gt; = VF
+Live-in vp&lt;%1&gt; = VF * UF
+Live-in vp&lt;%2&gt; = vector-trip-count
+Live-in ir&lt;1024&gt; = original trip-count
+
+vector.ph:
+Successor(s): vector.body
+
+vector.body:
+  EMIT vp&lt;%3&gt; = CANONICAL-INDUCTION ir&lt;0&gt;, vp&lt;%index.next&gt;
+  vp&lt;%4&gt; = SCALAR-STEPS vp&lt;%3&gt;, ir&lt;1&gt;, vp&lt;%0&gt;
+  CLONE ir&lt;%gep.x&gt; = getelementptr inbounds ir&lt;%x&gt;, vp&lt;%4&gt;
+  vp&lt;%5&gt; = vector-pointer ir&lt;%gep.x&gt;
+  WIDEN ir&lt;%load.x&gt; = load vp&lt;%5&gt;
+  CLONE ir&lt;%gep.y&gt; = getelementptr inbounds ir&lt;%y&gt;, vp&lt;%4&gt;
+  vp&lt;%6&gt; = vector-pointer ir&lt;%gep.y&gt;
+  WIDEN ir&lt;%load.y&gt; = load vp&lt;%6&gt;
+  WIDEN-INTRINSIC ir&lt;%fmuladd&gt; =
+    call llvm.fmuladd(ir&lt;%a&gt;, ir&lt;%load.x&gt;, ir&lt;%load.y&gt;)
+  vp&lt;%7&gt; = vector-pointer ir&lt;%gep.y&gt;
+  WIDEN store vp&lt;%7&gt;, ir&lt;%fmuladd&gt;
+  EMIT vp&lt;%index.next&gt; = add nuw vp&lt;%3&gt;, vp&lt;%1&gt;
+  EMIT branch-on-count vp&lt;%index.next&gt;, vp&lt;%2&gt;
+}</code></pre>
+        <p>
+          First, we notice that each variable has an <mark>ir&lt;&gt;</mark> or <mark>vp&lt;&gt;</mark> annotation. The <mark>ir</mark> variables are variables present in the original LLVM IR, and the <mark>vp</mark> variables are fresh variables that are created in the VPlan. Next, we notice new annotations like <mark>EMIT</mark>, <mark>CLONE</mark>, and <mark>WIDEN</mark> in each line in the vector loop: these are termed "recipes", from which the final LLVM IR will be emitted, post transformations.
+        </p>
+        <p>
+          Near the beginning of the vector loop, we can see that the vectorizer has analyzed the trip-count of the original loop, along with a canonical induction-variable (<mark>i</mark> in the original C program), and emitted a <mark>CANONICAL-INDUCTION</mark> recipe along with a <mark>SCALAR-STEPS</mark> that increments it by <mark>VF</mark> to account for the fact that the vectorized loop has width VF, and executes 1024 / VF times. This means that certain instructions must either be width VF, or duplicated VF number of times with different steps for correctness: in our snippet, we see that loads and stores were widened, along with the intrinsic <mark>fmuladd</mark>. <mark>getelementptr</mark> should not be widened: it should add VF times the original offset to the base pointer, and this is indeed what is done. For instructions that should not be widened, we see an <mark>EMIT</mark>/<mark>CLONE</mark>, or "replicate" recipes. This is also where the interleaving-factor would have come in, in a different example, when something that needs to be widened couldn't be widened.
+        </p>
+        <p>
+          Notice that the final line, <mark>branch-on-count</mark>, is predicated on an abstract vector-trip-count: since the vectorizer could make different decisions about VF and UF as it plans, the vector-trip-count is only materialized after a decision is made.
+        </p>
+        <p>
+          We see some cryptic <mark>vector-pointer</mark> recipes, but these will be optimized out by the time we get to the final VPlan. Also notice a minor detail in the operands of <mark>fmuladd</mark>: the first operand is <mark>%a</mark>, which is a scalar, while the other two operands, <mark>%load.x</mark> and <mark>%load.y</mark> are widened; if the first operand isn't fixed up, vectorization of the entire loop would be inhibited for correctness reasons.
+        </p>
+        <p>
+          The final VPlan is produced post optimizations and materializations:
+        </p>
+        <pre><code class="highlight">VPlan 'Final VPlan for VF={4},UF={1}' {
+vector.ph:
+  EMIT vp&lt;%n.mod.vf&gt; = urem ir&lt;1024&gt;, ir&lt;4&gt;
+  EMIT vp&lt;%n.vec&gt; = sub ir&lt;1024&gt;, vp&lt;%n.mod.vf&gt;
+  EMIT vp&lt;%3&gt; = broadcast ir&lt;%a&gt;
+Successor(s): vector.body
+
+vector.body:
+  EMIT-SCALAR vp&lt;%index&gt; =
+    phi [ ir&lt;0&gt;, vector.ph ], [ vp&lt;%index.next&gt;, vector.body ]
+  CLONE ir&lt;%gep.x&gt; = getelementptr inbounds ir&lt;%x&gt;, vp&lt;%index&gt;
+  WIDEN ir&lt;%load.x&gt; = load ir&lt;%gep.x&gt;
+  CLONE ir&lt;%gep.y&gt; = getelementptr inbounds ir&lt;%y&gt;, vp&lt;%index&gt;
+  WIDEN ir&lt;%load.y&gt; = load ir&lt;%gep.y&gt;
+  WIDEN-INTRINSIC ir&lt;%fmuladd&gt; = call llvm.fmuladd(
+    vp&lt;%3&gt;, ir&lt;%load.x&gt;, ir&lt;%load.y&gt;)
+  WIDEN store ir&lt;%gep.y&gt;, ir&lt;%fmuladd&gt;
+  EMIT vp&lt;%index.next&gt; = add nuw vp&lt;%index&gt;, ir&lt;4&gt;
+  EMIT branch-on-count vp&lt;%index.next&gt;, vp&lt;%n.vec&gt;
+}</code></pre>
+        <p>
+          Notice that the first operand of the <mark>fmuladd</mark> is now a broadcast of <mark>%a</mark>, which is essentially a way to fill a vector with a scalar.
+        </p>
+        <p>
+          At this point, the VPlan is "executed" to produce the final LLVM IR. The full example can be seen on <a href="https://godbolt.org/z/hnjYcrn3o">Godbolt</a>.
+        </p>
+        <hr class="ellipses">
+        <p>
+          Let us briefly consider a more complicated example, just to see what VPlan is capable of representing:
+        </p>
+        <pre><code class="highlight"><span class="k">define</span> <span class="kt">i64</span> <span class="vg">@iv_select_cmp</span><span class="p">(</span><span class="err">ptr</span> <span class="nv">%a</span><span class="p">)</span> <span class="p">{</span>
+<span class="nl">entry:</span>
+  <span class="k">br</span> <span class="kt">label</span> <span class="nv">%loop</span>
+
+<span class="nl">loop:</span>
+  <span class="nv">%iv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%loop</span> <span class="p">],</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%entry</span> <span class="p">]</span>
+  <span class="nv">%rdx</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="nv">%sel</span><span class="p">,</span> <span class="nv">%loop</span> <span class="p">],</span> <span class="p">[</span> <span class="m">3</span><span class="p">,</span> <span class="nv">%entry</span> <span class="p">]</span>
+  <span class="nv">%gep.a.iv</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">i64</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%a</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
+  <span class="nv">%load.a</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">i64</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.a.iv</span><span class="p">,</span> <span class="k">align</span> <span class="m">8</span>
+  <span class="nv">%cmp.a.3</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%load.a</span><span class="p">,</span> <span class="m">3</span>
+  <span class="nv">%sel</span> <span class="p">=</span> <span class="k">select</span> <span class="kt">i1</span> <span class="nv">%cmp.a.3</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%rdx</span>
+  <span class="nv">%iv.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">1</span>
+  <span class="nv">%exitcond.not</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="m">1024</span>
+  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exitcond.not</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%loop</span>
+
+<span class="nl">exit:</span>
+  <span class="k">ret</span> <span class="kt">i64</span> <span class="nv">%sel</span>
+<span class="p">}</span></code></pre>
+        <p>
+          In <a href="https://godbolt.org/z/8nWGv4v43">this VPlan</a>, we see:
+        </p>
+        <pre><code class="highlight"><span class="err">VPlan</span> <span class="err">'Final</span> <span class="err">VPlan</span> <span class="err">for</span> <span class="err">VF</span><span class="p">={</span><span class="m">4</span><span class="p">},</span><span class="err">UF</span><span class="p">={</span><span class="m">1</span><span class="p">}</span><span class="err">'</span> <span class="p">{</span>
+<span class="nl">vector.ph:</span>
+  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%1</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">step-vector</span> <span class="kt">i64</span>
+  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%2</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">broadcast</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">0</span><span class="p">&gt;</span>
+  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%3</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">broadcast</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">1</span><span class="p">&gt;</span>
+  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%4</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">mul</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%1</span><span class="p">&gt;,</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%3</span><span class="p">&gt;</span>
+  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%induction</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">add</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%2</span><span class="p">&gt;,</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%4</span><span class="p">&gt;</span>
+  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%5</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">broadcast</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">4</span><span class="p">&gt;</span>
+<span class="err">Successor</span><span class="p">(</span><span class="err">s</span><span class="p">)</span><span class="err">:</span> <span class="err">vector</span><span class="p">.</span><span class="err">body</span>
+
+<span class="nl">vector.body:</span>
+  <span class="err">EMIT-SCALAR</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index</span><span class="p">&gt;</span> <span class="p">=</span>
+    <span class="k">phi</span> <span class="p">[</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">0</span><span class="p">&gt;,</span> <span class="err">vector</span><span class="p">.</span><span class="err">ph</span> <span class="p">],</span> <span class="p">[</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index.next</span><span class="p">&gt;,</span> <span class="err">vector</span><span class="p">.</span><span class="err">body</span> <span class="p">]</span>
+  <span class="err">WIDEN-PHI</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%iv</span><span class="p">&gt;</span> <span class="p">=</span>
+    <span class="k">phi</span> <span class="p">[</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%induction</span><span class="p">&gt;,</span> <span class="err">vector</span><span class="p">.</span><span class="err">ph</span> <span class="p">],</span> <span class="p">[</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%vec.ind.next</span><span class="p">&gt;,</span> <span class="err">vector</span><span class="p">.</span><span class="err">body</span> <span class="p">]</span>
+  <span class="err">WIDEN-REDUCTION-PHI</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%rdx</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">phi</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">-9223372036854775808</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%sel</span><span class="p">&gt;</span>
+  <span class="err">CLONE</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%gep.a.iv</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%a</span><span class="p">&gt;,</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index</span><span class="p">&gt;</span>
+  <span class="err">WIDEN</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%load.a</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">load</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%gep.a.iv</span><span class="p">&gt;</span>
+  <span class="err">WIDEN</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%cmp.a.3</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%load.a</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">3</span><span class="p">&gt;</span>
+  <span class="err">WIDEN-SELECT</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%sel</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">select</span>  <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%cmp.a.3</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%iv</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%rdx</span><span class="p">&gt;</span>
+  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index.next</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">4</span><span class="p">&gt;</span>
+  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%vec.ind.next</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">add</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%iv</span><span class="p">&gt;,</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%5</span><span class="p">&gt;</span>
+  <span class="err">EMIT</span> <span class="err">branch-on-count</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index.next</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">1024</span><span class="p">&gt;</span>
+<span class="err">Successor</span><span class="p">(</span><span class="err">s</span><span class="p">)</span><span class="err">:</span> <span class="err">middle</span><span class="p">.</span><span class="err">block</span><span class="p">,</span> <span class="err">vector</span><span class="p">.</span><span class="err">body</span>
+
+<span class="nl">middle.block:</span>
+  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%7</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">compute-find-iv-result</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%rdx</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">3</span><span class="p">&gt;,</span>
+    <span class="err">ir</span><span class="p">&lt;</span><span class="m">-9223372036854775808</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%sel</span><span class="p">&gt;</span></code></pre>
+        <p>
+          Here, the <mark>compute-find-iv-result</mark> in <mark>middle.block</mark> is a single semantic recipe that lowers to the following sequence of instructions:
+        </p>
+        <pre><code class="highlight"><span class="nl">middle.block:</span>
+  <span class="nv">%4</span> <span class="p">=</span> <span class="k">call</span> <span class="kt">i64</span> <span class="vg">@llvm.vector.reduce.smax.v4i64</span><span class="p">(&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">i64</span><span class="p">&gt;</span> <span class="nv">%2</span><span class="p">)</span>
+  <span class="nv">%rdx.select.cmp</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">ne</span> <span class="kt">i64</span> <span class="nv">%4</span><span class="p">,</span> <span class="m">-9223372036854775808</span>
+  <span class="nv">%rdx.select</span> <span class="p">=</span> <span class="k">select</span> <span class="kt">i1</span> <span class="nv">%rdx.select.cmp</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%4</span><span class="p">,</span> <span class="kt">i64</span> <span class="m">3</span></code></pre>
+        <p>
+          To conclude, VPlan allows us to focus on semantic details of the vectorization, and operate at an abstraction level that is easier to inspect and optimize, and less error-prone, than concrete LLVM IR.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>
