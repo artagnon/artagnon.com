@@ -520,7 +520,7 @@ vector.body:
   <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%7</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">compute-find-iv-result</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%rdx</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">3</span><span class="p">&gt;,</span>
     <span class="err">ir</span><span class="p">&lt;</span><span class="m">-9223372036854775808</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%sel</span><span class="p">&gt;</span></code></pre>
         <p>
-          Here, the <mark>compute-find-iv-result</mark> in <mark>middle.block</mark> is a single semantic recipe that lowers to the following sequence of instructions:
+          Here, the <mark>compute-find-iv-result</mark> in <mark>middle.block</mark> is a recipe that lowers to the following sequence of instructions:
         </p>
         <pre><code class="highlight"><span class="nl">middle.block:</span>
   <span class="nv">%4</span> <span class="p">=</span> <span class="k">call</span> <span class="kt">i64</span> <span class="vg">@llvm.vector.reduce.smax.v4i64</span><span class="p">(&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">i64</span><span class="p">&gt;</span> <span class="nv">%2</span><span class="p">)</span>
