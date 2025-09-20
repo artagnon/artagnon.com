@@ -28,7 +28,7 @@ loop:
   br i1 %exitcond, label %exit, label %loop
 ```
 
-The planning stage of the vectorizer normally decides two key factors when attempting to find the winning plan: the vectorization factor (VF), which determines the width of the instructions on the VPU, and interleave count (UF, referring to the old name "unrolling factor"), which determines how many copies of each vector instruction to create. These decisions are predicated on the cost of the final instructions, which only makes sense when a specific target is provided: for the purposes of this article, let us force the vectorizer to run in a target-independent fashion without interleaving using `-force-vector-width=4 -force-vector-interleave=1`, and inspect the lifting of the LLVM IR to the VPlan:
+The planning stage of the vectorizer normally decides two key factors when attempting to find the winning plan: the vectorization factor (VF), which determines the width of the instructions on the VPU, and interleave count (UF, referring to the old name "unrolling factor"), which determines how many copies of each instruction to create. These decisions are predicated on the cost of the final instructions, which only makes sense when a specific target is provided: for the purposes of this article, let us force the vectorizer to run in a target-independent fashion without interleaving using `-force-vector-width=4 -force-vector-interleave=1`, and inspect the lifting of the LLVM IR to the VPlan:
 
 ```
 VPlan 'Initial VPlan for VF={4},UF>=1' {
