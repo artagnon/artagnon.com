@@ -92,8 +92,10 @@ vector.body:
 Notice that the first operand of the `fmuladd` is now a broadcast of `%a`, which is essentially a way to fill a vector with a scalar. It lowers to the following LLVM IR:
 
 ```llvm
-  %broadcast.splatinsert = insertelement <4 x float> poison, float %a, i64 0
-  %broadcast.splat = shufflevector <4 x float> %broadcast.splatinsert,
+  %broadcast.splatinsert =
+    insertelement <4 x float> poison, float %a, i64 0
+  %broadcast.splat =
+    shufflevector <4 x float> %broadcast.splatinsert,
     <4 x float> poison, <4 x i32> zeroinitializer
 ```
 

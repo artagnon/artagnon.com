@@ -461,8 +461,10 @@ vector.body:
         <p>
           Notice that the first operand of the <mark>fmuladd</mark> is now a broadcast of <mark>%a</mark>, which is essentially a way to fill a vector with a scalar. It lowers to the following LLVM IR:
         </p>
-        <pre><code class="highlight">  <span class="nv">%broadcast.splatinsert</span> <span class="p">=</span> <span class="k">insertelement</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="err">poison</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%a</span><span class="p">,</span> <span class="kt">i64</span> <span class="m">0</span>
-  <span class="nv">%broadcast.splat</span> <span class="p">=</span> <span class="k">shufflevector</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="nv">%broadcast.splatinsert</span><span class="p">,</span>
+        <pre><code class="highlight">  <span class="nv">%broadcast.splatinsert</span> <span class="p">=</span>
+    <span class="k">insertelement</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="err">poison</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%a</span><span class="p">,</span> <span class="kt">i64</span> <span class="m">0</span>
+  <span class="nv">%broadcast.splat</span> <span class="p">=</span>
+    <span class="k">shufflevector</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="nv">%broadcast.splatinsert</span><span class="p">,</span>
     <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="err">poison</span><span class="p">,</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">i32</span><span class="p">&gt;</span> <span class="k">zeroinitializer</span></code></pre>
         <p>
           At this point, the VPlan is "executed" to produce the final LLVM IR. The full example can be seen on <a href="https://godbolt.org/z/Ga3E4b7jT">Godbolt</a>.
