@@ -82,7 +82,7 @@ vector.body:
   CLONE ir<%gep.y> = getelementptr inbounds ir<%y>, vp<%index>
   WIDEN ir<%load.y> = load ir<%gep.y>
   WIDEN-INTRINSIC ir<%fmuladd> = call llvm.fmuladd(
-    vp<%3>, ir<%load.x>, ir<%load.y>)
+    vp<%1>, ir<%load.x>, ir<%load.y>)
   WIDEN store ir<%gep.y>, ir<%fmuladd>
   EMIT vp<%index.next> = add nuw vp<%index>, ir<4>
   EMIT branch-on-count vp<%index.next>, ir<1024>

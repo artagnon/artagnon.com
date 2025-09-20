@@ -453,7 +453,7 @@ vector.body:
   CLONE ir&lt;%gep.y&gt; = getelementptr inbounds ir&lt;%y&gt;, vp&lt;%index&gt;
   WIDEN ir&lt;%load.y&gt; = load ir&lt;%gep.y&gt;
   WIDEN-INTRINSIC ir&lt;%fmuladd&gt; = call llvm.fmuladd(
-    vp&lt;%3&gt;, ir&lt;%load.x&gt;, ir&lt;%load.y&gt;)
+    vp&lt;%1&gt;, ir&lt;%load.x&gt;, ir&lt;%load.y&gt;)
   WIDEN store ir&lt;%gep.y&gt;, ir&lt;%fmuladd&gt;
   EMIT vp&lt;%index.next&gt; = add nuw vp&lt;%index&gt;, ir&lt;4&gt;
   EMIT branch-on-count vp&lt;%index.next&gt;, ir&lt;1024&gt;
