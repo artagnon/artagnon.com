@@ -64,7 +64,7 @@ Near the beginning of the vector loop, we can see that the vectorizer has analyz
 
 Notice that the final line, `branch-on-count`, is predicated on an abstract vector-trip-count: since the vectorizer could make different decisions about VF and UF as it plans, the vector-trip-count is only materialized after a decision is made.
 
-We see some cryptic `vector-pointer` recipes, but these will be optimized out by the time we get to the final VPlan. Also notice a minor detail in the operands of `fmuladd`: the first operand is `%a`, which is a scalar, while the other two operands, `%load.x` and `%load.y` are widened; if the first operand isn't fixed up, vectorization of the entire loop would be inhibited for correctness reasons.
+We see some cryptic `vector-pointer` recipes, but these will be optimized out by the time we get to the final VPlan. Also notice a minor detail in the operands of `fmuladd`: the first operand is `%a`, which is a scalar, while the other two operands, `%load.x` and `%load.y`, are widened; if the first operand isn't fixed up, vectorization of the entire loop would be inhibited for correctness reasons.
 
 The final VPlan is produced post optimizations and materializations:
 

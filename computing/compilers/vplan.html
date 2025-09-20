@@ -435,7 +435,7 @@ vector.body:
           Notice that the final line, <mark>branch-on-count</mark>, is predicated on an abstract vector-trip-count: since the vectorizer could make different decisions about VF and UF as it plans, the vector-trip-count is only materialized after a decision is made.
         </p>
         <p>
-          We see some cryptic <mark>vector-pointer</mark> recipes, but these will be optimized out by the time we get to the final VPlan. Also notice a minor detail in the operands of <mark>fmuladd</mark>: the first operand is <mark>%a</mark>, which is a scalar, while the other two operands, <mark>%load.x</mark> and <mark>%load.y</mark> are widened; if the first operand isn't fixed up, vectorization of the entire loop would be inhibited for correctness reasons.
+          We see some cryptic <mark>vector-pointer</mark> recipes, but these will be optimized out by the time we get to the final VPlan. Also notice a minor detail in the operands of <mark>fmuladd</mark>: the first operand is <mark>%a</mark>, which is a scalar, while the other two operands, <mark>%load.x</mark> and <mark>%load.y</mark>, are widened; if the first operand isn't fixed up, vectorization of the entire loop would be inhibited for correctness reasons.
         </p>
         <p>
           The final VPlan is produced post optimizations and materializations:
