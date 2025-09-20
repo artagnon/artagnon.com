@@ -459,73 +459,16 @@ vector.body:
   EMIT branch-on-count vp&lt;%index.next&gt;, ir&lt;1024&gt;
 }</code></pre>
         <p>
-          Notice that the first operand of the <mark>fmuladd</mark> is now a broadcast of <mark>%a</mark>, which is essentially a way to fill a vector with a scalar.
+          Notice that the first operand of the <mark>fmuladd</mark> is now a broadcast of <mark>%a</mark>, which is essentially a way to fill a vector with a scalar. It lowers to the following LLVM IR:
         </p>
+        <pre><code class="highlight">  <span class="nv">%broadcast.splatinsert</span> <span class="p">=</span> <span class="k">insertelement</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="err">poison</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%a</span><span class="p">,</span> <span class="kt">i64</span> <span class="m">0</span>
+  <span class="nv">%broadcast.splat</span> <span class="p">=</span> <span class="k">shufflevector</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="nv">%broadcast.splatinsert</span><span class="p">,</span>
+    <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">float</span><span class="p">&gt;</span> <span class="err">poison</span><span class="p">,</span> <span class="p">&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">i32</span><span class="p">&gt;</span> <span class="k">zeroinitializer</span></code></pre>
         <p>
           At this point, the VPlan is "executed" to produce the final LLVM IR. The full example can be seen on <a href="https://godbolt.org/z/Ga3E4b7jT">Godbolt</a>.
         </p>
-        <hr class="ellipses">
         <p>
-          Let us briefly consider a more complicated example, just to see what VPlan is capable of representing:
-        </p>
-        <pre><code class="highlight"><span class="k">define</span> <span class="kt">i64</span> <span class="vg">@iv_select_cmp</span><span class="p">(</span><span class="err">ptr</span> <span class="nv">%a</span><span class="p">)</span> <span class="p">{</span>
-<span class="nl">entry:</span>
-  <span class="k">br</span> <span class="kt">label</span> <span class="nv">%loop</span>
-
-<span class="nl">loop:</span>
-  <span class="nv">%iv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%loop</span> <span class="p">],</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%entry</span> <span class="p">]</span>
-  <span class="nv">%rdx</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="nv">%sel</span><span class="p">,</span> <span class="nv">%loop</span> <span class="p">],</span> <span class="p">[</span> <span class="m">3</span><span class="p">,</span> <span class="nv">%entry</span> <span class="p">]</span>
-  <span class="nv">%gep.a.iv</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">i64</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%a</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span>
-  <span class="nv">%load.a</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">i64</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.a.iv</span><span class="p">,</span> <span class="k">align</span> <span class="m">8</span>
-  <span class="nv">%cmp.a.3</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%load.a</span><span class="p">,</span> <span class="m">3</span>
-  <span class="nv">%sel</span> <span class="p">=</span> <span class="k">select</span> <span class="kt">i1</span> <span class="nv">%cmp.a.3</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%rdx</span>
-  <span class="nv">%iv.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">1</span>
-  <span class="nv">%exitcond.not</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="m">1024</span>
-  <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exitcond.not</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%loop</span>
-
-<span class="nl">exit:</span>
-  <span class="k">ret</span> <span class="kt">i64</span> <span class="nv">%sel</span>
-<span class="p">}</span></code></pre>
-        <p>
-          In <a href="https://godbolt.org/z/8nWGv4v43">this VPlan</a>, we see:
-        </p>
-        <pre><code class="highlight"><span class="err">VPlan</span> <span class="err">'Final</span> <span class="err">VPlan</span> <span class="err">for</span> <span class="err">VF</span><span class="p">={</span><span class="m">4</span><span class="p">},</span><span class="err">UF</span><span class="p">={</span><span class="m">1</span><span class="p">}</span><span class="err">'</span> <span class="p">{</span>
-<span class="nl">vector.ph:</span>
-  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%1</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">step-vector</span> <span class="kt">i64</span>
-  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%2</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">broadcast</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">0</span><span class="p">&gt;</span>
-  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%3</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">broadcast</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">1</span><span class="p">&gt;</span>
-  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%4</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">mul</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%1</span><span class="p">&gt;,</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%3</span><span class="p">&gt;</span>
-  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%induction</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">add</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%2</span><span class="p">&gt;,</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%4</span><span class="p">&gt;</span>
-  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%5</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">broadcast</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">4</span><span class="p">&gt;</span>
-<span class="err">Successor</span><span class="p">(</span><span class="err">s</span><span class="p">)</span><span class="err">:</span> <span class="err">vector</span><span class="p">.</span><span class="err">body</span>
-
-<span class="nl">vector.body:</span>
-  <span class="err">EMIT-SCALAR</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index</span><span class="p">&gt;</span> <span class="p">=</span>
-    <span class="k">phi</span> <span class="p">[</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">0</span><span class="p">&gt;,</span> <span class="err">vector</span><span class="p">.</span><span class="err">ph</span> <span class="p">],</span> <span class="p">[</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index.next</span><span class="p">&gt;,</span> <span class="err">vector</span><span class="p">.</span><span class="err">body</span> <span class="p">]</span>
-  <span class="err">WIDEN-PHI</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%iv</span><span class="p">&gt;</span> <span class="p">=</span>
-    <span class="k">phi</span> <span class="p">[</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%induction</span><span class="p">&gt;,</span> <span class="err">vector</span><span class="p">.</span><span class="err">ph</span> <span class="p">],</span> <span class="p">[</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%vec.ind.next</span><span class="p">&gt;,</span> <span class="err">vector</span><span class="p">.</span><span class="err">body</span> <span class="p">]</span>
-  <span class="err">WIDEN-REDUCTION-PHI</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%rdx</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">phi</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">-9223372036854775808</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%sel</span><span class="p">&gt;</span>
-  <span class="err">CLONE</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%gep.a.iv</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%a</span><span class="p">&gt;,</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index</span><span class="p">&gt;</span>
-  <span class="err">WIDEN</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%load.a</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">load</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%gep.a.iv</span><span class="p">&gt;</span>
-  <span class="err">WIDEN</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%cmp.a.3</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%load.a</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">3</span><span class="p">&gt;</span>
-  <span class="err">WIDEN-SELECT</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%sel</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">select</span>  <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%cmp.a.3</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%iv</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%rdx</span><span class="p">&gt;</span>
-  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index.next</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">4</span><span class="p">&gt;</span>
-  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%vec.ind.next</span><span class="p">&gt;</span> <span class="p">=</span> <span class="k">add</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%iv</span><span class="p">&gt;,</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%5</span><span class="p">&gt;</span>
-  <span class="err">EMIT</span> <span class="err">branch-on-count</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%index.next</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">1024</span><span class="p">&gt;</span>
-<span class="err">Successor</span><span class="p">(</span><span class="err">s</span><span class="p">)</span><span class="err">:</span> <span class="err">middle</span><span class="p">.</span><span class="err">block</span><span class="p">,</span> <span class="err">vector</span><span class="p">.</span><span class="err">body</span>
-
-<span class="nl">middle.block:</span>
-  <span class="err">EMIT</span> <span class="err">vp</span><span class="p">&lt;</span><span class="nv">%7</span><span class="p">&gt;</span> <span class="p">=</span> <span class="err">compute-find-iv-result</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%rdx</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="m">3</span><span class="p">&gt;,</span>
-    <span class="err">ir</span><span class="p">&lt;</span><span class="m">-9223372036854775808</span><span class="p">&gt;,</span> <span class="err">ir</span><span class="p">&lt;</span><span class="nv">%sel</span><span class="p">&gt;</span></code></pre>
-        <p>
-          Here, the <mark>compute-find-iv-result</mark> in <mark>middle.block</mark> is a recipe that lowers to the following sequence of instructions:
-        </p>
-        <pre><code class="highlight"><span class="nl">middle.block:</span>
-  <span class="nv">%4</span> <span class="p">=</span> <span class="k">call</span> <span class="kt">i64</span> <span class="vg">@llvm.vector.reduce.smax.v4i64</span><span class="p">(&lt;</span><span class="m">4</span> <span class="p">x</span> <span class="kt">i64</span><span class="p">&gt;</span> <span class="nv">%2</span><span class="p">)</span>
-  <span class="nv">%rdx.select.cmp</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">ne</span> <span class="kt">i64</span> <span class="nv">%4</span><span class="p">,</span> <span class="m">-9223372036854775808</span>
-  <span class="nv">%rdx.select</span> <span class="p">=</span> <span class="k">select</span> <span class="kt">i1</span> <span class="nv">%rdx.select.cmp</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%4</span><span class="p">,</span> <span class="kt">i64</span> <span class="m">3</span></code></pre>
-        <p>
-          To conclude, VPlan allows us to focus on semantic details of the vectorization, and operate at an abstraction level that is easier to inspect and optimize, and less error-prone, than concrete LLVM IR.
+          VPlan allows us to focus on semantic details of the vectorization, and operate at an abstraction level that is easier to inspect and optimize, and less error-prone, than concrete LLVM IR.
         </p>
       </article>
     </main>
