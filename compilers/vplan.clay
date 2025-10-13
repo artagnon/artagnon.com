@@ -1,6 +1,6 @@
 The Vectorization-Planner (VPlan) in LLVM
 
-In a follow-up to the [introductory article on auto-vectorization](/computing/compilers/intro-vec), we discuss how the loop vectorizer works internally. Nearly all transforms in LLVM work by directly manipulating IR, using the results of various analyses on the IR, while the loop vectorizer operates on a layer of abstraction above the IR: it lifts the LLVM IR to an overlay IR, analyzes and transforms the overlay IR, and finally removes the original IR entirely, replacing it with a final LLVM IR from the direct concretization of the final overlay IR. It also plans various vectorization strategies, costing each one until it finds a winning strategy. This infrastructure is called VPlan.
+In a follow-up to the [introductory article on auto-vectorization](/compilers/intro-vec), we discuss how the loop vectorizer works internally. Nearly all transforms in LLVM work by directly manipulating IR, using the results of various analyses on the IR, while the loop vectorizer operates on a layer of abstraction above the IR: it lifts the LLVM IR to an overlay IR, analyzes and transforms the overlay IR, and finally removes the original IR entirely, replacing it with a final LLVM IR from the direct concretization of the final overlay IR. It also plans various vectorization strategies, costing each one until it finds a winning strategy. This infrastructure is called VPlan.
 
 Let us start with a variant of the example program from the previous article:
 
