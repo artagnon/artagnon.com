@@ -67,7 +67,7 @@ inner.loop:
 }
 ```
 
-The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use `-march=rv64gc` instead of `-march=rv64gcv`) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed [previously](/computing/compilers/intro-vec).
+The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use `-march=rv64gc` instead of `-march=rv64gcv`) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed [previously](/compilers/intro-vec).
 
 The first thing to notice is that the body of the function is cleanly separated into basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like `%iv` are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh `%iv.next` variable is created, and `%iv` is a `phi` node that selects between the values `0` when jumping into the `loop` block from `entry`, and `%iv.next` when jumping to the `inner.loop` block from the back-edge of the inner loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
 
