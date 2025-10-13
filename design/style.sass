@@ -32,9 +32,8 @@ $nav-height: max(10vw, 10vh)
   font-feature-settings: 'liga' 1, 'calt' 1
   font-style: normal
   font-display: swap
-  font-weight: 100 900
+  font-weight: 100 700
   src: url(https://cdn.jsdelivr.net/fontsource/fonts/inter:vf@latest/latin-wght-normal.woff2) format('woff2-variations')
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD
 
 @font-face
   font-family: Roboto
@@ -43,7 +42,6 @@ $nav-height: max(10vw, 10vh)
   font-display: swap
   font-weight: 100 700
   src: url(https://cdn.jsdelivr.net/fontsource/fonts/roboto-mono:vf@latest/latin-wght-normal.woff2) format('woff2-variations')
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD
 
 :root
   font-family: Inter, sans-serif
@@ -64,6 +62,7 @@ a
 .wrapper
   height: max(100%, 100vh)
   width: 100vw
+  overflow-x: hidden
   align-items: start
   justify-items: center
   display: flex
@@ -72,8 +71,6 @@ a
     flex: 0 0 content
 
   & > main
-    overflow: hidden
-    min-width: 0
     padding-left: math.div($gutter-width, 2)
     padding-right: math.div($gutter-width, 2)
 
@@ -245,8 +242,8 @@ nav li a
 #indexfill
   list-style: none
   margin-left: 0
-  padding-left: 1em
-  text-indent: -1em
+  padding-left: 1rem
+  text-indent: -1rem
 
   & > li
     padding-bottom: 1rem
@@ -270,33 +267,12 @@ main
     visibility: none !important
     display: none
 
-#metadata
-  font-size: 0.7rem
-  color: $metadata-fg
-  text-align: right
-
-  & span.to
-    padding-left: 1.5px
-    padding-right: 1.5px
-
-    & > img
-      color: $metadata-fg
-      height: 0.6em
-      width: calc(1.19512 * 0.6em)
-
-main > article
-  font-size: 1.0em
-
 h1
   font-size: 1.8rem
   color: $heading-fg
 
 h2
-  font-size: 1.2rem
-  color: $heading-fg
-
-h3
-  font-size: 1.0rem
+  font-size: 1.4rem
   color: $heading-fg
 
 .olitems
@@ -386,6 +362,14 @@ a[href^="https://github.com/"]
   background-image: url("/dist/icon.github.svg")
 
 #metadata
+  font-size: 0.7rem
+  color: $metadata-fg
+  text-align: right
+
+  & span.to
+    padding-left: 1.5px
+    padding-right: 1.5px
+
   & > #timestamp > time.end
     background-image: url("/dist/icon.calendar.svg")
 
@@ -401,9 +385,9 @@ a[href^="https://github.com"],
 #metadata > #locations
   background-repeat: no-repeat
   background-position: center right
-  padding-right: 1.3em
-  max-height: 1em
-  background-size: 1em
+  padding-right: 1rem
+  max-height: 1rem
+  background-size: 0.7rem
 
 footer > p
   margin-top: 1rem
