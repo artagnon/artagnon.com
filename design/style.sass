@@ -51,13 +51,6 @@ body
   color: $main-fg
   background-color: $main-bg
 
-a
-  color: $link-fg
-  text-decoration: none
-
-  &:hover
-    color: $link-hover
-
 // Common wrapper code
 .wrapper
   height: max(100%, 100vh)
@@ -275,6 +268,13 @@ h2
   font-size: 1.4rem
   color: $heading-fg
 
+a
+  color: $link-fg
+  text-decoration: none
+
+  &:hover
+    color: $link-hover
+
 .olitems
   list-style-position: outside
   padding-left: 2rem
@@ -352,15 +352,6 @@ code.highlight
   padding: 5px
   font-family: Roboto, monospace
 
-a[href$=".pdf"]
-  background-image: url("/dist/icon.pdf.svg")
-
-a[href^="https://youtube.com"]
-  background-image: url("/dist/icon.youtube.svg")
-
-a[href^="https://github.com/"]
-  background-image: url("/dist/icon.github.svg")
-
 #metadata
   font-size: 0.7rem
   color: $metadata-fg
@@ -378,15 +369,30 @@ a[href^="https://github.com/"]
 
 a[href$=".pdf"],
 a[href^="https://youtube.com"],
-a[href^="mailto:"],
-a[href^="https://twitter.com"],
 a[href^="https://github.com"],
 #metadata > #timestamp > time.end,
 #metadata > #locations
   background-repeat: no-repeat
   background-position: center right
+
+a[href$=".pdf"]
+  background-image: url("/dist/icon.pdf.svg")
+
+a[href^="https://youtube.com"]
+  background-image: url("/dist/icon.youtube.svg")
+
+a[href^="https://github.com/"]
+  background-image: url("/dist/icon.github.svg")
+
+a[href$=".pdf"],
+a[href^="https://youtube.com"],
+a[href^="https://github.com"]
+  padding-right: 1.3rem
+  background-size: 1rem
+
+#metadata > #timestamp > time.end,
+#metadata > #locations
   padding-right: 1rem
-  max-height: 1rem
   background-size: 0.7rem
 
 footer > p
