@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="en">
   <head>
-    <title>Inside a register allocator</title>
+    <title>Compilers
+      </title>
     <meta charset="utf-8">
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
     <meta name="HandheldFriendly" content="true">
@@ -355,7 +356,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           <span class="navidx">01</span><a href="/art">Art</a>
         </li>
         <li>
-          <span class="navidx">02</span><a href="/computing">Computing</a>
+          <span class="navidx">02</span><span id="navcur">Compilers</span>
         </li>
         <li>
           <span class="navidx">03</span><a href="/logic">Logic</a>
@@ -365,69 +366,34 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
     <main>
       <header>
         <h1>
-          Inside a register allocator
+          Compilers
+          
         </h1>
-        <div id="metadata">
-          <span id="timestamp"><time class="end" datetime="2016-03-24">Thu, 24 Mar 2016 17:00:00 -0500</time></span>
-        </div>
       </header>
       <article>
-        <p>
-          We are going to be discussing LLVM's Fast Register Allocator: you might like to open <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/CodeGen/RegAllocFast.cpp">RegAllocFast.cpp</a> and refer to it as we go through the article.
-        </p>
-        <p>
-          FastRegAlloc allocates linearly, going through instructions and their operands in order. It uses <mark>PhysRegState</mark> to keep track of the state of various physical registers: they can be 0 (<mark>regDisabled</mark>), 1 (<mark>regFree</mark>), 2 (<mark>regReserved</mark>), or a virtual register number (a large number). At the time of allocation, the full UseDef information is available (so you have information like <mark>LR.LastUse</mark>); a register can either be a <mark>&lt;def&gt;</mark> or a use. If <mark>IsImplicit</mark> is flipped, it could also be a implicit-def (<mark>&lt;imp-def&gt;</mark>) or implicit-use (<mark>&lt;imp-use&gt;</mark>).
-        </p>
-        <pre><code class="highlight">%vreg349<def> = MOVZX32rm8 %vreg351, 1, %noreg, 0, %noreg</def></code></pre>
-        <p>
-          turns into
-        </p>
-        <pre><code class="highlight">%ESI<def> = MOVZX32rm8 %RDX<kill>, 1, %noreg, 0, %noreg</kill></def></code></pre>
-        <p>
-          after allocation. The <mark>&lt;kill&gt;</mark> indicates that the instruction is the last use of <mark>%RDX</mark>. In another example,
-        </p>
-        <pre><code class="highlight">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></imp-use></imp-def></imp-def></code></pre>
-        <p>
-          turns into
-        </p>
-        <pre><code class="highlight">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use,kill></imp-use,kill></imp-def></imp-def></code></pre>
-        <p>
-          Notice that the instruction references physical registers even before the allocation. That's because this instruction specifically wants to sign extend <mark>%RAX</mark> into <mark>%RDX</mark> (not any other register) for use in a later <mark>IDIV</mark>. Remember that <mark>IDIV</mark> operates on <mark>%RDX:%RAX</mark> as the numerator, and writes the quotient in <mark>%RAX</mark>, reminder in <mark>%RDX</mark>.
-        </p>
-        <p>
-          The instruction is modeled as <mark>MachineInstr</mark>, and the operands as <mark>MachineOperand</mark>. Note that a <mark>MO</mark> doesn't have to be a register: it could also be an immediate value; we use <mark>MO.isReg()</mark> to find out if it's a register, physical or virtual. In addition to the states shown in the pretty-print, <mark>MO</mark> can also be <mark>EarlyClobber</mark>, <mark>Dead</mark>, or <mark>Undef</mark>. A Dead <mark>MO</mark> implies Def, and indicates that the value defined is used no longer.
-        </p>
-        <p>
-          <mark>AllocateBasicBlock</mark>, which operates on <mark>MachineBasicBlock</mark>, can be separated into three different scans, that operate on register MOs. Before the first scan, we set up the <mark>LiveIns</mark> (registers coming in live from the previous <mark>MBB</mark>) as <mark>regReserved</mark> so they aren't clobbered. The first scan operates on physical registers that are allocatable Uses; it calls <mark>usePhysReg</mark> on them. At this stage, the physical register must be either <mark>regDisabled</mark>, <mark>regReserved</mark>, or <mark>regFree</mark>. It cannot be allocated to a virtual register. Why? Imagine you see:
-        </p>
-        <pre><code class="highlight">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></imp-use></imp-def></imp-def></code></pre>
-        <p>
-          Now, if <mark>%RAX</mark> were already allocated to a virtual register, we're basically screwed in this linear walk. Otherwise, kill it, mark it as <mark>regFree</mark>, and move on: we have done our part by completing the use of the register that was reserved earlier.
-        </p>
-        <p>
-          The second scan operates only on virtual register Uses. We add the register to <mark>LiveVirtRegs</mark>, via <mark>reloadVirtReg</mark>. If it didn't already exist in the map, we <mark>allocVirtReg</mark> it, which essentially gets the first <mark>regFree</mark> register not used in an instruction, and calls <mark>assignVirtToPhysReg</mark> on it. <mark>assignVirtToPhysReg</mark> is very simple: it just updates the <mark>PhysRegState</mark> mapping. Finally,
-          <mark>reloadVirtReg</mark> updates the <mark>UsedInInstr</mark> map.
-        </p>
-        <p>
-          The third scan operates on physical and virtual registers that are Defs. If the register is a physical register, it does <mark>definePhysReg</mark> with <mark>regReserved</mark> unless <mark>MO.isDead()</mark>, in which case it's regFree. <mark>definePhysReg</mark> is very simple: it just puts the register in the state that was requested (<mark>regReserved</mark> or <mark>regFree</mark>, in this case).
-        </p>
-        <p>
-          To think about the problem, if we have,
-        </p>
-        <pre><code class="highlight">%RAX<def> = COPY %vreg342</def></code></pre>
-        <p>
-          we should always <mark>regReserve</mark> <mark>%RAX</mark>, right? Except if <mark>%RAX</mark> is dead. What about if it's an <mark>&lt;imp-def&gt;</mark>?
-        </p>
-        <pre><code class="highlight">CQO %RAX<imp-def>, %RDX<imp-def>, %RAX<imp-use></imp-use></imp-def></imp-def></code></pre>
-        <p>
-          We didn't pass <mark>CQO</mark> <mark>%RAX</mark> explicitly, but that doesn't mean that a later instruction (for instance, <mark>IDIV</mark>) is not relying on this register's value. If we have an instruction between <mark>CQO</mark> and <mark>IDIV</mark>, that can potentially clobber <mark>%RAX</mark>, leading to a regalloc crash. Hence, we <mark>regReserve</mark> even if <mark>MO.isImplicit()</mark>.
-        </p>
-        <p>
-          The third scan does <mark>defineVirtReg</mark> on virtual registers, to grab the first free physical register for the virtual register.
-        </p>
-        <p>
-          Note: the "pretty-prints" are generated by setting a breakpoint in <mark>AllocateBasicBlock</mark> and executing <mark>p MBB-&gt;dump()</mark>.
-        </p>
+        <ul id="indexfill">
+          <li>
+            <a href="/compilers/vplan">The Vectorization-Planner (VPlan) in LLVM</a>
+          </li>
+          <li>
+            <a href="/compilers/backend">A tour of the LLVM backend</a>
+          </li>
+          <li>
+            <a href="/compilers/intro-vec">An introduction to auto-vectorization with LLVM</a>
+          </li>
+          <li>
+            <a href="/compilers/incrd">Incrementally updating the Dominator</a>
+          </li>
+          <li>
+            <a href="/compilers/loops">Detecting loops</a>
+          </li>
+          <li>
+            <a href="/compilers/regalloc">Inside a register allocator</a>
+          </li>
+          <li>
+            <a href="/compilers/abibug">An ABI-mismatch bug</a>
+          </li>
+        </ul>
       </article>
     </main>
   </body>
