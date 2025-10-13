@@ -13,20 +13,23 @@ html lang="en"
     link rel="apple-touch-icon" sizes="167x167" href="/dist/touch-icon-ipad-retina.png"
     link rel="apple-touch-icon" sizes="180x180" href="/dist/touch-icon-iphone-retina.png"
 
-    // synchronously load our stylesheet, compiled from various css files in design/
-    link rel="stylesheet" href="/dist/style.min.css"
-    link rel="stylesheet" href="/dist/rouge.min.css"
+    // preload fonts
+    link rel="preload" as="font" crossorigin=true href="https://cdn.jsdelivr.net/fontsource/fonts/inter:vf@latest/latin-wght-normal.woff2"
+    link rel="preload" as="font" crossorigin=true href="https://cdn.jsdelivr.net/fontsource/fonts/roboto-mono:vf@latest/latin-wght-normal.woff2"
 
     // cash and dayjs
-    script defer=true src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"
-    script defer=true src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"
-    script defer=true src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"
+    script async=true src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"
+    script async=true src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"
+    script async=true src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"
 
     // our js, compiled from js files in design/
-    script defer=true src="/dist/script.min.js"
+    script async=true src="/dist/script.min.js"
 
     // analytics via plausible
-    script defer=true data-domain="artagnon.com" src="https://analytics.artagnon.com/js/script.js"
+    script async=true data-domain="artagnon.com" src="https://analytics.artagnon.com/js/script.js"
+
+    // synchronously load our stylesheet, compiled from various css files in design/
+    link rel="stylesheet" type="text/css" href="/dist/style.min.css"
   body.wrapper
     nav
       - if permalink == "index"
