@@ -1,16 +1,16 @@
 Equality in Mechanized Mathematics
 
 ...
-Here, we talk about equalities, and provide illustrative examples in vanilla Coq, SProp, and HoTT.
+Here, we talk about equalities, and provide illustrative examples in vanilla Rocq, SProp, and HoTT.
 ...
 
 # Equality in Mathematics
 
 In [zfc-based mathematics](/zfc), say in abelian groups, $A \oplus B \simeq B \oplus A$, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a $\mathrm{1}$-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" almost fully replacing equality. However, it can be tricky to mechanize a theory based on $\infty$-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
 
-# Universes in Coq
+# Universes in Rocq
 
-First, let us briefly talk about the cumulative universe of Coq. `Prop` is a `Set` that can be promoted to `Type` seamlessly. The reason for the distinction between `Prop` and `Set` is an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
+First, let us briefly talk about the cumulative universe of Rocq. `Prop` is a `Set` that can be promoted to `Type` seamlessly. The reason for the distinction between `Prop` and `Set` is an engineering one: `Prop` is impredicative, while `Set` is not, and proofs are erased during extraction.
 
 ```coq
 Definition SetTypeIncl (A : Set) : Type := A.
@@ -24,7 +24,7 @@ Inhabitants of a `Set` are sets of primitive things like $\mathbb{N}$ and $\math
 
 # Propositions
 
-There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
+There are two kinds of equalities in vanilla Rocq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
 
 ```coq
 Axiom PropositionalProofIrrelevance : ∀ (P : Prop) (a b : P), a = b.
@@ -57,7 +57,7 @@ Inductive eq (A : Type) (x : A) : A -> Prop :=
 
 # The proof-irrelevant SProp
 
-There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of `sProposition` trivially inter-convertible.
+There are three inhabitants of [SProp](https://coq.inria.fr/refman/addendum/sprop.html): `sUnit` corresponding to $\top$, `sEmpty` corresponding to $\bot$, and `sProposition` corresponding to a definitionally proof-irrelevant term. The way `SProp` implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Rocq to render two inhabitants of `sProposition` trivially inter-convertible.
 
 Unfortunately, `=` doesn't work as expected:
 

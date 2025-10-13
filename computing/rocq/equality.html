@@ -620,7 +620,7 @@ mjx-c.mjx-c1D45A.TEX-I::before {
           <span class="navidx">02</span><a href="/computing">Computing</a>
         </li>
         <li>
-          <span class="navidx">03</span><a href="/math">Math</a>
+          <span class="navidx">03</span><a href="/logic">Logic</a>
         </li>
       </ul>
     </nav>
@@ -635,7 +635,7 @@ mjx-c.mjx-c1D45A.TEX-I::before {
       </header>
       <article>
         <p class="blurb">
-          Here, we talk about equalities, and provide illustrative examples in vanilla Coq, SProp, and HoTT.
+          Here, we talk about equalities, and provide illustrative examples in vanilla Rocq, SProp, and HoTT.
         </p>
         <h2 id="equality-in-mathematics">
           Equality in Mathematics
@@ -643,11 +643,11 @@ mjx-c.mjx-c1D45A.TEX-I::before {
         <p>
           In <a href="/zfc">zfc-based mathematics</a>, say in abelian groups, <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2295"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D435 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2243"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D435 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2295"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D434 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>, where the equality is a set-based equality. In mathematics based on category theory, equality is too strong a notion on objects, and only speak about objects "upto unique isomorphism"; morphisms in a <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>-category can be equal though. In higher categories, and in particular, homotopy theory, we talk about "weak homotopy equivalences" almost fully replacing equality. However, it can be tricky to mechanize a theory based on <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories; the best dependent-type-theory model we have is homotopy type theory, commonly referred to as HoTT, which we will discuss in the last section.
         </p>
-        <h2 id="universes-in-coq">
-          Universes in Coq
+        <h2 id="universes-in-rocq">
+          Universes in Rocq
         </h2>
         <p>
-          First, let us briefly talk about the cumulative universe of Coq. <mark>Prop</mark> is a <mark>Set</mark> that can be promoted to <mark>Type</mark> seamlessly. The reason for the distinction between <mark>Prop</mark> and <mark>Set</mark> is an engineering one: <mark>Prop</mark> is impredicative, while <mark>Set</mark> is not, and proofs are erased during extraction.
+          First, let us briefly talk about the cumulative universe of Rocq. <mark>Prop</mark> is a <mark>Set</mark> that can be promoted to <mark>Type</mark> seamlessly. The reason for the distinction between <mark>Prop</mark> and <mark>Set</mark> is an engineering one: <mark>Prop</mark> is impredicative, while <mark>Set</mark> is not, and proofs are erased during extraction.
         </p>
         <pre><code class="highlight"><span class="k">Definition</span><span class="w"> </span><span class="no">SetTypeIncl</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">A</span><span class="pi">.</span><span class="w">
 </span><span class="k">Definition</span><span class="w"> </span><span class="no">PropTypeIncl</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">A</span><span class="pi">.</span><span class="w">
@@ -662,7 +662,7 @@ mjx-c.mjx-c1D45A.TEX-I::before {
           Propositions
         </h2>
         <p>
-          There are two kinds of equalities in vanilla Coq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
+          There are two kinds of equalities in vanilla Rocq. The difference is as follows: propositional equality roughly translates to "requires proof obligation to be discharged by the user", whereas definitional equality is a simple syntactic rewriting in the metatheory. A propositional equality between propositions can be formalized as:
         </p>
         <pre><code class="highlight"><span class="no">Axiom</span><span class="w"> </span><span class="no">PropositionalProofIrrelevance</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="o">),</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">b</span><span class="o">.</span></code></pre>
         <p>
@@ -688,7 +688,7 @@ mjx-c.mjx-c1D45A.TEX-I::before {
           The proof-irrelevant SProp
         </h2>
         <p>
-          There are three inhabitants of <a href="https://coq.inria.fr/refman/addendum/sprop.html">SProp</a>: <mark>sUnit</mark> corresponding to <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A4"></mjx-c></mjx-mi></mjx-math></mjx-container>, <mark>sEmpty</mark> corresponding to <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A5"></mjx-c></mjx-mi></mjx-math></mjx-container>, and <mark>sProposition</mark> corresponding to a definitionally proof-irrelevant term. The way <mark>SProp</mark> implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Coq to render two inhabitants of <mark>sProposition</mark> trivially inter-convertible.
+          There are three inhabitants of <a href="https://coq.inria.fr/refman/addendum/sprop.html">SProp</a>: <mark>sUnit</mark> corresponding to <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A4"></mjx-c></mjx-mi></mjx-math></mjx-container>, <mark>sEmpty</mark> corresponding to <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A5"></mjx-c></mjx-mi></mjx-math></mjx-container>, and <mark>sProposition</mark> corresponding to a definitionally proof-irrelevant term. The way <mark>SProp</mark> implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Rocq to render two inhabitants of <mark>sProposition</mark> trivially inter-convertible.
         </p>
         <p>
           Unfortunately, <mark>=</mark> doesn't work as expected:

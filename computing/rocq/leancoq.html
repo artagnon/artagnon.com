@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en">
   <head>
-    <title>Lean versus Coq: The cultural chasm</title>
+    <title>Lean versus Rocq: The cultural chasm</title>
     <meta charset="utf-8">
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
     <meta name="HandheldFriendly" content="true">
@@ -525,14 +525,14 @@ mjx-c.mjx-c1D44C.TEX-I::before {
           <span class="navidx">02</span><a href="/computing">Computing</a>
         </li>
         <li>
-          <span class="navidx">03</span><a href="/math">Math</a>
+          <span class="navidx">03</span><a href="/logic">Logic</a>
         </li>
       </ul>
     </nav>
     <main>
       <header>
         <h1>
-          Lean versus Coq: The cultural chasm
+          Lean versus Rocq: The cultural chasm
         </h1>
         <div id="metadata">
           <span id="timestamp"><time class="end" datetime="2020-01-04">Sat, 4 Jan 2020 15:00:00 +0100</time></span>
@@ -540,7 +540,7 @@ mjx-c.mjx-c1D44C.TEX-I::before {
       </header>
       <article>
         <p class="blurb">
-          Both Lean and Coq are proof assistants based on pCIC. Here, we argue that what sets them apart are, in essence, cultural differences.
+          Both Lean and Rocq are proof assistants based on pCIC. Here, we argue that what sets them apart are, in essence, cultural differences.
         </p>
         <figure>
           <img src="/computing/coq/leancoq-lean.png" alt="/computing/coq/leancoq-lean.png" width="1400" height="1200">
@@ -553,28 +553,28 @@ mjx-c.mjx-c1D44C.TEX-I::before {
           Lean seems to have taken a top-down approach, by focusing on writing real proofs as quickly as possible, without compromising on <a href="https://github.com/digama0/lean-type-theory/releases/download/v1.0/main.pdf">soundness</a>. There are three axioms in Lean: <mark>propositional extensionality</mark>, <mark>quotient soundness</mark>, and <mark>choice</mark>; however, these don't block computation, since computation is done in a VM. They do, however, break good type theoretic properties like <mark>strong normalization</mark>, <mark>subject reduction</mark>, and <mark>canonicity</mark> — this was a conscious design choice.
         </p>
         <p>
-          Coq, on the other hand, has always been very particular about sound type theoretic foundations. The recent <a href="https://www.irif.fr/~sozeau/research/publications/drafts/Coq_Coq_Correct.pdf">"Coq Coq Correct!"</a> formalizes the Coq engine proving metatheoretic properties about it, in Coq, and <a href="https://github.com/HoTT/HoTT">HoTT</a> is being actively developed to fix many of Coq's issues.
+          Rocq, on the other hand, has always been very particular about sound type theoretic foundations. The recent <a href="https://www.irif.fr/~sozeau/research/publications/drafts/Coq_Coq_Correct.pdf">"Coq Coq Correct!"</a> formalizes the Rocq engine proving metatheoretic properties about it, in Rocq, and <a href="https://github.com/HoTT/HoTT">HoTT</a> is being actively developed to fix many of Rocq's issues.
         </p>
         <p>
-          Working mathematicians have only just started using software for their work, and they often rely on unverified (and sometimes proprietary) tools like magma, sage, and mathematica. Lean is a big step-up, and the good type theoretic properties preserved by Coq don't seem as important to them.
-        </p>
-        <hr class="ellipses">
-        <p>
-          Lean supports both constructive and classical reasoning, but quotienting in Coq is painful due to <a href="http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf">"setoid-hell"</a>; something that would be fixed when types are modeled as <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-groupoids instead of setoids, as in the HoTT line of work.
-        </p>
-        <p>
-          <a href="https://github.com/leanprover-community/mathlib/blob/master/docs/tutorial/Zmod37.lean">Quotient-reasoning</a> makes formalizing commutative algebra painless, and it's baked into the Lean kernel. However, quotients are tricky to implement without breaking certain metatheoretic properties that Coq'ers cherish; nevertheless, there is an <a href="https://math-comp.github.io/htmldoc/mathcomp.ssreflect.generic_quotient.html">implementation</a> in Coq's <a href="https://github.com/math-comp/math-comp">math-comp</a>, albeit, without a reduction rule.
-        </p>
-        <p>
-          Lean's <a href="https://leanprover.github.io/theorem_proving_in_lean/structures_and_records.html#inheritance">inheritance</a> is another good feature; it disallows diamond-inheritance, and seems like a bit of a hack, but Coq is definitely missing some form of a well-thought-out ad-hoc polymorphism.
+          Working mathematicians have only just started using software for their work, and they often rely on unverified (and sometimes proprietary) tools like magma, sage, and mathematica. Lean is a big step-up, and the good type theoretic properties preserved by Rocq don't seem as important to them.
         </p>
         <hr class="ellipses">
         <p>
-          Category theory in Lean has not been <a href="https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md">developed</a> with higher categories in mind; I'm not sure how one would define <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories, since universes are explicit, and since there are no coinductive types: Coq's cumulativity seems to have been a better design choice.
+          Lean supports both constructive and classical reasoning, but quotienting in Rocq is painful due to <a href="http://www.cs.nott.ac.uk/~psztxa/talks/types-17-hell.pdf">"setoid-hell"</a>; something that would be fixed when types are modeled as <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-groupoids instead of setoids, as in the HoTT line of work.
+        </p>
+        <p>
+          <a href="https://github.com/leanprover-community/mathlib/blob/master/docs/tutorial/Zmod37.lean">Quotient-reasoning</a> makes formalizing commutative algebra painless, and it's baked into the Lean kernel. However, quotients are tricky to implement without breaking certain metatheoretic properties that Rocq'ers cherish; nevertheless, there is an <a href="https://math-comp.github.io/htmldoc/mathcomp.ssreflect.generic_quotient.html">implementation</a> in Rocq's <a href="https://github.com/math-comp/math-comp">math-comp</a>, albeit, without a reduction rule.
+        </p>
+        <p>
+          Lean's <a href="https://leanprover.github.io/theorem_proving_in_lean/structures_and_records.html#inheritance">inheritance</a> is another good feature; it disallows diamond-inheritance, and seems like a bit of a hack, but Rocq is definitely missing some form of a well-thought-out ad-hoc polymorphism.
         </p>
         <hr class="ellipses">
         <p>
-          One would think that Lean is an engineering feat, since it's written in C++: Coq's math-comp (90k loc) compares to Lean's mathlib (150k loc); math-comp builds in under ten minutes, while mathlib takes over thirty minutes to build! Indeed, due to their design decision to use a VM for computations, computation happens at a speed comparable to Python-bytecode evaluation — they seem to be overhauling this in Lean4 though, by compiling Lean code down to C before execution.
+          Category theory in Lean has not been <a href="https://github.com/leanprover-community/mathlib/blob/master/docs/theories/category_theory.md">developed</a> with higher categories in mind; I'm not sure how one would define <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container>-categories, since universes are explicit, and since there are no coinductive types: Rocq's cumulativity seems to have been a better design choice.
+        </p>
+        <hr class="ellipses">
+        <p>
+          One would think that Lean is an engineering feat, since it's written in C++: Rocq's math-comp (90k loc) compares to Lean's mathlib (150k loc); math-comp builds in under ten minutes, while mathlib takes over thirty minutes to build! Indeed, due to their design decision to use a VM for computations, computation happens at a speed comparable to Python-bytecode evaluation — they seem to be overhauling this in Lean4 though, by compiling Lean code down to C before execution.
         </p>
         <p>
           Another reason for the relative slowness of Lean is that they do a lot of automation under the hood, figuring out, for instance, that when the user writes <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D44C TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container>, <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> and <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44C TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container> are topological spaces, and that <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo></mjx-math></mjx-container> here means product topology.

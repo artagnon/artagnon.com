@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en">
   <head>
-    <title>Mathematics</title>
+    <title>Predicativity in Rocq</title>
     <meta charset="utf-8">
     <meta name="description" content="Ramkumar Ramachandra&#39;s personal website">
     <meta name="HandheldFriendly" content="true">
@@ -358,40 +358,66 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           <span class="navidx">02</span><a href="/computing">Computing</a>
         </li>
         <li>
-          <span class="navidx">03</span><span id="navcur">Math</span>
+          <span class="navidx">03</span><a href="/logic">Logic</a>
         </li>
       </ul>
     </nav>
     <main>
       <header>
         <h1>
-          Mathematics
+          Predicativity in Rocq
         </h1>
+        <div id="metadata">
+          <span id="timestamp"><time class="end" datetime="2020-03-08">Sun, 8 Mar 2020 07:00:00 +0100</time></span>
+        </div>
       </header>
       <article>
         <p class="blurb">
-          Some notes on logic.
+          Today, we write a quick specialized note on what impredicativity exactly means, for those reasonably familiar with the Rocq syntax.
         </p>
-        <ul id="indexfill">
-          <h2>
-            logic (2020)
-          </h2>
-          <li>
-            <a href="/math/logic/HoTT-3">HoTT III: Sets and Logic</a>
-          </li>
-          <li>
-            <a href="/math/logic/HoTT-2">HoTT II: The essentials</a>
-          </li>
-          <li>
-            <a href="/math/logic/HoTT-1">HoTT I: The type theory</a>
-          </li>
-          <li>
-            <a href="/math/logic/fom">An inquiry into the Foundations of Mathematics</a>
-          </li>
-          <li>
-            <a href="/math/logic/zfc">ZFC and propositional logic</a>
-          </li>
-        </ul>
+        <p>
+          Historically speaking, Rocq started out with making <mark>Set</mark> impredicative and they still carry around the flag <mark>--set-impredicative</mark> to maintain impredicativity in Sets. Let's check it quickly:
+        </p>
+        <pre><code class="highlight"><span class="c">(* Set is predicative. *)</span><span class="w">
+</span><span class="no">Fail</span><span class="w"> </span><span class="k">Definition</span><span class="w"> </span><span class="no">SetPred</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">.</span></code></pre>
+        <p>
+          We use a little macro to check the impredicativity of various types, since an equivalent definition wouldn't type-check:
+        </p>
+        <pre><code class="highlight"><span class="c">(* Checks that all inhabitants of U are of type V. *)</span><span class="w">
+</span><span class="k">Notation</span><span class="w"> </span><span class="s2">"'check' U V"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">U</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">V</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="no">U</span><span class="o">,</span><span class="w"> </span><span class="no">V</span><span class="w"> </span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">0</span><span class="o">).</span></code></pre>
+        <p>
+          All inhabitants of <mark>Prop</mark> are of type Prop, for good reason.
+        </p>
+        <pre><code class="highlight"><span class="c">(* Prop is impredicative. *)</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">PropImpr</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="kr">Prop</span><span class="o">.</span></code></pre>
+        <p>
+          Attempt to check the predicativity of <mark>Type</mark> naïvely:
+        </p>
+        <pre><code class="highlight"><span class="c">(* Is Type impredicative? This is misleading. *)</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">TypeNaive</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">.</span></code></pre>
+        <p>
+          The previous example was misleading, and we clarify it in the next example:
+        </p>
+        <pre><code class="highlight"><span class="c">(* In the previous definition, Type is really Type@{i},
+ * and the following definition fails with: Universe {Predicativity.153} is unbound. *)</span><span class="w">
+</span><span class="no">Fail</span><span class="w"> </span><span class="k">Definition</span><span class="w"> </span><span class="no">TypePred</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">}.</span></code></pre>
+        <p>
+          The Type universe is cumulative, not impredicative. We show the cumulativity using algebraic universe notation:
+        </p>
+        <pre><code class="highlight"><span class="c">(* Fails due to a bug in Rocq: Unable to handle arbitrary u+k &lt;= v constraints? *)</span><span class="w">
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">TypePred'</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">},</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">+</span><span class="mi">1</span><span class="o">}).</span><span class="w">
+
+</span><span class="k">Definition</span><span class="w"> </span><span class="no">TypePred'</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">}</span><span class="w"> </span><span class="kr">Type</span><span class="o">@{</span><span class="no">i</span><span class="o">+</span><span class="mi">1</span><span class="o">}.</span></code></pre>
+        <footer>
+          <ul class="footer">
+            <li>
+              <a href="https://github.com/SkySkimmer">Gaëtan Gilbert</a>: intricacies of universes in Rocq
+            </li>
+            <li>
+              <a href="http://pauillac.inria.fr/~herbelin/">Hugo Herbelin</a>: syntactic mastery over Rocq
+            </li>
+          </ul>
+        </footer>
       </article>
     </main>
   </body>
