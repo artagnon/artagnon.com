@@ -32,7 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@node-minify/terser", "npm:9.0.1"],\
           ["artagnon.com", "workspace:."],\
           ["colors", "npm:1.4.0"],\
-          ["glob", "npm:11.0.3"],\
+          ["glob", "npm:11.1.0"],\
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
           ["sass", "npm:1.90.0"],\
@@ -436,7 +436,7 @@ const RAW_RUNTIME_STATE =
           ["@node-minify/terser", "npm:9.0.1"],\
           ["artagnon.com", "workspace:."],\
           ["colors", "npm:1.4.0"],\
-          ["glob", "npm:11.0.3"],\
+          ["glob", "npm:11.1.0"],\
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
           ["sass", "npm:1.90.0"],\
@@ -942,13 +942,13 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["npm:11.0.3", {\
-        "packageLocation": "../../.yarn/berry/cache/glob-npm-11.0.3-f68382b3cc-10c0.zip/node_modules/glob/",\
+      ["npm:11.1.0", {\
+        "packageLocation": "../../.yarn/berry/cache/glob-npm-11.1.0-9420ed5efe-10c0.zip/node_modules/glob/",\
         "packageDependencies": [\
           ["foreground-child", "npm:3.3.1"],\
-          ["glob", "npm:11.0.3"],\
+          ["glob", "npm:11.1.0"],\
           ["jackspeak", "npm:4.1.1"],\
-          ["minimatch", "npm:10.0.3"],\
+          ["minimatch", "npm:10.1.1"],\
           ["minipass", "npm:7.1.2"],\
           ["package-json-from-dist", "npm:1.0.0"],\
           ["path-scurry", "npm:2.0.0"]\
@@ -1247,11 +1247,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["minimatch", [\
-      ["npm:10.0.3", {\
-        "packageLocation": "../../.yarn/berry/cache/minimatch-npm-10.0.3-23e96438f0-10c0.zip/node_modules/minimatch/",\
+      ["npm:10.1.1", {\
+        "packageLocation": "../../.yarn/berry/cache/minimatch-npm-10.1.1-453db4ee1a-10c0.zip/node_modules/minimatch/",\
         "packageDependencies": [\
           ["@isaacs/brace-expansion", "npm:5.0.0"],\
-          ["minimatch", "npm:10.0.3"]\
+          ["minimatch", "npm:10.1.1"]\
         ],\
         "linkType": "HARD"\
       }],\
