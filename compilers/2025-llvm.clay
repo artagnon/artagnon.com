@@ -1,0 +1,25 @@
+My 2025 in LLVM: samesign, HashRecognize, and VPlan
+
+As the year draws to a close, it helps to look back and reflect on some key changes in LLVM. The article is written from my perspective, summarizing work I landed, along with adjacent work, in chronological order.
+
+In September 2024, Nikita Popov proposed [signedness-independent integer-compares](https://discourse.llvm.org/t/rfc-signedness-independent-icmps/81423), and the necessary work for enabling optimizations with it occupied the first two months of my 2025. In January, Florian Hahn introduced the initial version of a [pattern-matcher for ScalarEvolution](https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/Analysis/ScalarEvolutionPatternMatch.h), which I would flesh out and use to improve code over the course of the year.
+
+March and April were not very productive, as I was on vacation and attending EuroLLVM. In the little time I had, I fixed a [vectorization bug](https://github.com/llvm/llvm-project/pull/137005) and improved code by [introducing a new iterator in a fundamental data structure](https://github.com/llvm/llvm-project/pull/134373).
+
+In May, I introduced a [constant folder](https://github.com/llvm/llvm-project/pull/125365) in VPlan, guided by Florian, and fixed another [vectorization bug](https://github.com/llvm/llvm-project/pull/136858). In collaboration with Mel Chen, I made a [small improvement to the routine that checks patterns for vectorization](https://github.com/llvm/llvm-project/pull/118393).
+
+In June, an [analysis to recognize cyclic-redundancy-check loops](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Analysis/HashRecognize.cpp) landed, but required several months of improvements, before finally [enabling optimization of CRC loops](https://github.com/llvm/llvm-project/pull/143208) in September: the work was done in close collaboration with Piotr Fusik. While reviewing one of Florian's patches, I also [extended a pattern for vectorization](https://github.com/llvm/llvm-project/pull/141752), which Florian built upon.
+
+In July, I was occupied with instruction selection and [cost-modeling work](https://github.com/llvm/llvm-project/pull/146058) for the intrinsics [lrint](https://github.com/llvm/llvm-project/pull/145898), [lround](https://github.com/llvm/llvm-project/pull/147713), and [ldexp](https://github.com/llvm/llvm-project/pull/152476) on RISC-V, guided by Craig Topper.
+
+In August, Luke Lau used parameter packs to [greatly improve the pattern-matcher](https://github.com/llvm/llvm-project/pull/152272) in VPlan. Inspired by another of his patches, I would introduce a [integer/floating-point compare matcher](https://github.com/llvm/llvm-project/pull/154771), using it for optimization benefit. I would also fix some issued related to wrap-flags in VPlan.
+
+In September, I introduced a [common-subexpression-elimination transform](https://github.com/llvm/llvm-project/pull/151872) in VPlan, guided by Florian. I also picked up and completed one of Luke's abandoned patches, a [match functor](https://github.com/llvm/llvm-project/pull/159386). Nikita would introduce [a new transform](https://github.com/llvm/llvm-project/blob/main/llvm/lib/Transforms/Scalar/DropUnnecessaryAssumes.cpp) to strip unnecessary `llvm.assume` instructions.
+
+In October, I would obsess over the loop-invariant code motion in VPlan, and [factor out the legality check for hoisting/sinking](https://github.com/llvm/llvm-project/pull/162674), fixing a miscompile. My routine would bail out on memory operations due to aliasing issues, and I was thinking about how to get aliasing information in VPlan.
+
+In November, I would [fix long-standing issues related to wrap-flags](https://github.com/llvm/llvm-project/pull/168354) in VPlan, and make an improvement to a routine to undo sub-optimal widening decisions in VPlan. Florian would build upon my improvement to yield the [final version](https://github.com/llvm/llvm-project/pull/168246). He would also create specialized hoisting/sinking routines for memory operations, based on the `noalias` metadata: I plan to re-use the legality checks to improve the general case.
+
+Finally, we're in December. The main outstanding patches are [directly unrolling a recipe](https://github.com/llvm/llvm-project/pull/168886) in VPlan, and introducing a [carry-less multiply intrinsic](https://github.com/llvm/llvm-project/pull/168731), whose design was guided by Craig and Piotr. Both will hopefully land soon.
+
+† Although I wasn't either directly or indirectly involved, [llvm-lit --update-tests](https://github.com/llvm/llvm-project/pull/153821) introduced in August, has completely eliminated the tedium associated with mass test-updates!

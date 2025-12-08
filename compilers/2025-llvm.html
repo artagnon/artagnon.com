@@ -1,7 +1,6 @@
 <!DOCTYPE html><html lang="en">
   <head>
-    <title>Compilers
-      </title>
+    <title>My 2025 in LLVM: samesign, HashRecognize, and VPlan</title>
     <meta charset="utf-8">
     <meta name="author" content="Ramkumar Ramachandra">
     <meta name="description" content="A personal website containing information about the author, creative writing, technical satire, technical articles on compilers and logic">
@@ -359,7 +358,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
           <span class="navidx">01</span><a href="/art">Art</a>
         </li>
         <li>
-          <span class="navidx">02</span><span id="navcur">Compilers</span>
+          <span class="navidx">02</span><a href="/compilers">Compilers</a>
         </li>
         <li>
           <span class="navidx">03</span><a href="/logic">Logic</a>
@@ -369,37 +368,53 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
     <main>
       <header>
         <h1>
-          Compilers
-          
+          My 2025 in LLVM: samesign, HashRecognize, and VPlan
         </h1>
+        <div id="metadata">
+          <span id="timestamp"><time class="end" datetime="2025-12-08">Mon, 8 Dec 2025 18:00:00 +0000</time></span>
+        </div>
       </header>
       <article>
-        <ul id="indexfill">
-          <li>
-            <a href="/compilers/2025-llvm">My 2025 in LLVM: samesign, HashRecognize, and VPlan</a>
-          </li>
-          <li>
-            <a href="/compilers/vplan">The Vectorization-Planner (VPlan) in LLVM</a>
-          </li>
-          <li>
-            <a href="/compilers/backend">A tour of the LLVM backend</a>
-          </li>
-          <li>
-            <a href="/compilers/intro-vec">An introduction to auto-vectorization with LLVM</a>
-          </li>
-          <li>
-            <a href="/compilers/incrd">Incrementally updating the Dominator</a>
-          </li>
-          <li>
-            <a href="/compilers/loops">Detecting loops</a>
-          </li>
-          <li>
-            <a href="/compilers/regalloc">Inside a register allocator</a>
-          </li>
-          <li>
-            <a href="/compilers/abibug">An ABI-mismatch bug</a>
-          </li>
-        </ul>
+        <p>
+          As the year draws to a close, it helps to look back and reflect on some key changes in LLVM. The article is written from my perspective, summarizing work I landed, along with adjacent work, in chronological order.
+        </p>
+        <p>
+          In September 2024, Nikita Popov proposed <a href="https://discourse.llvm.org/t/rfc-signedness-independent-icmps/81423">signedness-independent integer-compares</a>, and the necessary work for enabling optimizations with it occupied the first two months of my 2025. In January, Florian Hahn introduced the initial version of a <a href="https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/Analysis/ScalarEvolutionPatternMatch.h">pattern-matcher for ScalarEvolution</a>, which I would flesh out and use to improve code over the course of the year.
+        </p>
+        <p>
+          March and April were not very productive, as I was on vacation and attending EuroLLVM. In the little time I had, I fixed a <a href="https://github.com/llvm/llvm-project/pull/137005">vectorization bug</a> and improved code by <a href="https://github.com/llvm/llvm-project/pull/134373">introducing a new iterator in a fundamental data structure</a>.
+        </p>
+        <p>
+          In May, I introduced a <a href="https://github.com/llvm/llvm-project/pull/125365">constant folder</a> in VPlan, guided by Florian, and fixed another <a href="https://github.com/llvm/llvm-project/pull/136858">vectorization bug</a>. In collaboration with Mel Chen, I made a <a href="https://github.com/llvm/llvm-project/pull/118393">small improvement to the routine that checks patterns for vectorization</a>.
+        </p>
+        <p>
+          In June, an <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Analysis/HashRecognize.cpp">analysis to recognize cyclic-redundancy-check loops</a> landed, but required several months of improvements, before finally <a href="https://github.com/llvm/llvm-project/pull/143208">enabling optimization of CRC loops</a> in September: the work was done in close collaboration with Piotr Fusik. While reviewing one of Florian's patches, I also <a href="https://github.com/llvm/llvm-project/pull/141752">extended a pattern for vectorization</a>, which Florian built upon.
+        </p>
+        <p>
+          In July, I was occupied with instruction selection and <a href="https://github.com/llvm/llvm-project/pull/146058">cost-modeling work</a> for the intrinsics <a href="https://github.com/llvm/llvm-project/pull/145898">lrint</a>, <a href="https://github.com/llvm/llvm-project/pull/147713">lround</a>, and <a href="https://github.com/llvm/llvm-project/pull/152476">ldexp</a> on RISC-V, guided by Craig Topper.
+        </p>
+        <p>
+          In August, Luke Lau used parameter packs to <a href="https://github.com/llvm/llvm-project/pull/152272">greatly improve the pattern-matcher</a> in VPlan. Inspired by another of his patches, I would introduce a <a href="https://github.com/llvm/llvm-project/pull/154771">integer/floating-point compare matcher</a>, using it for optimization benefit. I would also fix some issued related to wrap-flags in VPlan.
+        </p>
+        <p>
+          In September, I introduced a <a href="https://github.com/llvm/llvm-project/pull/151872">common-subexpression-elimination transform</a> in VPlan, guided by Florian. I also picked up and completed one of Luke's abandoned patches, a <a href="https://github.com/llvm/llvm-project/pull/159386">match functor</a>. Nikita would introduce <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Transforms/Scalar/DropUnnecessaryAssumes.cpp">a new transform</a> to strip unnecessary <mark>llvm.assume</mark> instructions.
+        </p>
+        <p>
+          In October, I would obsess over the loop-invariant code motion in VPlan, and <a href="https://github.com/llvm/llvm-project/pull/162674">factor out the legality check for hoisting/sinking</a>, fixing a miscompile. My routine would bail out on memory operations due to aliasing issues, and I was thinking about how to get aliasing information in VPlan.
+        </p>
+        <p>
+          In November, I would <a href="https://github.com/llvm/llvm-project/pull/168354">fix long-standing issues related to wrap-flags</a> in VPlan, and make an improvement to a routine to undo sub-optimal widening decisions in VPlan. Florian would build upon my improvement to yield the <a href="https://github.com/llvm/llvm-project/pull/168246">final version</a>. He would also create specialized hoisting/sinking routines for memory operations, based on the <mark>noalias</mark> metadata: I plan to re-use the legality checks to improve the general case.
+        </p>
+        <p>
+          Finally, we're in December. The main outstanding patches are <a href="https://github.com/llvm/llvm-project/pull/168886">directly unrolling a recipe</a> in VPlan, and introducing a <a href="https://github.com/llvm/llvm-project/pull/168731">carry-less multiply intrinsic</a>, whose design was guided by Craig and Piotr. Both will hopefully land soon.
+        </p>
+        <footer>
+          <ul class="footer">
+            <li>
+              Although I wasn't either directly or indirectly involved, <a href="https://github.com/llvm/llvm-project/pull/153821">llvm-lit --update-tests</a> introduced in August, has completely eliminated the tedium associated with mass test-updates!
+            </li>
+          </ul>
+        </footer>
       </article>
     </main>
   </body>
