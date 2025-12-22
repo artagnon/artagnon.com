@@ -6,7 +6,7 @@
   </author>
   <id>https://artagnon.com/feed.xml</id>
   <title>artagnon.com</title>
-  <updated>2025-12-22T11:15:05+00:00</updated>
+  <updated>2025-12-22T12:33:20+00:00</updated>
   <entry>
     <id>art/2043</id>
     <link href="art/2043"/>
@@ -1156,7 +1156,7 @@ The Split dominates the Merge, in which case, the Split dominates everything on 
 &lt;p&gt;Conceptually, the algorithm is simple. The implementation, as leveraged by one transform, passes our entire testsuite (~6k tests).&lt;/p&gt;
 &lt;p&gt;Our implementation of the Dominator incremental update relies on a correct implementation of the PST incremental update: incorrect information from one incremental update will propagate to the other incremental update and wreak havoc.&lt;/p&gt;
 &lt;p&gt;The best way to test the implementation is to have a recomputed Dominator as reference, and checking that the dominates-relationship between every two nodes is the same in the incremental update and re-computation case.&lt;/p&gt;
-&lt;p&gt;Thanks to &lt;a href=&quot;http://playingwithpointers.com&quot;&gt;Sanjoy&lt;/a&gt; for reviewing the draft.&lt;/p&gt;</summary>
+&lt;p&gt;Thanks to Sanjoy Das for reviewing the draft.&lt;/p&gt;</summary>
     <title>Incrementally updating the Dominator</title>
     <updated>2016-10-09T16:28:58-05:00</updated>
     <dc:date>2016-10-09T16:28:58-05:00</dc:date>
@@ -1318,7 +1318,7 @@ LV: Not vectorizing: could not determine number of loop iterations.&lt;/pre&gt;
 &lt;p&gt;In the early exit case, &lt;mark&gt;2/7&lt;/mark&gt; and &lt;mark&gt;4/5&lt;/mark&gt; are nested within &lt;mark&gt;1/8&lt;/mark&gt;, and we never reach &lt;mark&gt;exit target&lt;/mark&gt; by walking backward from the source of the backedge.&lt;/p&gt;
 &lt;p&gt;In the multi-entry case, we correctly detect that &lt;mark&gt;1/8&lt;/mark&gt; is not nested within &lt;mark&gt;2/7&lt;/mark&gt;, while &lt;mark&gt;3/6&lt;/mark&gt; and &lt;mark&gt;4/5&lt;/mark&gt; are: when a node reached via a backward walk doesn&#39;t nest within the header, the loop is classified as &lt;em&gt;irreducible&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;In the cuddled loops case, everything nests within &lt;mark&gt;1/8&lt;/mark&gt;, and the inner loop consists of &lt;mark&gt;4/5&lt;/mark&gt;, &lt;mark&gt;3/6&lt;/mark&gt;, and &lt;mark&gt;2/7&lt;/mark&gt;, all of which nest within &lt;mark&gt;2/7&lt;/mark&gt;. Finally, the shared header case is detected as two nested loops as well: a loop is identified by a unique backedge, not a unique header [‡]. The analysis is weak in that these cases are indistinguishable from normal nested loops.&lt;/p&gt;
-&lt;p&gt;Hat tip to Sanjoy for pointing out the fifth case.
+&lt;p&gt;Hat tip to Sanjoy Das for pointing out the fifth case.
 You might want to merge loops that share a header in a post-pass.&lt;/p&gt;</summary>
     <title>Detecting loops</title>
     <updated>2016-07-16T16:26:50-05:00</updated>
@@ -1615,5 +1615,5 @@ Thanks to &lt;a href=&quot;http://pauillac.inria.fr/~herbelin/&quot;&gt;Hugo Her
     <updated>2020-01-18T08:02:23+01:00</updated>
     <dc:date>2020-01-18T08:02:23+01:00</dc:date>
   </entry>
-  <dc:date>2025-12-22T11:15:05+00:00</dc:date>
+  <dc:date>2025-12-22T12:33:20+00:00</dc:date>
 </feed>

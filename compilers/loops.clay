@@ -132,5 +132,5 @@ In the multi-entry case, we correctly detect that `1/8` is not nested within `2/
 
 In the cuddled loops case, everything nests within `1/8`, and the inner loop consists of `4/5`, `3/6`, and `2/7`, all of which nest within `2/7`. Finally, the shared header case is detected as two nested loops as well: a loop is identified by a unique backedge, not a unique header [‡]. The analysis is weak in that these cases are indistinguishable from normal nested loops.
 
-† Hat tip to Sanjoy for pointing out the fifth case.
+† Hat tip to Sanjoy Das for pointing out the fifth case.
 ‡ You might want to merge loops that share a header in a post-pass.
