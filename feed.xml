@@ -6,7 +6,7 @@
   </author>
   <id>https://artagnon.com/feed.xml</id>
   <title>artagnon.com</title>
-  <updated>2025-12-22T09:47:25+00:00</updated>
+  <updated>2025-12-22T10:54:31+00:00</updated>
   <entry>
     <id>art/2043</id>
     <link href="art/2043"/>
@@ -294,6 +294,7 @@ Check the correctness of the proof of the abc conjecture, by directly reading th
     <link href="art/pl"/>
     <summary>&lt;p&gt;We illustrate how different programming languages influnced each other, and include a quick FAQ write up.&lt;/p&gt;
 &lt;p&gt;An FAQ follows.&lt;/p&gt;
+&lt;p&gt;Why would someone pick C++ over Rust today?&lt;/p&gt;
 &lt;p&gt;C++ templates are incredibly powerful, and with the introduction of compile-time expressions, vast portions of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:&lt;/p&gt;
 &lt;pre&gt;&lt;span class=&quot;k&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typename&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Ts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typename&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CurTy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;recurseFillChildren&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CurTy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -310,10 +311,12 @@ Check the correctness of the proof of the abc conjecture, by directly reading th
       &lt;span class=&quot;n&quot;&gt;recurseFillChildren&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Ts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Children&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;back&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;Is there anything that Rust can do that C++ can&#39;t?&lt;/p&gt;
 &lt;p&gt;Rust didn&#39;t restrict what macros can do as much as C++ did. As a result, it&#39;s possible to do more with them. The particular example of the Pest parser is especially enlightening:&lt;/p&gt;
 &lt;pre&gt;&lt;span class=&quot;nd&quot;&gt;#[derive(Parser)]&lt;/span&gt;
 &lt;span class=&quot;nd&quot;&gt;#[grammar&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;grammar.pest&quot;&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;]&lt;/span&gt;&lt;/pre&gt;
 &lt;p&gt;Essentially, &quot;grammar.pest&quot; is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust&#39;s macros are very slow, and your compile-times blow up if you have recursive macros. &lt;mark&gt;std::embed&lt;/mark&gt; in C++23 will probably do it right.&lt;/p&gt;
+&lt;p&gt;Why is Haskell classified as a dying language?&lt;/p&gt;
 &lt;p&gt;Haskell is pleasant to get started with, and write relatively simple programs in. In the 2010-2015 period, there was a lot of intellectual discourse and PL research around it. The high-brow crowd was obsessed with transactional memory, parser combinators, and lenses. Online resources were exploding: LYAH and CatProg enjoyed their bouts of popularity. Several people and companies invested in Haskell heavily in that period. The language is easy to get started with, and has a pleasant development experience for relatively simple programs. The problems started when codebases started growing in size and complexity.&lt;/p&gt;
 &lt;p&gt;You either need to be able to interactively debug your program or prove that it is correct: in Haskell, you can&#39;t do either; the best you can do is to write some QuickCheck tests. Then there&#39;s Liquid Haskell that allows you to pepper your Haskell code with invariants that it will check using Z3. Unfortunately, it is very limited in what it can do: good luck checking your monadic combinator library with LH. Moreover, there are no tools to help you debug the most notorious kind of bug seen in a complicated codebase: memory blowups caused by laziness. It suffices to say that tooling is weak. In Atom, the Haskell add-on was terrible, and even today, in VSCode, the Haskell extension is among the most buggy language plugins.&lt;/p&gt;
 &lt;p&gt;There are &lt;a href=&quot;https://gitlab.haskell.org/ghc/ghc/-/blob/a1f34d37b47826e86343e368a5c00f1a4b1f2bce/compiler/GHC/Driver/Session.hs#L3729-3876&quot;&gt;over 120&lt;/a&gt; language extensions, which can be turned on/off in each &lt;mark&gt;.hs&lt;/mark&gt; file. The issue is that different extensions interact in subtle ways to produce bugs, and it&#39;s very difficult to tell if a new language extension will play well with the others (it often doesn&#39;t, until all the bugs are squashed, which can take a few years). The best case scenario plays out like this: GHC rejects your program, and suggests that you turn on some other language extensions; you turn them on, and you&#39;re left with a cryptic error message coming from a language extension you&#39;re not as familiar with; you spend the next N hours reading whatever little information is available about the more recent language extension, and decide to throw in the towel. The worst case plays out as follows: the type-checker hangs or crashes, and you&#39;re on the issue tracker searching for the issue; if you&#39;re lucky, you&#39;ll find a bug filed using 50~60% of the language extensions you used in your program, and you&#39;re not sure if it&#39;s the same issue; you file a new issue. In either case, your work has been halted.&lt;/p&gt;
@@ -353,6 +356,7 @@ How many more language features are missing?&lt;/p&gt;
 
 &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!*^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dim&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;OfDim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dim&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;OfDim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!*^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;undefined&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;Doesn&#39;t Go feature a solid compiler/runtime?&lt;/p&gt;
 &lt;p&gt;It does, but the author didn&#39;t feel that it was worthy of an asterisk, because the compiler is working with a really dumb language. Nevertheless, the GC and scheduler are praise-worthy, as is the overall experience with ultra-low compile-times.&lt;/p&gt;</summary>
     <title>An opinionated history of programming languages</title>
     <updated>2020-09-30T12:43:32+02:00</updated>
@@ -1611,5 +1615,5 @@ Thanks to &lt;a href=&quot;http://pauillac.inria.fr/~herbelin/&quot;&gt;Hugo Her
     <updated>2020-01-18T08:02:23+01:00</updated>
     <dc:date>2020-01-18T08:02:23+01:00</dc:date>
   </entry>
-  <dc:date>2025-12-22T09:47:25+00:00</dc:date>
+  <dc:date>2025-12-22T10:54:31+00:00</dc:date>
 </feed>

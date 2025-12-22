@@ -1306,9 +1306,11 @@ mjx-c.mjx-c2F::before {
         <p>
           An FAQ follows.
         </p>
-        <p class="exercise">
-          Why would someone pick C++ over Rust today?
-        </p>
+        <ol class="olitems" type="i" start="1">
+          <li>
+            Why would someone pick C++ over Rust today?
+          </li>
+        </ol>
         <p>
           C++ templates are incredibly powerful, and with the introduction of compile-time expressions, vast portions of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:
         </p>
@@ -1327,9 +1329,11 @@ mjx-c.mjx-c2F::before {
       <span class="n">recurseFillChildren</span><span class="o">&lt;</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">E</span><span class="p">.</span><span class="n">Children</span><span class="p">.</span><span class="n">back</span><span class="p">());</span>
   <span class="p">}</span>
 <span class="p">};</span></code></pre>
-        <p class="exercise">
-          Is there anything that Rust can do that C++ can't?
-        </p>
+        <ol class="olitems" type="i" start="2">
+          <li>
+            Is there anything that Rust can do that C++ can't?
+          </li>
+        </ol>
         <p>
           Rust didn't restrict what macros can do as much as C++ did. As a result, it's possible to do more with them. The particular example of the Pest parser is especially enlightening:
         </p>
@@ -1338,9 +1342,11 @@ mjx-c.mjx-c2F::before {
         <p>
           Essentially, "grammar.pest" is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust's macros are very slow, and your compile-times blow up if you have recursive macros. <mark>std::embed</mark> in C++23 will probably do it right.
         </p>
-        <p class="exercise">
-          Why is Haskell classified as a dying language?
-        </p>
+        <ol class="olitems" type="i" start="3">
+          <li>
+            Why is Haskell classified as a dying language?
+          </li>
+        </ol>
         <p>
           Haskell is pleasant to get started with, and write relatively simple programs in. In the 2010-2015 period, there was a lot of intellectual discourse and PL research around it. The high-brow crowd was obsessed with transactional memory, parser combinators, and lenses. Online resources were exploding: LYAH and CatProg enjoyed their bouts of popularity. Several people and companies invested in Haskell heavily in that period. The language is easy to get started with, and has a pleasant development experience for relatively simple programs. The problems started when codebases started growing in size and complexity.
         </p>
@@ -1402,9 +1408,11 @@ mjx-c.mjx-c2F::before {
 
 <span class="p">(</span><span class="o">!*^</span><span class="p">)</span> <span class="o">::</span> <span class="kt">Dim</span> <span class="n">m</span> <span class="p">`</span><span class="kt">OfDim</span><span class="p">`</span> <span class="n">j</span> <span class="o">-&gt;</span> <span class="kt">Dim</span> <span class="n">m</span> <span class="p">`</span><span class="kt">OfDim</span><span class="p">`</span> <span class="n">i</span>
 <span class="p">(</span><span class="o">!*^</span><span class="p">)</span> <span class="o">=</span> <span class="n">undefined</span></code></pre>
-        <p class="exercise">
-          Doesn't Go feature a solid compiler/runtime?
-        </p>
+        <ol class="olitems" type="i" start="4">
+          <li>
+            Doesn't Go feature a solid compiler/runtime?
+          </li>
+        </ol>
         <p>
           It does, but the author didn't feel that it was worthy of an asterisk, because the compiler is working with a really dumb language. Nevertheless, the GC and scheduler are praise-worthy, as is the overall experience with ultra-low compile-times.
         </p>

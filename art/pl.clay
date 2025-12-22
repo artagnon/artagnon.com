@@ -32,7 +32,7 @@ $$
 
 An FAQ follows.
 
-§ Why would someone pick C++ over Rust today?
+(i) Why would someone pick C++ over Rust today?
 
 C++ templates are incredibly powerful, and with the introduction of compile-time expressions, vast portions of modern C++ programs are just compile-time tables. Examples like this make Rust look very tiny:
 
@@ -54,7 +54,7 @@ void recurseFillChildren(CurTy &E)
 };
 ```
 
-§ Is there anything that Rust can do that C++ can't?
+(ii) Is there anything that Rust can do that C++ can't?
 
 Rust didn't restrict what macros can do as much as C++ did. As a result, it's possible to do more with them. The particular example of the Pest parser is especially enlightening:
 
@@ -65,7 +65,7 @@ Rust didn't restrict what macros can do as much as C++ did. As a result, it's po
 
 Essentially, "grammar.pest" is processed at compile-time, and you can use definitions parsed from it in your code. However, there are trade-offs; Rust's macros are very slow, and your compile-times blow up if you have recursive macros. `std::embed` in C++23 will probably do it right.
 
-§ Why is Haskell classified as a dying language?
+(iii) Why is Haskell classified as a dying language?
 
 Haskell is pleasant to get started with, and write relatively simple programs in. In the 2010-2015 period, there was a lot of intellectual discourse and PL research around it. The high-brow crowd was obsessed with transactional memory, parser combinators, and lenses. Online resources were exploding: LYAH and CatProg enjoyed their bouts of popularity. Several people and companies invested in Haskell heavily in that period. The language is easy to get started with, and has a pleasant development experience for relatively simple programs. The problems started when codebases started growing in size and complexity.
 
@@ -125,6 +125,6 @@ type family v `OfDim` (n :: Dim v) = r | r -> n
 (!*^) = undefined
 ```
 
-§ Doesn't Go feature a solid compiler/runtime?
+(iv) Doesn't Go feature a solid compiler/runtime?
 
 It does, but the author didn't feel that it was worthy of an asterisk, because the compiler is working with a really dumb language. Nevertheless, the GC and scheduler are praise-worthy, as is the overall experience with ultra-low compile-times.
