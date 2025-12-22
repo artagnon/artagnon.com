@@ -32,6 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@node-minify/terser", "npm:9.0.1"],\
           ["artagnon.com", "workspace:."],\
           ["colors", "npm:1.4.0"],\
+          ["glob", "npm:13.0.0"],\
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
           ["sass", "npm:1.97.1"],\
@@ -39,6 +40,25 @@ const RAW_RUNTIME_STATE =
           ["yargs", "npm:18.0.0"]\
         ],\
         "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@isaacs/balanced-match", [\
+      ["npm:4.0.1", {\
+        "packageLocation": "../../.yarn/berry/cache/@isaacs-balanced-match-npm-4.0.1-8965afafe6-10c0.zip/node_modules/@isaacs/balanced-match/",\
+        "packageDependencies": [\
+          ["@isaacs/balanced-match", "npm:4.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@isaacs/brace-expansion", [\
+      ["npm:5.0.0", {\
+        "packageLocation": "../../.yarn/berry/cache/@isaacs-brace-expansion-npm-5.0.0-754d3cb3f5-10c0.zip/node_modules/@isaacs/brace-expansion/",\
+        "packageDependencies": [\
+          ["@isaacs/balanced-match", "npm:4.0.1"],\
+          ["@isaacs/brace-expansion", "npm:5.0.0"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["@isaacs/cliui", [\
@@ -416,6 +436,7 @@ const RAW_RUNTIME_STATE =
           ["@node-minify/terser", "npm:9.0.1"],\
           ["artagnon.com", "workspace:."],\
           ["colors", "npm:1.4.0"],\
+          ["glob", "npm:13.0.0"],\
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
           ["sass", "npm:1.97.1"],\
@@ -911,6 +932,16 @@ const RAW_RUNTIME_STATE =
           ["path-scurry", "npm:1.11.1"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:13.0.0", {\
+        "packageLocation": "../../.yarn/berry/cache/glob-npm-13.0.0-8e50143ca8-10c0.zip/node_modules/glob/",\
+        "packageDependencies": [\
+          ["glob", "npm:13.0.0"],\
+          ["minimatch", "npm:10.1.1"],\
+          ["minipass", "npm:7.1.2"],\
+          ["path-scurry", "npm:2.0.1"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["graceful-fs", [\
@@ -1110,6 +1141,13 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
+      ["npm:11.2.4", {\
+        "packageLocation": "../../.yarn/berry/cache/lru-cache-npm-11.2.4-3f72660965-10c0.zip/node_modules/lru-cache/",\
+        "packageDependencies": [\
+          ["lru-cache", "npm:11.2.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:6.0.0", {\
         "packageLocation": "../../.yarn/berry/cache/lru-cache-npm-6.0.0-b4c8668fe1-10c0.zip/node_modules/lru-cache/",\
         "packageDependencies": [\
@@ -1189,6 +1227,14 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["minimatch", [\
+      ["npm:10.1.1", {\
+        "packageLocation": "../../.yarn/berry/cache/minimatch-npm-10.1.1-453db4ee1a-10c0.zip/node_modules/minimatch/",\
+        "packageDependencies": [\
+          ["@isaacs/brace-expansion", "npm:5.0.0"],\
+          ["minimatch", "npm:10.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:9.0.4", {\
         "packageLocation": "../../.yarn/berry/cache/minimatch-npm-9.0.4-7be5a33efc-10c0.zip/node_modules/minimatch/",\
         "packageDependencies": [\
@@ -1428,6 +1474,15 @@ const RAW_RUNTIME_STATE =
           ["lru-cache", "npm:10.2.0"],\
           ["minipass", "npm:7.0.4"],\
           ["path-scurry", "npm:1.11.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:2.0.1", {\
+        "packageLocation": "../../.yarn/berry/cache/path-scurry-npm-2.0.1-7744619e5d-10c0.zip/node_modules/path-scurry/",\
+        "packageDependencies": [\
+          ["lru-cache", "npm:11.2.4"],\
+          ["minipass", "npm:7.1.2"],\
+          ["path-scurry", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
