@@ -650,17 +650,14 @@ mjx-c.mjx-c1D45A.TEX-I::before {
         <h2 id="universes-in-rocq">
           Universes in Rocq
         </h2>
-        <p>
-          First, let us briefly talk about the cumulative universe of Rocq. <mark>Prop</mark> is a <mark>Set</mark> that can be promoted to <mark>Type</mark> seamlessly. The reason for the distinction between <mark>Prop</mark> and <mark>Set</mark> is an engineering one: <mark>Prop</mark> is impredicative, while <mark>Set</mark> is not, and proofs are erased during extraction.
+        <p>First, let us briefly talk about the cumulative universe of Rocq. <code>Prop</code> is a <code>Set</code> that can be promoted to <code>Type</code> seamlessly. The reason for the distinction between <code>Prop</code> and <code>Set</code> is an engineering one: <code>Prop</code> is impredicative, while <code>Set</code> is not, and proofs are erased during extraction.
         </p>
         <pre><code class="highlight"><span class="k">Definition</span><span class="w"> </span><span class="no">SetTypeIncl</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">A</span><span class="pi">.</span><span class="w">
 </span><span class="k">Definition</span><span class="w"> </span><span class="no">PropTypeIncl</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">A</span><span class="pi">.</span><span class="w">
 </span><span class="k">Definition</span><span class="w"> </span><span class="no">PropSetIncl</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">A</span><span class="o">.</span></code></pre>
-        <p>
-          There is an <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container> hierarchy within the <mark>Type</mark> universe, and types of Types are Types themselves.
+        <p>There is an <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c221E"></mjx-c></mjx-mi></mjx-math></mjx-container> hierarchy within the <code>Type</code> universe, and types of Types are Types themselves.
         </p>
-        <p>
-          Inhabitants of a <mark>Set</mark> are sets of primitive things like <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c2115 TEX-A"></mjx-c></mjx-mi></mjx-TeXAtom></mjx-math></mjx-container> and <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c211D TEX-A"></mjx-c></mjx-mi></mjx-TeXAtom></mjx-math></mjx-container>, while inhabitants of a <mark>Prop</mark> are propositions, which could be <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A4"></mjx-c></mjx-mi></mjx-math></mjx-container>, <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A5"></mjx-c></mjx-mi></mjx-math></mjx-container>, or some arbitrary term, the inhabitant of which acts as the proof.
+        <p>Inhabitants of a <code>Set</code> are sets of primitive things like <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c2115 TEX-A"></mjx-c></mjx-mi></mjx-TeXAtom></mjx-math></mjx-container> and <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mi class="mjx-ds mjx-b"><mjx-c class="mjx-c211D TEX-A"></mjx-c></mjx-mi></mjx-TeXAtom></mjx-math></mjx-container>, while inhabitants of a <code>Prop</code> are propositions, which could be <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A4"></mjx-c></mjx-mi></mjx-math></mjx-container>, <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A5"></mjx-c></mjx-mi></mjx-math></mjx-container>, or some arbitrary term, the inhabitant of which acts as the proof.
         </p>
         <h2 id="propositions">
           Propositions
@@ -676,34 +673,29 @@ mjx-c.mjx-c1D45A.TEX-I::before {
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
   </span><span class="no">by</span><span class="w"> </span><span class="kp">apply</span><span class="w"> </span><span class="no">PropositionalProofIrrelevance</span><span class="pi">.</span><span class="w">
 </span><span class="k">Qed</span><span class="o">.</span></code></pre>
-        <p>
-          In the general case, two different inhabitants of <mark>Prop</mark> are unequal. There is, however, a propositional equality existing between two equal propositions:
+        <p>In the general case, two different inhabitants of <code>Prop</code> are unequal. There is, however, a propositional equality existing between two equal propositions:
         </p>
         <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">PropRefl</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="o">)</span><span class="p">:</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">x</span><span class="pi">.</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
   </span><span class="ne">exact</span><span class="w"> </span><span class="no">eq_refl</span><span class="pi">.</span><span class="w">
 </span><span class="k">Qed</span><span class="o">.</span></code></pre>
-        <p>
-          where <mark>eq_refl</mark> is simply the sole inhabitant of an Inductive:
+        <p>where <code>eq_refl</code> is simply the sole inhabitant of an Inductive:
         </p>
         <pre><code class="highlight"><span class="k">Inductive</span><span class="w"> </span><span class="no">eq</span><span class="w"> </span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="no">eq_refl</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">eq</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">x</span><span class="o">.</span></code></pre>
         <h2 id="the-proof-irrelevant-sprop">
           The proof-irrelevant SProp
         </h2>
-        <p>
-          There are three inhabitants of <a href="https://coq.inria.fr/refman/addendum/sprop.html">SProp</a>: <mark>sUnit</mark> corresponding to <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A4"></mjx-c></mjx-mi></mjx-math></mjx-container>, <mark>sEmpty</mark> corresponding to <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A5"></mjx-c></mjx-mi></mjx-math></mjx-container>, and <mark>sProposition</mark> corresponding to a definitionally proof-irrelevant term. The way <mark>SProp</mark> implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Rocq to render two inhabitants of <mark>sProposition</mark> trivially inter-convertible.
+        <p>There are three inhabitants of <a href="https://coq.inria.fr/refman/addendum/sprop.html">SProp</a>: <code>sUnit</code> corresponding to <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A4"></mjx-c></mjx-mi></mjx-math></mjx-container>, <code>sEmpty</code> corresponding to <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-n"><mjx-c class="mjx-c22A5"></mjx-c></mjx-mi></mjx-math></mjx-container>, and <code>sProposition</code> corresponding to a definitionally proof-irrelevant term. The way <code>SProp</code> implements definitional proof-irrelevance is a simple engineering detail: there is hard-coding in Rocq to render two inhabitants of <code>sProposition</code> trivially inter-convertible.
         </p>
-        <p>
-          Unfortunately, <mark>=</mark> doesn't work as expected:
+        <p>Unfortunately, <code>=</code> doesn't work as expected:
         </p>
         <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">SPropIrr</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">SProp</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="no">y</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">P</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">y</span><span class="pi">.</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
   </span><span class="no">by</span><span class="w"> </span><span class="ne">reflexivity</span><span class="pi">.</span><span class="w">
 </span><span class="no">Abort</span><span class="pi">.</span><span class="w"> </span><span class="c">(* Type-check fails at Qed.
         * (=) : ∀ A, A -&gt; A -&gt; Prop, but we want to return an SProp. *)</span></code></pre>
-        <p>
-          This is because the <mark>SProp</mark> universe is disjoint from the <mark>Prop</mark> universe:
+        <p>This is because the <code>SProp</code> universe is disjoint from the <code>Prop</code> universe:
         </p>
         <pre><code class="highlight"><span class="k">Theorem</span><span class="w"> </span><span class="no">SPropToProp</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">SProp</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="pi">.</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
@@ -723,11 +715,9 @@ mjx-c.mjx-c1D45A.TEX-I::before {
           <li>
             <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-ds mjx-b"><mjx-utext style="font-size: 88.4%; padding: 0.848em 0 0.226em 0;" variant="double-struck">𝟙</mjx-utext></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>, and anything that's contractible to it, is the (<mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>)-truncated Type.
           </li>
-          <li>
-            A "mere proposition", an inhabitant of <mark>hProp</mark>, is simply a (<mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>)-truncated Type.
+          <li>A "mere proposition", an inhabitant of <code>hProp</code>, is simply a (<mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>)-truncated Type.
           </li>
-          <li>
-            <mark>hSet</mark> is the <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>-truncated Type.
+          <li><code>hSet</code> is the <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-TeXAtom texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-TeXAtom></mjx-math></mjx-container>-truncated Type.
           </li>
         </ol>
         <pre><code class="highlight"><span class="k">Notation</span><span class="w"> </span><span class="no">Contr</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">IsTrunc</span><span class="w"> </span><span class="no">minus_two</span><span class="o">).</span><span class="w">
@@ -740,8 +730,7 @@ mjx-c.mjx-c1D45A.TEX-I::before {
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
   </span><span class="no">by</span><span class="w"> </span><span class="kp">apply</span><span class="w"> </span><span class="no">path_ishprop</span><span class="pi">.</span><span class="w">
 </span><span class="k">Qed</span><span class="o">.</span></code></pre>
-        <p>
-          Conceptually, this is as simple and elegant as <mark>PropEquality</mark>.
+        <p>Conceptually, this is as simple and elegant as <code>PropEquality</code>.
         </p>
         <footer>
           <ul class="footer">

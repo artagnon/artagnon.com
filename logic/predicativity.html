@@ -379,8 +379,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p class="blurb">
           Today, we write a quick specialized note on what impredicativity exactly means, for those reasonably familiar with the Rocq syntax.
         </p>
-        <p>
-          Historically speaking, Rocq started out with making <mark>Set</mark> impredicative and they still carry around the flag <mark>--set-impredicative</mark> to maintain impredicativity in Sets. Let's check it quickly:
+        <p>Historically speaking, Rocq started out with making <code>Set</code> impredicative and they still carry around the flag <code>--set-impredicative</code> to maintain impredicativity in Sets. Let's check it quickly:
         </p>
         <pre><code class="highlight"><span class="c">(* Set is predicative. *)</span><span class="w">
 </span><span class="no">Fail</span><span class="w"> </span><span class="k">Definition</span><span class="w"> </span><span class="no">SetPred</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Set</span><span class="o">.</span></code></pre>
@@ -389,13 +388,11 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         </p>
         <pre><code class="highlight"><span class="c">(* Checks that all inhabitants of U are of type V. *)</span><span class="w">
 </span><span class="k">Notation</span><span class="w"> </span><span class="s2">"'check' U V"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">U</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">V</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="no">U</span><span class="o">,</span><span class="w"> </span><span class="no">V</span><span class="w"> </span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">0</span><span class="o">).</span></code></pre>
-        <p>
-          All inhabitants of <mark>Prop</mark> are of type Prop, for good reason.
+        <p>All inhabitants of <code>Prop</code> are of type Prop, for good reason.
         </p>
         <pre><code class="highlight"><span class="c">(* Prop is impredicative. *)</span><span class="w">
 </span><span class="k">Definition</span><span class="w"> </span><span class="no">PropImpr</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">check</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="kr">Prop</span><span class="o">.</span></code></pre>
-        <p>
-          Attempt to check the predicativity of <mark>Type</mark> naïvely:
+        <p>Attempt to check the predicativity of <code>Type</code> naïvely:
         </p>
         <pre><code class="highlight"><span class="c">(* Is Type impredicative? This is misleading. *)</span><span class="w">
 </span><span class="k">Definition</span><span class="w"> </span><span class="no">TypeNaive</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">forall</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">,</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">.</span></code></pre>

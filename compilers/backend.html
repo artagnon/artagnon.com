@@ -391,8 +391,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
       <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
         <span class="n">res</span><span class="p">[</span><span class="n">N</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">N</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">N</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="n">j</span><span class="p">];</span>
 <span class="p">}</span></code></pre>
-        <p>
-          First, we run the front-end, and the full middle-end optimization pipeline to obtain the optimized LLVM IR that's handed off to the backend. Running <mark>clang --target=riscv64 -march=rv64gc -O3 -emit-llvm -S</mark> emits:
+        <p>First, we run the front-end, and the full middle-end optimization pipeline to obtain the optimized LLVM IR that's handed off to the backend. Running <code>clang --target=riscv64 -march=rv64gc -O3 -emit-llvm -S</code> emits:
         </p>
         <pre><code class="highlight"><span class="k">define</span> <span class="kt">void</span> <span class="vg">@matmul</span><span class="p">(</span><span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%x</span><span class="p">,</span> <span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%y</span><span class="p">,</span> <span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%res</span><span class="p">)</span> <span class="p">{</span>
 <span class="nl">entry:</span>
@@ -440,14 +439,11 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   <span class="nv">%exit.cond</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="m">64</span>
   <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exit.cond</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%inner.loop.exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%inner.loop</span>
 <span class="p">}</span></code></pre>
-        <p>
-          The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use <mark>-march=rv64gc</mark> instead of <mark>-march=rv64gcv</mark>) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed <a href="/compilers/intro-vec">previously</a>.
+        <p>The astute reader will note that we have strategically omitted the vector extension of RISC-V (we use <code>-march=rv64gc</code> instead of <code>-march=rv64gcv</code>) to avoid unnecessarily complicating the exposition due to the vectorization passes in LLVM. Auto-vectorization has already been discussed <a href="/compilers/intro-vec">previously</a>.
         </p>
-        <p>
-          The first thing to notice is that the body of the function is cleanly separated into basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like <mark>%iv</mark> are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh <mark>%iv.next</mark> variable is created, and <mark>%iv</mark> is a <mark>phi</mark> node that selects between the values <mark>0</mark> when jumping into the <mark>loop</mark> block from <mark>entry</mark>, and <mark>%iv.next</mark> when jumping to the <mark>inner.loop</mark> block from the back-edge of the inner loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
+        <p>The first thing to notice is that the body of the function is cleanly separated into basic blocks: entry, ph, common.ph, inner.loop, inner.loop.exit, common.exit, and exit. Next, notice that the IR is in single-static-assignment (SSA) form, which means is that variables like <code>%iv</code> are only ever defined once. Since this is a loop that requires incrementing the induction variable, a fresh <code>%iv.next</code> variable is created, and <code>%iv</code> is a <code>phi</code> node that selects between the values <code>0</code> when jumping into the <code>loop</code> block from <code>entry</code>, and <code>%iv.next</code> when jumping to the <code>inner.loop</code> block from the back-edge of the inner loop. All the instructions (load, getelementptr, store, or, shl etc.) are target-independent instructions that are used throughout the LLVM middle-end. The target-specific instructions will only be seen after instruction selection.
         </p>
-        <p>
-          The first step in the lowering process is instruction selection. We can look at the output of this step by running <mark>llc --print-after-isel</mark>:
+        <p>The first step in the lowering process is instruction selection. We can look at the output of this step by running <code>llc --print-after-isel</code>:
         </p>
         <pre><code class="highlight">Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
 
@@ -522,26 +518,20 @@ bb.6 (%ir-block.21):
         <p>
           What we see is a relatively straight-forward translation of the middle-end LLVM IR to machine IR (MIR), preserving the basic block structure and SSA-form. The purpose of instruction selection is to select a combination of instructions available on the target that optimally represents the middle-end semantics. Its two primary functions are to replace middle-end SSA variables by virtual registers, and to replace middle-end instructions by target-specific instructions.
         </p>
-        <p>
-          Each virtual register has a suffix of either gpr (general-purpose register) or fpr (floating-point register). There are also physical registers in this MIR: <mark>$x0</mark>, <mark>$x10</mark>, <mark>$x11</mark>, <mark>$x12</mark>, <mark>$frm</mark>. Per the RISC-V calling convention, the three arguments to the function are in general-purpose registers <mark>$x10</mark>, <mark>$x11</mark>, and <mark>$x12</mark> (pretty-printed as <mark>a0</mark>, <mark>a1</mark>, and <mark>a2</mark>). <mark>$x0</mark> is a special register on RISC-V that always holds the value <mark>0</mark>. <mark>$frm</mark> is the floating-point rounding-mode register. None of these can be virtual registers. A minor point to notice is the annotations on the virtual registers, <mark>killed</mark> and <mark>implicit</mark>. The operands of the <mark>FMADD_S</mark>, <mark>%30:fpr32</mark> and <mark>%31:fpr32</mark>, are marked as <mark>killed</mark>, meaning that this is the final definition/use of those registers (these annotations are preliminary: the final annotations will be determined at a later stage). The register <mark>$frm</mark> is marked as <mark>implicit</mark>, meaning that it implicitly uses this register, and that this argument will be absent in the final assembly. The virtual registers must be turned into physical registers by the register allocator before emitting the final assembly.
+        <p>Each virtual register has a suffix of either gpr (general-purpose register) or fpr (floating-point register). There are also physical registers in this MIR: <code>$x0</code>, <code>$x10</code>, <code>$x11</code>, <code>$x12</code>, <code>$frm</code>. Per the RISC-V calling convention, the three arguments to the function are in general-purpose registers <code>$x10</code>, <code>$x11</code>, and <code>$x12</code> (pretty-printed as <code>a0</code>, <code>a1</code>, and <code>a2</code>). <code>$x0</code> is a special register on RISC-V that always holds the value <code>0</code>. <code>$frm</code> is the floating-point rounding-mode register. None of these can be virtual registers. A minor point to notice is the annotations on the virtual registers, <code>killed</code> and <code>implicit</code>. The operands of the <code>FMADD_S</code>, <code>%30:fpr32</code> and <code>%31:fpr32</code>, are marked as <code>killed</code>, meaning that this is the final definition/use of those registers (these annotations are preliminary: the final annotations will be determined at a later stage). The register <code>$frm</code> is marked as <code>implicit</code>, meaning that it implicitly uses this register, and that this argument will be absent in the final assembly. The virtual registers must be turned into physical registers by the register allocator before emitting the final assembly.
         </p>
-        <p>
-          Middle-end instructions like <mark>@llvm.fmuladd</mark> have been replaced by target-specific instructions like <mark>FMADD_S</mark> (pretty-printed as <mark>fmadd.s</mark>), and several pseudo-instructions like <mark>PseudoBR</mark>, <mark>PseudoRET</mark>, and <mark>COPY</mark> have been inserted in the process. The pseudo-instructions must be lowered to real instructions before emitting the final assembly.
+        <p>Middle-end instructions like <code>@llvm.fmuladd</code> have been replaced by target-specific instructions like <code>FMADD_S</code> (pretty-printed as <code>fmadd.s</code>), and several pseudo-instructions like <code>PseudoBR</code>, <code>PseudoRET</code>, and <code>COPY</code> have been inserted in the process. The pseudo-instructions must be lowered to real instructions before emitting the final assembly.
         </p>
-        <p>
-          There is some minor additional information in this MIR: the live-ins, or registers that are live at the point of entry, and the branch frequency information: <mark>bb.6</mark> is going to be the successor basic-block of <mark>bb.6</mark> 97% of the time.
+        <p>There is some minor additional information in this MIR: the live-ins, or registers that are live at the point of entry, and the branch frequency information: <code>bb.6</code> is going to be the successor basic-block of <code>bb.6</code> 97% of the time.
         </p>
         <p>
           Although the instruction selection infrastructure, SelectionDAG †, is target-independent, we can see that our MIR is clearly specialized for RISC-V. All the information about the registers available on RISC-V are defined in <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVRegisterInfo.td">RISCVRegisterInfo.td</a>. The RISC-V instructions themselves come out of the specification <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVInstrInfo.td">RISCVInstrInfo.td</a>, and the target-specific code that specifies how middle-end instructions should be lowered to instructions in this specification via SelectionDAG is <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVISelLowering.cpp">RISCVISelLowering.cpp</a>.
         </p>
-        <p>
-          In order to understand the various steps after instruction selection, let us <a href="https://godbolt.org/z/TxzjEMr5M">inspect the diffs</a> produced at each step by running <mark>llc -print-changed=diff</mark>.
+        <p>In order to understand the various steps after instruction selection, let us <a href="https://godbolt.org/z/TxzjEMr5M">inspect the diffs</a> produced at each step by running <code>llc -print-changed=diff</code>.
         </p>
-        <p>
-          The first significant pass to run after the instruction selection is <mark>early-machinelicm</mark>, which is just a backend version of the middle-end loop invariant code motion transform. Next, we have <mark>livevars</mark>, which analyzes live variables, and marks registers as <mark>killed</mark> aggressively.
+        <p>The first significant pass to run after the instruction selection is <code>early-machinelicm</code>, which is just a backend version of the middle-end loop invariant code motion transform. Next, we have <code>livevars</code>, which analyzes live variables, and marks registers as <code>killed</code> aggressively.
         </p>
-        <p>
-          <mark>phi-node-elimination</mark> runs next, which removes PHI nodes, leaving the MIR in SSA form by inserting pseudo COPY instructions:
+        <p><code>phi-node-elimination</code> runs next, which removes PHI nodes, leaving the MIR in SSA form by inserting pseudo COPY instructions:
         </p>
         <pre><code class="highlight">  Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
 
@@ -637,11 +627,9 @@ bb.6 (%ir-block.21):
 +  %42:fpr32 = COPY %15:fpr32
 +  BEQ killed %16:gpr, %5:gpr, %bb.5
 </span>   PseudoBR %bb.6</code></pre>
-        <p>
-          The next pass <mark>liveintervals</mark> undoes many of the <mark>killed</mark> annotations inserted by <mark>livevars</mark>, by performing a more sophisticated analysis to determine the actual virtual registers killed in the loop-nest.
+        <p>The next pass <code>liveintervals</code> undoes many of the <code>killed</code> annotations inserted by <code>livevars</code>, by performing a more sophisticated analysis to determine the actual virtual registers killed in the loop-nest.
         </p>
-        <p>
-          The final preparatory step before instruction scheduling and register allocation is <mark>register-coalescer</mark>, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
+        <p>The final preparatory step before instruction scheduling and register allocation is <code>register-coalescer</code>, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
         </p>
         <pre><code class="highlight"> Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
 
@@ -745,8 +733,7 @@ bb.6 (%ir-block.21):
 +  %40:gpr = ADDI %40:gpr, 4
 +  BEQ %41:gpr, %5:gpr, %bb.5
 </span>   PseudoBR %bb.6</code></pre>
-        <p>
-          The purpose of the instruction scheduler, <mark>machine-scheduler</mark>, is to re-order instructions to minimize hazards and stalls. The optimal schedule depends on micro-architectural details, and an example of a scheduler descriptor is <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td">RISCVSchedSiFive7.td</a>, for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used. The optimal schedule can be seen in the following diff:
+        <p>The purpose of the instruction scheduler, <code>machine-scheduler</code>, is to re-order instructions to minimize hazards and stalls. The optimal schedule depends on micro-architectural details, and an example of a scheduler descriptor is <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td">RISCVSchedSiFive7.td</a>, for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used. The optimal schedule can be seen in the following diff:
         </p>
         <pre><code class="highlight"> Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
 
@@ -816,8 +803,7 @@ bb.6 (%ir-block.21):
    %40:gpr = ADDI %40:gpr, 4
    BEQ %41:gpr, %5:gpr, %bb.5
    PseudoBR %bb.6</code></pre>
-        <p>
-          We're now ready to run the <mark>greedy</mark> register allocator †, whose purpose is to assign every virtual register a physical register, while re-using the limited number of physical registers on the machine, and minimizing register spills. The actual replacement is done by <mark>virtregrewriter</mark>:
+        <p>We're now ready to run the <code>greedy</code> register allocator †, whose purpose is to assign every virtual register a physical register, while re-using the limited number of physical registers on the machine, and minimizing register spills. The actual replacement is done by <code>virtregrewriter</code>:
         </p>
         <pre><code class="highlight"> Function Live Ins: $x10, $x11, $x12
 
@@ -921,8 +907,7 @@ bb.6 (%ir-block.21):
 +  renamable $x15 = ADDI killed renamable $x15, 4
 +  BEQ renamable $x13, renamable $x14, %bb.5
 </span>   PseudoBR %bb.6</code></pre>
-        <p>
-          Before we emit the assembly, there are two pending steps: first, basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after <mark>branch-folder</mark> and <mark>postrapseduos</mark> is:
+        <p>Before we emit the assembly, there are two pending steps: first, basic blocks need to be re-ordered, so that the final structure is flat and there are no unnecessary jumps; second, pseudo-instructions like COPY need to be replaced by real instructions. The final MIR after <code>branch-folder</code> and <code>postrapseduos</code> is:
         </p>
         <pre><code class="highlight">Function Live Ins: $x10, $x11, $x12
 
@@ -986,8 +971,7 @@ bb.5 (%ir-block.15):
 
 bb.6 (%ir-block.7):
   PseudoRET</code></pre>
-        <p>
-          The assembly is produced from the final MIR by AsmPrinter, which doesn't do much more than pretty-printing registers (<mark>$x10</mark> is <mark>a0</mark>, <mark>$x11</mark> is <mark>a1</mark>), and instructions (<mark>FMADD_S</mark> is <mark>fmadd.s</mark>), while dropping auxiliary information. This output can be checked against the <a href="https://github.com/riscv/riscv-isa-manual/">RISC-V ISA manual</a>.
+        <p>The assembly is produced from the final MIR by AsmPrinter, which doesn't do much more than pretty-printing registers (<code>$x10</code> is <code>a0</code>, <code>$x11</code> is <code>a1</code>), and instructions (<code>FMADD_S</code> is <code>fmadd.s</code>), while dropping auxiliary information. This output can be checked against the <a href="https://github.com/riscv/riscv-isa-manual/">RISC-V ISA manual</a>.
         </p>
         <pre><code class="highlight">matmul:                                 # @matmul
 # %bb.0:

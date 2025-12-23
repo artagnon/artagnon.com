@@ -693,23 +693,18 @@ mjx-c.mjx-c35::before {
         <p>
           First pass: do the dfs, and number everything.
         </p>
-        <p>
-          Second pass: find the backedge. When <mark>start_time[destination] &lt; start_time[source]</mark> and <mark>end_time[destination] &gt; end_time[source]</mark>, we have a backedge from source to destination.
+        <p>Second pass: find the backedge. When <code>start_time[destination] &lt; start_time[source]</code> and <code>end_time[destination] &gt; end_time[source]</code>, we have a backedge from source to destination.
         </p>
         <p>
           Third pass: find all the nodes in the loop. Here, we walk backwards from the source of the backedge until the loop header, and take everything that's "nested within" the loop header start and end times to be within the loop.
         </p>
-        <p>
-          In the no loop case, there's nothing to do since no backedges were detected. Note that in the <mark>6/7</mark>-<mark>2/5</mark> and <mark>6/7</mark>-<mark>3/4</mark> combinations, both start times and end times are greater in one pair; this is how we identify crossedges.
+        <p>In the no loop case, there's nothing to do since no backedges were detected. Note that in the <code>6/7</code>-<code>2/5</code> and <code>6/7</code>-<code>3/4</code> combinations, both start times and end times are greater in one pair; this is how we identify crossedges.
         </p>
-        <p>
-          In the early exit case, <mark>2/7</mark> and <mark>4/5</mark> are nested within <mark>1/8</mark>, and we never reach <mark>exit target</mark> by walking backward from the source of the backedge.
+        <p>In the early exit case, <code>2/7</code> and <code>4/5</code> are nested within <code>1/8</code>, and we never reach <code>exit target</code> by walking backward from the source of the backedge.
         </p>
-        <p>
-          In the multi-entry case, we correctly detect that <mark>1/8</mark> is not nested within <mark>2/7</mark>, while <mark>3/6</mark> and <mark>4/5</mark> are: when a node reached via a backward walk doesn't nest within the header, the loop is classified as <em>irreducible</em>.
+        <p>In the multi-entry case, we correctly detect that <code>1/8</code> is not nested within <code>2/7</code>, while <code>3/6</code> and <code>4/5</code> are: when a node reached via a backward walk doesn't nest within the header, the loop is classified as <em>irreducible</em>.
         </p>
-        <p>
-          In the cuddled loops case, everything nests within <mark>1/8</mark>, and the inner loop consists of <mark>4/5</mark>, <mark>3/6</mark>, and <mark>2/7</mark>, all of which nest within <mark>2/7</mark>. Finally, the shared header case is detected as two nested loops as well: a loop is identified by a unique backedge, not a unique header [‡]. The analysis is weak in that these cases are indistinguishable from normal nested loops.
+        <p>In the cuddled loops case, everything nests within <code>1/8</code>, and the inner loop consists of <code>4/5</code>, <code>3/6</code>, and <code>2/7</code>, all of which nest within <code>2/7</code>. Finally, the shared header case is detected as two nested loops as well: a loop is identified by a unique backedge, not a unique header [‡]. The analysis is weak in that these cases are indistinguishable from normal nested loops.
         </p>
         <footer>
           <ul class="footer">
