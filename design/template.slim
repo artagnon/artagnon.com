@@ -55,10 +55,7 @@ html lang="en"
         - if permalink == "index"
           div#metadata
             span#timestamp
-              time.begin datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
-              span.to
-                = " › "
-              time.end datetime="#{lastmod.strftime('%F')}" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
+              time datetime="#{lastmod.strftime('%F')}" = lastmod.strftime('%a, %-d %b %Y %H:00:00 %z')
             br
             span#locations
               - locations.reverse[..-2].each do |loc|
@@ -69,7 +66,7 @@ html lang="en"
         - elsif instance_of? Clayoven::Toplevel::ContentPage
           div#metadata
             span#timestamp
-              time.end datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
+              time datetime="#{crdate.strftime('%F')}" = crdate.strftime('%a, %-d %b %Y %H:00:00 %z')
       article
         - paragraphs.each do |paragraph|
           - case paragraph.type
