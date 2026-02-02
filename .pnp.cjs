@@ -29,7 +29,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@node-minify/core", "npm:10.4.0"],\
-          ["@node-minify/terser", "npm:9.0.1"],\
+          ["@node-minify/terser", "npm:10.4.0"],\
           ["artagnon.com", "workspace:."],\
           ["colors", "npm:1.4.0"],\
           ["glob", "npm:13.0.0"],\
@@ -157,12 +157,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@node-minify/terser", [\
-      ["npm:9.0.1", {\
-        "packageLocation": "../../../../../../runner/cache/others/berry/cache/@node-minify-terser-npm-9.0.1-a4d35aa444-10c0.zip/node_modules/@node-minify/terser/",\
+      ["npm:10.4.0", {\
+        "packageLocation": "../../../../../../runner/cache/others/berry/cache/@node-minify-terser-npm-10.4.0-5fa45820ff-10c0.zip/node_modules/@node-minify/terser/",\
         "packageDependencies": [\
-          ["@node-minify/terser", "npm:9.0.1"],\
-          ["@node-minify/utils", "npm:9.0.1"],\
-          ["terser", "npm:5.36.0"]\
+          ["@node-minify/terser", "npm:10.4.0"],\
+          ["@node-minify/utils", "npm:10.4.0"],\
+          ["terser", "npm:5.46.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -174,14 +174,6 @@ const RAW_RUNTIME_STATE =
           ["@node-minify/utils", "npm:10.4.0"],\
           ["fast-glob", "npm:3.3.3"],\
           ["gzip-size", "npm:7.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["npm:9.0.1", {\
-        "packageLocation": "../../../../../../runner/cache/others/berry/cache/@node-minify-utils-npm-9.0.1-789f39a290-10c0.zip/node_modules/@node-minify/utils/",\
-        "packageDependencies": [\
-          ["@node-minify/utils", "npm:9.0.1"],\
-          ["gzip-size", "npm:6.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -404,10 +396,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["acorn", [\
-      ["npm:8.14.0", {\
-        "packageLocation": "../../../../../../runner/cache/others/berry/cache/acorn-npm-8.14.0-dc46f61424-10c0.zip/node_modules/acorn/",\
+      ["npm:8.15.0", {\
+        "packageLocation": "../../../../../../runner/cache/others/berry/cache/acorn-npm-8.15.0-0764cf600e-10c0.zip/node_modules/acorn/",\
         "packageDependencies": [\
-          ["acorn", "npm:8.14.0"]\
+          ["acorn", "npm:8.15.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -471,7 +463,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@node-minify/core", "npm:10.4.0"],\
-          ["@node-minify/terser", "npm:9.0.1"],\
+          ["@node-minify/terser", "npm:10.4.0"],\
           ["artagnon.com", "workspace:."],\
           ["colors", "npm:1.4.0"],\
           ["glob", "npm:13.0.0"],\
@@ -1014,14 +1006,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["gzip-size", [\
-      ["npm:6.0.0", {\
-        "packageLocation": "../../../../../../runner/cache/others/berry/cache/gzip-size-npm-6.0.0-d5b52fdbf1-10c0.zip/node_modules/gzip-size/",\
-        "packageDependencies": [\
-          ["duplexer", "npm:0.1.2"],\
-          ["gzip-size", "npm:6.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:7.0.0", {\
         "packageLocation": "../../../../../../runner/cache/others/berry/cache/gzip-size-npm-7.0.0-cc99ecf165-10c0.zip/node_modules/gzip-size/",\
         "packageDependencies": [\
@@ -1876,14 +1860,14 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["terser", [\
-      ["npm:5.36.0", {\
-        "packageLocation": "../../../../../../runner/cache/others/berry/cache/terser-npm-5.36.0-e5678e2258-10c0.zip/node_modules/terser/",\
+      ["npm:5.46.0", {\
+        "packageLocation": "../../../../../../runner/cache/others/berry/cache/terser-npm-5.46.0-2870f1e002-10c0.zip/node_modules/terser/",\
         "packageDependencies": [\
           ["@jridgewell/source-map", "npm:0.3.6"],\
-          ["acorn", "npm:8.14.0"],\
+          ["acorn", "npm:8.15.0"],\
           ["commander", "npm:2.20.3"],\
           ["source-map-support", "npm:0.5.21"],\
-          ["terser", "npm:5.36.0"]\
+          ["terser", "npm:5.46.0"]\
         ],\
         "linkType": "HARD"\
       }]\
