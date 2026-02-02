@@ -35,7 +35,7 @@ const RAW_RUNTIME_STATE =
           ["glob", "npm:13.0.0"],\
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
-          ["sass", "npm:1.97.1"],\
+          ["sass", "npm:1.97.3"],\
           ["svgo", "npm:4.0.0"],\
           ["yargs", "npm:18.0.0"]\
         ],\
@@ -477,7 +477,7 @@ const RAW_RUNTIME_STATE =
           ["glob", "npm:13.0.0"],\
           ["mathjax-full", "npm:3.2.2"],\
           ["progress", "npm:2.0.3"],\
-          ["sass", "npm:1.97.1"],\
+          ["sass", "npm:1.97.3"],\
           ["svgo", "npm:4.0.0"],\
           ["yargs", "npm:18.0.0"]\
         ],\
@@ -1643,13 +1643,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["sass", [\
-      ["npm:1.97.1", {\
-        "packageLocation": "../../../../../../runner/cache/others/berry/cache/sass-npm-1.97.1-099d6c46b5-10c0.zip/node_modules/sass/",\
+      ["npm:1.97.3", {\
+        "packageLocation": "../../../../../../runner/cache/others/berry/cache/sass-npm-1.97.3-632c69cd32-10c0.zip/node_modules/sass/",\
         "packageDependencies": [\
           ["@parcel/watcher", "npm:2.5.1"],\
           ["chokidar", "npm:4.0.3"],\
           ["immutable", "npm:5.0.3"],\
-          ["sass", "npm:1.97.1"],\
+          ["sass", "npm:1.97.3"],\
           ["source-map-js", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
