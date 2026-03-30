@@ -393,7 +393,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
 <span class="p">}</span></code></pre>
         <p>First, we run the front-end, and the full middle-end optimization pipeline to obtain the optimized LLVM IR that's handed off to the backend. Running <code>clang --target=riscv64 -march=rv64gc -O3 -emit-llvm -S</code> emits:
         </p>
-        <pre><code class="highlight"><span class="k">define</span> <span class="kt">void</span> <span class="vg">@matmul</span><span class="p">(</span><span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%x</span><span class="p">,</span> <span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%y</span><span class="p">,</span> <span class="err">ptr</span> <span class="k">noalias</span> <span class="nv">%res</span><span class="p">)</span> <span class="p">{</span>
+        <pre><code class="highlight"><span class="k">define</span> <span class="kt">void</span> <span class="vg">@matmul</span><span class="p">(</span><span class="kt">ptr</span> <span class="k">noalias</span> <span class="nv">%x</span><span class="p">,</span> <span class="kt">ptr</span> <span class="k">noalias</span> <span class="nv">%y</span><span class="p">,</span> <span class="kt">ptr</span> <span class="k">noalias</span> <span class="nv">%res</span><span class="p">)</span> <span class="p">{</span>
 <span class="nl">entry:</span>
   <span class="k">br</span> <span class="kt">label</span> <span class="nv">%ph</span>
 
@@ -408,9 +408,9 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
 <span class="nl">common.ph:</span>
   <span class="nv">%iv.middle</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%ph</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.middle.next</span><span class="p">,</span> <span class="nv">%inner.loop.exit</span> <span class="p">]</span>
   <span class="nv">%or</span> <span class="p">=</span> <span class="k">or</span> <span class="err">disjoint</span> <span class="kt">i64</span> <span class="nv">%iv.middle</span><span class="p">,</span> <span class="nv">%shl</span>
-  <span class="nv">%gep.res</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%res</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%or</span>
-  <span class="nv">%load.res</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.res</span>
-  <span class="nv">%gep.y</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv.middle</span>
+  <span class="nv">%gep.res</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">ptr</span> <span class="nv">%res</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%or</span>
+  <span class="nv">%load.res</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">ptr</span> <span class="nv">%gep.res</span>
+  <span class="nv">%gep.y</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">ptr</span> <span class="nv">%y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%iv.middle</span>
   <span class="k">br</span> <span class="kt">label</span> <span class="nv">%inner.loop</span>
 
 <span class="nl">common.exit:</span>
@@ -419,7 +419,7 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exit.cond.outer</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%ph</span>
 
 <span class="nl">inner.loop.exit:</span>
-  <span class="k">store</span> <span class="kt">float</span> <span class="nv">%conv.next</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.res</span>
+  <span class="k">store</span> <span class="kt">float</span> <span class="nv">%conv.next</span><span class="p">,</span> <span class="kt">ptr</span> <span class="nv">%gep.res</span>
   <span class="err">iv</span><span class="p">.</span><span class="err">middle</span><span class="p">.</span><span class="err">next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv.middle</span><span class="p">,</span> <span class="m">1</span>
   <span class="nv">%exit.cond.middle</span> <span class="p">=</span> <span class="k">icmp</span> <span class="k">eq</span> <span class="kt">i64</span> <span class="nv">%iv.middle.next</span><span class="p">,</span> <span class="m">64</span>
   <span class="k">br</span> <span class="kt">i1</span> <span class="nv">%exit.cond.middle</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%common.exit</span><span class="p">,</span> <span class="kt">label</span> <span class="nv">%common.ph</span>
@@ -428,11 +428,11 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   <span class="nv">%iv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">i64</span> <span class="p">[</span> <span class="m">0</span><span class="p">,</span> <span class="nv">%common.ph</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%iv.next</span><span class="p">,</span> <span class="nv">%inner.loop</span> <span class="p">]</span>
   <span class="nv">%conv</span> <span class="p">=</span> <span class="k">phi</span> <span class="kt">float</span> <span class="p">[</span> <span class="nv">%load.res</span><span class="p">,</span> <span class="nv">%common.ph</span> <span class="p">],</span> <span class="p">[</span> <span class="nv">%conv.next</span><span class="p">,</span> <span class="nv">%inner.loop</span> <span class="p">]</span>
   <span class="nv">%or</span> <span class="p">=</span> <span class="k">or</span> <span class="err">disjoint</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="nv">%shl</span>
-  <span class="nv">%gep.x</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%x</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%or</span>
-  <span class="nv">%load.x</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.x</span>
+  <span class="nv">%gep.x</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="k">inbounds</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">ptr</span> <span class="nv">%x</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%or</span>
+  <span class="nv">%load.x</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">ptr</span> <span class="nv">%gep.x</span>
   <span class="nv">%shl.iv</span> <span class="p">=</span> <span class="k">shl</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">6</span>
-  <span class="nv">%gep.y.2</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%shl.iv</span>
-  <span class="nv">%load.y</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="err">ptr</span> <span class="nv">%gep.y.2</span>
+  <span class="nv">%gep.y.2</span> <span class="p">=</span> <span class="k">getelementptr</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">ptr</span> <span class="nv">%gep.y</span><span class="p">,</span> <span class="kt">i64</span> <span class="nv">%shl.iv</span>
+  <span class="nv">%load.y</span> <span class="p">=</span> <span class="k">load</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">ptr</span> <span class="nv">%gep.y.2</span>
   <span class="nv">%conv.next</span> <span class="p">=</span> <span class="k">tail</span> <span class="k">call</span> <span class="kt">float</span> <span class="vg">@llvm.fmuladd.f32</span><span class="p">(</span>
                <span class="kt">float</span> <span class="nv">%load.x</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%load.y</span><span class="p">,</span> <span class="kt">float</span> <span class="nv">%conv</span><span class="p">)</span>
   <span class="nv">%iv.next</span> <span class="p">=</span> <span class="k">add</span> <span class="k">nuw</span> <span class="k">nsw</span> <span class="kt">i64</span> <span class="nv">%iv</span><span class="p">,</span> <span class="m">1</span>
@@ -534,8 +534,8 @@ bb.6 (%ir-block.21):
         <p><code>phi-node-elimination</code> runs next, which removes PHI nodes, leaving the MIR in SSA form by inserting pseudo COPY instructions:
         </p>
         <pre><code class="highlight">  Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
-
-  bb.0 (%ir-block.3):
+<span class="err">
+</span>  bb.0 (%ir-block.3):
    successors: %bb.1(0x80000000); %bb.1(100.00%)
    liveins: $x10, $x11, $x12
    %20:gpr = COPY killed $x12
@@ -547,8 +547,8 @@ bb.6 (%ir-block.21):
    %32:gpr = ADDI $x0, 64
 <span class="gi">+  %36:gpr = COPY killed %18:gpr
 +  %37:gpr = COPY killed %21:gpr
-</span>
- bb.1 (%ir-block.4):
+</span><span class="err">
+</span> bb.1 (%ir-block.4):
    successors: %bb.3(0x80000000); %bb.3(100.00%)
 <span class="gd">-  %0:gpr = PHI %18:gpr, %bb.0, %9:gpr, %bb.4
 -  %1:gpr = PHI %21:gpr, %bb.0, %8:gpr, %bb.4
@@ -560,11 +560,11 @@ bb.6 (%ir-block.21):
 <span class="gi">+  %38:gpr = COPY %19:gpr
 +  %39:gpr = COPY killed %23:gpr
 </span>   PseudoBR %bb.3
-
- bb.2 (%ir-block.7):
+<span class="err">
+</span> bb.2 (%ir-block.7):
    PseudoRET
-
- bb.3 (%ir-block.8):
+<span class="err">
+</span> bb.3 (%ir-block.8):
    successors: %bb.6(0x80000000); %bb.6(100.00%)
 <span class="gd">-  %3:gpr = PHI %19:gpr, %bb.1, %11:gpr, %bb.5
 -  %4:gpr = PHI %23:gpr, %bb.1, %10:gpr, %bb.5
@@ -581,8 +581,8 @@ bb.6 (%ir-block.21):
 +  %41:gpr = COPY %3:gpr
 +  %42:fpr32 = COPY killed %7:fpr32
 </span>   PseudoBR %bb.6
-
- bb.4 (%ir-block.15):
+<span class="err">
+</span> bb.4 (%ir-block.15):
    successors: %bb.2(0x04000000), %bb.1(0x7c000000);
                %bb.2(3.12%), %bb.1(96.88%)
    %8:gpr = nuw nsw ADDI killed %1:gpr, 1
@@ -592,8 +592,8 @@ bb.6 (%ir-block.21):
 +  %37:gpr = COPY %8:gpr
 +  BEQ killed %8:gpr, %32:gpr, %bb.2
 </span>   PseudoBR %bb.1
-
- bb.5 (%ir-block.18):
+<span class="err">
+</span> bb.5 (%ir-block.18):
    successors: %bb.4(0x04000000), %bb.3(0x7c000000);
                %bb.4(3.12%), %bb.3(96.88%)
    FSW killed %15:fpr32, killed %6:gpr, 0
@@ -604,8 +604,8 @@ bb.6 (%ir-block.21):
 +  %39:gpr = COPY %10:gpr
 +  BEQ killed %10:gpr, %32:gpr, %bb.4
 </span>   PseudoBR %bb.3
-
- bb.6 (%ir-block.21):
+<span class="err">
+</span> bb.6 (%ir-block.21):
    successors: %bb.5(0x04000000), %bb.6(0x7c000000);
                %bb.5(3.12%), %bb.6(96.88%)
 <span class="gd">-  %12:gpr = PHI %0:gpr, %bb.3, %17:gpr, %bb.6
@@ -632,8 +632,8 @@ bb.6 (%ir-block.21):
         <p>The final preparatory step before instruction scheduling and register allocation is <code>register-coalescer</code>, which eliminates many of the COPY instructions, taking the MIR out of SSA form:
         </p>
         <pre><code class="highlight"> Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
-
- bb.0 (%ir-block.3):
+<span class="err">
+</span> bb.0 (%ir-block.3):
    successors: %bb.1(0x80000000); %bb.1(100.00%)
    liveins: $x10, $x11, $x12
    %20:gpr = COPY $x12
@@ -647,8 +647,8 @@ bb.6 (%ir-block.21):
 <span class="gd">-  %36:gpr = COPY %18:gpr
 -  %37:gpr = COPY %21:gpr
 </span><span class="gi">+  %1:gpr = COPY $x0
-</span>
- bb.1 (%ir-block.4):
+</span><span class="err">
+</span> bb.1 (%ir-block.4):
    successors: %bb.3(0x80000000); %bb.3(100.00%)
 <span class="gd">-  %1:gpr = COPY %37:gpr
 -  %0:gpr = COPY %36:gpr
@@ -660,11 +660,11 @@ bb.6 (%ir-block.21):
 </span><span class="gi">+  %3:gpr = COPY %19:gpr
 +  %4:gpr = COPY $x0
 </span>   PseudoBR %bb.3
-
- bb.2 (%ir-block.7):
+<span class="err">
+</span> bb.2 (%ir-block.7):
    PseudoRET
-
- bb.3 (%ir-block.8):
+<span class="err">
+</span> bb.3 (%ir-block.8):
    successors: %bb.6(0x80000000); %bb.6(100.00%)
 <span class="gd">-  %4:gpr = COPY %39:gpr
 -  %3:gpr = COPY %38:gpr
@@ -680,8 +680,8 @@ bb.6 (%ir-block.21):
    %41:gpr = COPY %3:gpr
 <span class="gd">-  %42:fpr32 = COPY %7:fpr32
 </span>   PseudoBR %bb.6
-
- bb.4 (%ir-block.15):
+<span class="err">
+</span> bb.4 (%ir-block.15):
    successors: %bb.2(0x04000000), %bb.1(0x7c000000);
                %bb.2(3.12%), %bb.1(96.88%)
 <span class="gd">-  %8:gpr = nuw nsw ADDI %1:gpr, 1
@@ -693,8 +693,8 @@ bb.6 (%ir-block.21):
 +  %0:gpr = ADDI %0:gpr, 256
 +  BEQ %1:gpr, %32:gpr, %bb.2
 </span>   PseudoBR %bb.1
-
- bb.5 (%ir-block.18):
+<span class="err">
+</span> bb.5 (%ir-block.18):
    successors: %bb.4(0x04000000), %bb.3(0x7c000000);
                %bb.4(3.12%), %bb.3(96.88%)
 <span class="gd">-  FSW %15:fpr32, %6:gpr, 0
@@ -708,8 +708,8 @@ bb.6 (%ir-block.21):
 +  %3:gpr = ADDI %3:gpr, 4
 +  BEQ %4:gpr, %32:gpr, %bb.4
 </span>   PseudoBR %bb.3
-
- bb.6 (%ir-block.21):
+<span class="err">
+</span> bb.6 (%ir-block.21):
    successors: %bb.5(0x04000000), %bb.6(0x7c000000);
                %bb.5(3.12%), %bb.6(96.88%)
 <span class="gd">-  %14:fpr32 = COPY %42:fpr32
@@ -736,8 +736,8 @@ bb.6 (%ir-block.21):
         <p>The purpose of the instruction scheduler, <code>machine-scheduler</code>, is to re-order instructions to minimize hazards and stalls. The optimal schedule depends on micro-architectural details, and an example of a scheduler descriptor is <a href="https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/RISCV/RISCVSchedSiFive7.td">RISCVSchedSiFive7.td</a>, for the SiFive 7 CPU. In our invocation of Clang, we did not specify a particular CPU, so some generic information for RISC-V is used. The optimal schedule can be seen in the following diff:
         </p>
         <pre><code class="highlight"> Function Live Ins: $x10 in %18, $x11 in %19, $x12 in %20
-
- bb.0 (%ir-block.3):
+<span class="err">
+</span> bb.0 (%ir-block.3):
    successors: %bb.1(0x80000000); %bb.1(100.00%)
    liveins: $x10, $x11, $x12
    %20:gpr = COPY $x12
@@ -747,19 +747,19 @@ bb.6 (%ir-block.21):
 </span>   %27:gpr = LUI 4
    %32:gpr = ADDI $x0, 64
 <span class="gd">-  %1:gpr = COPY $x0
-</span>
- bb.1 (%ir-block.4):
+</span><span class="err">
+</span> bb.1 (%ir-block.4):
    successors: %bb.3(0x80000000); %bb.3(100.00%)
 <span class="gi">+  %4:gpr = COPY $x0
 </span>   %2:gpr = nuw nsw SLLI %1:gpr, 6
    %3:gpr = COPY %19:gpr
 <span class="gd">-  %4:gpr = COPY $x0
 </span>   PseudoBR %bb.3
-
- bb.2 (%ir-block.7):
+<span class="err">
+</span> bb.2 (%ir-block.7):
    PseudoRET
-
- bb.3 (%ir-block.8):
+<span class="err">
+</span> bb.3 (%ir-block.8):
    successors: %bb.6(0x80000000); %bb.6(100.00%)
 <span class="gd">-  %25:gpr = nuw nsw SLLI %4:gpr, 2
 -  %26:gpr = ADD %25:gpr, %19:gpr
@@ -774,16 +774,16 @@ bb.6 (%ir-block.21):
 </span>   %40:gpr = COPY %0:gpr
    %41:gpr = COPY %3:gpr
    PseudoBR %bb.6
-
- bb.4 (%ir-block.15):
+<span class="err">
+</span> bb.4 (%ir-block.15):
    successors: %bb.2(0x04000000), %bb.1(0x7c000000);
                %bb.2(3.12%), %bb.1(96.88%)
    %1:gpr = nuw nsw ADDI %1:gpr, 1
    %0:gpr = ADDI %0:gpr, 256
    BEQ %1:gpr, %32:gpr, %bb.2
    PseudoBR %bb.1
-
- bb.5 (%ir-block.18):
+<span class="err">
+</span> bb.5 (%ir-block.18):
    successors: %bb.4(0x04000000), %bb.3(0x7c000000);
                %bb.4(3.12%), %bb.3(96.88%)
    FSW %42:fpr32, %6:gpr, 0
@@ -791,8 +791,8 @@ bb.6 (%ir-block.21):
    %3:gpr = ADDI %3:gpr, 4
    BEQ %4:gpr, %32:gpr, %bb.4
    PseudoBR %bb.3
-
- bb.6 (%ir-block.21):
+<span class="err">
+</span> bb.6 (%ir-block.21):
    successors: %bb.5(0x04000000), %bb.6(0x7c000000);
                %bb.5(3.12%), %bb.6(96.88%)
    %30:fpr32 = FLW %40:gpr, 0
@@ -806,8 +806,8 @@ bb.6 (%ir-block.21):
         <p>We're now ready to run the <code>greedy</code> register allocator †, whose purpose is to assign every virtual register a physical register, while re-using the limited number of physical registers on the machine, and minimizing register spills. The actual replacement is done by <code>virtregrewriter</code>:
         </p>
         <pre><code class="highlight"> Function Live Ins: $x10, $x11, $x12
-
- bb.0 (%ir-block.3):
+<span class="err">
+</span> bb.0 (%ir-block.3):
    successors: %bb.1(0x80000000); %bb.1(100.00%)
    liveins: $x10, $x11, $x12
 <span class="gd">-  %20:gpr = COPY $x12
@@ -819,8 +819,8 @@ bb.6 (%ir-block.21):
 </span><span class="gi">+  renamable $x16 = COPY $x0
 +  renamable $x17 = LUI 4
 +  renamable $x5 = ADDI $x0, 64
-</span>
- bb.1 (%ir-block.4):
+</span><span class="err">
+</span> bb.1 (%ir-block.4):
    successors: %bb.3(0x80000000); %bb.3(100.00%)
 <span class="gd">-  %4:gpr = COPY $x0
 -  %2:gpr = nuw nsw SLLI %1:gpr, 6
@@ -830,13 +830,13 @@ bb.6 (%ir-block.21):
 +  renamable $x6 = nuw nsw SLLI renamable $x16, 6
 +  renamable $x28 = COPY renamable $x11
 </span>   PseudoBR %bb.3
-
- bb.2 (%ir-block.7):
+<span class="err">
+</span> bb.2 (%ir-block.7):
  ; predecessors: %bb.4
-
-   PseudoRET
-
- bb.3 (%ir-block.8):
+<span class="err">
+</span>   PseudoRET
+<span class="err">
+</span> bb.3 (%ir-block.8):
    successors: %bb.6(0x80000000); %bb.6(100.00%)
 <span class="gd">-  %28:gpr = OR %4:gpr, %2:gpr
 -  %29:gpr = SLLI %28:gpr, 2
@@ -858,8 +858,8 @@ bb.6 (%ir-block.21):
 +  renamable $x15 = COPY renamable $x10
 +  renamable $x13 = COPY renamable $x28
 </span>   PseudoBR %bb.6
-
- bb.4 (%ir-block.15):
+<span class="err">
+</span> bb.4 (%ir-block.15):
    successors: %bb.2(0x04000000), %bb.1(0x7c000000);
                %bb.2(3.12%), %bb.1(96.88%)
 <span class="gd">-  %1:gpr = nuw nsw ADDI %1:gpr, 1
@@ -870,8 +870,8 @@ bb.6 (%ir-block.21):
 +  renamable $x10 = ADDI killed renamable $x10, 256
 +  BEQ renamable $x16, renamable $x5, %bb.2
 </span>   PseudoBR %bb.1
-
- bb.5 (%ir-block.18):
+<span class="err">
+</span> bb.5 (%ir-block.18):
    successors: %bb.4(0x04000000), %bb.3(0x7c000000);
                %bb.4(3.12%), %bb.3(96.88%)
 <span class="gd">-  FSW %42:fpr32, %6:gpr, 0
@@ -885,8 +885,8 @@ bb.6 (%ir-block.21):
 +  renamable $x28 = ADDI killed renamable $x28, 4
 +  BEQ renamable $x29, renamable $x5, %bb.4
 </span>   PseudoBR %bb.3
-
- bb.6 (%ir-block.21):
+<span class="err">
+</span> bb.6 (%ir-block.21):
    successors: %bb.5(0x04000000), %bb.6(0x7c000000);
                %bb.5(3.12%), %bb.6(96.88%)
 <span class="gd">-  %30:fpr32 = FLW %40:gpr, 0
