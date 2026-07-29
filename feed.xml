@@ -6,7 +6,7 @@
   </author>
   <id>https://artagnon.com/feed.xml</id>
   <title>artagnon.com</title>
-  <updated>2026-06-21T14:24:29+01:00</updated>
+  <updated>2026-07-30T00:21:02+01:00</updated>
   <entry>
     <id>art/2043</id>
     <link href="art/2043"/>
@@ -198,6 +198,33 @@ Check the correctness of the proof of the abc conjecture, by directly reading th
     <title>What machines can and can&#39;t do</title>
     <updated>2020-12-01T07:41:57+01:00</updated>
     <dc:date>2020-12-01T07:41:57+01:00</dc:date>
+  </entry>
+  <entry>
+    <id>art/mutator</id>
+    <link href="art/mutator"/>
+    <summary>&lt;p&gt;We argue that the sum total of everything LLMs do is a form of mutation or fuzzing, and that exactly one hard benchmark will suffice: number of tokens expended to converge to the mathematically correct output.&lt;/p&gt;
+&lt;p&gt;We certainly don&#39;t have heated arguments about &lt;code&gt;tar&lt;/code&gt;, &lt;code&gt;ls&lt;/code&gt;, or any other computer program that takes some input and produces some output. The difference is that the program in question produces something &quot;plausible&quot; immediately. The fact that the program does not have even a rudimentary logic engine by design necessarily means that it cannot mathematically print &lt;code&gt;2&lt;/code&gt; when given &lt;code&gt;1 + 1&lt;/code&gt; as the input. In fact, the only possible way for this program to print the correct output immediately is to quote a known-correct output verbatim, by chance. In other words, an LLM always produces &lt;em&gt;rubbish&lt;/em&gt;, by design. The output space of this program is necessarily a &lt;em&gt;mutation&lt;/em&gt; of its training data and the supplied prompt; it cannot &lt;em&gt;compute&lt;/em&gt; or &lt;em&gt;construct&lt;/em&gt; anything.&lt;/p&gt;
+&lt;p&gt;That said, the program is remarkably good at iterative mutation; on each iteration, it successively produces less rubbish, and converges to a mathematically correct output faster than any other software. The program is intended to be used along with an oracle program that mechanically checks for correctness. In the absence of the availability of an oracle program, a human has to act as the oracle, and this is the most painful and least effective way to use the program. The program has limited utility in non-critical tasks, mutating to &lt;em&gt;synthesize&lt;/em&gt; output well within its training data, and to &lt;em&gt;annotate&lt;/em&gt; outliers that fall in the periphery of its training data. Otherwise, the program is useless.&lt;/p&gt;
+&lt;p&gt;Some good uses of the mutator (correctness oracle available):&lt;/p&gt;
+&lt;p&gt;Fuzzing to find an input to crash a user program. A crash is a crash: this is the correctness criterion, and the oracle is the user program.
+Fuzzing to find an input to make a user program print an unsound output. In this case, we need a known-correct variant of the program whose output the LLM can compare against, or some other kind of mathematical oracle program like an SMT solver.
+Fuzzing to find a proof, step-wise, when working in a proof assistant like Lean or Rocq. Proof assistants are powerful mathematical oracles that allow users to do a kind of mechanized mathematics, step-wise. They check each step in the proof, and simply report &quot;correct&quot; or &quot;incorrect&quot;. This is an especially good use case, and the mutator can be used to &quot;solve open mathematical problems&quot;.&lt;/p&gt;
+&lt;p&gt;Some limited uses of the mutator (non-critical annotation/synthesis):&lt;/p&gt;
+&lt;p&gt;Annotating outlier behavior from surveillance camera input. No guarantee catching a serious outlier, useful to the human watching nevertheless.
+Annotating outlier grammar in natural language input. Non-critical, better than other programs.
+Synthesizing a translation of a natural language input. Non-critical, better than other programs.
+Synthesizing a humanoid voice to do text-to-speech. Non-critical, better than other programs.
+Synthesizing a summary of corporate meetings. Non-critical, better than nothing.&lt;/p&gt;
+&lt;p&gt;Some non-uses of the mutator:&lt;/p&gt;
+&lt;p&gt;Generating a piece of creative writing or music. The piece will have no audience.
+Generating code that passes tests. The code in question is sure to be convoluted and buggy.
+Annotating outlier medical data. Critical function, actively harmful.
+Generating responses to customer support queries. The company in question is sure to lose business.
+Generating prose to replace an internet search engine. Cannot reproduce excerpts verbatim, by design.&lt;/p&gt;
+&lt;p&gt;&quot;Generative AI&quot; is really poor at generation tasks. I propose renaming it to &quot;Our Great Mutator&quot;. $\Box$&lt;/p&gt;</summary>
+    <title>Our Great Mutator</title>
+    <updated>2026-07-30T00:21:02+01:00</updated>
+    <dc:date>2026-07-30T00:21:02+01:00</dc:date>
   </entry>
   <entry>
     <id>art/pl</id>
@@ -1543,5 +1570,5 @@ Thanks to &lt;a href=&quot;http://pauillac.inria.fr/~herbelin/&quot;&gt;Hugo Her
     <updated>2020-01-18T08:02:23+01:00</updated>
     <dc:date>2020-01-18T08:02:23+01:00</dc:date>
   </entry>
-  <dc:date>2026-06-21T14:24:29+01:00</dc:date>
+  <dc:date>2026-07-30T00:21:02+01:00</dc:date>
 </feed>

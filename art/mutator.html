@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en">
   <head>
-    <title>Art</title>
+    <title>Our Great Mutator</title>
     <meta charset="utf-8">
     <meta name="author" content="Ramkumar Ramachandra">
     <meta name="description" content="A personal website containing information about the author, creative writing, technical satire, technical articles on compilers and logic">
@@ -147,6 +147,60 @@ mjx-mphantom {
 
 _::-webkit-full-page-media, _:future, :root mjx-container {
   will-change: opacity;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  border-collapse: collapse;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
 }
 
 mjx-c::before {
@@ -351,12 +405,17 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   font-family: MJXTEX-VB;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
+
+mjx-c.mjx-c25FB.TEX-A::before {
+  padding: 0.689em 0.778em 0 0;
+  content: "\25A1";
+}
 </style></head>
   <body class="wrapper">
     <nav><a href="/"><img id="logo" src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
       <ul>
         <li>
-          <span class="navidx">01</span><span id="navcur">Art</span>
+          <span class="navidx">01</span><a href="/art">Art</a>
         </li>
         <li>
           <span class="navidx">02</span><a href="/compilers">Compilers</a>
@@ -369,60 +428,78 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
     <main>
       <header>
         <h1>
-          Art
+          Our Great Mutator
         </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2026-07-30">Thu, 30 Jul 2026 00:00:00 +0100</time></span>
+        </div>
       </header>
       <article>
-        <p class="blurb">
-          Creative writing and satire.
+        <p>
+          We argue that the sum total of everything LLMs do is a form of mutation or fuzzing, and that exactly one hard benchmark will suffice: number of tokens expended to converge to the mathematically correct output.
         </p>
-        <ul id="indexfill">
+        <p>We certainly don't have heated arguments about <code>tar</code>, <code>ls</code>, or any other computer program that takes some input and produces some output. The difference is that the program in question produces something "plausible" immediately. The fact that the program does not have even a rudimentary logic engine by design necessarily means that it cannot mathematically print <code>2</code> when given <code>1 + 1</code> as the input. In fact, the only possible way for this program to print the correct output immediately is to quote a known-correct output verbatim, by chance. In other words, an LLM always produces <em>rubbish</em>, by design. The output space of this program is necessarily a <em>mutation</em> of its training data and the supplied prompt; it cannot <em>compute</em> or <em>construct</em> anything.
+        </p>
+        <p>
+          That said, the program is remarkably good at iterative mutation; on each iteration, it successively produces less rubbish, and converges to a mathematically correct output faster than any other software. The program is intended to be used along with an oracle program that mechanically checks for correctness. In the absence of the availability of an oracle program, a human has to act as the oracle, and this is the most painful and least effective way to use the program. The program has limited utility in non-critical tasks, mutating to <em>synthesize</em> output well within its training data, and to <em>annotate</em> outliers that fall in the periphery of its training data. Otherwise, the program is useless.
+        </p>
+        <p>
+          Some good uses of the mutator (correctness oracle available):
+        </p>
+        <ol class="olitems" type="none" start="1">
           <li>
-            <a href="/art/mutator">Our Great Mutator</a>
+            Fuzzing to find an input to crash a user program. A crash is a crash: this is the correctness criterion, and the oracle is the user program.
           </li>
           <li>
-            <a href="/art/ego">Conflating ego with intelligence</a>
+            Fuzzing to find an input to make a user program print an unsound output. In this case, we need a known-correct variant of the program whose output the LLM can compare against, or some other kind of mathematical oracle program like an SMT solver.
           </li>
           <li>
-            <a href="/art/introvert">The miserable misfit</a>
+            Fuzzing to find a proof, step-wise, when working in a proof assistant like Lean or Rocq. Proof assistants are powerful mathematical oracles that allow users to do a kind of mechanized mathematics, step-wise. They check each step in the proof, and simply report "correct" or "incorrect". This is an especially good use case, and the mutator can be used to "solve open mathematical problems".
+          </li>
+        </ol>
+        <p>
+          Some limited uses of the mutator (non-critical annotation/synthesis):
+        </p>
+        <ol class="olitems" type="none" start="1">
+          <li>
+            Annotating outlier behavior from surveillance camera input. No guarantee catching a serious outlier, useful to the human watching nevertheless.
           </li>
           <li>
-            <a href="/art/trump">The Trump supporter</a>
+            Annotating outlier grammar in natural language input. Non-critical, better than other programs.
           </li>
           <li>
-            <a href="/art/merit">Fallacious vocabulary around merit</a>
+            Synthesizing a translation of a natural language input. Non-critical, better than other programs.
           </li>
           <li>
-            <a href="/art/ai-war">AI and the war-time economy</a>
+            Synthesizing a humanoid voice to do text-to-speech. Non-critical, better than other programs.
           </li>
           <li>
-            <a href="/art/wet-dream">The capitalist wet dream</a>
+            Synthesizing a summary of corporate meetings. Non-critical, better than nothing.
+          </li>
+        </ol>
+        <p>
+          Some non-uses of the mutator:
+        </p>
+        <ol class="olitems" type="none" start="1">
+          <li>
+            Generating a piece of creative writing or music. The piece will have no audience.
           </li>
           <li>
-            <a href="/art/aging">Aging</a>
+            Generating code that passes tests. The code in question is sure to be convoluted and buggy.
           </li>
           <li>
-            <a href="/art/bhutan">Bhutan</a>
+            Annotating outlier medical data. Critical function, actively harmful.
           </li>
           <li>
-            <a href="/art/banter">Banter</a>
+            Generating responses to customer support queries. The company in question is sure to lose business.
           </li>
           <li>
-            <a href="/art/insomniac">The Insomniac</a>
+            Generating prose to replace an internet search engine. Cannot reproduce excerpts verbatim, by design.
           </li>
-          <li>
-            <a href="/art/ra">Ra: Egyptian ink on parchment</a>
-          </li>
-          <li>
-            <a href="/art/ml">What machines can and can't do</a>
-          </li>
-          <li>
-            <a href="/art/pl">An opinionated history of programming languages</a>
-          </li>
-          <li>
-            <a href="/art/2043">2043</a>
-          </li>
-        </ul>
+        </ol>
+        <p>
+          "Generative AI" is really poor at generation tasks. I propose renaming it to "Our Great Mutator". <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c25FB TEX-A"></mjx-c></mjx-mi></mjx-math></mjx-container>
+        </p>
       </article>
     </main>
   </body>

@@ -1,0 +1,31 @@
+Our Great Mutator
+
+We argue that the sum total of everything LLMs do is a form of mutation or fuzzing, and that exactly one hard benchmark will suffice: number of tokens expended to converge to the mathematically correct output.
+
+We certainly don't have heated arguments about `tar`, `ls`, or any other computer program that takes some input and produces some output. The difference is that the program in question produces something "plausible" immediately. The fact that the program does not have even a rudimentary logic engine by design necessarily means that it cannot mathematically print `2` when given `1 + 1` as the input. In fact, the only possible way for this program to print the correct output immediately is to quote a known-correct output verbatim, by chance. In other words, an LLM always produces !_{rubbish}, by design. The output space of this program is necessarily a !_{mutation} of its training data and the supplied prompt; it cannot !_{compute} or !_{construct} anything.
+
+That said, the program is remarkably good at iterative mutation; on each iteration, it successively produces less rubbish, and converges to a mathematically correct output faster than any other software. The program is intended to be used along with an oracle program that mechanically checks for correctness. In the absence of the availability of an oracle program, a human has to act as the oracle, and this is the most painful and least effective way to use the program. The program has limited utility in non-critical tasks, mutating to !_{synthesize} output well within its training data, and to !_{annotate} outliers that fall in the periphery of its training data. Otherwise, the program is useless.
+
+Some good uses of the mutator (correctness oracle available):
+
+1. Fuzzing to find an input to crash a user program. A crash is a crash: this is the correctness criterion, and the oracle is the user program.
+2. Fuzzing to find an input to make a user program print an unsound output. In this case, we need a known-correct variant of the program whose output the LLM can compare against, or some other kind of mathematical oracle program like an SMT solver.
+3. Fuzzing to find a proof, step-wise, when working in a proof assistant like Lean or Rocq. Proof assistants are powerful mathematical oracles that allow users to do a kind of mechanized mathematics, step-wise. They check each step in the proof, and simply report "correct" or "incorrect". This is an especially good use case, and the mutator can be used to "solve open mathematical problems".
+
+Some limited uses of the mutator (non-critical annotation/synthesis):
+
+1. Annotating outlier behavior from surveillance camera input. No guarantee catching a serious outlier, useful to the human watching nevertheless.
+2. Annotating outlier grammar in natural language input. Non-critical, better than other programs.
+3. Synthesizing a translation of a natural language input. Non-critical, better than other programs.
+4. Synthesizing a humanoid voice to do text-to-speech. Non-critical, better than other programs.
+5. Synthesizing a summary of corporate meetings. Non-critical, better than nothing.
+
+Some non-uses of the mutator:
+
+1. Generating a piece of creative writing or music. The piece will have no audience.
+2. Generating code that passes tests. The code in question is sure to be convoluted and buggy.
+3. Annotating outlier medical data. Critical function, actively harmful.
+4. Generating responses to customer support queries. The company in question is sure to lose business.
+5. Generating prose to replace an internet search engine. Cannot reproduce excerpts verbatim, by design.
+
+"Generative AI" is really poor at generation tasks. I propose renaming it to "Our Great Mutator". $\Box$
