@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en">
   <head>
-    <title>Art</title>
+    <title>Bootstrapping mechanical correctness</title>
     <meta charset="utf-8">
     <meta name="author" content="Ramkumar Ramachandra">
     <meta name="description" content="A personal website containing information about the author, creative writing, technical satire, technical articles on compilers and logic">
@@ -147,6 +147,60 @@ mjx-mphantom {
 
 _::-webkit-full-page-media, _:future, :root mjx-container {
   will-change: opacity;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  border-collapse: collapse;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
 }
 
 mjx-c::before {
@@ -351,12 +405,17 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
   font-family: MJXTEX-VB;
   src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
 }
+
+mjx-c.mjx-c25FB.TEX-A::before {
+  padding: 0.689em 0.778em 0 0;
+  content: "\25A1";
+}
 </style></head>
   <body class="wrapper">
     <nav><a href="/"><img id="logo" src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
       <ul>
         <li>
-          <span class="navidx">01</span><span id="navcur">Art</span>
+          <span class="navidx">01</span><a href="/art">Art</a>
         </li>
         <li>
           <span class="navidx">02</span><a href="/compilers">Compilers</a>
@@ -369,63 +428,25 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
     <main>
       <header>
         <h1>
-          Art
+          Bootstrapping mechanical correctness
         </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2026-09-05">Sat, 5 Sep 2026 19:00:00 +0100</time></span>
+        </div>
       </header>
       <article>
-        <p class="blurb">
-          Creative writing and satire.
+        <p>
+          There was a recent announcement from Anthropic about using a team of agents to <a href="https://www.anthropic.com/research/formalizing-fermats-last-theorem">formalize Fermat's Last Theorem</a>, and the generated artifact is over ten million lines of Lean code. At this point, one would question the utility of such an artifact: the issue is that humans still have to painstakingly check it, and make sure that there is no unsoundness bug. This raises the question of whether it is even theoretically possible to build a trusted-base against which all proofs are automatically trustworthy?
         </p>
-        <ul id="indexfill">
-          <li>
-            <a href="/art/regress">Bootstrapping mechanical correctness</a>
-          </li>
-          <li>
-            <a href="/art/mutator">Our Great Mutator</a>
-          </li>
-          <li>
-            <a href="/art/ego">Conflating ego with intelligence</a>
-          </li>
-          <li>
-            <a href="/art/introvert">The miserable misfit</a>
-          </li>
-          <li>
-            <a href="/art/trump">The Trump supporter</a>
-          </li>
-          <li>
-            <a href="/art/merit">Fallacious vocabulary around merit</a>
-          </li>
-          <li>
-            <a href="/art/ai-war">AI and the war-time economy</a>
-          </li>
-          <li>
-            <a href="/art/wet-dream">The capitalist wet dream</a>
-          </li>
-          <li>
-            <a href="/art/aging">Aging</a>
-          </li>
-          <li>
-            <a href="/art/bhutan">Bhutan</a>
-          </li>
-          <li>
-            <a href="/art/banter">Banter</a>
-          </li>
-          <li>
-            <a href="/art/insomniac">The Insomniac</a>
-          </li>
-          <li>
-            <a href="/art/ra">Ra: Egyptian ink on parchment</a>
-          </li>
-          <li>
-            <a href="/art/ml">What machines can and can't do</a>
-          </li>
-          <li>
-            <a href="/art/pl">An opinionated history of programming languages</a>
-          </li>
-          <li>
-            <a href="/art/2043">2043</a>
-          </li>
-        </ul>
+        <p>
+          All proof assistant are just software, that a team of expert humans can verify, just like they can verify a human-crafted informal mathematical proof. Then, there is the entire software stack including the compiler, the standard library, and the OS kernel, and the entire hardware stack that also need to be verified. The difference between the mathematical proof and the hardware-software stack is that the mathematical proof is a frozen artifact, and a single verification is sufficient. On the other hand, hardware and software get updates, so a full verification of everything would get outdated long before it is completed. Even a minor update to anything still needs to be re-verified by humans.
+        </p>
+        <p>
+          Imagine that we freeze everything we currently have and verify it using a team of expert humans. Would it then be possible to use that as the trusted-base to mechanically verify all updates? The issue here is that our verification tools cannot express and check correctness of everything that a human can express and check correctness of. In fact, to build such a system, I conjecture that we'd essentially have to replicate a human in silicon (and verify that!).
+        </p>
+        <p>
+          The problem of building a mechanical trusted-base suffers from infinite regress. <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c25FB TEX-A"></mjx-c></mjx-mi></mjx-math></mjx-container>
+        </p>
       </article>
     </main>
   </body>
