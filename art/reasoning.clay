@@ -1,6 +1,6 @@
 The deconstruction of mathematical reasoning
 
-At the outset, I would like to separate socio-political concerns from the technical discussion of the subject. I can write a silly computer program, name it something ridiculous like "Head Hitler of the World", endlessly pump misinformation about what it is and how it might lead to the extinction of the human race, meddle with elections to install fascist leaders around the world, siphon off trillions of dollars from the world economy, and destroy a significant portion of the world's natural resources. The discussion about how evil I am and how I must be stopped is however, tangential to the silly computer program I wrote. This post studies the construction and behavior a similar [silly computer program](https://mitpress.mit.edu/9780262052481/inventing-eliza/), omitting tangential discussions altogther.
+At the outset, I would like to separate socio-political concerns from the technical discussion of the subject. I can write a silly computer program, name it something ridiculous like "Head Hitler of the World", endlessly pump misinformation about what it is and how it might lead to the extinction of the human race, meddle with elections to install fascist leaders around the world, siphon off trillions of dollars from the world economy, and destroy a significant portion of the world's natural resources. The discussion about how evil I am and how I must be stopped is however, tangential to the silly computer program I wrote. This post studies the construction and behavior a similar [silly computer program](https://mitpress.mit.edu/9780262052481/inventing-eliza/), omitting tangential discussions altogether.
 
 Twenty-five Fields Medalists have [claimed](https://mathandai.org):
 
@@ -8,7 +8,7 @@ Twenty-five Fields Medalists have [claimed](https://mathandai.org):
 
 This is as nonsensical as the claim:
 
-- Over the last few months, the version control capabilities of `ls` have improved dramatically, to the point at that it can solve major outstanding version control problems
+- Over the last few months, the version control capabilities of `ls` have improved dramatically, to the point that it can solve major outstanding version control problems
 
 No, `ls` has zero version control capabilities, and you're the dunce for using `ls` instead of `git` here. Similarly, the !_{mathematical capabilities} of LLMs have always been, and will always be, exactly zero.
 
@@ -20,7 +20,7 @@ Take a simple statement I wrote about integer overflow:
 
 - X >= Y is equivalent to X > Y - 1, and this holds trivially when Y - 1 does not overflow. When it does overflow, it must be INT_MAX, and the comparison would evaluate to false anyway.
 
-Does it seem correct? We can use a simple software tool to check it, and it says [incorrect](https://alive2.llvm.org/ce/z/cmVLce), and prints a counter-example. This tool, which is a sophisticated version of a hand-held calculator, has mathematical capabilties. Similarly, another class of software, called proof assistants, has mathematical capabilities:
+Does it seem correct? We can use a simple software tool to check it, and it says [incorrect](https://alive2.llvm.org/ce/z/cmVLce), and prints a counter-example. This tool, which is a sophisticated version of a hand-held calculator, has mathematical capabilities. Similarly, another class of software, called proof assistants, has mathematical capabilities:
 
 ```
 theorem and_commutation (p q : Prop) : p ∧ q → q ∧ p := by
@@ -55,13 +55,13 @@ inductive Nat : Type
 
 ..
 
-We are now ready to discuss the ramifications of [the construction](https://www.0xkato.xyz/how-llms-actually-work/) of the silly program. At its core, it takes an input, breaks it up into tokens, encodes them into floating-point numbers, does a bit of matrix math, and prints an output. By design, the program is probabilistic, similar to the way other software picks a random default profile picture for a new user account. As a result, two equal inputs to the program seldom yield the same output. To bunch it in the same class as mathematical software is ridiculous when it is !_{incapable} of adding two numbers — to claim that somehow adding two numbers is unnecessary for "higher reasoning" is as ridiculous as claiming that knowing the alphabet is unnecessary for "higher reading". The statement "the LLM may make mistakes" is semantically incorrect, and is equivalent to the statement "the random number generator may produce a number that you don't like". To continue throwing more compute at this program with the hope that someday it will somehow be correct is as ridiculous as continuing to add successively large even numbers with the hope that someday, it will yield a prime.
+We are now ready to discuss the ramifications of [the construction](https://www.0xkato.xyz/how-llms-actually-work/) of the silly program. At its core, it takes an input, breaks it up into tokens, encodes them into floating-point numbers, does a bit of matrix math, and prints an output. By design, the program is probabilistic, similar to the way other software picks a random default profile picture for a new user account. As a result, two equal inputs to the program seldom yield the same output. To bunch it in the same class as mathematical software is ridiculous when it is !_{incapable} of adding two numbers — to claim that somehow adding two numbers is unnecessary for "higher reasoning" is as ridiculous as claiming that knowing the alphabet is unnecessary for "higher reading". The statement "the LLM may make mistakes" is semantically incorrect, and is equivalent to the statement "the random number generator may produce a number that you don't like". To continue throwing more compute at this program with the hope that someday, it will somehow be correct is as ridiculous as continuing to add successively large even numbers with the hope that someday, it will yield a prime.
 
-There is neverthless fierce debate about the !_{extent} to which an LLM is !_{correct}, and several benchmarks to evaluate this, when the very notion of correctness is ill-formed in this context of this computer program. Yet, more computational resources are being poured into this program to have it be correct by !_{chance}, with the unsound justification that humans also make mistakes, and that human intelligence is also probabilistic.
+There is nevertheless fierce debate about the !_{extent} to which an LLM is !_{correct}, and several benchmarks to evaluate this, when the very notion of correctness is ill-formed in this context of this computer program. Yet, more computational resources are being poured into this program to have it be correct by !_{chance}, with the unsound justification that humans also make mistakes, and that human intelligence is also probabilistic.
 
 ..
 
-With the exception of the narrow quantum regime, everything in the world is completely deterministic, including the computer program in question. Probability is a field of math to help us model and reason about macroscopic phenomenon like the economic market — it does not tell us anything about the underyling mechanics of the said phenomenon, and we use probability to talk about it precisely because we do not have an equation governing it. Probability is never a !_{fundamental primitive} except at sub-atomic scales, which are governed by the Schrödinger equation:
+With the exception of the narrow quantum regime, everything in the world is completely deterministic, including the computer program in question. Probability is a field of math to help us model and reason about macroscopic phenomenon like the economic market — it does not tell us anything about the underlying mechanics of the said phenomenon, and we use probability to talk about it precisely because we do not have an equation governing it. Probability is never a !_{fundamental primitive} except at sub-atomic scales, which are governed by the Schrödinger equation:
 
 << 45x6
 /art/schrodinger.svg
