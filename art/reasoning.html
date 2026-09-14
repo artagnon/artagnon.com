@@ -1,0 +1,548 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <title>The deconstruction of mathematical reasoning</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Ramkumar Ramachandra">
+    <meta name="description" content="A personal website containing information about the author, creative writing, technical satire, technical articles on compilers and logic">
+    <meta name="keywords" content="Compilers, Compiler Optimization, C++, LLVM, Proof Assistants, Rocq, Formalized Mathematics, Mathematical Logic, Creative Writing, Technical Satire">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" type="image/x-icon" href="/dist/favicon.ico">
+    <link rel="apple-touch-icon" sizes="58x58" href="/dist/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/dist/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/dist/touch-icon-ipad-retina.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/touch-icon-iphone-retina.png">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="RSS Feed">
+    <link rel="preload" as="font" crossorigin="" href="https://cdn.jsdelivr.net/fontsource/fonts/nunito-sans:vf@latest/latin-wght-normal.woff2">
+    <link rel="preload" as="font" crossorigin="" href="https://cdn.jsdelivr.net/fontsource/fonts/roboto-mono:vf@latest/latin-wght-normal.woff2">
+    <script async="" src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"></script>
+    <script async="" src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script async="" src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
+    <script async="" src="/dist/script.min.js"></script>
+    <script async="" data-domain="artagnon.com" src="https://analytics.artagnon.com/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="/dist/style.min.css">
+  <style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  border-collapse: collapse;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c25FB.TEX-A::before {
+  padding: 0.689em 0.778em 0 0;
+  content: "\25A1";
+}
+</style></head>
+  <body class="wrapper">
+    <nav><a href="/"><img id="logo" src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
+      <ul>
+        <li>
+          <span class="navidx">01</span><a href="/art">Art</a>
+        </li>
+        <li>
+          <span class="navidx">02</span><a href="/compilers">Compilers</a>
+        </li>
+        <li>
+          <span class="navidx">03</span><a href="/logic">Logic</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <header>
+        <h1>
+          The deconstruction of mathematical reasoning
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2026-09-14">Mon, 14 Sep 2026 14:00:00 +0100</time></span>
+        </div>
+      </header>
+      <article>
+        <p>
+          At the outset, I would like to separate socio-political concerns from the technical discussion of the subject. I can also write a silly computer program, name it something ridiculous like "Head Hitler of the World", endlessly pump misinformation about what it is and how it might lead to the extinction of the human race, meddle with elections to install fascist leaders around the world, siphon off trillions of dollars from the world economy, and destroy a significant portion of the world's natural resources. The discussion about how evil I am and how I must be stopped is however, tangential to the silly computer program I wrote. This post studies the construction and behavior a similar <a href="https://mitpress.mit.edu/9780262052481/inventing-eliza/">silly computer program</a>, omitting tangential discussions altogther.
+        </p>
+        <p>
+          Twenty-five Fields Medalists have <a href="https://mathandai.org">claimed</a>:
+        </p>
+        <ul class="ulitems">
+          <li>
+            Over the last few months, the mathematical capabilities of LLMs have improved dramatically, to the point that they can solve major outstanding problems in many fields of mathematics
+          </li>
+        </ul>
+        <p>
+          This is as nonsensical as the claim:
+        </p>
+        <ul class="ulitems">
+          <li>Over the last few months, the version control capabilities of <code>ls</code> have improved dramatically, to the point at that it can solve major outstanding version control problems
+          </li>
+        </ul>
+        <p>No, <code>ls</code> has zero version control capabilities, and you're the dunce for using <code>ls</code> instead of <code>git</code> here. Similarly, the <em>mathematical capabilities</em> of LLMs have always been, and will always be, exactly zero.
+        </p>
+        <hr class="ellipses">
+        <p>
+          Many people misunderstand what mathematics is and isn't, and many believe it's something only a rarefied group of mathematicians does. Nothing could be further from the truth: mathematics is nothing more than the <em>application</em> of <em>mathematical reasoning</em>, and it is an essential function everyone performs in everyday life.
+        </p>
+        <p>
+          Take a simple statement I wrote about integer overflow:
+        </p>
+        <ul class="ulitems">
+          <li>
+            X &gt;= Y is equivalent to X &gt; Y - 1, and this holds trivially when Y - 1 does not overflow. When it does overflow, it must be INT_MAX, and the comparison would evaluate to false anyway.
+          </li>
+        </ul>
+        <p>
+          Does it seem correct? We can use a simple software tool to check it, and it says <a href="https://alive2.llvm.org/ce/z/cmVLce">incorrect</a>, and prints a counter-example. This tool, which is a sophisticated version of a hand-held calculator, has mathematical capabilties. Similarly, another class of software, called proof assistants, has mathematical capabilities:
+        </p>
+        <pre><code class="highlight">theorem and_commutation (p q : Prop) : p ∧ q → q ∧ p := by
+  intro h
+  apply And.intro
+  · exact h.right
+  · exact h.left</code></pre>
+        <p>
+          A proof assistant would check this proof and report that it is correct. You could think of the application of this code in everyday life as "Anna and Mike came to the party" being equivalent to "Mike and Anna came to the party": needless to say, but even a toddler would reason about this correctly.
+        </p>
+        <p>
+          What underlies the notion of <em>computation</em> is an adder, which adds two numbers encoded as 0s and 1s. A circuit of a half-adder looks like this:
+        </p>
+        <figure>
+          <img src="/art/adder.webp" alt="/art/adder.webp" width="360" height="200">
+        </figure>
+        <p>
+          Then to subtract two numbers, you simply flip all the bits on the second number to yield a negation of the number, and add it to the first number as usual. To multiply two numbers, you simply perform repeated additions. You get the idea. Whether it's your refrigerator, elevator, pacemaker, car, or smartphone, nothing can function without an adder.
+        </p>
+        <p>
+          All mathematical software also relies on the same adder base, but with a difference:
+        </p>
+        <ol class="olitems" type="none" start="1">
+          <li>
+            Since numbers on hardware are finite-sized, having a number larger than the largest slot in hardware for numbers leads to integer overflow. There is no integer overflow in math.
+          </li>
+          <li>
+            Giving the hardware two numbers and getting an opaque answer back is not useful for reasoning about the underlying structure of natural numbers, and proving things based on them.
+          </li>
+        </ol>
+        <p>
+          Hence, proof assistants use an explicit recursive representation of natural numbers, and this underlies all their capabilities:
+        </p>
+        <pre><code class="highlight">inductive Nat : Type
+  | zero : Nat
+  | succ : Nat → Nat</code></pre>
+        <hr class="ellipses">
+        <p>
+          We are now ready to discuss the ramifications of <a href="https://www.0xkato.xyz/how-llms-actually-work/">the construction</a> of the silly program. At its core, it takes an input, breaks it up into tokens, encodes them into floating-point numbers, does a bit of matrix math, and prints an output. By design, the program is probabilistic, similar to the way other software picks a random default profile picture for a new user account. As a result, two equal inputs to the program seldom yield the same output. To bunch it in the same class as mathematical software is ridiculous when it is <em>incapable</em> of adding two numbers — to claim that somehow adding two numbers is unnecessary for "higher reasoning" is as ridiculous as claiming that knowing the alphabet is unnecessary for "higher reading". The statement "the LLM may make mistakes" is semantically incorrect, and is equivalent to the statement "the random number generator may produce a number that you don't like". To claim that somehow throwing more compute at this program with the hope that someday it will be be correct is as ridiculous as claiming that we should keep adding successively large even numbers with the hope that someday, it will yield a prime.
+        </p>
+        <p>
+          There is neverthless fierce debate about the <em>extent</em> to which an LLM is <em>correct</em>, and several benchmarks to evaluate this, when the very notion of correctness is ill-formed in this context of this computer program. Yet, more computational resources are being poured into this program to have it be correct by <em>chance</em>, with the unsound justification that humans also make mistakes, and that human intelligence is also probabilistic.
+        </p>
+        <hr class="ellipses">
+        <p>
+          With the exception of the narrow quantum regime, everything in the world is completely deterministic, including the computer program in question. Probability is a field of math to help us model and reason about macroscopic phenomenon like the economic market — it does not tell us anything about the underyling mechanics of the said phenomenon, and we use probability to talk about it precisely because we do not have an equation governing it. Probability is never a <em>fundamental primitive</em> except at sub-atomic scales, which are governed by the Schrödinger equation:
+        </p>
+        <figure>
+          <img src="/art/schrodinger.svg" alt="/art/schrodinger.svg" width="45" height="6">
+        </figure>
+        <p>
+          Hence, the statement "human intelligence is probabilistic" is as insightful as "the microwave sometimes doesn't work", and doesn't make a microwave similar to a car, which also sometimes doesn't work.
+        </p>
+        <hr class="ellipses">
+        <p>
+          The silly computer program is useful for certain tasks, just as every other computer program is useful at certain other tasks. To take our earlier example:
+        </p>
+        <ul class="ulitems">
+          <li>
+            X &gt;= Y is equivalent to X &gt; Y - 1, and this holds trivially when Y - 1 does not overflow. When it does overflow, it must be INT_MAX, and the comparison would evaluate to false anyway.
+          </li>
+        </ul>
+        <p>
+          Using mathematical reasoning to fix it, using a tool to check it, we get a correct statement:
+        </p>
+        <ul class="ulitems">
+          <li>
+            X &gt; Y - 1 implies X &gt;= Y, and this holds trivially when Y - 1 does not overflow. When it does overflow, it must be INT_MAX, and the comparison would evaluate to false anyway.
+          </li>
+        </ul>
+        <p>Now, if I patch LLVM to use this property to perform optimizations, the LLM can faithfully generate tests to cover it for me. How exactly? It would generate a lot of <em>rubbish</em>, run it through the unpatched and patched compiler, and run <code>diff</code>: when <code>diff</code> returns 0 (the files are identical), it would mutate the rubbish and repeat the process iteratively until it returns 1 (the files differ). The program reminds us of <a href="https://github.com/csmith-project/csmith">csmith</a> and indeed falls in that class of software. What it never has been able to, and will never be able to do, is to point out the faulty equivalence and fix it with the implication — there is obviously no computer program that can do this today, as we don't have the faintest clue about what intelligence is.
+        </p>
+        <p>The breakthrough Navier-Stokes result was achieved in a very similar way — <code>lean</code> was used in place of <code>diff</code>. To infer from this that the generator program has mathematical capabilities is obviously unsound. <mjx-container class="MathJax" jax="CHTML" style="font-size: 113.1%;"><mjx-math class=" MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c25FB TEX-A"></mjx-c></mjx-mi></mjx-math></mjx-container>
+        </p>
+      </article>
+    </main>
+  </body>
+</html>
