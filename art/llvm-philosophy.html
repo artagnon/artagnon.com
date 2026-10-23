@@ -379,15 +379,21 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         <p>
           The <a href="https://lwn.net/Articles/1099594/">transcript</a> of the 2026 Kernel Maintainers Summit was the subject of much debate in some circles.
         </p>
-        <p>
-          &gt; Torvalds said that the time has come to make it harder for new people to contribute code to the kernel. People like Kroah-Hartman have spent years trying to teach people how to contribute; it is time to stop doing that, he said.
-        </p>
-        <p>
-          &gt; Torvalds added that he does not want to scare off people who want to write code; his message is that you have to either put in the effort to learn, or put a lot of money into an LLM to participate.
-        </p>
-        <p>
-          &gt; he knows somebody who has used an LLM to summon forth a complete kernel written in Rust. How can working upstream be cheaper than that? Torvalds said that, if it gets to that point, the community may no longer be viable
-        </p>
+        <ul class="ulitems">
+          <li>
+            Torvalds said that the time has come to make it harder for new people to contribute code to the kernel. People like Kroah-Hartman have spent years trying to teach people how to contribute; it is time to stop doing that, he said.
+          </li>
+        </ul>
+        <ul class="ulitems">
+          <li>
+            Torvalds added that he does not want to scare off people who want to write code; his message is that you have to either put in the effort to learn, or put a lot of money into an LLM to participate.
+          </li>
+        </ul>
+        <ul class="ulitems">
+          <li>
+            he knows somebody who has used an LLM to summon forth a complete kernel written in Rust. How can working upstream be cheaper than that? Torvalds said that, if it gets to that point, the community may no longer be viable
+          </li>
+        </ul>
         <p>This raises a question about whether our community is in a similar situation. There was a <a href="https://discourse.llvm.org/t/rfc-forbid-ai-generated-communication/92414/101">recent proposal</a> to forbid AI-generated communication, which had the opposite effect of what was intended: some have interpreted it as the license to post machine-generated comments with an <code>Assisted-by</code> trailer. If the premise around which our community is structured is a level playing field by not having benevolent dictators, this ideal has been eroding, and continues to erode with every passing day. There is an over-reliance on the few people with the automation infrastructure and compute power to find tests showing miscompiles and crashes. The best public infrastructure we have is <a href="https://archer.top">Archer</a>, but we previously <a href="https://discourse.llvm.org/t/rfc-upstream-infrastructure-for-ai-review-of-prs/91042">opposed having machine-generated reviews upstream</a> — in practice, what this symbolic opposition has done is to exacerbate the unevenness of the playing field.
         </p>
         <p>New-contributor patches often go unreviewed for long periods of time, and are sometimes completely ignored — this happens because of we tend to focus on problems important to our employers. From a philosophical perspective, the objective of <em>solving important problems</em> would be <a href="https://en.wikipedia.org/wiki/Utilitarianism">utilitarianism</a>, which has several unsoundness issues. To illustrate, we are paid by our employers for <em>output</em>: if the perfect satisfying output were presented to us by an omnipotent entity, and we actually did no work for our employers, everyone would be perfectly happy. In theory, there is nothing preventing <code>llm</code> from serving as this omnipotent entity, and one of the reasons the situation in our community is not as severe as in the kernel (yet) is because we historically opted for a 20mn+ loc monolithic repository — today's <code>llm</code> suffers from a "context window" problem. To take an example of something concrete happening to a community, consider the state of the mathematical community post the recent <a href="https://github.com/openai/math">paper dump</a>.
