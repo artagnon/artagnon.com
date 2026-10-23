@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <title>A philosophical letter to the LLVM community</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Ramkumar Ramachandra">
+    <meta name="description" content="A personal website containing information about the author, creative writing, technical satire, technical articles on compilers and logic">
+    <meta name="keywords" content="Compilers, Compiler Optimization, C++, LLVM, Proof Assistants, Rocq, Formalized Mathematics, Mathematical Logic, Creative Writing, Technical Satire">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" type="image/x-icon" href="/dist/favicon.ico">
+    <link rel="apple-touch-icon" sizes="58x58" href="/dist/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/dist/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/dist/touch-icon-ipad-retina.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/touch-icon-iphone-retina.png">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="RSS Feed">
+    <link rel="preload" as="font" crossorigin="" href="https://cdn.jsdelivr.net/fontsource/fonts/nunito-sans:vf@latest/latin-wght-normal.woff2">
+    <link rel="preload" as="font" crossorigin="" href="https://cdn.jsdelivr.net/fontsource/fonts/roboto-mono:vf@latest/latin-wght-normal.woff2">
+    <script async="" src="https://cdn.jsdelivr.net/npm/cash-dom@8/dist/cash.min.js"></script>
+    <script async="" src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script async="" src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
+    <script async="" src="/dist/script.min.js"></script>
+    <script async="" data-domain="artagnon.com" src="https://analytics.artagnon.com/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="/dist/style.min.css">
+  <style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+  <body class="wrapper">
+    <nav><a href="/"><img id="logo" src="/dist/artagnon.com.svg" alt="home" width="317" height="390"></a><img id="more" src="/dist/icon.more.svg" alt="menu" width="16" height="74">
+      <ul>
+        <li>
+          <span class="navidx">01</span><a href="/art">Art</a>
+        </li>
+        <li>
+          <span class="navidx">02</span><a href="/compilers">Compilers</a>
+        </li>
+        <li>
+          <span class="navidx">03</span><a href="/logic">Logic</a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <header>
+        <h1>
+          A philosophical letter to the LLVM community
+        </h1>
+        <div id="metadata">
+          <span id="timestamp"><time datetime="2026-10-23">Fri, 23 Oct 2026 20:00:00 +0100</time></span>
+        </div>
+      </header>
+      <article>
+        <p>
+          The <a href="https://lwn.net/Articles/1099594/">transcript</a> of the 2026 Kernel Maintainers Summit was the subject of much debate in some circles.
+        </p>
+        <p>
+          &gt; Torvalds said that the time has come to make it harder for new people to contribute code to the kernel. People like Kroah-Hartman have spent years trying to teach people how to contribute; it is time to stop doing that, he said.
+        </p>
+        <p>
+          &gt; Torvalds added that he does not want to scare off people who want to write code; his message is that you have to either put in the effort to learn, or put a lot of money into an LLM to participate.
+        </p>
+        <p>
+          &gt; he knows somebody who has used an LLM to summon forth a complete kernel written in Rust. How can working upstream be cheaper than that? Torvalds said that, if it gets to that point, the community may no longer be viable
+        </p>
+        <p>This raises a question about whether our community is in a similar situation. There was a <a href="https://discourse.llvm.org/t/rfc-forbid-ai-generated-communication/92414/101">recent proposal</a> to forbid AI-generated communication, which had the opposite effect of what was intended: some have interpreted it as the license to post machine-generated comments with an <code>Assisted-by</code> trailer. If the premise around which our community is structured is a level playing field by not having benevolent dictators, this ideal has been eroding, and continues to erode with every passing day. There is an over-reliance on the few people with the automation infrastructure and compute power to find tests showing miscompiles and crashes. The best public infrastructure we have is <a href="https://archer.top">Archer</a>, but we previously <a href="https://discourse.llvm.org/t/rfc-upstream-infrastructure-for-ai-review-of-prs/91042">opposed having machine-generated reviews upstream</a> — in practice, what this symbolic opposition has done is to exacerbate the unevenness of the playing field.
+        </p>
+        <p>New-contributor patches often go unreviewed for long periods of time, and are sometimes completely ignored — this happens because of we tend to focus on problems important to our employers. From a philosophical perspective, the objective of <em>solving important problems</em> would be <a href="https://en.wikipedia.org/wiki/Utilitarianism">utilitarianism</a>, which has several unsoundness issues. To illustrate, we are paid by our employers for <em>output</em>: if the perfect satisfying output were presented to us by an omnipotent entity, and we actually did no work for our employers, everyone would be perfectly happy. In theory, there is nothing preventing <code>llm</code> from serving as this omnipotent entity, and one of the reasons the situation in our community is not as severe as in the kernel (yet) is because we historically opted for a 20mn+ loc monolithic repository — today's <code>llm</code> suffers from a "context window" problem. To take an example of something concrete happening to a community, consider the state of the mathematical community post the recent <a href="https://github.com/openai/math">paper dump</a>.
+        </p>
+        <p>
+          The omnipotent entity might very well find all the problems worth solving, and write patches for them in our project in the future, just as it does at the rate of <a href="https://www.anthropic.com/research/redesigning-source-control">30k commits/day at Anthropic</a> today. Perhaps we need to step back and question the purpose of our project, because "solving important problems" sure isn't going to cut it, and our ideological proposals and oppositions don't seem to achieve the intended effect.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>
